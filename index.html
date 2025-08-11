@@ -780,6 +780,15 @@
                 try {
                     const content = e.target.result;
                     const playName = file.name.replace('.txt', '');
+                    
+                    console.log('=== FILE UPLOAD DEBUG ===');
+                    console.log('File name:', file.name);
+                    console.log('File size:', file.size, 'bytes');
+                    console.log('Content length:', content.length, 'characters');
+                    console.log('First 500 characters:', content.substring(0, 500));
+                    console.log('Lines in file:', content.split('\n').length);
+                    console.log('=== END DEBUG ===');
+                    
                     parsePlayText(playName, content);
                     updatePlaySelector();
                     updateUploadedPlays();
@@ -820,20 +829,34 @@
             let inScene = false;
             let sceneContent = [];
 
+            console.log('Starting to parse play:', playName);
+            console.log('Total lines:', lines.length);
+
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i].trim();
+                
+                // Skip empty lines
+                if (!line) continue;
                 
                 // Check for Dramatis Personae section
                 if (line.toLowerCase().includes('dramatis personae') || 
                     line.toLowerCase().includes('characters in the play') ||
-                    line.toLowerCase().includes('persons represented')) {
+                    line.toLowerCase().includes('persons represented') ||
+                    line.toLowerCase().includes('dramatis personæ')) {
+                    console.log('Found Dramatis Personae at line', i, ':', line);
                     inDramatisPersonae = true;
                     inScene = false;
                     continue;
                 }
 
-                // Check for Act headers (more flexible matching)
-                if (line.match(/^ACT\s+[IVX]+/i) || line.match(/^ACT\s+[0-9]+/i)) {
+                // Check for Act headers (much more flexible matching)
+                if (line.match(/^ACT\s+[IVX]+/i) || 
+                    line.match(/^ACT\s+[0-9]+/i) ||
+                    line.match(/^ACT\s+[A-Z]+/i) ||
+                    line.match(/^THE\s+FIRST\s+PART\s+OF\s+KING\s+HENRY\s+THE\s+FOURTH/i) ||
+                    line.match(/^THE\s+SECOND\s+PART\s+OF\s+KING\s+HENRY\s+THE\s+FOURTH/i) ||
+                    line.match(/^KING\s+HENRY\s+THE\s+FOURTH/i)) {
+                    console.log('Found Act at line', i, ':', line);
                     inDramatisPersonae = false;
                     inScene = false;
                     currentAct = line;
@@ -841,8 +864,13 @@
                     continue;
                 }
 
-                // Check for Scene headers (more flexible matching)
-                if (line.match(/^SCENE\s+[IVX]+/i) || line.match(/^SCENE\s+[0-9]+/i)) {
+                // Check for Scene headers (much more flexible matching)
+                if (line.match(/^SCENE\s+[IVX]+/i) || 
+                    line.match(/^SCENE\s+[0-9]+/i) ||
+                    line.match(/^SCENE\s+[A-Z]+/i) ||
+                    line.match(/^SCENE\s+[IVX]+\./i) ||
+                    line.match(/^SCENE\s+[0-9]+\./i)) {
+                    console.log('Found Scene at line', i, ':', line);
                     inScene = true;
                     currentScene = `${currentAct} - ${line}`;
                     play.scenes[currentScene] = [];
@@ -858,6 +886,7 @@
                     const character = line.split('.')[0].trim();
                     if (character && character.length > 0 && character.length < 50 && !play.characters.includes(character)) {
                         play.characters.push(character);
+                        console.log('Found character:', character);
                     }
                 }
 
@@ -878,13 +907,62 @@
                 }
             });
 
+            // If no acts found, try alternative parsing
+            if (Object.keys(play.acts).length === 0) {
+                console.log('No acts found with standard parsing, trying alternative method...');
+                parsePlayTextAlternative(playName, content, play);
+            }
+
             plays[playName] = play;
-            console.log('Parsed play:', playName, play);
+            console.log('Final parsed play:', playName, play);
+            console.log('Acts found:', Object.keys(play.acts));
+            console.log('Scenes found:', Object.keys(play.scenes));
             
             // Set as current play if it's the first one
             if (Object.keys(plays).length === 1) {
                 currentPlay = playName;
                 loadPlay(currentPlay);
+            }
+        }
+
+        // Alternative parsing method for plays that don't follow standard format
+        function parsePlayTextAlternative(playName, content, play) {
+            const lines = content.split('\n');
+            let currentAct = '';
+            let currentScene = '';
+            let inScene = false;
+
+            console.log('Trying alternative parsing for:', playName);
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+
+                // Look for any line that might be an act (contains "ACT" or roman numerals)
+                if (line.match(/ACT/i) || line.match(/^[IVX]+\./i) || line.match(/^[IVX]+\s*$/i)) {
+                    console.log('Alternative: Found potential act at line', i, ':', line);
+                    currentAct = line;
+                    play.acts[currentAct] = [];
+                    inScene = false;
+                    continue;
+                }
+
+                // Look for any line that might be a scene (contains "SCENE" or numbers)
+                if (line.match(/SCENE/i) || line.match(/^[0-9]+\./i) || line.match(/^[IVX]+\./i)) {
+                    console.log('Alternative: Found potential scene at line', i, ':', line);
+                    currentScene = `${currentAct} - ${line}`;
+                    play.scenes[currentScene] = [];
+                    if (currentAct) {
+                        play.acts[currentAct].push(currentScene);
+                    }
+                    inScene = true;
+                    continue;
+                }
+
+                // Collect scene content
+                if (inScene && currentScene && line) {
+                    play.scenes[currentScene].push(line);
+                }
             }
         }
 
