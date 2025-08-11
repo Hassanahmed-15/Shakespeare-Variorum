@@ -79,6 +79,241 @@
             margin-left: 10px;
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .modal-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .upload-section {
+            margin-bottom: 25px;
+        }
+
+        .upload-section h3 {
+            margin-bottom: 10px;
+            color: #495057;
+        }
+
+        .file-upload {
+            border: 2px dashed #ced4da;
+            border-radius: 6px;
+            padding: 30px;
+            text-align: center;
+            background: #f8f9fa;
+            transition: border-color 0.3s;
+        }
+
+        .file-upload:hover {
+            border-color: #007bff;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-upload label {
+            cursor: pointer;
+            color: #007bff;
+            font-weight: 500;
+        }
+
+        .file-upload label:hover {
+            text-decoration: underline;
+        }
+
+        .upload-instructions {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .uploaded-plays {
+            margin-top: 20px;
+        }
+
+        .play-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .play-name {
+            font-weight: 500;
+        }
+
+        .remove-play {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .remove-play:hover {
+            background: #c82333;
+        }
+
+        .about-content {
+            line-height: 1.7;
+            color: #495057;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .about-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            text-align: center;
+        }
+
+        .about-footer p {
+            margin-bottom: 0;
+            color: #6c757d;
+        }
+
+        /* Footer About Section */
+        .footer-about {
+            background: #e9ecef;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 1px solid #ced4da;
+        }
+
+        .footer-about h3 {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .footer-about p {
+            max-width: 800px;
+            margin: 0 auto 15px auto;
+            color: #495057;
+            line-height: 1.6;
+        }
+
+        .footer-attribution {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-top: 20px;
+        }
+
+        .footer-attribution a {
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        /* Rights Modal */
+        .rights-content {
+            line-height: 1.7;
+            color: #495057;
+        }
+
+        .rights-content h4 {
+            color: #2c3e50;
+            margin: 25px 0 10px 0;
+            font-size: 1.1em;
+        }
+
+        .rights-content p {
+            margin-bottom: 15px;
+        }
+
+        .rights-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            text-align: center;
+        }
+
+        .rights-footer h4 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .rights-footer p {
+            margin-bottom: 5px;
+            color: #6c757d;
+        }
+
+        .rights-footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .rights-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .close-rights-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .close-rights-btn:hover {
+            background: #0056b3;
+        }
+
         /* Main Layout */
         .main-container {
             display: grid;
@@ -187,7 +422,7 @@
         }
 
         .highlighted {
-            background: #fff3cd;
+            background: #e3f2fd;
             padding: 2px 4px;
             border-radius: 3px;
         }
@@ -314,10 +549,94 @@
     <div class="header">
         <h1>Shakespeare Digital Variorum</h1>
         <div class="header-nav">
-            <button class="nav-btn">Settings</button>
-            <button class="nav-btn">About</button>
+            <button class="nav-btn" onclick="openSettings()">Settings</button>
+            <button class="nav-btn" onclick="openAbout()">About</button>
             <button class="explain-btn" onclick="explainHighlighted()">Explain Highlighted Text</button>
             <span class="explain-instruction">Use your cursor to highlight text in the play, then click this button for analysis.</span>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Settings</div>
+                <span class="close" onclick="closeSettings()">&times;</span>
+            </div>
+            
+            <div class="upload-section">
+                <h3>Upload Play Texts</h3>
+                <div class="file-upload">
+                    <input type="file" id="playFile" accept=".txt" onchange="handleFileUpload(event)">
+                    <label for="playFile">Choose a play text file (.txt)</label>
+                    <div class="upload-instructions">
+                        Upload .txt files containing Shakespeare play text. The system will automatically parse them into acts, scenes, and characters.
+                    </div>
+                </div>
+                
+                <div class="uploaded-plays" id="uploadedPlays">
+                    <!-- Uploaded plays will appear here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">About This Project</div>
+                <span class="close" onclick="closeAbout()">&times;</span>
+            </div>
+            
+            <div class="about-content">
+                <p>The New Variorum Shakespeare editions have been the gold standard of Shakespearean scholarship for over a century, bringing together the most important critical commentary, textual analysis, and historical context in comprehensive annotated volumes. The Shakespeare Digital Variorum builds on this tradition, harnessing the power of artificial intelligence to make centuries of scholarly insight accessible to everyone, from high school students to veteran researchers.</p>
+                
+                <p>Our platform integrates authoritative texts based on the Folger Shakespeare Library editions of each play, with commentary from major variorum editions, scholarly databases, and historical sources. We include references to film adaptations, stage productions, and cultural interpretations that show how Shakespeare's works have lived and evolved across different media and eras. Using advanced AI, we can instantly provide plain-language explanations of complex passages, trace the etymology of Early Modern English words as they appear in context, analyze prosodic patterns across scenes and plays, and illuminate the historical events and cultural forces that shaped each work.</p>
+                
+                <p>The goal is radical accessibility. Whether you're encountering Hamlet's soliloquies for the first time or you're a seasoned scholar investigating textual variants, the Shakespeare Digital Variorum meets you where you are. Students can receive immediate clarification of archaic language and historical references. Researchers can discover thematic connections across the complete canon. Theater practitioners can access centuries of performance history, from Garrick to Branagh to contemporary productions worldwide.</p>
+                
+                <p>We believe Shakespeare belongs to everyone, not just academics. By connecting scholarly commentary with film clips, performance videos, and multimedia resources, we show how these 400-year-old plays continue to speak to modern audiences. A teenager reading Romeo and Juliet can instantly see how Baz Luhrmann reimagined the balcony scene, while a graduate student can access the full textual apparatus from multiple critical editions.</p>
+                
+                <p>This isn't about replacing human scholarship but about democratizing it. Every AI-generated insight is grounded in the work of generations of Shakespeare scholars, from the earliest editors to contemporary critics. We've simply made it possible for anyone to access that collective wisdom instantly, searchably, and in conversation with the texts themselves.</p>
+                
+                <p>The Shakespeare Digital Variorum represents the next evolution of the variorum tradition: comprehensive, scholarly, and designed for universal access. Shakespeare's world is vast, and now everyone can explore all of it.</p>
+                
+                <div class="about-footer">
+                    <p><em>Created by Jack David Carson, Massachusetts Institute of Technology • 2025</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rights & Attribution Modal -->
+    <div id="rightsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Rights & Attribution</div>
+                <span class="close" onclick="closeRights()">&times;</span>
+            </div>
+            
+            <div class="rights-content">
+                <h4>Shakespeare Texts</h4>
+                <p>Public domain. Based on editions from the Folger Shakespeare Library and other scholarly sources.</p>
+                
+                <h4>Scholarly Commentary</h4>
+                <p>Used under fair use for educational purposes. Sources include JSTOR, academic publications, and historical editions. Full citations provided with each annotation.</p>
+                
+                <h4>This Website</h4>
+                <p>Licensed under CC BY-NC-SA 4.0 - Free to use for non-commercial, educational purposes with attribution.</p>
+                
+                <h4>AI Analysis</h4>
+                <p>Generated content is provided for educational purposes. Users should verify information with primary sources.</p>
+                
+                <div class="rights-footer">
+                    <h4>Shakespeare Digital Variorum</h4>
+                    <p>Created by Jack David Carson, Massachusetts Institute of Technology • 2025</p>
+                    <p>Questions about usage? Contact: <a href="mailto:jdcarson@mit.edu">jdcarson@mit.edu</a></p>
+                    <button class="close-rights-btn" onclick="closeRights()">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -326,60 +645,22 @@
         <!-- Left Panel - Library & Navigation -->
         <div class="left-panel">
             <div class="section-title">Library</div>
-            <select class="play-selector" onchange="changePlay()">
-                <option value="measure">Measure for Measure (18 scenes)</option>
-                <option value="hamlet">Hamlet (20 scenes)</option>
-                <option value="macbeth">Macbeth (28 scenes)</option>
-                <option value="romeo">Romeo and Juliet (24 scenes)</option>
+            <select class="play-selector" id="playSelector" onchange="changePlay()">
+                <option value="">Select a play...</option>
             </select>
 
             <div class="section-title">Navigation</div>
-            <ul class="navigation-list">
-                <li><a href="#" onclick="showSection('dramatis')">Dramatis Personae</a></li>
-                <li><a href="#" onclick="showSection('act1')" class="active">Act I</a></li>
-                <li class="sub-item"><a href="#" onclick="showScene('act1-scene1')" class="active">Scene I</a></li>
-                <li class="sub-item"><a href="#" onclick="showScene('act1-scene2')">Scene II</a></li>
-                <li class="sub-item"><a href="#" onclick="showScene('act1-scene3')">Scene III</a></li>
-                <li class="sub-item"><a href="#" onclick="showScene('act1-scene4')">Scene IV</a></li>
-                <li><a href="#" onclick="showSection('act2')">Act II</a></li>
-                <li class="sub-item"><a href="#" onclick="showScene('act2-scene1')">Scene I</a></li>
-                <li class="sub-item"><a href="#" onclick="showScene('act2-scene2')">Scene II</a></li>
-                <li class="sub-item"><a href="#" onclick="showScene('act2-scene3')">Scene III</a></li>
-                <li class="sub-item"><a href="#" onclick="showScene('act2-scene4')">Scene IV</a></li>
-                <li><a href="#" onclick="showSection('act3')">Act III</a></li>
-                <li class="sub-item"><a href="#" onclick="showScene('act3-scene1')">Scene I</a></li>
-                <li class="sub-item"><a href="#" onclick="showScene('act3-scene2')">Scene II</a></li>
-                <li><a href="#" onclick="showSection('act4')">Act IV</a></li>
-                <li class="sub-item"><a href="#" onclick="showScene('act4-scene1')">Scene I</a></li>
+            <ul class="navigation-list" id="navigationList">
+                <!-- Navigation will be populated dynamically -->
             </ul>
         </div>
 
         <!-- Center Panel - Play Text -->
         <div class="center-panel" id="playText">
-            <div class="scene-title">Act I — Scene I</div>
+            <div class="scene-title">Welcome to Shakespeare Digital Variorum</div>
             <div class="scene-separator"></div>
             
-            <div class="stage-direction">[Enter Duke, Escalus, Lords, and Attendants.]</div>
-            
-            <div class="dialogue">
-                <div class="character-name">DUKE</div>
-                <div class="dialogue-text">Escalus.</div>
-            </div>
-            
-            <div class="dialogue">
-                <div class="character-name">ESCALUS</div>
-                <div class="dialogue-text">My lord.</div>
-            </div>
-            
-            <div class="dialogue">
-                <div class="character-name">DUKE</div>
-                <div class="dialogue-text">Of government the properties to unfold Would seem in me t' affect speech and discourse, Since I am put to know that your own science Exceeds, in that, the lists of all advice My strength can give you. Then no more remains But that, to your sufficiency, as your worth is able, And let them work. The nature of our people, Our city's institutions, and the terms For common justice, you're as pregnant in As art and practice hath enriched any That we remember. There is our commission, From which we would not have you warp. Call hither, I say, bid come before us Angelo.</div>
-            </div>
-            
-            <div class="dialogue">
-                <div class="character-name">ESCALUS</div>
-                <div class="dialogue-text">What figure of us think you he will bear? For you must know, we have with special soul Elected him our absence to supply, Lent him our terror, dress'd him with our love, And given his deputation all the organs Of our own power: what think you of it?</div>
-            </div>
+            <p>Please upload a play text file in Settings to begin analyzing Shakespeare's works.</p>
         </div>
 
         <!-- Right Panel - Analysis -->
@@ -389,22 +670,13 @@
                     <div class="analysis-title">Basic Analysis</div>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="selection-info">Measure for Measure · Act I · Scene I — 38 words selected</div>
+                <div class="selection-info">No text selected</div>
             </div>
 
             <div class="analysis-section">
                 <div class="analysis-title">Context and Paraphrase</div>
                 <div class="analysis-content">
-                    <p>In this passage from Shakespeare's "Measure for Measure," Duke Vincentio is speaking to Friar Thomas. He is explaining why he feels inadequate in giving advice about governing. Here's a simpler way to understand what he's saying:</p>
-                    <div class="quoted-text">"Discussing the qualities necessary for governing would make me seem fond of talking a lot, especially since I know that your understanding of these matters surpasses any advice I could offer."</div>
-                </div>
-            </div>
-
-            <div class="analysis-section">
-                <div class="analysis-title">Explanation</div>
-                <div class="analysis-content">
-                    <p>Duke Vincentio is about to leave Vienna temporarily and plans to leave Angelo in charge. He confides in Friar Thomas, expressing his reservations and humility. The Duke acknowledges that Friar Thomas has greater expertise ("your own science Exceeds, in that, the lists of all advice My strength can give you"), which makes him feel insufficient to even discuss matters of governance.</p>
-                    <p>The Duke's speech reveals his character as someone who recognizes his own limitations and respects the wisdom of others. This humility will become important later in the play when he disguises himself as a friar to observe how Angelo handles power.</p>
+                    <p>Highlight text in the play to get AI-powered analysis.</p>
                 </div>
             </div>
 
@@ -420,6 +692,339 @@
 
     <script>
         let selectedText = '';
+        let plays = {};
+        let currentPlay = '';
+        let currentScene = '';
+
+        // Modal functions
+        function openSettings() {
+            document.getElementById('settingsModal').style.display = 'block';
+        }
+
+        function closeSettings() {
+            document.getElementById('settingsModal').style.display = 'none';
+        }
+
+        function openAbout() {
+            document.getElementById('aboutModal').style.display = 'block';
+        }
+
+        function closeAbout() {
+            document.getElementById('aboutModal').style.display = 'none';
+        }
+
+        function openRights() {
+            document.getElementById('rightsModal').style.display = 'block';
+        }
+
+        function closeRights() {
+            document.getElementById('rightsModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const settingsModal = document.getElementById('settingsModal');
+            const aboutModal = document.getElementById('aboutModal');
+            const rightsModal = document.getElementById('rightsModal');
+            if (event.target === settingsModal) {
+                closeSettings();
+            }
+            if (event.target === aboutModal) {
+                closeAbout();
+            }
+            if (event.target === rightsModal) {
+                closeRights();
+            }
+        }
+
+        // File upload handling
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const content = e.target.result;
+                const playName = file.name.replace('.txt', '');
+                parsePlayText(playName, content);
+                updatePlaySelector();
+                updateUploadedPlays();
+            };
+            reader.readAsText(file);
+        }
+
+        // Parse play text into structured data
+        function parsePlayText(playName, content) {
+            const lines = content.split('\n');
+            const play = {
+                name: playName,
+                characters: [],
+                acts: {},
+                scenes: {}
+            };
+
+            let currentAct = '';
+            let currentScene = '';
+            let inDramatisPersonae = false;
+            let inScene = false;
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                
+                // Check for Dramatis Personae section
+                if (line.toLowerCase().includes('dramatis personae') || 
+                    line.toLowerCase().includes('characters in the play') ||
+                    line.toLowerCase().includes('persons represented')) {
+                    inDramatisPersonae = true;
+                    continue;
+                }
+
+                // Check for Act headers
+                if (line.match(/^ACT\s+[IVX]+/i)) {
+                    inDramatisPersonae = false;
+                    inScene = false;
+                    currentAct = line;
+                    play.acts[currentAct] = [];
+                    continue;
+                }
+
+                // Check for Scene headers
+                if (line.match(/^SCENE\s+[IVX]+/i)) {
+                    inScene = true;
+                    currentScene = `${currentAct} - ${line}`;
+                    play.scenes[currentScene] = [];
+                    if (currentAct) {
+                        play.acts[currentAct].push(currentScene);
+                    }
+                    continue;
+                }
+
+                // Collect characters from Dramatis Personae
+                if (inDramatisPersonae && line && !line.startsWith('[') && !line.startsWith('_')) {
+                    const character = line.split('.')[0].trim();
+                    if (character && character.length > 0 && character.length < 50) {
+                        play.characters.push(character);
+                    }
+                }
+
+                // Collect scene content
+                if (inScene && line) {
+                    play.scenes[currentScene].push(line);
+                }
+            }
+
+            plays[playName] = play;
+            
+            // Set as current play if it's the first one
+            if (Object.keys(plays).length === 1) {
+                currentPlay = playName;
+                loadPlay(currentPlay);
+            }
+        }
+
+        // Update play selector dropdown
+        function updatePlaySelector() {
+            const selector = document.getElementById('playSelector');
+            selector.innerHTML = '<option value="">Select a play...</option>';
+            
+            Object.keys(plays).forEach(playName => {
+                const option = document.createElement('option');
+                option.value = playName;
+                option.textContent = playName;
+                selector.appendChild(option);
+            });
+        }
+
+        // Update uploaded plays list
+        function updateUploadedPlays() {
+            const container = document.getElementById('uploadedPlays');
+            container.innerHTML = '';
+            
+            Object.keys(plays).forEach(playName => {
+                const playItem = document.createElement('div');
+                playItem.className = 'play-item';
+                playItem.innerHTML = `
+                    <span class="play-name">${playName}</span>
+                    <button class="remove-play" onclick="removePlay('${playName}')">Remove</button>
+                `;
+                container.appendChild(playItem);
+            });
+        }
+
+        // Remove a play
+        function removePlay(playName) {
+            delete plays[playName];
+            updatePlaySelector();
+            updateUploadedPlays();
+            
+            if (currentPlay === playName) {
+                currentPlay = '';
+                loadPlay('');
+            }
+        }
+
+        // Load a play
+        function loadPlay(playName) {
+            if (!playName || !plays[playName]) {
+                document.getElementById('playText').innerHTML = `
+                    <div class="scene-title">Welcome to Shakespeare Digital Variorum</div>
+                    <div class="scene-separator"></div>
+                    <p>Please upload a play text file in Settings to begin analyzing Shakespeare's works.</p>
+                `;
+                document.getElementById('navigationList').innerHTML = '';
+                return;
+            }
+
+            const play = plays[playName];
+            currentPlay = playName;
+            
+            // Update navigation
+            updateNavigation(play);
+            
+            // Load first scene
+            const firstAct = Object.keys(play.acts)[0];
+            if (firstAct && play.acts[firstAct].length > 0) {
+                const firstScene = play.acts[firstAct][0];
+                loadScene(firstScene);
+            }
+        }
+
+        // Update navigation list
+        function updateNavigation(play) {
+            const navList = document.getElementById('navigationList');
+            navList.innerHTML = '';
+            
+            // Add Dramatis Personae
+            if (play.characters.length > 0) {
+                const dramatisItem = document.createElement('li');
+                dramatisItem.innerHTML = '<a href="#" onclick="showDramatisPersonae()">Dramatis Personae</a>';
+                navList.appendChild(dramatisItem);
+            }
+            
+            // Add Acts and Scenes
+            Object.keys(play.acts).forEach(actName => {
+                const actItem = document.createElement('li');
+                actItem.innerHTML = `<a href="#" onclick="showAct('${actName}')">${actName}</a>`;
+                navList.appendChild(actItem);
+                
+                play.acts[actName].forEach(sceneName => {
+                    const sceneItem = document.createElement('li');
+                    sceneItem.className = 'sub-item';
+                    sceneItem.innerHTML = `<a href="#" onclick="loadScene('${sceneName}')">${sceneName.split(' - ')[1]}</a>`;
+                    navList.appendChild(sceneItem);
+                });
+            });
+        }
+
+        // Load a specific scene
+        function loadScene(sceneName) {
+            if (!currentPlay || !plays[currentPlay] || !plays[currentPlay].scenes[sceneName]) {
+                return;
+            }
+
+            currentScene = sceneName;
+            const sceneContent = plays[currentPlay].scenes[sceneName];
+            
+            // Update active navigation
+            updateActiveNavigation(sceneName);
+            
+            // Display scene content
+            const playText = document.getElementById('playText');
+            playText.innerHTML = `
+                <div class="scene-title">${sceneName}</div>
+                <div class="scene-separator"></div>
+                ${formatSceneContent(sceneContent)}
+            `;
+        }
+
+        // Format scene content for display
+        function formatSceneContent(sceneContent) {
+            let html = '';
+            let inDialogue = false;
+            
+            sceneContent.forEach(line => {
+                if (line.trim() === '') return;
+                
+                // Check if line is a character name (all caps, no punctuation)
+                if (line.match(/^[A-Z\s]+$/) && line.length < 30) {
+                    if (inDialogue) {
+                        html += '</div></div>';
+                        inDialogue = false;
+                    }
+                    html += `<div class="dialogue"><div class="character-name">${line}</div>`;
+                    inDialogue = true;
+                } else if (line.startsWith('[') && line.endsWith(']')) {
+                    if (inDialogue) {
+                        html += '</div></div>';
+                        inDialogue = false;
+                    }
+                    html += `<div class="stage-direction">${line}</div>`;
+                } else if (inDialogue) {
+                    html += `<div class="dialogue-text">${line}</div>`;
+                } else {
+                    html += `<div class="dialogue-text">${line}</div>`;
+                }
+            });
+            
+            if (inDialogue) {
+                html += '</div></div>';
+            }
+            
+            return html;
+        }
+
+        // Update active navigation
+        function updateActiveNavigation(sceneName) {
+            const navLinks = document.querySelectorAll('.navigation-list a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.textContent === sceneName.split(' - ')[1]) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Show Dramatis Personae
+        function showDramatisPersonae() {
+            if (!currentPlay || !plays[currentPlay]) return;
+            
+            const characters = plays[currentPlay].characters;
+            const playText = document.getElementById('playText');
+            
+            playText.innerHTML = `
+                <div class="scene-title">Dramatis Personae</div>
+                <div class="scene-separator"></div>
+                <div class="analysis-content">
+                    ${characters.map(char => `<p><strong>${char}</strong></p>`).join('')}
+                </div>
+            `;
+        }
+
+        // Show Act overview
+        function showAct(actName) {
+            if (!currentPlay || !plays[currentPlay] || !plays[currentPlay].acts[actName]) return;
+            
+            const scenes = plays[currentPlay].acts[actName];
+            const playText = document.getElementById('playText');
+            
+            playText.innerHTML = `
+                <div class="scene-title">${actName}</div>
+                <div class="scene-separator"></div>
+                <div class="analysis-content">
+                    <p>This act contains ${scenes.length} scene${scenes.length !== 1 ? 's' : ''}:</p>
+                    ${scenes.map(scene => `<p><a href="#" onclick="loadScene('${scene}')">${scene.split(' - ')[1]}</a></p>`).join('')}
+                </div>
+            `;
+        }
+
+        // Change play
+        function changePlay() {
+            const selector = document.getElementById('playSelector');
+            const selectedPlay = selector.value;
+            if (selectedPlay) {
+                loadPlay(selectedPlay);
+            }
+        }
 
         // Text selection functionality
         document.addEventListener('mouseup', function() {
@@ -478,6 +1083,7 @@
         function updateAnalysis(content, text) {
             const analysisPanel = document.getElementById('analysisPanel');
             const wordCount = text.split(' ').length;
+            const playInfo = currentPlay ? `${currentPlay} · ${currentScene}` : 'Unknown Play';
             
             analysisPanel.innerHTML = `
                 <div class="analysis-section">
@@ -485,7 +1091,7 @@
                         <div class="analysis-title">Basic Analysis</div>
                         <button class="copy-btn">Copy</button>
                     </div>
-                    <div class="selection-info">Measure for Measure · Act I · Scene I — ${wordCount} words selected</div>
+                    <div class="selection-info">${playInfo} — ${wordCount} words selected</div>
                 </div>
 
                 <div class="analysis-section">
@@ -515,21 +1121,13 @@
             // Here you would implement follow-up question functionality
             alert('Follow-up question feature coming soon!');
         }
-
-        function changePlay() {
-            // Implement play changing functionality
-            console.log('Play changed');
-        }
-
-        function showSection(section) {
-            // Implement section navigation
-            console.log('Showing section:', section);
-        }
-
-        function showScene(scene) {
-            // Implement scene navigation
-            console.log('Showing scene:', scene);
-        }
     </script>
+
+    <!-- Footer About Section -->
+    <div class="footer-about">
+        <h3>About This Project</h3>
+        <p>Shakespeare Digital Variorum combines centuries of scholarly commentary with AI analysis. All Shakespeare texts are public domain and based on the Folger Shakespeare Library editions of each play. Scholarly sources are cited throughout and used under fair use for educational purposes. This site is freely available for non-commercial educational use.</p>
+        <p class="footer-attribution">Created by Jack David Carson, Massachusetts Institute of Technology • 2025 • <a href="#" onclick="openRights(); return false;">Full Rights & Usage Information</a></p>
+    </div>
 </body>
 </html>
