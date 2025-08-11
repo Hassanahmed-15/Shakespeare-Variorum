@@ -16,8 +16,7 @@
             background: #f8f9fa;
             color: #2c3e50;
             line-height: 1.6;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
         }
 
         /* Header */
@@ -98,6 +97,8 @@
             border-radius: 8px;
             width: 80%;
             max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
 
@@ -200,6 +201,26 @@
 
         .remove-play:hover {
             background: #c82333;
+        }
+
+        .upload-success {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+
+        .upload-error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            border: 1px solid #f5c6cb;
+            display: none;
         }
 
         .about-content {
@@ -577,6 +598,14 @@
                 <div class="uploaded-plays" id="uploadedPlays">
                     <!-- Uploaded plays will appear here -->
                 </div>
+                
+                <div class="upload-success" id="uploadSuccess">
+                    ✅ Play uploaded successfully! You can now select it from the Library dropdown.
+                </div>
+                
+                <div class="upload-error" id="uploadError">
+                    ❌ Error uploading play. Please try again.
+                </div>
             </div>
         </div>
     </div>
@@ -742,14 +771,36 @@
             const file = event.target.files[0];
             if (!file) return;
 
+            // Hide any previous messages
+            document.getElementById('uploadSuccess').style.display = 'none';
+            document.getElementById('uploadError').style.display = 'none';
+
             const reader = new FileReader();
             reader.onload = function(e) {
-                const content = e.target.result;
-                const playName = file.name.replace('.txt', '');
-                parsePlayText(playName, content);
-                updatePlaySelector();
-                updateUploadedPlays();
+                try {
+                    const content = e.target.result;
+                    const playName = file.name.replace('.txt', '');
+                    parsePlayText(playName, content);
+                    updatePlaySelector();
+                    updateUploadedPlays();
+                    
+                    // Show success message
+                    document.getElementById('uploadSuccess').style.display = 'block';
+                    
+                    // Auto-select the uploaded play
+                    document.getElementById('playSelector').value = playName;
+                    loadPlay(playName);
+                    
+                } catch (error) {
+                    console.error('Error processing file:', error);
+                    document.getElementById('uploadError').style.display = 'block';
+                }
             };
+            
+            reader.onerror = function() {
+                document.getElementById('uploadError').style.display = 'block';
+            };
+            
             reader.readAsText(file);
         }
 
@@ -881,11 +932,18 @@
             // Update navigation
             updateNavigation(play);
             
-            // Load first scene
+            // Load first scene automatically
             const firstAct = Object.keys(play.acts)[0];
             if (firstAct && play.acts[firstAct].length > 0) {
                 const firstScene = play.acts[firstAct][0];
                 loadScene(firstScene);
+            } else {
+                // If no scenes found, show welcome message
+                document.getElementById('playText').innerHTML = `
+                    <div class="scene-title">${playName}</div>
+                    <div class="scene-separator"></div>
+                    <p>Play loaded successfully. Use the navigation to explore acts and scenes.</p>
+                `;
             }
         }
 
@@ -974,11 +1032,13 @@
         }
 
         // Update active navigation
-        function updateActiveNavigation(sceneName) {
+        function updateActiveNavigation(itemName) {
             const navLinks = document.querySelectorAll('.navigation-list a');
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.textContent === sceneName.split(' - ')[1]) {
+                if (link.textContent === itemName || 
+                    link.textContent === itemName.split(' - ')[1] ||
+                    (itemName === 'dramatis' && link.textContent === 'Dramatis Personae')) {
                     link.classList.add('active');
                 }
             });
@@ -991,11 +1051,17 @@
             const characters = plays[currentPlay].characters;
             const playText = document.getElementById('playText');
             
+            // Update active navigation
+            updateActiveNavigation('dramatis');
+            
             playText.innerHTML = `
                 <div class="scene-title">Dramatis Personae</div>
                 <div class="scene-separator"></div>
                 <div class="analysis-content">
-                    ${characters.map(char => `<p><strong>${char}</strong></p>`).join('')}
+                    ${characters.length > 0 ? 
+                        characters.map(char => `<p><strong>${char}</strong></p>`).join('') :
+                        '<p><em>No character list found in this play.</em></p>'
+                    }
                 </div>
             `;
         }
@@ -1006,6 +1072,9 @@
             
             const scenes = plays[currentPlay].acts[actName];
             const playText = document.getElementById('playText');
+            
+            // Update active navigation
+            updateActiveNavigation(actName);
             
             playText.innerHTML = `
                 <div class="scene-title">${actName}</div>
