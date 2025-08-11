@@ -1,0 +1,12 @@
+[build]
+  command = ""
+  publish = "."
+  functions = "functions"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/shakespeare"
+  status = 200
