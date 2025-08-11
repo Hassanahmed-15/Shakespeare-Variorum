@@ -1,112 +1,535 @@
-const fetch = require('node-fetch');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shakespeare Digital Variorum</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-exports.handler = async (event, context) => {
-  // Enable CORS
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
-  };
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-  // Handle preflight requests
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers,
-      body: ''
-    };
-  }
+        /* Header */
+        .header {
+            background: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
 
-  try {
-    const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-    
-    if (!OPENAI_API_KEY) {
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ error: 'OpenAI API key not configured' })
-      };
-    }
+        .header h1 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            font-weight: normal;
+        }
 
-    if (event.httpMethod === 'POST') {
-      const { text, level, model } = JSON.parse(event.body);
+        .header-nav {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
 
-      if (!text) {
-        return {
-          statusCode: 400,
-          headers,
-          body: JSON.stringify({ error: 'Text is required' })
-        };
-      }
+        .nav-btn {
+            background: none;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
 
-      // Determine the system prompt based on analysis level
-      let systemPrompt = '';
-      if (level === 'expert') {
-        systemPrompt = `You are an expert Shakespearean scholar with comprehensive knowledge of 500 years of Shakespeare scholarship. When analyzing any Shakespeare passage, text, or question, provide responses in the style of the New Variorum Shakespeare editions. Include detailed analysis of language, historical context, critical interpretations, and textual variants.`;
-      } else if (level === 'detailed') {
-        systemPrompt = `You are a knowledgeable Shakespeare guide for readers with some familiarity with Shakespeare but seeking deeper understanding. Provide detailed analysis including language explanation, historical context, and thematic interpretation.`;
-      } else {
-        systemPrompt = `You are a friendly, knowledgeable Shakespeare teacher helping general readers understand and appreciate Shakespeare. Provide clear, accessible analysis that explains the language, meaning, and significance of the text.`;
-      }
+        .nav-btn:hover {
+            background: #f8f9fa;
+        }
 
-      const payload = {
-        model: model || 'gpt-4o-mini',
-        temperature: 0.7,
-        max_tokens: level === 'expert' ? 1500 : 1000,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: text }
-        ]
-      };
+        .explain-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
 
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${OPENAI_API_KEY}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
+        .explain-btn:hover {
+            background: #0056b3;
+        }
 
-      const data = await response.json();
-      
-      if (!response.ok) {
-        console.error('OpenAI API error:', data);
-        return {
-          statusCode: response.status,
-          headers,
-          body: JSON.stringify({
-            error: `OpenAI API error: ${data.error?.message || 'Unknown error'}`,
-            details: data
-          })
-        };
-      }
+        .explain-instruction {
+            font-size: 12px;
+            color: #6c757d;
+            margin-left: 10px;
+        }
 
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify(data)
-      };
-    }
+        /* Main Layout */
+        .main-container {
+            display: grid;
+            grid-template-columns: 280px 1fr 400px;
+            height: calc(100vh - 70px);
+            gap: 0;
+        }
 
-    // Health check
-    if (event.httpMethod === 'GET') {
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({ 
-          status: 'ok', 
-          openai: !!OPENAI_API_KEY
-        })
-      };
-    }
+        /* Left Panel - Library & Navigation */
+        .left-panel {
+            background: white;
+            border-right: 1px solid #e9ecef;
+            padding: 20px;
+            overflow-y: auto;
+        }
 
-  } catch (error) {
-    console.error('Function error:', error);
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ error: 'Internal server error' })
-    };
-  }
-};
+        .section-title {
+            font-weight: bold;
+            font-size: 14px;
+            color: #495057;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .play-selector {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .navigation-list {
+            list-style: none;
+        }
+
+        .navigation-list li {
+            margin-bottom: 5px;
+        }
+
+        .navigation-list a {
+            display: block;
+            padding: 8px 12px;
+            color: #495057;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        .navigation-list a:hover {
+            background: #f8f9fa;
+        }
+
+        .navigation-list a.active {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .navigation-list .sub-item {
+            margin-left: 20px;
+            font-size: 13px;
+        }
+
+        /* Center Panel - Play Text */
+        .center-panel {
+            background: white;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .scene-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .scene-separator {
+            border-top: 2px solid #e9ecef;
+            margin: 20px 0;
+        }
+
+        .stage-direction {
+            font-style: italic;
+            color: #6c757d;
+            margin: 15px 0;
+        }
+
+        .dialogue {
+            margin: 15px 0;
+        }
+
+        .character-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .dialogue-text {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .highlighted {
+            background: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        /* Right Panel - Analysis */
+        .right-panel {
+            background: white;
+            border-left: 1px solid #e9ecef;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .analysis-section {
+            margin-bottom: 25px;
+        }
+
+        .analysis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+
+        .copy-btn {
+            background: none;
+            border: 1px solid #ced4da;
+            color: #6c757d;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background: #f8f9fa;
+        }
+
+        .selection-info {
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+
+        .analysis-content {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #495057;
+        }
+
+        .analysis-content p {
+            margin-bottom: 15px;
+        }
+
+        .quoted-text {
+            background: #f8f9fa;
+            border-left: 3px solid #007bff;
+            padding: 10px 15px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+
+        .follow-up-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .follow-up-input {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .follow-up-input input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .ask-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .ask-btn:hover {
+            background: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 250px 1fr 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .left-panel, .right-panel {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>Shakespeare Digital Variorum</h1>
+        <div class="header-nav">
+            <button class="nav-btn">Settings</button>
+            <button class="nav-btn">About</button>
+            <button class="explain-btn" onclick="explainHighlighted()">Explain Highlighted Text</button>
+            <span class="explain-instruction">Use your cursor to highlight text in the play, then click this button for analysis.</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Left Panel - Library & Navigation -->
+        <div class="left-panel">
+            <div class="section-title">Library</div>
+            <select class="play-selector" onchange="changePlay()">
+                <option value="measure">Measure for Measure (18 scenes)</option>
+                <option value="hamlet">Hamlet (20 scenes)</option>
+                <option value="macbeth">Macbeth (28 scenes)</option>
+                <option value="romeo">Romeo and Juliet (24 scenes)</option>
+            </select>
+
+            <div class="section-title">Navigation</div>
+            <ul class="navigation-list">
+                <li><a href="#" onclick="showSection('dramatis')">Dramatis Personae</a></li>
+                <li><a href="#" onclick="showSection('act1')" class="active">Act I</a></li>
+                <li class="sub-item"><a href="#" onclick="showScene('act1-scene1')" class="active">Scene I</a></li>
+                <li class="sub-item"><a href="#" onclick="showScene('act1-scene2')">Scene II</a></li>
+                <li class="sub-item"><a href="#" onclick="showScene('act1-scene3')">Scene III</a></li>
+                <li class="sub-item"><a href="#" onclick="showScene('act1-scene4')">Scene IV</a></li>
+                <li><a href="#" onclick="showSection('act2')">Act II</a></li>
+                <li class="sub-item"><a href="#" onclick="showScene('act2-scene1')">Scene I</a></li>
+                <li class="sub-item"><a href="#" onclick="showScene('act2-scene2')">Scene II</a></li>
+                <li class="sub-item"><a href="#" onclick="showScene('act2-scene3')">Scene III</a></li>
+                <li class="sub-item"><a href="#" onclick="showScene('act2-scene4')">Scene IV</a></li>
+                <li><a href="#" onclick="showSection('act3')">Act III</a></li>
+                <li class="sub-item"><a href="#" onclick="showScene('act3-scene1')">Scene I</a></li>
+                <li class="sub-item"><a href="#" onclick="showScene('act3-scene2')">Scene II</a></li>
+                <li><a href="#" onclick="showSection('act4')">Act IV</a></li>
+                <li class="sub-item"><a href="#" onclick="showScene('act4-scene1')">Scene I</a></li>
+            </ul>
+        </div>
+
+        <!-- Center Panel - Play Text -->
+        <div class="center-panel" id="playText">
+            <div class="scene-title">Act I — Scene I</div>
+            <div class="scene-separator"></div>
+            
+            <div class="stage-direction">[Enter Duke, Escalus, Lords, and Attendants.]</div>
+            
+            <div class="dialogue">
+                <div class="character-name">DUKE</div>
+                <div class="dialogue-text">Escalus.</div>
+            </div>
+            
+            <div class="dialogue">
+                <div class="character-name">ESCALUS</div>
+                <div class="dialogue-text">My lord.</div>
+            </div>
+            
+            <div class="dialogue">
+                <div class="character-name">DUKE</div>
+                <div class="dialogue-text">Of government the properties to unfold Would seem in me t' affect speech and discourse, Since I am put to know that your own science Exceeds, in that, the lists of all advice My strength can give you. Then no more remains But that, to your sufficiency, as your worth is able, And let them work. The nature of our people, Our city's institutions, and the terms For common justice, you're as pregnant in As art and practice hath enriched any That we remember. There is our commission, From which we would not have you warp. Call hither, I say, bid come before us Angelo.</div>
+            </div>
+            
+            <div class="dialogue">
+                <div class="character-name">ESCALUS</div>
+                <div class="dialogue-text">What figure of us think you he will bear? For you must know, we have with special soul Elected him our absence to supply, Lent him our terror, dress'd him with our love, And given his deputation all the organs Of our own power: what think you of it?</div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Analysis -->
+        <div class="right-panel" id="analysisPanel">
+            <div class="analysis-section">
+                <div class="analysis-header">
+                    <div class="analysis-title">Basic Analysis</div>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="selection-info">Measure for Measure · Act I · Scene I — 38 words selected</div>
+            </div>
+
+            <div class="analysis-section">
+                <div class="analysis-title">Context and Paraphrase</div>
+                <div class="analysis-content">
+                    <p>In this passage from Shakespeare's "Measure for Measure," Duke Vincentio is speaking to Friar Thomas. He is explaining why he feels inadequate in giving advice about governing. Here's a simpler way to understand what he's saying:</p>
+                    <div class="quoted-text">"Discussing the qualities necessary for governing would make me seem fond of talking a lot, especially since I know that your understanding of these matters surpasses any advice I could offer."</div>
+                </div>
+            </div>
+
+            <div class="analysis-section">
+                <div class="analysis-title">Explanation</div>
+                <div class="analysis-content">
+                    <p>Duke Vincentio is about to leave Vienna temporarily and plans to leave Angelo in charge. He confides in Friar Thomas, expressing his reservations and humility. The Duke acknowledges that Friar Thomas has greater expertise ("your own science Exceeds, in that, the lists of all advice My strength can give you"), which makes him feel insufficient to even discuss matters of governance.</p>
+                    <p>The Duke's speech reveals his character as someone who recognizes his own limitations and respects the wisdom of others. This humility will become important later in the play when he disguises himself as a friar to observe how Angelo handles power.</p>
+                </div>
+            </div>
+
+            <div class="follow-up-section">
+                <div class="analysis-title">Ask a follow-up question</div>
+                <div class="follow-up-input">
+                    <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
+                    <button class="ask-btn" onclick="askFollowUp()">Ask</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedText = '';
+
+        // Text selection functionality
+        document.addEventListener('mouseup', function() {
+            const selection = window.getSelection();
+            selectedText = selection.toString().trim();
+            
+            if (selectedText) {
+                // Highlight the selected text
+                const range = selection.getRangeAt(0);
+                const span = document.createElement('span');
+                span.className = 'highlighted';
+                range.surroundContents(span);
+            }
+        });
+
+        function explainHighlighted() {
+            if (!selectedText) {
+                alert('Please highlight some text first, then click "Explain Highlighted Text".');
+                return;
+            }
+            
+            // Call the serverless function to analyze the highlighted text
+            analyzeHighlightedText(selectedText);
+        }
+
+        async function analyzeHighlightedText(text) {
+            try {
+                const response = await fetch('/.netlify/functions/shakespeare', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        text: text,
+                        level: 'detailed',
+                        model: 'gpt-4o-mini'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.choices && data.choices[0] && data.choices[0].message) {
+                    updateAnalysis(data.choices[0].message.content, text);
+                }
+                
+            } catch (error) {
+                console.error('Error analyzing text:', error);
+                alert('Error analyzing text. Please try again.');
+            }
+        }
+
+        function updateAnalysis(content, text) {
+            const analysisPanel = document.getElementById('analysisPanel');
+            const wordCount = text.split(' ').length;
+            
+            analysisPanel.innerHTML = `
+                <div class="analysis-section">
+                    <div class="analysis-header">
+                        <div class="analysis-title">Basic Analysis</div>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <div class="selection-info">Measure for Measure · Act I · Scene I — ${wordCount} words selected</div>
+                </div>
+
+                <div class="analysis-section">
+                    <div class="analysis-title">Analysis</div>
+                    <div class="analysis-content">
+                        ${content}
+                    </div>
+                </div>
+
+                <div class="follow-up-section">
+                    <div class="analysis-title">Ask a follow-up question</div>
+                    <div class="follow-up-input">
+                        <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
+                        <button class="ask-btn" onclick="askFollowUp()">Ask</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function askFollowUp() {
+            const question = document.getElementById('followUpQuestion').value.trim();
+            if (!question) {
+                alert('Please enter a question.');
+                return;
+            }
+            
+            // Here you would implement follow-up question functionality
+            alert('Follow-up question feature coming soon!');
+        }
+
+        function changePlay() {
+            // Implement play changing functionality
+            console.log('Play changed');
+        }
+
+        function showSection(section) {
+            // Implement section navigation
+            console.log('Showing section:', section);
+        }
+
+        function showScene(scene) {
+            // Implement scene navigation
+            console.log('Showing scene:', scene);
+        }
+    </script>
+</body>
+</html>
