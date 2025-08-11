@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shakespeare Digital Variorum</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #8b4513;
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            color: #666;
+            font-style: italic;
+            margin-top: 10px;
+        }
+        
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .input-section, .output-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .api-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .api-group {
+            margin-bottom: 15px;
+        }
+        
+        .api-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #8b4513;
+        }
+        
+        .api-group input, .api-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #8b4513;
+            box-shadow: 0 0 5px rgba(139, 69, 19, 0.3);
+        }
+        
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            min-width: 150px;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .explain-btn {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            font-size: 18px;
+            padding: 15px 30px;
+        }
+        
+        .result {
+            background: #f8f9fa;
+            border-left: 5px solid #8b4513;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+        }
+        
+        .error {
+            color: #d32f2f;
+            background: #ffebee;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 5px solid #d32f2f;
+        }
+        
+        .success {
+            color: #2e7d32;
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 5px solid #2e7d32;
+        }
+        
+        .stats {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #1976d2;
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎭 Shakespeare Digital Variorum</h1>
+        <div class="subtitle">Advanced AI-Powered Shakespeare Analysis</div>
+    </div>
+
+    <!-- API Configuration -->
+    <div class="api-section">
+        <h3>⚙️ Analysis Settings</h3>
+        <div class="api-group">
+            <label for="model">Model:</label>
+            <select id="model" onchange="saveModel()">
+                <option value="gpt-4o">GPT-4o (Most Capable)</option>
+                <option value="gpt-4o-mini" selected>GPT-4o Mini (Fast & Efficient)</option>
+                <option value="gpt-4-turbo">GPT-4 Turbo</option>
+                <option value="gpt-3.5-turbo">GPT-3.5 Turbo (Legacy)</option>
+            </select>
+            <small style="color: #6b7280; font-size: 12px;">Choose your preferred AI model</small>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="input-section">
+            <h3>📝 Input Text</h3>
+            <textarea id="inputText" placeholder="Paste Shakespeare text here for analysis...&#10;&#10;Example:&#10;To be, or not to be, that is the question:&#10;Whether 'tis nobler in the mind to suffer&#10;The slings and arrows of outrageous fortune,&#10;Or to take arms against a sea of troubles&#10;And by opposing end them."></textarea>
+            
+            <div class="controls">
+                <label for="analysisLevel">Analysis Level:</label>
+                <select id="analysisLevel">
+                    <option value="basic">Basic Analysis</option>
+                    <option value="detailed">Detailed Analysis</option>
+                    <option value="expert">Expert Analysis</option>
+                </select>
+                
+                <button class="explain-btn" onclick="analyzeText()">🔍 Analyze Text</button>
+            </div>
+        </div>
+        
+        <div class="output-section">
+            <h3>📊 Analysis Results</h3>
+            <div id="output"></div>
+        </div>
+    </div>
+
+    <script>
+        // Load saved settings on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedModel = localStorage.getItem('shakespeare_model');
+            
+            if (savedModel) {
+                document.getElementById('model').value = savedModel;
+            }
+        });
+
+        function saveModel() {
+            const model = document.getElementById('model').value;
+            localStorage.setItem('shakespeare_model', model);
+        }
+
+        async function analyzeText() {
+            const text = document.getElementById('inputText').value.trim();
+            const level = document.getElementById('analysisLevel').value;
+            const model = document.getElementById('model').value;
+            const output = document.getElementById('output');
+            
+            if (!text) {
+                output.innerHTML = '<div class="error">Please enter some text to analyze.</div>';
+                return;
+            }
+            
+            output.innerHTML = '<div class="loading">🤔 Analyzing text with AI...</div>';
+            
+            try {
+                const response = await fetch('/.netlify/functions/shakespeare', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        text: text,
+                        level: level,
+                        model: model
+                    })
+                });
+                
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(`HTTP ${response.status}: ${errorData.error || response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.choices && data.choices[0] && data.choices[0].message) {
+                    const content = data.choices[0].message.content;
+                    const usage = data.usage;
+                    
+                    output.innerHTML = `
+                        <div class="result">${content}</div>
+                        <div class="stats">
+                            📊 Usage: ${usage?.prompt_tokens || 'N/A'} prompt tokens, 
+                            ${usage?.completion_tokens || 'N/A'} completion tokens, 
+                            ${usage?.total_tokens || 'N/A'} total tokens
+                        </div>
+                    `;
+                } else {
+                    throw new Error('Invalid response format from API');
+                }
+                
+            } catch (error) {
+                let msg = error.message;
+                if(/404|model/i.test(msg)) {
+                    output.innerHTML = '<div class="error">❌ API error: model not available — check your configuration.</div>';
+                } else {
+                    output.innerHTML = `<div class="error">❌ Error: ${msg}</div>`;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

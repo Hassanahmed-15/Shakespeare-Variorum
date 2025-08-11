@@ -1,0 +1,15 @@
+{
+  "name": "shakespeare-variorum",
+  "version": "1.0.0",
+  "description": "Shakespeare Digital Variorum with server-side API",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
