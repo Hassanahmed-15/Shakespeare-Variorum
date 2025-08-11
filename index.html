@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: #f8f9fa;
             color: #2c3e50;
             line-height: 1.6;
@@ -33,7 +33,8 @@
         .header h1 {
             font-size: 1.8em;
             color: #2c3e50;
-            font-weight: normal;
+            font-weight: 600;
+            font-family: 'Georgia', 'Times New Roman', serif;
         }
 
         .header-nav {
@@ -58,18 +59,29 @@
         }
 
         .explain-btn {
-            background: #007bff;
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 12px 24px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
         }
 
         .explain-btn:hover {
-            background: #0056b3;
+            background: linear-gradient(135deg, #3182ce 0%, #2c5aa0 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(66, 153, 225, 0.4);
+        }
+
+        .explain-btn:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         .explain-instruction {
@@ -93,13 +105,14 @@
         .modal-content {
             background-color: white;
             margin: 5% auto;
-            padding: 30px;
-            border-radius: 8px;
+            padding: 40px;
+            border-radius: 16px;
             width: 80%;
-            max-width: 600px;
+            max-width: 700px;
             max-height: 80vh;
             overflow-y: auto;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .modal-header {
@@ -112,9 +125,11 @@
         }
 
         .modal-title {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #2c3e50;
+            font-size: 2em;
+            font-weight: 700;
+            color: #1a202c;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            margin-bottom: 10px;
         }
 
         .close {
@@ -134,21 +149,27 @@
         }
 
         .upload-section h3 {
-            margin-bottom: 10px;
-            color: #495057;
+            margin-bottom: 15px;
+            color: #1a202c;
+            font-size: 1.3em;
+            font-weight: 600;
+            font-family: 'Georgia', 'Times New Roman', serif;
         }
 
         .file-upload {
-            border: 2px dashed #ced4da;
-            border-radius: 6px;
-            padding: 30px;
+            border: 2px dashed #e2e8f0;
+            border-radius: 12px;
+            padding: 40px;
             text-align: center;
-            background: #f8f9fa;
-            transition: border-color 0.3s;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            transition: all 0.3s ease;
         }
 
         .file-upload:hover {
-            border-color: #007bff;
+            border-color: #4299e1;
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(66, 153, 225, 0.15);
         }
 
         .file-upload input[type="file"] {
@@ -157,8 +178,11 @@
 
         .file-upload label {
             cursor: pointer;
-            color: #007bff;
-            font-weight: 500;
+            color: #2b6cb0;
+            font-weight: 600;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 10px;
         }
 
         .file-upload label:hover {
@@ -224,13 +248,15 @@
         }
 
         .about-content {
-            line-height: 1.7;
-            color: #495057;
+            line-height: 1.8;
+            color: #2d3748;
+            font-size: 1.05em;
         }
 
         .about-content p {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: justify;
+            font-family: 'Georgia', 'Times New Roman', serif;
         }
 
         .about-footer {
@@ -352,12 +378,13 @@
         }
 
         .section-title {
-            font-weight: bold;
+            font-weight: 700;
             font-size: 14px;
-            color: #495057;
+            color: #1a202c;
             margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            font-family: 'Georgia', 'Times New Roman', serif;
         }
 
         .play-selector {
@@ -495,12 +522,27 @@
 
         .analysis-content {
             font-size: 14px;
-            line-height: 1.6;
-            color: #495057;
+            line-height: 1.7;
+            color: #2d3748;
+            font-family: 'Georgia', 'Times New Roman', serif;
         }
 
         .analysis-content p {
             margin-bottom: 15px;
+        }
+
+        .analysis-section h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a202c;
+            margin: 20px 0 10px 0;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .analysis-section h4:first-of-type {
+            margin-top: 0;
         }
 
         .quoted-text {
@@ -816,8 +858,23 @@
         // Parse play text into structured data
         function parsePlayText(playName, content) {
             const lines = content.split('\n');
+            
+            // Extract the actual play name from the content
+            let actualPlayName = playName;
+            for (let i = 0; i < Math.min(20, lines.length); i++) {
+                const line = lines[i].trim();
+                if (line && line.length > 0 && !line.includes('DRAMATIS') && !line.includes('ACT') && !line.includes('SCENE')) {
+                    // Look for common Shakespeare play title patterns
+                    if (line.match(/^(THE\s+)?(TRAGEDY\s+OF\s+)?(THE\s+)?[A-Z\s]+$/)) {
+                        actualPlayName = line;
+                        break;
+                    }
+                }
+            }
+            
             const play = {
-                name: playName,
+                name: actualPlayName,
+                originalFileName: playName,
                 characters: [],
                 acts: {},
                 scenes: {}
@@ -974,7 +1031,7 @@
             Object.keys(plays).forEach(playName => {
                 const option = document.createElement('option');
                 option.value = playName;
-                option.textContent = playName;
+                option.textContent = plays[playName].name;
                 selector.appendChild(option);
             });
         }
@@ -988,7 +1045,7 @@
                 const playItem = document.createElement('div');
                 playItem.className = 'play-item';
                 playItem.innerHTML = `
-                    <span class="play-name">${playName}</span>
+                    <span class="play-name">${plays[playName].name}</span>
                     <button class="remove-play" onclick="removePlay('${playName}')">Remove</button>
                 `;
                 container.appendChild(playItem);
@@ -1224,88 +1281,21 @@
                 return;
             }
             
+            // Change button text and disable it
+            const explainBtn = document.querySelector('.explain-btn');
+            const originalText = explainBtn.textContent;
+            explainBtn.textContent = 'Answering...';
+            explainBtn.disabled = true;
+            
             // Call the serverless function to analyze the highlighted text
-            analyzeHighlightedText(selectedText);
+            analyzeHighlightedText(selectedText).finally(() => {
+                // Restore button text and enable it
+                explainBtn.textContent = originalText;
+                explainBtn.disabled = false;
+            });
         }
 
         async function analyzeHighlightedText(text) {
             try {
                 const response = await fetch('/.netlify/functions/shakespeare', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        text: text,
-                        level: 'detailed',
-                        model: 'gpt-4o-mini'
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
-                if (data.choices && data.choices[0] && data.choices[0].message) {
-                    updateAnalysis(data.choices[0].message.content, text);
-                }
-                
-            } catch (error) {
-                console.error('Error analyzing text:', error);
-                alert('Error analyzing text. Please try again.');
-            }
-        }
-
-        function updateAnalysis(content, text) {
-            const analysisPanel = document.getElementById('analysisPanel');
-            const wordCount = text.split(' ').length;
-            const playInfo = currentPlay ? `${currentPlay} · ${currentScene}` : 'Unknown Play';
-            
-            analysisPanel.innerHTML = `
-                <div class="analysis-section">
-                    <div class="analysis-header">
-                        <div class="analysis-title">Basic Analysis</div>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <div class="selection-info">${playInfo} — ${wordCount} words selected</div>
-                </div>
-
-                <div class="analysis-section">
-                    <div class="analysis-title">Analysis</div>
-                    <div class="analysis-content">
-                        ${content}
-                    </div>
-                </div>
-
-                <div class="follow-up-section">
-                    <div class="analysis-title">Ask a follow-up question</div>
-                    <div class="follow-up-input">
-                        <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
-                        <button class="ask-btn" onclick="askFollowUp()">Ask</button>
-                    </div>
-                </div>
-            `;
-        }
-
-        function askFollowUp() {
-            const question = document.getElementById('followUpQuestion').value.trim();
-            if (!question) {
-                alert('Please enter a question.');
-                return;
-            }
-            
-            // Here you would implement follow-up question functionality
-            alert('Follow-up question feature coming soon!');
-        }
-    </script>
-
-    <!-- Footer About Section -->
-    <div class="footer-about">
-        <h3>About This Project</h3>
-        <p>Shakespeare Digital Variorum combines centuries of scholarly commentary with AI analysis. All Shakespeare texts are public domain and based on the Folger Shakespeare Library editions of each play. Scholarly sources are cited throughout and used under fair use for educational purposes. This site is freely available for non-commercial educational use.</p>
-        <p class="footer-attribution">Created by Jack David Carson, Massachusetts Institute of Technology • 2025 • <a href="#" onclick="openRights(); return false;">Full Rights & Usage Information</a></p>
-    </div>
-</body>
-</html>
