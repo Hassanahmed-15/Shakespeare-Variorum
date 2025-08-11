@@ -1299,3 +1299,126 @@
             try {
                 const response = await fetch('/.netlify/functions/shakespeare', {
                     method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        text: text,
+                        level: 'detailed',
+                        model: 'gpt-4o-mini'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.choices && data.choices[0] && data.choices[0].message) {
+                    updateAnalysis(data.choices[0].message.content, text);
+                }
+                
+            } catch (error) {
+                console.error('Error analyzing text:', error);
+                alert('Error analyzing text. Please try again.');
+            }
+        }
+
+        function updateAnalysis(content, text) {
+            const analysisPanel = document.getElementById('analysisPanel');
+            const wordCount = text.split(' ').length;
+            const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Unknown Play';
+            const playInfo = `${playName} · ${currentScene}`;
+            
+            // Format the content with proper sections
+            const formattedContent = formatAnalysisContent(content);
+            
+            analysisPanel.innerHTML = `
+                <div class="analysis-section">
+                    <div class="analysis-header">
+                        <div class="analysis-title">Basic Analysis</div>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <div class="selection-info">${playInfo} — ${wordCount} words selected</div>
+                </div>
+
+                <div class="analysis-section">
+                    <div class="analysis-title">Analysis</div>
+                    <div class="analysis-content">
+                        ${formattedContent}
+                    </div>
+                </div>
+
+                <div class="follow-up-section">
+                    <div class="analysis-title">Ask a follow-up question</div>
+                    <div class="follow-up-input">
+                        <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
+                        <button class="ask-btn" onclick="askFollowUp()">Ask</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function formatAnalysisContent(content) {
+            // Split content into sections and format with headers
+            const sections = content.split(/\n\n+/);
+            let formattedContent = '';
+            
+            sections.forEach((section, index) => {
+                const trimmedSection = section.trim();
+                if (!trimmedSection) return;
+                
+                // Check if this looks like a section that should have a header
+                if (index === 0) {
+                    // First section is usually the main analysis
+                    formattedContent += `<p>${trimmedSection}</p>`;
+                } else if (trimmedSection.toLowerCase().includes('etymology') || 
+                           trimmedSection.toLowerCase().includes('word') ||
+                           trimmedSection.toLowerCase().includes('meaning')) {
+                    formattedContent += `<h4>Etymology & Word Origins</h4><p>${trimmedSection}</p>`;
+                } else if (trimmedSection.toLowerCase().includes('critic') || 
+                           trimmedSection.toLowerCase().includes('scholar') ||
+                           trimmedSection.toLowerCase().includes('interpretation')) {
+                    formattedContent += `<h4>What Critics Say</h4><p>${trimmedSection}</p>`;
+                } else if (trimmedSection.toLowerCase().includes('performance') || 
+                           trimmedSection.toLowerCase().includes('stage') ||
+                           trimmedSection.toLowerCase().includes('production')) {
+                    formattedContent += `<h4>Performance Insights</h4><p>${trimmedSection}</p>`;
+                } else if (trimmedSection.toLowerCase().includes('theme') || 
+                           trimmedSection.toLowerCase().includes('symbol') ||
+                           trimmedSection.toLowerCase().includes('motif')) {
+                    formattedContent += `<h4>Themes & Symbolism</h4><p>${trimmedSection}</p>`;
+                } else if (trimmedSection.toLowerCase().includes('context') || 
+                           trimmedSection.toLowerCase().includes('historical') ||
+                           trimmedSection.toLowerCase().includes('background')) {
+                    formattedContent += `<h4>Historical Context</h4><p>${trimmedSection}</p>`;
+                } else {
+                    // Default section
+                    formattedContent += `<h4>Additional Analysis</h4><p>${trimmedSection}</p>`;
+                }
+            });
+            
+            return formattedContent;
+        }
+
+        function askFollowUp() {
+            const question = document.getElementById('followUpQuestion').value.trim();
+            if (!question) {
+                alert('Please enter a question.');
+                return;
+            }
+            
+            // Here you would implement follow-up question functionality
+            alert('Follow-up question feature coming soon!');
+        }
+    </script>
+
+    <!-- Footer About Section -->
+    <div class="footer-about">
+        <h3>About This Project</h3>
+        <p>Shakespeare Digital Variorum combines centuries of scholarly commentary with AI analysis. All Shakespeare texts are public domain and based on the Folger Shakespeare Library editions of each play. Scholarly sources are cited throughout and used under fair use for educational purposes. This site is freely available for non-commercial educational use.</p>
+        <p class="footer-attribution">Created by Jack David Carson, Massachusetts Institute of Technology • 2025 • <a href="#" onclick="openRights(); return false;">Full Rights & Usage Information</a></p>
+    </div>
+</body>
+</html>
