@@ -365,7 +365,7 @@
         .main-container {
             display: grid;
             grid-template-columns: 280px 1fr 400px;
-            height: calc(100vh - 70px);
+            min-height: calc(100vh - 70px);
             gap: 0;
         }
 
@@ -1297,4 +1297,5 @@
 
         async function analyzeHighlightedText(text) {
             try {
-                const response = aw
+                const response = await fetch('/.netlify/functions/shakespeare', {
+                    method: 'POST',
