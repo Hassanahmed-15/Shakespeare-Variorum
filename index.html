@@ -818,6 +818,7 @@
             let currentScene = '';
             let inDramatisPersonae = false;
             let inScene = false;
+            let sceneContent = [];
 
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i].trim();
@@ -827,11 +828,12 @@
                     line.toLowerCase().includes('characters in the play') ||
                     line.toLowerCase().includes('persons represented')) {
                     inDramatisPersonae = true;
+                    inScene = false;
                     continue;
                 }
 
-                // Check for Act headers
-                if (line.match(/^ACT\s+[IVX]+/i)) {
+                // Check for Act headers (more flexible matching)
+                if (line.match(/^ACT\s+[IVX]+/i) || line.match(/^ACT\s+[0-9]+/i)) {
                     inDramatisPersonae = false;
                     inScene = false;
                     currentAct = line;
@@ -839,32 +841,45 @@
                     continue;
                 }
 
-                // Check for Scene headers
-                if (line.match(/^SCENE\s+[IVX]+/i)) {
+                // Check for Scene headers (more flexible matching)
+                if (line.match(/^SCENE\s+[IVX]+/i) || line.match(/^SCENE\s+[0-9]+/i)) {
                     inScene = true;
                     currentScene = `${currentAct} - ${line}`;
                     play.scenes[currentScene] = [];
                     if (currentAct) {
                         play.acts[currentAct].push(currentScene);
                     }
+                    sceneContent = [];
                     continue;
                 }
 
                 // Collect characters from Dramatis Personae
-                if (inDramatisPersonae && line && !line.startsWith('[') && !line.startsWith('_')) {
+                if (inDramatisPersonae && line && !line.startsWith('[') && !line.startsWith('_') && line.length > 0) {
                     const character = line.split('.')[0].trim();
-                    if (character && character.length > 0 && character.length < 50) {
+                    if (character && character.length > 0 && character.length < 50 && !play.characters.includes(character)) {
                         play.characters.push(character);
                     }
                 }
 
                 // Collect scene content
-                if (inScene && line) {
+                if (inScene && currentScene && line) {
                     play.scenes[currentScene].push(line);
                 }
             }
 
+            // Clean up empty scenes
+            Object.keys(play.scenes).forEach(sceneKey => {
+                if (play.scenes[sceneKey].length === 0) {
+                    delete play.scenes[sceneKey];
+                    // Remove from acts too
+                    Object.keys(play.acts).forEach(actKey => {
+                        play.acts[actKey] = play.acts[actKey].filter(scene => scene !== sceneKey);
+                    });
+                }
+            });
+
             plays[playName] = play;
+            console.log('Parsed play:', playName, play);
             
             // Set as current play if it's the first one
             if (Object.keys(plays).length === 1) {
@@ -929,20 +944,25 @@
             const play = plays[playName];
             currentPlay = playName;
             
+            console.log('Loading play:', playName, 'with acts:', Object.keys(play.acts));
+            
             // Update navigation
             updateNavigation(play);
             
             // Load first scene automatically
             const firstAct = Object.keys(play.acts)[0];
-            if (firstAct && play.acts[firstAct].length > 0) {
+            if (firstAct && play.acts[firstAct] && play.acts[firstAct].length > 0) {
                 const firstScene = play.acts[firstAct][0];
+                console.log('Loading first scene:', firstScene);
                 loadScene(firstScene);
             } else {
+                console.log('No scenes found, showing welcome message');
                 // If no scenes found, show welcome message
                 document.getElementById('playText').innerHTML = `
                     <div class="scene-title">${playName}</div>
                     <div class="scene-separator"></div>
                     <p>Play loaded successfully. Use the navigation to explore acts and scenes.</p>
+                    <p><em>Debug: Found ${Object.keys(play.acts).length} acts</em></p>
                 `;
             }
         }
@@ -951,6 +971,8 @@
         function updateNavigation(play) {
             const navList = document.getElementById('navigationList');
             navList.innerHTML = '';
+            
+            console.log('Updating navigation for play:', play.name, play);
             
             // Add Dramatis Personae
             if (play.characters.length > 0) {
@@ -965,23 +987,28 @@
                 actItem.innerHTML = `<a href="#" onclick="showAct('${actName}')">${actName}</a>`;
                 navList.appendChild(actItem);
                 
-                play.acts[actName].forEach(sceneName => {
-                    const sceneItem = document.createElement('li');
-                    sceneItem.className = 'sub-item';
-                    sceneItem.innerHTML = `<a href="#" onclick="loadScene('${sceneName}')">${sceneName.split(' - ')[1]}</a>`;
-                    navList.appendChild(sceneItem);
-                });
+                if (play.acts[actName] && play.acts[actName].length > 0) {
+                    play.acts[actName].forEach(sceneName => {
+                        const sceneItem = document.createElement('li');
+                        sceneItem.className = 'sub-item';
+                        sceneItem.innerHTML = `<a href="#" onclick="loadScene('${sceneName}')">${sceneName.split(' - ')[1]}</a>`;
+                        navList.appendChild(sceneItem);
+                    });
+                }
             });
         }
 
         // Load a specific scene
         function loadScene(sceneName) {
             if (!currentPlay || !plays[currentPlay] || !plays[currentPlay].scenes[sceneName]) {
+                console.log('Scene not found:', sceneName, 'in play:', currentPlay);
                 return;
             }
 
             currentScene = sceneName;
             const sceneContent = plays[currentPlay].scenes[sceneName];
+            
+            console.log('Loading scene:', sceneName, 'with content length:', sceneContent.length);
             
             // Update active navigation
             updateActiveNavigation(sceneName);
@@ -1000,11 +1027,15 @@
             let html = '';
             let inDialogue = false;
             
+            if (!sceneContent || sceneContent.length === 0) {
+                return '<p><em>No content found for this scene.</em></p>';
+            }
+            
             sceneContent.forEach(line => {
                 if (line.trim() === '') return;
                 
-                // Check if line is a character name (all caps, no punctuation)
-                if (line.match(/^[A-Z\s]+$/) && line.length < 30) {
+                // Check if line is a character name (all caps, no punctuation, reasonable length)
+                if (line.match(/^[A-Z\s]+$/) && line.length < 30 && line.length > 2) {
                     if (inDialogue) {
                         html += '</div></div>';
                         inDialogue = false;
@@ -1028,7 +1059,7 @@
                 html += '</div></div>';
             }
             
-            return html;
+            return html || '<p><em>Scene content could not be formatted.</em></p>';
         }
 
         // Update active navigation
