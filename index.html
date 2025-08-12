@@ -58,8 +58,10 @@
 
         /* Header */
         .header {
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 20;
             backdrop-filter: saturate(180%) blur(10px);
             background: rgba(247,247,248,.85);
@@ -878,6 +880,7 @@
             background: var(--bg);
             position: relative;
             overflow: hidden;
+            margin-top: 70px;
         }
 
         @media (min-width: 1600px) {
