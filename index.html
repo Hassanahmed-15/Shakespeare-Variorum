@@ -1329,7 +1329,7 @@
             color: #ffffff;
         }
 
-        /* Analysis Pane */
+        /* Analysis Pane — Notion × Apple formatting */
         .analysis {
             background: var(--surface);
             border: 1px solid var(--line);
@@ -1337,10 +1337,11 @@
             box-shadow: var(--shadow);
             padding: var(--s-5);
             font-family: "Source Serif 4", Georgia, serif;
-            font-size: 17px;
+            font-size: 17.5px;
             line-height: 1.65;
             color: var(--ink-1);
             max-width: 80ch;
+            margin: 0;
             position: sticky;
             top: var(--s-4);
             align-self: start;
@@ -1348,12 +1349,115 @@
             overflow-y: auto;
         }
 
-        .analysis h2, .analysis h3, .analysis h4 {
+        /* Top meta line (play · act · scene · selection count) */
+        .analysis .meta {
+            font-family: Inter, system-ui, sans-serif;
+            font-size: 13px;
+            letter-spacing: .02em;
+            color: var(--ink-3);
+            margin-bottom: var(--s-3);
+        }
+
+        /* Section headings inside the answer */
+        .analysis h3 {
             font-family: Inter, system-ui, sans-serif;
             font-weight: 600;
-            margin-top: var(--s-4);
-            margin-bottom: var(--s-2);
+            font-size: 15px;
             color: var(--ink-2);
+            margin: var(--s-4) 0 var(--s-2);
+        }
+
+        /* "Label — content" paragraphs (e.g., Plain-Language Paraphrase — …)  */
+        .analysis .kv { 
+            margin: 0 0 var(--s-3); 
+        }
+        .analysis .kv .k {
+            font-family: Inter, system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--ink-2);
+            margin-right: .35rem;
+        }
+        .analysis .kv .sep { 
+            margin-right: .35rem; 
+            color: var(--ink-3); 
+        } /* the em-dash */
+
+        /* Lists with hanging bullets (Apple-ish) */
+        .analysis ul { 
+            margin: 0 0 var(--s-3);
+            padding-left: 1.1rem;
+        }
+        .analysis ul li { 
+            margin: .2rem 0; 
+        }
+        .analysis ul li::marker { 
+            color: var(--ink-3); 
+        }
+
+        /* Definition list (for Key Words) */
+        .analysis dl { 
+            margin: 0 0 var(--s-3); 
+        }
+        .analysis dt {
+            font-family: Inter, system-ui, sans-serif;
+            font-weight: 600;
+            color: var(--ink-2);
+            display: inline;
+        }
+        .analysis dd {
+            display: inline;
+            margin: 0 0 0 .35rem;
+            color: var(--ink-1);
+        }
+        .analysis dd + dt::before { 
+            content: "\A"; 
+            white-space: pre; 
+        } /* next term on new line */
+
+        /* Soft section dividers without boxing the content */
+        .analysis .section + .section {
+            border-top: 1px solid var(--line);
+            padding-top: var(--s-4);
+            margin-top: var(--s-4);
+        }
+
+        /* Copy chip in the corner */
+        .analysis .copy-chip {
+            position: absolute;
+            top: var(--s-3);
+            right: var(--s-3);
+            font-family: Inter, system-ui, sans-serif;
+            font-size: 13px;
+            color: var(--ink-2);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 6px 10px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+
+        /* Quotes / citations inside the answer */
+        .analysis blockquote {
+            margin: var(--s-3) 0;
+            padding-left: 1rem;
+            border-left: 3px solid var(--line);
+            color: var(--ink-2);
+            font-style: italic;
+        }
+
+        /* Micro-typography */
+        .analysis p, .analysis li { 
+            text-rendering: optimizeLegibility; 
+            font-feature-settings: "liga","clig","kern";
+        }
+
+        /* Dense mode for long outputs (optional toggle) */
+        .analysis.compact { 
+            font-size: 16.5px; 
+            line-height: 1.55; 
+            max-width: 86ch; 
         }
 
         .analysis p {
@@ -4025,13 +4129,12 @@
                 </div>
 
                 <!-- AI Analysis Content -->
-                <div class="analysis-header">
-                    <div class="analysis-title">${analysisTitle}</div>
-                    <button class="copy-btn" onclick="copyAnalysis()">Copy</button>
-                </div>
-                <div class="selection-info">${playInfo} — ${wordCount} words selected</div>
-                <div class="analysis-content">
-                    ${formattedContent}
+                <div class="analysis">
+                    <button class="copy-chip" onclick="copyAnalysis()">Copy</button>
+                    <div class="meta">${playInfo} — ${wordCount} words selected</div>
+                    <div class="analysis-content">
+                        ${formattedContent}
+                    </div>
                 </div>
 
                             <!-- Media Section -->
@@ -4061,14 +4164,55 @@
         function formatAnalysisContent(content) {
             // First, handle the specific Basic analysis format with ** headers
             if (currentAnalysisMode === 'basic') {
-                // Replace **text** with <em>text</em>: and handle dashes
-                let formattedContent = content
-                    .replace(/\*\*(.*?)\*\*/g, '<em>$1</em>:')
-                    .replace(/\n\n+/g, '</p><p>')
-                    .replace(/\n/g, '<br>');
+                // Parse the content into structured sections
+                const sections = content.split(/\n\n+/);
+                let formattedContent = '';
                 
-                // Wrap in paragraphs
-                formattedContent = `<p>${formattedContent}</p>`;
+                sections.forEach((section, index) => {
+                    const trimmedSection = section.trim();
+                    if (!trimmedSection) return;
+                    
+                    // Check for key-value pairs (Label — content)
+                    if (trimmedSection.includes('—')) {
+                        const parts = trimmedSection.split('—', 2);
+                        if (parts.length === 2) {
+                            const label = parts[0].replace(/\*\*(.*?)\*\*/g, '$1').trim();
+                            const content = parts[1].trim();
+                            formattedContent += `<p class="kv"><span class="k">${label}</span><span class="sep">—</span>${content}</p>`;
+                        } else {
+                            formattedContent += `<p>${trimmedSection}</p>`;
+                        }
+                    } else if (trimmedSection.toLowerCase().includes('key words')) {
+                        // Handle Key Words section specially
+                        formattedContent += `<h3>Key Words</h3>`;
+                        // Extract word definitions (assuming format: word — definition)
+                        const lines = trimmedSection.split('\n').slice(1); // Skip the "Key Words" line
+                        let dlContent = '';
+                        lines.forEach(line => {
+                            if (line.includes('—')) {
+                                const [word, def] = line.split('—', 2);
+                                if (word && def) {
+                                    dlContent += `<dt>${word.trim()}</dt><dd> — ${def.trim()}</dd>`;
+                                }
+                            }
+                        });
+                        if (dlContent) {
+                            formattedContent += `<dl>${dlContent}</dl>`;
+                        }
+                    } else if (trimmedSection.toLowerCase().includes('synopsis') || 
+                               trimmedSection.toLowerCase().includes('prosody') ||
+                               trimmedSection.toLowerCase().includes('context') ||
+                               trimmedSection.toLowerCase().includes('function')) {
+                        // Handle other sections with h3 headers
+                        const lines = trimmedSection.split('\n');
+                        const title = lines[0].replace(/\*\*(.*?)\*\*/g, '$1').trim();
+                        const content = lines.slice(1).join('\n').trim();
+                        formattedContent += `<h3>${title}</h3><p>${content}</p>`;
+                    } else {
+                        // Default paragraph
+                        formattedContent += `<p>${trimmedSection}</p>`;
+                    }
+                });
                 
                 return formattedContent;
             }
