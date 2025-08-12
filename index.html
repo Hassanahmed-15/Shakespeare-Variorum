@@ -2669,7 +2669,7 @@
                 }
             }
 
-            // Clean up empty scenes
+            // Clean up empty scenes and group dialogue by speaker
             Object.keys(play.scenes).forEach(sceneKey => {
                 if (play.scenes[sceneKey].length === 0) {
                     delete play.scenes[sceneKey];
@@ -2677,6 +2677,9 @@
                     Object.keys(play.acts).forEach(actKey => {
                         play.acts[actKey] = play.acts[actKey].filter(scene => scene !== sceneKey);
                     });
+                } else {
+                    // Group dialogue by speaker
+                    play.scenes[sceneKey] = groupDialogueBySpeaker(play.scenes[sceneKey]);
                 }
             });
 
@@ -2701,6 +2704,41 @@
                     console.error('Error in loadPlay:', loadError);
                 }
             }
+        }
+
+        // Group dialogue lines by speaker to avoid repeating speaker names
+        function groupDialogueBySpeaker(lines) {
+            const groupedLines = [];
+            let currentSpeaker = '';
+            let currentDialogue = [];
+            
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+                
+                // Check if this line is a speaker name (all caps, short, no punctuation)
+                const isSpeakerName = /^[A-Z\s]+$/.test(line) && line.length < 30 && !line.includes('.') && !line.includes(',');
+                
+                if (isSpeakerName) {
+                    // If we have accumulated dialogue from previous speaker, add it
+                    if (currentSpeaker && currentDialogue.length > 0) {
+                        groupedLines.push(`${currentSpeaker}\n${currentDialogue.join('\n')}`);
+                    }
+                    // Start new speaker
+                    currentSpeaker = line;
+                    currentDialogue = [];
+                } else {
+                    // This is dialogue, add to current speaker's dialogue
+                    currentDialogue.push(line);
+                }
+            }
+            
+            // Add the last speaker's dialogue
+            if (currentSpeaker && currentDialogue.length > 0) {
+                groupedLines.push(`${currentSpeaker}\n${currentDialogue.join('\n')}`);
+            }
+            
+            return groupedLines;
         }
 
         // Alternative parsing method for plays that don't follow standard format
@@ -2742,6 +2780,13 @@
                     play.scenes[currentScene].push(line);
                 }
             }
+            
+            // Group dialogue by speaker for alternative parsing too
+            Object.keys(play.scenes).forEach(sceneKey => {
+                if (play.scenes[sceneKey].length > 0) {
+                    play.scenes[sceneKey] = groupDialogueBySpeaker(play.scenes[sceneKey]);
+                }
+            });
         }
 
         // XML parsing functions for TEISimple with MorphAdorner annotations
