@@ -163,6 +163,22 @@
             align-items: center;
             z-index: 1000;
             pointer-events: auto;
+            max-width: 200px;
+            white-space: nowrap;
+        }
+
+        /* Constrain toolbar to reading pane */
+        .reader {
+            position: relative;
+            overflow: visible;
+        }
+
+        .reader #selectionToolbar {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, -100%);
+            margin-top: -10px;
         }
 
         /* Prevent toolbar from appearing in sidebar */
@@ -173,6 +189,11 @@
         /* Ensure toolbar only appears in reading area */
         .reader #selectionToolbar {
             display: flex;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, -100%);
+            margin-top: -10px;
         }
 
         /* Prevent toolbar from appearing in analysis panel */
@@ -3614,10 +3635,26 @@
                 return;
             }
             
-            // Position the toolbar above the selection
-            t.style.left = `${box.left + box.width/2 + window.scrollX}px`;
-            t.style.top = `${box.top + window.scrollY}px`;
-            t.hidden = false;
+            // Position the toolbar above the selection, constrained to reading pane
+            const reader = document.querySelector('.reader');
+            if (reader) {
+                const readerRect = reader.getBoundingClientRect();
+                const readerScrollTop = reader.scrollTop;
+                
+                // Calculate position relative to the reading pane
+                let left = box.left + box.width/2 - readerRect.left;
+                let top = box.top - readerRect.top - 50; // 50px above the selection
+                
+                // Constrain to reading pane boundaries
+                left = Math.max(10, Math.min(left, readerRect.width - 200)); // 10px margin, max 200px width
+                top = Math.max(10, top); // At least 10px from top
+                
+                t.style.left = `${left}px`;
+                t.style.top = `${top}px`;
+                t.hidden = false;
+            } else {
+                t.hidden = true;
+            }
         });
 
         // Additional check for when selection is lost
