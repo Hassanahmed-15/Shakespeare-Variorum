@@ -1539,6 +1539,18 @@
             text-align: center;
             margin: 40px 0;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        /* Shakespeare thinking icon */
+        .shakespeare-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            vertical-align: middle;
         }
 
         .analysis .follow-up-input {
@@ -4018,7 +4030,10 @@
                     <div class="analysis-title researching">Researching!</div>
                 </div>
                 <div class="analysis-content">
-                    <p class="analyzing-message">🎭 Analyzing your selected text...</p>
+                    <p class="analyzing-message">
+                        <img src="images/shakespeare-thinking.png" alt="Shakespeare thinking" class="shakespeare-icon">
+                        Analyzing your selected text...
+                    </p>
                 </div>
             `;
             
