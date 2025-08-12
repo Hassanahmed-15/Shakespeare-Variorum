@@ -39,7 +39,7 @@
 
         .header-nav {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             align-items: center;
         }
 
@@ -48,14 +48,17 @@
             border: none;
             color: #6c757d;
             cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: background-color 0.2s;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.2s ease;
         }
 
         .nav-btn:hover {
             background: #f8f9fa;
+            color: #495057;
+            transform: translateY(-1px);
         }
 
         .explain-btn {
@@ -105,30 +108,33 @@
         .modal-content {
             background-color: white;
             margin: 5% auto;
-            padding: 40px;
-            border-radius: 16px;
+            padding: 0;
+            border-radius: 20px;
             width: 80%;
             max-width: 700px;
             max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            border: 1px solid rgba(0,0,0,0.05);
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+            border: none;
+            display: flex;
+            flex-direction: column;
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
+            padding: 40px 40px 20px 40px;
             border-bottom: 1px solid #e9ecef;
+            background-color: white;
+            flex-shrink: 0;
         }
 
         .modal-title {
-            font-size: 2em;
-            font-weight: 700;
-            color: #1a202c;
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #2d3748;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             margin-bottom: 10px;
         }
 
@@ -144,16 +150,89 @@
             color: #000;
         }
 
-        .upload-section {
+        .modal-body {
+            padding: 40px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .upload-section, .library-section {
             margin-bottom: 25px;
         }
 
-        .upload-section h3 {
+        .upload-section h3, .library-section h3 {
             margin-bottom: 15px;
-            color: #1a202c;
+            color: #2d3748;
             font-size: 1.3em;
             font-weight: 600;
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .upload-section h4 {
+            margin: 20px 0 10px 0;
+            color: #2d3748;
+            font-size: 1.1em;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .single-upload, .bulk-upload {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .play-name-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .play-name-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .name-instructions {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 8px;
+            font-style: italic;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .play-input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .add-btn, .update-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .add-btn:hover, .update-btn:hover {
+            background: #218838;
         }
 
         .file-upload {
@@ -193,38 +272,57 @@
             margin-top: 10px;
             font-size: 14px;
             color: #6c757d;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
 
-        .uploaded-plays {
+        .uploaded-plays, .library-plays {
             margin-top: 20px;
         }
 
-        .play-item {
+        .play-item, .library-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
+            padding: 12px;
             background: #f8f9fa;
-            border-radius: 4px;
+            border-radius: 6px;
             margin-bottom: 8px;
+            border: 1px solid #e9ecef;
         }
 
-        .play-name {
+        .play-name, .library-name {
             font-weight: 500;
+            color: #2d3748;
         }
 
-        .remove-play {
+        .play-info {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 4px;
+        }
+
+        .remove-play, .delete-play {
             background: #dc3545;
             color: white;
             border: none;
-            padding: 4px 8px;
+            padding: 6px 12px;
             border-radius: 4px;
             cursor: pointer;
             font-size: 12px;
+            font-weight: 600;
         }
 
-        .remove-play:hover {
+        .remove-play:hover, .delete-play:hover {
             background: #c82333;
+        }
+
+        .library-item {
+            background: white;
+            border: 1px solid #dee2e6;
+        }
+
+        .library-item:hover {
+            background: #f8f9fa;
         }
 
         .upload-success {
@@ -251,12 +349,13 @@
             line-height: 1.8;
             color: #2d3748;
             font-size: 1.05em;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
 
         .about-content p {
             margin-bottom: 25px;
             text-align: justify;
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
 
         .about-footer {
@@ -275,7 +374,6 @@
         .footer-about {
             background: #e9ecef;
             padding: 40px 20px;
-            text-align: center;
             margin-top: 50px;
             border-top: 1px solid #ced4da;
         }
@@ -284,6 +382,7 @@
             font-size: 1.5em;
             color: #2c3e50;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .footer-about p {
@@ -291,12 +390,14 @@
             margin: 0 auto 15px auto;
             color: #495057;
             line-height: 1.6;
+            text-align: left;
         }
 
         .footer-attribution {
             font-size: 0.9em;
             color: #6c757d;
             margin-top: 20px;
+            text-align: center;
         }
 
         .footer-attribution a {
@@ -308,16 +409,24 @@
         .rights-content {
             line-height: 1.7;
             color: #495057;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
 
         .rights-content h4 {
-            color: #2c3e50;
-            margin: 25px 0 10px 0;
-            font-size: 1.1em;
+            color: #2d3748;
+            margin: 30px 0 15px 0;
+            font-size: 1.2em;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .rights-content h4:first-child {
+            margin-top: 0;
         }
 
         .rights-content p {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 15px;
         }
 
         .rights-footer {
@@ -361,6 +470,22 @@
             background: #0056b3;
         }
 
+        .modal-close-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        .modal-close-btn:hover {
+            background: #0056b3;
+        }
+
         /* Main Layout */
         .main-container {
             display: grid;
@@ -378,41 +503,126 @@
         }
 
         .section-title {
-            font-weight: 700;
-            font-size: 14px;
+            font-weight: 600;
+            font-size: 12px;
             color: #1a202c;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
+        .play-selector-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
         .play-selector {
-            width: 100%;
+            flex: 1;
             padding: 8px 12px;
             border: 1px solid #ced4da;
             border-radius: 4px;
             font-family: inherit;
             font-size: 14px;
-            margin-bottom: 20px;
+            min-width: 0; /* Allow flex item to shrink */
+        }
+        
+        .play-selector option {
+            word-wrap: break-word;
+            white-space: normal;
+            max-width: 200px;
+        }
+        
+        .go-btn {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .go-btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .cancel-btn {
+            padding: 8px 16px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+        
+        .cancel-btn:hover {
+            background-color: #545b62;
+        }
+        
+        .bulk-rename-section {
+            margin-top: 15px;
+        }
+        
+        .bulk-rename-list {
+            margin: 15px 0;
+        }
+        
+        .bulk-rename-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .bulk-rename-item label {
+            min-width: 80px;
+            font-weight: 500;
+        }
+        
+        .bulk-name-input {
+            flex: 1;
+            padding: 6px 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .original-filename {
+            color: #6c757d;
+            font-size: 12px;
+            font-style: italic;
         }
 
         .navigation-list {
             list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
         .navigation-list li {
-            margin-bottom: 5px;
+            margin-bottom: 2px;
         }
 
         .navigation-list a {
             display: block;
-            padding: 8px 12px;
+            padding: 6px 10px;
             color: #495057;
             text-decoration: none;
             border-radius: 4px;
-            font-size: 14px;
+            font-size: 13px;
+            font-weight: 400;
             transition: background-color 0.2s;
+            line-height: 1.3;
         }
 
         .navigation-list a:hover {
@@ -422,11 +632,16 @@
         .navigation-list a.active {
             background: #e3f2fd;
             color: #1976d2;
+            font-weight: 500;
         }
 
         .navigation-list .sub-item {
-            margin-left: 20px;
-            font-size: 13px;
+            margin-left: 15px;
+            font-size: 12px;
+        }
+
+        .navigation-list .sub-item a {
+            padding: 4px 8px;
         }
 
         /* Center Panel - Play Text */
@@ -456,17 +671,22 @@
 
         .dialogue {
             margin: 15px 0;
+            padding: 10px 0;
         }
 
         .character-name {
             font-weight: bold;
             color: #2c3e50;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .dialogue-text {
             margin-left: 20px;
             line-height: 1.8;
+            white-space: normal;
         }
 
         .highlighted {
@@ -627,26 +847,65 @@
                 <span class="close" onclick="closeSettings()">&times;</span>
             </div>
             
-            <div class="upload-section">
-                <h3>Upload Play Texts</h3>
-                <div class="file-upload">
-                    <input type="file" id="playFile" accept=".txt" onchange="handleFileUpload(event)">
-                    <label for="playFile">Choose a play text file (.txt)</label>
-                    <div class="upload-instructions">
-                        Upload .txt files containing Shakespeare play text. The system will automatically parse them into acts, scenes, and characters.
+            <div class="modal-body">
+                <div class="upload-section">
+                    <h3>Add Play to Library</h3>
+                    
+                    <!-- Single Play Upload -->
+                    <div class="single-upload">
+                        <h4>Upload Single Play</h4>
+                        <div class="file-upload">
+                            <input type="file" id="playFile" accept=".txt" onchange="handleFileUpload(event)">
+                            <label for="playFile">Choose a play text file (.txt)</label>
+                            <div class="upload-instructions">
+                                Upload .txt files containing Shakespeare play text. The system will automatically parse them into acts, scenes, and characters.
+                            </div>
+                        </div>
+                        <div class="play-name-section" id="playNameSection" style="display: none;">
+                            <label for="playNameInput">Name of play:</label>
+                            <div class="input-group">
+                                <input type="text" id="playNameInput" placeholder="Enter play name (e.g., Hamlet, Romeo and Juliet)" class="play-input">
+                                <button onclick="addPlayToLibrary();" class="add-btn" id="addPlayBtn" style="cursor: pointer;">Add Play</button>
+                                <button onclick="cancelUpload();" class="cancel-btn" style="cursor: pointer;">Cancel</button>
+                            </div>
+                            <div class="name-instructions">
+                                The system detected the play name above. You can modify it if needed, then click "Add Play" to add it to your library.
+                            </div>
+                        </div>
+                        
+                        <div class="upload-success" id="uploadSuccess">
+                            ✅ Play uploaded successfully! You can now select it from the Library dropdown.
+                        </div>
+                    </div>
+                    
+                    <!-- Bulk Upload -->
+                    <div class="bulk-upload">
+                        <h4>Bulk Upload Multiple Plays</h4>
+                        <div class="file-upload">
+                            <input type="file" id="bulkPlayFiles" accept=".txt" multiple onchange="handleBulkUpload(event)">
+                            <label for="bulkPlayFiles">Choose multiple play text files (.txt)</label>
+                            <div class="upload-instructions">
+                                Select multiple .txt files to upload several plays at once.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-error" id="uploadError">
+                        ❌ Error uploading play. Please try again.
                     </div>
                 </div>
                 
-                <div class="uploaded-plays" id="uploadedPlays">
-                    <!-- Uploaded plays will appear here -->
+                <!-- Library Management Section -->
+                <div class="library-section">
+                    <h3>Manage Library</h3>
+                    <div class="library-plays" id="libraryPlays">
+                        <!-- Library plays will appear here -->
+                    </div>
                 </div>
                 
-                <div class="upload-success" id="uploadSuccess">
-                    ✅ Play uploaded successfully! You can now select it from the Library dropdown.
-                </div>
-                
-                <div class="upload-error" id="uploadError">
-                    ❌ Error uploading play. Please try again.
+                <!-- Settings Footer -->
+                <div class="settings-footer" style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e9ecef;">
+                    <button class="modal-close-btn" onclick="closeSettings()">Close</button>
                 </div>
             </div>
         </div>
@@ -660,21 +919,28 @@
                 <span class="close" onclick="closeAbout()">&times;</span>
             </div>
             
-            <div class="about-content">
-                <p>The New Variorum Shakespeare editions have been the gold standard of Shakespearean scholarship for over a century, bringing together the most important critical commentary, textual analysis, and historical context in comprehensive annotated volumes. The Shakespeare Digital Variorum builds on this tradition, harnessing the power of artificial intelligence to make centuries of scholarly insight accessible to everyone, from high school students to veteran researchers.</p>
-                
-                <p>Our platform integrates authoritative texts based on the Folger Shakespeare Library editions of each play, with commentary from major variorum editions, scholarly databases, and historical sources. We include references to film adaptations, stage productions, and cultural interpretations that show how Shakespeare's works have lived and evolved across different media and eras. Using advanced AI, we can instantly provide plain-language explanations of complex passages, trace the etymology of Early Modern English words as they appear in context, analyze prosodic patterns across scenes and plays, and illuminate the historical events and cultural forces that shaped each work.</p>
-                
-                <p>The goal is radical accessibility. Whether you're encountering Hamlet's soliloquies for the first time or you're a seasoned scholar investigating textual variants, the Shakespeare Digital Variorum meets you where you are. Students can receive immediate clarification of archaic language and historical references. Researchers can discover thematic connections across the complete canon. Theater practitioners can access centuries of performance history, from Garrick to Branagh to contemporary productions worldwide.</p>
-                
-                <p>We believe Shakespeare belongs to everyone, not just academics. By connecting scholarly commentary with film clips, performance videos, and multimedia resources, we show how these 400-year-old plays continue to speak to modern audiences. A teenager reading Romeo and Juliet can instantly see how Baz Luhrmann reimagined the balcony scene, while a graduate student can access the full textual apparatus from multiple critical editions.</p>
-                
-                <p>This isn't about replacing human scholarship but about democratizing it. Every AI-generated insight is grounded in the work of generations of Shakespeare scholars, from the earliest editors to contemporary critics. We've simply made it possible for anyone to access that collective wisdom instantly, searchably, and in conversation with the texts themselves.</p>
-                
-                <p>The Shakespeare Digital Variorum represents the next evolution of the variorum tradition: comprehensive, scholarly, and designed for universal access. Shakespeare's world is vast, and now everyone can explore all of it.</p>
-                
-                <div class="about-footer">
-                    <p><em>Created by Jack David Carson, Massachusetts Institute of Technology • 2025</em></p>
+            <div class="modal-body">
+                <div class="about-content">
+                    <p>The New Variorum Shakespeare editions have been the gold standard of Shakespearean scholarship for over a century, bringing together the most important critical commentary, textual analysis, and historical context in comprehensive annotated volumes. The Shakespeare Digital Variorum builds on this tradition, harnessing the power of artificial intelligence to make centuries of scholarly insight accessible to everyone, from high school students to veteran researchers.</p>
+                    
+                    <p>Our platform integrates authoritative texts based on the Folger Shakespeare Library editions of each play, with commentary from major variorum editions, scholarly databases, and historical sources. We include references to film adaptations, stage productions, and cultural interpretations that show how Shakespeare's works have lived and evolved across different media and eras. Using advanced AI, we can instantly provide plain-language explanations of complex passages, trace the etymology of Early Modern English words as they appear in context, analyze prosodic patterns across scenes and plays, and illuminate the historical events and cultural forces that shaped each work.</p>
+                    
+                    <p>The goal is radical accessibility. Whether you're encountering Hamlet's soliloquies for the first time or you're a seasoned scholar investigating textual variants, the Shakespeare Digital Variorum meets you where you are. Students can receive immediate clarification of archaic language and historical references. Researchers can discover thematic connections across the complete canon. Theater practitioners can access centuries of performance history, from Garrick to Branagh to contemporary productions worldwide.</p>
+                    
+                    <p>We believe Shakespeare belongs to everyone, not just academics. By connecting scholarly commentary with film clips, performance videos, and multimedia resources, we show how these 400-year-old plays continue to speak to modern audiences. A teenager reading Romeo and Juliet can instantly see how Baz Luhrmann reimagined the balcony scene, while a graduate student can access the full textual apparatus from multiple critical editions.</p>
+                    
+                    <p>This isn't about replacing human scholarship but about democratizing it. Every AI-generated insight is grounded in the work of generations of Shakespeare scholars, from the earliest editors to contemporary critics. We've simply made it possible for anyone to access that collective wisdom instantly, searchably, and in conversation with the texts themselves.</p>
+                    
+                    <p>The Shakespeare Digital Variorum represents the next evolution of the variorum tradition: comprehensive, scholarly, and designed for universal access. Shakespeare's world is vast, and now everyone can explore all of it.</p>
+                    
+                    <div class="about-footer">
+                        <p><em>Created by Jack David Carson, Massachusetts Institute of Technology • 2025</em></p>
+                    </div>
+                    
+                    <!-- About Footer -->
+                    <div class="about-close-footer" style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e9ecef;">
+                        <button class="modal-close-btn" onclick="closeAbout()">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -688,24 +954,26 @@
                 <span class="close" onclick="closeRights()">&times;</span>
             </div>
             
-            <div class="rights-content">
-                <h4>Shakespeare Texts</h4>
-                <p>Public domain. Based on editions from the Folger Shakespeare Library and other scholarly sources.</p>
-                
-                <h4>Scholarly Commentary</h4>
-                <p>Used under fair use for educational purposes. Sources include JSTOR, academic publications, and historical editions. Full citations provided with each annotation.</p>
-                
-                <h4>This Website</h4>
-                <p>Licensed under CC BY-NC-SA 4.0 - Free to use for non-commercial, educational purposes with attribution.</p>
-                
-                <h4>AI Analysis</h4>
-                <p>Generated content is provided for educational purposes. Users should verify information with primary sources.</p>
-                
-                <div class="rights-footer">
-                    <h4>Shakespeare Digital Variorum</h4>
-                    <p>Created by Jack David Carson, Massachusetts Institute of Technology • 2025</p>
-                    <p>Questions about usage? Contact: <a href="mailto:jdcarson@mit.edu">jdcarson@mit.edu</a></p>
-                    <button class="close-rights-btn" onclick="closeRights()">Close</button>
+            <div class="modal-body">
+                <div class="rights-content">
+                    <h4>Shakespeare Texts</h4>
+                    <p>Public domain. Based on editions from the Folger Shakespeare Library and other scholarly sources.</p>
+                    
+                    <h4>Scholarly Commentary</h4>
+                    <p>Used under fair use for educational purposes. Sources include JSTOR, academic publications, and historical editions. Full citations provided with each annotation.</p>
+                    
+                    <h4>This Website</h4>
+                    <p>Licensed under CC BY-NC-SA 4.0 - Free to use for non-commercial, educational purposes with attribution.</p>
+                    
+                    <h4>AI Analysis</h4>
+                    <p>Generated content is provided for educational purposes. Users should verify information with primary sources.</p>
+                    
+                    <div class="rights-footer">
+                        <h4>Shakespeare Digital Variorum</h4>
+                        <p>Created by Jack David Carson, Massachusetts Institute of Technology • 2025</p>
+                        <p>Questions about usage? Contact: <a href="mailto:jdcarson@mit.edu">jdcarson@mit.edu</a></p>
+                        <button class="close-rights-btn" onclick="closeRights()">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -716,9 +984,12 @@
         <!-- Left Panel - Library & Navigation -->
         <div class="left-panel">
             <div class="section-title">Library</div>
-            <select class="play-selector" id="playSelector" onchange="changePlay()">
-                <option value="">Select a play...</option>
-            </select>
+            <div class="play-selector-container">
+                <select class="play-selector" id="playSelector">
+                    <option value="" disabled selected>Choose a Play</option>
+                </select>
+                <button onclick="loadSelectedPlay()" class="go-btn">Go</button>
+            </div>
 
             <div class="section-title">Navigation</div>
             <ul class="navigation-list" id="navigationList">
@@ -770,10 +1041,24 @@
         // Modal functions
         function openSettings() {
             document.getElementById('settingsModal').style.display = 'block';
+            
+            // Hide any existing success/error messages when opening settings
+            document.getElementById('uploadSuccess').style.display = 'none';
+            document.getElementById('uploadError').style.display = 'none';
+            
+            updateLibraryPlays(); // Refresh the library display
         }
 
         function closeSettings() {
-            document.getElementById('settingsModal').style.display = 'none';
+            console.log('closeSettings called');
+            const modal = document.getElementById('settingsModal');
+            console.log('Settings modal element:', modal);
+            if (modal) {
+                modal.style.display = 'none';
+                console.log('Settings modal hidden');
+            } else {
+                console.error('Settings modal not found');
+            }
         }
 
         function openAbout() {
@@ -808,6 +1093,229 @@
             }
         }
 
+        // Detect play title from content and return in proper case
+        function detectPlayTitle(content) {
+            const lines = content.split('\n');
+            
+            // Common Shakespeare play titles for better matching
+            const shakespeareTitles = [
+                'HAMLET', 'ROMEO AND JULIET', 'MACBETH', 'KING LEAR', 'OTHELLO', 'A MIDSUMMER NIGHT\'S DREAM',
+                'THE TEMPEST', 'AS YOU LIKE IT', 'TWELFTH NIGHT', 'MUCH ADO ABOUT NOTHING', 'THE MERCHANT OF VENICE',
+                'JULIUS CAESAR', 'ANTONY AND CLEOPATRA', 'CORIOLANUS', 'TITUS ANDRONICUS', 'CYMBELINE',
+                'THE WINTER\'S TALE', 'PERICLES', 'THE TWO GENTLEMEN OF VERONA', 'THE COMEDY OF ERRORS',
+                'LOVE\'S LABOUR\'S LOST', 'A MIDSUMMER NIGHT\'S DREAM', 'THE TAMING OF THE SHREW',
+                'ALL\'S WELL THAT ENDS WELL', 'MEASURE FOR MEASURE', 'TROILUS AND CRESSIDA',
+                'TIMON OF ATHENS', 'KING JOHN', 'RICHARD II', 'HENRY IV, PART 1', 'HENRY IV, PART 2',
+                'HENRY V', 'HENRY VI, PART 1', 'HENRY VI, PART 2', 'HENRY VI, PART 3', 'RICHARD III',
+                'HENRY VIII', 'THE TWO NOBLE KINSMEN'
+            ];
+            
+            // Look for the actual play title in the first 50 lines
+            for (let i = 0; i < Math.min(50, lines.length); i++) {
+                const line = lines[i].trim().toUpperCase();
+                if (line && line.length > 0) {
+                    // Skip common headers and stage directions
+                    if (line.includes('DRAMATIS') || line.includes('ACT') || line.includes('SCENE') || 
+                        line.includes('BY WILLIAM SHAKESPEARE') || line.includes('CHARACTERS') ||
+                        line.startsWith('[') || line.startsWith('_') || line.length < 3) {
+                        continue;
+                    }
+                    
+                    // Check if this line matches a known Shakespeare title
+                    for (const title of shakespeareTitles) {
+                        if (line.includes(title) || title.includes(line)) {
+                            return titleToProperCase(title);
+                        }
+                    }
+                    
+                    // Look for title patterns (all caps, reasonable length, no special characters)
+                    if (line.match(/^[A-Z\s,]+$/) && line.length > 3 && line.length < 50) {
+                        // Additional check: make sure it's not a character name
+                        if (!line.includes('PRINCE') && !line.includes('KING') && !line.includes('QUEEN') &&
+                            !line.includes('DUKE') && !line.includes('LORD') && !line.includes('LADY') &&
+                            !line.includes('SIR') && !line.includes('CAPTAIN') && !line.includes('GENTLEMAN')) {
+                            return titleToProperCase(line);
+                        }
+                    }
+                }
+            }
+            
+            // Fallback to filename
+            return 'Unknown Play';
+        }
+
+        // Convert title to proper case
+        function titleToProperCase(title) {
+            // Convert to title case with proper handling of articles and prepositions
+            const words = title.toLowerCase().split(' ');
+            const articles = ['a', 'an', 'the', 'of', 'in', 'on', 'at', 'to', 'for', 'with', 'by'];
+            
+            return words.map((word, index) => {
+                // Always capitalize first and last word
+                if (index === 0 || index === words.length - 1) {
+                    return word.charAt(0).toUpperCase() + word.slice(1);
+                }
+                // Capitalize articles and prepositions only if they're longer than 3 characters
+                if (articles.includes(word) && word.length <= 3) {
+                    return word;
+                }
+                // Capitalize all other words
+                return word.charAt(0).toUpperCase() + word.slice(1);
+            }).join(' ');
+        }
+
+        // Add play to library
+        function addPlayToLibrary() {
+            console.log('=== ADD PLAY BUTTON CLICKED ===');
+            try {
+                console.log('addPlayToLibrary function called');
+                
+                const playNameInput = document.getElementById('playNameInput');
+                if (!playNameInput) {
+                    console.error('playNameInput element not found');
+                    return;
+                }
+                
+                const playName = playNameInput.value.trim();
+                console.log('Play name:', playName);
+                console.log('Temp play data:', window.tempPlayData);
+                
+                if (!playName) {
+                    return;
+                }
+                
+                if (!window.tempPlayData) {
+                    return;
+                }
+            
+            // Parse the play text and add to library
+            const fileName = window.tempPlayData.fileName;
+            console.log('Calling parsePlayText with:', fileName, 'content length:', window.tempPlayData.content.length, 'playName:', playName);
+            
+            try {
+                console.log('Starting parsePlayText...');
+                parsePlayText(fileName, window.tempPlayData.content, playName);
+                console.log('parsePlayText completed successfully');
+                console.log('Plays object after parsing:', plays);
+                console.log('Number of plays:', Object.keys(plays).length);
+            } catch (parseError) {
+                console.error('Error in parsePlayText:', parseError);
+                alert('Error parsing play: ' + parseError.message);
+                return;
+            }
+            
+            // Simple synchronous approach
+            try {
+                console.log('Starting updatePlaySelector...');
+                updatePlaySelector();
+                console.log('updatePlaySelector completed');
+            } catch (selectorError) {
+                console.error('Error in updatePlaySelector:', selectorError);
+                alert('Error updating play selector: ' + selectorError.message);
+                return;
+            }
+            
+            try {
+                console.log('Starting updateLibraryPlays...');
+                updateLibraryPlays();
+                console.log('updateLibraryPlays completed');
+            } catch (libraryError) {
+                console.error('Error in updateLibraryPlays:', libraryError);
+                alert('Error updating library: ' + libraryError.message);
+                return;
+            }
+            
+            // Complete the process
+            completeAddPlayProcess(fileName, playName);
+            
+        } catch (error) {
+            console.error('Error in addPlayToLibrary:', error);
+            alert('Error adding play to library: ' + error.message);
+        }
+        }
+
+        // Complete the add play process
+        function completeAddPlayProcess(fileName, playName) {
+            try {
+                console.log('completeAddPlayProcess started');
+                console.log('Completing add play process...');
+                
+                // Clear temporary data
+                window.tempPlayData = null;
+                
+                // Hide the name input section
+                const nameSection = document.getElementById('playNameSection');
+                if (nameSection) {
+                    nameSection.style.display = 'none';
+                }
+                
+                // Show the upload section again
+                const uploadSection = document.querySelector('.single-upload .file-upload');
+                if (uploadSection) {
+                    uploadSection.style.display = 'block';
+                }
+                
+                // Clear the file input
+                const fileInput = document.getElementById('playFile');
+                if (fileInput) {
+                    fileInput.value = '';
+                }
+                
+                // Show success message
+                const successMsg = document.getElementById('uploadSuccess');
+                if (successMsg) {
+                    successMsg.style.display = 'block';
+                    successMsg.textContent = `✅ "${playName}" has been added to your library!`;
+                }
+                
+                // Auto-select the new play
+                const selector = document.getElementById('playSelector');
+                if (selector) {
+                    selector.value = fileName;
+                }
+                
+                // Load the play (use fileName as the key)
+                console.log('Loading play with fileName key:', fileName);
+                console.log('Available play keys:', Object.keys(plays));
+                console.log('Play object for fileName:', plays[fileName]);
+                
+                // Temporarily disable loadPlay to test if it's causing the hang
+                console.log('Skipping loadPlay for now to test completion');
+                // loadPlay(fileName);
+                
+                console.log('Add play process completed successfully!');
+                // Success message is already shown above, keep settings open
+            } catch (error) {
+                console.error('Error completing add play process:', error);
+                alert('Error completing process: ' + error.message);
+            }
+        }
+
+        // Cancel upload and reset to initial state
+        function cancelUpload() {
+            // Hide the name input section
+            document.getElementById('playNameSection').style.display = 'none';
+            
+            // Show the upload section again
+            const uploadSection = document.querySelector('.single-upload .file-upload');
+            if (uploadSection) {
+                uploadSection.style.display = 'block';
+            }
+            
+            // Clear the file input
+            const fileInput = document.getElementById('playFile');
+            if (fileInput) {
+                fileInput.value = '';
+            }
+            
+            // Clear temporary data
+            window.tempPlayData = null;
+            
+            // Hide any messages
+            document.getElementById('uploadSuccess').style.display = 'none';
+            document.getElementById('uploadError').style.display = 'none';
+        }
+
         // File upload handling
         function handleFileUpload(event) {
             const file = event.target.files[0];
@@ -821,7 +1329,7 @@
             reader.onload = function(e) {
                 try {
                     const content = e.target.result;
-                    const playName = file.name.replace('.txt', '');
+                    const fileName = file.name.replace('.txt', '');
                     
                     console.log('=== FILE UPLOAD DEBUG ===');
                     console.log('File name:', file.name);
@@ -831,16 +1339,31 @@
                     console.log('Lines in file:', content.split('\n').length);
                     console.log('=== END DEBUG ===');
                     
-                    parsePlayText(playName, content);
-                    updatePlaySelector();
-                    updateUploadedPlays();
+                    // Parse the play to detect the title (but don't add to library yet)
+                    const detectedPlayName = detectPlayTitle(content);
+                    
+                    // Show the name input section
+                    document.getElementById('playNameSection').style.display = 'block';
+                    
+                    // Hide the upload section to avoid confusion
+                    const uploadSection = document.querySelector('.single-upload .file-upload');
+                    if (uploadSection) {
+                        uploadSection.style.display = 'none';
+                    }
+                    
+                    // Populate the name input with the detected play name (in proper case)
+                    document.getElementById('playNameInput').value = detectedPlayName;
+                    
+                    // Store the parsed content temporarily for later use
+                    window.tempPlayData = {
+                        fileName: fileName,
+                        content: content,
+                        detectedName: detectedPlayName
+                    };
                     
                     // Show success message
                     document.getElementById('uploadSuccess').style.display = 'block';
-                    
-                    // Auto-select the uploaded play
-                    document.getElementById('playSelector').value = playName;
-                    loadPlay(playName);
+                    document.getElementById('uploadSuccess').textContent = `✅ File uploaded successfully! Review the play name and click "Add Play" to add it to your library.`;
                     
                 } catch (error) {
                     console.error('Error processing file:', error);
@@ -855,26 +1378,163 @@
             reader.readAsText(file);
         }
 
-        // Parse play text into structured data
-        function parsePlayText(playName, content) {
-            const lines = content.split('\n');
-            
-            // Extract the actual play name from the content
-            let actualPlayName = playName;
-            for (let i = 0; i < Math.min(20, lines.length); i++) {
-                const line = lines[i].trim();
-                if (line && line.length > 0 && !line.includes('DRAMATIS') && !line.includes('ACT') && !line.includes('SCENE')) {
-                    // Look for common Shakespeare play title patterns
-                    if (line.match(/^(THE\s+)?(TRAGEDY\s+OF\s+)?(THE\s+)?[A-Z\s]+$/)) {
-                        actualPlayName = line;
-                        break;
+        // Bulk upload handling
+        function handleBulkUpload(event) {
+            const files = event.target.files;
+            if (!files || files.length === 0) return;
+
+            // Hide any previous messages
+            document.getElementById('uploadSuccess').style.display = 'none';
+            document.getElementById('uploadError').style.display = 'none';
+
+            // Store bulk upload data
+            window.bulkUploadData = [];
+            let processedCount = 0;
+
+            Array.from(files).forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const content = e.target.result;
+                        const fileName = file.name.replace('.txt', '');
+                        const detectedName = detectPlayTitle(content);
+                        
+                        // Store data for bulk processing
+                        window.bulkUploadData.push({
+                            fileName: fileName,
+                            content: content,
+                            detectedName: detectedName,
+                            originalName: fileName
+                        });
+                        
+                        processedCount++;
+                        
+                        // When all files are processed, show rename interface
+                        if (processedCount === files.length) {
+                            showBulkRenameInterface();
+                        }
+                        
+                    } catch (error) {
+                        console.error('Error processing file:', file.name, error);
+                        processedCount++;
+                        
+                        if (processedCount === files.length) {
+                            showBulkRenameInterface();
+                        }
                     }
+                };
+                
+                reader.onerror = function() {
+                    console.error('Error reading file:', file.name);
+                    processedCount++;
+                    
+                    if (processedCount === files.length) {
+                        showBulkRenameInterface();
+                    }
+                };
+                
+                reader.readAsText(file);
+            });
+        }
+
+        // Show bulk rename interface
+        function showBulkRenameInterface() {
+            const bulkSection = document.querySelector('.bulk-upload');
+            
+            // Create rename interface
+            let renameHTML = '<div class="bulk-rename-section">';
+            renameHTML += '<h4>Review and Rename Plays</h4>';
+            renameHTML += '<div class="bulk-rename-list">';
+            
+            window.bulkUploadData.forEach((play, index) => {
+                renameHTML += `
+                    <div class="bulk-rename-item">
+                        <label for="bulkName${index}">Play ${index + 1}:</label>
+                        <input type="text" id="bulkName${index}" value="${play.detectedName}" class="bulk-name-input">
+                        <span class="original-filename">(from: ${play.originalName})</span>
+                    </div>
+                `;
+            });
+            
+            renameHTML += '</div>';
+            renameHTML += '<button onclick="processBulkUpload()" class="add-btn">Add All Plays</button>';
+            renameHTML += '</div>';
+            
+            // Replace bulk upload section content
+            bulkSection.innerHTML = renameHTML;
+        }
+
+        // Process bulk upload with custom names
+        function processBulkUpload() {
+            let successCount = 0;
+            let errorCount = 0;
+
+            window.bulkUploadData.forEach((play, index) => {
+                try {
+                    const customName = document.getElementById(`bulkName${index}`).value.trim();
+                    const playName = customName || play.detectedName;
+                    
+                    parsePlayText(play.fileName, play.content, playName);
+                    successCount++;
+                } catch (error) {
+                    console.error('Error processing play:', play.fileName, error);
+                    errorCount++;
                 }
+            });
+
+            // Update UI
+            updatePlaySelector();
+            updateLibraryPlays();
+            
+            // Show success message (keep settings open)
+            if (successCount > 0) {
+                const successMsg = document.getElementById('uploadSuccess');
+                successMsg.style.display = 'block';
+                successMsg.textContent = `✅ Successfully uploaded ${successCount} play(s)!`;
             }
+            
+            if (errorCount > 0) {
+                const errorMsg = document.getElementById('uploadError');
+                errorMsg.style.display = 'block';
+                errorMsg.textContent = `❌ ${errorCount} play(s) failed to upload.`;
+            }
+            
+            // Clear bulk upload data
+            window.bulkUploadData = null;
+            
+            // Reset bulk upload section
+            resetBulkUploadSection();
+        }
+
+        // Reset bulk upload section to original state
+        function resetBulkUploadSection() {
+            const bulkSection = document.querySelector('.bulk-upload');
+            bulkSection.innerHTML = `
+                <h4>Bulk Upload Multiple Plays</h4>
+                <div class="file-upload">
+                    <input type="file" id="bulkPlayFiles" accept=".txt" multiple onchange="handleBulkUpload(event)">
+                    <label for="bulkPlayFiles">Choose multiple play text files (.txt)</label>
+                    <div class="upload-instructions">
+                        Select multiple .txt files to upload several plays at once.
+                    </div>
+                </div>
+            `;
+        }
+
+        // Parse play text into structured data
+        function parsePlayText(fileName, content, customPlayName = null) {
+            console.log('parsePlayText started');
+                            console.log('parsePlayText started');
+            
+            const lines = content.split('\n');
+            console.log('Content split into', lines.length, 'lines');
+            
+            // Use custom play name if provided, otherwise extract from content
+            let actualPlayName = customPlayName || fileName;
             
             const play = {
                 name: actualPlayName,
-                originalFileName: playName,
+                originalFileName: fileName,
                 characters: [],
                 acts: {},
                 scenes: {}
@@ -886,10 +1546,15 @@
             let inScene = false;
             let sceneContent = [];
 
-            console.log('Starting to parse play:', playName);
+            console.log('Starting to parse play:', fileName);
             console.log('Total lines:', lines.length);
+            console.log('Starting parsing loop with ' + lines.length + ' lines');
 
             for (let i = 0; i < lines.length; i++) {
+                // Add progress indicator every 1000 lines
+                if (i % 1000 === 0) {
+                    console.log('Processing line', i, 'of', lines.length);
+                }
                 const line = lines[i].trim();
                 
                 // Skip empty lines
@@ -967,29 +1632,34 @@
             // If no acts found, try alternative parsing
             if (Object.keys(play.acts).length === 0) {
                 console.log('No acts found with standard parsing, trying alternative method...');
-                parsePlayTextAlternative(playName, content, play);
+                parsePlayTextAlternative(fileName, content, play);
             }
 
-            plays[playName] = play;
-            console.log('Final parsed play:', playName, play);
+            plays[fileName] = play;
+            console.log('Final parsed play:', fileName, play);
             console.log('Acts found:', Object.keys(play.acts));
             console.log('Scenes found:', Object.keys(play.scenes));
+            console.log('Parsing completed successfully');
             
             // Set as current play if it's the first one
             if (Object.keys(plays).length === 1) {
-                currentPlay = playName;
-                loadPlay(currentPlay);
+                currentPlay = fileName;
+                try {
+                    loadPlay(currentPlay);
+                } catch (loadError) {
+                    console.error('Error in loadPlay:', loadError);
+                }
             }
         }
 
         // Alternative parsing method for plays that don't follow standard format
-        function parsePlayTextAlternative(playName, content, play) {
+        function parsePlayTextAlternative(fileName, content, play) {
             const lines = content.split('\n');
             let currentAct = '';
             let currentScene = '';
             let inScene = false;
 
-            console.log('Trying alternative parsing for:', playName);
+            console.log('Trying alternative parsing for:', fileName);
 
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i].trim();
@@ -1025,48 +1695,129 @@
 
         // Update play selector dropdown
         function updatePlaySelector() {
-            const selector = document.getElementById('playSelector');
-            selector.innerHTML = '<option value="">Select a play...</option>';
+            console.log('updatePlaySelector called');
+            console.log('plays object:', plays);
+            console.log('Number of plays:', Object.keys(plays).length);
             
-            Object.keys(plays).forEach(playName => {
+            const selector = document.getElementById('playSelector');
+            if (!selector) {
+                console.error('playSelector element not found');
+                return;
+            }
+            
+            const currentValue = selector.value; // Remember current selection
+            console.log('Current selector value:', currentValue);
+            
+            selector.innerHTML = '<option value="" disabled selected>Choose a Play</option>';
+            
+            const playKeys = Object.keys(plays);
+            console.log('Total plays to add:', playKeys.length);
+            
+            // Sort plays alphabetically by name
+            const sortedPlays = playKeys.sort((a, b) => {
+                return plays[a].name.localeCompare(plays[b].name);
+            });
+            
+            // Simple synchronous approach
+            sortedPlays.forEach(playName => {
+                console.log('Adding play to selector:', playName, 'with name:', plays[playName].name);
                 const option = document.createElement('option');
                 option.value = playName;
                 option.textContent = plays[playName].name;
                 selector.appendChild(option);
             });
+            
+            // Restore selection if it was valid
+            if (currentValue && plays[currentValue]) {
+                selector.value = currentValue;
+                console.log('Restored selection to:', currentValue);
+            }
+            
+            console.log('updatePlaySelector completed');
         }
 
-        // Update uploaded plays list
-        function updateUploadedPlays() {
-            const container = document.getElementById('uploadedPlays');
+        // Update library plays list
+        function updateLibraryPlays() {
+            console.log('updateLibraryPlays called');
+            console.log('plays object:', plays);
+            console.log('Number of plays:', Object.keys(plays).length);
+            
+            const container = document.getElementById('libraryPlays');
+            if (!container) {
+                console.error('libraryPlays element not found');
+                return;
+            }
+            
             container.innerHTML = '';
             
-            Object.keys(plays).forEach(playName => {
+            if (Object.keys(plays).length === 0) {
+                container.innerHTML = '<p style="color: #6c757d; font-style: italic;">No plays in library yet.</p>';
+                console.log('No plays to display');
+                return;
+            }
+            
+            // Sort plays alphabetically by name
+            const sortedPlays = Object.keys(plays).sort((a, b) => {
+                return plays[a].name.localeCompare(plays[b].name);
+            });
+            
+            sortedPlays.forEach(playName => {
+                const play = plays[playName];
                 const playItem = document.createElement('div');
-                playItem.className = 'play-item';
+                playItem.className = 'library-item';
+                
+                const actCount = Object.keys(play.acts).length;
+                const sceneCount = Object.keys(play.scenes).length;
+                const characterCount = play.characters.length;
+                
                 playItem.innerHTML = `
-                    <span class="play-name">${plays[playName].name}</span>
-                    <button class="remove-play" onclick="removePlay('${playName}')">Remove</button>
+                    <div>
+                        <div class="library-name">${play.name}</div>
+                        <div class="play-info">
+                            ${actCount} act(s) • ${sceneCount} scene(s) • ${characterCount} character(s)
+                        </div>
+                    </div>
+                    <button class="delete-play" onclick="deletePlay('${playName}')">Delete</button>
                 `;
                 container.appendChild(playItem);
             });
         }
 
-        // Remove a play
-        function removePlay(playName) {
-            delete plays[playName];
-            updatePlaySelector();
-            updateUploadedPlays();
-            
-            if (currentPlay === playName) {
-                currentPlay = '';
-                loadPlay('');
+        // Delete a play from library
+        function deletePlay(playName) {
+            if (confirm(`Are you sure you want to delete "${plays[playName].name}" from your library?`)) {
+                delete plays[playName];
+                updatePlaySelector();
+                updateLibraryPlays();
+                
+                if (currentPlay === playName) {
+                    currentPlay = '';
+                    loadPlay('');
+                }
+                
+                // Show success message
+                document.getElementById('uploadSuccess').style.display = 'block';
+                document.getElementById('uploadSuccess').textContent = `✅ Play deleted from library.`;
+            }
+        }
+
+        // Load selected play from dropdown
+        function loadSelectedPlay() {
+            const selector = document.getElementById('playSelector');
+            const selectedPlay = selector.value;
+            if (selectedPlay) {
+                loadPlay(selectedPlay);
             }
         }
 
         // Load a play
         function loadPlay(playName) {
+            console.log('loadPlay called with:', playName);
+            console.log('plays object keys:', Object.keys(plays));
+            console.log('plays[playName]:', plays[playName]);
+            
             if (!playName || !plays[playName]) {
+                console.log('Play not found or invalid:', playName);
                 document.getElementById('playText').innerHTML = `
                     <div class="scene-title">Welcome to Shakespeare Digital Variorum</div>
                     <div class="scene-separator"></div>
@@ -1119,24 +1870,48 @@
             // Add Acts and Scenes
             Object.keys(play.acts).forEach(actName => {
                 const actItem = document.createElement('li');
-                actItem.innerHTML = `<a href="#" onclick="showAct('${actName}')">${actName}</a>`;
+                actItem.innerHTML = `<a href="#" onclick="loadFirstSceneOfAct('${actName}')">${actName}</a>`;
                 navList.appendChild(actItem);
                 
                 if (play.acts[actName] && play.acts[actName].length > 0) {
                     play.acts[actName].forEach(sceneName => {
                         const sceneItem = document.createElement('li');
                         sceneItem.className = 'sub-item';
-                        sceneItem.innerHTML = `<a href="#" onclick="loadScene('${sceneName}')">${sceneName.split(' - ')[1]}</a>`;
+                        sceneItem.innerHTML = `<a href="#" onclick="loadScene('${sceneName}')" data-scene="${sceneName}">${sceneName.split(' - ')[1]}</a>`;
                         navList.appendChild(sceneItem);
                     });
                 }
             });
+            
+            // Set initial active state if no scene is currently selected
+            if (!currentScene && Object.keys(play.acts).length > 0) {
+                const firstAct = Object.keys(play.acts)[0];
+                if (play.acts[firstAct] && play.acts[firstAct].length > 0) {
+                    const firstScene = play.acts[firstAct][0];
+                    updateActiveNavigation(firstScene);
+                }
+            }
+        }
+
+        // Load the first scene of a specific act
+        function loadFirstSceneOfAct(actName) {
+            if (!currentPlay || !plays[currentPlay] || !plays[currentPlay].acts[actName]) {
+                console.log('Act not found:', actName, 'in play:', currentPlay);
+                return;
+            }
+            
+            const scenes = plays[currentPlay].acts[actName];
+            if (scenes && scenes.length > 0) {
+                const firstScene = scenes[0];
+                loadScene(firstScene);
+            }
         }
 
         // Load a specific scene
         function loadScene(sceneName) {
             if (!currentPlay || !plays[currentPlay] || !plays[currentPlay].scenes[sceneName]) {
                 console.log('Scene not found:', sceneName, 'in play:', currentPlay);
+                alert('Scene not found: ' + sceneName);
                 return;
             }
 
@@ -1150,10 +1925,11 @@
             
             // Display scene content
             const playText = document.getElementById('playText');
+            const formattedContent = formatSceneContent(sceneContent);
             playText.innerHTML = `
                 <div class="scene-title">${sceneName}</div>
                 <div class="scene-separator"></div>
-                ${formatSceneContent(sceneContent)}
+                ${formattedContent}
             `;
         }
 
@@ -1161,40 +1937,368 @@
         function formatSceneContent(sceneContent) {
             let html = '';
             let inDialogue = false;
+            let currentSpeaker = '';
+            let inStageDirection = false;
+            let stageDirectionText = '';
+            let currentDialogueText = '';
             
             if (!sceneContent || sceneContent.length === 0) {
                 return '<p><em>No content found for this scene.</em></p>';
             }
             
-            sceneContent.forEach(line => {
-                if (line.trim() === '') return;
+            // Process dialogue as blocks to preserve original line structure
+            let i = 0;
+            while (i < sceneContent.length) {
+                const line = sceneContent[i];
+                const trimmedLine = line.trim();
                 
-                // Check if line is a character name (all caps, no punctuation, reasonable length)
-                if (line.match(/^[A-Z\s]+$/) && line.length < 30 && line.length > 2) {
-                    if (inDialogue) {
-                        html += '</div></div>';
-                        inDialogue = false;
-                    }
-                    html += `<div class="dialogue"><div class="character-name">${line}</div>`;
-                    inDialogue = true;
-                } else if (line.startsWith('[') && line.endsWith(']')) {
-                    if (inDialogue) {
-                        html += '</div></div>';
-                        inDialogue = false;
-                    }
-                    html += `<div class="stage-direction">${line}</div>`;
-                } else if (inDialogue) {
-                    html += `<div class="dialogue-text">${line}</div>`;
-                } else {
-                    html += `<div class="dialogue-text">${line}</div>`;
+                // Skip completely empty lines
+                if (trimmedLine === '') {
+                    i++;
+                    continue;
                 }
-            });
+                
+                // Skip lines that are just whitespace
+                if (line.length === 0) {
+                    i++;
+                    continue;
+                }
+                
+
+                
+
+                
+
+                
+                // Check for complete stage directions first
+                if (trimmedLine.startsWith('[') && trimmedLine.endsWith(']')) {
+                    console.log('Found complete stage direction:', trimmedLine);
+                    if (inDialogue) {
+                        // Close current dialogue block
+                        if (currentDialogueText) {
+                            html += `<div class="dialogue-text">${currentDialogueText}</div>`;
+                            currentDialogueText = '';
+                        }
+                        html += '</div></div>';
+                        inDialogue = false;
+                    }
+                    html += `<div class="stage-direction"><em>${trimmedLine}</em></div>`;
+                    i++;
+                    continue;
+                }
+                
+                // Check for start of multi-line stage direction
+                if (trimmedLine.startsWith('[') && !trimmedLine.endsWith(']')) {
+                    console.log('Found start of multi-line stage direction:', trimmedLine);
+                    if (inDialogue) {
+                        // Close current dialogue block
+                        if (currentDialogueText) {
+                            html += `<div class="dialogue-text">${currentDialogueText}</div>`;
+                            currentDialogueText = '';
+                        }
+                        html += '</div></div>';
+                        inDialogue = false;
+                    }
+                    inStageDirection = true;
+                    stageDirectionText = trimmedLine;
+                    i++;
+                    continue;
+                }
+                
+                // Check for continuation of multi-line stage direction
+                if (inStageDirection) {
+                    stageDirectionText += ' ' + trimmedLine;
+                    console.log('Continuing stage direction:', stageDirectionText);
+                    
+                    // Check if stage direction ends
+                    if (trimmedLine.endsWith(']')) {
+                        console.log('Found end of multi-line stage direction:', stageDirectionText);
+                        html += `<div class="stage-direction"><em>${stageDirectionText}</em></div>`;
+                        inStageDirection = false;
+                        stageDirectionText = '';
+                    }
+                    i++;
+                    continue;
+                }
+                
+                // Check for all-caps speaker names (simplified detection)
+                if (trimmedLine.match(/^[A-Z\s,]+$/) && trimmedLine.length > 2 && trimmedLine.length < 50) {
+                    // Avoid stage directions
+                    const stageDirections = ['ACT', 'SCENE', 'ENTER', 'EXIT', 'EXEUNT', 'WITHIN', 'ABOVE', 'BELOW', 'CURTAIN'];
+                    const upperLine = trimmedLine.toUpperCase();
+                    
+                    if (!stageDirections.some(word => upperLine.includes(word))) {
+                        console.log('Found speaker name:', trimmedLine);
+                        if (inDialogue) {
+                            // Close current dialogue block
+                            if (currentDialogueText) {
+                                html += `<div class="dialogue-text">${currentDialogueText}</div>`;
+                                currentDialogueText = '';
+                            }
+                            html += '</div></div>';
+                            inDialogue = false;
+                        }
+                        html += `<div class="dialogue" style="margin-top: 20px;"><div class="character-name">${trimmedLine}</div>`;
+                        inDialogue = true;
+                        i++;
+                        continue;
+                    }
+                }
+                
+                // Check for inline speakers (all caps followed by dialogue)
+                const inlineSpeakerMatch = trimmedLine.match(/^([A-Z][A-Z\s,]*[A-Z])\s+(.+)$/);
+                if (inlineSpeakerMatch) {
+                    let speakerName = inlineSpeakerMatch[1].trim();
+                    let dialogue = inlineSpeakerMatch[2].trim();
+                    
+                    // Clean up speaker name - remove trailing single letters that are likely part of dialogue
+                    const speakerWords = speakerName.split(/\s+/);
+                    const lastWord = speakerWords[speakerWords.length - 1];
+                    
+                    // If the last word is a single letter (like "I", "A", "O"), move it to dialogue
+                    if (lastWord.length === 1 && /^[A-Z]$/.test(lastWord)) {
+                        speakerName = speakerWords.slice(0, -1).join(' ');
+                        dialogue = lastWord + ' ' + dialogue;
+                        console.log('Moved single letter from speaker to dialogue:', lastWord);
+                    }
+                    
+                    // Check if speaker name looks like a real speaker (at least 2 characters)
+                    if (speakerName.match(/^[A-Z][A-Z\s,]*[A-Z]$/) && speakerName.length >= 2) {
+                        const stageDirections = ['ACT', 'SCENE', 'ENTER', 'EXIT', 'EXEUNT', 'WITHIN', 'ABOVE', 'BELOW', 'CURTAIN'];
+                        const upperSpeaker = speakerName.toUpperCase();
+                        
+                        if (!stageDirections.some(word => upperSpeaker.includes(word))) {
+                            console.log('Found inline speaker:', speakerName, 'with dialogue:', dialogue);
+                            if (inDialogue) {
+                                // Close current dialogue block
+                                if (currentDialogueText) {
+                                    html += `<div class="dialogue-text">${currentDialogueText}</div>`;
+                                    currentDialogueText = '';
+                                }
+                                html += '</div></div>';
+                                inDialogue = false;
+                            }
+                            const formattedDialogue = formatBracketedText(dialogue);
+                            html += `<div class="dialogue" style="margin-top: 20px;"><div class="character-name">${speakerName}</div><div class="dialogue-text">${formattedDialogue}</div></div>`;
+                            inDialogue = false;
+                            i++;
+                            continue;
+                        }
+                    }
+                }
+                
+                // Regular dialogue or unattributed text
+                let formattedLine = formatBracketedText(trimmedLine);
+                
+                // Debug: log the line to see what we're processing
+                console.log('Processing dialogue line:', trimmedLine, 'formatted:', formattedLine, 'original line:', line);
+                
+                if (inDialogue) {
+                    // Accumulate dialogue text with HTML line breaks
+                    if (currentDialogueText) {
+                        // Add HTML line break to preserve original structure
+                        if (formattedLine.trim()) {
+                            currentDialogueText += '<br>' + formattedLine;
+                        }
+                    } else {
+                        currentDialogueText = formattedLine;
+                    }
+                } else {
+                    html += `<div class="dialogue-text">${formattedLine}</div>`;
+                }
+                
+                i++;
+            }
             
+            // Close any open dialogue
             if (inDialogue) {
+                if (currentDialogueText) {
+                    html += `<div class="dialogue-text">${currentDialogueText}</div>`;
+                }
                 html += '</div></div>';
             }
             
             return html || '<p><em>Scene content could not be formatted.</em></p>';
+        }
+
+        // Analyze the text to identify speaker patterns
+        function analyzeSpeakerPatterns(sceneContent) {
+            const patterns = {
+                allCaps: [],
+                boldText: [],
+                numberedSpeakers: [],
+                titleSpeakers: [],
+                potentialSpeakers: []
+            };
+            
+            sceneContent.forEach((line, index) => {
+                const trimmedLine = line.trim();
+                if (trimmedLine === '') return;
+                
+                // Check for bold text patterns
+                if (trimmedLine.startsWith('**') && trimmedLine.endsWith('**')) {
+                    patterns.boldText.push({ line: trimmedLine, index });
+                }
+                
+                // Check for all caps patterns
+                if (trimmedLine.match(/^[A-Z\s]+$/) && trimmedLine.length > 2 && trimmedLine.length < 50) {
+                    patterns.allCaps.push({ line: trimmedLine, index });
+                }
+                
+                // Check for numbered speakers
+                if (trimmedLine.match(/^(FIRST|SECOND|THIRD|FOURTH|FIFTH|SIXTH|SEVENTH|EIGHTH|NINTH|TENTH)\s+[A-Z\s]+$/)) {
+                    patterns.numberedSpeakers.push({ line: trimmedLine, index });
+                }
+                
+                // Check for title-based speakers
+                const titleMatch = trimmedLine.match(/^[A-Z\s]+(KING|QUEEN|PRINCE|PRINCESS|DUKE|DUCHESS|LORD|LADY|SIR|MADAM|MISTRESS|CAPTAIN|GENTLEMAN|GENTLEWOMAN|SERVANT|MESSENGER|SOLDIER|GUARD|PRIEST|FRIAR|NURSE|ATTENDANT|OFFICER|CLOWN|FOOL|JESTER|HERALD|AMBASSADOR|SENATOR|COUNCILLOR|JUDGE|LAWYER|DOCTOR|APOTHECARY|MERCHANT|TRADER|ARTISAN|PEASANT|CITIZEN|COMMONER|VILLAGER|TOWNSMAN|COUNTRYMAN|SHEPHERD|HUNTER|FISHERMAN|FARMER|GARDENER|COOK|BUTLER|MAID|PAGE|BOY|GIRL|CHILD|MAN|WOMAN|PERSON|FRIEND|ENEMY|STRANGER|VISITOR|GUEST|HOST|HOSTESS|INNKEEPER|TAVERN|SHOPKEEPER|CRAFTSMAN|SCHOLAR|STUDENT|TEACHER|MASTER|SERVANT|SLAVE|PRISONER|EXILE|REFUGEE|WANDERER|TRAVELER|PILGRIM|HERMIT|WITCH|WIZARD|SORCERER|MAGICIAN|PROPHET|ORACLE|SEER|FORTUNE|TELLER|BEGGAR|THIEF|ROBBER|PIRATE|MURDERER|ASSASSIN|SPY|TRAITOR|REBEL|CONSPIRATOR|REVOLUTIONARY|PATRIOT|LOYALIST|ROYALIST|REPUBLICAN|DEMOCRAT|LIBERAL|CONSERVATIVE|RADICAL|MODERATE|EXTREMIST|FANATIC|ZEALOT|HERETIC|BLASPHEMER|SINNER|SAINT|MARTYR|HERO|VILLAIN|PROTAGONIST|ANTAGONIST|SUPPORTING|CHARACTER|EXTRA|WALK|ON|CROWD|CHORUS|NARRATOR|STORYTELLER|COMMENTATOR|ANNOUNCER|CALLER|BARKER|CUSTOMER|CLIENT|PATRON|REGULAR|FAMILIAR|UNKNOWN|MYSTERIOUS|HIDDEN|SECRET|PRIVATE|PUBLIC|OFFICIAL|UNOFFICIAL|FORMAL|INFORMAL|CASUAL|CEREMONIAL|RITUAL|TRADITIONAL|MODERN|CONTEMPORARY|ANCIENT|OLD|NEW|YOUNG|ELDER|SENIOR|JUNIOR|MAJOR|MINOR|PRIMARY|SECONDARY|TERTIARY|QUATERNARY|QUINARY|SENARY|SEPTENARY|OCTONARY|NONARY|DENARY)$/);
+                if (titleMatch) {
+                    patterns.titleSpeakers.push({ line: trimmedLine, index });
+                }
+                
+                // Look for potential speakers based on context
+                if (isPotentialSpeaker(trimmedLine, index, sceneContent)) {
+                    patterns.potentialSpeakers.push({ line: trimmedLine, index });
+                }
+            });
+            
+            return patterns;
+        }
+
+        // Check if a line is a potential speaker based on context
+        function isPotentialSpeaker(line, index, sceneContent) {
+            // Skip if line is too short or too long
+            if (line.length < 3 || line.length > 50) return false;
+            
+            // Skip if it's clearly not a speaker
+            if (line.startsWith('[') || line.endsWith(']') || 
+                line.includes('ACT') || line.includes('SCENE') ||
+                line.includes('ENTER') || line.includes('EXIT') || line.includes('EXEUNT')) {
+                return false;
+            }
+            
+            // Simple check: if it's all caps and reasonable length, it might be a speaker
+            if (line.match(/^[A-Z\s]+$/) && line.length > 2 && line.length < 50) {
+                // Quick check for the next few lines to see if there's dialogue
+                const nextLines = sceneContent.slice(index + 1, index + 3);
+                for (let i = 0; i < nextLines.length; i++) {
+                    const nextLine = nextLines[i].trim();
+                    if (nextLine && nextLine.length > 10 && !nextLine.match(/^[A-Z\s]+$/)) {
+                        return true;
+                    }
+                }
+            }
+            
+            return false;
+        }
+
+        // Check if a line represents a speaker using multiple detection methods
+        function isSpeakerLine(line, patterns, index, sceneContent) {
+            const trimmedLine = line.trim();
+            
+            // Check for bold text patterns
+            if (trimmedLine.startsWith('**') && trimmedLine.endsWith('**')) {
+                return true;
+            }
+            
+            // Primary check: All caps speaker names (most common pattern)
+            if (trimmedLine.match(/^[A-Z\s,]+$/) && trimmedLine.length > 2 && trimmedLine.length < 50) {
+                // Avoid stage directions and scene markers
+                const stageDirections = ['ACT', 'SCENE', 'ENTER', 'EXIT', 'EXEUNT', 'WITHIN', 'ABOVE', 'BELOW', 'CURTAIN'];
+                const upperLine = trimmedLine.toUpperCase();
+                
+                if (stageDirections.some(word => upperLine.includes(word))) {
+                    return false;
+                }
+                
+                // Check if this line is followed by dialogue (not another speaker)
+                const nextLines = sceneContent.slice(index + 1, index + 3);
+                for (const nextLine of nextLines) {
+                    const nextTrimmed = nextLine.trim();
+                    if (nextTrimmed && nextTrimmed.length > 5) {
+                        // If next line is also all caps, this might not be a speaker
+                        if (nextTrimmed.match(/^[A-Z\s,]+$/)) {
+                            continue;
+                        }
+                        // If next line looks like dialogue, this is likely a speaker
+                        return true;
+                    }
+                }
+            }
+            
+            // Check if this line matches any of our identified patterns
+            const allPatterns = [
+                ...patterns.boldText,
+                ...patterns.allCaps,
+                ...patterns.numberedSpeakers,
+                ...patterns.titleSpeakers,
+                ...patterns.potentialSpeakers
+            ];
+            
+            // Check if this line is in our identified patterns
+            for (const pattern of allPatterns) {
+                if (pattern.line === trimmedLine && pattern.index === index) {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+
+
+
+        // Process unattributed lines to handle bracketed text and inline speakers
+        function processUnattributedLine(line) {
+            // First, check if this line contains an inline speaker (all caps followed by dialogue)
+            const speakerMatch = line.match(/^([A-Z\s,]+)\s+(.+)$/);
+            if (speakerMatch) {
+                const speakerName = speakerMatch[1].trim();
+                const dialogue = speakerMatch[2].trim();
+                
+                // Check if the speaker name looks like a real speaker (not stage direction)
+                const stageDirections = ['ACT', 'SCENE', 'ENTER', 'EXIT', 'EXEUNT', 'WITHIN', 'ABOVE', 'BELOW', 'CURTAIN'];
+                const upperSpeaker = speakerName.toUpperCase();
+                
+                if (!stageDirections.some(word => upperSpeaker.includes(word))) {
+                    // This is an inline speaker - format it properly
+                    const formattedDialogue = formatBracketedText(dialogue);
+                    return `<div class="character-name">${speakerName}</div><div class="dialogue-text">${formattedDialogue}</div>`;
+                }
+            }
+            
+            // If no inline speaker, just format bracketed text
+            return formatBracketedText(line);
+        }
+
+        // Format text to make bracketed content italic
+        function formatBracketedText(text) {
+            console.log('formatBracketedText called with:', text);
+            // Replace all text within brackets with italic version
+            // This handles both complete bracketed lines and bracketed text within lines
+            let result = text;
+            
+            // Handle complete bracketed lines
+            if (text.trim().startsWith('[') && text.trim().endsWith(']')) {
+                result = `<em>${text.trim()}</em>`;
+                console.log('Complete bracketed line formatted:', result);
+            } else {
+                // Handle bracketed text within lines
+                result = text.replace(/\[([^\]]+)\]/g, '<em>[$1]</em>');
+                console.log('Partial bracketed text formatted:', result);
+            }
+            
+            return result;
+        }
+
+        // Extract speaker name from a line
+        function extractSpeakerName(line) {
+            // Remove bold markers if present
+            if (line.startsWith('**') && line.endsWith('**')) {
+                return line.slice(2, -2);
+            }
+            
+            // Return the line as-is for other patterns
+            return line;
         }
 
         // Update active navigation
@@ -1202,12 +2306,38 @@
             const navLinks = document.querySelectorAll('.navigation-list a');
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.textContent === itemName || 
-                    link.textContent === itemName.split(' - ')[1] ||
-                    (itemName === 'dramatis' && link.textContent === 'Dramatis Personae')) {
-                    link.classList.add('active');
-                }
             });
+            
+            // If it's a scene, highlight both the scene and its parent act
+            if (itemName && itemName.includes(' - ')) {
+                const actName = itemName.split(' - ')[0];
+                
+                navLinks.forEach(link => {
+                    // Highlight the parent act
+                    if (link.textContent === actName) {
+                        link.classList.add('active');
+                    }
+                    
+                    // Highlight the specific scene using data attribute
+                    if (link.getAttribute('data-scene') === itemName) {
+                        link.classList.add('active');
+                    }
+                });
+            } else if (itemName === 'dramatis') {
+                // Highlight Dramatis Personae
+                navLinks.forEach(link => {
+                    if (link.textContent === 'Dramatis Personae') {
+                        link.classList.add('active');
+                    }
+                });
+            } else if (itemName) {
+                // Highlight just the act
+                navLinks.forEach(link => {
+                    if (link.textContent === itemName) {
+                        link.classList.add('active');
+                    }
+                });
+            }
         }
 
         // Show Dramatis Personae
@@ -1297,7 +2427,10 @@
 
         async function analyzeHighlightedText(text) {
             try {
-                const response = await fetch('/.netlify/functions/shakespeare', {
+                console.log('Analyzing text:', text.substring(0, 100) + '...');
+                
+                // Try the redirect path first
+                let response = await fetch('/api/shakespeare', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -1309,19 +2442,58 @@
                     })
                 });
                 
+                // If that fails, try the direct function path
                 if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
+                    console.log('Redirect failed, trying direct function path...');
+                    response = await fetch('/.netlify/functions/shakespeare', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            text: text,
+                            level: 'detailed',
+                            model: 'gpt-4o-mini'
+                        })
+                    });
+                }
+                
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    console.error('Server error:', errorData);
+                    
+                    if (response.status === 500 && errorData.error && errorData.error.includes('API key')) {
+                        alert('OpenAI API key not configured. Please check your Netlify environment variables.');
+                    } else {
+                        throw new Error(`HTTP ${response.status}: ${errorData.error || 'Unknown error'}`);
+                    }
+                    return;
                 }
                 
                 const data = await response.json();
+                console.log('Response data:', data);
                 
                 if (data.choices && data.choices[0] && data.choices[0].message) {
                     updateAnalysis(data.choices[0].message.content, text);
+                } else if (data.error) {
+                    throw new Error(data.error);
+                } else {
+                    throw new Error('Invalid response format from server');
                 }
                 
             } catch (error) {
                 console.error('Error analyzing text:', error);
-                alert('Error analyzing text. Please try again.');
+                
+                // More specific error messages
+                if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                    alert('Network error. Please check your internet connection and try again.');
+                } else if (error.message.includes('API key')) {
+                    alert('OpenAI API key not configured. Please check your Netlify environment variables.');
+                } else {
+                    alert(`Error analyzing text: ${error.message}. Please try again.`);
+                }
             }
         }
 
@@ -1412,6 +2584,10 @@
             // Here you would implement follow-up question functionality
             alert('Follow-up question feature coming soon!');
         }
+
+
+
+
     </script>
 
     <!-- Footer About Section -->

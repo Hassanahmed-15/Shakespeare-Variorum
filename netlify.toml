@@ -7,6 +7,6 @@
   NODE_VERSION = "18"
 
 [[redirects]]
-  from = "/api/*"
+  from = "/api/shakespeare"
   to = "/.netlify/functions/shakespeare"
   status = 200
