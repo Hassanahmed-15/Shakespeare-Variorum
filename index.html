@@ -3243,15 +3243,7 @@
             
             if (!playName || !plays[playName]) {
                 console.log('Play not found or invalid:', playName);
-                if (playTextElement) {
-                    playTextElement.innerHTML = `
-                        <div class="scene-title">Welcome to Shakespeare Digital Variorum</div>
-                        <div class="scene-separator"></div>
-                        <p>Please upload a play text file in Settings to begin analyzing Shakespeare's works.</p>
-                    `;
-                } else {
-                    console.error('playText element not found!');
-                }
+                // Don't overwrite the default content if no play is loaded
                 if (navigationElement) {
                     navigationElement.innerHTML = '';
                 } else {
