@@ -3234,6 +3234,7 @@
             console.log('loadPlay called with:', playName);
             console.log('plays object keys:', Object.keys(plays));
             console.log('plays[playName]:', plays[playName]);
+            console.log('playText element innerHTML before:', document.getElementById('playText').innerHTML.substring(0, 200));
             
             const playTextElement = document.getElementById('playText');
             const navigationElement = document.getElementById('navigationList');
@@ -3243,6 +3244,7 @@
             
             if (!playName || !plays[playName]) {
                 console.log('Play not found or invalid:', playName);
+                console.log('playText element innerHTML after (should be unchanged):', document.getElementById('playText').innerHTML.substring(0, 200));
                 // Don't overwrite the default content if no play is loaded
                 if (navigationElement) {
                     navigationElement.innerHTML = '';
