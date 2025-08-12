@@ -1120,10 +1120,11 @@
 
         .play {
             font-family: "Source Serif 4", "Georgia", serif;
-            font-size: 18px;
-            line-height: 1.58;
-            max-width: none;
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 100%;
             margin: 0 auto;
+            word-wrap: break-word;
         }
 
         .play .scene-title {
@@ -1146,12 +1147,13 @@
             letter-spacing: .04em;
         }
 
-        /* Verse line styling - one line per verse line */
+        /* Verse line styling - allow wrapping for readability */
         .play .line {
             display: block;
-            white-space: nowrap;
-            word-break: normal;
-            overflow-wrap: normal;
+            white-space: normal;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
         }
 
         /* Stage directions and prose can still wrap nicely */
@@ -1163,7 +1165,27 @@
 
         .play .prose {
             white-space: normal;
-            max-width: 80ch;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+
+        /* Responsive text sizing for different screen sizes */
+        @media (max-width: 1200px) {
+            .play {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .play {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .play {
+                font-size: 13px;
+            }
         }
 
 
