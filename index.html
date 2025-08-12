@@ -824,7 +824,7 @@
         /* Main Layout */
         .layout {
             display: grid;
-            grid-template-columns: 280px 1fr minmax(500px, 50%);
+            grid-template-columns: 280px 1fr minmax(400px, 35%);
             gap: var(--s-4);
             min-height: calc(100vh - 70px);
             background: var(--bg);
@@ -832,7 +832,19 @@
 
         @media (min-width: 1600px) {
             .layout {
-                grid-template-columns: 280px 40% 60%;
+                grid-template-columns: 280px 50% 30%;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .layout {
+                grid-template-columns: 280px 1fr minmax(350px, 30%);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .layout {
+                grid-template-columns: 280px 1fr minmax(300px, 25%);
             }
         }
 
