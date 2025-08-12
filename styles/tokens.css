@@ -1,0 +1,49 @@
+@import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap');
+
+:root{
+  /* Neutrals */
+  --bg:#F7F7F8;         /* app background */
+  --panel:#F3F4F6;      /* side panels */
+  --surface:#FFFFFF;    /* cards/surfaces */
+  --line:#E7E7EA;       /* hairline */
+  --shadow:0 1px 2px rgba(0,0,0,.06), 0 6px 20px rgba(0,0,0,.05);
+
+  /* Text */
+  --ink-1:#0F1115;      /* primary */
+  --ink-2:#3A3F45;      /* secondary */
+  --ink-3:#6B7078;      /* tertiary */
+
+  /* Accent */
+  --accent:#3B82F6;     /* iOS blue */
+  --accent-press:#2563EB;
+
+  /* Highlight */
+  --hl:rgba(255,246,176,.45);
+
+  /* Radius & rhythm */
+  --r-xs:6px; --r-sm:10px; --r-md:12px; --r-lg:16px;
+  --s-1:8px; --s-2:12px; --s-3:16px; --s-4:24px; --s-5:32px;
+
+  /* typography */
+  --ui: "Inter", "SF Pro Text", system-ui, sans-serif;
+  --serif: "Source Serif 4", "Georgia", serif;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark){
+  :root{ 
+    --bg:#0B0C0F; 
+    --panel:#121319; 
+    --surface:#111317; 
+    --line:#23262B; 
+    --ink-1:#F2F3F5; 
+    --ink-2:#C7CBD3; 
+    --ink-3:#8D94A1; 
+    --shadow:none; 
+    --hl:rgba(255,217,102,.35); 
+  }
+  .list a:hover{
+    background:#1B1E24;
+  }
+}

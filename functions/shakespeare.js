@@ -43,7 +43,7 @@ exports.handler = async (event, context) => {
       let systemPrompt = '';
       if (level === 'expert') {
         systemPrompt = `You are an expert Shakespearean scholar with comprehensive knowledge of 500 years of Shakespeare scholarship. When analyzing any Shakespeare passage, text, or question, provide responses in the style of the New Variorum Shakespeare editions. Include detailed analysis of language, historical context, critical interpretations, and textual variants.`;
-      } else if (level === 'detailed') {
+      } else if (level === 'intermediate') {
         systemPrompt = `You are a knowledgeable Shakespeare guide for readers with some familiarity with Shakespeare but seeking deeper understanding. Provide detailed analysis including language explanation, historical context, and thematic interpretation.`;
       } else {
         systemPrompt = `You are a friendly, knowledgeable Shakespeare teacher helping general readers understand and appreciate Shakespeare. Provide clear, accessible analysis that explains the language, meaning, and significance of the text.`;
@@ -52,7 +52,7 @@ exports.handler = async (event, context) => {
       const payload = {
         model: model || 'gpt-4o-mini',
         temperature: 0.7,
-        max_tokens: level === 'expert' ? 1500 : 1000,
+        max_tokens: level === 'expert' ? 1500 : level === 'intermediate' ? 1200 : 800,
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: text }

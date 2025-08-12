@@ -4,37 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shakespeare Digital Variorum</title>
+    <link rel="stylesheet" href="styles/tokens.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            letter-spacing: 0.005em;
+            transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #f8f9fa;
-            color: #2c3e50;
+        ::selection {
+            background: var(--hl);
+        }
+
+        html, body {
+            background: var(--bg);
+            color: var(--ink-1);
+            font-family: var(--ui);
             line-height: 1.6;
             min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        body, button, input, select {
+            font-family: "Inter", "SF Pro Text", system-ui, sans-serif;
+            letter-spacing: .005em;
+        }
+
+        ::selection {
+            background: var(--hl);
+        }
+
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 var(--s-4);
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--r-sm);
+            box-shadow: var(--shadow);
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: var(--line);
+            margin: var(--s-4) 0;
         }
 
         /* Header */
         .header {
-            background: white;
-            padding: 15px 20px;
-            border-bottom: 1px solid #e9ecef;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: saturate(180%) blur(10px);
+            background: rgba(247,247,248,.85);
+            border-bottom: 1px solid var(--line);
+            padding: var(--s-3) var(--s-4);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header .brand {
+            font-weight: 700;
+            letter-spacing: .01em;
+        }
+
+        .header .actions .btn-primary {
+            display: none;
         }
 
         .header h1 {
             font-size: 1.8em;
-            color: #2c3e50;
+            color: var(--ink-1);
             font-weight: 600;
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: var(--ui);
         }
 
         .header-nav {
@@ -46,38 +95,53 @@
         .nav-btn {
             background: none;
             border: none;
-            color: #6c757d;
+            color: var(--ink-2);
             cursor: pointer;
             padding: 10px 16px;
-            border-radius: 6px;
+            border-radius: var(--r-sm);
             font-size: 15px;
             font-weight: 500;
-            transition: all 0.2s ease;
+            font-family: var(--ui);
         }
 
         .nav-btn:hover {
-            background: #f8f9fa;
-            color: #495057;
-            transform: translateY(-1px);
+            background: var(--panel);
+            color: var(--ink-1);
         }
 
-        .explain-btn {
-            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
+        .btn {
+            border-radius: 12px;
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+            transition: filter .15s, transform .08s;
+            cursor: pointer;
         }
 
-        .explain-btn:hover {
-            background: linear-gradient(135deg, #3182ce 0%, #2c5aa0 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(66, 153, 225, 0.4);
+        .btn-primary {
+            border: 1px solid rgba(0,0,0,.06);
+            background: linear-gradient(#3B82F6,#3878EF);
+            color: #fff;
+            padding: 10px 14px;
+        }
+
+        .btn-primary:hover {
+            filter: saturate(1.07);
+        }
+
+        .btn-primary:active {
+            transform: translateY(1px);
+            background: linear-gradient(#2F6BDF,#2A61D1);
+        }
+
+        .btn-ghost {
+            background: var(--surface);
+            color: var(--ink-2);
+            border: 1px solid var(--line);
+            padding: 8px 12px;
+        }
+
+        .btn-ghost:hover {
+            background: #F2F4F7;
+            color: var(--ink-1);
         }
 
         .explain-btn:disabled {
@@ -87,17 +151,26 @@
             box-shadow: none;
         }
 
-        .explain-instruction {
-            font-size: 12px;
-            color: #6c757d;
-            margin-left: 10px;
+        /* Contextual Toolbar */
+        #selectionToolbar {
+            position: absolute;
+            transform: translate(-50%,-120%);
+            padding: 6px;
+            border-radius: 12px;
+            gap: 6px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            z-index: 1000;
         }
 
         /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 2000;
             left: 0;
             top: 0;
             width: 100%;
@@ -106,54 +179,266 @@
         }
 
         .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 0;
-            border-radius: 20px;
-            width: 80%;
-            max-width: 700px;
-            max-height: 80vh;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--r-lg);
+            box-shadow: var(--shadow);
+            padding: var(--s-5);
+            max-width: 820px;
+            margin: 0 auto;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            max-height: 90vh;
             overflow: hidden;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
-            border: none;
-            display: flex;
-            flex-direction: column;
+            animation: modalIn .18s ease-out;
         }
 
         .modal-header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 40px 40px 20px 40px;
-            border-bottom: 1px solid #e9ecef;
-            background-color: white;
-            flex-shrink: 0;
+            justify-content: space-between;
+            margin-bottom: var(--s-4);
         }
 
         .modal-title {
-            font-size: 1.8em;
-            font-weight: 600;
-            color: #2d3748;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            margin-bottom: 10px;
+            font: 700 20px/1.2 Inter, system-ui;
+            letter-spacing: -.01em;
+            color: var(--ink-1);
         }
 
-        .close {
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
+        .modal-close {
+            background: transparent;
+            border: 0;
+            color: var(--ink-3);
+            font-size: 20px;
+            border-radius: 10px;
+            padding: 6px;
             cursor: pointer;
-            line-height: 1;
         }
 
-        .close:hover {
-            color: #000;
+        .modal-close:hover {
+            background: rgba(0,0,0,.05);
         }
 
         .modal-body {
-            padding: 40px;
-            overflow-y: auto;
-            flex: 1;
+            max-height: calc(90vh - 140px);
+            overflow: auto;
+            padding-right: var(--s-2);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: var(--s-2);
+            margin-top: var(--s-4);
+        }
+
+        /* Focus ring & entry motion */
+        .modal :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+
+        @keyframes modalIn {
+            from {
+                transform: translateY(6px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* About content rhythm */
+        .about h2 {
+            font: 600 16px Inter, system-ui;
+            color: var(--ink-1);
+            margin: var(--s-4) 0 var(--s-2);
+        }
+
+        .about p {
+            color: var(--ink-2);
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0 0 var(--s-3);
+        }
+
+        .about .meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--s-3);
+            margin: var(--s-4) 0;
+        }
+
+        .about .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface);
+        }
+
+        .about .callout {
+            background: #F2F4F7;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: var(--s-3);
+            color: var(--ink-2);
+        }
+
+        .about ul {
+            margin: 0 0 var(--s-3) 1.1rem;
+            color: var(--ink-2);
+        }
+
+        .about a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .about a:hover {
+            text-decoration: underline;
+        }
+
+        /* Settings layout + controls */
+        .settings {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: var(--s-4);
+        }
+
+        .settings-nav {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: var(--r-lg);
+            padding: var(--s-3);
+        }
+
+        .settings-nav .item {
+            padding: 10px 12px;
+            border-radius: 12px;
+            color: var(--ink-2);
+            cursor: pointer;
+        }
+
+        .settings-nav .item:hover {
+            background: #ECEFF3;
+        }
+
+        .settings-nav .item.active {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            color: var(--ink-1);
+        }
+
+        .settings-pane {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--r-lg);
+            box-shadow: var(--shadow);
+            padding: var(--s-5);
+        }
+
+        .settings-pane h3 {
+            font: 600 16px Inter;
+            margin: 0 0 var(--s-2);
+            color: var(--ink-1);
+        }
+
+        .settings-pane .sub {
+            color: var(--ink-3);
+            margin: 0 0 var(--s-3);
+        }
+
+        .settings-pane .row {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: var(--s-3);
+            align-items: center;
+            padding: 12px 0;
+        }
+
+        .settings-pane .row + .row {
+            border-top: 1px solid var(--line);
+        }
+
+        /* Controls (inputs, selects, toggles, file) */
+        .input, .select, .textarea {
+            width: 100%;
+            background: var(--surface);
+            color: var(--ink-1);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 10px 12px;
+            transition: border-color .15s, box-shadow .15s;
+        }
+
+        .input:focus, .select:focus, .textarea:focus {
+            border-color: #C7D7FE;
+            box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+        }
+
+        .toggle {
+            position: relative;
+            width: 44px;
+            height: 26px;
+            background: #E6E8EE;
+            border-radius: 999px;
+            transition: background .15s;
+        }
+
+        .toggle:after {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: var(--shadow);
+            transition: left .15s;
+        }
+
+        .toggle[aria-checked="true"] {
+            background: #C7D7FE;
+        }
+
+        .toggle[aria-checked="true"]::after {
+            left: 21px;
+        }
+
+        .dropzone {
+            border: 1px dashed var(--line);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            color: var(--ink-3);
+        }
+
+        .dropzone:hover {
+            background: #F6F7FA;
+        }
+
+        .settings-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: var(--s-2);
+            margin-top: var(--s-4);
+        }
+
+        .danger {
+            border: 1px solid #F2C6C6;
+            background: #FFF6F6;
+            color: #8C2F2F;
+            border-radius: 12px;
+            padding: var(--s-3);
         }
 
         .upload-section, .library-section {
@@ -372,38 +657,62 @@
 
         /* Footer About Section */
         .footer-about {
-            background: #e9ecef;
-            padding: 40px 20px;
-            margin-top: 50px;
-            border-top: 1px solid #ced4da;
+            background: var(--panel);
+            border-top: 1px solid var(--line);
+            padding: var(--s-4) var(--s-5);
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--ink-3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: var(--s-2);
+            box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.03);
         }
 
         .footer-about h3 {
-            font-size: 1.5em;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            text-align: center;
+            font-family: Inter, system-ui, sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            color: var(--ink-2);
+            margin-bottom: var(--s-2);
+        }
+
+        .footer-title {
+            font-family: Inter, system-ui, sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            color: var(--ink-2);
+            margin-bottom: var(--s-2);
         }
 
         .footer-about p {
             max-width: 800px;
             margin: 0 auto 15px auto;
-            color: #495057;
+            color: var(--ink-3);
             line-height: 1.6;
             text-align: left;
         }
 
         .footer-attribution {
             font-size: 0.9em;
-            color: #6c757d;
+            color: var(--ink-3);
             margin-top: 20px;
             text-align: center;
         }
 
         .footer-attribution a {
-            color: #007bff;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-attribution a:hover {
             text-decoration: underline;
         }
+
+
 
         /* Rights Modal */
         .rights-content {
@@ -471,7 +780,7 @@
         }
 
         .modal-close-btn {
-            background: #007bff;
+            background: linear-gradient(to bottom, #3B82F6 0%, #2563EB 100%);
             color: white;
             border: none;
             padding: 10px 25px;
@@ -480,36 +789,148 @@
             font-size: 14px;
             margin-top: 20px;
             font-weight: 500;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
         }
 
         .modal-close-btn:hover {
-            background: #0056b3;
+            background: linear-gradient(to bottom, #2563EB 0%, #1D4ED8 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
         }
 
         /* Main Layout */
-        .main-container {
+        .layout {
             display: grid;
-            grid-template-columns: 280px 1fr 400px;
+            grid-template-columns: 280px 1fr minmax(500px, 50%);
+            gap: var(--s-4);
             min-height: calc(100vh - 70px);
-            gap: 0;
+            background: var(--bg);
         }
 
-        /* Left Panel - Library & Navigation */
-        .left-panel {
-            background: white;
-            border-right: 1px solid #e9ecef;
-            padding: 20px;
-            overflow-y: auto;
+        @media (min-width: 1600px) {
+            .layout {
+                grid-template-columns: 280px 40% 60%;
+            }
         }
 
-        .section-title {
-            font-weight: 600;
-            font-size: 12px;
-            color: #1a202c;
-            margin-bottom: 12px;
+        /* Sidebar */
+        .sidebar {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: var(--r-lg);
+            padding: var(--s-3) var(--s-2);
+            position: sticky;
+            top: var(--s-4);
+            max-height: calc(100vh - var(--s-4) * 2);
+            overflow: auto;
+            box-shadow: var(--shadow);
+        }
+
+        /* top/bottom scroll cues like Apple */
+        .sidebar::before,
+        .sidebar::after {
+            content: "";
+            position: sticky;
+            left: 0;
+            right: 0;
+            height: 12px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sidebar::before {
+            top: 0;
+            box-shadow: inset 0 8px 8px -8px rgba(0,0,0,.08);
+        }
+
+        .sidebar::after {
+            bottom: 0;
+            box-shadow: inset 0 -8px 8px -8px rgba(0,0,0,.08);
+        }
+
+        /* === Sidebar Navigation Styling (Notion × Apple aesthetic) === */
+
+        /* Reset link colors so visited links don't go purple */
+        .sidebar a,
+        .sidebar a:visited {
+            color: var(--ink-2);
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Hover and active styles */
+        .sidebar a:hover {
+            background: #ECEFF3;
+            color: var(--ink-1);
+        }
+
+        .sidebar .active,
+        .sidebar .active:visited {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            color: var(--ink-1);
+        }
+
+        /* ACT headings (keep, replace "Navigation") */
+        .nav-section-title {
+            font: 600 12px/1 Inter, system-ui, sans-serif;
+            letter-spacing: .06em;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--ink-3);
+            margin: var(--s-3) 0 var(--s-2);
+            padding: 0 var(--s-2);
+        }
+
+        /* Scene links (no purple, no white-out; clear active) */
+        /* unify colors; kill :visited purple */
+        .sidebar a, .sidebar a:visited {
+            color: var(--ink-2);
+            text-decoration: none;
+            display: block;
+        }
+
+        /* base item */
+        .nav-item {
+            padding: 8px 12px;
+            margin: 2px 0;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color .15s ease, color .15s ease, box-shadow .15s ease, border-color .15s ease;
+        }
+
+        /* hover */
+        .nav-item:hover {
+            background: #ECEFF3;
+            color: var(--ink-1);
+        }
+
+        /* active scene = floating chip/card (not white slab) */
+        .nav-item.active,
+        .nav-item[aria-current="page"] {
+            background: var(--surface);
+            color: var(--ink-1);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+        }
+
+        /* selected ACT in the list can be slightly bolder */
+        .nav-item.act {
+            font-weight: 600;
+        }
+
+        /* Focus & a11y */
+        .nav-item:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Optional: tighter vertical rhythm */
+        .nav-group {
+            padding: 0 var(--s-2);
+            margin-bottom: var(--s-3);
         }
 
         .play-selector-container {
@@ -536,18 +957,22 @@
         
         .go-btn {
             padding: 8px 16px;
-            background-color: #007bff;
+            background: linear-gradient(to bottom, #3B82F6 0%, #2563EB 100%);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
             white-space: nowrap;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
         }
         
         .go-btn:hover {
-            background-color: #0056b3;
+            background: linear-gradient(to bottom, #2563EB 0%, #1D4ED8 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
         }
         
         .cancel-btn {
@@ -613,28 +1038,6 @@
             margin-bottom: 2px;
         }
 
-        .navigation-list a {
-            display: block;
-            padding: 6px 10px;
-            color: #495057;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 400;
-            transition: background-color 0.2s;
-            line-height: 1.3;
-        }
-
-        .navigation-list a:hover {
-            background: #f8f9fa;
-        }
-
-        .navigation-list a.active {
-            background: #e3f2fd;
-            color: #1976d2;
-            font-weight: 500;
-        }
-
         .navigation-list .sub-item {
             margin-left: 15px;
             font-size: 12px;
@@ -644,67 +1047,483 @@
             padding: 4px 8px;
         }
 
-        /* Center Panel - Play Text */
-        .center-panel {
-            background: white;
-            padding: 30px;
+        /* Reading Pane */
+        .reader {
+            background: var(--surface);
+            padding: var(--s-5);
             overflow-y: auto;
+            border: 1px solid var(--line);
+            border-radius: var(--r-md);
+            box-shadow: var(--shadow);
         }
 
         .scene-title {
-            font-size: 1.8em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #2c3e50;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #2d3748;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
         }
 
         .scene-separator {
-            border-top: 2px solid #e9ecef;
-            margin: 20px 0;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            margin: 24px 0;
         }
 
         .stage-direction {
             font-style: italic;
-            color: #6c757d;
-            margin: 15px 0;
+            color: #6b7280;
+            margin: 16px 0;
+            font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
+            font-size: 16px;
         }
 
         .dialogue {
-            margin: 15px 0;
-            padding: 10px 0;
+            margin: 20px 0;
+            padding: 12px 0;
         }
 
         .character-name {
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 8px;
-            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 12px;
+            font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .play {
+            font-family: "Source Serif 4", "Georgia", serif;
+            font-size: 18px;
+            line-height: 1.58;
+            max-width: none;
+            margin: 0 auto;
+        }
+
+        .play .scene-title {
+            font-family: Inter;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            font-size: 13px;
+            color: var(--ink-3);
+            margin-bottom: var(--s-2);
+        }
+
+        .play .stage {
+            font-style: italic;
+            color: var(--ink-3);
+        }
+
+        .play .speaker {
+            font-variant-caps: small-caps;
+            letter-spacing: .04em;
+        }
+
+        /* Verse line styling - one line per verse line */
+        .play .line {
+            display: block;
+            white-space: nowrap;
+            word-break: normal;
+            overflow-wrap: normal;
+        }
+
+        /* Stage directions and prose can still wrap nicely */
+        .play .stage {
+            font-style: italic;
+            color: var(--ink-3);
+            white-space: normal;
+        }
+
+        .play .prose {
+            white-space: normal;
+            max-width: 80ch;
+        }
+
+
+
+        /* Graceful degradation on narrow screens */
+        @media (max-width: 1200px) {
+            .play, .play .line {
+                white-space: pre-wrap;
+            }
         }
 
         .dialogue-text {
             margin-left: 20px;
-            line-height: 1.8;
+            line-height: 1.58;
             white-space: normal;
+            font-family: var(--serif);
+            font-size: 18px;
+            max-width: 72ch;
+            color: var(--ink-1);
         }
 
-        .highlighted {
-            background: #e3f2fd;
-            padding: 2px 4px;
-            border-radius: 3px;
+        .highlight {
+            background: var(--hl);
+            border-radius: 4px;
+            transition: background .18s;
         }
 
-        /* Right Panel - Analysis */
-        .right-panel {
+        /* Analysis Mode Selector */
+        .analysis-mode-selector {
             background: white;
-            border-left: 1px solid #e9ecef;
             padding: 20px;
+            border-radius: 6px 6px 0 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            margin-bottom: 0;
+        }
+
+        .segment {
+            display: inline-flex;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .segment button {
+            background: transparent;
+            border: 0;
+            padding: 8px 14px;
+            border-radius: 999px;
+            color: var(--ink-2);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .segment button[aria-pressed="true"] {
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            color: var(--ink-1);
+        }
+
+        /* Analysis Pane */
+        .analysis {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--r-md);
+            box-shadow: var(--shadow);
+            padding: var(--s-5);
+            font-family: "Source Serif 4", Georgia, serif;
+            font-size: 17px;
+            line-height: 1.65;
+            color: var(--ink-1);
+            max-width: 80ch;
+            position: sticky;
+            top: var(--s-4);
+            align-self: start;
+            max-height: calc(100vh - var(--s-4) * 2);
             overflow-y: auto;
         }
 
-        .analysis-section {
-            margin-bottom: 25px;
+        .analysis h2, .analysis h3, .analysis h4 {
+            font-family: Inter, system-ui, sans-serif;
+            font-weight: 600;
+            margin-top: var(--s-4);
+            margin-bottom: var(--s-2);
+            color: var(--ink-2);
+        }
+
+        .analysis p {
+            margin-bottom: var(--s-3);
+            text-rendering: optimizeLegibility;
+            font-feature-settings: "liga", "clig", "kern";
+        }
+
+        .analysis ul, .analysis ol {
+            padding-left: 1.2rem;
+            margin-bottom: var(--s-3);
+        }
+
+        .analysis-section + .analysis-section {
+            border-top: 1px solid var(--line);
+            padding-top: var(--s-4);
+            margin-top: var(--s-4);
+        }
+
+        /* Analysis panel specific elements */
+        .analysis .segment {
+            margin-bottom: var(--s-4);
+        }
+
+        .analysis .analysis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--s-2);
+        }
+
+        .analysis .analysis-title {
+            font-family: Inter, system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--ink-1);
+        }
+
+        .analysis .selection-info {
+            font-family: Inter, system-ui, sans-serif;
+            font-size: 14px;
+            color: var(--ink-3);
+            margin-bottom: var(--s-3);
+        }
+
+        .analysis .copy-btn {
+            background: transparent;
+            border: 1px solid var(--line);
+            border-radius: var(--r-sm);
+            padding: 6px 12px;
+            font-size: 12px;
+            color: var(--ink-2);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .analysis .copy-btn:hover {
+            background: var(--panel);
+            color: var(--ink-1);
+        }
+
+        .analysis .follow-up-input {
+            display: flex;
+            gap: var(--s-2);
+            margin-top: var(--s-2);
+        }
+
+        .analysis .follow-up-input input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid var(--line);
+            border-radius: var(--r-sm);
+            font-family: Inter, system-ui, sans-serif;
+            font-size: 14px;
+        }
+
+        .analysis .follow-up-input input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+        }
+
+        /* Ask button styling */
+        .ask-btn {
+            border-radius: 999px;
+            font-weight: 600;
+            padding: 8px 16px;
+            background: var(--accent);
+            border: none;
+            color: #fff;
+            transition: filter 0.15s ease, transform 0.08s ease;
+        }
+
+        .ask-btn:hover {
+            filter: saturate(1.05);
+        }
+
+        .ask-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Base style for all link buttons */
+        .link-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: var(--r-md);
+            font-size: 14px;
+            font-weight: 500;
+            text-align: left;
+            color: var(--ink-1);
+            transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+            border: 1px solid var(--line);
+        }
+
+        /* Default neutral for non-branded links */
+        .link-btn.default {
+            background: var(--panel);
+        }
+
+        .link-btn.default:hover {
+            background: #E8EAED;
+        }
+
+        /* YouTube — soft pastel red */
+        .link-btn.youtube {
+            background: #FDECEC;
+            border-color: #F6D5D5;
+            color: #C22727;
+        }
+
+        .link-btn.youtube:hover {
+            background: #FBDADA;
+            box-shadow: 0 1px 2px rgba(194, 39, 39, 0.2);
+        }
+
+        /* JSTOR — soft pastel maroon */
+        .link-btn.jstor {
+            background: #F9ECEC;
+            border-color: #E9D3D3;
+            color: #7C2A2A;
+        }
+
+        .link-btn.jstor:hover {
+            background: #F3DADA;
+            box-shadow: 0 1px 2px rgba(124, 42, 42, 0.2);
+        }
+
+        /* Google Scholar — soft blue tint */
+        .link-btn.scholar {
+            background: #ECF2FD;
+            border-color: #D3DDF6;
+            color: #2A4D9C;
+        }
+
+        .link-btn.scholar:hover {
+            background: #DFE9FB;
+            box-shadow: 0 1px 2px rgba(42, 77, 156, 0.2);
+        }
+
+        /* Internet Shakespeare Editions — neutral default */
+        .link-btn.ise {
+            background: var(--panel);
+        }
+
+        .link-btn.ise:hover {
+            background: #E8EAED;
+        }
+
+        /* AI Analysis Content */
+        .ai-analysis-content {
+            background: white;
+            padding: 20px;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+        }
+
+        /* Media Section */
+        .media-section {
+            background: white;
+            padding: 20px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            margin: 0;
+        }
+
+        .media-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .list a {
+            display: block;
+            padding: 10px 12px;
+            border-radius: 10px;
+            color: var(--ink-2);
+            text-decoration: none;
+            font-family: var(--ui);
+            font-size: 14px;
+            transition: background-color 0.2s ease;
+        }
+
+        .list a:hover {
+            background: #EFF2F7;
+            color: var(--ink-1);
+        }
+
+        .media-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .research-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--s-2);
+        }
+
+        /* Empty State */
+        .empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50vh;
+        }
+
+        .empty-body {
+            display: flex;
+            flex-direction: column;
+            gap: var(--s-3);
+            align-items: center;
+            text-align: center;
+        }
+
+        .empty-title {
+            font-weight: 700;
+        }
+
+        .empty-sub {
+            color: var(--ink-3);
+        }
+
+        /* Spacing/rhythm cleanup */
+        .panel > * + * {
+            margin-top: var(--s-3);
+        }
+
+        .section > * + * {
+            margin-top: var(--s-2);
+        }
+
+        /* Research Section */
+        .research-section {
+            background: white;
+            padding: 20px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            margin: 0;
+        }
+
+        .research-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .research-link {
+            color: #3B82F6;
+            text-decoration: underline;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .research-link:hover {
+            color: #2563EB;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--r-sm);
+            padding: var(--s-4);
+            box-shadow: var(--shadow);
+            margin-bottom: var(--s-4);
+        }
+
+        .card h3 {
+            font-weight: 600;
+            color: var(--ink-2);
+            margin: 0 0 var(--s-2);
         }
 
         .analysis-header {
@@ -715,9 +1534,10 @@
         }
 
         .analysis-title {
-            font-weight: bold;
+            font-weight: 600;
             font-size: 16px;
-            color: #2c3e50;
+            color: #2d3748;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
 
         .copy-btn {
@@ -774,9 +1594,11 @@
         }
 
         .follow-up-section {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e9ecef;
+            background: white;
+            padding: 20px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            border-radius: 0 0 6px 6px;
+            margin-top: 0;
         }
 
         .follow-up-input {
@@ -794,19 +1616,7 @@
             font-size: 14px;
         }
 
-        .ask-btn {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-        }
 
-        .ask-btn:hover {
-            background: #0056b3;
-        }
 
         /* Responsive Design */
         @media (max-width: 1200px) {
@@ -834,8 +1644,6 @@
         <div class="header-nav">
             <button class="nav-btn" onclick="openSettings()">Settings</button>
             <button class="nav-btn" onclick="openAbout()">About</button>
-            <button class="explain-btn" onclick="explainHighlighted()">Explain Highlighted Text</button>
-            <span class="explain-instruction">Use your cursor to highlight text in the play, then click this button for analysis.</span>
         </div>
     </div>
 
@@ -844,7 +1652,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-title">Settings</div>
-                <span class="close" onclick="closeSettings()">&times;</span>
+                <button class="modal-close" onclick="closeSettings()">&times;</button>
             </div>
             
             <div class="modal-body">
@@ -902,11 +1710,6 @@
                         <!-- Library plays will appear here -->
                     </div>
                 </div>
-                
-                <!-- Settings Footer -->
-                <div class="settings-footer" style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e9ecef;">
-                    <button class="modal-close-btn" onclick="closeSettings()">Close</button>
-                </div>
             </div>
         </div>
     </div>
@@ -916,11 +1719,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-title">About This Project</div>
-                <span class="close" onclick="closeAbout()">&times;</span>
+                <button class="modal-close" onclick="closeAbout()">&times;</button>
             </div>
             
             <div class="modal-body">
-                <div class="about-content">
+                <div class="about">
                     <p>The New Variorum Shakespeare editions have been the gold standard of Shakespearean scholarship for over a century, bringing together the most important critical commentary, textual analysis, and historical context in comprehensive annotated volumes. The Shakespeare Digital Variorum builds on this tradition, harnessing the power of artificial intelligence to make centuries of scholarly insight accessible to everyone, from high school students to veteran researchers.</p>
                     
                     <p>Our platform integrates authoritative texts based on the Folger Shakespeare Library editions of each play, with commentary from major variorum editions, scholarly databases, and historical sources. We include references to film adaptations, stage productions, and cultural interpretations that show how Shakespeare's works have lived and evolved across different media and eras. Using advanced AI, we can instantly provide plain-language explanations of complex passages, trace the etymology of Early Modern English words as they appear in context, analyze prosodic patterns across scenes and plays, and illuminate the historical events and cultural forces that shaped each work.</p>
@@ -933,14 +1736,38 @@
                     
                     <p>The Shakespeare Digital Variorum represents the next evolution of the variorum tradition: comprehensive, scholarly, and designed for universal access. Shakespeare's world is vast, and now everyone can explore all of it.</p>
                     
-                    <div class="about-footer">
-                        <p><em>Created by Jack David Carson, Massachusetts Institute of Technology • 2025</em></p>
+                    <p><em>Created by Jack David Carson, Massachusetts Institute of Technology • 2025</em></p>
+
+                    <div class="meta">
+                        <div class="badge">Version <strong>1.0.0</strong></div>
+                        <div class="badge">Build <span id="build-id">auto</span></div>
+                        <div class="badge">Texts: Folger base</div>
+                        <div class="badge">Commentary: NVSh + secondary</div>
                     </div>
-                    
-                    <!-- About Footer -->
-                    <div class="about-close-footer" style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e9ecef;">
-                        <button class="modal-close-btn" onclick="closeAbout()">Close</button>
+
+                    <h2>Purpose</h2>
+                    <p>Bring variorum-grade scholarship to a modern, accessible reading tool powered by AI.</p>
+
+                    <h2>What's inside</h2>
+                    <ul>
+                        <li>Authoritative texts (Folger editions).</li>
+                        <li>Cross-references to major variorum editions and scholarly databases.</li>
+                        <li>AI explanations, paraphrase, performance notes, and research links.</li>
+                    </ul>
+
+                    <div class="callout">
+                        We do not replace editors. AI outputs are aids; verify before citing.
                     </div>
+
+                    <h2>Sources & Attribution</h2>
+                    <ul>
+                        <li>Texts: Folger Shakespeare Library.</li>
+                        <li>Commentary indices: New Variorum Shakespeare series.</li>
+                        <li>External: JSTOR, Google Scholar, Internet Shakespeare Editions.</li>
+                    </ul>
+
+                    <h2>Contact & License</h2>
+                    <p>Issues or corrections: <a href="mailto:jack@example.com">email</a>. License: CC BY-NC-SA 4.0 - Free to use for non-commercial, educational purposes with attribution.</p>
                 </div>
             </div>
         </div>
@@ -980,9 +1807,9 @@
     </div>
 
     <!-- Main Content -->
-    <div class="main-container">
-        <!-- Left Panel - Library & Navigation -->
-        <div class="left-panel">
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" aria-label="Play navigation">
             <div class="section-title">Library</div>
             <div class="play-selector-container">
                 <select class="play-selector" id="playSelector">
@@ -991,45 +1818,70 @@
                 <button onclick="loadSelectedPlay()" class="go-btn">Go</button>
             </div>
 
-            <div class="section-title">Navigation</div>
-            <ul class="navigation-list" id="navigationList">
+            <ul class="navigation-list" id="navigationList" aria-label="Play navigation">
                 <!-- Navigation will be populated dynamically -->
             </ul>
-        </div>
+        </aside>
 
-        <!-- Center Panel - Play Text -->
-        <div class="center-panel" id="playText">
-            <div class="scene-title">Welcome to Shakespeare Digital Variorum</div>
-            <div class="scene-separator"></div>
-            
-            <p>Please upload a play text file in Settings to begin analyzing Shakespeare's works.</p>
-        </div>
-
-        <!-- Right Panel - Analysis -->
-        <div class="right-panel" id="analysisPanel">
-            <div class="analysis-section">
-                <div class="analysis-header">
-                    <div class="analysis-title">Basic Analysis</div>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="selection-info">No text selected</div>
-            </div>
-
-            <div class="analysis-section">
-                <div class="analysis-title">Context and Paraphrase</div>
-                <div class="analysis-content">
-                    <p>Highlight text in the play to get AI-powered analysis.</p>
-                </div>
-            </div>
-
-            <div class="follow-up-section">
-                <div class="analysis-title">Ask a follow-up question</div>
-                <div class="follow-up-input">
-                    <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
-                    <button class="ask-btn" onclick="askFollowUp()">Ask</button>
+        <!-- Reading Pane -->
+        <div class="reader panel play" id="playText">
+            <div class="empty card">
+                <div class="empty-body">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#6B7078" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M8 13h8M8 10h5"/></svg>
+                    <div class="empty-title">Add a play to begin</div>
+                    <div class="empty-sub">Upload a text file in Settings. We'll auto-index acts and scenes.</div>
+                    <button class="btn btn-primary" onclick="openSettings()">Open Settings</button>
                 </div>
             </div>
         </div>
+
+        <!-- Analysis Pane -->
+        <div class="analysis panel" id="analysisPanel">
+            <!-- Analysis Mode Selector -->
+            <div class="segment">
+                <button onclick="setAnalysisMode('basic')" aria-pressed="true">Basic</button>
+                <button onclick="setAnalysisMode('intermediate')" aria-pressed="false">Intermediate</button>
+                <button onclick="setAnalysisMode('expert')" aria-pressed="false">Expert</button>
+            </div>
+
+            <!-- AI Analysis Content -->
+            <div class="analysis-header">
+                <div class="analysis-title">Basic Analysis</div>
+                <button class="copy-btn">Copy</button>
+            </div>
+            <div class="selection-info">No text selected</div>
+            <div class="analysis-content">
+                <p>Highlight text in the play to get AI-powered analysis.</p>
+            </div>
+
+            <!-- Media Section -->
+            <h3>Media</h3>
+            <div class="media-actions">
+                <button class="link-btn youtube" onclick="searchYouTube('scene')">Search YouTube for this scene</button>
+            </div>
+
+            <!-- Research Section -->
+            <h3>Research</h3>
+            <div class="research-actions">
+                <button class="link-btn jstor" onclick="searchJSTOR('exact')">Search JSTOR for exact quotation</button>
+                <button class="link-btn jstor" onclick="searchJSTOR('passage')">Search JSTOR for this passage/scene</button>
+                <button class="link-btn scholar" onclick="searchGoogleScholar()">Google Scholar</button>
+                <button class="link-btn ise" onclick="openInternetShakespeare()">Internet Shakespeare Editions</button>
+            </div>
+
+            <!-- Follow-up Section -->
+            <h3>Ask a follow-up question</h3>
+            <div class="follow-up-input">
+                <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
+                <button class="ask-btn" onclick="askFollowUp()">Ask</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contextual Toolbar -->
+    <div id="selectionToolbar" class="panel" hidden>
+        <button class="btn btn-primary" id="explainBtn">Explain</button>
+        <button class="btn btn-ghost" id="copyBtn">Copy</button>
     </div>
 
     <script>
@@ -1045,6 +1897,12 @@
             // Hide any existing success/error messages when opening settings
             document.getElementById('uploadSuccess').style.display = 'none';
             document.getElementById('uploadError').style.display = 'none';
+            
+            // Hide the contextual toolbar when opening settings
+            const toolbar = document.getElementById('selectionToolbar');
+            if (toolbar) {
+                toolbar.hidden = true;
+            }
             
             updateLibraryPlays(); // Refresh the library display
         }
@@ -1063,6 +1921,12 @@
 
         function openAbout() {
             document.getElementById('aboutModal').style.display = 'block';
+            
+            // Hide the contextual toolbar when opening about
+            const toolbar = document.getElementById('selectionToolbar');
+            if (toolbar) {
+                toolbar.hidden = true;
+            }
         }
 
         function closeAbout() {
@@ -1071,6 +1935,12 @@
 
         function openRights() {
             document.getElementById('rightsModal').style.display = 'block';
+            
+            // Hide the contextual toolbar when opening rights
+            const toolbar = document.getElementById('selectionToolbar');
+            if (toolbar) {
+                toolbar.hidden = true;
+            }
         }
 
         function closeRights() {
@@ -1092,6 +1962,47 @@
                 closeRights();
             }
         }
+
+        // Settings navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add ARIA attributes to modals
+            const settingsModal = document.getElementById('settingsModal');
+            const aboutModal = document.getElementById('aboutModal');
+            
+            if (settingsModal) {
+                settingsModal.setAttribute('role', 'dialog');
+                settingsModal.setAttribute('aria-modal', 'true');
+                settingsModal.setAttribute('aria-labelledby', 'settings-modal-title');
+            }
+            
+            if (aboutModal) {
+                aboutModal.setAttribute('role', 'dialog');
+                aboutModal.setAttribute('aria-modal', 'true');
+                aboutModal.setAttribute('aria-labelledby', 'about-modal-title');
+            }
+
+            // Settings nav switching
+            document.querySelectorAll('.settings-nav .item').forEach((el, i) => {
+                el.addEventListener('click', () => {
+                    document.querySelectorAll('.settings-nav .item').forEach(n => n.classList.remove('active'));
+                    el.classList.add('active');
+                    // For now, just highlight the active nav item
+                    // In a full implementation, you'd show different panes
+                });
+            });
+
+            // Escape key to close modals
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') {
+                    if (settingsModal && settingsModal.style.display === 'block') {
+                        closeSettings();
+                    }
+                    if (aboutModal && aboutModal.style.display === 'block') {
+                        closeAbout();
+                    }
+                }
+            });
+        });
 
         // Detect play title from content and return in proper case
         function detectPlayTitle(content) {
@@ -2079,7 +2990,7 @@
                                 inDialogue = false;
                             }
                             const formattedDialogue = formatBracketedText(dialogue);
-                            html += `<div class="dialogue" style="margin-top: 20px;"><div class="character-name">${speakerName}</div><div class="dialogue-text">${formattedDialogue}</div></div>`;
+                            html += `<div class="dialogue" style="margin-top: 20px;"><div class="character-name">${speakerName}</div><div class="dialogue-text"><span class="line">${formattedDialogue}</span></div></div>`;
                             inDialogue = false;
                             i++;
                             continue;
@@ -2094,17 +3005,17 @@
                 console.log('Processing dialogue line:', trimmedLine, 'formatted:', formattedLine, 'original line:', line);
                 
                 if (inDialogue) {
-                    // Accumulate dialogue text with HTML line breaks
+                    // Accumulate dialogue text with line spans
                     if (currentDialogueText) {
-                        // Add HTML line break to preserve original structure
+                        // Add line span to preserve original structure
                         if (formattedLine.trim()) {
-                            currentDialogueText += '<br>' + formattedLine;
+                            currentDialogueText += '<span class="line">' + formattedLine + '</span>';
                         }
                     } else {
-                        currentDialogueText = formattedLine;
+                        currentDialogueText = '<span class="line">' + formattedLine + '</span>';
                     }
                 } else {
-                    html += `<div class="dialogue-text">${formattedLine}</div>`;
+                    html += `<div class="dialogue-text"><span class="line">${formattedLine}</span></div>`;
                 }
                 
                 i++;
@@ -2392,6 +3303,118 @@
         }
 
         // Text selection functionality
+        document.addEventListener('selectionchange', () => {
+            const s = window.getSelection();
+            const t = document.getElementById('selectionToolbar');
+            
+            // Check if there's no selection, selection is collapsed, or no text is selected
+            if (!s || s.isCollapsed || s.toString().trim() === '') {
+                t.hidden = true;
+                selectedText = '';
+                return;
+            }
+            
+            // Get the bounding rectangle of the selection
+            const box = s.rangeCount ? s.getRangeAt(0).getBoundingClientRect() : null;
+            
+            if (!box) {
+                t.hidden = true;
+                return;
+            }
+            
+            // Position the toolbar above the selection
+            t.style.left = `${box.left + box.width/2 + window.scrollX}px`;
+            t.style.top = `${box.top + window.scrollY}px`;
+            t.hidden = false;
+        });
+
+        // Additional check for when selection is lost
+        document.addEventListener('mouseup', () => {
+            setTimeout(() => {
+                const s = window.getSelection();
+                const t = document.getElementById('selectionToolbar');
+                
+                if (!s || s.isCollapsed || s.toString().trim() === '') {
+                    t.hidden = true;
+                    selectedText = '';
+                }
+            }, 10);
+        });
+
+        // Hide toolbar when clicking anywhere on the page
+        document.addEventListener('mousedown', (event) => {
+            const toolbar = document.getElementById('selectionToolbar');
+            const target = event.target;
+            
+            // Don't hide if clicking on the toolbar itself
+            if (toolbar && toolbar.contains(target)) {
+                return;
+            }
+            
+            // Hide toolbar when clicking anywhere else
+            if (toolbar && !toolbar.hidden) {
+                toolbar.hidden = true;
+                selectedText = '';
+            }
+        });
+
+        // Alternative approach using click event
+        document.addEventListener('click', (event) => {
+            const toolbar = document.getElementById('selectionToolbar');
+            const target = event.target;
+            
+            // Don't hide if clicking on the toolbar itself
+            if (toolbar && toolbar.contains(target)) {
+                return;
+            }
+            
+            // Hide toolbar when clicking anywhere else
+            if (toolbar && !toolbar.hidden) {
+                console.log('Hiding toolbar via click event');
+                toolbar.hidden = true;
+                selectedText = '';
+            }
+        });
+
+        // Force hide toolbar when selection is cleared
+        document.addEventListener('mouseup', (event) => {
+            setTimeout(() => {
+                const s = window.getSelection();
+                const toolbar = document.getElementById('selectionToolbar');
+                
+                // If toolbar is visible but no text is selected, hide it
+                if (toolbar && !toolbar.hidden && (!s || s.isCollapsed || s.toString().trim() === '')) {
+                    console.log('Hiding toolbar - no selection detected');
+                    toolbar.hidden = true;
+                    selectedText = '';
+                }
+            }, 50); // Longer timeout to ensure selection is cleared
+        });
+
+        // Hide toolbar with Escape key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                const toolbar = document.getElementById('selectionToolbar');
+                if (toolbar && !toolbar.hidden) {
+                    console.log('Hiding toolbar via Escape key');
+                    toolbar.hidden = true;
+                    selectedText = '';
+                }
+            }
+        });
+
+        // Simple click outside to hide toolbar
+        document.addEventListener('click', (event) => {
+            const toolbar = document.getElementById('selectionToolbar');
+            if (toolbar && !toolbar.hidden && !toolbar.contains(event.target)) {
+                console.log('Hiding toolbar - clicked outside');
+                toolbar.hidden = true;
+                selectedText = '';
+            }
+        });
+
+
+
         document.addEventListener('mouseup', function() {
             const selection = window.getSelection();
             selectedText = selection.toString().trim();
@@ -2400,8 +3423,25 @@
                 // Highlight the selected text
                 const range = selection.getRangeAt(0);
                 const span = document.createElement('span');
-                span.className = 'highlighted';
+                span.className = 'highlight';
                 range.surroundContents(span);
+            }
+        });
+
+        // Contextual toolbar event listeners
+        document.getElementById('explainBtn').addEventListener('click', function() {
+            if (!selectedText) {
+                alert('Please select some text first.');
+                return;
+            }
+            analyzeHighlightedText(selectedText);
+            document.getElementById('selectionToolbar').hidden = true;
+        });
+
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            if (selectedText) {
+                navigator.clipboard.writeText(selectedText);
+                document.getElementById('selectionToolbar').hidden = true;
             }
         });
 
@@ -2411,18 +3451,8 @@
                 return;
             }
             
-            // Change button text and disable it
-            const explainBtn = document.querySelector('.explain-btn');
-            const originalText = explainBtn.textContent;
-            explainBtn.textContent = 'Answering...';
-            explainBtn.disabled = true;
-            
             // Call the serverless function to analyze the highlighted text
-            analyzeHighlightedText(selectedText).finally(() => {
-                // Restore button text and enable it
-                explainBtn.textContent = originalText;
-                explainBtn.disabled = false;
-            });
+            analyzeHighlightedText(selectedText);
         }
 
         async function analyzeHighlightedText(text) {
@@ -2437,7 +3467,7 @@
                     },
                     body: JSON.stringify({
                         text: text,
-                        level: 'detailed',
+                        level: currentAnalysisMode,
                         model: 'gpt-4o-mini'
                     })
                 });
@@ -2452,7 +3482,7 @@
                         },
                         body: JSON.stringify({
                             text: text,
-                            level: 'detailed',
+                            level: currentAnalysisMode,
                             model: 'gpt-4o-mini'
                         })
                     });
@@ -2506,29 +3536,59 @@
             // Format the content with proper sections
             const formattedContent = formatAnalysisContent(content);
             
+            // Get the correct title based on current mode
+            let analysisTitle = 'Basic Analysis';
+            switch(currentAnalysisMode) {
+                case 'basic':
+                    analysisTitle = 'Basic Analysis';
+                    break;
+                case 'intermediate':
+                    analysisTitle = 'Intermediate Analysis';
+                    break;
+                case 'expert':
+                    analysisTitle = 'Expert Analysis';
+                    break;
+            }
+            
             analysisPanel.innerHTML = `
-                <div class="analysis-section">
-                    <div class="analysis-header">
-                        <div class="analysis-title">Basic Analysis</div>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <div class="selection-info">${playInfo} — ${wordCount} words selected</div>
+                <!-- Analysis Mode Selector -->
+                <div class="segment">
+                    <button onclick="setAnalysisMode('basic')" aria-pressed="${currentAnalysisMode === 'basic' ? 'true' : 'false'}">Basic</button>
+                    <button onclick="setAnalysisMode('intermediate')" aria-pressed="${currentAnalysisMode === 'intermediate' ? 'true' : 'false'}">Intermediate</button>
+                    <button onclick="setAnalysisMode('expert')" aria-pressed="${currentAnalysisMode === 'expert' ? 'true' : 'false'}">Expert</button>
                 </div>
 
-                <div class="analysis-section">
-                    <div class="analysis-title">Analysis</div>
-                    <div class="analysis-content">
-                        ${formattedContent}
-                    </div>
+                <!-- AI Analysis Content -->
+                <div class="analysis-header">
+                    <div class="analysis-title">${analysisTitle}</div>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="selection-info">${playInfo} — ${wordCount} words selected</div>
+                <div class="analysis-content">
+                    ${formattedContent}
                 </div>
 
-                <div class="follow-up-section">
-                    <div class="analysis-title">Ask a follow-up question</div>
-                    <div class="follow-up-input">
-                        <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
-                        <button class="ask-btn" onclick="askFollowUp()">Ask</button>
-                    </div>
-                </div>
+                            <!-- Media Section -->
+            <h3>Media</h3>
+            <div class="media-actions">
+                <button class="link-btn youtube" onclick="searchYouTube('scene')">Search YouTube for this scene</button>
+            </div>
+
+            <!-- Research Section -->
+            <h3>Research</h3>
+            <div class="research-actions">
+                <button class="link-btn jstor" onclick="searchJSTOR('exact')">Search JSTOR for exact quotation</button>
+                <button class="link-btn jstor" onclick="searchJSTOR('passage')">Search JSTOR for this passage/scene</button>
+                <button class="link-btn scholar" onclick="searchGoogleScholar()">Google Scholar</button>
+                <button class="link-btn ise" onclick="openInternetShakespeare()">Internet Shakespeare Editions</button>
+            </div>
+
+            <!-- Follow-up Section -->
+            <h3>Ask a follow-up question</h3>
+            <div class="follow-up-input">
+                <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
+                <button class="ask-btn" onclick="askFollowUp()">Ask</button>
+            </div>
             `;
         }
 
@@ -2574,6 +3634,41 @@
             return formattedContent;
         }
 
+        // Analysis mode state
+        let currentAnalysisMode = 'basic';
+
+        function setAnalysisMode(mode) {
+            currentAnalysisMode = mode;
+            
+            // Update button states
+            const buttons = document.querySelectorAll('.segment button');
+            buttons.forEach(btn => {
+                btn.setAttribute('aria-pressed', 'false');
+            });
+            event.target.setAttribute('aria-pressed', 'true');
+            
+            // Update the analysis title based on mode
+            const analysisTitle = document.querySelector('.analysis-title');
+            if (analysisTitle) {
+                switch(mode) {
+                    case 'basic':
+                        analysisTitle.textContent = 'Basic Analysis';
+                        break;
+                    case 'intermediate':
+                        analysisTitle.textContent = 'Intermediate Analysis';
+                        break;
+                    case 'expert':
+                        analysisTitle.textContent = 'Expert Analysis';
+                        break;
+                }
+            }
+            
+            // If there's currently selected text, re-analyze with new mode
+            if (selectedText) {
+                analyzeHighlightedText(selectedText);
+            }
+        }
+
         function askFollowUp() {
             const question = document.getElementById('followUpQuestion').value.trim();
             if (!question) {
@@ -2585,16 +3680,82 @@
             alert('Follow-up question feature coming soon!');
         }
 
+        // Media and Research Functions
+        function searchYouTube(type) {
+            const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Shakespeare';
+            const sceneName = currentScene || 'scene';
+            const searchQuery = `${playName} ${sceneName} performance`;
+            
+            const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`;
+            window.open(url, '_blank');
+        }
+
+        function searchJSTOR(type) {
+            if (!selectedText) {
+                alert('Please select some text first to search JSTOR.');
+                return;
+            }
+            
+            let searchQuery = '';
+            if (type === 'exact') {
+                searchQuery = `"${selectedText}"`;
+            } else {
+                const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Shakespeare';
+                searchQuery = `${playName} ${currentScene || 'scene'}`;
+            }
+            
+            const url = `https://www.jstor.org/action/doBasicSearch?Query=${encodeURIComponent(searchQuery)}`;
+            window.open(url, '_blank');
+        }
+
+        function searchGoogleScholar() {
+            const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Shakespeare';
+            const sceneName = currentScene || 'scene';
+            
+            // Extract Act information from the scene name
+            let actInfo = '';
+            if (currentScene && currentScene.includes(' - ')) {
+                const actPart = currentScene.split(' - ')[0];
+                if (actPart && actPart.includes('ACT')) {
+                    actInfo = actPart;
+                }
+            }
+            
+            // Build search query with Act information
+            let searchQuery = '';
+            if (actInfo) {
+                searchQuery = `${playName} ${actInfo} Shakespeare`;
+            } else {
+                searchQuery = `${playName} ${sceneName} Shakespeare`;
+            }
+            
+            const url = `https://scholar.google.com/scholar?q=${encodeURIComponent(searchQuery)}`;
+            window.open(url, '_blank');
+        }
+
+        function openInternetShakespeare() {
+            const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name.toLowerCase().replace(/\s+/g, '-') : 'shakespeare';
+            const url = `https://internetshakespeare.uvic.ca/Library/plays/${playName}/`;
+            window.open(url, '_blank');
+        }
+
 
 
 
     </script>
 
     <!-- Footer About Section -->
-    <div class="footer-about">
-        <h3>About This Project</h3>
-        <p>Shakespeare Digital Variorum combines centuries of scholarly commentary with AI analysis. All Shakespeare texts are public domain and based on the Folger Shakespeare Library editions of each play. Scholarly sources are cited throughout and used under fair use for educational purposes. This site is freely available for non-commercial educational use.</p>
-        <p class="footer-attribution">Created by Jack David Carson, Massachusetts Institute of Technology • 2025 • <a href="#" onclick="openRights(); return false;">Full Rights & Usage Information</a></p>
-    </div>
+    <footer class="footer-about">
+        <div class="footer-title">About This Project</div>
+        <div>
+            Shakespeare Digital Variorum combines centuries of scholarly commentary with AI analysis.
+            All Shakespeare texts are public domain and based on the Folger Shakespeare Library editions.
+        </div>
+        <div>
+            Created by Jack David Carson, Massachusetts Institute of Technology · 2025 ·
+            <a href="#" onclick="openRights(); return false;">Full Rights & Usage Information</a>
+        </div>
+    </footer>
 </body>
 </html>
+
