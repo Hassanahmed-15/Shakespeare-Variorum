@@ -719,6 +719,10 @@
 
         /* Footer About Section */
         .footer-about {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
             background: var(--panel);
             border-top: 1px solid var(--line);
             padding: var(--s-4) var(--s-5);
@@ -731,6 +735,7 @@
             text-align: center;
             gap: var(--s-2);
             box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.03);
+            z-index: 15;
         }
 
         .footer-about h3 {
@@ -876,11 +881,12 @@
             display: grid;
             grid-template-columns: 280px 1fr minmax(400px, 35%);
             gap: var(--s-4);
-            height: calc(100vh - 70px);
+            height: calc(100vh - 70px - 200px);
             background: var(--bg);
             position: relative;
             overflow: hidden;
             margin-top: 70px;
+            margin-bottom: 200px;
         }
 
         @media (min-width: 1600px) {
@@ -934,7 +940,7 @@
             top: 70px;
             left: var(--s-4);
             width: 280px;
-            height: calc(100vh - 70px - var(--s-4) * 2);
+            height: calc(100vh - 70px - 200px - var(--s-4) * 2);
             overflow-y: auto;
             box-shadow: var(--shadow);
             z-index: 10;
@@ -1173,7 +1179,7 @@
             word-wrap: break-word;
             margin-left: 280px;
             margin-right: calc(35% + var(--s-4));
-            height: calc(100vh - 70px - var(--s-4) * 2);
+            height: calc(100vh - 70px - 200px - var(--s-4) * 2);
         }
 
         .scene-title {
@@ -1379,7 +1385,7 @@
             top: 70px;
             right: var(--s-4);
             width: calc(35% - var(--s-4));
-            height: calc(100vh - 70px - var(--s-4) * 2);
+            height: calc(100vh - 70px - 200px - var(--s-4) * 2);
             overflow-y: auto;
             z-index: 10;
         }
