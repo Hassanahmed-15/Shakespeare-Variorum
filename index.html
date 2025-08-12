@@ -1382,6 +1382,17 @@
             color: var(--ink-1);
         }
 
+        /* Researching animation */
+        .researching {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
         .analysis .follow-up-input {
             display: flex;
             gap: var(--s-2);
@@ -3732,6 +3743,17 @@
         }
 
         async function analyzeHighlightedText(text) {
+            // Show "Researching!" message immediately
+            const analysisPanel = document.getElementById('analysisPanel');
+            analysisPanel.innerHTML = `
+                <div class="analysis-header">
+                    <div class="analysis-title researching">Researching!</div>
+                </div>
+                <div class="analysis-content">
+                    <p>🤔 Analyzing your selected text...</p>
+                </div>
+            `;
+            
             try {
                 console.log('Analyzing text:', text.substring(0, 100) + '...');
                 
