@@ -175,6 +175,11 @@
             display: flex;
         }
 
+        /* Prevent toolbar from appearing in analysis panel */
+        .analysis #selectionToolbar {
+            display: none !important;
+        }
+
         /* Modal Styles */
         .modal {
             display: none;
@@ -823,7 +828,9 @@
 
         /* Main Layout */
         .layout {
-            display: block;
+            display: grid;
+            grid-template-columns: 280px 1fr minmax(400px, 35%);
+            gap: var(--s-4);
             min-height: calc(100vh - 70px);
             background: var(--bg);
             position: relative;
@@ -836,20 +843,14 @@
         }
 
         @media (max-width: 1200px) {
-            .analysis {
-                width: calc(30% - var(--s-4));
-            }
-            .reader {
-                right: calc(30% + var(--s-4) * 2);
+            .layout {
+                grid-template-columns: 280px 1fr minmax(350px, 30%);
             }
         }
 
         @media (max-width: 900px) {
-            .analysis {
-                width: calc(25% - var(--s-4));
-            }
-            .reader {
-                right: calc(25% + var(--s-4) * 2);
+            .layout {
+                grid-template-columns: 280px 1fr minmax(300px, 25%);
             }
         }
 
@@ -859,14 +860,11 @@
             border: 1px solid var(--line);
             border-radius: var(--r-lg);
             padding: var(--s-3) var(--s-2);
-            position: fixed;
+            position: sticky;
             top: var(--s-4);
-            left: var(--s-4);
-            width: 280px;
-            height: calc(100vh - var(--s-4) * 2);
+            max-height: calc(100vh - var(--s-4) * 2);
             overflow: auto;
             box-shadow: var(--shadow);
-            z-index: 10;
         }
 
         /* top/bottom scroll cues like Apple */
@@ -1100,12 +1098,6 @@
             box-shadow: var(--shadow);
             max-width: 100%;
             word-wrap: break-word;
-            position: fixed;
-            top: var(--s-4);
-            left: calc(280px + var(--s-4) * 2);
-            right: calc(35% + var(--s-4) * 2);
-            height: calc(100vh - var(--s-4) * 2);
-            z-index: 5;
         }
 
         .scene-title {
@@ -1306,13 +1298,11 @@
             line-height: 1.65;
             color: var(--ink-1);
             max-width: 80ch;
-            position: fixed;
+            position: sticky;
             top: var(--s-4);
-            right: var(--s-4);
-            width: calc(35% - var(--s-4));
-            height: calc(100vh - var(--s-4) * 2);
+            align-self: start;
+            max-height: calc(100vh - var(--s-4) * 2);
             overflow-y: auto;
-            z-index: 10;
         }
 
         .analysis h2, .analysis h3, .analysis h4 {
