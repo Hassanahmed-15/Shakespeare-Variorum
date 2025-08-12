@@ -3743,16 +3743,38 @@
 
 
 
+        // Function to clear all existing highlights
+        function clearAllHighlights() {
+            const highlights = document.querySelectorAll('.highlight');
+            highlights.forEach(highlight => {
+                const parent = highlight.parentNode;
+                parent.replaceChild(document.createTextNode(highlight.textContent), highlight);
+                parent.normalize(); // Merge adjacent text nodes
+            });
+        }
+
         document.addEventListener('mouseup', function() {
             const selection = window.getSelection();
             selectedText = selection.toString().trim();
             
             if (selectedText) {
+                // Clear any existing highlights first
+                clearAllHighlights();
+                
                 // Highlight the selected text
                 const range = selection.getRangeAt(0);
                 const span = document.createElement('span');
                 span.className = 'highlight';
                 range.surroundContents(span);
+            }
+        });
+
+        // Clear highlights when clicking in the reading pane without selecting text
+        document.addEventListener('click', function(event) {
+            // Only clear highlights if clicking in the reading pane and no text is selected
+            if (event.target.closest('.reader') && !window.getSelection().toString().trim()) {
+                clearAllHighlights();
+                selectedText = '';
             }
         });
 
@@ -3779,7 +3801,7 @@
                     <div class="analysis-title researching">Researching!</div>
                 </div>
                 <div class="analysis-content">
-                    <p class="analyzing-message">🤔 Analyzing your selected text...</p>
+                    <p class="analyzing-message">🎭 Analyzing your selected text...</p>
                 </div>
             `;
             
