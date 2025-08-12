@@ -874,14 +874,21 @@
             display: grid;
             grid-template-columns: 280px 1fr minmax(400px, 35%);
             gap: var(--s-4);
-            min-height: calc(100vh - 70px);
+            height: calc(100vh - 70px);
             background: var(--bg);
             position: relative;
+            overflow: hidden;
         }
 
         @media (min-width: 1600px) {
             .layout {
                 grid-template-columns: 280px 50% 30%;
+            }
+            .analysis {
+                width: calc(30% - var(--s-4));
+            }
+            .reader {
+                margin-right: calc(30% + var(--s-4));
             }
         }
 
@@ -889,11 +896,28 @@
             .layout {
                 grid-template-columns: 280px 1fr minmax(350px, 30%);
             }
+            .analysis {
+                width: calc(30% - var(--s-4));
+            }
+            .reader {
+                margin-right: calc(30% + var(--s-4));
+            }
         }
 
         @media (max-width: 900px) {
             .layout {
                 grid-template-columns: 280px 1fr minmax(300px, 25%);
+            }
+            .sidebar {
+                width: 250px;
+                left: var(--s-2);
+            }
+            .analysis {
+                width: calc(25% - var(--s-4));
+            }
+            .reader {
+                margin-left: 250px;
+                margin-right: calc(25% + var(--s-4));
             }
         }
 
@@ -903,11 +927,14 @@
             border: 1px solid var(--line);
             border-radius: var(--r-lg);
             padding: var(--s-3) var(--s-2);
-            position: sticky;
-            top: var(--s-4);
-            max-height: calc(100vh - var(--s-4) * 2);
-            overflow: auto;
+            position: fixed;
+            top: 70px;
+            left: var(--s-4);
+            width: 280px;
+            height: calc(100vh - 70px - var(--s-4) * 2);
+            overflow-y: auto;
             box-shadow: var(--shadow);
+            z-index: 10;
         }
 
         /* top/bottom scroll cues like Apple */
@@ -1141,6 +1168,9 @@
             box-shadow: var(--shadow);
             max-width: 100%;
             word-wrap: break-word;
+            margin-left: 280px;
+            margin-right: calc(35% + var(--s-4));
+            height: calc(100vh - 70px - var(--s-4) * 2);
         }
 
         .scene-title {
@@ -1342,11 +1372,13 @@
             color: var(--ink-1);
             max-width: 80ch;
             margin: 0;
-            position: sticky;
-            top: var(--s-4);
-            align-self: start;
-            max-height: calc(100vh - var(--s-4) * 2);
+            position: fixed;
+            top: 70px;
+            right: var(--s-4);
+            width: calc(35% - var(--s-4));
+            height: calc(100vh - 70px - var(--s-4) * 2);
             overflow-y: auto;
+            z-index: 10;
         }
 
         /* Top meta line (play · act · scene · selection count) */
