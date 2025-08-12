@@ -823,11 +823,10 @@
 
         /* Main Layout */
         .layout {
-            display: grid;
-            grid-template-columns: 280px 1fr minmax(400px, 35%);
-            gap: var(--s-4);
+            display: block;
             min-height: calc(100vh - 70px);
             background: var(--bg);
+            position: relative;
         }
 
         @media (min-width: 1600px) {
@@ -837,14 +836,20 @@
         }
 
         @media (max-width: 1200px) {
-            .layout {
-                grid-template-columns: 280px 1fr minmax(350px, 30%);
+            .analysis {
+                width: calc(30% - var(--s-4));
+            }
+            .reader {
+                right: calc(30% + var(--s-4) * 2);
             }
         }
 
         @media (max-width: 900px) {
-            .layout {
-                grid-template-columns: 280px 1fr minmax(300px, 25%);
+            .analysis {
+                width: calc(25% - var(--s-4));
+            }
+            .reader {
+                right: calc(25% + var(--s-4) * 2);
             }
         }
 
@@ -854,11 +859,14 @@
             border: 1px solid var(--line);
             border-radius: var(--r-lg);
             padding: var(--s-3) var(--s-2);
-            position: sticky;
+            position: fixed;
             top: var(--s-4);
-            max-height: calc(100vh - var(--s-4) * 2);
+            left: var(--s-4);
+            width: 280px;
+            height: calc(100vh - var(--s-4) * 2);
             overflow: auto;
             box-shadow: var(--shadow);
+            z-index: 10;
         }
 
         /* top/bottom scroll cues like Apple */
@@ -1092,6 +1100,12 @@
             box-shadow: var(--shadow);
             max-width: 100%;
             word-wrap: break-word;
+            position: fixed;
+            top: var(--s-4);
+            left: calc(280px + var(--s-4) * 2);
+            right: calc(35% + var(--s-4) * 2);
+            height: calc(100vh - var(--s-4) * 2);
+            z-index: 5;
         }
 
         .scene-title {
@@ -1292,11 +1306,13 @@
             line-height: 1.65;
             color: var(--ink-1);
             max-width: 80ch;
-            position: sticky;
+            position: fixed;
             top: var(--s-4);
-            align-self: start;
-            max-height: calc(100vh - var(--s-4) * 2);
+            right: var(--s-4);
+            width: calc(35% - var(--s-4));
+            height: calc(100vh - var(--s-4) * 2);
             overflow-y: auto;
+            z-index: 10;
         }
 
         .analysis h2, .analysis h3, .analysis h4 {
