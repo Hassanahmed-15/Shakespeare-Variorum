@@ -1074,9 +1074,12 @@
             background: var(--surface);
             padding: var(--s-5);
             overflow-y: auto;
+            overflow-x: hidden;
             border: 1px solid var(--line);
             border-radius: var(--r-md);
             box-shadow: var(--shadow);
+            max-width: 100%;
+            word-wrap: break-word;
         }
 
         .scene-title {
@@ -1120,11 +1123,13 @@
 
         .play {
             font-family: "Source Serif 4", "Georgia", serif;
-            font-size: 16px;
-            line-height: 1.6;
+            font-size: 13px;
+            line-height: 1.5;
             max-width: 100%;
             margin: 0 auto;
             word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
 
         .play .scene-title {
@@ -1147,13 +1152,15 @@
             letter-spacing: .04em;
         }
 
-        /* Verse line styling - allow wrapping for readability */
+        /* Verse line styling - force wrapping for readability */
         .play .line {
             display: block;
             white-space: normal;
-            word-break: break-word;
+            word-break: break-all;
             overflow-wrap: break-word;
             max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* Stage directions and prose can still wrap nicely */
@@ -1167,24 +1174,37 @@
             white-space: normal;
             max-width: 100%;
             word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Force container constraints */
+        .reader * {
+            max-width: 100% !important;
+            box-sizing: border-box;
+        }
+
+        .play * {
+            max-width: 100% !important;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         /* Responsive text sizing for different screen sizes */
         @media (max-width: 1200px) {
             .play {
-                font-size: 15px;
+                font-size: 12px;
             }
         }
 
         @media (max-width: 900px) {
             .play {
-                font-size: 14px;
+                font-size: 11px;
             }
         }
 
         @media (max-width: 600px) {
             .play {
-                font-size: 13px;
+                font-size: 10px;
             }
         }
 
