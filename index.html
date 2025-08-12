@@ -75,9 +75,7 @@
             letter-spacing: .01em;
         }
 
-        .header .actions .btn-primary {
-            display: none;
-        }
+
 
         .header h1 {
             font-size: 1.8em;
@@ -164,6 +162,17 @@
             display: flex;
             align-items: center;
             z-index: 1000;
+            pointer-events: auto;
+        }
+
+        /* Prevent toolbar from appearing in sidebar */
+        .sidebar #selectionToolbar {
+            display: none !important;
+        }
+
+        /* Ensure toolbar only appears in reading area */
+        .reader #selectionToolbar {
+            display: flex;
         }
 
         /* Modal Styles */
@@ -447,18 +456,18 @@
 
         .upload-section h3, .library-section h3 {
             margin-bottom: 15px;
-            color: #2d3748;
+            color: var(--ink-1);
             font-size: 1.3em;
             font-weight: 600;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: var(--ui);
         }
 
         .upload-section h4 {
             margin: 20px 0 10px 0;
-            color: #2d3748;
+            color: var(--ink-1);
             font-size: 1.1em;
             font-weight: 600;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: var(--ui);
         }
 
         .single-upload, .bulk-upload {
@@ -479,15 +488,16 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #2d3748;
+            color: var(--ink-1);
+            font-family: var(--ui);
         }
 
         .name-instructions {
             font-size: 12px;
-            color: #6c757d;
+            color: var(--ink-3);
             margin-top: 8px;
             font-style: italic;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: var(--ui);
         }
 
         .input-group {
@@ -499,9 +509,9 @@
         .play-input {
             flex: 1;
             padding: 10px 12px;
-            border: 1px solid #ced4da;
+            border: 1px solid var(--line);
             border-radius: 4px;
-            font-family: inherit;
+            font-family: var(--ui);
             font-size: 14px;
         }
 
@@ -556,8 +566,8 @@
         .upload-instructions {
             margin-top: 10px;
             font-size: 14px;
-            color: #6c757d;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--ink-3);
+            font-family: var(--ui);
         }
 
         .uploaded-plays, .library-plays {
@@ -577,13 +587,15 @@
 
         .play-name, .library-name {
             font-weight: 500;
-            color: #2d3748;
+            color: var(--ink-1);
+            font-family: var(--ui);
         }
 
         .play-info {
             font-size: 12px;
-            color: #6c757d;
+            color: var(--ink-3);
             margin-top: 4px;
+            font-family: var(--ui);
         }
 
         .remove-play, .delete-play {
@@ -1825,12 +1837,13 @@
                 <button onclick="setAnalysisMode('basic')" aria-pressed="true">Basic</button>
                 <button onclick="setAnalysisMode('intermediate')" aria-pressed="false">Intermediate</button>
                 <button onclick="setAnalysisMode('expert')" aria-pressed="false">Expert</button>
+                <button onclick="setAnalysisMode('fullfathomfive')" aria-pressed="false">Full Fathom Five</button>
             </div>
 
             <!-- AI Analysis Content -->
             <div class="analysis-header">
                 <div class="analysis-title">Basic Analysis</div>
-                <button class="copy-btn">Copy</button>
+                <button class="copy-btn" onclick="copyAnalysis()">Copy</button>
             </div>
             <div class="selection-info">No text selected</div>
             <div class="analysis-content">
@@ -1863,8 +1876,6 @@
 
     <!-- Contextual Toolbar -->
     <div id="selectionToolbar" class="panel" hidden>
-        <button class="btn btn-primary" id="explainBtn">Explain</button>
-        <button class="btn btn-ghost" id="copyBtn">Copy</button>
     </div>
 
     <script>
@@ -3412,21 +3423,9 @@
         });
 
         // Contextual toolbar event listeners
-        document.getElementById('explainBtn').addEventListener('click', function() {
-            if (!selectedText) {
-                alert('Please select some text first.');
-                return;
-            }
-            analyzeHighlightedText(selectedText);
-            document.getElementById('selectionToolbar').hidden = true;
-        });
 
-        document.getElementById('copyBtn').addEventListener('click', function() {
-            if (selectedText) {
-                navigator.clipboard.writeText(selectedText);
-                document.getElementById('selectionToolbar').hidden = true;
-            }
-        });
+
+
 
         function explainHighlighted() {
             if (!selectedText) {
@@ -3531,6 +3530,9 @@
                 case 'expert':
                     analysisTitle = 'Expert Analysis';
                     break;
+                case 'fullfathomfive':
+                    analysisTitle = 'Full Fathom Five Analysis';
+                    break;
             }
             
             analysisPanel.innerHTML = `
@@ -3539,12 +3541,13 @@
                     <button onclick="setAnalysisMode('basic')" aria-pressed="${currentAnalysisMode === 'basic' ? 'true' : 'false'}">Basic</button>
                     <button onclick="setAnalysisMode('intermediate')" aria-pressed="${currentAnalysisMode === 'intermediate' ? 'true' : 'false'}">Intermediate</button>
                     <button onclick="setAnalysisMode('expert')" aria-pressed="${currentAnalysisMode === 'expert' ? 'true' : 'false'}">Expert</button>
+                    <button onclick="setAnalysisMode('fullfathomfive')" aria-pressed="${currentAnalysisMode === 'fullfathomfive' ? 'true' : 'false'}">Full Fathom Five</button>
                 </div>
 
                 <!-- AI Analysis Content -->
                 <div class="analysis-header">
                     <div class="analysis-title">${analysisTitle}</div>
-                    <button class="copy-btn">Copy</button>
+                    <button class="copy-btn" onclick="copyAnalysis()">Copy</button>
                 </div>
                 <div class="selection-info">${playInfo} — ${wordCount} words selected</div>
                 <div class="analysis-content">
@@ -3643,12 +3646,36 @@
                     case 'expert':
                         analysisTitle.textContent = 'Expert Analysis';
                         break;
+                    case 'fullfathomfive':
+                        analysisTitle.textContent = 'Full Fathom Five Analysis';
+                        break;
                 }
             }
             
             // If there's currently selected text, re-analyze with new mode
             if (selectedText) {
                 analyzeHighlightedText(selectedText);
+            }
+        }
+
+        function copyAnalysis() {
+            const analysisContent = document.querySelector('.analysis-content');
+            if (analysisContent) {
+                const textToCopy = analysisContent.innerText;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    // Show a brief success message
+                    const copyBtn = document.querySelector('.copy-btn');
+                    if (copyBtn) {
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Copied!';
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                        }, 1000);
+                    }
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                    alert('Failed to copy analysis to clipboard');
+                });
             }
         }
 

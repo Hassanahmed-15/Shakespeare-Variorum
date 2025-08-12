@@ -41,7 +41,9 @@ exports.handler = async (event, context) => {
 
       // Determine the system prompt based on analysis level
       let systemPrompt = '';
-      if (level === 'expert') {
+      if (level === 'fullfathomfive') {
+        systemPrompt = `You are a master Shakespearean scholar with encyclopedic knowledge of 500 years of Shakespeare scholarship, textual criticism, performance history, and cultural impact. When analyzing any Shakespeare passage, provide the most comprehensive analysis possible in the style of the New Variorum Shakespeare editions. Include exhaustive analysis of language, etymology, historical context, critical interpretations across centuries, textual variants, performance traditions, cultural adaptations, and scholarly debates. Reference specific critics, editions, and performance traditions. This is the deepest level of analysis available.`;
+      } else if (level === 'expert') {
         systemPrompt = `You are an expert Shakespearean scholar with comprehensive knowledge of 500 years of Shakespeare scholarship. When analyzing any Shakespeare passage, text, or question, provide responses in the style of the New Variorum Shakespeare editions. Include detailed analysis of language, historical context, critical interpretations, and textual variants.`;
       } else if (level === 'intermediate') {
         systemPrompt = `You are a knowledgeable Shakespeare guide for readers with some familiarity with Shakespeare but seeking deeper understanding. Provide detailed analysis including language explanation, historical context, and thematic interpretation.`;
@@ -52,7 +54,7 @@ exports.handler = async (event, context) => {
       const payload = {
         model: model || 'gpt-4o-mini',
         temperature: 0.7,
-        max_tokens: level === 'expert' ? 1500 : level === 'intermediate' ? 1200 : 800,
+        max_tokens: level === 'fullfathomfive' ? 2000 : level === 'expert' ? 1500 : level === 'intermediate' ? 1200 : 800,
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: text }
