@@ -159,7 +159,7 @@
             background: var(--surface);
             border: 1px solid var(--line);
             box-shadow: var(--shadow);
-            display: flex;
+            display: none;
             align-items: center;
             z-index: 1000;
             pointer-events: auto;
@@ -3623,6 +3623,25 @@
             // Check if there's no selection, selection is collapsed, or no text is selected
             if (!s || s.isCollapsed || s.toString().trim() === '') {
                 t.hidden = true;
+                t.style.display = 'none';
+                selectedText = '';
+                return;
+            }
+            
+            // Additional check: ensure selection is within the reading pane
+            const readerElement = document.querySelector('.reader');
+            if (!readerElement) {
+                t.hidden = true;
+                t.style.display = 'none';
+                selectedText = '';
+                return;
+            }
+            
+            // Check if the selection is actually within the reading pane
+            const selectionRange = s.getRangeAt(0);
+            if (!readerElement.contains(selectionRange.commonAncestorContainer)) {
+                t.hidden = true;
+                t.style.display = 'none';
                 selectedText = '';
                 return;
             }
@@ -3632,11 +3651,12 @@
             
             if (!box) {
                 t.hidden = true;
+                t.style.display = 'none';
                 return;
             }
             
             // Position the toolbar above the selection, constrained to reading pane
-            const reader = document.querySelector('.reader');
+            const reader = readerElement;
             if (reader) {
                 const readerRect = reader.getBoundingClientRect();
                 const readerScrollTop = reader.scrollTop;
@@ -3652,8 +3672,10 @@
                 t.style.left = `${left}px`;
                 t.style.top = `${top}px`;
                 t.hidden = false;
+                t.style.display = 'flex';
             } else {
                 t.hidden = true;
+                t.style.display = 'none';
             }
         });
 
@@ -3729,6 +3751,15 @@
                     toolbar.hidden = true;
                     selectedText = '';
                 }
+            }
+        });
+
+        // Ensure toolbar is hidden on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const toolbar = document.getElementById('selectionToolbar');
+            if (toolbar) {
+                toolbar.hidden = true;
+                toolbar.style.display = 'none';
             }
         });
 
