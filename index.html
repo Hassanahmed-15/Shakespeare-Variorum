@@ -4162,29 +4162,29 @@
                     <div class="analysis-content">
                         ${formattedContent}
                     </div>
+                    
+                    <!-- Media Section -->
+                    <h3>Media</h3>
+                    <div class="media-actions">
+                        <button class="link-btn youtube" onclick="searchYouTube('scene')">Search YouTube for this scene</button>
+                    </div>
+
+                    <!-- Research Section -->
+                    <h3>Research</h3>
+                    <div class="research-actions">
+                        <button class="link-btn jstor" onclick="searchJSTOR('exact')">Search JSTOR for exact quotation</button>
+                        <button class="link-btn jstor" onclick="searchJSTOR('passage')">Search JSTOR for this passage/scene</button>
+                        <button class="link-btn scholar" onclick="searchGoogleScholar()">Google Scholar</button>
+                        <button class="link-btn ise" onclick="openInternetShakespeare()">Internet Shakespeare Editions</button>
+                    </div>
+
+                    <!-- Follow-up Section -->
+                    <h3>Ask a follow-up question</h3>
+                    <div class="follow-up-input">
+                        <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
+                        <button class="ask-btn" onclick="askFollowUp()">Ask</button>
+                    </div>
                 </div>
-
-                            <!-- Media Section -->
-            <h3>Media</h3>
-            <div class="media-actions">
-                <button class="link-btn youtube" onclick="searchYouTube('scene')">Search YouTube for this scene</button>
-            </div>
-
-            <!-- Research Section -->
-            <h3>Research</h3>
-            <div class="research-actions">
-                <button class="link-btn jstor" onclick="searchJSTOR('exact')">Search JSTOR for exact quotation</button>
-                <button class="link-btn jstor" onclick="searchJSTOR('passage')">Search JSTOR for this passage/scene</button>
-                <button class="link-btn scholar" onclick="searchGoogleScholar()">Google Scholar</button>
-                <button class="link-btn ise" onclick="openInternetShakespeare()">Internet Shakespeare Editions</button>
-            </div>
-
-            <!-- Follow-up Section -->
-            <h3>Ask a follow-up question</h3>
-            <div class="follow-up-input">
-                <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
-                <button class="ask-btn" onclick="askFollowUp()">Ask</button>
-            </div>
             `;
         }
 
