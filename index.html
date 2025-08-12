@@ -1658,10 +1658,10 @@
                     <div class="single-upload">
                         <h4>Upload Single Play</h4>
                         <div class="file-upload">
-                            <input type="file" id="playFile" accept=".txt" onchange="handleFileUpload(event)">
-                            <label for="playFile">Choose a play text file (.txt)</label>
+                            <input type="file" id="playFile" accept=".xml,.txt" onchange="handleFileUpload(event)">
+                            <label for="playFile">Choose a play file (.xml or .txt)</label>
                             <div class="upload-instructions">
-                                Upload .txt files containing Shakespeare play text. The system will automatically parse them into acts, scenes, and characters.
+                                Upload TEISimple XML files (with MorphAdorner annotations) or .txt files containing Shakespeare play text. The system will automatically parse them into acts, scenes, and characters with enhanced linguistic analysis.
                             </div>
                         </div>
                         <div class="play-name-section" id="playNameSection" style="display: none;">
@@ -1685,10 +1685,10 @@
                     <div class="bulk-upload">
                         <h4>Bulk Upload Multiple Plays</h4>
                         <div class="file-upload">
-                            <input type="file" id="bulkPlayFiles" accept=".txt" multiple onchange="handleBulkUpload(event)">
-                            <label for="bulkPlayFiles">Choose multiple play text files (.txt)</label>
+                            <input type="file" id="bulkPlayFiles" accept=".xml,.txt" multiple onchange="handleBulkUpload(event)">
+                            <label for="bulkPlayFiles">Choose multiple play files (.xml or .txt)</label>
                             <div class="upload-instructions">
-                                Select multiple .txt files to upload several plays at once.
+                                Select multiple TEISimple XML files (with MorphAdorner annotations) or .txt files to upload several plays at once with enhanced linguistic analysis.
                             </div>
                         </div>
                     </div>
@@ -1876,6 +1876,8 @@
 
     <!-- Contextual Toolbar -->
     <div id="selectionToolbar" class="panel" hidden>
+        <button class="btn btn-primary" id="explainBtn">Explain</button>
+        <button class="btn btn-ghost" id="copyBtn">Copy</button>
     </div>
 
     <script>
@@ -2099,7 +2101,11 @@
             
             try {
                 console.log('Starting parsePlayText...');
-                parsePlayText(fileName, window.tempPlayData.content, playName);
+                if (window.tempPlayData.isXML) {
+                    parsePlayXML(fileName, window.tempPlayData.content, playName);
+                } else {
+                    parsePlayText(fileName, window.tempPlayData.content, playName);
+                }
                 console.log('parsePlayText completed successfully');
                 console.log('Plays object after parsing:', plays);
                 console.log('Number of plays:', Object.keys(plays).length);
@@ -2234,10 +2240,12 @@
             reader.onload = function(e) {
                 try {
                     const content = e.target.result;
-                    const fileName = file.name.replace('.txt', '');
+                    const isXML = file.name.toLowerCase().endsWith('.xml');
+                    const fileName = isXML ? file.name.replace('.xml', '') : file.name.replace('.txt', '');
                     
                     console.log('=== FILE UPLOAD DEBUG ===');
                     console.log('File name:', file.name);
+                    console.log('File type:', isXML ? 'XML' : 'TXT');
                     console.log('File size:', file.size, 'bytes');
                     console.log('Content length:', content.length, 'characters');
                     console.log('First 500 characters:', content.substring(0, 500));
@@ -2245,7 +2253,7 @@
                     console.log('=== END DEBUG ===');
                     
                     // Parse the play to detect the title (but don't add to library yet)
-                    const detectedPlayName = detectPlayTitle(content);
+                    const detectedPlayName = isXML ? detectPlayTitleFromXML(content) : detectPlayTitle(content);
                     
                     // Show the name input section
                     document.getElementById('playNameSection').style.display = 'block';
@@ -2263,12 +2271,13 @@
                     window.tempPlayData = {
                         fileName: fileName,
                         content: content,
-                        detectedName: detectedPlayName
+                        detectedName: detectedPlayName,
+                        isXML: isXML
                     };
                     
                     // Show success message
                     document.getElementById('uploadSuccess').style.display = 'block';
-                    document.getElementById('uploadSuccess').textContent = `✅ File uploaded successfully! Review the play name and click "Add Play" to add it to your library.`;
+                    document.getElementById('uploadSuccess').textContent = `✅ ${isXML ? 'TEISimple XML' : 'Text'} file uploaded successfully! Review the play name and click "Add Play" to add it to your library.`;
                     
                 } catch (error) {
                     console.error('Error processing file:', error);
@@ -2301,15 +2310,17 @@
                 reader.onload = function(e) {
                     try {
                         const content = e.target.result;
-                        const fileName = file.name.replace('.txt', '');
-                        const detectedName = detectPlayTitle(content);
+                        const isXML = file.name.toLowerCase().endsWith('.xml');
+                        const fileName = isXML ? file.name.replace('.xml', '') : file.name.replace('.txt', '');
+                        const detectedName = isXML ? detectPlayTitleFromXML(content) : detectPlayTitle(content);
                         
                         // Store data for bulk processing
                         window.bulkUploadData.push({
                             fileName: fileName,
                             content: content,
                             detectedName: detectedName,
-                            originalName: fileName
+                            originalName: fileName,
+                            isXML: isXML
                         });
                         
                         processedCount++;
@@ -2379,7 +2390,11 @@
                     const customName = document.getElementById(`bulkName${index}`).value.trim();
                     const playName = customName || play.detectedName;
                     
-                    parsePlayText(play.fileName, play.content, playName);
+                    if (play.isXML) {
+                        parsePlayXML(play.fileName, play.content, playName);
+                    } else {
+                        parsePlayText(play.fileName, play.content, playName);
+                    }
                     successCount++;
                 } catch (error) {
                     console.error('Error processing play:', play.fileName, error);
@@ -2417,10 +2432,10 @@
             bulkSection.innerHTML = `
                 <h4>Bulk Upload Multiple Plays</h4>
                 <div class="file-upload">
-                    <input type="file" id="bulkPlayFiles" accept=".txt" multiple onchange="handleBulkUpload(event)">
-                    <label for="bulkPlayFiles">Choose multiple play text files (.txt)</label>
+                    <input type="file" id="bulkPlayFiles" accept=".xml,.txt" multiple onchange="handleBulkUpload(event)">
+                    <label for="bulkPlayFiles">Choose multiple play files (.xml or .txt)</label>
                     <div class="upload-instructions">
-                        Select multiple .txt files to upload several plays at once.
+                        Select multiple TEISimple XML files (with MorphAdorner annotations) or .txt files to upload several plays at once with enhanced linguistic analysis.
                     </div>
                 </div>
             `;
@@ -2596,6 +2611,179 @@
                     play.scenes[currentScene].push(line);
                 }
             }
+        }
+
+        // XML parsing functions for TEISimple with MorphAdorner annotations
+        function detectPlayTitleFromXML(content) {
+            try {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(content, 'text/xml');
+                
+                // Check for parsing errors
+                const parseError = xmlDoc.getElementsByTagName('parsererror');
+                if (parseError.length > 0) {
+                    throw new Error('Invalid XML format');
+                }
+                
+                // Try to find title in TEI header
+                const titleStmt = xmlDoc.querySelector('titleStmt title');
+                if (titleStmt && titleStmt.textContent.trim()) {
+                    return titleStmt.textContent.trim();
+                }
+                
+                // Try alternative title locations
+                const title = xmlDoc.querySelector('title');
+                if (title && title.textContent.trim()) {
+                    return title.textContent.trim();
+                }
+                
+                // Try to extract from filename or fallback
+                return 'Shakespeare Play';
+                
+            } catch (error) {
+                console.error('Error parsing XML title:', error);
+                return 'Shakespeare Play';
+            }
+        }
+
+        function parsePlayXML(fileName, content, customPlayName = null) {
+            console.log('parsePlayXML started for:', fileName);
+            
+            try {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(content, 'text/xml');
+                
+                // Check for parsing errors
+                const parseError = xmlDoc.getElementsByTagName('parsererror');
+                if (parseError.length > 0) {
+                    throw new Error('Invalid XML format');
+                }
+                
+                // Use custom play name if provided, otherwise extract from XML
+                let actualPlayName = customPlayName || detectPlayTitleFromXML(content) || fileName;
+                
+                const play = {
+                    name: actualPlayName,
+                    originalFileName: fileName,
+                    characters: [],
+                    acts: {},
+                    scenes: {},
+                    isXML: true,
+                    morphAdornerData: {} // Store MorphAdorner annotations
+                };
+
+                // Extract characters from TEI header
+                const castList = xmlDoc.querySelector('castList');
+                if (castList) {
+                    const castItems = castList.querySelectorAll('castItem');
+                    castItems.forEach(item => {
+                        const role = item.querySelector('role');
+                        const actor = item.querySelector('actor');
+                        if (role) {
+                            const characterName = role.textContent.trim();
+                            if (characterName && !play.characters.includes(characterName)) {
+                                play.characters.push(characterName);
+                            }
+                        }
+                    });
+                }
+
+                // Parse acts and scenes
+                const acts = xmlDoc.querySelectorAll('div[type="act"]');
+                acts.forEach((act, actIndex) => {
+                    const actNum = actIndex + 1;
+                    const actName = `ACT ${actNum}`;
+                    play.acts[actName] = [];
+                    
+                    const scenes = act.querySelectorAll('div[type="scene"]');
+                    scenes.forEach((scene, sceneIndex) => {
+                        const sceneNum = sceneIndex + 1;
+                        const sceneName = `${actName} - SCENE ${sceneNum}`;
+                        play.scenes[sceneName] = [];
+                        play.acts[actName].push(sceneName);
+                        
+                        // Extract scene content with MorphAdorner annotations
+                        const sceneContent = extractSceneContentFromXML(scene, play);
+                        play.scenes[sceneName] = sceneContent;
+                    });
+                });
+
+                // Add to plays object
+                plays[fileName] = play;
+                console.log('XML parsing completed for:', fileName);
+                console.log('Play structure:', play);
+                
+            } catch (error) {
+                console.error('Error parsing XML:', error);
+                throw error;
+            }
+        }
+
+        function extractSceneContentFromXML(sceneElement, play) {
+            const sceneContent = [];
+            
+            // Process all child elements
+            const children = sceneElement.children;
+            for (let i = 0; i < children.length; i++) {
+                const child = children[i];
+                
+                if (child.tagName === 'sp') {
+                    // Speech element
+                    const speaker = child.querySelector('speaker');
+                    const speakerName = speaker ? speaker.textContent.trim() : 'UNKNOWN';
+                    
+                    // Extract lines with MorphAdorner annotations
+                    const lines = child.querySelectorAll('l');
+                    lines.forEach(line => {
+                        const lineText = extractLineWithAnnotations(line);
+                        if (lineText) {
+                            sceneContent.push(`${speakerName.toUpperCase()}`);
+                            sceneContent.push(lineText);
+                        }
+                    });
+                    
+                } else if (child.tagName === 'stage') {
+                    // Stage direction
+                    const stageText = `[${child.textContent.trim()}]`;
+                    sceneContent.push(stageText);
+                    
+                } else if (child.tagName === 'l') {
+                    // Direct line (no speaker)
+                    const lineText = extractLineWithAnnotations(child);
+                    if (lineText) {
+                        sceneContent.push(lineText);
+                    }
+                }
+            }
+            
+            return sceneContent;
+        }
+
+        function extractLineWithAnnotations(lineElement) {
+            // Extract text with MorphAdorner part-of-speech annotations
+            let lineText = '';
+            
+            // Process words with annotations
+            const words = lineElement.querySelectorAll('w');
+            if (words.length > 0) {
+                words.forEach(word => {
+                    const wordText = word.textContent.trim();
+                    const pos = word.getAttribute('pos'); // Part of speech
+                    const lemma = word.getAttribute('lemma'); // Lemma form
+                    
+                    // Add word with annotations if available
+                    if (pos && lemma) {
+                        lineText += `${wordText} (${pos}/${lemma}) `;
+                    } else {
+                        lineText += wordText + ' ';
+                    }
+                });
+            } else {
+                // Fallback to plain text
+                lineText = lineElement.textContent.trim();
+            }
+            
+            return lineText.trim();
         }
 
         // Update play selector dropdown
@@ -3394,6 +3582,42 @@
                     toolbar.hidden = true;
                     selectedText = '';
                 }
+            }
+        });
+
+        // Contextual toolbar button event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const explainBtn = document.getElementById('explainBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            
+            if (explainBtn) {
+                explainBtn.addEventListener('click', function() {
+                    if (!selectedText) {
+                        alert('Please select some text first.');
+                        return;
+                    }
+                    analyzeHighlightedText(selectedText);
+                    document.getElementById('selectionToolbar').hidden = true;
+                });
+            }
+            
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function() {
+                    if (selectedText) {
+                        navigator.clipboard.writeText(selectedText).then(() => {
+                            // Show brief success feedback
+                            const originalText = copyBtn.textContent;
+                            copyBtn.textContent = 'Copied!';
+                            setTimeout(() => {
+                                copyBtn.textContent = originalText;
+                            }, 1000);
+                        }).catch(err => {
+                            console.error('Failed to copy text: ', err);
+                            alert('Failed to copy text to clipboard');
+                        });
+                        document.getElementById('selectionToolbar').hidden = true;
+                    }
+                });
             }
         });
 

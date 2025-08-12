@@ -298,8 +298,16 @@
                     const content = data.choices[0].message.content;
                     const usage = data.usage;
                     
+                    // Format the content for better display of structured responses
+                    const formattedContent = content
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/\n\n/g, '</p><p>')
+                        .replace(/\n/g, '<br>');
+                    
                     output.innerHTML = `
-                        <div class="result">${content}</div>
+                        <div class="result">
+                            <p>${formattedContent}</p>
+                        </div>
                         <div class="stats">
                             📊 Usage: ${usage?.prompt_tokens || 'N/A'} prompt tokens, 
                             ${usage?.completion_tokens || 'N/A'} completion tokens, 
