@@ -118,18 +118,18 @@
 
         .btn-primary {
             border: 1px solid rgba(0,0,0,.06);
-            background: linear-gradient(#3B82F6,#3878EF);
+            background: #000000;
             color: #fff;
             padding: 10px 14px;
         }
 
         .btn-primary:hover {
-            filter: saturate(1.07);
+            background: #333333;
         }
 
         .btn-primary:active {
             transform: translateY(1px);
-            background: linear-gradient(#2F6BDF,#2A61D1);
+            background: #1a1a1a;
         }
 
         .btn-ghost {
@@ -506,7 +506,7 @@
         }
 
         .add-btn, .update-btn {
-            background: #28a745;
+            background: #000000;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -517,7 +517,7 @@
         }
 
         .add-btn:hover, .update-btn:hover {
-            background: #218838;
+            background: #333333;
         }
 
         .file-upload {
@@ -530,10 +530,10 @@
         }
 
         .file-upload:hover {
-            border-color: #4299e1;
-            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+            border-color: #000000;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(66, 153, 225, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
         .file-upload input[type="file"] {
@@ -542,7 +542,7 @@
 
         .file-upload label {
             cursor: pointer;
-            color: #2b6cb0;
+            color: #000000;
             font-weight: 600;
             font-size: 1.1em;
             display: block;
@@ -695,6 +695,16 @@
             text-align: left;
         }
 
+        .footer-about a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-about a:hover {
+            text-decoration: underline;
+        }
+
         .footer-attribution {
             font-size: 0.9em;
             color: var(--ink-3);
@@ -780,7 +790,7 @@
         }
 
         .modal-close-btn {
-            background: linear-gradient(to bottom, #3B82F6 0%, #2563EB 100%);
+            background: #000000;
             color: white;
             border: none;
             padding: 10px 25px;
@@ -790,13 +800,13 @@
             margin-top: 20px;
             font-weight: 500;
             transition: all 0.2s ease;
-            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .modal-close-btn:hover {
-            background: linear-gradient(to bottom, #2563EB 0%, #1D4ED8 100%);
+            background: #333333;
             transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         /* Main Layout */
@@ -957,7 +967,7 @@
         
         .go-btn {
             padding: 8px 16px;
-            background: linear-gradient(to bottom, #3B82F6 0%, #2563EB 100%);
+            background: #000000;
             color: white;
             border: none;
             border-radius: 6px;
@@ -966,13 +976,13 @@
             font-weight: 500;
             white-space: nowrap;
             transition: all 0.2s ease;
-            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         .go-btn:hover {
-            background: linear-gradient(to bottom, #2563EB 0%, #1D4ED8 100%);
+            background: #333333;
             transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
         
         .cancel-btn {
@@ -1199,9 +1209,9 @@
         }
 
         .segment button[aria-pressed="true"] {
-            background: var(--surface);
+            background: #000000;
             box-shadow: var(--shadow);
-            color: var(--ink-1);
+            color: #ffffff;
         }
 
         /* Analysis Pane */
@@ -1316,18 +1326,19 @@
             border-radius: 999px;
             font-weight: 600;
             padding: 8px 16px;
-            background: var(--accent);
+            background: #000000;
             border: none;
             color: #fff;
-            transition: filter 0.15s ease, transform 0.08s ease;
+            transition: background-color 0.15s ease, transform 0.08s ease;
         }
 
         .ask-btn:hover {
-            filter: saturate(1.05);
+            background: #333333;
         }
 
         .ask-btn:active {
             transform: translateY(1px);
+            background: #1a1a1a;
         }
 
         /* Base style for all link buttons */
@@ -1353,47 +1364,19 @@
             background: #E8EAED;
         }
 
-        /* YouTube — soft pastel red */
-        .link-btn.youtube {
-            background: #FDECEC;
-            border-color: #F6D5D5;
-            color: #C22727;
-        }
-
-        .link-btn.youtube:hover {
-            background: #FBDADA;
-            box-shadow: 0 1px 2px rgba(194, 39, 39, 0.2);
-        }
-
-        /* JSTOR — soft pastel maroon */
-        .link-btn.jstor {
-            background: #F9ECEC;
-            border-color: #E9D3D3;
-            color: #7C2A2A;
-        }
-
-        .link-btn.jstor:hover {
-            background: #F3DADA;
-            box-shadow: 0 1px 2px rgba(124, 42, 42, 0.2);
-        }
-
-        /* Google Scholar — soft blue tint */
-        .link-btn.scholar {
-            background: #ECF2FD;
-            border-color: #D3DDF6;
-            color: #2A4D9C;
-        }
-
-        .link-btn.scholar:hover {
-            background: #DFE9FB;
-            box-shadow: 0 1px 2px rgba(42, 77, 156, 0.2);
-        }
-
-        /* Internet Shakespeare Editions — neutral default */
+        /* All link buttons use default grey styling */
+        .link-btn.youtube,
+        .link-btn.jstor,
+        .link-btn.scholar,
         .link-btn.ise {
             background: var(--panel);
+            border-color: var(--border);
+            color: var(--ink-1);
         }
 
+        .link-btn.youtube:hover,
+        .link-btn.jstor:hover,
+        .link-btn.scholar:hover,
         .link-btn.ise:hover {
             background: #E8EAED;
         }
