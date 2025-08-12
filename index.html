@@ -3895,7 +3895,21 @@
         }
 
         function formatAnalysisContent(content) {
-            // Split content into sections and format with headers
+            // First, handle the specific Basic analysis format with ** headers
+            if (currentAnalysisMode === 'basic') {
+                // Replace **text** with <em>text</em>: and handle dashes
+                let formattedContent = content
+                    .replace(/\*\*(.*?)\*\*/g, '<em>$1</em>:')
+                    .replace(/\n\n+/g, '</p><p>')
+                    .replace(/\n/g, '<br>');
+                
+                // Wrap in paragraphs
+                formattedContent = `<p>${formattedContent}</p>`;
+                
+                return formattedContent;
+            }
+            
+            // For other analysis modes, use the original logic
             const sections = content.split(/\n\n+/);
             let formattedContent = '';
             
