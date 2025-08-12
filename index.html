@@ -2230,8 +2230,11 @@
 
         // Settings navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize the page with welcome message
-            loadPlay('');
+            // Initialize the page with welcome message after a short delay
+            setTimeout(() => {
+                console.log('Initializing page with welcome message...');
+                loadPlay('');
+            }, 100);
             
             // Add ARIA attributes to modals
             const settingsModal = document.getElementById('settingsModal');
@@ -3226,14 +3229,28 @@
             console.log('plays object keys:', Object.keys(plays));
             console.log('plays[playName]:', plays[playName]);
             
+            const playTextElement = document.getElementById('playText');
+            const navigationElement = document.getElementById('navigationList');
+            
+            console.log('playText element found:', playTextElement);
+            console.log('navigation element found:', navigationElement);
+            
             if (!playName || !plays[playName]) {
                 console.log('Play not found or invalid:', playName);
-                document.getElementById('playText').innerHTML = `
-                    <div class="scene-title">Welcome to Shakespeare Digital Variorum</div>
-                    <div class="scene-separator"></div>
-                    <p>Please upload a play text file in Settings to begin analyzing Shakespeare's works.</p>
-                `;
-                document.getElementById('navigationList').innerHTML = '';
+                if (playTextElement) {
+                    playTextElement.innerHTML = `
+                        <div class="scene-title">Welcome to Shakespeare Digital Variorum</div>
+                        <div class="scene-separator"></div>
+                        <p>Please upload a play text file in Settings to begin analyzing Shakespeare's works.</p>
+                    `;
+                } else {
+                    console.error('playText element not found!');
+                }
+                if (navigationElement) {
+                    navigationElement.innerHTML = '';
+                } else {
+                    console.error('navigationList element not found!');
+                }
                 return;
             }
 
