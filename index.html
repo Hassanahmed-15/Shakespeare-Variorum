@@ -4469,10 +4469,10 @@
                 if (hasAnalysis && selectedText) {
                     context = `Original text: "${selectedText}"\n\nCurrent analysis: ${currentAnalysis.innerText}\n\nFollow-up question: ${question}`;
                 } else {
-                    context = `Question: ${question}\n\nPlease provide a helpful response about Shakespeare, his works, or any related topic.`;
+                    context = `Question: ${question}`;
                 }
                 
-                // Call the AI function
+                // Call the AI function with a special follow-up prompt
                 const response = await fetch('/.netlify/functions/shakespeare', {
                     method: 'POST',
                     headers: {
@@ -4480,7 +4480,7 @@
                     },
                     body: JSON.stringify({
                         text: context,
-                        level: currentAnalysisMode,
+                        level: 'followup', // Special level for follow-up questions
                         playName: currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Shakespeare',
                         sceneName: currentScene || 'scene'
                     })

@@ -134,6 +134,19 @@ EXAMPLE FORMAT:
 **Critical Reception:** [scholarly perspectives].
 
 **Pointers for Further Reading:** Consider reading [suggestions].`;
+      } else if (level === 'followup') {
+        systemPrompt = `You are a helpful Shakespeare expert. Answer the user's question directly and clearly. 
+
+FORMAT REQUIREMENTS:
+- Provide a direct, concise answer to the question
+- Use clear, accessible language
+- Include relevant facts and context when helpful
+- Write book titles in italics
+- Avoid unnecessary formatting or section headers
+- Keep responses focused and to the point
+
+EXAMPLE FORMAT:
+[Direct answer to the question with relevant context and facts]`;
       } else if (level === 'fullfathomfive') {
         systemPrompt = `You are a Shakespeare Variorum engine at the highest scholarly level, providing comprehensive analysis in the style of the New Variorum Shakespeare editions.
 
