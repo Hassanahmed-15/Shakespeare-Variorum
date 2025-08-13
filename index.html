@@ -4218,6 +4218,9 @@
          function processContentForFormatting(content) {
             if (!content) return '';
             
+            console.log('=== PROCESSING CONTENT FOR FORMATTING ===');
+            console.log('Original content:', content);
+            
             let processed = content;
             
             // Convert asterisks to bold tags
@@ -4295,6 +4298,24 @@
             // Ultra-aggressive asterisk removal for any remaining cases
             processed = processed.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
             processed = processed.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
+            
+            // Special handling for common Shakespeare titles and works
+            const commonTitles = [
+                'Macbeth', 'Hamlet', 'Romeo and Juliet', 'Othello', 'King Lear', 'A Midsummer Night\'s Dream',
+                'The Tempest', 'Much Ado About Nothing', 'Twelfth Night', 'As You Like It', 'The Merchant of Venice',
+                'Julius Caesar', 'Antony and Cleopatra', 'Coriolanus', 'Timon of Athens', 'Pericles',
+                'Cymbeline', 'The Winter\'s Tale', 'The Two Gentlemen of Verona', 'The Comedy of Errors',
+                'Love\'s Labour\'s Lost', 'A Midsummer Night\'s Dream', 'The Merchant of Venice',
+                'The Taming of the Shrew', 'The Two Noble Kinsmen', 'Henry IV', 'Henry V', 'Henry VI',
+                'Richard II', 'Richard III', 'Henry VIII', 'King John', 'Titus Andronicus'
+            ];
+            
+            commonTitles.forEach(title => {
+                const regex = new RegExp(`\\*${title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\*`, 'g');
+                processed = processed.replace(regex, `<em>${title}</em>`);
+            });
+            
+            console.log('After asterisk processing:', processed);
             
             // Convert author names to proper format
             processed = processed.replace(/([A-Z][a-z]+),\s*([A-Z][a-z]+)/g, '$2 $1');
