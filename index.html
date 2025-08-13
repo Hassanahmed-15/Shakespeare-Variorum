@@ -1344,8 +1344,9 @@
             font-size: 16px;
             line-height: 1.6;
             color: var(--ink-1);
-            margin: 4px 0;
-            white-space: pre-wrap;
+            margin: 0;
+            white-space: pre;
+            font-family: monospace;
         }
 
         .highlight {
@@ -3128,7 +3129,7 @@
             `;
         }
 
-        // Simple format scene content - display exactly as uploaded with minimal processing
+        // Simple format scene content - display exactly as uploaded
         function formatSceneContent(sceneContent) {
             if (!sceneContent || sceneContent.length === 0) {
                 return '<p><em>No content found for this scene.</em></p>';
@@ -3136,16 +3137,15 @@
             
             let html = '';
             
-            // Just display each line exactly as it appears in the file
+            // Display each line exactly as it appears in the file, preserving whitespace
             sceneContent.forEach(line => {
-                const trimmedLine = line.trim();
-                if (trimmedLine) {
-                    // Only do minimal processing: bold speaker names that are on their own line
-                    if (isSpeakerName(trimmedLine)) {
-                        html += `<div class="play-line"><strong>${trimmedLine}</strong></div>`;
-                    } else {
-                        html += `<div class="play-line">${trimmedLine}</div>`;
-                    }
+                // Don't trim - preserve original spacing and empty lines
+                if (line === '') {
+                    // Empty line - preserve it
+                    html += `<div class="play-line">&nbsp;</div>`;
+                } else {
+                    // Non-empty line - preserve original spacing
+                    html += `<div class="play-line">${line}</div>`;
                 }
             });
             
