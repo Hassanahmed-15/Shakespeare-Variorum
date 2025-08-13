@@ -1188,9 +1188,13 @@
         .stage-direction {
             font-style: italic;
             color: #6b7280;
-            margin: 16px 0;
+            margin: 20px 0;
+            padding: 8px 0;
             font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
-            font-size: 16px;
+            font-size: 14px;
+            line-height: 1.6;
+            border-left: 2px solid #e5e7eb;
+            padding-left: 12px;
         }
 
         .dialogue {
@@ -2793,9 +2797,19 @@
                     }
                 }
 
-                // Collect scene content
+                // Collect scene content - be more selective about what we include
                 if (inScene && currentScene && line) {
-                    play.scenes[currentScene].push(line);
+                    // Skip lines that are just stage direction fragments
+                    if (line.startsWith('[') && line.endsWith(']')) {
+                        // This is a complete stage direction, include it
+                        play.scenes[currentScene].push(line);
+                    } else if (line.startsWith('[') || line.endsWith(']')) {
+                        // This is a stage direction fragment, skip it
+                        continue;
+                    } else if (line.length > 0) {
+                        // This is regular content (dialogue, speaker names, etc.)
+                        play.scenes[currentScene].push(line);
+                    }
                 }
             }
 
@@ -2846,8 +2860,14 @@
                 const line = lines[i].trim();
                 if (!line) continue;
                 
-                // Check if this line is a speaker name (all caps, short, no punctuation)
-                const isSpeakerName = /^[A-Z\s]+$/.test(line) && line.length < 30 && !line.includes('.') && !line.includes(',');
+                // Check if this line is a speaker name (all caps, reasonable length, no punctuation)
+                const isSpeakerName = /^[A-Z\s]+$/.test(line) && 
+                                    line.length > 2 && 
+                                    line.length < 50 && 
+                                    !line.includes('.') && 
+                                    !line.includes(',') &&
+                                    !line.startsWith('[') &&
+                                    !line.endsWith(']');
                 
                 if (isSpeakerName) {
                     // If we have accumulated dialogue from previous speaker, add it
@@ -2858,7 +2878,7 @@
                     currentSpeaker = line;
                     currentDialogue = [];
                 } else {
-                    // This is dialogue, add to current speaker's dialogue
+                    // This is dialogue or stage direction, add to current speaker's dialogue
                     currentDialogue.push(line);
                 }
             }
@@ -2866,6 +2886,11 @@
             // Add the last speaker's dialogue
             if (currentSpeaker && currentDialogue.length > 0) {
                 groupedLines.push(`${currentSpeaker}\n${currentDialogue.join('\n')}`);
+            }
+            
+            // If no speakers were found, return the original lines
+            if (groupedLines.length === 0) {
+                return lines;
             }
             
             return groupedLines;
