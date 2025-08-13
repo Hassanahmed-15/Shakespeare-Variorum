@@ -148,6 +148,13 @@ FORMAT REQUIREMENTS:
 
 EXAMPLE FORMAT:
 [Direct answer to the question with relevant context and facts]`;
+        
+        // Use o4-mini for follow-up questions with medium reasoning effort
+        modelConfig = {
+          model: 'o4-mini',
+          temperature: 0.7,
+          reasoning_effort: 'medium'
+        };
       } else if (level === 'fullfathomfive') {
         systemPrompt = `You are a Shakespeare Variorum engine at the highest scholarly level, providing comprehensive analysis in the style of the New Variorum Shakespeare editions.
 
@@ -190,9 +197,33 @@ EXAMPLE FORMAT:
 IMPORTANT: Use the exact format above with **bold section headers** and no numbering.`;
       }
 
+      // Select model based on analysis level
+      let modelConfig = {
+        model: 'gpt-4o-mini', // default
+        temperature: 0.7
+      };
+      
+      if (level === 'basic') {
+        modelConfig = {
+          model: 'gpt-4.1-mini',
+          temperature: 0.7
+        };
+      } else if (level === 'expert') {
+        modelConfig = {
+          model: 'o4-mini',
+          temperature: 0.7,
+          reasoning_effort: 'medium'
+        };
+      } else if (level === 'fullfathomfive') {
+        modelConfig = {
+          model: 'o3',
+          temperature: 0.7,
+          reasoning_effort: 'high'
+        };
+      }
+      
       const payload = {
-        model: level === 'fullfathomfive' ? 'gpt-4o' : (model || 'gpt-4o-mini'),
-        temperature: 0.7,
+        ...modelConfig,
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
