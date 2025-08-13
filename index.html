@@ -1336,6 +1336,9 @@
             font-size: 18px;
             max-width: 72ch;
             color: var(--ink-1);
+            word-wrap: normal;
+            overflow-wrap: normal;
+            word-break: normal;
         }
 
         .highlight {
@@ -2916,7 +2919,7 @@
                 if (isSpeakerName) {
                     // If we have accumulated dialogue from previous speaker, add it
                     if (currentSpeaker && currentDialogue.length > 0) {
-                        groupedLines.push(`${currentSpeaker}\n${currentDialogue.join(' ')}`);
+                        groupedLines.push(`${currentSpeaker}\n${currentDialogue.join('\n')}`);
                     }
                     // Start new speaker
                     currentSpeaker = line;
@@ -2929,7 +2932,7 @@
             
             // Add the last speaker's dialogue
             if (currentSpeaker && currentDialogue.length > 0) {
-                groupedLines.push(`${currentSpeaker}\n${currentDialogue.join(' ')}`);
+                groupedLines.push(`${currentSpeaker}\n${currentDialogue.join('\n')}`);
             }
             
             // If no speakers were found, return the original lines
@@ -3432,7 +3435,7 @@
                         if (dialogueLines.length > 0) {
                             html += `<div class="dialogue">`;
                             html += `<div class="character-name">${speaker}</div>`;
-                            html += `<div class="dialogue-text">${dialogueLines.join(' ')}</div>`;
+                            html += `<div class="dialogue-text">${dialogueLines.join('<br>')}</div>`;
                             html += `</div>`;
                         }
                     });
@@ -3459,7 +3462,7 @@
                             if (currentSpeaker && currentDialogue.length > 0) {
                                 html += `<div class="dialogue">`;
                                 html += `<div class="character-name">${currentSpeaker}</div>`;
-                                html += `<div class="dialogue-text">${currentDialogue.join(' ')}</div>`;
+                                html += `<div class="dialogue-text">${currentDialogue.join('<br>')}</div>`;
                                 html += `</div>`;
                             }
                             // Start new speaker
@@ -3481,7 +3484,7 @@
                     if (currentSpeaker && currentDialogue.length > 0) {
                         html += `<div class="dialogue">`;
                         html += `<div class="character-name">${currentSpeaker}</div>`;
-                        html += `<div class="dialogue-text">${currentDialogue.join(' ')}</div>`;
+                        html += `<div class="dialogue-text">${currentDialogue.join('<br>')}</div>`;
                         html += `</div>`;
                     }
                 }
