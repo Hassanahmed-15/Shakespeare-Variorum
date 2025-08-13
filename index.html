@@ -1331,7 +1331,7 @@
         .dialogue-text {
             margin-left: 20px;
             line-height: 1.58;
-            white-space: normal;
+            white-space: pre-line;
             font-family: var(--serif);
             font-size: 18px;
             max-width: 72ch;
@@ -3412,6 +3412,37 @@
                 }
             }
             
+            // Fix word-breaking issue by combining short lines
+            function fixWordBreaking(lines) {
+                const fixedLines = [];
+                let currentLine = '';
+                
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    if (!line) continue;
+                    
+                    // If this line is very short (likely a single word), combine it with the next line
+                    if (line.length <= 3 && !line.endsWith('.') && !line.endsWith('!') && !line.endsWith('?')) {
+                        currentLine += (currentLine ? ' ' : '') + line;
+                    } else {
+                        // Add the current accumulated line
+                        if (currentLine) {
+                            fixedLines.push(currentLine + ' ' + line);
+                            currentLine = '';
+                        } else {
+                            fixedLines.push(line);
+                        }
+                    }
+                }
+                
+                // Add any remaining accumulated line
+                if (currentLine) {
+                    fixedLines.push(currentLine);
+                }
+                
+                return fixedLines;
+            }
+            
             let html = '';
             
             if (!sceneContent || sceneContent.length === 0) {
@@ -3433,9 +3464,11 @@
                         const dialogueLines = lines.slice(1).filter(line => line.trim() !== '');
                         
                         if (dialogueLines.length > 0) {
+                            // Fix word-breaking issue
+                            const fixedDialogueLines = fixWordBreaking(dialogueLines);
                             html += `<div class="dialogue">`;
                             html += `<div class="character-name">${speaker}</div>`;
-                            html += `<div class="dialogue-text">${dialogueLines.join('<br>')}</div>`;
+                            html += `<div class="dialogue-text">${fixedDialogueLines.join('<br>')}</div>`;
                             html += `</div>`;
                         }
                     });
@@ -3460,9 +3493,11 @@
                         if (isSpeakerName) {
                             // Output previous speaker's dialogue if any
                             if (currentSpeaker && currentDialogue.length > 0) {
+                                // Fix word-breaking issue
+                                const fixedDialogue = fixWordBreaking(currentDialogue);
                                 html += `<div class="dialogue">`;
                                 html += `<div class="character-name">${currentSpeaker}</div>`;
-                                html += `<div class="dialogue-text">${currentDialogue.join('<br>')}</div>`;
+                                html += `<div class="dialogue-text">${fixedDialogue.join('<br>')}</div>`;
                                 html += `</div>`;
                             }
                             // Start new speaker
@@ -3482,9 +3517,11 @@
                     
                     // Output the last speaker's dialogue
                     if (currentSpeaker && currentDialogue.length > 0) {
+                        // Fix word-breaking issue
+                        const fixedDialogue = fixWordBreaking(currentDialogue);
                         html += `<div class="dialogue">`;
                         html += `<div class="character-name">${currentSpeaker}</div>`;
-                        html += `<div class="dialogue-text">${currentDialogue.join('<br>')}</div>`;
+                        html += `<div class="dialogue-text">${fixedDialogue.join('<br>')}</div>`;
                         html += `</div>`;
                     }
                 }
