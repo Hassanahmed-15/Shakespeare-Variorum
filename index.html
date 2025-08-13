@@ -1455,7 +1455,7 @@
             font-weight: 700;
             font-size: 16px;
             color: var(--ink-1);
-            margin: var(--s-2) 0 var(--s-1);
+            margin: var(--s-1) 0 var(--s-1);
             display: block;
         }
 
@@ -1543,9 +1543,8 @@
         /* ====== Dividers ====== */
         .analysis .section + .section,
         .analysis h3 + p {
-            border-top: 1px solid var(--line);
-            padding-top: var(--s-4);
-            margin-top: var(--s-4);
+            padding-top: var(--s-2);
+            margin-top: var(--s-2);
         }
 
         /* ====== Microtypography ====== */
@@ -2590,10 +2589,8 @@
                 // loadPlay(fileName);
                 
                 console.log('Add play process completed successfully!');
-                // Success message is already shown above, now close settings
-                setTimeout(() => {
-                    closeSettings();
-                }, 1500); // Close after 1.5 seconds to show success message
+                // Success message is already shown above, now close settings immediately
+                closeSettings();
             } catch (error) {
                 console.error('Error completing add play process:', error);
                 alert('Error completing process: ' + error.message);
@@ -4291,6 +4288,9 @@
             // More aggressive asterisk-to-italics conversion for book titles
             processed = processed.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
             processed = processed.replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>');
+            
+            // Convert specific media titles to italics (plays, books, films, articles)
+            processed = processed.replace(/\*([^*]+?)\*/g, '<em>$1</em>'); // Final pass for any remaining asterisks
             
             // Convert author names to proper format
             processed = processed.replace(/([A-Z][a-z]+),\s*([A-Z][a-z]+)/g, '$2 $1');
