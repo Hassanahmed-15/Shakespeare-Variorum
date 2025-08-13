@@ -3457,10 +3457,15 @@
         // Function to update the meta line with current selection info
         function updateMetaLine() {
             const analysisPanel = document.getElementById('analysisPanel');
-            if (!analysisPanel) return;
+            if (!analysisPanel) {
+                console.log('No analysis panel found');
+                return;
+            }
             
             const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Unknown Play';
             const wordCount = selectedText ? countWords(selectedText) : 0;
+            
+            console.log('updateMetaLine - playName:', playName, 'selectedText:', selectedText, 'wordCount:', wordCount);
             
             let metaText = '';
             if (selectedText && wordCount > 0) {
@@ -3469,10 +3474,15 @@
                 metaText = `<em>${playName}</em> · ${currentScene} · No text highlighted`;
             }
             
+            console.log('Generated metaText:', metaText);
+            
             // Update the meta line if it exists
             const metaElement = analysisPanel.querySelector('.meta');
             if (metaElement) {
                 metaElement.innerHTML = metaText;
+                console.log('Meta line updated successfully');
+            } else {
+                console.log('No meta element found in analysis panel');
             }
         }
 
@@ -3481,9 +3491,12 @@
             const selection = window.getSelection();
             const newSelectedText = selection.toString().trim();
             
+            console.log('Mouseup event - selected text:', newSelectedText, 'length:', newSelectedText.length);
+            
             // Check if selection is within the reading pane
             const readerElement = document.querySelector('.reader');
             if (!readerElement) {
+                console.log('No reader element found');
                 selectedText = '';
                 clearAllHighlights();
                 updateMetaLine();
@@ -3494,6 +3507,7 @@
             if (newSelectedText) {
                 const selectionRange = selection.getRangeAt(0);
                 if (!readerElement.contains(selectionRange.commonAncestorContainer)) {
+                    console.log('Selection outside reader element');
                     selectedText = '';
                     clearAllHighlights();
                     updateMetaLine();
@@ -3503,19 +3517,38 @@
             
             // Update selected text
             selectedText = newSelectedText;
+            console.log('Updated selectedText to:', selectedText, 'length:', selectedText.length);
             
             if (selectedText) {
                 // Clear any existing highlights first
                 clearAllHighlights();
                 
-                // Highlight the selected text
-                const range = selection.getRangeAt(0);
-                const span = document.createElement('span');
-                span.className = 'highlight';
-                range.surroundContents(span);
+                // Use a more robust highlighting method
+                try {
+                    const range = selection.getRangeAt(0);
+                    const span = document.createElement('span');
+                    span.className = 'highlight';
+                    
+                    // Try surroundContents first, but fall back to extractContents if it fails
+                    try {
+                        range.surroundContents(span);
+                        console.log('Highlighting successful with surroundContents');
+                    } catch (e) {
+                        console.log('surroundContents failed, trying extractContents:', e.message);
+                        // If surroundContents fails, use extractContents and insertNode
+                        const contents = range.extractContents();
+                        span.appendChild(contents);
+                        range.insertNode(span);
+                        console.log('Highlighting successful with extractContents');
+                    }
+                } catch (highlightError) {
+                    console.warn('Highlighting failed, but keeping selection:', highlightError);
+                    // Even if highlighting fails, we still have the selected text
+                }
             }
             
             // Always update meta line after selection changes
+            console.log('Calling updateMetaLine with selectedText:', selectedText);
             updateMetaLine();
         });
 
