@@ -3736,6 +3736,7 @@
         }
 
         async function analyzeHighlightedText(text) {
+            console.log('=== ANALYZE FUNCTION CALLED - NEW CODE IS RUNNING ===');
             // Check cache first
             const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Unknown Play';
             // Cache removed - always generate fresh analysis
