@@ -3422,11 +3422,22 @@
                         html += `<div class="stage-direction">${trimmedLine}</div>`;
                     } else {
                         // This is a dialogue line with speaker and text
-                        // Split the line to separate speaker from dialogue
-                        const firstSpaceIndex = trimmedLine.indexOf(' ');
-                        if (firstSpaceIndex > 0) {
-                            const speaker = trimmedLine.substring(0, firstSpaceIndex);
-                            const dialogue = trimmedLine.substring(firstSpaceIndex + 1);
+                        // Find where the speaker name ends (all caps) and dialogue begins
+                        const words = trimmedLine.split(' ');
+                        let speakerEndIndex = 0;
+                        
+                        // Find the last consecutive all-caps word (the speaker name)
+                        for (let i = 0; i < words.length; i++) {
+                            if (/^[A-Z]+$/.test(words[i])) {
+                                speakerEndIndex = i;
+                            } else {
+                                break;
+                            }
+                        }
+                        
+                        if (speakerEndIndex >= 0) {
+                            const speaker = words.slice(0, speakerEndIndex + 1).join(' ');
+                            const dialogue = words.slice(speakerEndIndex + 1).join(' ');
                             
                             html += `<div class="dialogue">`;
                             html += `<div class="character-name">${speaker}</div>`;
