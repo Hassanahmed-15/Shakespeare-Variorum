@@ -144,6 +144,7 @@ FORMAT REQUIREMENTS:
 - Write book titles in italics
 - Avoid unnecessary formatting or section headers
 - Keep responses focused and to the point
+- Use the current play context when provided to give specific answers
 
 EXAMPLE FORMAT:
 [Direct answer to the question with relevant context and facts]`;

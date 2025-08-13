@@ -4464,10 +4464,13 @@
             try {
                 // Prepare the context for the follow-up question
                 let context = '';
+                const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Shakespeare';
+                const sceneName = currentScene || 'scene';
+                
                 if (hasAnalysis && selectedText) {
-                    context = `Original text: "${selectedText}"\n\nCurrent analysis: ${currentAnalysis.innerText}\n\nFollow-up question: ${question}`;
+                    context = `Current play: ${playName} (${sceneName})\n\nOriginal text: "${selectedText}"\n\nCurrent analysis: ${currentAnalysis.innerText}\n\nFollow-up question: ${question}`;
                 } else {
-                    context = `Question: ${question}`;
+                    context = `Current play: ${playName} (${sceneName})\n\nQuestion: ${question}`;
                 }
                 
                 // Call the AI function with a special follow-up prompt
