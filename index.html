@@ -93,6 +93,7 @@
             display: flex;
             gap: 20px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-btn {
@@ -1547,25 +1548,16 @@
             max-width: 86ch; 
         }
 
-        /* Analysis Button Section */
-        .analysis-button-section {
-            display: flex;
-            align-items: center;
-            gap: var(--s-3);
-            padding: var(--s-4) var(--s-5);
-            background: var(--surface);
-            border-bottom: 1px solid var(--line);
-            margin-bottom: var(--s-4);
-        }
+
 
         .explain-btn {
             background: var(--accent);
             color: white;
             border: none;
             border-radius: var(--r-md);
-            padding: var(--s-2) var(--s-4);
+            padding: 10px 16px;
             font-family: var(--ui);
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.15s ease;
@@ -1585,6 +1577,7 @@
             font-family: var(--ui);
             font-size: 14px;
             line-height: 1.4;
+            white-space: nowrap;
         }
 
         .analysis p {
@@ -2001,6 +1994,8 @@
         <div class="header-nav">
             <button class="nav-btn" onclick="openSettings()">Settings</button>
             <button class="nav-btn" onclick="openAbout()">About</button>
+            <button class="explain-btn" onclick="explainHighlighted()">Explain Highlighted Text</button>
+            <span class="instruction-text">Use your cursor to highlight text in the play, then click this button for analysis.</span>
         </div>
     </div>
 
@@ -2166,11 +2161,7 @@
         </div>
     </div>
 
-    <!-- Analysis Button Section -->
-    <div class="analysis-button-section">
-        <button class="explain-btn" onclick="explainHighlighted()">Explain Highlighted Text</button>
-        <span class="instruction-text">Use your cursor to highlight text in the play, then click this button for analysis.</span>
-    </div>
+
 
     <!-- Main Content -->
     <div class="layout">
