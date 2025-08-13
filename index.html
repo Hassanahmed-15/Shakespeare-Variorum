@@ -3181,13 +3181,52 @@
                     html += `<div class="play-line">${line}</div>`;
                     i++;
                 } else {
-                    // Regular dialogue or other content
-                    html += `<div class="play-line">${line}</div>`;
+                    // Check if this line contains multiple speakers (like "Where the place? SECOND WITCH Upon the heath.")
+                    const processedLine = processLineWithMultipleSpeakers(line);
+                    html += `<div class="play-line">${processedLine}</div>`;
                     i++;
                 }
             }
             
             return html;
+        }
+        
+        // Process a line that might contain multiple speakers
+        function processLineWithMultipleSpeakers(line) {
+            // Look for patterns like "dialogue SPEAKER dialogue"
+            const speakerPattern = /([A-Z\s]{3,50})/g;
+            let match;
+            let lastIndex = 0;
+            let result = '';
+            
+            while ((match = speakerPattern.exec(line)) !== null) {
+                const speakerName = match[1].trim();
+                
+                // Check if this is actually a speaker name
+                if (isSpeakerName(speakerName)) {
+                    // Add the dialogue before this speaker
+                    const dialogueBefore = line.substring(lastIndex, match.index).trim();
+                    if (dialogueBefore) {
+                        result += dialogueBefore;
+                    }
+                    
+                    // Start a new line for this speaker
+                    if (result) {
+                        result += '</div><div class="play-line">';
+                    }
+                    result += `<strong>${speakerName}</strong> `;
+                    
+                    lastIndex = match.index + match[0].length;
+                }
+            }
+            
+            // Add any remaining dialogue
+            const remainingDialogue = line.substring(lastIndex).trim();
+            if (remainingDialogue) {
+                result += remainingDialogue;
+            }
+            
+            return result || line; // Return original line if no processing was done
         }
         
         // Check if a line is a speaker name
