@@ -974,10 +974,11 @@
 
         .sidebar .active,
         .sidebar .active:visited {
-            background: var(--surface);
-            border: 1px solid var(--line);
-            box-shadow: var(--shadow);
+            background: transparent;
+            border: none;
+            box-shadow: none;
             color: var(--ink-1);
+            font-weight: 700;
         }
 
         /* ACT headings (keep, replace "Navigation") */
@@ -1014,13 +1015,14 @@
             color: var(--ink-1);
         }
 
-        /* active scene = floating chip/card (not white slab) */
+        /* active scene = bold text instead of white box */
         .nav-item.active,
         .nav-item[aria-current="page"] {
-            background: var(--surface);
+            background: transparent;
             color: var(--ink-1);
-            border: 1px solid var(--line);
-            box-shadow: var(--shadow);
+            border: none;
+            box-shadow: none;
+            font-weight: 700;
         }
 
         /* selected ACT in the list can be slightly bolder */
