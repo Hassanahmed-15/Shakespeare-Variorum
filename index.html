@@ -4461,7 +4461,7 @@
             const hasAnalysis = currentAnalysis && currentAnalysis.textContent.trim().length > 0;
             
             // Show loading state
-            const followUpBtn = document.querySelector('.follow-up-btn');
+            const followUpBtn = document.querySelector('.ask-btn');
             const originalText = followUpBtn.textContent;
             followUpBtn.textContent = 'Asking...';
             followUpBtn.disabled = true;
@@ -4612,6 +4612,19 @@
 
         // Geneva Bible Search Integration
         let bibleSearch = null;
+        
+        // Add Enter key functionality for follow-up questions
+        document.addEventListener('DOMContentLoaded', function() {
+            const followUpInput = document.getElementById('followUpQuestion');
+            if (followUpInput) {
+                followUpInput.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        askFollowUp();
+                    }
+                });
+            }
+        });
 
         // Initialize Geneva Bible search when the app starts
         async function initializeBibleSearch() {
