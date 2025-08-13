@@ -793,9 +793,9 @@ word — concise period-accurate meaning that fits this line. Flag common **fals
       }
 
       const payload = {
-        model: model || 'gpt-4o-mini',
+        model: level === 'fullfathomfive' ? 'gpt-4o' : (model || 'gpt-4o-mini'),
         temperature: 0.7,
-        max_tokens: level === 'fullfathomfive' ? 2000 : level === 'expert' ? 1500 : level === 'intermediate' ? 1200 : 400,
+        max_tokens: level === 'fullfathomfive' ? 4000 : level === 'expert' ? 1500 : level === 'intermediate' ? 1200 : 400,
         messages: [
           { role: 'system', content: systemPrompt + googleBooksContext + openAlexContext + biblicalContext + genevaBibleContext },
           { role: 'user', content: text }
