@@ -3432,7 +3432,7 @@
                         if (dialogueLines.length > 0) {
                             html += `<div class="dialogue">`;
                             html += `<div class="character-name">${speaker}</div>`;
-                            html += `<div class="dialogue-text">${dialogueLines.join('<br>')}</div>`;
+                            html += `<div class="dialogue-text">${dialogueLines.join(' ')}</div>`;
                             html += `</div>`;
                         }
                     });
@@ -3459,7 +3459,7 @@
                             if (currentSpeaker && currentDialogue.length > 0) {
                                 html += `<div class="dialogue">`;
                                 html += `<div class="character-name">${currentSpeaker}</div>`;
-                                html += `<div class="dialogue-text">${currentDialogue.join('<br>')}</div>`;
+                                html += `<div class="dialogue-text">${currentDialogue.join(' ')}</div>`;
                                 html += `</div>`;
                             }
                             // Start new speaker
@@ -3481,7 +3481,7 @@
                     if (currentSpeaker && currentDialogue.length > 0) {
                         html += `<div class="dialogue">`;
                         html += `<div class="character-name">${currentSpeaker}</div>`;
-                        html += `<div class="dialogue-text">${currentDialogue.join('<br>')}</div>`;
+                        html += `<div class="dialogue-text">${currentDialogue.join(' ')}</div>`;
                         html += `</div>`;
                     }
                 }
