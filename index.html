@@ -2905,19 +2905,23 @@
                 // Remove any embedded newlines and trim
                 const cleanLine = line.replace(/\n/g, ' ').trim();
                 
-                // If this looks like a speaker name (all caps, reasonable length)
-                const isSpeakerName = /^[A-Z\s]+$/.test(cleanLine) && 
-                                    cleanLine.length > 2 && 
-                                    cleanLine.length < 50 && 
-                                    !cleanLine.includes('.') && 
-                                    !cleanLine.includes(',') &&
-                                    !cleanLine.startsWith('[') &&
-                                    !cleanLine.endsWith(']');
+                // Common Shakespeare character names from Hamlet
+                const characterNames = [
+                    'HAMLET', 'HORATIO', 'MARCELLUS', 'FRANCISCO', 'BARNARDO', 
+                    'GHOST', 'CLAUDIUS', 'GERTRUDE', 'OPHELIA', 'POLONIUS',
+                    'LAERTES', 'ROSENCRANTZ', 'GUILDENSTERN', 'OSRIC', 'FORTINBRAS',
+                    'VOLTEMAND', 'CORNELIUS', 'REYNALDO', 'PLAYER', 'KING',
+                    'QUEEN', 'LORD', 'LADY', 'FIRST', 'SECOND', 'THIRD',
+                    'ALL', 'BOTH', 'CHORUS', 'NARRATOR'
+                ];
+                
+                // Check if this line is a speaker name
+                const isSpeakerName = characterNames.includes(cleanLine);
                 
                 if (isSpeakerName) {
                     // If we have accumulated dialogue from previous speaker, add it
                     if (currentSpeaker && currentDialogue.length > 0) {
-                        reconstructedLines.push(`${currentSpeaker} ${currentDialogue.join('\n')}`);
+                        reconstructedLines.push(`${currentSpeaker} ${currentDialogue.join(' ')}`);
                     }
                     // Start new speaker
                     currentSpeaker = cleanLine;
@@ -2930,7 +2934,7 @@
             
             // Add the last speaker's dialogue
             if (currentSpeaker && currentDialogue.length > 0) {
-                reconstructedLines.push(`${currentSpeaker} ${currentDialogue.join('\n')}`);
+                reconstructedLines.push(`${currentSpeaker} ${currentDialogue.join(' ')}`);
             }
             
             console.log('Reconstructed lines:', reconstructedLines);
@@ -3454,12 +3458,12 @@
                             
                             html += `<div class="dialogue">`;
                             html += `<div class="character-name">${speaker}</div>`;
-                            html += `<div class="dialogue-text">${dialogue.replace(/\n/g, '<br>')}</div>`;
+                            html += `<div class="dialogue-text">${dialogue}</div>`;
                             html += `</div>`;
                         } else {
                             // Fallback: treat the whole line as dialogue
                             html += `<div class="dialogue">`;
-                            html += `<div class="dialogue-text">${trimmedLine.replace(/\n/g, '<br>')}</div>`;
+                            html += `<div class="dialogue-text">${trimmedLine}</div>`;
                             html += `</div>`;
                         }
                     }
