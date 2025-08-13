@@ -883,7 +883,7 @@
         /* Main Layout */
         .layout {
             display: grid;
-            grid-template-columns: 1fr minmax(400px, 30%);
+            grid-template-columns: 1fr minmax(500px, 40%);
             gap: var(--s-4);
             height: calc(100vh - 70px);
             background: var(--bg);
@@ -895,19 +895,19 @@
 
         @media (min-width: 1600px) {
             .layout {
-                grid-template-columns: 1fr minmax(400px, 30%);
+                grid-template-columns: 1fr minmax(550px, 45%);
             }
         }
 
         @media (max-width: 1200px) {
             .layout {
-                grid-template-columns: 1fr minmax(400px, 35%);
+                grid-template-columns: 1fr minmax(450px, 40%);
             }
         }
 
         @media (max-width: 900px) {
             .layout {
-                grid-template-columns: 1fr minmax(350px, 35%);
+                grid-template-columns: 1fr minmax(400px, 40%);
             }
             .sidebar {
                 width: 250px;
@@ -3347,21 +3347,76 @@
                 return '<p><em>No content found for this scene.</em></p>';
             }
             
-            // Process each grouped dialogue block
-            sceneContent.forEach(block => {
-                const lines = block.split('\n');
-                if (lines.length === 0) return;
-                
-                const speaker = lines[0].trim();
-                const dialogueLines = lines.slice(1).filter(line => line.trim() !== '');
-                
-                if (dialogueLines.length > 0) {
-                    html += `<div class="dialogue">`;
-                    html += `<div class="character-name">${speaker}</div>`;
-                    html += `<div class="dialogue-text">${dialogueLines.join('<br>')}</div>`;
-                    html += `</div>`;
+            // Handle both grouped dialogue blocks and raw lines
+            if (Array.isArray(sceneContent)) {
+                // Check if this is already grouped dialogue (contains speaker + dialogue structure)
+                const firstItem = sceneContent[0];
+                if (typeof firstItem === 'string' && firstItem.includes('\n')) {
+                    // This is grouped dialogue
+                    sceneContent.forEach(block => {
+                        const lines = block.split('\n');
+                        if (lines.length === 0) return;
+                        
+                        const speaker = lines[0].trim();
+                        const dialogueLines = lines.slice(1).filter(line => line.trim() !== '');
+                        
+                        if (dialogueLines.length > 0) {
+                            html += `<div class="dialogue">`;
+                            html += `<div class="character-name">${speaker}</div>`;
+                            html += `<div class="dialogue-text">${dialogueLines.join('<br>')}</div>`;
+                            html += `</div>`;
+                        }
+                    });
+                } else {
+                    // This is raw lines, process them directly
+                    let currentSpeaker = '';
+                    let currentDialogue = [];
+                    
+                    sceneContent.forEach(line => {
+                        const trimmedLine = line.trim();
+                        if (!trimmedLine) return;
+                        
+                        // Check if this line is a speaker name (all caps, reasonable length)
+                        const isSpeakerName = /^[A-Z\s]+$/.test(trimmedLine) && 
+                                            trimmedLine.length > 2 && 
+                                            trimmedLine.length < 50 && 
+                                            !trimmedLine.includes('.') && 
+                                            !trimmedLine.includes(',') &&
+                                            !trimmedLine.startsWith('[') &&
+                                            !trimmedLine.endsWith(']');
+                        
+                        if (isSpeakerName) {
+                            // Output previous speaker's dialogue if any
+                            if (currentSpeaker && currentDialogue.length > 0) {
+                                html += `<div class="dialogue">`;
+                                html += `<div class="character-name">${currentSpeaker}</div>`;
+                                html += `<div class="dialogue-text">${currentDialogue.join('<br>')}</div>`;
+                                html += `</div>`;
+                            }
+                            // Start new speaker
+                            currentSpeaker = trimmedLine;
+                            currentDialogue = [];
+                        } else {
+                            // This is dialogue or stage direction
+                            if (trimmedLine.startsWith('[') && trimmedLine.endsWith(']')) {
+                                // Stage direction
+                                html += `<div class="stage-direction">${trimmedLine}</div>`;
+                            } else {
+                                // Regular dialogue
+                                currentDialogue.push(trimmedLine);
+                            }
+                        }
+                    });
+                    
+                    // Output the last speaker's dialogue
+                    if (currentSpeaker && currentDialogue.length > 0) {
+                        html += `<div class="dialogue">`;
+                        html += `<div class="character-name">${currentSpeaker}</div>`;
+                        html += `<div class="dialogue-text">${currentDialogue.join('<br>')}</div>`;
+                        html += `</div>`;
+                    }
                 }
-            });
+            }
             
             return html || '<p><em>Scene content could not be formatted.</em></p>';
         }
