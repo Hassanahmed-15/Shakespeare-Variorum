@@ -3631,6 +3631,25 @@
             console.log('Calling updateMetaLine with selectedText:', selectedText);
             updateMetaLine();
         });
+        
+        // Clear highlighting when clicking in the reading pane (without selecting text)
+        document.addEventListener('click', function(event) {
+            const readerElement = document.querySelector('.reader');
+            if (!readerElement) return;
+            
+            // Check if click is within the reading pane
+            if (readerElement.contains(event.target)) {
+                const selection = window.getSelection();
+                const selectedText = selection.toString().trim();
+                
+                // Only clear highlighting if no text is currently selected
+                if (!selectedText && document.querySelectorAll('.highlight').length > 0) {
+                    console.log('Clearing highlights due to click in reading pane');
+                    clearAllHighlights();
+                    updateMetaLine();
+                }
+            }
+        });
 
         // Function to clear all existing highlights
         function clearAllHighlights() {
