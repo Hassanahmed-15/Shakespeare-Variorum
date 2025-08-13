@@ -3681,8 +3681,17 @@
             }
             
             analysisPanel.innerHTML = `
+                <!-- Analysis Mode Selector -->
+                <div class="segment">
+                    <button onclick="setAnalysisMode('basic')" aria-pressed="${currentAnalysisMode === 'basic' ? 'true' : 'false'}">Basic</button>
+                    <button onclick="setAnalysisMode('intermediate')" aria-pressed="${currentAnalysisMode === 'intermediate' ? 'true' : 'false'}">Intermediate</button>
+                    <button onclick="setAnalysisMode('expert')" aria-pressed="${currentAnalysisMode === 'expert' ? 'true' : 'false'}">Expert</button>
+                    <button onclick="setAnalysisMode('fullfathomfive')" aria-pressed="${currentAnalysisMode === 'fullfathomfive' ? 'true' : 'false'}">Full Fathom Five</button>
+                </div>
+
+                <!-- AI Analysis Content -->
                 <div class="analysis">
-                    <div class="meta">${analysisTitle}, ${playName}, ${currentScene}, ${wordCount} words highlighted</div>
+                    <div class="meta" style="font-weight: bold;">${analysisTitle}, ${playName}, ${currentScene}, ${wordCount} words highlighted</div>
                     <div class="analysis-content">
                         <p style="font-family: var(--ui); font-style: italic;">Processing.</p>
                     </div>
