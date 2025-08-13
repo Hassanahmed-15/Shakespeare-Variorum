@@ -1350,7 +1350,7 @@
         }
 
         .highlight {
-            background: var(--hl);
+            background: #e5e7eb;
             border-radius: 4px;
             transition: background .18s;
         }
@@ -3658,16 +3658,34 @@
         }
 
         async function analyzeHighlightedText(text) {
-            // Show "Researching!" message immediately
+            // Show processing message with proper meta information
             const analysisPanel = document.getElementById('analysisPanel');
+            const wordCount = text.split(' ').length;
+            const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Unknown Play';
+            
+            // Get the correct title based on current mode
+            let analysisTitle = 'Basic Analysis';
+            switch(currentAnalysisMode) {
+                case 'basic':
+                    analysisTitle = 'Basic Analysis';
+                    break;
+                case 'intermediate':
+                    analysisTitle = 'Intermediate Analysis';
+                    break;
+                case 'expert':
+                    analysisTitle = 'Expert Analysis';
+                    break;
+                case 'fullfathomfive':
+                    analysisTitle = 'Full Fathom Five Analysis';
+                    break;
+            }
+            
             analysisPanel.innerHTML = `
-                <div class="analysis-header">
-                    <div class="analysis-title researching">Researching!</div>
-                </div>
-                <div class="analysis-content">
-                    <p class="analyzing-message">
-                        <strong>Analyzing your request</strong>
-                    </p>
+                <div class="analysis">
+                    <div class="meta">${analysisTitle}, ${playName}, ${currentScene}, ${wordCount} words highlighted</div>
+                    <div class="analysis-content">
+                        <p style="font-family: var(--ui); font-style: italic;">Processing.</p>
+                    </div>
                 </div>
             `;
             
