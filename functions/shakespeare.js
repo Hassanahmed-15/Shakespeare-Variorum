@@ -186,7 +186,7 @@ FORMAT REQUIREMENTS:
 - Use proper academic formatting
 - For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
 - Include comprehensive scholarly references, performance history, and critical reception
-- Provide detailed footnotes and bibliography
+- Provide detailed footnotes
 - Address multiple interpretive possibilities and scholarly debates
 
 EXAMPLE FORMAT:
@@ -206,9 +206,7 @@ EXAMPLE FORMAT:
 
 **Performance History:** [performance history and interpretations].
 
-**Bibliography:** [comprehensive bibliography].
 
-**Notes:** [detailed footnotes and citations].
 
 IMPORTANT: Use the exact format above with **bold section headers** and no numbering.`;
       }
