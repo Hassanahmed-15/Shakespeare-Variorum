@@ -3571,23 +3571,7 @@
             const analysisPanel = document.getElementById('analysisPanel');
             const wordCount = text.split(' ').length;
             const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Unknown Play';
-            
-            // Get the correct title based on current mode
-            let analysisTitle = 'Basic Analysis';
-            switch(currentAnalysisMode) {
-                case 'basic':
-                    analysisTitle = 'Basic Analysis';
-                    break;
-                case 'intermediate':
-                    analysisTitle = 'Intermediate Analysis';
-                    break;
-                case 'expert':
-                    analysisTitle = 'Expert Analysis';
-                    break;
-                case 'fullfathomfive':
-                    analysisTitle = 'Full Fathom Five Analysis';
-                    break;
-            }
+            const playInfo = `${playName}, ${currentScene}, ${wordCount} words highlighted`;
             
             analysisPanel.innerHTML = `
                 <!-- Analysis Mode Selector -->
@@ -3600,7 +3584,7 @@
 
                 <!-- AI Analysis Content -->
                 <div class="analysis">
-                    <div class="meta" style="font-weight: bold;">${analysisTitle}, ${playName}, ${currentScene}, ${wordCount} words highlighted</div>
+                    <div class="meta" style="font-weight: bold;">${playInfo}</div>
                     <div class="analysis-content">
                         <p style="font-family: var(--ui); font-style: italic;">Processing.</p>
                     </div>
@@ -3845,10 +3829,7 @@
                 }
             }
             
-            // If there's currently selected text, re-analyze with new mode
-            if (selectedText) {
-                analyzeHighlightedText(selectedText);
-            }
+            // Don't automatically re-analyze - user must click "Explain Highlighted Text" button
         }
 
         function copyAnalysis() {
