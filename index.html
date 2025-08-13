@@ -1336,6 +1336,15 @@
             word-break: normal;
             margin: 8px 0;
         }
+        
+        .play-line {
+            font-family: var(--serif);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--ink-1);
+            margin: 4px 0;
+            white-space: pre-wrap;
+        }
 
         .highlight {
             background: var(--hl);
@@ -2737,23 +2746,9 @@
             `;
         }
 
-        // Parse play text into structured data
+        // Simple parse play text - display exactly as uploaded
         function parsePlayText(fileName, content, customPlayName = null) {
-            console.log('parsePlayText started');
-            console.log('Content length:', content.length);
-            
-            // Debug: Show first 500 characters of raw content
-            console.log('First 500 characters of raw content:');
-            console.log(content.substring(0, 500));
-            
-            const lines = content.split('\n');
-            console.log('Content split into', lines.length, 'lines');
-            
-            // Debug: Show first 20 lines to understand the format
-            console.log('First 20 lines of content:');
-            for (let i = 0; i < Math.min(20, lines.length); i++) {
-                console.log(`Line ${i}: "${lines[i]}"`);
-            }
+            console.log('parsePlayText started - simple approach');
             
             // Use custom play name if provided, otherwise extract from content
             let actualPlayName = customPlayName || fileName;
@@ -2766,116 +2761,43 @@
                 scenes: {}
             };
 
+            // Simple approach: just split by lines and find acts/scenes
+            const lines = content.split('\n');
             let currentAct = '';
             let currentScene = '';
-            let inDramatisPersonae = false;
             let inScene = false;
-            let sceneContent = [];
-
-            console.log('Starting to parse play:', fileName);
-            console.log('Total lines:', lines.length);
 
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i].trim();
-                
-                // Skip empty lines
                 if (!line) continue;
                 
-                // Debug: Log every line for the first 100 lines
-                if (i < 100) {
-                    console.log(`Processing line ${i}: "${line}"`);
-                }
-                
-                // Check for Dramatis Personae section
-                if (line.toLowerCase().includes('dramatis personae') || 
-                    line.toLowerCase().includes('characters in the play') ||
-                    line.toLowerCase().includes('persons represented') ||
-                    line.toLowerCase().includes('dramatis personæ')) {
-                    console.log('Found Dramatis Personae at line', i, ':', line);
-                    inDramatisPersonae = true;
-                    inScene = false;
-                    continue;
-                }
-
-                // Check for Act headers (much more flexible matching)
-                if (line.match(/^ACT\s+[IVX]+/i) || 
-                    line.match(/^ACT\s+[0-9]+/i) ||
-                    line.match(/^ACT\s+[A-Z]+/i) ||
-                    line.match(/^THE\s+FIRST\s+PART\s+OF\s+KING\s+HENRY\s+THE\s+FOURTH/i) ||
-                    line.match(/^THE\s+SECOND\s+PART\s+OF\s+KING\s+HENRY\s+THE\s+FOURTH/i) ||
-                    line.match(/^KING\s+HENRY\s+THE\s+FOURTH/i)) {
-                    console.log('Found Act at line', i, ':', line);
-                    inDramatisPersonae = false;
-                    inScene = false;
+                // Look for Act headers
+                if (line.match(/^ACT\s+[IVX0-9]+/i)) {
                     currentAct = line;
                     play.acts[currentAct] = [];
+                    inScene = false;
                     continue;
                 }
 
-                // Check for Scene headers (much more flexible matching)
-                if (line.match(/^SCENE\s+[IVX]+/i) || 
-                    line.match(/^SCENE\s+[0-9]+/i) ||
-                    line.match(/^SCENE\s+[A-Z]+/i) ||
-                    line.match(/^SCENE\s+[IVX]+\./i) ||
-                    line.match(/^SCENE\s+[0-9]+\./i)) {
-                    console.log('Found Scene at line', i, ':', line);
-                    inScene = true;
+                // Look for Scene headers
+                if (line.match(/^SCENE\s+[IVX0-9]+/i)) {
                     currentScene = `${currentAct} - ${line}`;
                     play.scenes[currentScene] = [];
                     if (currentAct) {
                         play.acts[currentAct].push(currentScene);
                     }
-                    sceneContent = [];
+                    inScene = true;
                     continue;
                 }
 
-                // Collect characters from Dramatis Personae
-                if (inDramatisPersonae && line && !line.startsWith('[') && !line.startsWith('_') && line.length > 0) {
-                    const character = line.split('.')[0].trim();
-                    if (character && character.length > 0 && character.length < 50 && !play.characters.includes(character)) {
-                        play.characters.push(character);
-                        console.log('Found character:', character);
-                    }
-                }
-
-                // Collect scene content - include all content except empty lines
+                // Collect scene content - store exactly as is
                 if (inScene && currentScene && line) {
-                    // Include all non-empty lines in the scene
                     play.scenes[currentScene].push(line);
-                    if (i < 100) {
-                        console.log(`Added to scene ${currentScene}: "${line}"`);
-                    }
                 }
-            }
-
-            // Clean up empty scenes and group dialogue by speaker
-            Object.keys(play.scenes).forEach(sceneKey => {
-                if (play.scenes[sceneKey].length === 0) {
-                    delete play.scenes[sceneKey];
-                    // Remove from acts too
-                    Object.keys(play.acts).forEach(actKey => {
-                        play.acts[actKey] = play.acts[actKey].filter(scene => scene !== sceneKey);
-                    });
-                } else {
-                    // For debugging: show raw scene content before processing
-                    console.log(`Raw scene content for ${sceneKey}:`, play.scenes[sceneKey]);
-                    
-                    // Group dialogue by speaker
-                    play.scenes[sceneKey] = groupDialogueBySpeaker(play.scenes[sceneKey]);
-                }
-            });
-
-            // If no acts found, try alternative parsing
-            if (Object.keys(play.acts).length === 0) {
-                console.log('No acts found with standard parsing, trying alternative method...');
-                parsePlayTextAlternative(fileName, content, play);
             }
 
             plays[fileName] = play;
-            console.log('Final parsed play:', fileName, play);
-            console.log('Acts found:', Object.keys(play.acts));
-            console.log('Scenes found:', Object.keys(play.scenes));
-            console.log('Parsing completed successfully');
+            console.log('Simple parsing completed for:', fileName);
             
             // Set as current play if it's the first one
             if (Object.keys(plays).length === 1) {
@@ -2888,57 +2810,9 @@
             }
         }
 
-        // Group dialogue lines by speaker to avoid repeating speaker names
+        // Simple pass-through - return lines exactly as they are
         function groupDialogueBySpeaker(lines) {
-            console.log('groupDialogueBySpeaker called with:', lines);
-            console.log('Lines length:', lines.length);
-            
-            // If the lines are already broken into individual words, reconstruct them
-            const reconstructedLines = [];
-            let currentSpeaker = '';
-            let currentDialogue = [];
-            
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i].trim();
-                if (!line) continue;
-                
-                // Remove any embedded newlines and trim
-                const cleanLine = line.replace(/\n/g, ' ').trim();
-                
-                // Common Shakespeare character names from Hamlet
-                const characterNames = [
-                    'HAMLET', 'HORATIO', 'MARCELLUS', 'FRANCISCO', 'BARNARDO', 
-                    'GHOST', 'CLAUDIUS', 'GERTRUDE', 'OPHELIA', 'POLONIUS',
-                    'LAERTES', 'ROSENCRANTZ', 'GUILDENSTERN', 'OSRIC', 'FORTINBRAS',
-                    'VOLTEMAND', 'CORNELIUS', 'REYNALDO', 'PLAYER', 'KING',
-                    'QUEEN', 'LORD', 'LADY', 'FIRST', 'SECOND', 'THIRD',
-                    'ALL', 'BOTH', 'CHORUS', 'NARRATOR'
-                ];
-                
-                // Check if this line is a speaker name
-                const isSpeakerName = characterNames.includes(cleanLine);
-                
-                if (isSpeakerName) {
-                    // If we have accumulated dialogue from previous speaker, add it
-                    if (currentSpeaker && currentDialogue.length > 0) {
-                        reconstructedLines.push(`${currentSpeaker} ${currentDialogue.join(' ')}`);
-                    }
-                    // Start new speaker
-                    currentSpeaker = cleanLine;
-                    currentDialogue = [];
-                } else {
-                    // This is dialogue or stage direction, add to current speaker's dialogue
-                    currentDialogue.push(cleanLine);
-                }
-            }
-            
-            // Add the last speaker's dialogue
-            if (currentSpeaker && currentDialogue.length > 0) {
-                reconstructedLines.push(`${currentSpeaker} ${currentDialogue.join(' ')}`);
-            }
-            
-            console.log('Reconstructed lines:', reconstructedLines);
-            return reconstructedLines;
+            return lines; // No processing, just return the lines as-is
         }
 
         // Alternative parsing method for plays that don't follow standard format
@@ -3394,83 +3268,23 @@
             `;
         }
 
-        // Format scene content for display
+        // Simple format scene content - display exactly as uploaded
         function formatSceneContent(sceneContent) {
-            console.log('formatSceneContent called with:', sceneContent);
-            console.log('sceneContent type:', typeof sceneContent);
-            console.log('sceneContent length:', sceneContent ? sceneContent.length : 'null');
-            
-            // Debug: Show first 20 items in the array
-            if (sceneContent && sceneContent.length > 0) {
-                console.log('First 20 items in sceneContent:');
-                for (let i = 0; i < Math.min(20, sceneContent.length); i++) {
-                    console.log(`Item ${i}: "${sceneContent[i]}"`);
-                }
+            if (!sceneContent || sceneContent.length === 0) {
+                return '<p><em>No content found for this scene.</em></p>';
             }
             
             let html = '';
             
-            if (!sceneContent || sceneContent.length === 0) {
-                console.log('No scene content found');
-                return '<p><em>No content found for this scene.</em></p>';
-            }
+            // Just display each line exactly as it appears in the file
+            sceneContent.forEach(line => {
+                const trimmedLine = line.trim();
+                if (trimmedLine) {
+                    html += `<div class="play-line">${trimmedLine}</div>`;
+                }
+            });
             
-            // Handle reconstructed lines
-            if (Array.isArray(sceneContent)) {
-                sceneContent.forEach(line => {
-                    const trimmedLine = line.trim();
-                    if (!trimmedLine) return;
-                    
-                    // Check if this line is a stage direction
-                    if (trimmedLine.startsWith('[') && trimmedLine.endsWith(']')) {
-                        html += `<div class="stage-direction">${trimmedLine}</div>`;
-                    } else {
-                        // This is a dialogue line with speaker and text
-                        // Find where the speaker name ends and dialogue begins
-                        const words = trimmedLine.split(' ');
-                        
-                        // Common Shakespeare character names from Hamlet
-                        const characterNames = [
-                            'HAMLET', 'HORATIO', 'MARCELLUS', 'FRANCISCO', 'BARNARDO', 
-                            'GHOST', 'CLAUDIUS', 'GERTRUDE', 'OPHELIA', 'POLONIUS',
-                            'LAERTES', 'ROSENCRANTZ', 'GUILDENSTERN', 'OSRIC', 'FORTINBRAS',
-                            'VOLTEMAND', 'CORNELIUS', 'REYNALDO', 'PLAYER', 'KING',
-                            'QUEEN', 'LORD', 'LADY', 'FIRST', 'SECOND', 'THIRD',
-                            'ALL', 'BOTH', 'CHORUS', 'NARRATOR'
-                        ];
-                        
-                        let speakerEndIndex = -1;
-                        
-                        // Look for character names at the beginning
-                        for (let i = 0; i < words.length; i++) {
-                            const word = words[i];
-                            if (characterNames.includes(word)) {
-                                speakerEndIndex = i;
-                            } else {
-                                // Stop at first non-character-name word
-                                break;
-                            }
-                        }
-                        
-                        if (speakerEndIndex >= 0) {
-                            const speaker = words.slice(0, speakerEndIndex + 1).join(' ');
-                            const dialogue = words.slice(speakerEndIndex + 1).join(' ');
-                            
-                            html += `<div class="dialogue">`;
-                            html += `<div class="character-name">${speaker}</div>`;
-                            html += `<div class="dialogue-text">${dialogue}</div>`;
-                            html += `</div>`;
-                        } else {
-                            // Fallback: treat the whole line as dialogue
-                            html += `<div class="dialogue">`;
-                            html += `<div class="dialogue-text">${trimmedLine}</div>`;
-                            html += `</div>`;
-                        }
-                    }
-                });
-            }
-            
-            return html || '<p><em>Scene content could not be formatted.</em></p>';
+            return html;
         }
 
         // Analyze the text to identify speaker patterns
