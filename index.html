@@ -3476,38 +3476,33 @@
             }
         }
 
-        // Text selection functionality
-        document.addEventListener('selectionchange', () => {
-            const s = window.getSelection();
+        // Text selection functionality - using mouseup for immediate response
+        document.addEventListener('mouseup', function() {
+            const selection = window.getSelection();
+            const newSelectedText = selection.toString().trim();
             
-            // Check if there's no selection, selection is collapsed, or no text is selected
-            if (!s || s.isCollapsed || s.toString().trim() === '') {
-                selectedText = '';
-                clearAllHighlights();
-                updateMetaLine(); // Update meta line when selection is cleared
-                return;
-            }
-            
-            // Additional check: ensure selection is within the reading pane
+            // Check if selection is within the reading pane
             const readerElement = document.querySelector('.reader');
             if (!readerElement) {
                 selectedText = '';
                 clearAllHighlights();
-                updateMetaLine(); // Update meta line when selection is cleared
+                updateMetaLine();
                 return;
             }
             
             // Check if the selection is actually within the reading pane
-            const selectionRange = s.getRangeAt(0);
-            if (!readerElement.contains(selectionRange.commonAncestorContainer)) {
-                selectedText = '';
-                clearAllHighlights();
-                updateMetaLine(); // Update meta line when selection is cleared
-                return;
+            if (newSelectedText) {
+                const selectionRange = selection.getRangeAt(0);
+                if (!readerElement.contains(selectionRange.commonAncestorContainer)) {
+                    selectedText = '';
+                    clearAllHighlights();
+                    updateMetaLine();
+                    return;
+                }
             }
             
-            // Store the selected text and highlight it
-            selectedText = selection.toString().trim();
+            // Update selected text
+            selectedText = newSelectedText;
             
             if (selectedText) {
                 // Clear any existing highlights first
@@ -3518,22 +3513,11 @@
                 const span = document.createElement('span');
                 span.className = 'highlight';
                 range.surroundContents(span);
-                
-                // Update meta line with new selection
-                updateMetaLine();
             }
+            
+            // Always update meta line after selection changes
+            updateMetaLine();
         });
-
-        // Clear highlights when clicking in the reading pane without selecting text
-        document.addEventListener('click', function(event) {
-            // Only clear highlights if clicking in the reading pane and no text is selected
-            if (event.target.closest('.reader') && !window.getSelection().toString().trim()) {
-                clearAllHighlights();
-                selectedText = '';
-            }
-        });
-
-
 
         // Function to clear all existing highlights
         function clearAllHighlights() {
@@ -3544,31 +3528,6 @@
                 parent.normalize(); // Merge adjacent text nodes
             });
         }
-
-        document.addEventListener('mouseup', function() {
-            const selection = window.getSelection();
-            selectedText = selection.toString().trim();
-            
-            if (selectedText) {
-                // Clear any existing highlights first
-                clearAllHighlights();
-                
-                // Highlight the selected text
-                const range = selection.getRangeAt(0);
-                const span = document.createElement('span');
-                span.className = 'highlight';
-                range.surroundContents(span);
-            }
-        });
-
-        // Clear highlights when clicking in the reading pane without selecting text
-        document.addEventListener('click', function(event) {
-            // Only clear highlights if clicking in the reading pane and no text is selected
-            if (event.target.closest('.reader') && !window.getSelection().toString().trim()) {
-                clearAllHighlights();
-                selectedText = '';
-            }
-        });
 
         // Contextual toolbar event listeners
 
