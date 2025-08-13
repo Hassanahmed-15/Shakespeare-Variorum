@@ -3597,9 +3597,8 @@
                     <div class="analysis-title">${analysisTitle}</div>
                     <button class="copy-btn" onclick="copyAnalysis()">Copy</button>
                 </div>
-                <div class="selection-info">${playInfo}</div>
                 <div class="analysis">
-                    <div class="meta" style="font-weight: bold;">${playInfo}</div>
+                    <div class="meta" style="font-weight: bold;"><em>${playName}</em> · ${currentScene} · ${wordCount} words highlighted</div>
                     <div class="analysis-content">
                         <p style="font-family: var(--ui); font-style: italic;">Processing.</p>
                     </div>
@@ -3681,7 +3680,7 @@
             const analysisPanel = document.getElementById('analysisPanel');
             const wordCount = countWords(text);
             const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Unknown Play';
-            const playInfo = `${playName} · ${currentScene}`;
+            const playInfo = `<em>${playName}</em> · ${currentScene}`;
             
             // Format the content with proper sections
             const formattedContent = formatAnalysisContent(content);
