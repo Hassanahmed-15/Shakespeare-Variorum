@@ -1304,6 +1304,16 @@
             background: #e5e7eb;
             border-radius: 4px;
             transition: background .18s;
+            /* Preserve original text formatting */
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            font-style: inherit;
+            line-height: inherit;
+            white-space: inherit;
+            word-wrap: inherit;
+            overflow-wrap: inherit;
+            word-break: inherit;
         }
 
         /* Analysis Mode Selector */
@@ -3523,24 +3533,21 @@
                 // Clear any existing highlights first
                 clearAllHighlights();
                 
-                // Use a more robust highlighting method
+                // Use a non-destructive highlighting method that preserves original formatting
                 try {
                     const range = selection.getRangeAt(0);
                     const span = document.createElement('span');
                     span.className = 'highlight';
                     
-                    // Try surroundContents first, but fall back to extractContents if it fails
-                    try {
-                        range.surroundContents(span);
-                        console.log('Highlighting successful with surroundContents');
-                    } catch (e) {
-                        console.log('surroundContents failed, trying extractContents:', e.message);
-                        // If surroundContents fails, use extractContents and insertNode
-                        const contents = range.extractContents();
-                        span.appendChild(contents);
-                        range.insertNode(span);
-                        console.log('Highlighting successful with extractContents');
-                    }
+                    // Create a clone of the range contents to avoid modifying the original DOM
+                    const clonedContents = range.cloneContents();
+                    span.appendChild(clonedContents);
+                    
+                    // Replace the range contents with our highlighted span
+                    range.deleteContents();
+                    range.insertNode(span);
+                    
+                    console.log('Non-destructive highlighting successful');
                 } catch (highlightError) {
                     console.warn('Highlighting failed, but keeping selection:', highlightError);
                     // Even if highlighting fails, we still have the selected text
@@ -3557,8 +3564,17 @@
             const highlights = document.querySelectorAll('.highlight');
             highlights.forEach(highlight => {
                 const parent = highlight.parentNode;
-                parent.replaceChild(document.createTextNode(highlight.textContent), highlight);
-                parent.normalize(); // Merge adjacent text nodes
+                
+                // Move all child nodes out of the highlight span and into the parent
+                while (highlight.firstChild) {
+                    parent.insertBefore(highlight.firstChild, highlight);
+                }
+                
+                // Remove the empty highlight span
+                parent.removeChild(highlight);
+                
+                // Normalize to merge adjacent text nodes
+                parent.normalize();
             });
         }
 
