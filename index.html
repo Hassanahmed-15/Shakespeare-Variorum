@@ -1455,7 +1455,7 @@
             font-weight: 700;
             font-size: 16px;
             color: var(--ink-1);
-            margin: var(--s-1) 0 var(--s-1);
+            margin: var(--s-0) 0 var(--s-1);
             display: block;
         }
 
@@ -1543,8 +1543,8 @@
         /* ====== Dividers ====== */
         .analysis .section + .section,
         .analysis h3 + p {
-            padding-top: var(--s-2);
-            margin-top: var(--s-2);
+            padding-top: var(--s-1);
+            margin-top: var(--s-1);
         }
 
         /* ====== Microtypography ====== */
@@ -4223,8 +4223,8 @@
             // Convert asterisks to bold tags
             processed = processed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
             
-            // Convert single asterisks to italics (for emphasis)
-            processed = processed.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            // Convert single asterisks to italics (for emphasis) - more aggressive
+            processed = processed.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
             
             // Convert shorthand to proper academic language
             processed = processed.replace(/\bvs\.\b/gi, 'versus');
@@ -4291,6 +4291,10 @@
             
             // Convert specific media titles to italics (plays, books, films, articles)
             processed = processed.replace(/\*([^*]+?)\*/g, '<em>$1</em>'); // Final pass for any remaining asterisks
+            
+            // Ultra-aggressive asterisk removal for any remaining cases
+            processed = processed.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
+            processed = processed.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
             
             // Convert author names to proper format
             processed = processed.replace(/([A-Z][a-z]+),\s*([A-Z][a-z]+)/g, '$2 $1');
