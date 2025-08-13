@@ -1411,7 +1411,7 @@
             padding: var(--s-5);
             font-family: "Source Serif 4", Georgia, serif;
             font-size: 17px;
-            line-height: 1.65;
+            line-height: 1.7;
             color: var(--ink-1);
             max-width: 80ch;
             margin: 0;
@@ -1419,6 +1419,26 @@
             height: calc(100vh - 70px - 150px - var(--s-4) * 2);
             overflow-y: auto;
             position: relative;
+        }
+        
+        /* Academic paragraph styling */
+        .analysis p {
+            margin: 0 0 var(--s-3);
+            text-align: justify;
+            text-rendering: optimizeLegibility;
+            font-feature-settings: "liga","clig","kern";
+        }
+        
+        /* Strong emphasis for academic terms */
+        .analysis strong {
+            font-weight: 700;
+            color: var(--ink-1);
+        }
+        
+        /* Italics for book titles and emphasis */
+        .analysis em {
+            font-style: italic;
+            color: var(--ink-1);
         }
 
         /* Meta line (play · act · scene · word count) */
@@ -1435,32 +1455,31 @@
         /* Default section label (Basic, FFF) */
         .analysis .section-label {
             font-family: Inter, system-ui, sans-serif;
-            font-weight: 600;
-            font-size: 15px;
-            color: var(--ink-2);
-            display: inline-block;
-            margin-bottom: .25rem;
-        }
-        .analysis .section-label::after {
-            content: " —";
-            color: var(--ink-3);
-            margin-left: .25rem;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--ink-1);
+            display: block;
+            margin-bottom: var(--s-2);
+            border-bottom: 1px solid var(--line);
+            padding-bottom: var(--s-1);
         }
 
         /* Numbered headings (Intermediate, Expert) */
         .analysis h3 {
             font-family: Inter, system-ui, sans-serif;
-            font-weight: 600;
-            font-size: 15px;
-            color: var(--ink-2);
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--ink-1);
             margin: var(--s-4) 0 var(--s-2);
             display: flex;
             align-items: baseline;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: var(--s-1);
         }
         .analysis h3 .sec-num {
             color: var(--ink-3);
             margin-right: .5rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         /* Subheadings inside numbered sections */
@@ -3909,7 +3928,7 @@
                 const numberedHeadingMatch = trimmedSection.match(/^(\d+)\.\s+(.+)$/);
                 if (numberedHeadingMatch && isNumberedSection) {
                     const sectionNum = numberedHeadingMatch[1];
-                    const sectionTitle = numberedHeadingMatch[2].replace(/\*\*(.*?)\*\*/g, '$1').trim();
+                    const sectionTitle = numberedHeadingMatch[2].replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').trim();
                     const sectionContent = trimmedSection.split('\n').slice(1).join('\n').trim();
                     
                     formattedContent += `<div class="section">`;
@@ -3924,7 +3943,7 @@
                             if (line.includes('—')) {
                                 const [word, def] = line.split('—', 2);
                                 if (word && def) {
-                                    dlContent += `<dt>${word.trim()}</dt><dd> — ${def.trim()}</dd>`;
+                                    dlContent += `<dt><strong>${word.trim()}</strong></dt><dd> — ${def.trim()}</dd>`;
                                 }
                             }
                         });
@@ -3932,7 +3951,9 @@
                             formattedContent += `<dl>${dlContent}</dl>`;
                         }
                     } else {
-                        formattedContent += `<p>${sectionContent}</p>`;
+                        // Process content to convert asterisks to bold and improve formatting
+                        const processedContent = processContentForFormatting(sectionContent);
+                        formattedContent += `<p>${processedContent}</p>`;
                     }
                     formattedContent += `</div>`;
                     sectionIndex++;
@@ -3940,25 +3961,28 @@
                     // Handle key-value pairs (Label — content) for Basic/FFF
                     const parts = trimmedSection.split('—', 2);
                     if (parts.length === 2) {
-                        const label = parts[0].replace(/\*\*(.*?)\*\*/g, '$1').trim();
+                        const label = parts[0].replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').trim();
                         const content = parts[1].trim();
                         
                         if (isNumberedSection) {
                             // For numbered sections, use h3 with section number
                             formattedContent += `<div class="section">`;
                             formattedContent += `<h3><span class="sec-num">${sectionIndex}.</span>${label}</h3>`;
-                            formattedContent += `<p>${content}</p>`;
+                            const processedContent = processContentForFormatting(content);
+                            formattedContent += `<p>${processedContent}</p>`;
                             formattedContent += `</div>`;
                             sectionIndex++;
                         } else {
                             // For plain sections, use section-label
                             formattedContent += `<div class="section">`;
                             formattedContent += `<span class="section-label">${label}</span>`;
-                            formattedContent += `<p>${content}</p>`;
+                            const processedContent = processContentForFormatting(content);
+                            formattedContent += `<p>${processedContent}</p>`;
                             formattedContent += `</div>`;
                         }
                     } else {
-                        formattedContent += `<div class="section"><p>${trimmedSection}</p></div>`;
+                        const processedContent = processContentForFormatting(trimmedSection);
+                        formattedContent += `<div class="section"><p>${processedContent}</p></div>`;
                     }
                 } else if (trimmedSection.toLowerCase().includes('key words') || 
                            trimmedSection.toLowerCase().includes('glosses')) {
@@ -3978,7 +4002,7 @@
                         if (line.includes('—')) {
                             const [word, def] = line.split('—', 2);
                             if (word && def) {
-                                dlContent += `<dt>${word.trim()}</dt><dd> — ${def.trim()}</dd>`;
+                                dlContent += `<dt><strong>${word.trim()}</strong></dt><dd> — ${def.trim()}</dd>`;
                             }
                         }
                     });
@@ -4001,28 +4025,71 @@
                            trimmedSection.toLowerCase().includes('background')) {
                     // Handle sections with titles
                     const lines = trimmedSection.split('\n');
-                    const title = lines[0].replace(/\*\*(.*?)\*\*/g, '$1').trim();
+                    const title = lines[0].replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').trim();
                     const content = lines.slice(1).join('\n').trim();
                     
                     if (isNumberedSection) {
                         formattedContent += `<div class="section">`;
                         formattedContent += `<h3><span class="sec-num">${sectionIndex}.</span>${title}</h3>`;
-                        formattedContent += `<p>${content}</p>`;
+                        const processedContent = processContentForFormatting(content);
+                        formattedContent += `<p>${processedContent}</p>`;
                         formattedContent += `</div>`;
                         sectionIndex++;
                     } else {
                         formattedContent += `<div class="section">`;
                         formattedContent += `<span class="section-label">${title}</span>`;
-                        formattedContent += `<p>${content}</p>`;
+                        const processedContent = processContentForFormatting(content);
+                        formattedContent += `<p>${processedContent}</p>`;
                         formattedContent += `</div>`;
                     }
                 } else {
                     // Default paragraph - wrap in section for better structure
-                    formattedContent += `<div class="section"><p>${trimmedSection}</p></div>`;
+                    const processedContent = processContentForFormatting(trimmedSection);
+                    formattedContent += `<div class="section"><p>${processedContent}</p></div>`;
                 }
             });
             
             return formattedContent;
+        }
+        
+        function processContentForFormatting(content) {
+            if (!content) return '';
+            
+            let processed = content;
+            
+            // Convert asterisks to bold tags
+            processed = processed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            
+            // Convert single asterisks to italics (for emphasis)
+            processed = processed.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            
+            // Convert shorthand to proper academic language
+            processed = processed.replace(/\bvs\.\b/gi, 'versus');
+            processed = processed.replace(/\bvs\b/gi, 'versus');
+            processed = processed.replace(/\b&/g, 'and');
+            processed = processed.replace(/\bw\/\b/gi, 'with');
+            processed = processed.replace(/\bw\/o\b/gi, 'without');
+            processed = processed.replace(/\betc\./gi, 'et cetera');
+            processed = processed.replace(/\bi\.e\./gi, 'that is');
+            processed = processed.replace(/\be\.g\./gi, 'for example');
+            processed = processed.replace(/\bc\./gi, 'circa');
+            processed = processed.replace(/\bca\./gi, 'circa');
+            
+            // Convert dashes to proper sentences where appropriate
+            processed = processed.replace(/^—\s*/gm, ''); // Remove leading dashes
+            processed = processed.replace(/\n—\s*/g, '\n'); // Remove line-starting dashes
+            
+            // Ensure proper sentence structure
+            processed = processed.replace(/([.!?])\s*([A-Z])/g, '$1 $2'); // Fix spacing after punctuation
+            
+            // Convert book titles to italics
+            processed = processed.replace(/"([^"]*)"\s*\(([^)]*)\)/g, '<em>$1</em> ($2)');
+            processed = processed.replace(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s*\(([^)]*)\)/g, '<em>$1</em> ($2)');
+            
+            // Convert author names to proper format
+            processed = processed.replace(/([A-Z][a-z]+),\s*([A-Z][a-z]+)/g, '$2 $1');
+            
+            return processed;
         }
 
         // Analysis mode state
