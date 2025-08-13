@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Shakespeare Digital Variorum</title>
-    <link rel="stylesheet" href="styles/tokens.css?v=1.1">
+    <link rel="stylesheet" href="styles/tokens.css?v=1.2">
     <style>
         * {
             margin: 0;
@@ -2358,6 +2358,7 @@
 
 
     <script>
+        console.log('=== SCRIPT LOADED AT:', new Date().toISOString(), '===');
         let selectedText = '';
         let plays = {};
         let currentPlay = '';
@@ -4567,6 +4568,21 @@
 
         // Initialize Geneva Bible search when the page loads
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== DOM LOADED AT:', new Date().toISOString(), '===');
+            
+            // Check for service workers
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                    console.log('Service workers found:', registrations.length);
+                    if (registrations.length > 0) {
+                        console.log('Unregistering service workers...');
+                        registrations.forEach(function(registration) {
+                            registration.unregister();
+                        });
+                    }
+                });
+            }
+            
             initializeBibleSearch();
             // Initialize meta line
             updateMetaLine();
