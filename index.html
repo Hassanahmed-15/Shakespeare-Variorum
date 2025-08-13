@@ -3458,8 +3458,8 @@
                 const readerScrollTop = reader.scrollTop;
                 
                 // Calculate position relative to the reading pane
-                let left = box.right - readerRect.left; // Position at right edge of selection
-                let top = box.top - readerRect.top - 50; // 50px above the selection
+                let left = box.right - readerRect.left + 5; // Position just to the right of selection with small gap
+                let top = box.top - readerRect.top - 10; // 10px above the selection
                 
                 // Constrain to reading pane boundaries
                 left = Math.max(10, Math.min(left, readerRect.width - 200)); // 10px margin, max 200px width
