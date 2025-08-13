@@ -88,7 +88,7 @@ exports.handler = async (event, context) => {
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
-${sections.map((section, index) => `${index + 1}. **${section}:**`).join('\n')}
+${sections.map((section, index) => `**${section}:**`).join('\n')}
 
 FORMAT REQUIREMENTS:
 - Start each section with the exact heading format shown above
@@ -113,7 +113,7 @@ EXAMPLE FORMAT:
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
-${sections.map((section, index) => `${index + 1}. **${section}:**`).join('\n')}
+${sections.map((section, index) => `**${section}:**`).join('\n')}
 
 FORMAT REQUIREMENTS:
 - Start each section with the exact heading format shown above
@@ -142,7 +142,7 @@ EXAMPLE FORMAT:
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
-${sections.map((section, index) => `${index + 1}. **${section}:**`).join('\n')}
+${sections.map((section, index) => `**${section}:**`).join('\n')}
 
 FORMAT REQUIREMENTS:
 - Start each section with the exact heading format shown above
