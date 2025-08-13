@@ -71,8 +71,7 @@ exports.handler = async (event, context) => {
           'Historical Context',
           'Literary Analysis',
           'Critical Reception',
-          'Performance History',
-          'Notes'
+          'Performance History'
         ]
       };
 
