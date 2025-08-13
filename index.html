@@ -3073,19 +3073,25 @@
                 const child = children[i];
                 
                 if (child.tagName === 'sp') {
-                    // Speech element
+                    // Speech element - group all lines under one speaker
                     const speaker = child.querySelector('speaker');
                     const speakerName = speaker ? speaker.textContent.trim() : 'UNKNOWN';
                     
-                    // Extract lines with MorphAdorner annotations
+                    // Collect all lines for this speaker
                     const lines = child.querySelectorAll('l');
+                    const dialogueLines = [];
+                    
                     lines.forEach(line => {
                         const lineText = extractLineWithAnnotations(line);
                         if (lineText) {
-                            sceneContent.push(`${speakerName.toUpperCase()}`);
-                            sceneContent.push(lineText);
+                            dialogueLines.push(lineText);
                         }
                     });
+                    
+                    // Add speaker and all their dialogue as a grouped block
+                    if (dialogueLines.length > 0) {
+                        sceneContent.push(`${speakerName.toUpperCase()}\n${dialogueLines.join('\n')}`);
+                    }
                     
                 } else if (child.tagName === 'stage') {
                     // Stage direction
@@ -3105,30 +3111,9 @@
         }
 
         function extractLineWithAnnotations(lineElement) {
-            // Extract text with MorphAdorner part-of-speech annotations
-            let lineText = '';
-            
-            // Process words with annotations
-            const words = lineElement.querySelectorAll('w');
-            if (words.length > 0) {
-                words.forEach(word => {
-                    const wordText = word.textContent.trim();
-                    const pos = word.getAttribute('pos'); // Part of speech
-                    const lemma = word.getAttribute('lemma'); // Lemma form
-                    
-                    // Add word with annotations if available
-                    if (pos && lemma) {
-                        lineText += `${wordText} (${pos}/${lemma}) `;
-                    } else {
-                        lineText += wordText + ' ';
-                    }
-                });
-            } else {
-                // Fallback to plain text
-                lineText = lineElement.textContent.trim();
-            }
-            
-            return lineText.trim();
+            // Extract plain text without breaking into individual words
+            // This preserves the original line structure
+            return lineElement.textContent.trim();
         }
 
         // Update play selector dropdown
