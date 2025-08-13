@@ -4080,8 +4080,10 @@
                 const items = lines[0].split(';').map(item => item.trim()).filter(item => item);
                 items.forEach(item => {
                     if (item) {
-                        // Remove quotes and clean up
-                        const cleanItem = item.replace(/^["']|["']$/g, '').trim();
+                        // Clean up the item but preserve opening quotes for glossed words
+                        let cleanItem = item.trim();
+                        // Only remove trailing quotes, not opening quotes
+                        cleanItem = cleanItem.replace(/["']$/, '').trim();
                         if (cleanItem) {
                             formattedList += `<p>- ${cleanItem}</p>`;
                         }
