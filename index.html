@@ -3659,11 +3659,16 @@
 
 
         function explainHighlighted() {
+            console.log('=== EXPLAIN HIGHLIGHTED FUNCTION CALLED ===');
+            console.log('selectedText:', selectedText);
+            console.log('selectedText length:', selectedText ? selectedText.length : 0);
+            
             if (!selectedText) {
                 alert('Please highlight some text first, then click "Explain Highlighted Text".');
                 return;
             }
             
+            console.log('Calling analyzeHighlightedText with:', selectedText);
             // Call the serverless function to analyze the highlighted text
             analyzeHighlightedText(selectedText);
         }
@@ -3677,6 +3682,11 @@
 
         async function analyzeHighlightedText(text) {
             console.log('=== ANALYZE FUNCTION CALLED - NEW CODE IS RUNNING ===');
+            console.log('Text to analyze:', text);
+            console.log('Current play:', currentPlay);
+            console.log('Current scene:', currentScene);
+            console.log('Analysis mode:', currentAnalysisMode);
+            
             // Check cache first
             const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Unknown Play';
             // Cache removed - always generate fresh analysis
@@ -3728,6 +3738,7 @@
             
             try {
                 console.log('Analyzing text:', text.substring(0, 100) + '...');
+                console.log('Making API request...');
                 
                 // Try the redirect path first
                 let response = await fetch('/api/shakespeare', {
@@ -3759,6 +3770,7 @@
                 }
                 
                 console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
                 
                 if (!response.ok) {
                     const errorData = await response.json().catch(() => ({}));
