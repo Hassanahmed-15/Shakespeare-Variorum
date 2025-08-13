@@ -3949,43 +3949,20 @@
             const sections = content.split(/\n\n+/);
             let formattedContent = '';
             
-                         // Define the standard section order for all analysis levels
-             const standardSections = [
-                 'Plain-Language Paraphrase',
-                 'Synopsis',
-                 'Textual Variants',
-                 'Prosody & Rhetoric',
-                 'Key Words & Glosses',
-                 'Sources & Analogues',
-                 'Context',
-                 'Stage & Screen Highlights',
-                 'Intertexts & Allusions',
-                 'Themes & Function',
-                 'Pointers for Further Reading',
-                 'Notes'
-             ];
-             
-             // Additional sections that may appear in different levels
-             const additionalSections = [
-                 'Integrity Check',
-                 'Apparatus Criticus',
-                 'Lexical Dossier',
-                 'Syntax & Punctuation',
-                 'Source Concordance',
-                 'Historical & Theological Context',
-                 'Stagecraft & Performance Notes',
-                 'Performance Timeline',
-                 'Film & Media Adaptations',
-                 'Character Function',
-                 'Themes & Problems',
-                 'Reception Timeline',
-                 'Counter-Reading',
-                 'Authorship/Dating & Material Text Note',
-                 'Influence & Afterlife',
-                 'Bibliography by Stratum',
-                 'Function in Scene',
-                 'Rhetorical Devices Employed'
-             ];
+            // Define the uniform section order for all analysis levels
+            const standardSections = [
+                'Plain-Language Paraphrase',
+                'Synopsis',
+                'Textual Variants',
+                'Key Words & Glosses',
+                'Historical Context',
+                'Literary Analysis',
+                'Critical Reception',
+                'Performance History',
+                'Bibliography',
+                'Notes',
+                'Pointers for Further Reading'
+            ];
             
             // Extract and organize content by section type
             const sectionContent = {};
@@ -4028,17 +4005,6 @@
                      }
                  }
                  
-                 // If not found in standard sections, check additional sections
-                 if (!mappedTitle) {
-                     for (const additionalSection of additionalSections) {
-                         if (sectionTitle.toLowerCase().includes(additionalSection.toLowerCase()) ||
-                             additionalSection.toLowerCase().includes(sectionTitle.toLowerCase())) {
-                             mappedTitle = additionalSection;
-                             break;
-                         }
-                     }
-                 }
-                 
                  // Handle specific section mappings
                  if (sectionTitle.toLowerCase().includes('textual check') || 
                      sectionTitle.toLowerCase().includes('textual variant') ||
@@ -4049,10 +4015,6 @@
                  if (sectionTitle.toLowerCase().includes('key words') && 
                      !sectionTitle.toLowerCase().includes('glosses')) {
                      mappedTitle = 'Key Words & Glosses';
-                 }
-                 
-                 if (sectionTitle.toLowerCase().includes('function in scene')) {
-                     mappedTitle = 'Function in Scene';
                  }
                 
                 if (mappedTitle) {
@@ -4104,33 +4066,15 @@
                  }
              });
              
-             // Add any additional sections that weren't in the standard order
+             // Add any remaining sections that weren't in the standard order
              Object.keys(sectionContent).forEach(sectionName => {
                  if (!standardSections.includes(sectionName) && sectionName !== 'Notes') {
                      const content = sectionContent[sectionName];
-                     
-                     if (sectionName === 'Key Words & Glosses') {
-                         formattedContent += `<div class="section">`;
-                         formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
-                         formattedContent += formatKeyWords(content);
-                         formattedContent += `</div>`;
-                     } else if (sectionName === 'Pointers for Further Reading') {
-                         formattedContent += `<div class="section">`;
-                         formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
-                         formattedContent += formatFurtherReading(content);
-                         formattedContent += `</div>`;
-                     } else if (sectionName === 'Textual Variants') {
-                         formattedContent += `<div class="section">`;
-                         formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
-                         formattedContent += formatTextualVariants(content);
-                         formattedContent += `</div>`;
-                     } else {
-                         formattedContent += `<div class="section">`;
-                         formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
-                         const processedContent = processContentForFormatting(content);
-                         formattedContent += `<p>${processedContent}</p>`;
-                         formattedContent += `</div>`;
-                     }
+                     formattedContent += `<div class="section">`;
+                     formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
+                     const processedContent = processContentForFormatting(content);
+                     formattedContent += `<p>${processedContent}</p>`;
+                     formattedContent += `</div>`;
                  }
              });
             

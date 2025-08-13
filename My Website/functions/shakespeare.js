@@ -52,7 +52,6 @@ exports.handler = async (event, context) => {
       const payload = {
         model: model || 'gpt-4o-mini',
         temperature: 0.7,
-        max_tokens: level === 'expert' ? 1500 : 1000,
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: text }
