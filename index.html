@@ -2852,6 +2852,9 @@
 
         // Group dialogue lines by speaker to avoid repeating speaker names
         function groupDialogueBySpeaker(lines) {
+            console.log('groupDialogueBySpeaker called with:', lines);
+            console.log('Lines length:', lines.length);
+            
             const groupedLines = [];
             let currentSpeaker = '';
             let currentDialogue = [];
@@ -2859,6 +2862,11 @@
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i].trim();
                 if (!line) continue;
+                
+                // Debug: Show first 10 lines being processed
+                if (i < 10) {
+                    console.log(`Processing line ${i}: "${line}"`);
+                }
                 
                 // Check if this line is a speaker name (all caps, reasonable length, no punctuation)
                 const isSpeakerName = /^[A-Z\s]+$/.test(line) && 
@@ -2868,6 +2876,10 @@
                                     !line.includes(',') &&
                                     !line.startsWith('[') &&
                                     !line.endsWith(']');
+                
+                if (i < 10) {
+                    console.log(`Line ${i} isSpeakerName: ${isSpeakerName}`);
+                }
                 
                 if (isSpeakerName) {
                     // If we have accumulated dialogue from previous speaker, add it
@@ -2890,9 +2902,11 @@
             
             // If no speakers were found, return the original lines
             if (groupedLines.length === 0) {
+                console.log('No speakers found, returning original lines');
                 return lines;
             }
             
+            console.log('Grouped lines result:', groupedLines);
             return groupedLines;
         }
 
@@ -3369,6 +3383,14 @@
             console.log('formatSceneContent called with:', sceneContent);
             console.log('sceneContent type:', typeof sceneContent);
             console.log('sceneContent length:', sceneContent ? sceneContent.length : 'null');
+            
+            // Debug: Show first 20 items in the array
+            if (sceneContent && sceneContent.length > 0) {
+                console.log('First 20 items in sceneContent:');
+                for (let i = 0; i < Math.min(20, sceneContent.length); i++) {
+                    console.log(`Item ${i}: "${sceneContent[i]}"`);
+                }
+            }
             
             let html = '';
             
