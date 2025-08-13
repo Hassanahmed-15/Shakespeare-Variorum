@@ -3971,6 +3971,8 @@
                 const trimmedSection = section.trim();
                 if (!trimmedSection) return;
                 
+                console.log(`Processing section ${index}:`, trimmedSection.substring(0, 100) + '...');
+                
                 // Extract section title and content
                 let sectionTitle = '';
                 let sectionText = '';
@@ -3981,12 +3983,14 @@
                     sectionTitle = numberedMatch[3].trim();
                     sectionText = trimmedSection.split('\n').slice(1).join('\n').trim();
                 } else {
-                    // Handle bold section headers (new format: **Section Name:**)
-                    const boldMatch = trimmedSection.match(/^\*\*(.+?)\*\*:\s*(.+)/s);
-                    if (boldMatch) {
-                        sectionTitle = boldMatch[1].trim();
-                        sectionText = boldMatch[2].trim();
-                    } else {
+                                    // Handle bold section headers (new format: **Section Name:**)
+                const boldMatch = trimmedSection.match(/^\*\*(.+?)\*\*:\s*(.+)/s);
+                console.log(`Bold match result:`, boldMatch);
+                if (boldMatch) {
+                    sectionTitle = boldMatch[1].trim();
+                    sectionText = boldMatch[2].trim();
+                    console.log(`Extracted title: "${sectionTitle}", text: "${sectionText.substring(0, 50)}..."`);
+                } else {
                         // Handle dash-separated sections (Basic/FFF)
                         const dashMatch = trimmedSection.match(/^(.+?)\s*—\s*(.+)/s);
                         if (dashMatch) {
@@ -4500,7 +4504,9 @@
                 }
                 
                 console.log('Cache hit for:', text.substring(0, 50) + '...');
-                return analysis.content;
+                // Temporarily disable cache to test new formatting
+                console.log('Cache disabled for testing - forcing new analysis');
+                return null;
                 
             } catch (error) {
                 console.warn('Error reading from cache:', error);
