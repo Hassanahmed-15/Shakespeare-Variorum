@@ -3181,9 +3181,9 @@
                     html += `<div class="play-line">${line}</div>`;
                     i++;
                 } else {
-                    // Check if this line contains multiple speakers (like "Where the place? SECOND WITCH Upon the heath.")
-                    const processedLine = processLineWithMultipleSpeakers(line);
-                    html += `<div class="play-line">${processedLine}</div>`;
+                    // Process any line that might contain speaker names
+                    const processedLines = processLineForSpeakers(line);
+                    html += processedLines;
                     i++;
                 }
             }
@@ -3191,42 +3191,55 @@
             return html;
         }
         
-        // Process a line that might contain multiple speakers
-        function processLineWithMultipleSpeakers(line) {
-            // Look for patterns like "dialogue SPEAKER dialogue"
-            const speakerPattern = /([A-Z\s]{3,50})/g;
+        // Process any line for speaker names and split them properly
+        function processLineForSpeakers(line) {
+            // Look for ALL CAPS patterns that could be speaker names
+            const speakerPattern = /\b([A-Z\s]{3,50})\b/g;
+            let matches = [];
             let match;
-            let lastIndex = 0;
-            let result = '';
             
+            // Find all potential speaker names in the line
             while ((match = speakerPattern.exec(line)) !== null) {
                 const speakerName = match[1].trim();
-                
-                // Check if this is actually a speaker name
                 if (isSpeakerName(speakerName)) {
-                    // Add the dialogue before this speaker
-                    const dialogueBefore = line.substring(lastIndex, match.index).trim();
-                    if (dialogueBefore) {
-                        result += dialogueBefore;
-                    }
-                    
-                    // Start a new line for this speaker
-                    if (result) {
-                        result += '</div><div class="play-line">';
-                    }
-                    result += `<strong>${speakerName}</strong> `;
-                    
-                    lastIndex = match.index + match[0].length;
+                    matches.push({
+                        name: speakerName,
+                        index: match.index,
+                        endIndex: match.index + match[0].length
+                    });
                 }
             }
             
-            // Add any remaining dialogue
-            const remainingDialogue = line.substring(lastIndex).trim();
-            if (remainingDialogue) {
-                result += remainingDialogue;
+            // If no speakers found, return the line as-is
+            if (matches.length === 0) {
+                return `<div class="play-line">${line}</div>`;
             }
             
-            return result || line; // Return original line if no processing was done
+            // Split the line at each speaker and create separate lines
+            let result = '';
+            let lastIndex = 0;
+            
+            for (let i = 0; i < matches.length; i++) {
+                const speaker = matches[i];
+                
+                // Add dialogue before this speaker
+                const dialogueBefore = line.substring(lastIndex, speaker.index).trim();
+                if (dialogueBefore) {
+                    result += `<div class="play-line">${dialogueBefore}</div>`;
+                }
+                
+                // Add the speaker line
+                const dialogueAfter = line.substring(speaker.endIndex).trim();
+                if (dialogueAfter) {
+                    result += `<div class="play-line"><strong>${speaker.name}</strong> ${dialogueAfter}</div>`;
+                } else {
+                    result += `<div class="play-line"><strong>${speaker.name}</strong></div>`;
+                }
+                
+                lastIndex = speaker.endIndex;
+            }
+            
+            return result;
         }
         
         // Check if a line is a speaker name
