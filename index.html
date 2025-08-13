@@ -649,56 +649,7 @@
             display: none;
         }
         
-        /* Cache Management Styles */
-        .cache-section {
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid #e9ecef;
-        }
-        
-        .cache-section h3 {
-            margin-bottom: 15px;
-            color: var(--ink-1);
-            font-size: 1.3em;
-            font-weight: 600;
-            font-family: var(--ui);
-        }
-        
-        .cache-info p {
-            color: var(--ink-2);
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 15px;
-            font-family: var(--ui);
-        }
-        
-        .cache-stats {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .cache-stat {
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: var(--ink-2);
-            font-family: var(--ui);
-        }
-        
-        .cache-stat:last-child {
-            margin-bottom: 0;
-        }
-        
-        .cache-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .cache-actions .btn {
-            flex: 1;
-        }
+        /* Cache styles removed */
 
         .about-content {
             line-height: 1.8;
@@ -2167,19 +2118,7 @@
                 </div>
                 
                 <!-- Cache Management Section -->
-                <div class="cache-section">
-                    <h3>Cache Management</h3>
-                    <div class="cache-info">
-                        <p>AI analysis results are cached locally to improve performance. Cache expires after 30 days and is limited to 50 entries.</p>
-                        <div class="cache-stats" id="cacheStats">
-                            <!-- Cache stats will be populated here -->
-                        </div>
-                    </div>
-                    <div class="cache-actions">
-                        <button class="btn btn-ghost" onclick="clearAllCacheAndUpdate()">Clear All Cache</button>
-                        <button class="btn btn-ghost" onclick="clearExpiredCache()">Clear Expired Entries</button>
-                    </div>
-                </div>
+                <!-- Cache section removed -->
                 
                 <!-- Close Button -->
                 <div class="modal-footer">
@@ -4478,56 +4417,7 @@
             return null; // No caching
         }
         
-        function cacheAnalysis(text, level, playName, sceneName, content) {
-            // No caching
-        }
-        
-        // All cache management functions removed
-        
-        function updateCacheStats() {
-            const stats = getCacheStats();
-            const statsElement = document.getElementById('cacheStats');
-            if (statsElement) {
-                statsElement.innerHTML = `
-                    <div class="cache-stat">
-                        <strong>Total entries:</strong> ${stats.total}/${stats.maxSize}
-                    </div>
-                    <div class="cache-stat">
-                        <strong>Valid entries:</strong> ${stats.valid}
-                    </div>
-                    <div class="cache-stat">
-                        <strong>Expired entries:</strong> ${stats.expired}
-                    </div>
-                    <div class="cache-stat">
-                        <strong>Expires after:</strong> ${stats.expiryDays} days
-                    </div>
-                `;
-            }
-        }
-        
-        function clearAllCacheAndUpdate() {
-            const clearedCount = clearAllCache();
-            updateCacheStats();
-            
-            // Show success message
-            const successMsg = document.getElementById('uploadSuccess');
-            if (successMsg) {
-                successMsg.style.display = 'block';
-                successMsg.textContent = `✅ Cleared ${clearedCount} cache entries.`;
-            }
-        }
-        
-        function clearExpiredCache() {
-            clearOldCacheEntries();
-            updateCacheStats();
-            
-            // Show success message
-            const successMsg = document.getElementById('uploadSuccess');
-            if (successMsg) {
-                successMsg.style.display = 'block';
-                successMsg.textContent = `✅ Cleared expired cache entries.`;
-            }
-        }
+        // All cache functions removed
 
         // Geneva Bible Search Integration
         let bibleSearch = null;
@@ -4587,8 +4477,7 @@
             // Initialize meta line
             updateMetaLine();
             
-            // Initialize cache - clear expired entries on page load
-            clearOldCacheEntries();
+            // Cache initialization removed
         });
 
         // Function to get Geneva Bible context for analysis
