@@ -4063,20 +4063,21 @@
         
         function formatKeyWords(content) {
             const lines = content.split('\n');
-            let dlContent = '';
+            let formattedList = '';
             
             lines.forEach(line => {
-                if (line.includes('—')) {
-                    const [word, def] = line.split('—', 2);
-                    if (word && def) {
-                        const cleanWord = word.replace(/^[-*\s]+/, '').trim();
-                        const cleanDef = def.replace(/^[-*\s]+/, '').trim();
-                        dlContent += `<dt><strong>${cleanWord}</strong></dt><dd> — ${cleanDef}</dd>`;
+                if (line.trim()) {
+                    // Remove leading dashes and clean up the line
+                    const cleanLine = line.replace(/^[-*\s]+/, '').trim();
+                    // Remove trailing dashes
+                    const finalLine = cleanLine.replace(/[-]+$/, '').trim();
+                    if (finalLine) {
+                        formattedList += `<p>- ${finalLine}</p>`;
                     }
                 }
             });
             
-            return dlContent ? `<dl>${dlContent}</dl>` : `<p>${processContentForFormatting(content)}</p>`;
+            return formattedList || `<p>${processContentForFormatting(content)}</p>`;
         }
         
                  function formatTextualVariants(content) {
@@ -4180,9 +4181,12 @@
              
              lines.forEach(line => {
                  if (line.trim()) {
+                     // Remove leading dashes and clean up the line
                      const cleanLine = line.replace(/^[-*\s]+/, '').trim();
-                     if (cleanLine) {
-                         formattedList += `<p>${cleanLine}</p>`;
+                     // Remove trailing dashes
+                     const finalLine = cleanLine.replace(/[-]+$/, '').trim();
+                     if (finalLine) {
+                         formattedList += `<p>${finalLine}</p>`;
                      }
                  }
              });
