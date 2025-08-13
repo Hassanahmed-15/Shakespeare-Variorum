@@ -3128,116 +3128,31 @@
             `;
         }
 
-        // Format scene content with proper speaker name formatting
+        // Simple format scene content - display exactly as uploaded with minimal processing
         function formatSceneContent(sceneContent) {
             if (!sceneContent || sceneContent.length === 0) {
                 return '<p><em>No content found for this scene.</em></p>';
             }
             
             let html = '';
-            let i = 0;
             
-            while (i < sceneContent.length) {
-                const line = sceneContent[i].trim();
-                if (!line) {
-                    i++;
-                    continue;
-                }
-                
-                // Check if this line is a speaker name (all caps, reasonable length)
-                if (isSpeakerName(line)) {
-                    // Look ahead to see if the next line is dialogue
-                    let dialogueLines = [];
-                    let j = i + 1;
-                    
-                    // Collect dialogue lines until we hit another speaker or stage direction
-                    while (j < sceneContent.length) {
-                        const nextLine = sceneContent[j].trim();
-                        if (!nextLine) {
-                            j++;
-                            continue;
-                        }
-                        
-                        // Stop if we hit another speaker name or stage direction
-                        if (isSpeakerName(nextLine) || isStageDirection(nextLine)) {
-                            break;
-                        }
-                        
-                        dialogueLines.push(nextLine);
-                        j++;
-                    }
-                    
-                    // Format speaker and dialogue together
-                    if (dialogueLines.length > 0) {
-                        html += `<div class="play-line"><strong>${line}</strong> ${dialogueLines.join(' ')}</div>`;
-                        i = j; // Skip the dialogue lines we just processed
+            // Just display each line exactly as it appears in the file
+            sceneContent.forEach(line => {
+                const trimmedLine = line.trim();
+                if (trimmedLine) {
+                    // Only do minimal processing: bold speaker names that are on their own line
+                    if (isSpeakerName(trimmedLine)) {
+                        html += `<div class="play-line"><strong>${trimmedLine}</strong></div>`;
                     } else {
-                        // Speaker with no dialogue, just show the speaker name
-                        html += `<div class="play-line"><strong>${line}</strong></div>`;
-                        i++;
+                        html += `<div class="play-line">${trimmedLine}</div>`;
                     }
-                } else if (isStageDirection(line)) {
-                    // Stage direction - keep as is
-                    html += `<div class="play-line">${line}</div>`;
-                    i++;
-                } else {
-                    // Process any line that might contain speaker names
-                    const processedLines = processLineForSpeakers(line);
-                    html += processedLines;
-                    i++;
                 }
-            }
+            });
             
             return html;
         }
         
-        // Process any line for speaker names and split them properly
-        function processLineForSpeakers(line) {
-            // Split the line by potential speaker names (ALL CAPS)
-            const parts = line.split(/([A-Z\s]{3,50})/);
-            let result = '';
-            let currentSpeaker = '';
-            let currentDialogue = '';
-            
-            for (let i = 0; i < parts.length; i++) {
-                const part = parts[i].trim();
-                if (!part) continue;
-                
-                // Check if this part is a speaker name
-                if (isSpeakerName(part)) {
-                    // If we have accumulated dialogue, output it
-                    if (currentDialogue) {
-                        result += `<div class="play-line">${currentDialogue}</div>`;
-                        currentDialogue = '';
-                    }
-                    
-                    // Start new speaker
-                    currentSpeaker = part;
-                } else {
-                    // This is dialogue
-                    if (currentSpeaker) {
-                        // We have a speaker, so this is their dialogue
-                        result += `<div class="play-line"><strong>${currentSpeaker}</strong> ${part}</div>`;
-                        currentSpeaker = '';
-                    } else {
-                        // No speaker, just add to dialogue
-                        currentDialogue += (currentDialogue ? ' ' : '') + part;
-                    }
-                }
-            }
-            
-            // Handle any remaining dialogue
-            if (currentDialogue) {
-                result += `<div class="play-line">${currentDialogue}</div>`;
-            }
-            
-            // If no processing was done, return original line
-            if (!result) {
-                return `<div class="play-line">${line}</div>`;
-            }
-            
-            return result;
-        }
+
         
         // Check if a line is a speaker name
         function isSpeakerName(line) {
