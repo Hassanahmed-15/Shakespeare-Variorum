@@ -1397,7 +1397,7 @@
             border-radius: var(--r-md);
             box-shadow: var(--shadow);
             padding: var(--s-5);
-            font-family: Inter, system-ui, sans-serif;
+            font-family: "Source Serif 4", Georgia, serif;
             font-size: 17.5px;
             line-height: 1.65;
             color: var(--ink-1);
@@ -1406,6 +1406,7 @@
             width: 100%;
             height: calc(100vh - 70px - 150px - var(--s-4) * 2);
             overflow-y: auto;
+            position: relative;
         }
 
         /* Top meta line (play · act · scene · selection count) */
@@ -1441,6 +1442,83 @@
             margin-right: .35rem; 
             color: var(--ink-3); 
         } /* the em-dash */
+
+        /* Lists with hanging bullets (Apple-ish) */
+        .analysis ul { 
+            margin: 0 0 var(--s-3);
+            padding-left: 1.1rem;
+        }
+        .analysis ul li { 
+            margin: .2rem 0; 
+        }
+        .analysis ul li::marker { 
+            color: var(--ink-3); 
+        }
+
+        /* Definition list (for Key Words) */
+        .analysis dl { 
+            margin: 0 0 var(--s-3); 
+        }
+        .analysis dt {
+            font-family: Inter, system-ui, sans-serif;
+            font-weight: 600;
+            color: var(--ink-2);
+            display: inline;
+        }
+        .analysis dd {
+            display: inline;
+            margin: 0 0 0 .35rem;
+            color: var(--ink-1);
+        }
+        .analysis dd + dt::before { 
+            content: "\A"; 
+            white-space: pre; 
+        } /* next term on new line */
+
+        /* Soft section dividers without boxing the content */
+        .analysis .section + .section {
+            border-top: 1px solid var(--line);
+            padding-top: var(--s-4);
+            margin-top: var(--s-4);
+        }
+
+        /* Copy chip in the corner */
+        .analysis .copy-chip {
+            position: absolute;
+            top: var(--s-3);
+            right: var(--s-3);
+            font-family: Inter, system-ui, sans-serif;
+            font-size: 13px;
+            color: var(--ink-2);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 6px 10px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+
+        /* Quotes / citations inside the answer */
+        .analysis blockquote {
+            margin: var(--s-3) 0;
+            padding-left: 1rem;
+            border-left: 3px solid var(--line);
+            color: var(--ink-2);
+            font-style: italic;
+        }
+
+        /* Micro-typography */
+        .analysis p, .analysis li { 
+            text-rendering: optimizeLegibility; 
+            font-feature-settings: "liga","clig","kern";
+        }
+
+        /* Dense mode for long outputs (optional toggle) */
+        .analysis.compact { 
+            font-size: 16.5px; 
+            line-height: 1.55; 
+            max-width: 86ch; 
+        }
 
         /* Lists with hanging bullets (Apple-ish) */
         .analysis ul { 
@@ -3844,62 +3922,7 @@
         }
 
         function formatAnalysisContent(content) {
-            // First, handle the specific Basic analysis format with ** headers
-            if (currentAnalysisMode === 'basic') {
-                // Parse the content into structured sections
-                const sections = content.split(/\n\n+/);
-                let formattedContent = '';
-                
-                sections.forEach((section, index) => {
-                    const trimmedSection = section.trim();
-                    if (!trimmedSection) return;
-                    
-                    // Check for key-value pairs (Label — content)
-                    if (trimmedSection.includes('—')) {
-                        const parts = trimmedSection.split('—', 2);
-                        if (parts.length === 2) {
-                            const label = parts[0].replace(/\*\*(.*?)\*\*/g, '$1').trim();
-                            const content = parts[1].trim();
-                            formattedContent += `<p class="kv"><span class="k">${label}</span><span class="sep">—</span>${content}</p>`;
-                        } else {
-                            formattedContent += `<p>${trimmedSection}</p>`;
-                        }
-                    } else if (trimmedSection.toLowerCase().includes('key words')) {
-                        // Handle Key Words section specially
-                        formattedContent += `<h3>Key Words</h3>`;
-                        // Extract word definitions (assuming format: word — definition)
-                        const lines = trimmedSection.split('\n').slice(1); // Skip the "Key Words" line
-                        let dlContent = '';
-                        lines.forEach(line => {
-                            if (line.includes('—')) {
-                                const [word, def] = line.split('—', 2);
-                                if (word && def) {
-                                    dlContent += `<dt>${word.trim()}</dt><dd> — ${def.trim()}</dd>`;
-                                }
-                            }
-                        });
-                        if (dlContent) {
-                            formattedContent += `<dl>${dlContent}</dl>`;
-                        }
-                    } else if (trimmedSection.toLowerCase().includes('synopsis') || 
-                               trimmedSection.toLowerCase().includes('prosody') ||
-                               trimmedSection.toLowerCase().includes('context') ||
-                               trimmedSection.toLowerCase().includes('function')) {
-                        // Handle other sections with h3 headers
-                        const lines = trimmedSection.split('\n');
-                        const title = lines[0].replace(/\*\*(.*?)\*\*/g, '$1').trim();
-                        const content = lines.slice(1).join('\n').trim();
-                        formattedContent += `<h3>${title}</h3><p>${content}</p>`;
-                    } else {
-                        // Default paragraph
-                        formattedContent += `<p>${trimmedSection}</p>`;
-                    }
-                });
-                
-                return formattedContent;
-            }
-            
-            // For other analysis modes, use the original logic
+            // Parse the content into structured sections
             const sections = content.split(/\n\n+/);
             let formattedContent = '';
             
@@ -3907,33 +3930,53 @@
                 const trimmedSection = section.trim();
                 if (!trimmedSection) return;
                 
-                // Check if this looks like a section that should have a header
-                if (index === 0) {
-                    // First section is usually the main analysis
-                    formattedContent += `<p>${trimmedSection}</p>`;
-                } else if (trimmedSection.toLowerCase().includes('etymology') || 
-                           trimmedSection.toLowerCase().includes('word') ||
-                           trimmedSection.toLowerCase().includes('meaning')) {
-                    formattedContent += `<h4>Etymology & Word Origins</h4><p>${trimmedSection}</p>`;
-                } else if (trimmedSection.toLowerCase().includes('critic') || 
+                // Check for key-value pairs (Label — content) - works for all levels
+                if (trimmedSection.includes('—')) {
+                    const parts = trimmedSection.split('—', 2);
+                    if (parts.length === 2) {
+                        const label = parts[0].replace(/\*\*(.*?)\*\*/g, '$1').trim();
+                        const content = parts[1].trim();
+                        formattedContent += `<p class="kv"><span class="k">${label}</span><span class="sep">—</span>${content}</p>`;
+                    } else {
+                        formattedContent += `<p>${trimmedSection}</p>`;
+                    }
+                } else if (trimmedSection.toLowerCase().includes('key words')) {
+                    // Handle Key Words section specially
+                    formattedContent += `<h3>Key Words</h3>`;
+                    // Extract word definitions (assuming format: word — definition)
+                    const lines = trimmedSection.split('\n').slice(1); // Skip the "Key Words" line
+                    let dlContent = '';
+                    lines.forEach(line => {
+                        if (line.includes('—')) {
+                            const [word, def] = line.split('—', 2);
+                            if (word && def) {
+                                dlContent += `<dt>${word.trim()}</dt><dd> — ${def.trim()}</dd>`;
+                            }
+                        }
+                    });
+                    if (dlContent) {
+                        formattedContent += `<dl>${dlContent}</dl>`;
+                    }
+                } else if (trimmedSection.toLowerCase().includes('synopsis') || 
+                           trimmedSection.toLowerCase().includes('prosody') ||
+                           trimmedSection.toLowerCase().includes('context') ||
+                           trimmedSection.toLowerCase().includes('function') ||
+                           trimmedSection.toLowerCase().includes('etymology') ||
+                           trimmedSection.toLowerCase().includes('critic') ||
                            trimmedSection.toLowerCase().includes('scholar') ||
-                           trimmedSection.toLowerCase().includes('interpretation')) {
-                    formattedContent += `<h4>What Critics Say</h4><p>${trimmedSection}</p>`;
-                } else if (trimmedSection.toLowerCase().includes('performance') || 
-                           trimmedSection.toLowerCase().includes('stage') ||
-                           trimmedSection.toLowerCase().includes('production')) {
-                    formattedContent += `<h4>Performance Insights</h4><p>${trimmedSection}</p>`;
-                } else if (trimmedSection.toLowerCase().includes('theme') || 
+                           trimmedSection.toLowerCase().includes('performance') ||
+                           trimmedSection.toLowerCase().includes('theme') ||
                            trimmedSection.toLowerCase().includes('symbol') ||
-                           trimmedSection.toLowerCase().includes('motif')) {
-                    formattedContent += `<h4>Themes & Symbolism</h4><p>${trimmedSection}</p>`;
-                } else if (trimmedSection.toLowerCase().includes('context') || 
                            trimmedSection.toLowerCase().includes('historical') ||
                            trimmedSection.toLowerCase().includes('background')) {
-                    formattedContent += `<h4>Historical Context</h4><p>${trimmedSection}</p>`;
+                    // Handle sections with h3 headers for all analysis levels
+                    const lines = trimmedSection.split('\n');
+                    const title = lines[0].replace(/\*\*(.*?)\*\*/g, '$1').trim();
+                    const content = lines.slice(1).join('\n').trim();
+                    formattedContent += `<h3>${title}</h3><p>${content}</p>`;
                 } else {
-                    // Default section
-                    formattedContent += `<h4>Additional Analysis</h4><p>${trimmedSection}</p>`;
+                    // Default paragraph - wrap in section for better structure
+                    formattedContent += `<div class="section"><p>${trimmedSection}</p></div>`;
                 }
             });
             
