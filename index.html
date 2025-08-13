@@ -1188,20 +1188,16 @@
         .stage-direction {
             font-style: italic;
             color: #6b7280;
-            margin: 20px 0;
-            padding: 8px 0;
+            margin: 12px 0;
+            padding: 4px 0;
             font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
             font-size: 14px;
             line-height: 1.6;
-            border-left: 2px solid #e5e7eb;
-            padding-left: 12px;
         }
 
         .dialogue {
-            margin: 24px 0;
-            padding: 16px 0;
-            border-left: 3px solid #e5e7eb;
-            padding-left: 16px;
+            margin: 16px 0;
+            padding: 8px 0;
         }
 
         .character-name {
@@ -1329,9 +1325,8 @@
         }
 
         .dialogue-text {
-            margin-left: 20px;
             line-height: 1.58;
-            white-space: normal;
+            white-space: pre-line;
             font-family: var(--serif);
             font-size: 18px;
             max-width: 72ch;
@@ -1339,6 +1334,7 @@
             word-wrap: normal;
             overflow-wrap: normal;
             word-break: normal;
+            margin: 8px 0;
         }
 
         .highlight {
@@ -3419,6 +3415,9 @@
             
             // Handle reconstructed lines
             if (Array.isArray(sceneContent)) {
+                let currentSpeaker = '';
+                let currentDialogue = [];
+                
                 sceneContent.forEach(line => {
                     const trimmedLine = line.trim();
                     if (!trimmedLine) return;
@@ -3433,31 +3432,34 @@
                                         !trimmedLine.endsWith(']');
                     
                     if (isSpeakerName) {
-                        // This is a speaker name, start new dialogue block
-                        html += `<div class="dialogue">`;
-                        html += `<div class="character-name">${trimmedLine}</div>`;
-                        html += `<div class="dialogue-text">`;
+                        // Output previous speaker's dialogue if any
+                        if (currentSpeaker && currentDialogue.length > 0) {
+                            html += `<div class="dialogue">`;
+                            html += `<div class="character-name">${currentSpeaker}</div>`;
+                            html += `<div class="dialogue-text">${currentDialogue.join('<br>')}</div>`;
+                            html += `</div>`;
+                        }
+                        // Start new speaker
+                        currentSpeaker = trimmedLine;
+                        currentDialogue = [];
                     } else {
                         // This is dialogue or stage direction
                         if (trimmedLine.startsWith('[') && trimmedLine.endsWith(']')) {
-                            // Stage direction
+                            // Stage direction - output it immediately
                             html += `<div class="stage-direction">${trimmedLine}</div>`;
                         } else {
-                            // Regular dialogue - add to current dialogue block
-                            if (html.endsWith('</div>')) {
-                                // Start new dialogue block if we just closed one
-                                html += `<div class="dialogue">`;
-                                html += `<div class="dialogue-text">`;
-                            }
-                            html += `${trimmedLine}<br>`;
+                            // Regular dialogue - add to current speaker's dialogue
+                            currentDialogue.push(trimmedLine);
                         }
                     }
                 });
                 
-                // Close any open dialogue blocks
-                if (html.endsWith('<br>')) {
-                    html = html.slice(0, -4); // Remove the last <br>
-                    html += `</div></div>`;
+                // Output the last speaker's dialogue
+                if (currentSpeaker && currentDialogue.length > 0) {
+                    html += `<div class="dialogue">`;
+                    html += `<div class="character-name">${currentSpeaker}</div>`;
+                    html += `<div class="dialogue-text">${currentDialogue.join('<br>')}</div>`;
+                    html += `</div>`;
                 }
             }
             
