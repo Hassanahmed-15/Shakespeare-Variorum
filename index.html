@@ -2917,7 +2917,7 @@
                 if (isSpeakerName) {
                     // If we have accumulated dialogue from previous speaker, add it
                     if (currentSpeaker && currentDialogue.length > 0) {
-                        reconstructedLines.push(`${currentSpeaker} ${currentDialogue.join(' ')}`);
+                        reconstructedLines.push(`${currentSpeaker} ${currentDialogue.join('\n')}`);
                     }
                     // Start new speaker
                     currentSpeaker = cleanLine;
@@ -2930,7 +2930,7 @@
             
             // Add the last speaker's dialogue
             if (currentSpeaker && currentDialogue.length > 0) {
-                reconstructedLines.push(`${currentSpeaker} ${currentDialogue.join(' ')}`);
+                reconstructedLines.push(`${currentSpeaker} ${currentDialogue.join('\n')}`);
             }
             
             console.log('Reconstructed lines:', reconstructedLines);
@@ -3454,12 +3454,12 @@
                             
                             html += `<div class="dialogue">`;
                             html += `<div class="character-name">${speaker}</div>`;
-                            html += `<div class="dialogue-text">${dialogue}</div>`;
+                            html += `<div class="dialogue-text">${dialogue.replace(/\n/g, '<br>')}</div>`;
                             html += `</div>`;
                         } else {
                             // Fallback: treat the whole line as dialogue
                             html += `<div class="dialogue">`;
-                            html += `<div class="dialogue-text">${trimmedLine}</div>`;
+                            html += `<div class="dialogue-text">${trimmedLine.replace(/\n/g, '<br>')}</div>`;
                             html += `</div>`;
                         }
                     }
