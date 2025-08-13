@@ -3981,14 +3981,21 @@
                     sectionTitle = numberedMatch[3].trim();
                     sectionText = trimmedSection.split('\n').slice(1).join('\n').trim();
                 } else {
-                    // Handle dash-separated sections (Basic/FFF)
-                    const dashMatch = trimmedSection.match(/^(.+?)\s*—\s*(.+)/s);
-                    if (dashMatch) {
-                        sectionTitle = dashMatch[1].trim();
-                        sectionText = dashMatch[2].trim();
+                    // Handle bold section headers (new format: **Section Name:**)
+                    const boldMatch = trimmedSection.match(/^\*\*(.+?)\*\*:\s*(.+)/s);
+                    if (boldMatch) {
+                        sectionTitle = boldMatch[1].trim();
+                        sectionText = boldMatch[2].trim();
                     } else {
-                        // Handle plain text
-                        sectionText = trimmedSection;
+                        // Handle dash-separated sections (Basic/FFF)
+                        const dashMatch = trimmedSection.match(/^(.+?)\s*—\s*(.+)/s);
+                        if (dashMatch) {
+                            sectionTitle = dashMatch[1].trim();
+                            sectionText = dashMatch[2].trim();
+                        } else {
+                            // Handle plain text
+                            sectionText = trimmedSection;
+                        }
                     }
                 }
                 
