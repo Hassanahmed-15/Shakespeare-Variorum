@@ -883,53 +883,38 @@
         /* Main Layout */
         .layout {
             display: grid;
-            grid-template-columns: 280px 1fr minmax(400px, 35%);
+            grid-template-columns: 1fr minmax(400px, 30%);
             gap: var(--s-4);
             height: calc(100vh - 70px);
             background: var(--bg);
             position: relative;
             overflow: hidden;
             margin-top: 70px;
+            margin-left: 280px;
         }
 
         @media (min-width: 1600px) {
             .layout {
-                grid-template-columns: 280px 50% 30%;
-            }
-            .analysis {
-                width: calc(30% - var(--s-4));
-            }
-            .reader {
-                margin-right: calc(30% + var(--s-4));
+                grid-template-columns: 1fr minmax(400px, 30%);
             }
         }
 
         @media (max-width: 1200px) {
             .layout {
-                grid-template-columns: 280px 1fr minmax(350px, 30%);
-            }
-            .analysis {
-                width: calc(30% - var(--s-4));
-            }
-            .reader {
-                margin-right: calc(30% + var(--s-4));
+                grid-template-columns: 1fr minmax(400px, 35%);
             }
         }
 
         @media (max-width: 900px) {
             .layout {
-                grid-template-columns: 280px 1fr minmax(300px, 25%);
+                grid-template-columns: 1fr minmax(350px, 35%);
             }
             .sidebar {
                 width: 250px;
                 left: var(--s-2);
             }
-            .analysis {
-                width: calc(25% - var(--s-4));
-            }
-            .reader {
+            .layout {
                 margin-left: 250px;
-                margin-right: calc(25% + var(--s-4));
             }
         }
 
@@ -1178,10 +1163,9 @@
             border: 1px solid var(--line);
             border-radius: var(--r-md);
             box-shadow: var(--shadow);
-            max-width: 100%;
+            width: 100%;
+            min-width: 0;
             word-wrap: break-word;
-            margin-left: 280px;
-            margin-right: calc(35% + var(--s-4));
             height: calc(100vh - 70px - 150px - var(--s-4) * 2);
         }
 
@@ -1259,11 +1243,10 @@
         .play .line {
             display: block;
             white-space: normal;
-            word-break: break-all;
+            word-break: break-word;
             overflow-wrap: break-word;
             max-width: 100%;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            overflow: visible;
         }
 
         /* Stage directions and prose can still wrap nicely */
@@ -1384,13 +1367,9 @@
             color: var(--ink-1);
             max-width: 80ch;
             margin: 0;
-            position: fixed;
-            top: 70px;
-            right: var(--s-4);
-            width: calc(35% - var(--s-4));
+            width: 100%;
             height: calc(100vh - 70px - 150px - var(--s-4) * 2);
             overflow-y: auto;
-            z-index: 10;
         }
 
         /* Top meta line (play · act · scene · selection count) */
@@ -1722,13 +1701,13 @@
         }
 
         /* Empty State */
-        .empty {
-            display: flex !important;
+        .reader .empty {
+            display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 50vh;
-            background: red !important;
-            border: 3px solid blue !important;
+            min-height: calc(100vh - 70px - 150px - var(--s-4) * 2);
+            margin: 0;
+            padding: 0;
         }
 
         .empty-body {
@@ -1790,7 +1769,7 @@
             border-radius: var(--r-sm);
             padding: var(--s-4);
             box-shadow: var(--shadow);
-            margin-bottom: var(--s-4);
+            margin: 0;
         }
 
         .card h3 {
@@ -2039,9 +2018,7 @@
 
                     <h2>Sources & Attribution</h2>
                     <ul>
-                        <li>Texts: Folger Shakespeare Library.</li>
-                        <li>Commentary indices: New Variorum Shakespeare series.</li>
-                        <li>External: JSTOR, Google Scholar, Internet Shakespeare Editions.</li>
+                        <li>Texts: Based on the Folger Shakespeare Library editions, edited by Barbara Mowat, Paul Werstine, Michael Poston, and Rebecca Niles</li>
                     </ul>
 
                     <h2>Contact & License</h2>
@@ -2103,7 +2080,7 @@
 
         <!-- Reading Pane -->
         <div class="reader panel play" id="playText">
-            <div class="empty card">
+            <div class="empty">
                 <div class="empty-body">
                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#6B7078" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M8 13h8M8 10h5"/></svg>
                     <div class="empty-title">Add a play to begin</div>
@@ -2111,6 +2088,7 @@
                     <button class="btn btn-primary" onclick="openSettings()">Open Settings</button>
                 </div>
             </div>
+
         </div>
 
         <!-- Analysis Pane -->
@@ -3236,7 +3214,7 @@
             console.log('loadPlay called with:', playName);
             console.log('plays object keys:', Object.keys(plays));
             console.log('plays[playName]:', plays[playName]);
-            console.log('playText element innerHTML before:', document.getElementById('playText').innerHTML.substring(0, 200));
+            console.log('playText element innerHTML before loadPlay:', document.getElementById('playText').innerHTML.substring(0, 200));
             
             const playTextElement = document.getElementById('playText');
             const navigationElement = document.getElementById('navigationList');
@@ -3246,7 +3224,6 @@
             
             if (!playName || !plays[playName]) {
                 console.log('Play not found or invalid:', playName);
-                console.log('playText element innerHTML after (should be unchanged):', document.getElementById('playText').innerHTML.substring(0, 200));
                 // Don't overwrite the default content if no play is loaded
                 if (navigationElement) {
                     navigationElement.innerHTML = '';
@@ -3388,147 +3365,6 @@
             
             return html || '<p><em>Scene content could not be formatted.</em></p>';
         }
-                if (trimmedLine.startsWith('[') && trimmedLine.endsWith(']')) {
-                    console.log('Found complete stage direction:', trimmedLine);
-                    if (inDialogue) {
-                        // Close current dialogue block
-                        if (currentDialogueText) {
-                            html += `<div class="dialogue-text">${currentDialogueText}</div>`;
-                            currentDialogueText = '';
-                        }
-                        html += '</div></div>';
-                        inDialogue = false;
-                    }
-                    html += `<div class="stage-direction"><em>${trimmedLine}</em></div>`;
-                    i++;
-                    continue;
-                }
-                
-                // Check for start of multi-line stage direction
-                if (trimmedLine.startsWith('[') && !trimmedLine.endsWith(']')) {
-                    console.log('Found start of multi-line stage direction:', trimmedLine);
-                    if (inDialogue) {
-                        // Close current dialogue block
-                        if (currentDialogueText) {
-                            html += `<div class="dialogue-text">${currentDialogueText}</div>`;
-                            currentDialogueText = '';
-                        }
-                        html += '</div></div>';
-                        inDialogue = false;
-                    }
-                    inStageDirection = true;
-                    stageDirectionText = trimmedLine;
-                    i++;
-                    continue;
-                }
-                
-                // Check for continuation of multi-line stage direction
-                if (inStageDirection) {
-                    stageDirectionText += ' ' + trimmedLine;
-                    console.log('Continuing stage direction:', stageDirectionText);
-                    
-                    // Check if stage direction ends
-                    if (trimmedLine.endsWith(']')) {
-                        console.log('Found end of multi-line stage direction:', stageDirectionText);
-                        html += `<div class="stage-direction"><em>${stageDirectionText}</em></div>`;
-                        inStageDirection = false;
-                        stageDirectionText = '';
-                    }
-                    i++;
-                    continue;
-                }
-                
-                // Check for all-caps speaker names (simplified detection)
-                if (trimmedLine.match(/^[A-Z\s,]+$/) && trimmedLine.length > 2 && trimmedLine.length < 50) {
-                    // Avoid stage directions
-                    const stageDirections = ['ACT', 'SCENE', 'ENTER', 'EXIT', 'EXEUNT', 'WITHIN', 'ABOVE', 'BELOW', 'CURTAIN'];
-                    const upperLine = trimmedLine.toUpperCase();
-                    
-                    if (!stageDirections.some(word => upperLine.includes(word))) {
-                        console.log('Found speaker name:', trimmedLine);
-                        if (inDialogue) {
-                            // Close current dialogue block
-                            if (currentDialogueText) {
-                                html += `<div class="dialogue-text">${currentDialogueText}</div>`;
-                                currentDialogueText = '';
-                            }
-                            html += '</div></div>';
-                            inDialogue = false;
-                        }
-                        html += `<div class="dialogue" style="margin-top: 20px;"><div class="character-name">${trimmedLine}</div>`;
-                        inDialogue = true;
-                        i++;
-                        continue;
-                    }
-                }
-                
-                // Check for inline speakers (all caps followed by dialogue)
-                const inlineSpeakerMatch = trimmedLine.match(/^([A-Z][A-Z\s,]*[A-Z])\s+(.+)$/);
-                if (inlineSpeakerMatch) {
-                    let speakerName = inlineSpeakerMatch[1].trim();
-                    let dialogue = inlineSpeakerMatch[2].trim();
-                    
-                    // Clean up speaker name - remove trailing single letters that are likely part of dialogue
-                    const speakerWords = speakerName.split(/\s+/);
-                    const lastWord = speakerWords[speakerWords.length - 1];
-                    
-                    // If the last word is a single letter (like "I", "A", "O"), move it to dialogue
-                    if (lastWord.length === 1 && /^[A-Z]$/.test(lastWord)) {
-                        speakerName = speakerWords.slice(0, -1).join(' ');
-                        dialogue = lastWord + ' ' + dialogue;
-                        console.log('Moved single letter from speaker to dialogue:', lastWord);
-                    }
-                    
-                    // Check if speaker name looks like a real speaker (at least 2 characters)
-                    if (speakerName.match(/^[A-Z][A-Z\s,]*[A-Z]$/) && speakerName.length >= 2) {
-                        const stageDirections = ['ACT', 'SCENE', 'ENTER', 'EXIT', 'EXEUNT', 'WITHIN', 'ABOVE', 'BELOW', 'CURTAIN'];
-                        const upperSpeaker = speakerName.toUpperCase();
-                        
-                        if (!stageDirections.some(word => upperSpeaker.includes(word))) {
-                            console.log('Found inline speaker:', speakerName, 'with dialogue:', dialogue);
-                            if (inDialogue) {
-                                // Close current dialogue block
-                                if (currentDialogueText) {
-                                    html += `<div class="dialogue-text">${currentDialogueText}</div>`;
-                                    currentDialogueText = '';
-                                }
-                                html += '</div></div>';
-                                inDialogue = false;
-                            }
-                            const formattedDialogue = formatBracketedText(dialogue);
-                            html += `<div class="dialogue" style="margin-top: 20px;"><div class="character-name">${speakerName}</div><div class="dialogue-text"><span class="line">${formattedDialogue}</span></div></div>`;
-                            inDialogue = false;
-                            i++;
-                            continue;
-                        }
-                    }
-                }
-                
-                // Regular dialogue or unattributed text
-                let formattedLine = formatBracketedText(trimmedLine);
-                
-                // Debug: log the line to see what we're processing
-                console.log('Processing dialogue line:', trimmedLine, 'formatted:', formattedLine, 'original line:', line);
-                
-                if (inDialogue) {
-                    // Accumulate dialogue text with line spans
-                    if (currentDialogueText) {
-                        // Add line span to preserve original structure
-                        if (formattedLine.trim()) {
-                            currentDialogueText += '<span class="line">' + formattedLine + '</span>';
-                        }
-                    } else {
-                        currentDialogueText = '<span class="line">' + formattedLine + '</span>';
-                    }
-                } else {
-                    html += `<div class="dialogue-text"><span class="line">${formattedLine}</span></div>`;
-                }
-                
-                i++;
-            }
-            
-            return html || '<p><em>Scene content could not be formatted.</em></p>';
-        }
 
         // Analyze the text to identify speaker patterns
         function analyzeSpeakerPatterns(sceneContent) {
@@ -3627,7 +3463,7 @@
                     if (nextTrimmed && nextTrimmed.length > 5) {
                         // If next line is also all caps, this might not be a speaker
                         if (nextTrimmed.match(/^[A-Z\s,]+$/)) {
-                            continue;
+                            return false;
                         }
                         // If next line looks like dialogue, this is likely a speaker
                         return true;
@@ -4419,14 +4255,49 @@
             window.open(url, '_blank');
         }
 
+
+
         function openInternetShakespeare() {
             const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name.toLowerCase().replace(/\s+/g, '-') : 'shakespeare';
             const url = `https://internetshakespeare.uvic.ca/Library/plays/${playName}/`;
             window.open(url, '_blank');
         }
 
+        // Geneva Bible Search Integration
+        let bibleSearch = null;
 
+        // Initialize Geneva Bible search when the app starts
+        async function initializeBibleSearch() {
+            try {
+                const response = await fetch('/data/bibleSearch.js');
+                if (response.ok) {
+                    // Load the script dynamically
+                    const script = document.createElement('script');
+                    script.src = '/data/bibleSearch.js';
+                    document.head.appendChild(script);
+                    
+                    // Wait for script to load and initialize
+                    script.onload = async function() {
+                        if (typeof BibleSearch !== 'undefined') {
+                            bibleSearch = new BibleSearch();
+                            const success = await bibleSearch.loadBibleData();
+                            if (success) {
+                                console.log('Geneva Bible search initialized successfully');
+                            } else {
+                                console.warn('Failed to initialize Geneva Bible search');
+                            }
+                        }
+                    };
+                }
+            } catch (error) {
+                console.error('Error loading Geneva Bible search:', error);
+            }
+        }
 
+        // Initialize Geneva Bible search when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeBibleSearch();
+        });
 
     </script>
 

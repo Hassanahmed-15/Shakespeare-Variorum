@@ -1,5 +1,266 @@
 const fetch = require('node-fetch');
 
+// Google Books API function
+async function getGoogleBooksContext(quote, play) {
+  const GOOGLE_BOOKS_KEY = process.env.GOOGLE_BOOKS_KEY;
+  
+  if (!GOOGLE_BOOKS_KEY) {
+    console.error('Google Books API key not configured');
+    return null;
+  }
+  
+  const query = `"${quote}" "${play}" Shakespeare`;
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&key=${GOOGLE_BOOKS_KEY}`;
+  
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`Google Books API error: ${response.status} ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    
+    if (data.items && data.items.length > 0) {
+      // Return first relevant book snippet
+      return {
+        title: data.items[0].volumeInfo.title,
+        snippet: data.items[0].searchInfo?.textSnippet || "No preview available",
+        authors: data.items[0].volumeInfo.authors || [],
+        publishedDate: data.items[0].volumeInfo.publishedDate || null
+      };
+    }
+  } catch (error) {
+    console.error('Google Books error:', error);
+  }
+  return null;
+}
+
+// Function to search OpenAlex for academic papers about a Shakespeare passage
+async function getOpenAlexPapers(highlightedText, play, level = 'intermediate') {
+  // Clean up the query
+  const query = `"${highlightedText}" "${play}" Shakespeare`;
+  
+  // Determine how many results based on level
+  const resultsCount = {
+    'basic': 0,  // Don't use OpenAlex for basic
+    'intermediate': 2,
+    'expert': 5,
+    'fullfathomfive': 10
+  };
+  
+  const perPage = resultsCount[level] || 2;
+  
+  // Skip if basic level
+  if (perPage === 0) return null;
+  
+  const url = `https://api.openalex.org/works?search=${encodeURIComponent(query)}&per_page=${perPage}&sort=cited_by_count:desc`;
+  
+  try {
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': `mailto:${process.env.OPENALEX_MAILTO}`
+      }
+    });
+    
+    if (!response.ok) {
+      console.error('OpenAlex API error:', response.status);
+      return null;
+    }
+    
+    const data = await response.json();
+    
+    // Format the results nicely
+    const papers = data.results.map(paper => ({
+      title: paper.display_name,
+      year: paper.publication_year,
+      authors: paper.authorships.slice(0, 3).map(a => 
+        a.author.display_name).join(', '),
+      journal: paper.primary_location?.source?.display_name || 'Unknown Journal',
+      citationCount: paper.cited_by_count,
+      doi: paper.doi,
+      relevantQuote: paper.abstract_inverted_index ? 
+        extractRelevantQuote(paper.abstract_inverted_index, highlightedText) : null
+    }));
+    
+    return papers;
+    
+  } catch (error) {
+    console.error('Error fetching OpenAlex data:', error);
+    return null;
+  }
+}
+
+// Helper function to extract relevant sentences from abstract
+function extractRelevantQuote(abstractIndex, searchText) {
+  // OpenAlex returns abstracts in a weird inverted index format
+  // This converts it back to text
+  try {
+    // Reconstruct the abstract
+    let abstract = '';
+    const words = {};
+    for (const [word, positions] of Object.entries(abstractIndex)) {
+      positions.forEach(pos => {
+        words[pos] = word;
+      });
+    }
+    
+    // Sort by position and reconstruct
+    const sortedPositions = Object.keys(words).sort((a, b) => a - b);
+    abstract = sortedPositions.map(pos => words[pos]).join(' ');
+    
+    // Find sentence containing search terms (simplified)
+    const sentences = abstract.split('. ');
+    const searchWords = searchText.toLowerCase().split(' ');
+    
+    for (const sentence of sentences) {
+      const lowerSentence = sentence.toLowerCase();
+      if (searchWords.some(word => lowerSentence.includes(word))) {
+        return sentence + '.';
+      }
+    }
+    
+    // Return first sentence if no match
+    return sentences[0] + '.';
+  } catch (e) {
+    return null;
+  }
+}
+
+// Function to check for Biblical references in Shakespeare text
+async function checkBiblicalAllusions(highlightedText, play) {
+  // Common Biblical phrases that appear in Shakespeare
+  const biblicalPhrases = [
+    'eye for eye',
+    'bread alone',
+    'fall from grace',
+    'forbidden fruit',
+    'brother\'s keeper',
+    'pearls before swine',
+    'whited sepulchre',
+    'lamb to the slaughter'
+  ];
+  
+  // Check if the highlighted text might contain Biblical references
+  const searchTerms = extractPotentialBiblicalTerms(highlightedText);
+  
+  if (searchTerms.length === 0) return null;
+  
+  try {
+    const results = [];
+    
+    for (const term of searchTerms) {
+      // Search for the term in the Bible
+      const searchUrl = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/search?query=${encodeURIComponent(term)}&limit=3`;
+      
+      const response = await fetch(searchUrl, {
+        headers: {
+          'api-key': process.env.APIBIBLE_KEY
+        }
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        
+        if (data.data && data.data.passages && data.data.passages.length > 0) {
+          // Get the actual verse text
+          const passage = data.data.passages[0];
+          const verseId = passage.id;
+          
+          // Fetch the actual verse content
+          const verseUrl = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/passages/${verseId}?content-type=text`;
+          
+          const verseResponse = await fetch(verseUrl, {
+            headers: {
+              'api-key': process.env.APIBIBLE_KEY
+            }
+          });
+          
+          if (verseResponse.ok) {
+            const verseData = await verseResponse.json();
+            results.push({
+              searchTerm: term,
+              reference: passage.reference,
+              text: verseData.data.content.replace(/[\n\r]+/g, ' ').trim(),
+              relevance: calculateRelevance(highlightedText, verseData.data.content)
+            });
+          }
+        }
+      }
+    }
+    
+    // Sort by relevance and return top results
+    return results
+      .sort((a, b) => b.relevance - a.relevance)
+      .slice(0, 3);
+      
+  } catch (error) {
+    console.error('API Bible error:', error);
+    return null;
+  }
+}
+
+// Helper function to extract potential Biblical terms/phrases
+function extractPotentialBiblicalTerms(text) {
+  const terms = [];
+  
+  // Common Biblical words that Shakespeare uses
+  const biblicalKeywords = [
+    'serpent', 'garden', 'apple', 'cross', 'judas', 'gospel',
+    'heaven', 'hell', 'angel', 'devil', 'soul', 'sin',
+    'redemption', 'salvation', 'prophet', 'miracle',
+    'resurrection', 'testament', 'covenant', 'sabbath'
+  ];
+  
+  // Check for keywords
+  const lowerText = text.toLowerCase();
+  for (const keyword of biblicalKeywords) {
+    if (lowerText.includes(keyword)) {
+      terms.push(keyword);
+    }
+  }
+  
+  // Also check for short phrases (2-3 words) that might be Biblical
+  if (text.length < 50) {
+    terms.push(text);
+  }
+  
+  return terms;
+}
+
+// Helper function to calculate relevance
+function calculateRelevance(shakespeareText, bibleText) {
+  const shakeWords = shakespeareText.toLowerCase().split(/\s+/);
+  const bibleWords = bibleText.toLowerCase().split(/\s+/);
+  
+  let matches = 0;
+  for (const word of shakeWords) {
+    if (bibleWords.includes(word) && word.length > 3) {
+      matches++;
+    }
+  }
+  
+  return matches;
+}
+
+// Integrate into your main analysis function
+async function enrichAnalysisWithBible(highlightedText, play, level) {
+  // Skip Biblical analysis for basic level
+  if (level === 'basic') return null;
+  
+  const biblicalRefs = await checkBiblicalAllusions(highlightedText, play);
+  
+  if (biblicalRefs && biblicalRefs.length > 0) {
+    return {
+      type: 'biblical_allusions',
+      references: biblicalRefs,
+      context: `Shakespeare often drew from the King James Bible. Found ${biblicalRefs.length} potential Biblical connections.`
+    };
+  }
+  
+  return null;
+}
+
 exports.handler = async (event, context) => {
   // Enable CORS
   const headers = {
@@ -29,8 +290,9 @@ exports.handler = async (event, context) => {
     }
 
     if (event.httpMethod === 'POST') {
-      const { text, level, model } = JSON.parse(event.body);
+      const { text, level, model, action, quote, play } = JSON.parse(event.body);
 
+      // Handle regular Shakespeare analysis
       if (!text) {
         return {
           statusCode: 400,
@@ -42,11 +304,258 @@ exports.handler = async (event, context) => {
       // Determine the system prompt based on analysis level
       let systemPrompt = '';
       if (level === 'fullfathomfive') {
-        systemPrompt = `You are a master Shakespearean scholar with encyclopedic knowledge of 500 years of Shakespeare scholarship, textual criticism, performance history, and cultural impact. When analyzing any Shakespeare passage, provide the most comprehensive analysis possible in the style of the New Variorum Shakespeare editions. Include exhaustive analysis of language, etymology, historical context, critical interpretations across centuries, textual variants, performance traditions, cultural adaptations, and scholarly debates. Reference specific critics, editions, and performance traditions. This is the deepest level of analysis available.`;
+        systemPrompt = `# System Prompt — Shakespeare Variorum (Ultra-Expert, Folger-Base)
+
+## Role
+You are a Shakespeare Variorum engine at scholar level. Use the Folger Digital Texts as the copy-text for quotation and lineation. Argue with evidence, not haze. Prefer established scholarship; present disputes by name and year. Never invent citations or page numbers. If a claim lacks verification, mark **[uncorroborated]**. If advancing a reasoned but unverified link, mark **[hypothesis]**.
+
+## Inputs (from the app)
+- PLAY (Folger code or title)
+- HIGHLIGHT (exact Folger wording)
+- RANGE (act.scene.line and/or TLN)
+- DEPTH=ultra-expert
+- Optional: EVIDENCE_PACK (collations; dictionary senses; verse refs; source snippets; stage/film items; bibliography)
+
+## Ground Rules
+- Begin with a **plain-language paraphrase** of the highlighted words.
+- Use **complete sentences**; do not write fragments.
+- **Do not use abbreviations** for textual witnesses. Spell them out: "First Quarto (1603)", "Second Quarto (1604/5)", "First Folio (1623)".
+- Quote only what you analyze (≤ 20 words), and always line-anchor to Folger.
+- Mention other witnesses only when a difference **changes meaning**.
+- Detect and note **shared lines/half-lines** if the passage is part of dialogue.
+- If the user's highlight differs from Folger, print the Folger reading before analysis.
+- Footnotes are compact and numbered; target **10–14** total, attached only to load-bearing claims.
+
+## Citing Rule (compact)
+Use critic + year; edition names; dictionary sense labels ("OED adv. 2"); book.chapter.verse for Geneva Bible; translator + year for classical sources. Keep verbatim quotes in notes ≤ 20 words.
+
+## Output Contract (use these headings exactly, in this order; omit a section only if truly inapplicable)
+0. **Plain-Language Paraphrase (Top)** — 25–60 words in modern, neutral English stating literal sense. If two plausible readings exist, present **Reading A / Reading B**.
+
+0.1 **Integrity Check (Folger)** — One sentence: "Matches Folger: Yes/No. If no: Folger reads '…' (act.scene.line/TLN)."
+
+1. **Synopsis (Orientation)** — 2–4 sentences on what the highlighted language does in situ and why it matters.
+
+2. **Apparatus Criticus+ (vs. Folger)**  
+   - One sentence on the witness landscape and whether a crux exists.  
+   - **Collation (Micro-Table)** — only if meaning shifts:  
+     | Witness (spelled out) | Reading | Editors / Note |  
+     | --- | --- | --- |  
+     | First Quarto (1603) | … | … |  
+     | Second Quarto (1604/5) | … | … |  
+     | First Folio (1623) | … | … |  
+   Conclude with your judgment or principled agnosticism. State emendation principles when relevant (for example, *lectio difficilior*).
+
+3. **Prosody (Scansion)** — Scan the line(s) and argue in complete sentences. Mark feminine endings, initial inversions, promotions/demotions, elisions, and **shared lines/hemistichs**. Explain how the meter shapes meaning.
+
+4. **Rhetorical Devices Employed (Catalogue & Function)** — List **4–8** devices that do real work (for example, anaphora, antithesis, hendiadys, chiasmus, zeugma, aposiopesis). For each: give a one-clause definition, quote ≤ 10 words from the passage, and state the interpretive effect in one or two sentences.
+
+5. **Lexical Dossier (Historical Senses)** — Table of **3–6** lexemes central to meaning:  
+   | Lemma | Part of speech | Sense label (OED no.) | Earliest attestation (year) | MED/LEME note | Concise gloss |  
+   | --- | --- | --- | --- | --- | --- |  
+   Flag false friends. If no anchor exists, mark **[uncorroborated]**.
+
+6. **Syntax & Punctuation** — Period punctuation or spelling that shifts meaning; compositor or stop-press notes if relevant.
+
+7. **Sources & Analogues (Evidence-Led)** — Identify proximate sources (for example, Holinshed, North's *Plutarch*, Golding's *Ovid*, Florio's *Montaigne*, Geneva Bible). Label conjectures **[hypothesis]** and name the trigger (rare lemma, image, syntax).
+
+8. **Source Concordance (Snippets)** — Up to three short public-domain or EEBO-TCP snippets (translator and year) keyed to motifs or phrasing, each with one-sentence relevance.
+
+9. **Historical & Theological Context** — Law, doctrine, politics, or custom strictly germane to sense. Distinguish fact from conjecture.
+
+10. **Intertexts & Allusions (Hook & Proof)** — Include only with a clear hook (rare lemma, syntactic echo, proverb trace). Bible as **Geneva book.chapter.verse**; classical with **translator and year**.
+
+11. **Stagecraft & Performance Notes** — Blocking, business, properties, and voice; how at least one landmark production concretely altered meaning.
+
+12. **Performance Timeline (Micro)** — One or two productions per relevant century (when applicable) with company, director, year, principals, and the single interpretive move.
+
+13. **Film & Media Adaptations** — Two to four entries (director and year) with one formal detail (for example, cut, framing, palette, score) that changes meaning.
+
+14. **Character Function** — What the passage does to agency, status, or motive. Contrast two schools in **claim → method → consequence** form.
+
+15. **Themes & Problems** — Name the pressure points (for example, sovereignty, conscience, gender, time) and show how this micro-passage threads macro-themes.
+
+16. **Reception Timeline (Century by Century)** — One claim per century that **changes the reading**, anchored by critic and year. Avoid roll-calls.
+
+17. **Counter-Reading (Serious Alternative)** — State the strongest rival interpretation (critic and year), why it appeals, and how staging or meaning would shift if accepted.
+
+18. **Authorship/Dating & Material Text Note** — Only if relevant: scene-hand debates, stylometric cautions, or compositor habits affecting punctuation or orthography.
+
+19. **Influence & Afterlife** — Later literature, theatre, or politics; proverbization; meme-life where analytically meaningful.
+
+20. **Bibliography by Stratum (Selective)**  
+   - **Editions:** one or two, with a reason.  
+   - **Primary sources:** as used above.  
+   - **Secondary (five to eight):** monographs or chapters with one-line use-cases. Prefer items with a DOI or publisher and year.
+
+21. **Notes** — Ten to fourteen compact footnotes supporting the load-bearing claims.
+
+## Evidence Use (discipline)
+Prefer any provided EVIDENCE_PACK over general memory. If a needed field is absent, either omit the claim or mark **[uncorroborated]** and explain how to verify. Do not include intertexts or film items that lack a clear hook or an identifying detail.
+
+## Self-Checks (silent)
+- Did I verify the highlight against Folger and state any divergence?
+- If meaning shifts, did I present a clear witness comparison using fully spelled-out names and years?
+- Did I mark shared lines and hemistichs where present?
+- Do key lexemes have dictionary anchors (OED/MED/LEME) or a clear **[uncorroborated]** tag?
+- Do intertexts have explicit hooks and proper citations (Geneva book.chapter.verse; translator and year)?
+- Does the reception spine actually change the reading?
+- Is there a credible counter-reading with consequences for staging or meaning?
+- Are my strongest claims footnoted, with nothing fabricated?`;
       } else if (level === 'expert') {
-        systemPrompt = `You are an expert Shakespearean scholar with comprehensive knowledge of 500 years of Shakespeare scholarship. When analyzing any Shakespeare passage, text, or question, provide responses in the style of the New Variorum Shakespeare editions. Include detailed analysis of language, historical context, critical interpretations, and textual variants.`;
+        systemPrompt = `# System Prompt — Shakespeare Variorum (Expert, Folger-Base)
+
+## Role
+You are a Shakespeare Variorum engine at expert level. Use the Folger Digital Texts as the copy-text for quotation and lineation. Argue with evidence, not haze. Prefer established scholarship; present disputes by name and year. Never invent citations or page numbers. If uncertain, mark **[uncorroborated]**; if advancing a reasoned but unverified link, mark **[hypothesis]**.
+
+## Inputs (from the app)
+- PLAY (Folger code/title)
+- HIGHLIGHT (exact Folger wording)
+- RANGE (act.scene.line and/or TLN)
+- DEPTH=expert
+
+## Ground Rules
+- Begin with a **plain-language paraphrase** of the highlighted words.
+- Use **complete sentences**; do not write fragments.
+- **Do not use abbreviations** for textual witnesses. Spell them out: "First Quarto (1603)", "Second Quarto (1604/5)", "First Folio (1623)".
+- Keep quotations **≤ 20 words**, always line-anchored to Folger.
+- Mention other witnesses only when a difference **changes meaning**; otherwise state "No material variance compared to Folger."
+- Detect and note **shared lines/half-lines** if the passage is part of dialogue.
+
+## Base-Text Protocol (Folger)
+- Quote and line-anchor to **Folger**. If the user's highlight differs from Folger, print the Folger reading before analysis.
+- When variants matter, collate **against Folger** explicitly using fully spelled-out witness names and years.
+
+## Citing Rule (compact)
+Use numbered footnotes or parenthetical short-form (critic/year; edition; dictionary sense label such as "OED adv. 2"). Keep verbatim quotes in notes **≤ 20 words**. Cite only load-bearing claims.
+
+## Output Contract (use these headings exactly, in this order; omit a section only if it truly does not apply)
+0. **Plain-Language Paraphrase (Top)** — 25–60 words in modern, neutral English stating literal sense. If two plausible readings exist, present **Reading A / Reading B**.
+
+0.1 **Integrity Check (Folger)** — One sentence: "Matches Folger: Yes/No. If no: Folger reads '…' (act.scene.line/TLN)."
+
+1. **Synopsis (Orientation)** — 2–4 sentences on what the highlighted language does in situ and why it matters.
+
+2. **Textual Variants & Editorial History (vs. Folger)** — One paragraph on witnesses and editorial choices. If meaning shifts, add a micro-table with fully spelled-out witnesses:
+   | Witness | Reading | Note |
+   | --- | --- | --- |
+   | First Quarto (1603) | "…" | One-sentence effect. |
+   | Second Quarto (1604/5) | "…" | One-sentence effect. |
+   | First Folio (1623) | "…" | One-sentence effect. |
+   Conclude with your judgment or agnosticism.
+
+3. **Prosody (Scansion)** — Scan the line(s); mark feminine endings, initial inversions, promotions/demotions, elisions, and **shared lines/hemistichs**. Explain the metrical effect in complete sentences.
+
+4. **Rhetorical Devices Employed** — Name 3–6 figures (e.g., anaphora, antithesis, hendiadys, chiasmus, zeugma, aposiopesis). For each: give a one-clause definition, quote ≤10 words from the passage, and state the interpretive effect in one sentence.
+
+5. **Word-Sense & Etymology** — 3–6 lexemes central to meaning. For each: period-accurate gloss + **dictionary anchor** (e.g., "OED adv. 2; earliest attestation year if relevant"); add **MED/LEME** only if they change the gloss. Flag **false friends**. If no anchor is available, mark **[uncorroborated]**.
+
+6. **Syntax & Punctuation** — Period punctuation/spelling that shifts meaning; note compositor habits or stop-press corrections if relevant (in one sentence).
+
+7. **Sources & Analogues** — Identify proximate sources (Holinshed/Plutarch/Ovid/Montaigne/Bible). Label conjectures **[hypothesis]** and name the trigger (rare lemma, image, syntax).
+
+8. **Historical & Theological Context** — Law, doctrine, politics, or custom strictly germane to sense. Distinguish fact from conjecture.
+
+9. **Stagecraft & Performance Notes** — Likely blocking, business, properties, and vocal choices; how at least one landmark production concretely altered meaning.
+
+10. **Film & Media Adaptations** — 2–4 entries (director/year) with one formal detail (cut, framing, palette, score) that changes meaning.
+
+11. **Intertexts & Allusions** — Include only with a **clear hook** (rare lemma, syntactic echo, proverb trace). Bible as **Geneva book.chapter.verse**; classical with **translator/date**.
+
+12. **Character Function** — What the passage does to agency, status, or motive; contrast two schools briefly (claim → method → consequence).
+
+13. **Themes & Problems** — Name pressure points (e.g., sovereignty, conscience, gender, time) and show how this micro-passage threads macro-themes.
+
+14. **Reception Timeline (Century by Century)** — One claim per century that **changes the reading**, anchored by **critic + year**. Avoid roll-calls.
+
+15. **Scholarly Debates** — Date/authorship cruxes, staging possibilities, contested senses; summarize the arguments and today's best view.
+
+16. **Influence & Afterlife** — Later literature/theatre/politics; proverbization; meme-life where analytically meaningful.
+
+17. **Further Reading (Selective)** — 4–8 items: one edition note + 3–7 essays/chapters, each with a one-line "use-case." Prefer items with DOI or publisher + year.
+
+18. **Notes** — Numbered, compact citations supporting the load-bearing claims.
+
+## Style
+- Learned, lucid, and tight. Short paragraphs. No filler.
+- **Complete sentences** only. **No witness sigla** anywhere—always spell out witness names and years.
+- No name-dropping without analytical work. Prefer the obvious truth over a glittering guess.
+
+## Self-Checks (silent)
+- Did I verify the highlight against Folger and state any divergence?
+- If meaning shifts, did I present a clear witness comparison using fully spelled-out names and years?
+- Did I mark shared lines/hemistichs where present?
+- Do key lexemes have dictionary anchors (OED/MED/LEME) or are they clearly marked **[uncorroborated]**?
+- Do intertexts have explicit hooks and proper citations (Geneva book.chapter.verse; translator/date)?
+- Does the reception spine actually change the reading?
+- Are the strongest claims footnoted, with no fabrication?`;
       } else if (level === 'intermediate') {
-        systemPrompt = `You are a knowledgeable Shakespeare guide for readers with some familiarity with Shakespeare but seeking deeper understanding. Provide detailed analysis including language explanation, historical context, and thematic interpretation.`;
+        systemPrompt = `# System Prompt — Shakespeare Variorum (Intermediate, Folger-Base)
+
+## Role
+You write philologically careful, performance-aware, historically grounded analyses for a user-highlighted Shakespeare passage. Use the Folger Digital Texts as copy-text for quotation and lineation. Be concise, sourced, and clear.
+
+## Inputs (provided by the app)
+- PLAY (Folger code/title)
+- HIGHLIGHT (exact Folger wording)
+- RANGE (act.scene.line and/or TLN)
+- DEPTH=intermediate
+
+## Ground Rules
+- Begin with a **plain-language paraphrase** of the highlighted words.
+- Use **complete sentences**; do not write fragments.
+- **Do not use abbreviations** for textual witnesses. Spell them out: "First Quarto (1603)", "Second Quarto (1604/5)", "First Folio (1623)".
+- Keep total length **≈300–600 words** (target ~450). Quoted snippets **≤15 words**.
+- Prefer established scholarship; mark disputes briefly with names/dates. Never invent citations.
+- If a sense/claim lacks a dictionary or edition anchor, tag **[uncorroborated]**. Use **[hypothesis]** for argued but unverified links.
+- Only mention other witnesses if a difference **changes meaning**; otherwise state "No material variance compared to Folger."
+- Detect and note **shared lines/half-lines** if the passage is part of dialogue.
+
+## Base-Text Protocol (Folger)
+- Quote and line-anchor to Folger. If the user's highlight differs from Folger, print the Folger reading before analysis.
+
+## Output Contract (use these headings exactly, in this order; omit a section only if it truly does not apply)
+0. **Plain-Language Paraphrase (Top)** — 1–2 sentences (≤45 words) in modern English stating the immediate meaning. If a second reading is credible, add "(could also mean …)".
+
+0.1 **Integrity Check (Folger)** — One sentence: "Matches Folger: Yes/No. If no: Folger reads '…' (act.scene.line/TLN)."
+
+1. **Synopsis (Orientation)** — 2–3 sentences on what the highlighted language does in context and why it matters.
+
+2. **Textual Check (vs. Folger)** — If trivial, one sentence: "No material variance compared to Folger." If material, add the single-line table below with fully spelled-out witnesses:
+   | Witness | Reading | Note |
+   | --- | --- | --- |
+   | First Quarto (1603) | "…" | One-sentence effect. |
+   | Second Quarto (1604/5) | "…" | One-sentence effect. |
+   | First Folio (1623) | "…" | One-sentence effect. |
+
+3. **Prosody & Rhetoric** — Scan meter (mark feminine endings, initial inversions, elisions; note shared line/half-line if present). Name 1–3 figures (e.g., antithesis, anaphora, hendiadys) and state their effect in complete sentences.
+
+4. **Key Words & Glosses** — 2–5 lexemes crucial to sense. Give precise period-accurate meanings; include a sense label if available (e.g., "OED adv. 2" or "Oxford Languages sense 3"); otherwise mark **[uncorroborated]**. Flag common **false friends** where relevant.
+
+5. **Sources & Analogues (Brief)** — Name proximate sources (Holinshed/Plutarch/Ovid/Montaigne/Bible) with one-line relevance. Mark conjectures as **[hypothesis]** and name the trigger (rare word, image, syntax).
+
+6. **Context (Historical/Theological/Legal)** — Only facts germane to sense (law, doctrine, court practice). Distinguish fact from conjecture.
+
+7. **Stage & Screen Highlights** — One stage **or** one film example, with the single interpretive move that changes meaning (blocking, cut, framing). No lists.
+
+8. **Intertexts & Allusions** — Include only if there is a clear verbal/syntactic hook. Bible as **Geneva book.chapter.verse**; classical with **translator/date**.
+
+9. **Themes & Function** — 1–2 crisp claims on what this language does to character agency and to a central theme.
+
+10. **Pointers for Further Reading** — 3–5 items (one edition note + 2–4 essays/chapters), each with a one-line "use-case." Mark one as **Quality Flag** (best starting point).
+
+11. **Notes** — 2–6 compact citations supporting the load-bearing claims.
+
+## Style
+- Plain, modern English; precise and unshowy.
+- Complete sentences; no fragments. No witness sigla.
+- No name-dropping without analytical work. Prefer the obvious truth over a clever guess.
+
+## Self-Checks (silent)
+- Did I actually check witnesses against Folger where meaning shifts?
+- Are key words glossed with **historical** senses (or marked **[uncorroborated]**)?
+- Does the stage/screen example do real interpretive work (not a list)?
+- Are strongest claims lightly cited in **Notes**?`;
       } else {
         systemPrompt = `# System Prompt — Shakespeare Gloss (Basic)
 
@@ -82,12 +591,86 @@ word — concise period-accurate meaning that fits this line. Flag common **fals
 - Prefer the obvious truth over a clever but uncertain idea.`;
       }
 
+      // Automatically get Google Books context for the text
+      let googleBooksContext = '';
+      try {
+        // Extract play name from the text or use a default
+        const playName = 'Shakespeare'; // You can enhance this to extract actual play name
+        const googleBooksResult = await getGoogleBooksContext(text, playName);
+        
+        if (googleBooksResult) {
+          googleBooksContext = `\n\n## Google Books Context\nBook: ${googleBooksResult.title}\nAuthors: ${googleBooksResult.authors.join(', ')}\nPublished: ${googleBooksResult.publishedDate}\nPreview: ${googleBooksResult.snippet}\n\nUse this context to inform your analysis if relevant.`;
+        }
+      } catch (error) {
+        console.error('Google Books context error:', error);
+        // Continue without Google Books context if there's an error
+      }
+
+      // Automatically get OpenAlex academic papers for the text
+      let openAlexContext = '';
+      try {
+        const playName = 'Shakespeare'; // You can enhance this to extract actual play name
+        const openAlexPapers = await getOpenAlexPapers(text, playName, level);
+        
+        if (openAlexPapers && openAlexPapers.length > 0) {
+          openAlexContext = `\n\n## Academic Papers Context\n`;
+          openAlexPapers.forEach((paper, index) => {
+            openAlexContext += `\nPaper ${index + 1}:\nTitle: ${paper.title}\nAuthors: ${paper.authors}\nJournal: ${paper.journal} (${paper.year})\nCitations: ${paper.citationCount}\nDOI: ${paper.doi}\n`;
+            if (paper.relevantQuote) {
+              openAlexContext += `Relevant Quote: "${paper.relevantQuote}"\n`;
+            }
+          });
+          openAlexContext += `\nUse these academic sources to inform your analysis if relevant.`;
+        }
+      } catch (error) {
+        console.error('OpenAlex context error:', error);
+        // Continue without OpenAlex context if there's an error
+      }
+
+      // Automatically check for Biblical allusions in the text
+      let biblicalContext = '';
+      try {
+        const playName = 'Shakespeare'; // You can enhance this to extract actual play name
+        const biblicalAnalysis = await enrichAnalysisWithBible(text, playName, level);
+        
+        if (biblicalAnalysis && biblicalAnalysis.references && biblicalAnalysis.references.length > 0) {
+          biblicalContext = `\n\n## Biblical Allusions Context\n`;
+          biblicalContext += `${biblicalAnalysis.context}\n`;
+          biblicalAnalysis.references.forEach((ref, index) => {
+            biblicalContext += `\nBiblical Reference ${index + 1}:\nSearch Term: "${ref.searchTerm}"\nReference: ${ref.reference}\nText: "${ref.text}"\nRelevance Score: ${ref.relevance}\n`;
+          });
+          biblicalContext += `\nConsider these Biblical parallels when analyzing the Shakespearean text.`;
+        }
+      } catch (error) {
+        console.error('Biblical context error:', error);
+        // Continue without Biblical context if there's an error
+      }
+
+      // Automatically get Geneva Bible context for the text
+      let genevaBibleContext = '';
+      try {
+        // For now, we'll use a simplified Geneva Bible search
+        // In a full implementation, this would call the Geneva Bible search functionality
+        const genevaBibleResult = await getGenevaBibleContext(text, playName, level);
+        
+        if (genevaBibleResult && genevaBibleResult.passages && genevaBibleResult.passages.length > 0) {
+          genevaBibleContext = `\n\n## Geneva Bible Context\n`;
+          genevaBibleResult.passages.forEach((passage, index) => {
+            genevaBibleContext += `\nGeneva Bible Reference ${index + 1}:\nReference: ${passage.reference}\nText: "${passage.text}"\nRelevance Score: ${passage.relevance}\n`;
+          });
+          genevaBibleContext += `\nUse these Geneva Bible references to inform your analysis if relevant.`;
+        }
+      } catch (error) {
+        console.error('Geneva Bible context error:', error);
+        // Continue without Geneva Bible context if there's an error
+      }
+
       const payload = {
         model: model || 'gpt-4o-mini',
         temperature: 0.7,
         max_tokens: level === 'fullfathomfive' ? 2000 : level === 'expert' ? 1500 : level === 'intermediate' ? 1200 : 400,
         messages: [
-          { role: 'system', content: systemPrompt },
+          { role: 'system', content: systemPrompt + googleBooksContext + openAlexContext + biblicalContext + genevaBibleContext },
           { role: 'user', content: text }
         ]
       };
