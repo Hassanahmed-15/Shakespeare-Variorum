@@ -4299,21 +4299,40 @@
             processed = processed.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
             processed = processed.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
             
-            // Special handling for common Shakespeare titles and works
-            const commonTitles = [
-                'Macbeth', 'Hamlet', 'Romeo and Juliet', 'Othello', 'King Lear', 'A Midsummer Night\'s Dream',
-                'The Tempest', 'Much Ado About Nothing', 'Twelfth Night', 'As You Like It', 'The Merchant of Venice',
-                'Julius Caesar', 'Antony and Cleopatra', 'Coriolanus', 'Timon of Athens', 'Pericles',
-                'Cymbeline', 'The Winter\'s Tale', 'The Two Gentlemen of Verona', 'The Comedy of Errors',
-                'Love\'s Labour\'s Lost', 'A Midsummer Night\'s Dream', 'The Merchant of Venice',
-                'The Taming of the Shrew', 'The Two Noble Kinsmen', 'Henry IV', 'Henry V', 'Henry VI',
-                'Richard II', 'Richard III', 'Henry VIII', 'King John', 'Titus Andronicus'
-            ];
-            
-            commonTitles.forEach(title => {
-                const regex = new RegExp(`\\*${title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\*`, 'g');
-                processed = processed.replace(regex, `<em>${title}</em>`);
-            });
+            // Direct string replacement for common titles
+            processed = processed.replace(/\*Macbeth\*/g, '<em>Macbeth</em>');
+            processed = processed.replace(/\*The Tragedy of Macbeth\*/g, '<em>The Tragedy of Macbeth</em>');
+            processed = processed.replace(/\*Shakespeare's Macbeth: A Critical Guide\*/g, '<em>Shakespeare\'s Macbeth: A Critical Guide</em>');
+            processed = processed.replace(/\*The Tempest\*/g, '<em>The Tempest</em>');
+            processed = processed.replace(/\*Hamlet\*/g, '<em>Hamlet</em>');
+            processed = processed.replace(/\*Romeo and Juliet\*/g, '<em>Romeo and Juliet</em>');
+            processed = processed.replace(/\*Othello\*/g, '<em>Othello</em>');
+            processed = processed.replace(/\*King Lear\*/g, '<em>King Lear</em>');
+            processed = processed.replace(/\*A Midsummer Night's Dream\*/g, '<em>A Midsummer Night\'s Dream</em>');
+            processed = processed.replace(/\*Much Ado About Nothing\*/g, '<em>Much Ado About Nothing</em>');
+            processed = processed.replace(/\*Twelfth Night\*/g, '<em>Twelfth Night</em>');
+            processed = processed.replace(/\*As You Like It\*/g, '<em>As You Like It</em>');
+            processed = processed.replace(/\*The Merchant of Venice\*/g, '<em>The Merchant of Venice</em>');
+            processed = processed.replace(/\*Julius Caesar\*/g, '<em>Julius Caesar</em>');
+            processed = processed.replace(/\*Antony and Cleopatra\*/g, '<em>Antony and Cleopatra</em>');
+            processed = processed.replace(/\*Coriolanus\*/g, '<em>Coriolanus</em>');
+            processed = processed.replace(/\*Timon of Athens\*/g, '<em>Timon of Athens</em>');
+            processed = processed.replace(/\*Pericles\*/g, '<em>Pericles</em>');
+            processed = processed.replace(/\*Cymbeline\*/g, '<em>Cymbeline</em>');
+            processed = processed.replace(/\*The Winter's Tale\*/g, '<em>The Winter\'s Tale</em>');
+            processed = processed.replace(/\*The Two Gentlemen of Verona\*/g, '<em>The Two Gentlemen of Verona</em>');
+            processed = processed.replace(/\*The Comedy of Errors\*/g, '<em>The Comedy of Errors</em>');
+            processed = processed.replace(/\*Love's Labour's Lost\*/g, '<em>Love\'s Labour\'s Lost</em>');
+            processed = processed.replace(/\*The Taming of the Shrew\*/g, '<em>The Taming of the Shrew</em>');
+            processed = processed.replace(/\*The Two Noble Kinsmen\*/g, '<em>The Two Noble Kinsmen</em>');
+            processed = processed.replace(/\*Henry IV\*/g, '<em>Henry IV</em>');
+            processed = processed.replace(/\*Henry V\*/g, '<em>Henry V</em>');
+            processed = processed.replace(/\*Henry VI\*/g, '<em>Henry VI</em>');
+            processed = processed.replace(/\*Richard II\*/g, '<em>Richard II</em>');
+            processed = processed.replace(/\*Richard III\*/g, '<em>Richard III</em>');
+            processed = processed.replace(/\*Henry VIII\*/g, '<em>Henry VIII</em>');
+            processed = processed.replace(/\*King John\*/g, '<em>King John</em>');
+            processed = processed.replace(/\*Titus Andronicus\*/g, '<em>Titus Andronicus</em>');
             
             console.log('After asterisk processing:', processed);
             
