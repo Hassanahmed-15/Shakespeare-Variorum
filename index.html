@@ -3999,15 +3999,18 @@
                     }
                 }
                 
-                // Clean up section title
+                // Clean up section title (remove ** markers)
+                const originalSectionTitle = sectionTitle;
                 sectionTitle = sectionTitle.replace(/\*\*(.*?)\*\*/g, '$1').trim();
                 
                                  // Map to standard section names
                  let mappedTitle = '';
+                 console.log(`Trying to map section title: "${sectionTitle}"`);
                  for (const standardSection of standardSections) {
                      if (sectionTitle.toLowerCase().includes(standardSection.toLowerCase()) ||
                          standardSection.toLowerCase().includes(sectionTitle.toLowerCase())) {
                          mappedTitle = standardSection;
+                         console.log(`Found match: "${sectionTitle}" matches "${standardSection}"`);
                          break;
                      }
                  }
