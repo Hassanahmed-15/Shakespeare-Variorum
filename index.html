@@ -3945,6 +3945,7 @@
             
             // Parse the content into structured sections
             const sections = content.split(/\n\n+/);
+            console.log('Parsed sections:', sections);
             let formattedContent = '';
             
             // Define the uniform section order for all analysis levels
@@ -3964,6 +3965,7 @@
             
             // Extract and organize content by section type
             const sectionContent = {};
+            console.log('Section content mapping:');
             
             sections.forEach((section, index) => {
                 const trimmedSection = section.trim();
@@ -4024,16 +4026,20 @@
                 
                 if (mappedTitle) {
                     sectionContent[mappedTitle] = sectionText;
+                    console.log(`Mapped "${sectionTitle}" to "${mappedTitle}"`);
                 } else {
                     // Handle special cases
                     if (sectionTitle.toLowerCase().includes('integrity check')) {
                         // Skip integrity check sections
+                        console.log(`Skipping integrity check: "${sectionTitle}"`);
                         return;
                     } else if (sectionTitle.toLowerCase().includes('notes')) {
                         sectionContent['Notes'] = sectionText;
+                        console.log(`Added notes section`);
                     } else {
                         // Default case
                         sectionContent[sectionTitle] = sectionText;
+                        console.log(`Added unmapped section: "${sectionTitle}"`);
                     }
                 }
             });
@@ -4091,6 +4097,7 @@
                  formattedContent = integrateNotesIntoSections(formattedContent, notesContent);
              }
             
+            console.log('Final formatted content length:', formattedContent.length);
             return formattedContent;
         }
         
