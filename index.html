@@ -2709,10 +2709,16 @@
         // Parse play text into structured data
         function parsePlayText(fileName, content, customPlayName = null) {
             console.log('parsePlayText started');
-                            console.log('parsePlayText started');
+            console.log('Content length:', content.length);
             
             const lines = content.split('\n');
             console.log('Content split into', lines.length, 'lines');
+            
+            // Debug: Show first 20 lines to understand the format
+            console.log('First 20 lines of content:');
+            for (let i = 0; i < Math.min(20, lines.length); i++) {
+                console.log(`Line ${i}: "${lines[i]}"`);
+            }
             
             // Use custom play name if provided, otherwise extract from content
             let actualPlayName = customPlayName || fileName;
@@ -2733,17 +2739,17 @@
 
             console.log('Starting to parse play:', fileName);
             console.log('Total lines:', lines.length);
-            console.log('Starting parsing loop with ' + lines.length + ' lines');
 
             for (let i = 0; i < lines.length; i++) {
-                // Add progress indicator every 1000 lines
-                if (i % 1000 === 0) {
-                    console.log('Processing line', i, 'of', lines.length);
-                }
                 const line = lines[i].trim();
                 
                 // Skip empty lines
                 if (!line) continue;
+                
+                // Debug: Log every line for the first 100 lines
+                if (i < 100) {
+                    console.log(`Processing line ${i}: "${line}"`);
+                }
                 
                 // Check for Dramatis Personae section
                 if (line.toLowerCase().includes('dramatis personae') || 
@@ -2801,6 +2807,9 @@
                 if (inScene && currentScene && line) {
                     // Include all non-empty lines in the scene
                     play.scenes[currentScene].push(line);
+                    if (i < 100) {
+                        console.log(`Added to scene ${currentScene}: "${line}"`);
+                    }
                 }
             }
 
@@ -3357,9 +3366,14 @@
 
         // Format scene content for display
         function formatSceneContent(sceneContent) {
+            console.log('formatSceneContent called with:', sceneContent);
+            console.log('sceneContent type:', typeof sceneContent);
+            console.log('sceneContent length:', sceneContent ? sceneContent.length : 'null');
+            
             let html = '';
             
             if (!sceneContent || sceneContent.length === 0) {
+                console.log('No scene content found');
                 return '<p><em>No content found for this scene.</em></p>';
             }
             
