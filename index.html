@@ -1435,6 +1435,16 @@
             color: var(--ink-1);
         }
         
+        /* Notes styling */
+        .analysis .note {
+            font-size: 14px;
+            color: var(--ink-2);
+            font-style: italic;
+            margin: var(--s-2) 0;
+            padding-left: var(--s-3);
+            border-left: 2px solid var(--line);
+        }
+        
         /* Italics for book titles and emphasis */
         .analysis em {
             font-style: italic;
@@ -4030,38 +4040,41 @@
                 }
             });
             
-                         // Build formatted content in standard order
-             standardSections.forEach(sectionName => {
-                 if (sectionContent[sectionName]) {
-                     const content = sectionContent[sectionName];
-                     
-                     if (sectionName === 'Key Words & Glosses') {
-                         formattedContent += `<div class="section">`;
-                         formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
-                         formattedContent += formatKeyWords(content);
-                         formattedContent += `</div>`;
-                     } else if (sectionName === 'Pointers for Further Reading') {
-                         formattedContent += `<div class="section">`;
-                         formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
-                         formattedContent += formatFurtherReading(content);
-                         formattedContent += `</div>`;
-                     } else if (sectionName === 'Textual Variants') {
-                         formattedContent += `<div class="section">`;
-                         formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
-                         formattedContent += formatTextualVariants(content);
-                         formattedContent += `</div>`;
-                     } else if (sectionName === 'Notes') {
-                         // Incorporate notes into the relevant sections instead of showing separately
-                         return;
-                     } else {
-                         formattedContent += `<div class="section">`;
-                         formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
-                         const processedContent = processContentForFormatting(content);
-                         formattedContent += `<p>${processedContent}</p>`;
-                         formattedContent += `</div>`;
-                     }
-                 }
-             });
+                         // Store notes for later integration
+            let notesContent = '';
+            
+            // Build formatted content in standard order
+            standardSections.forEach(sectionName => {
+                if (sectionContent[sectionName]) {
+                    const content = sectionContent[sectionName];
+                    
+                    if (sectionName === 'Key Words & Glosses') {
+                        formattedContent += `<div class="section">`;
+                        formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
+                        formattedContent += formatKeyWords(content);
+                        formattedContent += `</div>`;
+                    } else if (sectionName === 'Pointers for Further Reading') {
+                        formattedContent += `<div class="section">`;
+                        formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
+                        formattedContent += formatFurtherReading(content);
+                        formattedContent += `</div>`;
+                    } else if (sectionName === 'Textual Variants') {
+                        formattedContent += `<div class="section">`;
+                        formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
+                        formattedContent += formatTextualVariants(content);
+                        formattedContent += `</div>`;
+                    } else if (sectionName === 'Notes') {
+                        // Store notes for later integration into relevant sections
+                        notesContent = content;
+                    } else {
+                        formattedContent += `<div class="section">`;
+                        formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
+                        const processedContent = processContentForFormatting(content);
+                        formattedContent += `<p>${processedContent}</p>`;
+                        formattedContent += `</div>`;
+                    }
+                }
+            });
              
              // Add any remaining sections that weren't in the standard order
              Object.keys(sectionContent).forEach(sectionName => {
@@ -4074,6 +4087,11 @@
                      formattedContent += `</div>`;
                  }
              });
+             
+             // Integrate notes into relevant sections if they exist
+             if (notesContent) {
+                 formattedContent = integrateNotesIntoSections(formattedContent, notesContent);
+             }
             
             return formattedContent;
         }
@@ -4185,7 +4203,59 @@
              return formattedList || `<p>${processContentForFormatting(content)}</p>`;
          }
         
-        function processContentForFormatting(content) {
+                 function integrateNotesIntoSections(formattedContent, notesContent) {
+             // Parse notes into individual citations
+             const notes = notesContent.split(/\n+/).filter(note => note.trim());
+             
+             // Create a mapping of notes to relevant sections
+             const sectionNotes = {
+                 'Key Words & Glosses': [],
+                 'Historical Context': [],
+                 'Literary Analysis': [],
+                 'Critical Reception': [],
+                 'Textual Variants': [],
+                 'Performance History': []
+             };
+             
+             // Distribute notes to relevant sections based on content
+             notes.forEach(note => {
+                 const lowerNote = note.toLowerCase();
+                 
+                 if (lowerNote.includes('oed') || lowerNote.includes('dictionary') || lowerNote.includes('gloss')) {
+                     sectionNotes['Key Words & Glosses'].push(note);
+                 } else if (lowerNote.includes('history') || lowerNote.includes('period') || lowerNote.includes('context')) {
+                     sectionNotes['Historical Context'].push(note);
+                 } else if (lowerNote.includes('critic') || lowerNote.includes('scholar') || lowerNote.includes('interpretation')) {
+                     sectionNotes['Critical Reception'].push(note);
+                 } else if (lowerNote.includes('performance') || lowerNote.includes('stage') || lowerNote.includes('production')) {
+                     sectionNotes['Performance History'].push(note);
+                 } else if (lowerNote.includes('variant') || lowerNote.includes('edition') || lowerNote.includes('folio')) {
+                     sectionNotes['Textual Variants'].push(note);
+                 } else {
+                     // Default to Literary Analysis for general notes
+                     sectionNotes['Literary Analysis'].push(note);
+                 }
+             });
+             
+             // Insert notes into the appropriate sections
+             Object.keys(sectionNotes).forEach(sectionName => {
+                 if (sectionNotes[sectionName].length > 0) {
+                     const sectionRegex = new RegExp(`<h3><strong>${sectionName}:</strong></h3>`, 'g');
+                     const notesHtml = sectionNotes[sectionName].map(note => 
+                         `<p class="note"><em>${processContentForFormatting(note)}</em></p>`
+                     ).join('');
+                     
+                     formattedContent = formattedContent.replace(
+                         sectionRegex,
+                         `$&${notesHtml}`
+                     );
+                 }
+             });
+             
+             return formattedContent;
+         }
+         
+         function processContentForFormatting(content) {
             if (!content) return '';
             
             let processed = content;
