@@ -3927,22 +3927,31 @@
                     sectionTitle = numberedMatch[3].trim();
                     sectionText = trimmedSection.split('\n').slice(1).join('\n').trim();
                 } else {
-                                    // Handle bold section headers (new format: **Section Name:**)
-                const boldMatch = trimmedSection.match(/^\*\*(.+?)\*\*:\s*(.+)/s);
-                console.log(`Bold match result:`, boldMatch);
-                if (boldMatch) {
-                    sectionTitle = boldMatch[1].trim();
-                    sectionText = boldMatch[2].trim();
-                    console.log(`Extracted title: "${sectionTitle}", text: "${sectionText.substring(0, 50)}..."`);
-                } else {
-                        // Handle dash-separated sections (Basic/FFF)
-                        const dashMatch = trimmedSection.match(/^(.+?)\s*—\s*(.+)/s);
-                        if (dashMatch) {
-                            sectionTitle = dashMatch[1].trim();
-                            sectionText = dashMatch[2].trim();
+                    // Handle bold section headers (new format: **Section Name:**)
+                    const boldMatch = trimmedSection.match(/^\*\*(.+?)\*\*:\s*(.+)/s);
+                    console.log(`Bold match result:`, boldMatch);
+                    if (boldMatch) {
+                        sectionTitle = boldMatch[1].trim();
+                        sectionText = boldMatch[2].trim();
+                        console.log(`Extracted title: "${sectionTitle}", text: "${sectionText.substring(0, 50)}..."`);
+                    } else {
+                        // Try alternative bold pattern without colon
+                        const boldMatch2 = trimmedSection.match(/^\*\*(.+?)\*\*\s*(.+)/s);
+                        console.log(`Bold match 2 result:`, boldMatch2);
+                        if (boldMatch2) {
+                            sectionTitle = boldMatch2[1].trim();
+                            sectionText = boldMatch2[2].trim();
+                            console.log(`Extracted title 2: "${sectionTitle}", text: "${sectionText.substring(0, 50)}..."`);
                         } else {
-                            // Handle plain text
-                            sectionText = trimmedSection;
+                            // Handle dash-separated sections (Basic/FFF)
+                            const dashMatch = trimmedSection.match(/^(.+?)\s*—\s*(.+)/s);
+                            if (dashMatch) {
+                                sectionTitle = dashMatch[1].trim();
+                                sectionText = dashMatch[2].trim();
+                            } else {
+                                // Handle plain text
+                                sectionText = trimmedSection;
+                            }
                         }
                     }
                 }
