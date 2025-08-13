@@ -1827,8 +1827,24 @@
             color: var(--ink-2);
             text-decoration: none;
             font-family: var(--ui);
-            font-size: 14px;
-            transition: background-color 0.2s ease;
+        }
+        
+        /* Follow-up Answer Styling */
+        .analysis .follow-up-answer {
+            background: var(--surface-2);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-2);
+            padding: var(--s-4);
+            margin: var(--s-4) 0;
+        }
+        
+        .analysis .follow-up-answer h3 {
+            color: var(--ink-1);
+            margin-bottom: var(--s-2);
+        }
+        
+        .analysis .follow-up-answer .answer-content {
+            margin-top: var(--s-2);
         }
 
         .list a:hover {
@@ -4416,15 +4432,82 @@
             }
         }
 
-        function askFollowUp() {
+        async function askFollowUp() {
             const question = document.getElementById('followUpQuestion').value.trim();
             if (!question) {
                 alert('Please enter a question.');
                 return;
             }
             
-            // Here you would implement follow-up question functionality
-            alert('Follow-up question feature coming soon!');
+            // Get the current context
+            const currentAnalysis = document.querySelector('.analysis-content');
+            if (!currentAnalysis || !selectedText) {
+                alert('Please analyze some text first before asking a follow-up question.');
+                return;
+            }
+            
+            // Show loading state
+            const followUpBtn = document.querySelector('.follow-up-btn');
+            const originalText = followUpBtn.textContent;
+            followUpBtn.textContent = 'Asking...';
+            followUpBtn.disabled = true;
+            
+            try {
+                // Prepare the context for the follow-up question
+                const context = `Original text: "${selectedText}"\n\nCurrent analysis: ${currentAnalysis.innerText}\n\nFollow-up question: ${question}`;
+                
+                // Call the AI function
+                const response = await fetch('/.netlify/functions/shakespeare', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        text: context,
+                        level: currentAnalysisMode,
+                        playName: currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Shakespeare',
+                        sceneName: currentScene || 'scene'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.choices && data.choices[0] && data.choices[0].message) {
+                    const answer = data.choices[0].message.content;
+                    
+                    // Create a new section for the follow-up answer
+                    const followUpSection = document.createElement('div');
+                    followUpSection.className = 'section follow-up-answer';
+                    followUpSection.innerHTML = `
+                        <h3><strong>Follow-up Answer:</strong></h3>
+                        <p><strong>Question:</strong> ${question}</p>
+                        <div class="answer-content">${answer}</div>
+                    `;
+                    
+                    // Insert the follow-up answer after the current analysis
+                    currentAnalysis.appendChild(followUpSection);
+                    
+                    // Clear the question input
+                    document.getElementById('followUpQuestion').value = '';
+                    
+                    // Scroll to the new answer
+                    followUpSection.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error('Invalid response format from AI');
+                }
+                
+            } catch (error) {
+                console.error('Error asking follow-up question:', error);
+                alert('Sorry, there was an error processing your follow-up question. Please try again.');
+            } finally {
+                // Restore button state
+                followUpBtn.textContent = originalText;
+                followUpBtn.disabled = false;
+            }
         }
 
         // Media and Research Functions
