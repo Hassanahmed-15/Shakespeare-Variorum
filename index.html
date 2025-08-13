@@ -2771,20 +2771,21 @@
             let characterSet = new Set(); // Track unique character names
 
             for (let i = 0; i < lines.length; i++) {
-                const line = lines[i].trim();
-                if (!line) continue;
+                const line = lines[i];
+                const trimmedLine = line.trim();
+                if (!trimmedLine) continue;
                 
                 // Look for Act headers
-                if (line.match(/^ACT\s+[IVX0-9]+/i)) {
-                    currentAct = line;
+                if (trimmedLine.match(/^ACT\s+[IVX0-9]+/i)) {
+                    currentAct = trimmedLine;
                     play.acts[currentAct] = [];
                     inScene = false;
                     continue;
                 }
 
                 // Look for Scene headers
-                if (line.match(/^SCENE\s+[IVX0-9]+/i)) {
-                    currentScene = `${currentAct} - ${line}`;
+                if (trimmedLine.match(/^SCENE\s+[IVX0-9]+/i)) {
+                    currentScene = `${currentAct} - ${trimmedLine}`;
                     play.scenes[currentScene] = [];
                     if (currentAct) {
                         play.acts[currentAct].push(currentScene);
@@ -2794,18 +2795,18 @@
                 }
 
                 // Collect scene content and detect character names
-                if (inScene && currentScene && line) {
-                    play.scenes[currentScene].push(line);
+                if (inScene && currentScene && trimmedLine) {
+                    play.scenes[currentScene].push(line); // Store original line with spacing
                     
                     // Check if this line is a character name (all caps, reasonable length)
-                    if (line.match(/^[A-Z\s]+$/) && 
-                        line.length > 2 && 
-                        line.length < 50 && 
-                        !line.startsWith('[') && 
-                        !line.endsWith(']') &&
-                        !line.includes('ACT') &&
-                        !line.includes('SCENE')) {
-                        characterSet.add(line);
+                    if (trimmedLine.match(/^[A-Z\s]+$/) && 
+                        trimmedLine.length > 2 && 
+                        trimmedLine.length < 50 && 
+                        !trimmedLine.startsWith('[') && 
+                        !trimmedLine.endsWith(']') &&
+                        !trimmedLine.includes('ACT') &&
+                        !trimmedLine.includes('SCENE')) {
+                        characterSet.add(trimmedLine);
                     }
                 }
             }
