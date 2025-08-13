@@ -259,26 +259,16 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
           };
         } else if (baseLevel === 'fullfathomfive') {
           modelConfig = {
-            model: 'o3',
-            reasoning_effort: 'high'
-            // o3 doesn't support custom temperature, uses default (1)
-          };
-        }
-      } else if (level === 'fullfathomfive') {
-        if (isLargeText) {
-          // Route large texts to gpt-4.1 for more headroom
-          modelConfig = {
             model: 'gpt-4.1',
             temperature: 0.7
           };
-        } else {
-          // Keep FFF on o3 for normal texts
-          modelConfig = {
-            model: 'o3',
-            reasoning_effort: 'high'
-            // o3 doesn't support custom temperature, uses default (1)
-          };
         }
+      } else if (level === 'fullfathomfive') {
+        // Use gpt-4.1 for Full Fathom Five to avoid timeout issues with o3
+        modelConfig = {
+          model: 'gpt-4.1',
+          temperature: 0.7
+        };
       }
       
       // Build payload with conditional temperature
@@ -306,7 +296,8 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
           'Authorization': `Bearer ${OPENAI_API_KEY}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        timeout: 60000 // 60 second timeout
       });
 
       const data = await response.json();
