@@ -2203,7 +2203,7 @@
                 <div class="analysis-title">Basic Analysis</div>
                 <button class="copy-btn" onclick="copyAnalysis()">Copy</button>
             </div>
-            <div class="selection-info">No text selected</div>
+            <div class="meta">No play loaded</div>
             <div class="analysis-content">
                 <p>Highlight text in the play to get AI-powered analysis.</p>
             </div>
@@ -3085,6 +3085,8 @@
                     <p>Play loaded successfully. Use the navigation to explore acts and scenes.</p>
                     <p><em>Debug: Found ${Object.keys(play.acts).length} acts</em></p>
                 `;
+                // Update meta line even when no scenes are found
+                updateMetaLine();
             }
         }
 
@@ -3166,6 +3168,9 @@
                 <div class="scene-separator"></div>
                 ${formattedContent}
             `;
+            
+            // Update meta line when scene changes
+            updateMetaLine();
         }
 
         // Simple format scene content - display exactly as uploaded
@@ -3449,6 +3454,28 @@
             }
         }
 
+        // Function to update the meta line with current selection info
+        function updateMetaLine() {
+            const analysisPanel = document.getElementById('analysisPanel');
+            if (!analysisPanel) return;
+            
+            const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Unknown Play';
+            const wordCount = selectedText ? countWords(selectedText) : 0;
+            
+            let metaText = '';
+            if (selectedText && wordCount > 0) {
+                metaText = `<em>${playName}</em> · ${currentScene} · ${wordCount} words highlighted`;
+            } else {
+                metaText = `<em>${playName}</em> · ${currentScene} · No text highlighted`;
+            }
+            
+            // Update the meta line if it exists
+            const metaElement = analysisPanel.querySelector('.meta');
+            if (metaElement) {
+                metaElement.innerHTML = metaText;
+            }
+        }
+
         // Text selection functionality
         document.addEventListener('selectionchange', () => {
             const s = window.getSelection();
@@ -3457,6 +3484,7 @@
             if (!s || s.isCollapsed || s.toString().trim() === '') {
                 selectedText = '';
                 clearAllHighlights();
+                updateMetaLine(); // Update meta line when selection is cleared
                 return;
             }
             
@@ -3465,6 +3493,7 @@
             if (!readerElement) {
                 selectedText = '';
                 clearAllHighlights();
+                updateMetaLine(); // Update meta line when selection is cleared
                 return;
             }
             
@@ -3473,6 +3502,7 @@
             if (!readerElement.contains(selectionRange.commonAncestorContainer)) {
                 selectedText = '';
                 clearAllHighlights();
+                updateMetaLine(); // Update meta line when selection is cleared
                 return;
             }
             
@@ -3488,6 +3518,9 @@
                 const span = document.createElement('span');
                 span.className = 'highlight';
                 range.surroundContents(span);
+                
+                // Update meta line with new selection
+                updateMetaLine();
             }
         });
 
@@ -4050,6 +4083,8 @@
         // Initialize Geneva Bible search when the page loads
         document.addEventListener('DOMContentLoaded', function() {
             initializeBibleSearch();
+            // Initialize meta line
+            updateMetaLine();
         });
 
         // Function to get Geneva Bible context for analysis
