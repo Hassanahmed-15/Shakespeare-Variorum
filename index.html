@@ -154,57 +154,7 @@
             box-shadow: none;
         }
 
-        /* Contextual Toolbar */
-        #selectionToolbar {
-            position: absolute;
-            transform: translate(-50%,-120%);
-            padding: 6px;
-            border-radius: 12px;
-            gap: 6px;
-            background: var(--surface);
-            border: 1px solid var(--line);
-            box-shadow: var(--shadow);
-            display: none;
-            align-items: center;
-            z-index: 1000;
-            pointer-events: auto;
-            max-width: 200px;
-            white-space: nowrap;
-        }
 
-        /* Constrain toolbar to reading pane */
-        .reader {
-            position: relative;
-            overflow: visible;
-        }
-
-        .reader #selectionToolbar {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            transform: translate(-50%, -100%);
-            margin-top: -10px;
-        }
-
-        /* Prevent toolbar from appearing in sidebar */
-        .sidebar #selectionToolbar {
-            display: none !important;
-        }
-
-        /* Ensure toolbar only appears in reading area */
-        .reader #selectionToolbar {
-            display: flex;
-            position: absolute;
-            left: 50%;
-            top: 0;
-            transform: translate(-50%, -100%);
-            margin-top: -10px;
-        }
-
-        /* Prevent toolbar from appearing in analysis panel */
-        .analysis #selectionToolbar {
-            display: none !important;
-        }
 
         /* Modal Styles */
         .modal {
@@ -1597,6 +1547,46 @@
             max-width: 86ch; 
         }
 
+        /* Analysis Button Section */
+        .analysis-button-section {
+            display: flex;
+            align-items: center;
+            gap: var(--s-3);
+            padding: var(--s-4) var(--s-5);
+            background: var(--surface);
+            border-bottom: 1px solid var(--line);
+            margin-bottom: var(--s-4);
+        }
+
+        .explain-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--r-md);
+            padding: var(--s-2) var(--s-4);
+            font-family: var(--ui);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .explain-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .explain-btn:active {
+            background: var(--accent-active);
+        }
+
+        .instruction-text {
+            color: var(--ink-3);
+            font-family: var(--ui);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
         .analysis p {
             margin-bottom: var(--s-3);
             text-rendering: optimizeLegibility;
@@ -2176,6 +2166,12 @@
         </div>
     </div>
 
+    <!-- Analysis Button Section -->
+    <div class="analysis-button-section">
+        <button class="explain-btn" onclick="explainHighlighted()">Explain Highlighted Text</button>
+        <span class="instruction-text">Use your cursor to highlight text in the play, then click this button for analysis.</span>
+    </div>
+
     <!-- Main Content -->
     <div class="layout">
         <!-- Sidebar -->
@@ -2250,11 +2246,7 @@
         </div>
     </div>
 
-    <!-- Contextual Toolbar -->
-    <div id="selectionToolbar" class="panel" hidden>
-        <button class="btn btn-primary" id="explainBtn">Explain</button>
-        <button class="btn btn-ghost" id="copyBtn">Copy</button>
-    </div>
+
 
     <script>
         let selectedText = '';
@@ -2269,12 +2261,6 @@
             // Hide any existing success/error messages when opening settings
             document.getElementById('uploadSuccess').style.display = 'none';
             document.getElementById('uploadError').style.display = 'none';
-            
-            // Hide the contextual toolbar when opening settings
-            const toolbar = document.getElementById('selectionToolbar');
-            if (toolbar) {
-                toolbar.hidden = true;
-            }
             
             updateLibraryPlays(); // Refresh the library display
         }
@@ -2293,12 +2279,6 @@
 
         function openAbout() {
             document.getElementById('aboutModal').style.display = 'block';
-            
-            // Hide the contextual toolbar when opening about
-            const toolbar = document.getElementById('selectionToolbar');
-            if (toolbar) {
-                toolbar.hidden = true;
-            }
         }
 
         function closeAbout() {
@@ -2307,12 +2287,6 @@
 
         function openRights() {
             document.getElementById('rightsModal').style.display = 'block';
-            
-            // Hide the contextual toolbar when opening rights
-            const toolbar = document.getElementById('selectionToolbar');
-            if (toolbar) {
-                toolbar.hidden = true;
-            }
         }
 
         function closeRights() {
@@ -3492,199 +3466,50 @@
         // Text selection functionality
         document.addEventListener('selectionchange', () => {
             const s = window.getSelection();
-            const t = document.getElementById('selectionToolbar');
             
             // Check if there's no selection, selection is collapsed, or no text is selected
             if (!s || s.isCollapsed || s.toString().trim() === '') {
-                t.hidden = true;
-                t.style.display = 'none';
                 selectedText = '';
+                clearAllHighlights();
                 return;
             }
             
             // Additional check: ensure selection is within the reading pane
             const readerElement = document.querySelector('.reader');
             if (!readerElement) {
-                t.hidden = true;
-                t.style.display = 'none';
                 selectedText = '';
+                clearAllHighlights();
                 return;
             }
             
             // Check if the selection is actually within the reading pane
             const selectionRange = s.getRangeAt(0);
             if (!readerElement.contains(selectionRange.commonAncestorContainer)) {
-                t.hidden = true;
-                t.style.display = 'none';
                 selectedText = '';
+                clearAllHighlights();
                 return;
             }
             
-            // Get the bounding rectangle of the selection
-            const box = s.rangeCount ? s.getRangeAt(0).getBoundingClientRect() : null;
+            // Store the selected text and highlight it
+            selectedText = selection.toString().trim();
             
-            if (!box) {
-                t.hidden = true;
-                t.style.display = 'none';
-                return;
-            }
-            
-            // Position the toolbar above the selection, constrained to reading pane
-            const reader = readerElement;
-            if (reader) {
-                const readerRect = reader.getBoundingClientRect();
-                const readerScrollTop = reader.scrollTop;
+            if (selectedText) {
+                // Clear any existing highlights first
+                clearAllHighlights();
                 
-                // Calculate position relative to the reading pane
-                let left = box.right - readerRect.left + 5; // Position just to the right of selection with small gap
-                let top = box.top - readerRect.top - 10; // 10px above the selection
-                
-                // Constrain to reading pane boundaries
-                left = Math.max(10, Math.min(left, readerRect.width - 200)); // 10px margin, max 200px width
-                top = Math.max(10, top); // At least 10px from top
-                
-                t.style.left = `${left}px`;
-                t.style.top = `${top}px`;
-                t.hidden = false;
-                t.style.display = 'flex';
-            } else {
-                t.hidden = true;
-                t.style.display = 'none';
+                // Highlight the selected text
+                const range = selection.getRangeAt(0);
+                const span = document.createElement('span');
+                span.className = 'highlight';
+                range.surroundContents(span);
             }
         });
 
-        // Additional check for when selection is lost
-        document.addEventListener('mouseup', () => {
-            setTimeout(() => {
-                const s = window.getSelection();
-                const t = document.getElementById('selectionToolbar');
-                
-                if (!s || s.isCollapsed || s.toString().trim() === '') {
-                    t.hidden = true;
-                    selectedText = '';
-                }
-            }, 10);
-        });
-
-        // Hide toolbar when clicking in the play pane (reader area)
-        document.addEventListener('mousedown', (event) => {
-            const toolbar = document.getElementById('selectionToolbar');
-            const target = event.target;
-            
-            // Don't hide if clicking on the toolbar itself
-            if (toolbar && toolbar.contains(target)) {
-                return;
-            }
-            
-            // Only hide toolbar when clicking in the reader area (play pane)
-            const readerElement = document.querySelector('.reader');
-            if (readerElement && readerElement.contains(target)) {
-                if (toolbar && !toolbar.hidden) {
-                    toolbar.hidden = true;
-                    selectedText = '';
-                }
-            }
-        });
-
-        // Alternative approach using click event - only hide when clicking in play pane
-        document.addEventListener('click', (event) => {
-            const toolbar = document.getElementById('selectionToolbar');
-            const target = event.target;
-            
-            // Don't hide if clicking on the toolbar itself
-            if (toolbar && toolbar.contains(target)) {
-                return;
-            }
-            
-            // Only hide toolbar when clicking in the reader area (play pane)
-            const readerElement = document.querySelector('.reader');
-            if (readerElement && readerElement.contains(target)) {
-                if (toolbar && !toolbar.hidden) {
-                    console.log('Hiding toolbar via click event in play pane');
-                    toolbar.hidden = true;
-                    selectedText = '';
-                }
-            }
-        });
-
-        // Force hide toolbar when selection is cleared
-        document.addEventListener('mouseup', (event) => {
-            setTimeout(() => {
-                const s = window.getSelection();
-                const toolbar = document.getElementById('selectionToolbar');
-                
-                // If toolbar is visible but no text is selected, hide it
-                if (toolbar && !toolbar.hidden && (!s || s.isCollapsed || s.toString().trim() === '')) {
-                    console.log('Hiding toolbar - no selection detected');
-                    toolbar.hidden = true;
-                    selectedText = '';
-                }
-            }, 50); // Longer timeout to ensure selection is cleared
-        });
-
-        // Hide toolbar with Escape key
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                const toolbar = document.getElementById('selectionToolbar');
-                if (toolbar && !toolbar.hidden) {
-                    console.log('Hiding toolbar via Escape key');
-                    toolbar.hidden = true;
-                    selectedText = '';
-                }
-            }
-        });
-
-        // Ensure toolbar is hidden on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const toolbar = document.getElementById('selectionToolbar');
-            if (toolbar) {
-                toolbar.hidden = true;
-                toolbar.style.display = 'none';
-            }
-        });
-
-        // Contextual toolbar button event listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            const explainBtn = document.getElementById('explainBtn');
-            const copyBtn = document.getElementById('copyBtn');
-            
-            if (explainBtn) {
-                explainBtn.addEventListener('click', function() {
-                    if (!selectedText) {
-                        alert('Please select some text first.');
-                        return;
-                    }
-                    analyzeHighlightedText(selectedText);
-                    document.getElementById('selectionToolbar').hidden = true;
-                });
-            }
-            
-            if (copyBtn) {
-                copyBtn.addEventListener('click', function() {
-                    if (selectedText) {
-                        navigator.clipboard.writeText(selectedText).then(() => {
-                            // Show brief success feedback
-                            const originalText = copyBtn.textContent;
-                            copyBtn.textContent = 'Copied!';
-                            setTimeout(() => {
-                                copyBtn.textContent = originalText;
-                            }, 1000);
-                        }).catch(err => {
-                            console.error('Failed to copy text: ', err);
-                            alert('Failed to copy text to clipboard');
-                        });
-                        document.getElementById('selectionToolbar').hidden = true;
-                    }
-                });
-            }
-        });
-
-        // Simple click outside to hide toolbar
-        document.addEventListener('click', (event) => {
-            const toolbar = document.getElementById('selectionToolbar');
-            if (toolbar && !toolbar.hidden && !toolbar.contains(event.target)) {
-                console.log('Hiding toolbar - clicked outside');
-                toolbar.hidden = true;
+        // Clear highlights when clicking in the reading pane without selecting text
+        document.addEventListener('click', function(event) {
+            // Only clear highlights if clicking in the reading pane and no text is selected
+            if (event.target.closest('.reader') && !window.getSelection().toString().trim()) {
+                clearAllHighlights();
                 selectedText = '';
             }
         });
