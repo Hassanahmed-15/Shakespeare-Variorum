@@ -3488,7 +3488,7 @@
             }, 10);
         });
 
-        // Hide toolbar when clicking anywhere on the page
+        // Hide toolbar when clicking in the play pane (reader area)
         document.addEventListener('mousedown', (event) => {
             const toolbar = document.getElementById('selectionToolbar');
             const target = event.target;
@@ -3498,14 +3498,17 @@
                 return;
             }
             
-            // Hide toolbar when clicking anywhere else
-            if (toolbar && !toolbar.hidden) {
-                toolbar.hidden = true;
-                selectedText = '';
+            // Only hide toolbar when clicking in the reader area (play pane)
+            const readerElement = document.querySelector('.reader');
+            if (readerElement && readerElement.contains(target)) {
+                if (toolbar && !toolbar.hidden) {
+                    toolbar.hidden = true;
+                    selectedText = '';
+                }
             }
         });
 
-        // Alternative approach using click event
+        // Alternative approach using click event - only hide when clicking in play pane
         document.addEventListener('click', (event) => {
             const toolbar = document.getElementById('selectionToolbar');
             const target = event.target;
@@ -3515,11 +3518,14 @@
                 return;
             }
             
-            // Hide toolbar when clicking anywhere else
-            if (toolbar && !toolbar.hidden) {
-                console.log('Hiding toolbar via click event');
-                toolbar.hidden = true;
-                selectedText = '';
+            // Only hide toolbar when clicking in the reader area (play pane)
+            const readerElement = document.querySelector('.reader');
+            if (readerElement && readerElement.contains(target)) {
+                if (toolbar && !toolbar.hidden) {
+                    console.log('Hiding toolbar via click event in play pane');
+                    toolbar.hidden = true;
+                    selectedText = '';
+                }
             }
         });
 
@@ -3945,7 +3951,12 @@
             buttons.forEach(btn => {
                 btn.setAttribute('aria-pressed', 'false');
             });
-            event.target.setAttribute('aria-pressed', 'true');
+            
+            // Find and activate the correct button
+            const activeButton = document.querySelector(`.segment button[onclick*="${mode}"]`);
+            if (activeButton) {
+                activeButton.setAttribute('aria-pressed', 'true');
+            }
             
             // Update the analysis title based on mode
             const analysisTitle = document.querySelector('.analysis-title');
