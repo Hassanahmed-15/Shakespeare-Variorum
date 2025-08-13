@@ -3571,12 +3571,36 @@
             analyzeHighlightedText(selectedText);
         }
 
+        // Helper function to count words accurately
+        function countWords(text) {
+            if (!text || typeof text !== 'string') return 0;
+            // Remove extra whitespace and split by whitespace, filter out empty strings
+            return text.trim().split(/\s+/).filter(word => word.length > 0).length;
+        }
+
         async function analyzeHighlightedText(text) {
             // Show processing message with proper meta information
             const analysisPanel = document.getElementById('analysisPanel');
-            const wordCount = text.split(' ').length;
+            const wordCount = countWords(text);
             const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Unknown Play';
             const playInfo = `${playName}, ${currentScene}, ${wordCount} words highlighted`;
+            
+            // Get the correct title based on current mode
+            let analysisTitle = 'Basic Analysis';
+            switch(currentAnalysisMode) {
+                case 'basic':
+                    analysisTitle = 'Basic Analysis';
+                    break;
+                case 'intermediate':
+                    analysisTitle = 'Intermediate Analysis';
+                    break;
+                case 'expert':
+                    analysisTitle = 'Expert Analysis';
+                    break;
+                case 'fullfathomfive':
+                    analysisTitle = 'Full Fathom Five Analysis';
+                    break;
+            }
             
             analysisPanel.innerHTML = `
                 <!-- Analysis Mode Selector -->
@@ -3589,7 +3613,7 @@
 
                 <!-- AI Analysis Content -->
                 <div class="analysis-header">
-                    <div class="analysis-title">Basic Analysis</div>
+                    <div class="analysis-title">${analysisTitle}</div>
                     <button class="copy-btn" onclick="copyAnalysis()">Copy</button>
                 </div>
                 <div class="selection-info">${playInfo}</div>
@@ -3674,7 +3698,7 @@
 
         function updateAnalysis(content, text) {
             const analysisPanel = document.getElementById('analysisPanel');
-            const wordCount = text.split(' ').length;
+            const wordCount = countWords(text);
             const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Unknown Play';
             const playInfo = `${playName} · ${currentScene}`;
             
