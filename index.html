@@ -4139,6 +4139,9 @@
                             const success = await bibleSearch.loadBibleData();
                             if (success) {
                                 console.log('Geneva Bible search initialized successfully');
+                                // Test the search functionality
+                                const testResult = bibleSearch.searchBiblePassages('heaven and earth', 'Test Play', 1);
+                                console.log('Geneva Bible search test result:', testResult);
                             } else {
                                 console.warn('Failed to initialize Geneva Bible search');
                             }
@@ -4157,6 +4160,25 @@
         document.addEventListener('DOMContentLoaded', function() {
             initializeBibleSearch();
         });
+
+        // Function to get Geneva Bible context for analysis
+        async function getGenevaBibleContextForAnalysis(text, playName, level) {
+            if (!bibleSearch || !bibleSearch.isLoaded) {
+                console.log('Geneva Bible search not available');
+                return null;
+            }
+
+            try {
+                const bibleContext = bibleSearch.getBibleContext(text, playName, level);
+                if (bibleContext && bibleContext.passages && bibleContext.passages.length > 0) {
+                    return bibleSearch.formatBibleContextForPrompt(bibleContext);
+                }
+            } catch (error) {
+                console.error('Error getting Geneva Bible context:', error);
+            }
+            
+            return null;
+        }
 
     </script>
 

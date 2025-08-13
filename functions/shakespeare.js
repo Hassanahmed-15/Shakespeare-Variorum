@@ -267,7 +267,7 @@ async function enrichAnalysisWithBible(highlightedText, play, level) {
   return null;
 }
 
-// Geneva Bible context function (enhanced to use local Geneva Bible data)
+// Geneva Bible context function (integrated with local Geneva Bible search)
 async function getGenevaBibleContext(highlightedText, play, level) {
   // Skip for basic level to keep it simple
   if (level === 'basic') return null;
@@ -286,8 +286,29 @@ async function getGenevaBibleContext(highlightedText, play, level) {
   
   if (searchTerms.length === 0) return null;
   
-  // For now, return enhanced mock passages
-  // TODO: Integrate with the actual Geneva Bible search functionality
+  try {
+    // Load and parse Geneva Bible data directly in the serverless function
+    const fs = require('fs');
+    const path = require('path');
+    
+    // Read the Geneva Bible text file
+    const biblePath = path.join(__dirname, '../Public/Data/geneva_bible.txt');
+    const bibleText = fs.readFileSync(biblePath, 'utf8');
+    
+    // Parse the Bible text and create a simple search
+    const passages = await searchGenevaBibleText(bibleText, highlightedText, count);
+    
+    if (passages && passages.length > 0) {
+      return {
+        passages: passages,
+        context: `Found ${passages.length} Geneva Bible passages. The Geneva Bible (1599) was the most widely read Bible in Shakespeare's England and heavily influenced his language and imagery.`
+      };
+    }
+  } catch (error) {
+    console.error('Error searching Geneva Bible:', error);
+  }
+  
+  // Fallback to enhanced mock passages if search fails
   const mockPassages = searchTerms.slice(0, count).map((term, index) => ({
     reference: `Geneva Bible Search for "${term}"`,
     text: `[Geneva Bible passage containing "${term}" would be found here. The Geneva Bible was the most popular Bible in Shakespeare's time and heavily influenced his language and imagery.]`,
@@ -298,6 +319,73 @@ async function getGenevaBibleContext(highlightedText, play, level) {
     passages: mockPassages,
     context: `Found ${mockPassages.length} potential Geneva Bible connections. The Geneva Bible (1599) was the most widely read Bible in Shakespeare's England and heavily influenced his language and imagery.`
   };
+}
+
+// Simple Geneva Bible text search function
+async function searchGenevaBibleText(bibleText, searchText, maxResults = 3) {
+  const lines = bibleText.split('\n');
+  const searchTerms = extractPotentialBiblicalTerms(searchText);
+  const results = [];
+  
+  // Simple search: look for verses containing search terms
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    
+    // Check for verse pattern [chapter:verse]
+    const verseMatch = line.match(/^\[(\d+):(\d+)\]\s*(.+)$/);
+    if (verseMatch) {
+      const chapterNum = parseInt(verseMatch[1]);
+      const verseNum = parseInt(verseMatch[2]);
+      const verseText = verseMatch[3].trim();
+      
+      // Check if this verse contains any of our search terms
+      const lowerVerseText = verseText.toLowerCase();
+      let score = 0;
+      let matchedTerms = [];
+      
+      for (const term of searchTerms) {
+        if (lowerVerseText.includes(term.toLowerCase())) {
+          score += 10;
+          matchedTerms.push(term);
+        }
+      }
+      
+      // Also check for common Biblical themes
+      const biblicalThemes = ['heaven', 'hell', 'sin', 'grace', 'love', 'justice', 'wisdom', 'prophet', 'king', 'lord', 'god'];
+      for (const theme of biblicalThemes) {
+        if (lowerVerseText.includes(theme)) {
+          score += 5;
+        }
+      }
+      
+      if (score > 0) {
+        // Find the book name by looking backwards
+        let bookName = 'Unknown Book';
+        for (let j = i - 1; j >= 0; j--) {
+          const prevLine = lines[j].trim();
+          if (prevLine.startsWith('### ')) {
+            bookName = prevLine.replace('### ', '');
+            break;
+          }
+        }
+        
+        results.push({
+          reference: `${bookName} ${chapterNum}:${verseNum}`,
+          text: verseText,
+          relevance: score,
+          book: bookName,
+          chapter: chapterNum,
+          verse: verseNum,
+          matchedTerms: matchedTerms
+        });
+      }
+    }
+  }
+  
+  // Sort by relevance and return top results
+  return results
+    .sort((a, b) => b.relevance - a.relevance)
+    .slice(0, maxResults);
 }
 
 exports.handler = async (event, context) => {
