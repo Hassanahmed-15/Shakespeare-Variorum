@@ -627,8 +627,8 @@
         }
 
         .upload-success {
-            background: #ffffff;
-            color: #000000;
+            background: #000000;
+            color: #ffffff;
             padding: 10px 15px;
             border-radius: 4px;
             margin-top: 15px;
@@ -3479,7 +3479,8 @@
             
             let metaText = '';
             if (selectedText && wordCount > 0) {
-                metaText = `<em>${playName}</em> · ${currentScene} · ${wordCount} words highlighted`;
+                const wordText = wordCount === 1 ? 'word' : 'words';
+                metaText = `<em>${playName}</em> · ${currentScene} · ${wordCount} ${wordText} highlighted`;
             } else {
                 metaText = `<em>${playName}</em> · ${currentScene} · No text highlighted`;
             }
@@ -3605,7 +3606,8 @@
             const analysisPanel = document.getElementById('analysisPanel');
             const wordCount = countWords(text);
             const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Unknown Play';
-            const playInfo = `${playName}, ${currentScene}, ${wordCount} words highlighted`;
+            const wordText = wordCount === 1 ? 'word' : 'words';
+            const playInfo = `${playName}, ${currentScene}, ${wordCount} ${wordText} highlighted`;
             
             // Get the correct title based on current mode
             let analysisTitle = 'Basic Analysis';
@@ -3639,7 +3641,7 @@
                     <button class="copy-btn" onclick="copyAnalysis()">Copy</button>
                 </div>
                 <div class="analysis">
-                    <div class="meta" style="font-weight: bold;"><em>${playName}</em> · ${currentScene} · ${wordCount} words highlighted</div>
+                    <div class="meta" style="font-weight: bold;"><em>${playName}</em> · ${currentScene} · ${wordCount} ${wordCount === 1 ? 'word' : 'words'} highlighted</div>
                     <div class="analysis-content">
                         <p style="font-family: var(--ui); font-style: italic;">Processing.</p>
                     </div>
@@ -3755,7 +3757,7 @@
                 <!-- AI Analysis Content -->
                 <div class="analysis">
                     <button class="copy-chip" onclick="copyAnalysis()">Copy</button>
-                    <div class="meta">${playInfo} — ${wordCount} words selected</div>
+                    <div class="meta">${playInfo} — ${wordCount} ${wordCount === 1 ? 'word' : 'words'} selected</div>
                     <div class="analysis-content">
                         ${formattedContent}
                     </div>
