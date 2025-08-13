@@ -1738,6 +1738,7 @@
 
         .empty-sub {
             color: var(--ink-3);
+            font-family: var(--ui);
         }
 
         /* Spacing/rhythm cleanup */
@@ -2469,7 +2470,10 @@
                 // loadPlay(fileName);
                 
                 console.log('Add play process completed successfully!');
-                // Success message is already shown above, keep settings open
+                // Success message is already shown above, now close settings
+                setTimeout(() => {
+                    closeSettings();
+                }, 1500); // Close after 1.5 seconds to show success message
             } catch (error) {
                 console.error('Error completing add play process:', error);
                 alert('Error completing process: ' + error.message);
@@ -2698,6 +2702,13 @@
             
             // Reset bulk upload section
             resetBulkUploadSection();
+            
+            // Close settings after successful upload
+            if (successCount > 0) {
+                setTimeout(() => {
+                    closeSettings();
+                }, 1500); // Close after 1.5 seconds to show success message
+            }
         }
 
         // Reset bulk upload section to original state
