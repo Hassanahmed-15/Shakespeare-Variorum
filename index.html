@@ -883,7 +883,7 @@
         /* Main Layout */
         .layout {
             display: grid;
-            grid-template-columns: 3fr minmax(400px, 30%);
+            grid-template-columns: 2fr minmax(500px, 40%);
             gap: var(--s-4);
             height: calc(100vh - 70px);
             background: var(--bg);
@@ -895,19 +895,19 @@
 
         @media (min-width: 1600px) {
             .layout {
-                grid-template-columns: 4fr minmax(450px, 25%);
+                grid-template-columns: 2.5fr minmax(600px, 35%);
             }
         }
 
         @media (max-width: 1200px) {
             .layout {
-                grid-template-columns: 2.5fr minmax(350px, 30%);
+                grid-template-columns: 1.5fr minmax(450px, 40%);
             }
         }
 
         @media (max-width: 900px) {
             .layout {
-                grid-template-columns: 2fr minmax(300px, 30%);
+                grid-template-columns: 1fr minmax(400px, 45%);
             }
             .sidebar {
                 width: 250px;
@@ -3458,7 +3458,7 @@
                 const readerScrollTop = reader.scrollTop;
                 
                 // Calculate position relative to the reading pane
-                let left = box.left + box.width/2 - readerRect.left;
+                let left = box.right - readerRect.left; // Position at right edge of selection
                 let top = box.top - readerRect.top - 50; // 50px above the selection
                 
                 // Constrain to reading pane boundaries

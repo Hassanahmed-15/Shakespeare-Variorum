@@ -19,7 +19,7 @@
   --accent-press:#2563EB;
 
   /* Highlight */
-  --hl:rgba(255,246,176,.45);
+  --hl:#e5e7eb;
 
   /* Radius & rhythm */
   --r-xs:6px; --r-sm:10px; --r-md:12px; --r-lg:16px;
@@ -41,7 +41,7 @@
     --ink-2:#C7CBD3; 
     --ink-3:#8D94A1; 
     --shadow:none; 
-    --hl:rgba(255,217,102,.35); 
+    --hl:#6b7280; 
   }
   .list a:hover{
     background:#1B1E24;
