@@ -2797,19 +2797,10 @@
                     }
                 }
 
-                // Collect scene content - be more selective about what we include
+                // Collect scene content - include all content except empty lines
                 if (inScene && currentScene && line) {
-                    // Skip lines that are just stage direction fragments
-                    if (line.startsWith('[') && line.endsWith(']')) {
-                        // This is a complete stage direction, include it
-                        play.scenes[currentScene].push(line);
-                    } else if (line.startsWith('[') || line.endsWith(']')) {
-                        // This is a stage direction fragment, skip it
-                        continue;
-                    } else if (line.length > 0) {
-                        // This is regular content (dialogue, speaker names, etc.)
-                        play.scenes[currentScene].push(line);
-                    }
+                    // Include all non-empty lines in the scene
+                    play.scenes[currentScene].push(line);
                 }
             }
 
@@ -3572,48 +3563,7 @@
 
 
 
-        // Process unattributed lines to handle bracketed text and inline speakers
-        function processUnattributedLine(line) {
-            // First, check if this line contains an inline speaker (all caps followed by dialogue)
-            const speakerMatch = line.match(/^([A-Z\s,]+)\s+(.+)$/);
-            if (speakerMatch) {
-                const speakerName = speakerMatch[1].trim();
-                const dialogue = speakerMatch[2].trim();
-                
-                // Check if the speaker name looks like a real speaker (not stage direction)
-                const stageDirections = ['ACT', 'SCENE', 'ENTER', 'EXIT', 'EXEUNT', 'WITHIN', 'ABOVE', 'BELOW', 'CURTAIN'];
-                const upperSpeaker = speakerName.toUpperCase();
-                
-                if (!stageDirections.some(word => upperSpeaker.includes(word))) {
-                    // This is an inline speaker - format it properly
-                    const formattedDialogue = formatBracketedText(dialogue);
-                    return `<div class="character-name">${speakerName}</div><div class="dialogue-text">${formattedDialogue}</div>`;
-                }
-            }
-            
-            // If no inline speaker, just format bracketed text
-            return formatBracketedText(line);
-        }
 
-        // Format text to make bracketed content italic
-        function formatBracketedText(text) {
-            console.log('formatBracketedText called with:', text);
-            // Replace all text within brackets with italic version
-            // This handles both complete bracketed lines and bracketed text within lines
-            let result = text;
-            
-            // Handle complete bracketed lines
-            if (text.trim().startsWith('[') && text.trim().endsWith(']')) {
-                result = `<em>${text.trim()}</em>`;
-                console.log('Complete bracketed line formatted:', result);
-            } else {
-                // Handle bracketed text within lines
-                result = text.replace(/\[([^\]]+)\]/g, '<em>[$1]</em>');
-                console.log('Partial bracketed text formatted:', result);
-            }
-            
-            return result;
-        }
 
         // Extract speaker name from a line
         function extractSpeakerName(line) {
