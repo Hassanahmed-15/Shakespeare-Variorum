@@ -4022,6 +4022,11 @@
                         formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
                         formattedContent += formatTextualVariants(content);
                         formattedContent += `</div>`;
+                    } else if (sectionName === 'Bibliography') {
+                        formattedContent += `<div class="section">`;
+                        formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
+                        formattedContent += formatBibliography(content);
+                        formattedContent += `</div>`;
                     } else if (sectionName === 'Notes') {
                         // Store notes for later integration into relevant sections
                         notesContent = content;
@@ -4156,6 +4161,25 @@
                          formattedList += `<p><strong>${cleanSource}</strong>: ${cleanDesc}</p>`;
                      }
                  } else if (line.trim()) {
+                     const cleanLine = line.replace(/^[-*\s]+/, '').trim();
+                     if (cleanLine) {
+                         formattedList += `<p>${cleanLine}</p>`;
+                     }
+                 }
+             });
+             
+             return formattedList || `<p>${processedContent}</p>`;
+         }
+         
+         function formatBibliography(content) {
+             // Process the content first to handle asterisks and formatting
+             const processedContent = processContentForFormatting(content);
+             
+             const lines = processedContent.split('\n');
+             let formattedList = '';
+             
+             lines.forEach(line => {
+                 if (line.trim()) {
                      const cleanLine = line.replace(/^[-*\s]+/, '').trim();
                      if (cleanLine) {
                          formattedList += `<p>${cleanLine}</p>`;
@@ -4341,6 +4365,10 @@
             
             // Convert author names to proper format
             processed = processed.replace(/([A-Z][a-z]+),\s*([A-Z][a-z]+)/g, '$2 $1');
+            
+            // Fix common scholarly name formatting
+            processed = processed.replace(/\bA\.\s*circa\s*Bradley\b/gi, 'A.C. Bradley');
+            processed = processed.replace(/\bA\.\s*C\.\s*Bradley\b/gi, 'A.C. Bradley');
             
             // Fix common formatting issues
             processed = processed.replace(/\s+/g, ' '); // Normalize multiple spaces
