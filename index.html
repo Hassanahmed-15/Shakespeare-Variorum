@@ -1766,7 +1766,7 @@
             text-align: left;
             color: var(--ink-1);
             transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
-            border: 1px solid var(--line);
+            border: 1px solid #d1d5db;
         }
 
         /* Default neutral for non-branded links */
@@ -1784,7 +1784,7 @@
         .link-btn.scholar,
         .link-btn.ise {
             background: var(--panel);
-            border-color: var(--border);
+            border-color: #d1d5db;
             color: var(--ink-1);
         }
 
@@ -3852,6 +3852,13 @@
                         ${formattedContent}
                     </div>
                     
+                    <!-- Follow-up Section -->
+                    <h3>Ask a follow-up question</h3>
+                    <div class="follow-up-input">
+                        <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
+                        <button class="ask-btn" onclick="askFollowUp()">Ask</button>
+                    </div>
+
                     <!-- Media Section -->
                     <h3>Media</h3>
                     <div class="media-actions">
@@ -3865,13 +3872,6 @@
                         <button class="link-btn jstor" onclick="searchJSTOR('passage')">Search JSTOR for this passage/scene</button>
                         <button class="link-btn scholar" onclick="searchGoogleScholar()">Google Scholar</button>
                         <button class="link-btn ise" onclick="openInternetShakespeare()">Internet Shakespeare Editions</button>
-                    </div>
-
-                    <!-- Follow-up Section -->
-                    <h3>Ask a follow-up question</h3>
-                    <div class="follow-up-input">
-                        <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
-                        <button class="ask-btn" onclick="askFollowUp()">Ask</button>
                     </div>
                 </div>
             `;
