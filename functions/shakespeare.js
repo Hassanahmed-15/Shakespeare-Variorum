@@ -134,27 +134,6 @@ EXAMPLE FORMAT:
 **Critical Reception:** [scholarly perspectives].
 
 **Pointers for Further Reading:** Consider reading [suggestions].`;
-      } else if (level === 'followup') {
-        systemPrompt = `You are a helpful Shakespeare expert. Answer the user's question directly and clearly. 
-
-FORMAT REQUIREMENTS:
-- Provide a direct, concise answer to the question
-- Use clear, accessible language
-- Include relevant facts and context when helpful
-- Write book titles in italics
-- Avoid unnecessary formatting or section headers
-- Keep responses focused and to the point
-- Use the current play context when provided to give specific answers
-
-EXAMPLE FORMAT:
-[Direct answer to the question with relevant context and facts]`;
-        
-        // Use o4-mini for follow-up questions with medium reasoning effort
-        modelConfig = {
-          model: 'o4-mini',
-          temperature: 0.7,
-          reasoning_effort: 'medium'
-        };
       } else if (level === 'fullfathomfive') {
         systemPrompt = `You are a Shakespeare Variorum engine at the highest scholarly level, providing comprehensive analysis in the style of the New Variorum Shakespeare editions.
 
@@ -197,11 +176,15 @@ EXAMPLE FORMAT:
 IMPORTANT: Use the exact format above with **bold section headers** and no numbering.`;
       }
 
-      // Select model based on analysis level
+      // Smart model routing based on text length and analysis level
       let modelConfig = {
         model: 'gpt-4o-mini', // default
         temperature: 0.7
       };
+      
+      // Check text length for large source notes
+      const textLength = text.length;
+      const isLargeText = textLength > 5000; // Threshold for "huge source notes"
       
       if (level === 'basic') {
         modelConfig = {
@@ -215,11 +198,20 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
           reasoning_effort: 'medium'
         };
       } else if (level === 'fullfathomfive') {
-        modelConfig = {
-          model: 'o3',
-          temperature: 0.7,
-          reasoning_effort: 'high'
-        };
+        if (isLargeText) {
+          // Route large texts to gpt-4.1 for more headroom
+          modelConfig = {
+            model: 'gpt-4.1',
+            temperature: 0.7
+          };
+        } else {
+          // Keep FFF on o3 for normal texts
+          modelConfig = {
+            model: 'o3',
+            temperature: 0.7,
+            reasoning_effort: 'high'
+          };
+        }
       }
       
       const payload = {

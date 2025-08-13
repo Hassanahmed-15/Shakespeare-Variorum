@@ -4476,7 +4476,7 @@
                     context = `Current play: ${playName} (${sceneName})\n\nQuestion: ${question}`;
                 }
                 
-                // Call the AI function with a special follow-up prompt
+                // Call the AI function using the same tier as current analysis
                 const response = await fetch('/.netlify/functions/shakespeare', {
                     method: 'POST',
                     headers: {
@@ -4484,7 +4484,7 @@
                     },
                     body: JSON.stringify({
                         text: context,
-                        level: 'followup', // Special level for follow-up questions
+                        level: currentAnalysisMode || 'basic', // Use same tier as current analysis
                         playName: currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Shakespeare',
                         sceneName: currentScene || 'scene'
                     })
@@ -4670,9 +4670,9 @@
                 });
             }
             
-            // Temporarily disable Bible search to test main functionality
-            // initializeBibleSearch();
-            console.log('Bible search temporarily disabled for testing');
+            // Initialize Geneva Bible search
+            initializeBibleSearch();
+            console.log('Bible search enabled');
             
             // Initialize meta line
             updateMetaLine();
