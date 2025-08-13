@@ -4020,11 +4020,7 @@
                         formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
                         formattedContent += formatTextualVariants(content);
                         formattedContent += `</div>`;
-                    } else if (sectionName === 'Bibliography') {
-                        formattedContent += `<div class="section">`;
-                        formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
-                        formattedContent += formatBibliography(content);
-                        formattedContent += `</div>`;
+
                     } else if (sectionName === 'Notes') {
                         // Store notes for later integration into relevant sections
                         notesContent = content;
@@ -4170,59 +4166,7 @@
              return formattedList || `<p>${processedContent}</p>`;
          }
          
-         function formatBibliography(content) {
-             // Process the content first to handle asterisks and formatting
-             const processedContent = processContentForFormatting(content);
-             
-             // Split by newlines and clean up
-             const lines = processedContent.split('\n');
-             let entries = [];
-             let currentEntry = '';
-             
-             lines.forEach(line => {
-                 const trimmedLine = line.trim();
-                 if (!trimmedLine) {
-                     if (currentEntry) {
-                         entries.push(currentEntry);
-                         currentEntry = '';
-                     }
-                     return;
-                 }
-                 
-                 // Remove leading dashes, numbers, or other formatting
-                 const cleanLine = trimmedLine.replace(/^[-*\d\s\.]+/, '').trim();
-                 
-                 if (cleanLine) {
-                     // If this looks like the start of a new entry (author name pattern)
-                     if (cleanLine.match(/^[A-Z][a-z]+ [A-Z]/) && currentEntry) {
-                         entries.push(currentEntry);
-                         currentEntry = cleanLine;
-                     } else {
-                         currentEntry += (currentEntry ? ' ' : '') + cleanLine;
-                     }
-                 }
-             });
-             
-             // Add the last entry
-             if (currentEntry) {
-                 entries.push(currentEntry);
-             }
-             
-             // Filter out very short entries (likely fragments)
-             entries = entries.filter(entry => entry.length > 20);
-             
-             let formattedList = '';
-             
-             entries.forEach((entry, index) => {
-                 if (entry.trim()) {
-                     // Add period if missing
-                     const cleanEntry = entry.endsWith('.') ? entry : entry + '.';
-                     formattedList += `<p>${index + 1}. ${cleanEntry}</p>`;
-                 }
-             });
-             
-             return formattedList || `<p>${processedContent}</p>`;
-         }
+
         
                  function integrateNotesIntoSections(formattedContent, notesContent) {
              // Parse notes into individual citations
