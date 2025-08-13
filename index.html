@@ -4176,18 +4176,26 @@
              // Process the content first to handle asterisks and formatting
              const processedContent = processContentForFormatting(content);
              
-             const lines = processedContent.split('\n');
+             // Split by common bibliography separators and clean up
+             let entries = processedContent.split(/[.;]\s*(?=[A-Z])/);
+             
+             // Filter out empty entries and clean them up
+             entries = entries
+                 .map(entry => entry.trim())
+                 .filter(entry => entry.length > 0)
+                 .map(entry => {
+                     // Remove leading dashes, numbers, or other formatting
+                     return entry.replace(/^[-*\d\s\.]+/, '').trim();
+                 })
+                 .filter(entry => entry.length > 0);
+             
              let formattedList = '';
              
-             lines.forEach(line => {
-                 if (line.trim()) {
-                     // Remove leading dashes and clean up the line
-                     const cleanLine = line.replace(/^[-*\s]+/, '').trim();
-                     // Remove trailing dashes
-                     const finalLine = cleanLine.replace(/[-]+$/, '').trim();
-                     if (finalLine) {
-                         formattedList += `<p>${finalLine}</p>`;
-                     }
+             entries.forEach((entry, index) => {
+                 if (entry.trim()) {
+                     // Add period if missing
+                     const cleanEntry = entry.endsWith('.') ? entry : entry + '.';
+                     formattedList += `<p>${index + 1}. ${cleanEntry}</p>`;
                  }
              });
              
