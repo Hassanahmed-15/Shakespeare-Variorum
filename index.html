@@ -2746,6 +2746,10 @@
             console.log('parsePlayText started');
             console.log('Content length:', content.length);
             
+            // Debug: Show first 500 characters of raw content
+            console.log('First 500 characters of raw content:');
+            console.log(content.substring(0, 500));
+            
             const lines = content.split('\n');
             console.log('Content split into', lines.length, 'lines');
             
@@ -2857,6 +2861,9 @@
                         play.acts[actKey] = play.acts[actKey].filter(scene => scene !== sceneKey);
                     });
                 } else {
+                    // For debugging: show raw scene content before processing
+                    console.log(`Raw scene content for ${sceneKey}:`, play.scenes[sceneKey]);
+                    
                     // Group dialogue by speaker
                     play.scenes[sceneKey] = groupDialogueBySpeaker(play.scenes[sceneKey]);
                 }
