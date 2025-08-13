@@ -1455,9 +1455,7 @@
             font-weight: 700;
             font-size: 16px;
             color: var(--ink-1);
-            margin: var(--s-4) 0 var(--s-2);
-            border-bottom: 1px solid var(--line);
-            padding-bottom: var(--s-1);
+            margin: var(--s-2) 0 var(--s-1);
             display: block;
         }
 
@@ -4289,6 +4287,10 @@
             processed = processed.replace(/\*([^*]+)\*/g, '<em>$1</em>'); // Convert remaining asterisk-wrapped text to italics
             processed = processed.replace(/"([^"]*)"\s*\(([^)]*)\)/g, '<em>$1</em> ($2)');
             processed = processed.replace(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s*\(([^)]*)\)/g, '<em>$1</em> ($2)');
+            
+            // More aggressive asterisk-to-italics conversion for book titles
+            processed = processed.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
+            processed = processed.replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>');
             
             // Convert author names to proper format
             processed = processed.replace(/([A-Z][a-z]+),\s*([A-Z][a-z]+)/g, '$2 $1');

@@ -176,7 +176,7 @@ EXAMPLE FORMAT:
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
-${sections.map((section, index) => `${index + 1}. **${section}:**`).join('\n')}
+${sections.map((section, index) => `**${section}:**`).join('\n')}
 
 FORMAT REQUIREMENTS:
 - Start each section with the exact heading format shown above
@@ -210,7 +210,9 @@ EXAMPLE FORMAT:
 
 **Bibliography:** [comprehensive bibliography].
 
-**Notes:** [detailed footnotes and citations].`;
+**Notes:** [detailed footnotes and citations].
+
+IMPORTANT: Use the exact format above with **bold section headers** and no numbering.`;
       }
 
       const payload = {
