@@ -883,7 +883,7 @@
         /* Main Layout */
         .layout {
             display: grid;
-            grid-template-columns: 2fr minmax(450px, 35%);
+            grid-template-columns: 3fr minmax(400px, 30%);
             gap: var(--s-4);
             height: calc(100vh - 70px);
             background: var(--bg);
@@ -895,19 +895,19 @@
 
         @media (min-width: 1600px) {
             .layout {
-                grid-template-columns: 2.5fr minmax(500px, 40%);
+                grid-template-columns: 4fr minmax(450px, 25%);
             }
         }
 
         @media (max-width: 1200px) {
             .layout {
-                grid-template-columns: 1.5fr minmax(400px, 35%);
+                grid-template-columns: 2.5fr minmax(350px, 30%);
             }
         }
 
         @media (max-width: 900px) {
             .layout {
-                grid-template-columns: 1fr minmax(350px, 35%);
+                grid-template-columns: 2fr minmax(300px, 30%);
             }
             .sidebar {
                 width: 250px;
@@ -1218,13 +1218,13 @@
 
         .play {
             font-family: "Source Serif 4", "Georgia", serif;
-            font-size: 15px;
+            font-size: 16px;
             line-height: 1.6;
             width: 100%;
             margin: 0;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: auto;
+            word-wrap: normal;
+            overflow-wrap: normal;
+            hyphens: none;
         }
 
         .dialogue-text {
@@ -1254,12 +1254,12 @@
             letter-spacing: .04em;
         }
 
-        /* Verse line styling - force wrapping for readability */
+        /* Verse line styling - preserve Shakespearean line structure */
         .play .line {
             display: block;
             white-space: normal;
-            word-break: break-word;
-            overflow-wrap: break-word;
+            word-break: normal;
+            overflow-wrap: normal;
             max-width: 100%;
             overflow: visible;
         }
@@ -1284,26 +1284,38 @@
         }
 
         .play * {
-            word-wrap: break-word;
-            overflow-wrap: break-word;
+            word-wrap: normal;
+            overflow-wrap: normal;
+            white-space: normal !important;
+        }
+        
+        /* Force proper text display for play content */
+        .play .line,
+        .play .stage,
+        .play .prose,
+        .play .dialogue {
+            white-space: normal !important;
+            word-break: normal !important;
+            overflow-wrap: normal !important;
+            word-wrap: normal !important;
         }
 
         /* Responsive text sizing for different screen sizes */
         @media (max-width: 1200px) {
             .play {
-                font-size: 12px;
+                font-size: 15px;
             }
         }
 
         @media (max-width: 900px) {
             .play {
-                font-size: 11px;
+                font-size: 14px;
             }
         }
 
         @media (max-width: 600px) {
             .play {
-                font-size: 10px;
+                font-size: 13px;
             }
         }
 
@@ -1312,7 +1324,7 @@
         /* Graceful degradation on narrow screens */
         @media (max-width: 1200px) {
             .play, .play .line {
-                white-space: pre-wrap;
+                white-space: normal;
             }
         }
 
@@ -2904,7 +2916,7 @@
                 if (isSpeakerName) {
                     // If we have accumulated dialogue from previous speaker, add it
                     if (currentSpeaker && currentDialogue.length > 0) {
-                        groupedLines.push(`${currentSpeaker}\n${currentDialogue.join('\n')}`);
+                        groupedLines.push(`${currentSpeaker}\n${currentDialogue.join(' ')}`);
                     }
                     // Start new speaker
                     currentSpeaker = line;
@@ -2917,7 +2929,7 @@
             
             // Add the last speaker's dialogue
             if (currentSpeaker && currentDialogue.length > 0) {
-                groupedLines.push(`${currentSpeaker}\n${currentDialogue.join('\n')}`);
+                groupedLines.push(`${currentSpeaker}\n${currentDialogue.join(' ')}`);
             }
             
             // If no speakers were found, return the original lines
