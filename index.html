@@ -4454,12 +4454,9 @@
                 return;
             }
             
-            // Get the current context
+            // Get the current context (optional)
             const currentAnalysis = document.querySelector('.analysis-content');
-            if (!currentAnalysis || !selectedText) {
-                alert('Please analyze some text first before asking a follow-up question.');
-                return;
-            }
+            const hasAnalysis = currentAnalysis && currentAnalysis.textContent.trim().length > 0;
             
             // Show loading state
             const followUpBtn = document.querySelector('.follow-up-btn');
@@ -4469,7 +4466,12 @@
             
             try {
                 // Prepare the context for the follow-up question
-                const context = `Original text: "${selectedText}"\n\nCurrent analysis: ${currentAnalysis.innerText}\n\nFollow-up question: ${question}`;
+                let context = '';
+                if (hasAnalysis && selectedText) {
+                    context = `Original text: "${selectedText}"\n\nCurrent analysis: ${currentAnalysis.innerText}\n\nFollow-up question: ${question}`;
+                } else {
+                    context = `Question: ${question}\n\nPlease provide a helpful response about Shakespeare, his works, or any related topic.`;
+                }
                 
                 // Call the AI function
                 const response = await fetch('/.netlify/functions/shakespeare', {
@@ -4503,8 +4505,21 @@
                         <div class="answer-content">${answer}</div>
                     `;
                     
-                    // Insert the follow-up answer after the current analysis
-                    currentAnalysis.appendChild(followUpSection);
+                    // Insert the follow-up answer in the appropriate location
+                    if (hasAnalysis) {
+                        // If there's existing analysis, append to it
+                        currentAnalysis.appendChild(followUpSection);
+                    } else {
+                        // If no existing analysis, create a new analysis container
+                        const analysisContainer = document.querySelector('.analysis-content') || document.querySelector('.ai-analysis-content');
+                        if (analysisContainer) {
+                            analysisContainer.appendChild(followUpSection);
+                        } else {
+                            // Fallback: append to the main content area
+                            const mainContent = document.querySelector('.reader') || document.body;
+                            mainContent.appendChild(followUpSection);
+                        }
+                    }
                     
                     // Clear the question input
                     document.getElementById('followUpQuestion').value = '';
