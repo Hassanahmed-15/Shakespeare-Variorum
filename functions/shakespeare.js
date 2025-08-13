@@ -45,14 +45,7 @@ exports.handler = async (event, context) => {
           'Key Words & Glosses',
           'Pointers for Further Reading'
         ],
-        intermediate: [
-          'Plain-Language Paraphrase',
-          'Synopsis',
-          'Textual Variants',
-          'Key Words & Glosses',
-          'Historical Context',
-          'Pointers for Further Reading'
-        ],
+
         expert: [
           'Plain-Language Paraphrase',
           'Synopsis',
@@ -106,35 +99,7 @@ EXAMPLE FORMAT:
 **Key Words & Glosses:** [word] means [definition]; [word] means [definition].
 
 **Pointers for Further Reading:** Consider reading [suggestions].`;
-      } else if (level === 'intermediate') {
-        systemPrompt = `You are a knowledgeable Shakespeare guide for readers with some familiarity with Shakespeare but seeking deeper understanding.
 
-CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
-
-${sections.map((section, index) => `**${section}:**`).join('\n')}
-
-FORMAT REQUIREMENTS:
-- Start each section with the exact heading format shown above
-- Provide 3-6 sentences for each section
-- Use complete sentences and paragraphs
-- Include specific textual evidence and examples
-- Avoid abbreviations and shorthand
-- Write book titles in italics
-- Use proper academic formatting
-- For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
-
-EXAMPLE FORMAT:
-**Plain-Language Paraphrase:** This passage means [explanation in simple terms].
-
-**Synopsis:** This language [what it does in context].
-
-**Textual Variants:** [variants or "Early editions are identical to Folger."]
-
-**Key Words & Glosses:** [word] means [definition]; [word] means [definition].
-
-**Historical Context:** [relevant historical background].
-
-**Pointers for Further Reading:** Consider reading [suggestions].`;
       } else if (level === 'expert') {
         systemPrompt = `You are an expert Shakespearean scholar with comprehensive knowledge of 500 years of Shakespeare scholarship.
 
