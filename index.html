@@ -3193,50 +3193,47 @@
         
         // Process any line for speaker names and split them properly
         function processLineForSpeakers(line) {
-            // Look for ALL CAPS patterns that could be speaker names
-            const speakerPattern = /\b([A-Z\s]{3,50})\b/g;
-            let matches = [];
-            let match;
-            
-            // Find all potential speaker names in the line
-            while ((match = speakerPattern.exec(line)) !== null) {
-                const speakerName = match[1].trim();
-                if (isSpeakerName(speakerName)) {
-                    matches.push({
-                        name: speakerName,
-                        index: match.index,
-                        endIndex: match.index + match[0].length
-                    });
-                }
-            }
-            
-            // If no speakers found, return the line as-is
-            if (matches.length === 0) {
-                return `<div class="play-line">${line}</div>`;
-            }
-            
-            // Split the line at each speaker and create separate lines
+            // Split the line by potential speaker names (ALL CAPS)
+            const parts = line.split(/([A-Z\s]{3,50})/);
             let result = '';
-            let lastIndex = 0;
+            let currentSpeaker = '';
+            let currentDialogue = '';
             
-            for (let i = 0; i < matches.length; i++) {
-                const speaker = matches[i];
+            for (let i = 0; i < parts.length; i++) {
+                const part = parts[i].trim();
+                if (!part) continue;
                 
-                // Add dialogue before this speaker
-                const dialogueBefore = line.substring(lastIndex, speaker.index).trim();
-                if (dialogueBefore) {
-                    result += `<div class="play-line">${dialogueBefore}</div>`;
-                }
-                
-                // Add the speaker line
-                const dialogueAfter = line.substring(speaker.endIndex).trim();
-                if (dialogueAfter) {
-                    result += `<div class="play-line"><strong>${speaker.name}</strong> ${dialogueAfter}</div>`;
+                // Check if this part is a speaker name
+                if (isSpeakerName(part)) {
+                    // If we have accumulated dialogue, output it
+                    if (currentDialogue) {
+                        result += `<div class="play-line">${currentDialogue}</div>`;
+                        currentDialogue = '';
+                    }
+                    
+                    // Start new speaker
+                    currentSpeaker = part;
                 } else {
-                    result += `<div class="play-line"><strong>${speaker.name}</strong></div>`;
+                    // This is dialogue
+                    if (currentSpeaker) {
+                        // We have a speaker, so this is their dialogue
+                        result += `<div class="play-line"><strong>${currentSpeaker}</strong> ${part}</div>`;
+                        currentSpeaker = '';
+                    } else {
+                        // No speaker, just add to dialogue
+                        currentDialogue += (currentDialogue ? ' ' : '') + part;
+                    }
                 }
-                
-                lastIndex = speaker.endIndex;
+            }
+            
+            // Handle any remaining dialogue
+            if (currentDialogue) {
+                result += `<div class="play-line">${currentDialogue}</div>`;
+            }
+            
+            // If no processing was done, return original line
+            if (!result) {
+                return `<div class="play-line">${line}</div>`;
             }
             
             return result;
