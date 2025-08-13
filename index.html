@@ -2363,10 +2363,7 @@
         let currentPlay = '';
         let currentScene = '';
         
-        // Cache management
-        const CACHE_VERSION = '1.0';
-        const CACHE_EXPIRY_DAYS = 30;
-        const MAX_CACHE_SIZE = 50; // Maximum number of cached items
+        // Cache removed for testing
 
         // Modal functions
         function openSettings() {
@@ -2377,7 +2374,6 @@
             document.getElementById('uploadError').style.display = 'none';
             
             updateLibraryPlays(); // Refresh the library display
-            updateCacheStats(); // Update cache statistics
         }
 
         function closeSettings() {
@@ -4480,170 +4476,16 @@
             window.open(url, '_blank');
         }
 
-        // Cache management functions
-        function generateCacheKey(text, level, playName, sceneName) {
-            // Create a unique key based on text content, analysis level, and context
-            const textHash = btoa(text).slice(0, 20); // Simple hash of text
-            return `analysis_${CACHE_VERSION}_${level}_${textHash}_${playName}_${sceneName}`;
-        }
-        
+        // Cache completely removed - always generate fresh analysis
         function getCachedAnalysis(text, level, playName, sceneName) {
-            try {
-                const cacheKey = generateCacheKey(text, level, playName, sceneName);
-                const cached = localStorage.getItem(cacheKey);
-                
-                if (!cached) return null;
-                
-                const analysis = JSON.parse(cached);
-                const now = new Date().getTime();
-                
-                // Check if cache has expired
-                if (analysis.timestamp && (now - analysis.timestamp) > (CACHE_EXPIRY_DAYS * 24 * 60 * 60 * 1000)) {
-                    localStorage.removeItem(cacheKey);
-                    return null;
-                }
-                
-                console.log('Cache hit for:', text.substring(0, 50) + '...');
-                // Temporarily disable cache to test new formatting
-                console.log('Cache disabled for testing - forcing new analysis');
-                return null;
-                
-            } catch (error) {
-                console.warn('Error reading from cache:', error);
-                return null;
-            }
+            return null; // No caching
         }
         
         function cacheAnalysis(text, level, playName, sceneName, content) {
-            try {
-                const cacheKey = generateCacheKey(text, level, playName, sceneName);
-                const analysis = {
-                    content: content,
-                    timestamp: new Date().getTime(),
-                    version: CACHE_VERSION,
-                    text: text.substring(0, 100), // Store first 100 chars for debugging
-                    level: level,
-                    playName: playName,
-                    sceneName: sceneName
-                };
-                
-                localStorage.setItem(cacheKey, JSON.stringify(analysis));
-                
-                // Manage cache size - remove oldest entries if we exceed MAX_CACHE_SIZE
-                manageCacheSize();
-                
-                console.log('Cached analysis for:', text.substring(0, 50) + '...');
-                
-            } catch (error) {
-                console.warn('Error caching analysis:', error);
-                // If localStorage is full, clear some old entries and try again
-                if (error.name === 'QuotaExceededError') {
-                    clearOldCacheEntries();
-                    try {
-                        localStorage.setItem(cacheKey, JSON.stringify(analysis));
-                    } catch (retryError) {
-                        console.warn('Failed to cache after cleanup:', retryError);
-                    }
-                }
-            }
+            // No caching
         }
         
-        function manageCacheSize() {
-            try {
-                const cacheKeys = Object.keys(localStorage).filter(key => key.startsWith('analysis_'));
-                
-                if (cacheKeys.length <= MAX_CACHE_SIZE) return;
-                
-                // Sort by timestamp (oldest first) and remove excess
-                const cacheEntries = cacheKeys.map(key => {
-                    try {
-                        const cached = JSON.parse(localStorage.getItem(key));
-                        return { key, timestamp: cached.timestamp || 0 };
-                    } catch {
-                        return { key, timestamp: 0 };
-                    }
-                }).sort((a, b) => a.timestamp - b.timestamp);
-                
-                // Remove oldest entries
-                const toRemove = cacheEntries.slice(0, cacheKeys.length - MAX_CACHE_SIZE);
-                toRemove.forEach(entry => {
-                    localStorage.removeItem(entry.key);
-                });
-                
-                console.log(`Cleared ${toRemove.length} old cache entries`);
-                
-            } catch (error) {
-                console.warn('Error managing cache size:', error);
-            }
-        }
-        
-        function clearOldCacheEntries() {
-            try {
-                const now = new Date().getTime();
-                const cacheKeys = Object.keys(localStorage).filter(key => key.startsWith('analysis_'));
-                
-                cacheKeys.forEach(key => {
-                    try {
-                        const cached = JSON.parse(localStorage.getItem(key));
-                        if (cached.timestamp && (now - cached.timestamp) > (CACHE_EXPIRY_DAYS * 24 * 60 * 60 * 1000)) {
-                            localStorage.removeItem(key);
-                        }
-                    } catch {
-                        localStorage.removeItem(key);
-                    }
-                });
-                
-                console.log('Cleared expired cache entries');
-                
-            } catch (error) {
-                console.warn('Error clearing old cache entries:', error);
-            }
-        }
-        
-        function clearAllCache() {
-            try {
-                const cacheKeys = Object.keys(localStorage).filter(key => key.startsWith('analysis_'));
-                cacheKeys.forEach(key => localStorage.removeItem(key));
-                console.log(`Cleared ${cacheKeys.length} cache entries`);
-                return cacheKeys.length;
-            } catch (error) {
-                console.warn('Error clearing cache:', error);
-                return 0;
-            }
-        }
-        
-        function getCacheStats() {
-            try {
-                const cacheKeys = Object.keys(localStorage).filter(key => key.startsWith('analysis_'));
-                const now = new Date().getTime();
-                let validEntries = 0;
-                let expiredEntries = 0;
-                
-                cacheKeys.forEach(key => {
-                    try {
-                        const cached = JSON.parse(localStorage.getItem(key));
-                        if (cached.timestamp && (now - cached.timestamp) > (CACHE_EXPIRY_DAYS * 24 * 60 * 60 * 1000)) {
-                            expiredEntries++;
-                        } else {
-                            validEntries++;
-                        }
-                    } catch {
-                        expiredEntries++;
-                    }
-                });
-                
-                return {
-                    total: cacheKeys.length,
-                    valid: validEntries,
-                    expired: expiredEntries,
-                    maxSize: MAX_CACHE_SIZE,
-                    expiryDays: CACHE_EXPIRY_DAYS
-                };
-            } catch (error) {
-                console.warn('Error getting cache stats:', error);
-                return { total: 0, valid: 0, expired: 0, maxSize: MAX_CACHE_SIZE, expiryDays: CACHE_EXPIRY_DAYS };
-            }
-        }
+        // All cache management functions removed
         
         function updateCacheStats() {
             const stats = getCacheStats();
