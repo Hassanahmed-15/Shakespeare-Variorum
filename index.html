@@ -1435,15 +1435,7 @@
             color: var(--ink-1);
         }
         
-        /* Notes styling */
-        .analysis .note {
-            font-size: 14px;
-            color: var(--ink-2);
-            font-style: italic;
-            margin: var(--s-2) 0;
-            padding-left: var(--s-3);
-            border-left: 2px solid var(--line);
-        }
+
         
         /* Italics for book titles and emphasis */
         .analysis em {
@@ -4242,7 +4234,7 @@
                  if (sectionNotes[sectionName].length > 0) {
                      const sectionRegex = new RegExp(`<h3><strong>${sectionName}:</strong></h3>`, 'g');
                      const notesHtml = sectionNotes[sectionName].map(note => 
-                         `<p class="note"><em>${processContentForFormatting(note)}</em></p>`
+                         `<p>${processContentForFormatting(note)}</p>`
                      ).join('');
                      
                      formattedContent = formattedContent.replace(
