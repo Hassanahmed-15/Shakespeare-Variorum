@@ -4476,7 +4476,7 @@
                     context = `Current play: ${playName} (${sceneName})\n\nQuestion: ${question}`;
                 }
                 
-                // Call the AI function using the same tier as current analysis
+                // Call the AI function with follow-up level and base level for style consistency
                 const response = await fetch('/.netlify/functions/shakespeare', {
                     method: 'POST',
                     headers: {
@@ -4484,7 +4484,8 @@
                     },
                     body: JSON.stringify({
                         text: context,
-                        level: currentAnalysisMode || 'basic', // Use same tier as current analysis
+                        level: 'followup', // Special follow-up level
+                        baseLevel: currentAnalysisMode || 'basic', // Base level for style consistency
                         playName: currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Shakespeare',
                         sceneName: currentScene || 'scene'
                     })

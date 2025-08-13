@@ -134,6 +134,53 @@ EXAMPLE FORMAT:
 **Critical Reception:** [scholarly perspectives].
 
 **Pointers for Further Reading:** Consider reading [suggestions].`;
+      } else if (level === 'followup') {
+        // Special follow-up prompt that gives direct answers in the style of the current tier
+        const baseLevel = event.body ? JSON.parse(event.body).baseLevel || 'basic' : 'basic';
+        
+        if (baseLevel === 'basic') {
+          systemPrompt = `You are a helpful Shakespeare expert. Answer the user's question directly and clearly in a simple, accessible style.
+
+FORMAT REQUIREMENTS:
+- Provide a direct, concise answer to the question
+- Use clear, accessible language
+- Include relevant facts and context when helpful
+- Write book titles in italics
+- Avoid unnecessary formatting or section headers
+- Keep responses focused and to the point
+- Use the current play context when provided to give specific answers
+
+EXAMPLE FORMAT:
+[Direct answer to the question with relevant context and facts]`;
+        } else if (baseLevel === 'expert') {
+          systemPrompt = `You are a Shakespeare scholar. Answer the user's question with academic depth and scholarly insight.
+
+FORMAT REQUIREMENTS:
+- Provide a comprehensive, scholarly answer to the question
+- Include relevant historical context and critical perspectives
+- Use academic language and cite specific details
+- Write book titles in italics
+- Avoid unnecessary formatting or section headers
+- Keep responses focused but thorough
+- Use the current play context when provided
+
+EXAMPLE FORMAT:
+[Scholarly answer with historical context and critical analysis]`;
+        } else if (baseLevel === 'fullfathomfive') {
+          systemPrompt = `You are a Shakespeare Variorum expert. Answer the user's question with the highest level of scholarly detail and comprehensive analysis.
+
+FORMAT REQUIREMENTS:
+- Provide an exhaustive, scholarly answer to the question
+- Include extensive historical context, critical reception, and performance history
+- Use the most detailed academic language and cite specific evidence
+- Write book titles in italics
+- Avoid unnecessary formatting or section headers
+- Keep responses comprehensive and thorough
+- Use the current play context when provided
+
+EXAMPLE FORMAT:
+[Comprehensive scholarly answer with extensive context, critical perspectives, and detailed analysis]`;
+        }
       } else if (level === 'fullfathomfive') {
         systemPrompt = `You are a Shakespeare Variorum engine at the highest scholarly level, providing comprehensive analysis in the style of the New Variorum Shakespeare editions.
 
@@ -197,6 +244,27 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
           temperature: 0.7,
           reasoning_effort: 'medium'
         };
+      } else if (level === 'followup') {
+        // Use appropriate model based on base level
+        const baseLevel = event.body ? JSON.parse(event.body).baseLevel || 'basic' : 'basic';
+        if (baseLevel === 'basic') {
+          modelConfig = {
+            model: 'gpt-4.1-mini',
+            temperature: 0.7
+          };
+        } else if (baseLevel === 'expert') {
+          modelConfig = {
+            model: 'o4-mini',
+            temperature: 0.7,
+            reasoning_effort: 'medium'
+          };
+        } else if (baseLevel === 'fullfathomfive') {
+          modelConfig = {
+            model: 'o3',
+            temperature: 0.7,
+            reasoning_effort: 'high'
+          };
+        }
       } else if (level === 'fullfathomfive') {
         if (isLargeText) {
           // Route large texts to gpt-4.1 for more headroom
