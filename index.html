@@ -2895,7 +2895,8 @@
             
             // If the lines are already broken into individual words, reconstruct them
             const reconstructedLines = [];
-            let currentLine = '';
+            let currentSpeaker = '';
+            let currentDialogue = [];
             
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i].trim();
@@ -2914,25 +2915,22 @@
                                     !cleanLine.endsWith(']');
                 
                 if (isSpeakerName) {
-                    // If we have accumulated a line, add it
-                    if (currentLine.trim()) {
-                        reconstructedLines.push(currentLine.trim());
+                    // If we have accumulated dialogue from previous speaker, add it
+                    if (currentSpeaker && currentDialogue.length > 0) {
+                        reconstructedLines.push(`${currentSpeaker} ${currentDialogue.join(' ')}`);
                     }
-                    // Start new line with speaker
-                    currentLine = cleanLine;
+                    // Start new speaker
+                    currentSpeaker = cleanLine;
+                    currentDialogue = [];
                 } else {
-                    // This is dialogue, add to current line
-                    if (currentLine) {
-                        currentLine += ' ' + cleanLine;
-                    } else {
-                        currentLine = cleanLine;
-                    }
+                    // This is dialogue or stage direction, add to current speaker's dialogue
+                    currentDialogue.push(cleanLine);
                 }
             }
             
-            // Add the last line
-            if (currentLine.trim()) {
-                reconstructedLines.push(currentLine.trim());
+            // Add the last speaker's dialogue
+            if (currentSpeaker && currentDialogue.length > 0) {
+                reconstructedLines.push(`${currentSpeaker} ${currentDialogue.join(' ')}`);
             }
             
             console.log('Reconstructed lines:', reconstructedLines);
@@ -3415,52 +3413,33 @@
             
             // Handle reconstructed lines
             if (Array.isArray(sceneContent)) {
-                let currentSpeaker = '';
-                let currentDialogue = [];
-                
                 sceneContent.forEach(line => {
                     const trimmedLine = line.trim();
                     if (!trimmedLine) return;
                     
-                    // Check if this line is a speaker name (all caps, reasonable length)
-                    const isSpeakerName = /^[A-Z\s]+$/.test(trimmedLine) && 
-                                        trimmedLine.length > 2 && 
-                                        trimmedLine.length < 50 && 
-                                        !trimmedLine.includes('.') && 
-                                        !trimmedLine.includes(',') &&
-                                        !trimmedLine.startsWith('[') &&
-                                        !trimmedLine.endsWith(']');
-                    
-                    if (isSpeakerName) {
-                        // Output previous speaker's dialogue if any
-                        if (currentSpeaker && currentDialogue.length > 0) {
-                            html += `<div class="dialogue">`;
-                            html += `<div class="character-name">${currentSpeaker}</div>`;
-                            html += `<div class="dialogue-text">${currentDialogue.join('<br>')}</div>`;
-                            html += `</div>`;
-                        }
-                        // Start new speaker
-                        currentSpeaker = trimmedLine;
-                        currentDialogue = [];
+                    // Check if this line is a stage direction
+                    if (trimmedLine.startsWith('[') && trimmedLine.endsWith(']')) {
+                        html += `<div class="stage-direction">${trimmedLine}</div>`;
                     } else {
-                        // This is dialogue or stage direction
-                        if (trimmedLine.startsWith('[') && trimmedLine.endsWith(']')) {
-                            // Stage direction - output it immediately
-                            html += `<div class="stage-direction">${trimmedLine}</div>`;
+                        // This is a dialogue line with speaker and text
+                        // Split the line to separate speaker from dialogue
+                        const firstSpaceIndex = trimmedLine.indexOf(' ');
+                        if (firstSpaceIndex > 0) {
+                            const speaker = trimmedLine.substring(0, firstSpaceIndex);
+                            const dialogue = trimmedLine.substring(firstSpaceIndex + 1);
+                            
+                            html += `<div class="dialogue">`;
+                            html += `<div class="character-name">${speaker}</div>`;
+                            html += `<div class="dialogue-text">${dialogue}</div>`;
+                            html += `</div>`;
                         } else {
-                            // Regular dialogue - add to current speaker's dialogue
-                            currentDialogue.push(trimmedLine);
+                            // Fallback: treat the whole line as dialogue
+                            html += `<div class="dialogue">`;
+                            html += `<div class="dialogue-text">${trimmedLine}</div>`;
+                            html += `</div>`;
                         }
                     }
                 });
-                
-                // Output the last speaker's dialogue
-                if (currentSpeaker && currentDialogue.length > 0) {
-                    html += `<div class="dialogue">`;
-                    html += `<div class="character-name">${currentSpeaker}</div>`;
-                    html += `<div class="dialogue-text">${currentDialogue.join('<br>')}</div>`;
-                    html += `</div>`;
-                }
             }
             
             return html || '<p><em>Scene content could not be formatted.</em></p>';
