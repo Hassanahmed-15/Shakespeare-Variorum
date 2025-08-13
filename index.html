@@ -4141,7 +4141,10 @@
          }
          
          function formatFurtherReading(content) {
-             const lines = content.split('\n');
+             // Process the content first to handle asterisks and formatting
+             const processedContent = processContentForFormatting(content);
+             
+             const lines = processedContent.split('\n');
              let formattedList = '';
              
              lines.forEach(line => {
@@ -4160,7 +4163,7 @@
                  }
              });
              
-             return formattedList || `<p>${processContentForFormatting(content)}</p>`;
+             return formattedList || `<p>${processedContent}</p>`;
          }
         
                  function integrateNotesIntoSections(formattedContent, notesContent) {
