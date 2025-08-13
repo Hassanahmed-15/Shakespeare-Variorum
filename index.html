@@ -834,7 +834,7 @@
         /* Main Layout */
         .layout {
             display: grid;
-            grid-template-columns: 2fr minmax(500px, 40%);
+            grid-template-columns: 1.5fr minmax(600px, 45%);
             gap: var(--s-4);
             height: calc(100vh - 70px);
             background: var(--bg);
@@ -846,19 +846,19 @@
 
         @media (min-width: 1600px) {
             .layout {
-                grid-template-columns: 2.5fr minmax(600px, 35%);
+                grid-template-columns: 2fr minmax(700px, 40%);
             }
         }
 
         @media (max-width: 1200px) {
             .layout {
-                grid-template-columns: 1.5fr minmax(450px, 40%);
+                grid-template-columns: 1.25fr minmax(550px, 45%);
             }
         }
 
         @media (max-width: 900px) {
             .layout {
-                grid-template-columns: 1fr minmax(400px, 45%);
+                grid-template-columns: 1fr minmax(500px, 50%);
             }
             .sidebar {
                 width: 250px;
