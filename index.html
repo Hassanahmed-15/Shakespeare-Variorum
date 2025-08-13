@@ -3738,13 +3738,7 @@
         async function analyzeHighlightedText(text) {
             // Check cache first
             const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Unknown Play';
-            const cachedContent = getCachedAnalysis(text, currentAnalysisMode, playName, currentScene);
-            
-            if (cachedContent) {
-                console.log('Using cached analysis');
-                updateAnalysis(cachedContent, text);
-                return;
-            }
+            // Cache removed - always generate fresh analysis
             
             // Show processing message with proper meta information
             const analysisPanel = document.getElementById('analysisPanel');
@@ -3844,7 +3838,7 @@
                     const content = data.choices[0].message.content;
                     
                     // Cache the analysis
-                    cacheAnalysis(text, currentAnalysisMode, playName, currentScene, content);
+                    // Cache removed
                     
                     updateAnalysis(content, text);
                 } else if (data.error) {
@@ -3937,6 +3931,7 @@
 
         function formatAnalysisContent(content) {
             // Debug: Log the raw content to see what the AI is returning
+            console.log('=== NEW FORMATTING CODE IS RUNNING ===');
             console.log('Raw AI content:', content);
             
             // Parse the content into structured sections
