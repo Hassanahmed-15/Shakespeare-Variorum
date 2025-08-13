@@ -32,7 +32,17 @@ In your Netlify dashboard, go to **Site settings > Environment variables** and a
 
 ```
 OPENAI_API_KEY=sk-your-actual-api-key-here
+APIBIBLE_KEY=your-api-bible-key-here
 ```
+
+#### Optional: API Bible Integration
+
+For enhanced Biblical allusion detection:
+
+1. Visit [API.Bible](https://scripture.api.bible/) and sign up for a free account
+2. Get your API key from the dashboard
+3. Add `APIBIBLE_KEY` to your Netlify environment variables
+4. The system will automatically search for Biblical references in Shakespeare text
 
 ## How It Works
 
