@@ -1455,7 +1455,7 @@
             font-weight: 700;
             font-size: 16px;
             color: var(--ink-1);
-            margin: var(--s-0) 0 var(--s-1);
+            margin: var(--s-3) 0 var(--s-2);
             display: block;
         }
 
@@ -2267,6 +2267,13 @@
                 <p>Highlight text in the play to get AI-powered analysis.</p>
             </div>
 
+            <!-- Follow-up Section -->
+            <h3>Ask a follow-up question</h3>
+            <div class="follow-up-input">
+                <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
+                <button class="ask-btn" onclick="askFollowUp()">Ask</button>
+            </div>
+
             <!-- Media Section -->
             <h3>Media</h3>
             <div class="media-actions">
@@ -2280,13 +2287,6 @@
                 <button class="link-btn jstor" onclick="searchJSTOR('passage')">Search JSTOR for this passage/scene</button>
                 <button class="link-btn scholar" onclick="searchGoogleScholar()">Google Scholar</button>
                 <button class="link-btn ise" onclick="openInternetShakespeare()">Internet Shakespeare Editions</button>
-            </div>
-
-            <!-- Follow-up Section -->
-            <h3>Ask a follow-up question</h3>
-            <div class="follow-up-input">
-                <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
-                <button class="ask-btn" onclick="askFollowUp()">Ask</button>
             </div>
         </div>
     </div>
