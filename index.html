@@ -3422,15 +3422,28 @@
                         html += `<div class="stage-direction">${trimmedLine}</div>`;
                     } else {
                         // This is a dialogue line with speaker and text
-                        // Find where the speaker name ends (all caps) and dialogue begins
+                        // Find where the speaker name ends and dialogue begins
                         const words = trimmedLine.split(' ');
-                        let speakerEndIndex = 0;
                         
-                        // Find the last consecutive all-caps word (the speaker name)
+                        // Common Shakespeare character names from Hamlet
+                        const characterNames = [
+                            'HAMLET', 'HORATIO', 'MARCELLUS', 'FRANCISCO', 'BARNARDO', 
+                            'GHOST', 'CLAUDIUS', 'GERTRUDE', 'OPHELIA', 'POLONIUS',
+                            'LAERTES', 'ROSENCRANTZ', 'GUILDENSTERN', 'OSRIC', 'FORTINBRAS',
+                            'VOLTEMAND', 'CORNELIUS', 'REYNALDO', 'PLAYER', 'KING',
+                            'QUEEN', 'LORD', 'LADY', 'FIRST', 'SECOND', 'THIRD',
+                            'ALL', 'BOTH', 'CHORUS', 'NARRATOR'
+                        ];
+                        
+                        let speakerEndIndex = -1;
+                        
+                        // Look for character names at the beginning
                         for (let i = 0; i < words.length; i++) {
-                            if (/^[A-Z]+$/.test(words[i])) {
+                            const word = words[i];
+                            if (characterNames.includes(word)) {
                                 speakerEndIndex = i;
                             } else {
+                                // Stop at first non-character-name word
                                 break;
                             }
                         }
