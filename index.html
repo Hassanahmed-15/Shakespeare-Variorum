@@ -4176,18 +4176,42 @@
              // Process the content first to handle asterisks and formatting
              const processedContent = processContentForFormatting(content);
              
-             // Split by common bibliography separators and clean up
-             let entries = processedContent.split(/[.;]\s*(?=[A-Z])/);
+             // Split by newlines and clean up
+             const lines = processedContent.split('\n');
+             let entries = [];
+             let currentEntry = '';
              
-             // Filter out empty entries and clean them up
-             entries = entries
-                 .map(entry => entry.trim())
-                 .filter(entry => entry.length > 0)
-                 .map(entry => {
-                     // Remove leading dashes, numbers, or other formatting
-                     return entry.replace(/^[-*\d\s\.]+/, '').trim();
-                 })
-                 .filter(entry => entry.length > 0);
+             lines.forEach(line => {
+                 const trimmedLine = line.trim();
+                 if (!trimmedLine) {
+                     if (currentEntry) {
+                         entries.push(currentEntry);
+                         currentEntry = '';
+                     }
+                     return;
+                 }
+                 
+                 // Remove leading dashes, numbers, or other formatting
+                 const cleanLine = trimmedLine.replace(/^[-*\d\s\.]+/, '').trim();
+                 
+                 if (cleanLine) {
+                     // If this looks like the start of a new entry (author name pattern)
+                     if (cleanLine.match(/^[A-Z][a-z]+ [A-Z]/) && currentEntry) {
+                         entries.push(currentEntry);
+                         currentEntry = cleanLine;
+                     } else {
+                         currentEntry += (currentEntry ? ' ' : '') + cleanLine;
+                     }
+                 }
+             });
+             
+             // Add the last entry
+             if (currentEntry) {
+                 entries.push(currentEntry);
+             }
+             
+             // Filter out very short entries (likely fragments)
+             entries = entries.filter(entry => entry.length > 20);
              
              let formattedList = '';
              
