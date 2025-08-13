@@ -367,24 +367,7 @@ class BibleSearch {
     }
 }
 
-// Initialize the Bible search when the app starts
-let bibleSearch = null;
-
-// Function to initialize Bible search
-async function initializeBibleSearch() {
-    if (!bibleSearch) {
-        bibleSearch = new BibleSearch();
-        const success = await bibleSearch.loadBibleData();
-        if (success) {
-            console.log('Geneva Bible search initialized successfully');
-        } else {
-            console.warn('Failed to initialize Geneva Bible search');
-        }
-    }
-    return bibleSearch;
-}
-
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { BibleSearch, initializeBibleSearch };
+    module.exports = { BibleSearch };
 }
