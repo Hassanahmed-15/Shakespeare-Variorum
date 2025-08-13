@@ -225,8 +225,7 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
 
       // Smart model routing based on text length and analysis level
       let modelConfig = {
-        model: 'gpt-4o-mini', // default
-        temperature: 0.7
+        model: 'gpt-4o-mini' // default
       };
       
       // Check text length for large source notes
@@ -241,8 +240,8 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
       } else if (level === 'expert') {
         modelConfig = {
           model: 'o4-mini',
-          temperature: 0.7,
           reasoning_effort: 'medium'
+          // o4-mini doesn't support custom temperature, uses default (1)
         };
       } else if (level === 'followup') {
         // Use appropriate model based on base level
@@ -255,14 +254,14 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
         } else if (baseLevel === 'expert') {
           modelConfig = {
             model: 'o4-mini',
-            temperature: 0.7,
             reasoning_effort: 'medium'
+            // o4-mini doesn't support custom temperature, uses default (1)
           };
         } else if (baseLevel === 'fullfathomfive') {
           modelConfig = {
             model: 'o3',
-            temperature: 0.7,
             reasoning_effort: 'high'
+            // o3 doesn't support custom temperature, uses default (1)
           };
         }
       } else if (level === 'fullfathomfive') {
@@ -276,19 +275,30 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
           // Keep FFF on o3 for normal texts
           modelConfig = {
             model: 'o3',
-            temperature: 0.7,
             reasoning_effort: 'high'
+            // o3 doesn't support custom temperature, uses default (1)
           };
         }
       }
       
+      // Build payload with conditional temperature
       const payload = {
-        ...modelConfig,
+        model: modelConfig.model,
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
         ]
       };
+      
+      // Only add temperature for models that support it
+      if (modelConfig.temperature !== undefined) {
+        payload.temperature = modelConfig.temperature;
+      }
+      
+      // Add reasoning_effort for models that support it
+      if (modelConfig.reasoning_effort !== undefined) {
+        payload.reasoning_effort = modelConfig.reasoning_effort;
+      }
 
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
