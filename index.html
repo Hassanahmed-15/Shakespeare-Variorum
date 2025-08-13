@@ -4125,11 +4125,11 @@
         // Initialize Geneva Bible search when the app starts
         async function initializeBibleSearch() {
             try {
-                const response = await fetch('/data/bibleSearch.js');
+                const response = await fetch('/Public/Data/bibleSearch.js');
                 if (response.ok) {
                     // Load the script dynamically
                     const script = document.createElement('script');
-                    script.src = '/data/bibleSearch.js';
+                    script.src = '/Public/Data/bibleSearch.js';
                     document.head.appendChild(script);
                     
                     // Wait for script to load and initialize
@@ -4144,9 +4144,12 @@
                             }
                         }
                     };
+                } else {
+                    console.warn('Bible search script not found, continuing without Geneva Bible functionality');
                 }
             } catch (error) {
-                console.error('Error loading Geneva Bible search:', error);
+                console.warn('Error loading Geneva Bible search:', error);
+                // Continue without Bible search - this is not critical
             }
         }
 

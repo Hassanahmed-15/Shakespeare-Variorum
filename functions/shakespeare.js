@@ -129,6 +129,12 @@ function extractRelevantQuote(abstractIndex, searchText) {
 
 // Function to check for Biblical references in Shakespeare text
 async function checkBiblicalAllusions(highlightedText, play) {
+  // Check if API Bible key is configured
+  if (!process.env.APIBIBLE_KEY) {
+    console.log('API Bible key not configured, skipping Biblical search');
+    return null;
+  }
+  
   // Common Biblical phrases that appear in Shakespeare
   const biblicalPhrases = [
     'eye for eye',
@@ -259,6 +265,40 @@ async function enrichAnalysisWithBible(highlightedText, play, level) {
   }
   
   return null;
+}
+
+// Geneva Bible context function (simplified version that doesn't require external API)
+async function getGenevaBibleContext(highlightedText, play, level) {
+  // Skip for basic level to keep it simple
+  if (level === 'basic') return null;
+  
+  // Determine how many passages to return based on level
+  const passageCount = {
+    'intermediate': 2,
+    'expert': 3,
+    'fullfathomfive': 5
+  };
+  
+  const count = passageCount[level] || 2;
+  
+  // For now, return a simplified response since we don't have the Geneva Bible API set up
+  // In a full implementation, this would search the Geneva Bible text file
+  const searchTerms = extractPotentialBiblicalTerms(highlightedText);
+  
+  if (searchTerms.length === 0) return null;
+  
+  // Return mock Geneva Bible passages for now
+  // This can be enhanced later with actual Geneva Bible search
+  const mockPassages = searchTerms.slice(0, count).map((term, index) => ({
+    reference: `Geneva Bible Reference ${index + 1}`,
+    text: `[Geneva Bible passage related to "${term}" would appear here]`,
+    relevance: Math.random() * 0.5 + 0.5 // Mock relevance score
+  }));
+  
+  return {
+    passages: mockPassages,
+    context: `Found ${mockPassages.length} potential Geneva Bible connections.`
+  };
 }
 
 exports.handler = async (event, context) => {

@@ -18,7 +18,7 @@ class BibleSearch {
     // Load and parse the Geneva Bible text file
     async loadBibleData() {
         try {
-            const response = await fetch('/data/geneva_bible.txt');
+            const response = await fetch('/Public/Data/geneva_bible.txt');
             if (!response.ok) {
                 throw new Error(`Failed to load Geneva Bible data: ${response.status}`);
             }
