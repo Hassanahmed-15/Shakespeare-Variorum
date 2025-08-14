@@ -270,7 +270,7 @@ CRITICAL: You MUST provide responses for ALL of these sections in exactly this o
 
 FORMAT REQUIREMENTS:
 - Start each section with the exact heading format shown above
-- Provide 6-12 sentences for each section
+- Provide 3-6 sentences for each section
 - Use complete sentences and paragraphs
 - Include exhaustive analysis with specific citations, evidence, and critical perspectives
 - Avoid abbreviations and shorthand
@@ -283,7 +283,7 @@ FORMAT REQUIREMENTS:
 - For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
 - Include comprehensive scholarly references, performance history, and critical reception
 - For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]
-- For Similar phrases or themes in other plays: Include 6-10 interconnected passages across Shakespeare's complete works. Trace how Shakespeare develops this specific theme/image/language throughout his career. Show evolution from early plays to late plays when relevant. Include both obvious echoes AND subtle thematic variations. Consider genre differences (comedy vs tragedy vs history vs romance). Identify source materials (Plutarch, Holinshed, earlier plays) when relevant. Format: 'Evolution across plays: [Play1]: "[quote]" → [Play2]: "[quote]" - [explain development]'. When finding similar passages, search for: exact phrase repetitions, parallel metaphors (life as theater, time as thief, love as madness), similar imagery clusters (darkness/light, storm/calm, garden/wilderness), rhetorical patterns (questions, lists, paradoxes), and recurring themes (appearance vs reality, order vs chaos, nature vs nurture).
+- For Similar phrases or themes in other plays: Include 3-5 interconnected passages across Shakespeare's complete works. Trace how Shakespeare develops this specific theme/image/language throughout his career. Show evolution from early plays to late plays when relevant. Include both obvious echoes AND subtle thematic variations. Consider genre differences (comedy vs tragedy vs history vs romance). Identify source materials (Plutarch, Holinshed, earlier plays) when relevant. Format: 'Evolution across plays: [Play1]: "[quote]" → [Play2]: "[quote]" - [explain development]'. When finding similar passages, search for: exact phrase repetitions, parallel metaphors (life as theater, time as thief, love as madness), similar imagery clusters (darkness/light, storm/calm, garden/wilderness), rhetorical patterns (questions, lists, paradoxes), and recurring themes (appearance vs reality, order vs chaos, nature vs nurture).
 - Address multiple interpretive possibilities and scholarly debates
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
@@ -386,7 +386,7 @@ For every highlighted passage, provide the full Variorum treatment as the new se
 1895 FURNESS: [synthesis]
 [Modern additions following same format]
 
-**Length:** 3000-5000 words per passage - Furness often devoted 10+ pages to important lines
+**Length:** 750-1500 words per passage - comprehensive but manageable analysis
 
 **Tone:** Scholarly but accessible, occasionally noting amusing critical eccentricities as Furness did
 
