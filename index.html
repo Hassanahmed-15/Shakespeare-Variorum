@@ -1322,6 +1322,9 @@
             display: inline;
             padding: 0;
             margin: 0;
+            /* Prevent breaking text flow */
+            vertical-align: baseline;
+            text-decoration: none;
         }
 
         /* Analysis Mode Selector */
@@ -3602,81 +3605,36 @@
                 // Clear any existing highlights first
                 clearAllHighlights();
                 
-                // Use a more robust highlighting method with word boundary detection
+                // Use a simpler highlighting method that preserves text flow
                 try {
                     const range = selection.getRangeAt(0);
-                    
-                    // Try to expand to word boundaries if selection is within a word
-                    let expandedRange = range.cloneRange();
-                    const startContainer = range.startContainer;
-                    const endContainer = range.endContainer;
-                    
-                    // Expand start boundary if needed
-                    if (startContainer.nodeType === Node.TEXT_NODE) {
-                        const text = startContainer.textContent;
-                        const startOffset = range.startOffset;
-                        
-                        // Look for word boundary at start
-                        let wordStart = startOffset;
-                        while (wordStart > 0 && /\w/.test(text[wordStart - 1])) {
-                            wordStart--;
-                        }
-                        
-                        if (wordStart !== startOffset) {
-                            expandedRange.setStart(startContainer, wordStart);
-                        }
-                    }
-                    
-                    // Expand end boundary if needed
-                    if (endContainer.nodeType === Node.TEXT_NODE) {
-                        const text = endContainer.textContent;
-                        const endOffset = range.endOffset;
-                        
-                        // Look for word boundary at end
-                        let wordEnd = endOffset;
-                        while (wordEnd < text.length && /\w/.test(text[wordEnd])) {
-                            wordEnd++;
-                        }
-                        
-                        if (wordEnd !== endOffset) {
-                            expandedRange.setEnd(endContainer, wordEnd);
-                        }
-                    }
                     
                     // Create highlight span
                     const span = document.createElement('span');
                     span.className = 'highlight';
                     
-                    // Use the expanded range for highlighting
-                    try {
-                        expandedRange.surroundContents(span);
-                        console.log('Word-boundary highlighting successful');
-                    } catch (surroundError) {
-                        // Fallback to extract/insert method
-                        const contents = expandedRange.extractContents();
-                        span.appendChild(contents);
-                        expandedRange.insertNode(span);
-                        console.log('Word-boundary highlighting with fallback successful');
-                    }
+                    // Use surroundContents which preserves text flow better
+                    range.surroundContents(span);
                     
-                    // Update selection to match expanded range
-                    selection.removeAllRanges();
-                    selection.addRange(expandedRange);
-                    
+                    console.log('Highlighting successful');
                 } catch (highlightError) {
-                    console.warn('Highlighting failed, trying simple method:', highlightError);
+                    console.warn('surroundContents failed, trying alternative method:', highlightError);
                     
-                    // Simple fallback method
+                    // Alternative method that preserves text flow
                     try {
                         const range = selection.getRangeAt(0);
                         const span = document.createElement('span');
                         span.className = 'highlight';
                         
-                        const contents = range.extractContents();
-                        span.appendChild(contents);
+                        // Clone the range contents instead of extracting
+                        const clonedContents = range.cloneContents();
+                        span.appendChild(clonedContents);
+                        
+                        // Delete the original content and insert the highlighted version
+                        range.deleteContents();
                         range.insertNode(span);
                         
-                        console.log('Simple highlighting successful');
+                        console.log('Alternative highlighting successful');
                     } catch (fallbackError) {
                         console.warn('All highlighting methods failed:', fallbackError);
                         // Even if highlighting fails, we still have the selected text
