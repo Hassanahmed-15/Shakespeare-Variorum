@@ -94,9 +94,12 @@ FORMAT REQUIREMENTS:
 - Write in clear, accessible language
 - If a section seems inapplicable, still provide a brief explanation of why
 - Avoid abbreviations and shorthand
-- Write book titles in italics
+- Write ALL book titles, play titles, movie titles, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>)
+- NEVER use asterisks (*) for titles - always use <em>italics</em>
+- NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
+- Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
 - Use proper academic formatting
-- Always reference the specific play "${playName}" and scene "${sceneName}" in your analysis
+- Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
 EXAMPLE FORMAT:
 **Plain-Language Paraphrase:** This passage from ${playName} means [explanation in simple terms].
@@ -122,7 +125,10 @@ FORMAT REQUIREMENTS:
 - Use complete sentences and paragraphs
 - Include detailed analysis with specific citations and evidence
 - Avoid abbreviations and shorthand
-- Write book titles in italics
+- Write ALL book titles, play titles, movie titles, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>)
+- NEVER use asterisks (*) for titles - always use <em>italics</em>
+- NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
+- Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
 - Use proper academic formatting
 - For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
 - Include scholarly references and critical perspectives
@@ -160,6 +166,8 @@ FORMAT REQUIREMENTS:
 - Include relevant facts and context when helpful
 - Write ALL book titles, play titles, movie titles, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>)
 - NEVER use asterisks (*) for titles - always use <em>italics</em>
+- NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
+- Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
 - Avoid unnecessary formatting or section headers
 - Keep responses focused and to the point
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your answers
@@ -178,6 +186,8 @@ FORMAT REQUIREMENTS:
 - Use academic language and cite specific details
 - Write ALL book titles, play titles, movie titles, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>Daemonologie</em>, <em>First Folio</em>)
 - NEVER use asterisks (*) for titles - always use <em>italics</em>
+- NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
+- Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
 - Break up long paragraphs into readable sections
 - Keep responses focused but thorough
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your answers
@@ -207,6 +217,8 @@ FORMAT REQUIREMENTS:
 - Use the most detailed academic language and cite specific evidence
 - Write ALL book titles, play titles, movie titles, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>Daemonologie</em>, <em>First Folio</em>)
 - NEVER use asterisks (*) for titles - always use <em>italics</em>
+- NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
+- Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
 - Break up long paragraphs into readable sections
 - Keep responses comprehensive and thorough
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your answers
