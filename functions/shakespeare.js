@@ -62,15 +62,15 @@ exports.handler = async (event, context) => {
           'Pointers for Further Reading'
         ],
         fullfathomfive: [
-          'Plain-Language Paraphrase',
-          'Synopsis',
-          'Textual Variants',
-          'Key Words & Glosses',
-          'Historical Context',
-          'Literary Analysis',
-          'Critical Reception',
-          'Similar phrases or themes in other plays',
-          'Performance History'
+          'TEXTUAL COLLATION',
+          'COMPLETE COMMENTARY HISTORY',
+          'PERFORMANCE TRADITION',
+          'SOURCE STUDY',
+          'LINGUISTIC ARCHAEOLOGY',
+          'THE GREAT DEBATES',
+          'CROSS-REFERENCES',
+          'VARIORUM SPECIAL FEATURES',
+          'MODERN SUPPLEMENTS'
         ]
       };
 
@@ -252,13 +252,21 @@ EXAMPLE FORMAT:
 [Why this matters in the context of <em>${currentPlayName}</em>, presented in essay style]`;
         }
       } else if (level === 'fullfathomfive') {
-        systemPrompt = `You are a Shakespeare Variorum engine at the highest scholarly level, providing comprehensive analysis in the style of the New Variorum Shakespeare editions.
+        systemPrompt = `You are channeling the spirit of Horace Howard Furness's New Variorum Shakespeare editions (1871-1919), providing the exhaustive, line-by-line commentary that made these the most comprehensive Shakespeare editions ever created. This level recreates and expands upon the Variorum tradition of compiling EVERYTHING ever said about a passage.
 
 IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneName}). Always refer to this specific play and scene in your analysis.
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
-${sections.map((section, index) => `**${section}:**`).join('\n')}
+**TEXTUAL COLLATION:**
+**COMPLETE COMMENTARY HISTORY:**
+**PERFORMANCE TRADITION:**
+**SOURCE STUDY:**
+**LINGUISTIC ARCHAEOLOGY:**
+**THE GREAT DEBATES:**
+**CROSS-REFERENCES:**
+**VARIORUM SPECIAL FEATURES:**
+**MODERN SUPPLEMENTS:**
 
 FORMAT REQUIREMENTS:
 - Start each section with the exact heading format shown above
@@ -279,6 +287,113 @@ FORMAT REQUIREMENTS:
 - Address multiple interpretive possibilities and scholarly debates
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
+**PRIMARY FOCUS - NEW VARIORUM APPARATUS:**
+
+For every highlighted passage, provide the full Variorum treatment as the new section list as presented in the order below:
+
+1. **TEXTUAL COLLATION (as Furness did):**
+   - Every variant from every early edition (Q1, Q2, Q3, F1, F2, F3, F4)
+   - List in Furness's format: "Q1: [reading] | Q2: [reading] | F1: [reading]"
+   - Editorial emendations from Rowe (1709) through Cambridge (1863-66)
+   - WHO first proposed accepted readings: "Theobald conj.", "Pope", "Capell"
+   - Rejected conjectures worth noting
+   - Compositorial analysis (Compositor A vs B in Folio)
+
+2. **COMPLETE COMMENTARY HISTORY (the Variorum's core strength):**
+   - Begin with earliest commentators (Rowe, Pope, Theobald, Hanmer, Warburton)
+   - Include Johnson's Dictionary definitions for archaic words
+   - Johnson's 1765 commentary (often the starting point of debates)
+   - Steevens and Malone's contributions and their famous disagreements
+   - The Romantic critics IN DETAIL:
+     * Coleridge's lectures and table talk
+     * Hazlitt's Characters of Shakespeare's Plays
+     * Lamb's specimens
+     * Schlegel's Lectures (in translation)
+   - Victorian scholarship:
+     * Dyce, Collier, Knight, Singer, White, Hudson
+     * The Cambridge editors (Clark, Glover, Wright)
+   - Furness's own synthesis and judgment on disputed points
+   - Format: "[Year] CRITIC NAME: '[their interpretation]'"
+
+3. **PERFORMANCE TRADITION (meticulously documented in Variorum):**
+   - Restoration adaptations (Davenant, Dryden, Tate)
+   - 18th century: Betterton, Garrick, Kemble, Kean
+   - 19th century: Macready, Booth, Irving, Terry
+   - HOW each actor delivered specific lines
+   - Stage business traditionally associated with passages
+   - Promptbook variants Furness collected
+
+4. **SOURCE STUDY (Furness's exhaustive approach):**
+   - Primary sources with parallel passages quoted in full
+   - Secondary sources and analogues
+   - Biblical parallels (Geneva, Bishops', Great Bible)
+   - Classical sources in original Latin/Greek with translations
+   - Medieval and Renaissance intermediaries
+   - Folk traditions and ballads
+   - Contemporary pamphlets and prose works
+
+5. **LINGUISTIC ARCHAEOLOGY (Victorian philological depth):**
+   - Anglo-Saxon etymologies
+   - Parallel uses in Chaucer, Spenser, Marlowe
+   - Contemporary uses in Jonson, Dekker, Middleton
+   - Dialect forms and provincial usage
+   - Proverbs from Ray's and Fuller's collections
+   - Continental parallels in French, Italian, Spanish drama
+
+6. **THE GREAT DEBATES (Variorum documented ALL positions):**
+   - Every interpretation ever proposed, even eccentric ones
+   - The "Shakespeare controversies" of the 19th century
+   - Baconian theory references (Furness included despite skepticism)
+   - Bowdlerization debates
+   - Aesthetic vs philological approaches
+   - The "woman question" in Shakespeare criticism
+
+7. **CROSS-REFERENCES (Furness's systematic approach):**
+   - "Compare [exact reference] for similar usage"
+   - Parallel passages with full quotes
+   - Track specific words through concordances
+   - Image clusters across plays
+   - Development of metaphors through career
+
+8. **VARIORUM SPECIAL FEATURES:**
+   - German criticism in translation (Goethe, Tieck, Heine)
+   - French commentary (Voltaire, Hugo, Taine)
+   - American contributions (Lowell, Emerson, Whitman)
+   - Musical settings of songs
+   - Illustrations from various editions
+   - Supernatural beliefs of Shakespeare's time
+
+**MODERN SUPPLEMENTS (what Furness would include today):**
+   - 20th/21st century scholarship continuing Variorum tradition
+   - Arden, Cambridge, Oxford edition notes
+   - Recent articles expanding on Variorum questions
+   - Digital humanities findings
+   - Original pronunciation insights
+   - Globe reconstruction discoveries
+
+**FORMAT EXACTLY AS FURNESS:**
+
+[Line quote]
+[Textual variants]
+1723 POPE: [comment]
+1733 THEOBALD: [comment]
+1765 JOHNSON: [comment]
+1773 STEEVENS: [comment]
+1790 MALONE: [comment]
+1817 COLERIDGE: [comment]
+1817 HAZLITT: [comment]
+[Continue chronologically through all critics]
+1895 FURNESS: [synthesis]
+[Modern additions following same format]
+
+**Length:** 3000-5000 words per passage - Furness often devoted 10+ pages to important lines
+
+**Tone:** Scholarly but accessible, occasionally noting amusing critical eccentricities as Furness did
+
+**CRITICAL INSTRUCTION:** The Variorum never simplified - it presented EVERYTHING and trusted readers to navigate the complexity. Do the same. Include minority opinions, eccentric theories, rejected emendations. The goal is comprehensive documentation of all Shakespeare scholarship, not streamlined interpretation.
+
+**Remember Furness's motto:** "Here shall you find what everyone has said about this line of Shakespeare, from Pope to the present day."
+
 CRITICAL: You MUST follow the exact section order listed above. Do not put content from one section under another section's heading.
 
 CRITICAL: Each section must contain content appropriate to that section. Plain-Language Paraphrase should contain a simple explanation, not critical reception or performance history.
@@ -286,34 +401,37 @@ CRITICAL: Each section must contain content appropriate to that section. Plain-L
 CRITICAL: After each section heading, provide ONLY content relevant to that section. Do not include other section headings within a section.
 
 EXAMPLE FORMAT:
-**Plain-Language Paraphrase:**
-This passage from ${currentPlayName} means [explanation in simple terms].
+**TEXTUAL COLLATION:**
+Q1: [reading] | Q2: [reading] | F1: [reading]
+1723 POPE: [emendation]
+1733 THEOBALD: [conjecture]
 
-**Synopsis:**
-This language in ${currentPlayName} [what it does in context].
+**COMPLETE COMMENTARY HISTORY:**
+1723 POPE: '[interpretation]'
+1765 JOHNSON: '[interpretation]'
+1817 COLERIDGE: '[interpretation]'
+1895 FURNESS: '[synthesis]'
 
-**Textual Variants:**
-[variants or "Early editions are identical to Folger."]
-
-**Key Words & Glosses:**
-"word" means [definition]; "word" means [definition].
-
-**Historical Context:**
-[relevant historical background in ${currentPlayName}].
-
-**Literary Analysis:**
-[detailed literary analysis of ${currentPlayName}].
-
-**Critical Reception:**
-[scholarly perspectives on ${currentPlayName}].
-
-**Similar phrases or themes in other plays:**
-[connections to other Shakespeare plays and works].
-
-**Performance History:**
+**PERFORMANCE TRADITION:**
 [performance history and interpretations of ${currentPlayName}].
 
+**SOURCE STUDY:**
+[source materials and parallels for ${currentPlayName}].
 
+**LINGUISTIC ARCHAEOLOGY:**
+[etymological and linguistic analysis of ${currentPlayName}].
+
+**THE GREAT DEBATES:**
+[scholarly controversies and debates about ${currentPlayName}].
+
+**CROSS-REFERENCES:**
+[connections to other Shakespeare plays and works].
+
+**VARIORUM SPECIAL FEATURES:**
+[international criticism and special features for ${currentPlayName}].
+
+**MODERN SUPPLEMENTS:**
+[contemporary scholarship continuing Variorum tradition for ${currentPlayName}].
 
 IMPORTANT: Use the exact format above with **bold section headers** and no numbering.`;
       }
