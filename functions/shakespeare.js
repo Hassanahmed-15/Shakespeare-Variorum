@@ -88,10 +88,11 @@ IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
-${sections.map((section, index) => `**${section}:**`).join('\n')}
+${sections.map((section, index) => `**${section}**`).join('\n')}
 
 FORMAT REQUIREMENTS:
-- CRITICAL: Use EXACTLY the heading format shown above with ONE colon only (e.g., **Sources:** NOT **Sources::**)
+- CRITICAL: Add exactly ONE colon after each bolded section name (e.g., **Sources:** NOT **Sources::**)
+- NEVER add more than one colon to any section heading
 - Provide 2-4 sentences for each section
 - Use complete sentences and paragraphs
 - Write in clear, accessible language
@@ -103,7 +104,7 @@ FORMAT REQUIREMENTS:
 - NEVER use asterisks (*) for titles - always use <em>italics</em>
 - NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
 - Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
-- For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]
+- For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]. CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text - if a word is capitalized in the original, keep it capitalized; if it's lowercase, keep it lowercase.
 - For Similar phrases or themes in other plays: Do NOT include any cross-references to other Shakespeare plays. Focus only on explaining the highlighted passage itself.
 - Use proper academic formatting
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
@@ -124,10 +125,11 @@ IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneNa
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
-${sections.map((section, index) => `**${section}:**`).join('\n')}
+${sections.map((section, index) => `**${section}**`).join('\n')}
 
 FORMAT REQUIREMENTS:
-- CRITICAL: Use EXACTLY the heading format shown above with ONE colon only (e.g., **Sources:** NOT **Sources::**)
+- CRITICAL: Add exactly ONE colon after each bolded section name (e.g., **Sources:** NOT **Sources::**)
+- NEVER add more than one colon to any section heading
 - Provide 4-8 sentences for each section
 - Use complete sentences and paragraphs
 - Include detailed analysis with specific citations and evidence
@@ -141,7 +143,7 @@ FORMAT REQUIREMENTS:
 - Use proper academic formatting
 - For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
 - Include scholarly references and critical perspectives
-- For Key Words & Glosses: Use the 1914 Oxford English Dictionary (OED) for definitions, Arden critical notes for contextual meanings, and A Shakespeare Glossary (Oxford: Clarendon Press, 1911) for Shakespeare-specific usage. Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]
+- For Key Words & Glosses: Use the 1914 Oxford English Dictionary (OED) for definitions, Arden critical notes for contextual meanings, and A Shakespeare Glossary (Oxford: Clarendon Press, 1911) for Shakespeare-specific usage. Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]. CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text - if a word is capitalized in the original, keep it capitalized; if it's lowercase, keep it lowercase.
 - For Similar phrases or themes in other plays: Include 3-5 thematically related passages from other Shakespeare plays. Find passages that share: similar imagery, parallel themes, echoed language, or comparable dramatic situations. Explain the literary connection. Format: 'Thematic parallel in [Play] (Act.Scene if known): "[quote]" - [explanation of connection]'. When finding similar passages, search for: exact phrase repetitions, parallel metaphors (life as theater, time as thief, love as madness), similar imagery clusters (darkness/light, storm/calm, garden/wilderness), rhetorical patterns (questions, lists, paradoxes), and recurring themes (appearance vs reality, order vs chaos, nature vs nurture).
 - For Sources: Identify specific sources Shakespeare drew on for plot, character, or content. Include primary sources (Plutarch's Lives, Holinshed's Chronicles, North's translation), earlier plays he adapted (Kyd's Spanish Tragedy, Marlowe's works), contemporary works, classical sources, medieval romances, or other influences. Explain how Shakespeare transformed or adapted these sources.
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
@@ -325,6 +327,7 @@ For key words, provide:
 - First recorded uses
 - Shakespeare's other uses
 - Contemporary (1590-1610) uses by other writers
+- CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text
 
 Include technical terminology from contemporary manuals (military, musical, etc.) with full citations.
 
