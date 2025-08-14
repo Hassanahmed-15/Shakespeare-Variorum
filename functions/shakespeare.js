@@ -88,10 +88,10 @@ IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
-${sections.map((section, index) => `**${section}**`).join('\n')}
+${sections.map((section, index) => `**${section}:**`).join('\n')}
 
 FORMAT REQUIREMENTS:
-- Start each section with the exact heading format shown above, then add a single colon
+- Use the exact heading format shown above - do not add additional colons
 - Provide 2-4 sentences for each section
 - Use complete sentences and paragraphs
 - Write in clear, accessible language
@@ -122,10 +122,10 @@ IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneNa
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
-${sections.map((section, index) => `**${section}**`).join('\n')}
+${sections.map((section, index) => `**${section}:**`).join('\n')}
 
 FORMAT REQUIREMENTS:
-- Start each section with the exact heading format shown above, then add a single colon (e.g., **Sources:** not **Sources::**)
+- Use the exact heading format shown above - do not add additional colons
 - Provide 4-8 sentences for each section
 - Use complete sentences and paragraphs
 - Include detailed analysis with specific citations and evidence
@@ -440,6 +440,11 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
       // Add reasoning_effort for models that support it
       if (modelConfig.reasoning_effort !== undefined) {
         payload.reasoning_effort = modelConfig.reasoning_effort;
+      }
+
+      // Set max_tokens for Full Fathom Five to ensure complete responses
+      if (level === 'fullfathomfive') {
+        payload.max_tokens = 8000; // Ensure we get a full response
       }
 
       let response, data;
