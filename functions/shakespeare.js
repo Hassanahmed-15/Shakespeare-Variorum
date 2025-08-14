@@ -57,10 +57,10 @@ exports.handler = async (event, context) => {
           'Textual Variants',
           'Key Words & Glosses',
           'Historical Context',
-          'Sources',
+          'Historical Roots',
           'Literary Analysis',
           'Critical Reception',
-          'Similar phrases or themes in other plays',
+          'Related lines and themes in other works',
           'Pointers for Further Reading'
         ],
         fullfathomfive: [
@@ -109,7 +109,7 @@ FORMAT REQUIREMENTS:
 - NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
 - Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
 - For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]. CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text - if a word is capitalized in the original, keep it capitalized; if it's lowercase, keep it lowercase.
-- For Similar phrases or themes in other plays: Do NOT include any cross-references to other Shakespeare plays. Focus only on explaining the highlighted passage itself.
+- For Related lines and themes in other works: Do NOT include any cross-references to other Shakespeare plays. Focus only on explaining the highlighted passage itself.
 - Use proper academic formatting
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
@@ -130,10 +130,10 @@ EXAMPLE FORMAT:
 **Textual Variants**
 **Key Words & Glosses**
 **Historical Context**
-**Sources**
+**Historical Roots**
 **Literary Analysis**
 **Critical Reception**
-**Similar phrases or themes in other works**
+**Related lines and themes in other works**
 **Pointers for Further Reading**
 
 You are an expert Shakespearean scholar with comprehensive knowledge of 500 years of Shakespeare scholarship.
@@ -158,8 +158,8 @@ CRITICAL: You MUST provide responses for ALL of these sections in exactly this o
 - For Key Words & Glosses: Use the 1914 Oxford English Dictionary (OED) for definitions, Arden critical notes for contextual meanings, and A Shakespeare Glossary (Oxford: Clarendon Press, 1911) for Shakespeare-specific usage. Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]. 
 
 CRITICAL CAPITALIZATION RULE: Look at the highlighted Shakespeare text. Copy the EXACT capitalization from the highlighted text. This is non-negotiable.
-- For Similar phrases or themes in other works: Include 3-5 thematically related passages from other Shakespeare plays. Find passages that share: similar imagery, parallel themes, echoed language, or comparable dramatic situations. Explain the literary connection. Format: 'Thematic parallel in [Play] (Act.Scene if known): "[quote]" - [explanation of connection]'. When finding similar passages, search for: exact phrase repetitions, parallel metaphors (life as theater, time as thief, love as madness), similar imagery clusters (darkness/light, storm/calm, garden/wilderness), rhetorical patterns (questions, lists, paradoxes), and recurring themes (appearance vs reality, order vs chaos, nature vs nurture).
-- For Sources: Identify specific sources Shakespeare drew on for plot, character, or content. Include primary sources (Plutarch's Lives, Holinshed's Chronicles, North's translation), earlier plays he adapted (Kyd's Spanish Tragedy, Marlowe's works), contemporary works, classical sources, medieval romances, or other influences. Explain how Shakespeare transformed or adapted these sources.
+- For Related lines and themes in other works: Include 3-5 thematically related passages from other Shakespeare plays. Find passages that share: similar imagery, parallel themes, echoed language, or comparable dramatic situations. Explain the literary connection. Format: 'Thematic parallel in [Play] (Act.Scene if known): "[quote]" - [explanation of connection]'. When finding similar passages, search for: exact phrase repetitions, parallel metaphors (life as theater, time as thief, love as madness), similar imagery clusters (darkness/light, storm/calm, garden/wilderness), rhetorical patterns (questions, lists, paradoxes), and recurring themes (appearance vs reality, order vs chaos, nature vs nurture).
+- For Historical Roots: Identify specific sources Shakespeare drew on for plot, character, or content. Include primary sources (Plutarch's Lives, Holinshed's Chronicles, North's translation), earlier plays he adapted (Kyd's Spanish Tragedy, Marlowe's works), contemporary works, classical sources, medieval romances, or other influences. Explain how Shakespeare transformed or adapted these sources.
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
 EXAMPLE FORMAT:
@@ -173,13 +173,13 @@ EXAMPLE FORMAT:
 
 **Historical Context:** [relevant historical background in ${currentPlayName}].
 
-**Sources:** [specific sources Shakespeare drew on for plot, character, or content - e.g., Plutarch, Holinshed, earlier plays, contemporary works, etc.].
+**Historical Roots:** [specific sources Shakespeare drew on for plot, character, or content - e.g., Plutarch, Holinshed, earlier plays, contemporary works, etc.].
 
 **Literary Analysis:** [detailed literary analysis of ${currentPlayName}].
 
 **Critical Reception:** [scholarly perspectives on ${currentPlayName}].
 
-**Similar phrases or themes in other plays:** [connections to other Shakespeare plays and works].
+**Related lines and themes in other works:** [connections to other Shakespeare plays and works].
 
 **Pointers for Further Reading:** Consider reading [suggestions].`;
       } else if (level === 'followup') {
