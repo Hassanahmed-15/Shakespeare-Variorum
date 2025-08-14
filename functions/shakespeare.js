@@ -17,6 +17,7 @@ exports.handler = async (event, context) => {
 
   try {
     const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+    const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY;
     
     if (!OPENAI_API_KEY) {
       return {
@@ -458,15 +459,47 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
         console.log(`Starting API call for level: ${level}, text length: ${text.length}`);
         const startTime = Date.now();
         
-        response = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${OPENAI_API_KEY}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload),
-          timeout: 300000 // 5 minute timeout for complex analyses
-        });
+        // Use Claude API for Full Fathom Five, OpenAI for other levels
+        if (level === 'fullfathomfive') {
+          if (!CLAUDE_API_KEY) {
+            return {
+              statusCode: 500,
+              headers,
+              body: JSON.stringify({ error: 'Claude API key not configured for Full Fathom Five analysis' })
+            };
+          }
+          
+          // Claude API payload format
+          const claudePayload = {
+            model: "claude-3-5-sonnet-20241022",
+            max_tokens: 8000,
+            messages: [
+              { role: 'user', content: `${systemPrompt}\n\nAnalyze this Shakespeare text: "${text}"` }
+            ]
+          };
+          
+          response = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${CLAUDE_API_KEY}`,
+              'Content-Type': 'application/json',
+              'anthropic-version': '2023-06-01'
+            },
+            body: JSON.stringify(claudePayload),
+            timeout: 300000 // 5 minute timeout for complex analyses
+          });
+        } else {
+          // OpenAI API for Basic and Expert levels
+          response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${OPENAI_API_KEY}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload),
+            timeout: 300000 // 5 minute timeout for complex analyses
+          });
+        }
 
         const endTime = Date.now();
         console.log(`API call completed in ${endTime - startTime}ms`);
@@ -485,7 +518,7 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
       }
       
       if (!response.ok) {
-        console.error('OpenAI API error:', data);
+        console.error(`${level === 'fullfathomfive' ? 'Claude' : 'OpenAI'} API error:`, data);
         
         // Special handling for timeout errors
         if (response.status === 504 || (data.error && data.error.message && data.error.message.includes('timeout'))) {
@@ -503,17 +536,34 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
           statusCode: response.status,
           headers,
           body: JSON.stringify({
-            error: `OpenAI API error: ${data.error?.message || 'Unknown error'}`,
+            error: `${level === 'fullfathomfive' ? 'Claude' : 'OpenAI'} API error: ${data.error?.message || 'Unknown error'}`,
             details: data
           })
         };
       }
 
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify(data)
-      };
+      // Handle different response formats
+      if (level === 'fullfathomfive') {
+        // Claude API response format
+        return {
+          statusCode: 200,
+          headers,
+          body: JSON.stringify({
+            choices: [{
+              message: {
+                content: data.content[0].text
+              }
+            }]
+          })
+        };
+      } else {
+        // OpenAI API response format (unchanged)
+        return {
+          statusCode: 200,
+          headers,
+          body: JSON.stringify(data)
+        };
+      }
     }
 
     // Health check
@@ -523,7 +573,8 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
         headers,
         body: JSON.stringify({ 
           status: 'ok', 
-          openai: !!OPENAI_API_KEY
+          openai: !!OPENAI_API_KEY,
+          claude: !!CLAUDE_API_KEY
         })
       };
     }
