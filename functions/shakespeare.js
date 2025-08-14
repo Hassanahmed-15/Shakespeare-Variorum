@@ -125,7 +125,7 @@ CRITICAL: You MUST provide responses for ALL of these sections in exactly this o
 ${sections.map((section, index) => `**${section}:**`).join('\n')}
 
 FORMAT REQUIREMENTS:
-- Start each section with the exact heading format shown above
+- Start each section with the exact heading format shown above (use single colon, not double)
 - Provide 4-8 sentences for each section
 - Use complete sentences and paragraphs
 - Include detailed analysis with specific citations and evidence
