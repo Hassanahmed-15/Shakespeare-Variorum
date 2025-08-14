@@ -411,14 +411,14 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
           };
         } else if (baseLevel === 'fullfathomfive') {
           modelConfig = {
-            model: 'gpt-4-turbo',
+            model: 'gpt-4o',
             temperature: 0.7
           };
         }
       } else if (level === 'fullfathomfive') {
-        // Use gpt-4-turbo for Full Fathom Five for enhanced reasoning
+        // Use gpt-4o for Full Fathom Five for enhanced reasoning
         modelConfig = {
-          model: 'gpt-4-turbo',
+          model: 'gpt-4o',
           temperature: 0.7
         };
       }
