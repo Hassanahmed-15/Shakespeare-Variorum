@@ -3602,21 +3602,65 @@
                 // Clear any existing highlights first
                 clearAllHighlights();
                 
-                // Use a non-destructive highlighting method that preserves original formatting
+                // Use a more robust highlighting method that preserves word boundaries
                 try {
                     const range = selection.getRangeAt(0);
+                    
+                    // Check if we need to expand to word boundaries
+                    const startContainer = range.startContainer;
+                    const endContainer = range.endContainer;
+                    
+                    // If selection starts or ends in the middle of a word, expand to word boundaries
+                    let expandedRange = range.cloneRange();
+                    
+                    // Expand start to word boundary if needed
+                    if (startContainer.nodeType === Node.TEXT_NODE) {
+                        const text = startContainer.textContent;
+                        const startOffset = range.startOffset;
+                        
+                        // Find word boundary at start
+                        let wordStart = startOffset;
+                        while (wordStart > 0 && /\S/.test(text[wordStart - 1])) {
+                            wordStart--;
+                        }
+                        
+                        if (wordStart !== startOffset) {
+                            expandedRange.setStart(startContainer, wordStart);
+                        }
+                    }
+                    
+                    // Expand end to word boundary if needed
+                    if (endContainer.nodeType === Node.TEXT_NODE) {
+                        const text = endContainer.textContent;
+                        const endOffset = range.endOffset;
+                        
+                        // Find word boundary at end
+                        let wordEnd = endOffset;
+                        while (wordEnd < text.length && /\S/.test(text[wordEnd])) {
+                            wordEnd++;
+                        }
+                        
+                        if (wordEnd !== endOffset) {
+                            expandedRange.setEnd(endContainer, wordEnd);
+                        }
+                    }
+                    
+                    // Create highlight span
                     const span = document.createElement('span');
                     span.className = 'highlight';
                     
-                    // Create a clone of the range contents to avoid modifying the original DOM
-                    const clonedContents = range.cloneContents();
-                    span.appendChild(clonedContents);
+                    // Extract the expanded content
+                    const contents = expandedRange.extractContents();
+                    span.appendChild(contents);
                     
-                    // Replace the range contents with our highlighted span
-                    range.deleteContents();
-                    range.insertNode(span);
+                    // Insert the highlighted span
+                    expandedRange.insertNode(span);
                     
-                    console.log('Non-destructive highlighting successful');
+                    // Update the selection to match the expanded range
+                    selection.removeAllRanges();
+                    selection.addRange(expandedRange);
+                    
+                    console.log('Word-boundary highlighting successful');
                 } catch (highlightError) {
                     console.warn('Highlighting failed, but keeping selection:', highlightError);
                     // Even if highlighting fails, we still have the selected text
@@ -3660,10 +3704,47 @@
                 
                 // Remove the empty highlight span
                 parent.removeChild(highlight);
-                
-                // Normalize to merge adjacent text nodes
-                parent.normalize();
             });
+            
+            // Normalize all text nodes to merge adjacent text and fix word breaks
+            const readerElement = document.querySelector('.reader');
+            if (readerElement) {
+                normalizeTextNodes(readerElement);
+            }
+        }
+        
+        // Helper function to normalize text nodes and fix word breaks
+        function normalizeTextNodes(element) {
+            // Recursively normalize all child nodes
+            for (let i = 0; i < element.childNodes.length; i++) {
+                const child = element.childNodes[i];
+                if (child.nodeType === Node.ELEMENT_NODE) {
+                    normalizeTextNodes(child);
+                }
+            }
+            
+            // Normalize this element to merge adjacent text nodes
+            element.normalize();
+            
+            // Fix any broken words by merging text nodes
+            const textNodes = [];
+            for (let i = 0; i < element.childNodes.length; i++) {
+                const child = element.childNodes[i];
+                if (child.nodeType === Node.TEXT_NODE) {
+                    textNodes.push(child);
+                }
+            }
+            
+            // Merge adjacent text nodes
+            for (let i = textNodes.length - 1; i > 0; i--) {
+                const current = textNodes[i];
+                const previous = textNodes[i - 1];
+                
+                if (current.parentNode === previous.parentNode) {
+                    previous.textContent += current.textContent;
+                    current.parentNode.removeChild(current);
+                }
+            }
         }
 
         // Contextual toolbar event listeners
