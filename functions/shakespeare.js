@@ -88,10 +88,10 @@ IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
-${sections.map((section, index) => `**${section}:**`).join('\n')}
+${sections.map((section, index) => `**${section}**`).join('\n')}
 
 FORMAT REQUIREMENTS:
-- Start each section with the exact heading format shown above
+- Start each section with the exact heading format shown above, then add a single colon
 - Provide 2-4 sentences for each section
 - Use complete sentences and paragraphs
 - Write in clear, accessible language
@@ -122,10 +122,10 @@ IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneNa
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
-${sections.map((section, index) => `**${section}:**`).join('\n')}
+${sections.map((section, index) => `**${section}**`).join('\n')}
 
 FORMAT REQUIREMENTS:
-- Start each section with the exact heading format shown above (use single colon, not double)
+- Start each section with the exact heading format shown above, then add a single colon
 - Provide 4-8 sentences for each section
 - Use complete sentences and paragraphs
 - Include detailed analysis with specific citations and evidence
