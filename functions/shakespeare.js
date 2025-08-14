@@ -129,16 +129,29 @@ IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneNa
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
-${sections.map((section, index) => `**${section}**`).join('\n')}
+**Plain-Language Paraphrase**
+**Synopsis**
+**Textual Variants**
+**Key Words & Glosses**
+**Historical Context**
+**Sources**
+**Literary Analysis**
+**Critical Reception**
+**Similar phrases or themes in other plays**
+**Pointers for Further Reading**
 
 FORMAT REQUIREMENTS:
 - Start each section with the exact heading format shown above, then add a single colon (e.g., **Sources:** not **Sources::**)
+- CRITICAL: You MUST use EXACTLY these section headers and add ONE colon after each. DO NOT add extra colons.
+- CRITICAL: The headers "Sources" and "Similar phrases or themes in other plays" should have exactly ONE colon each: "Sources:" and "Similar phrases or themes in other plays:" - NOT double colons.
 - Provide 4-8 sentences for each section
 - Use complete sentences and paragraphs
 - Include detailed analysis with specific citations and evidence
 - Avoid abbreviations and shorthand
-- CRITICAL: Write ALL book titles, play titles, movie titles, films, novels, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>, <em>Romeo and Juliet</em>, <em>The Tempest</em>)
+- CRITICAL: Write ALL book titles, play titles, movie titles, films, novels, articles, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>, <em>Romeo and Juliet</em>, <em>The Tempest</em>, <em>Shakespearean Tragedy</em>, <em>Suffocating Mothers</em>, <em>Will in the World</em>, <em>Chronicles</em>)
 - NEVER use quotation marks for titles - always use <em>italics</em>
+- NEVER put book titles, play titles, or any media titles in quotation marks
+- ALWAYS italicize ALL titles - this is non-negotiable
 - NEVER use asterisks (*) for titles - always use <em>italics</em>
 - NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
 - Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
