@@ -3500,7 +3500,9 @@
             updateActiveNavigation('dramatis');
             
             playText.innerHTML = `
-                <div class="scene-title">Dramatis Personae</div>
+                <div class="play">
+                    <div class="scene-title">Dramatis Personae</div>
+                </div>
                 <div class="scene-separator"></div>
                 <div class="analysis-content">
                     ${characters.length > 0 ? 
@@ -3522,7 +3524,9 @@
             updateActiveNavigation(actName);
             
             playText.innerHTML = `
-                <div class="scene-title">${actName}</div>
+                <div class="play">
+                    <div class="scene-title">${actName}</div>
+                </div>
                 <div class="scene-separator"></div>
                 <div class="analysis-content">
                     <p>This act contains ${scenes.length} scene${scenes.length !== 1 ? 's' : ''}:</p>
