@@ -98,6 +98,7 @@ FORMAT REQUIREMENTS:
 - NEVER use asterisks (*) for titles - always use <em>italics</em>
 - NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
 - Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
+- For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]
 - Use proper academic formatting
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
@@ -106,7 +107,7 @@ EXAMPLE FORMAT:
 
 **Synopsis:** This language in ${playName} [what it does in context].
 
-**Key Words & Glosses:** [word] means [definition]; [word] means [definition].
+**Key Words & Glosses:** "word" means [definition]; "word" means [definition].
 
 **Pointers for Further Reading:** Consider reading [suggestions].`;
 
