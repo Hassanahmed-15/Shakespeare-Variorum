@@ -6,6 +6,9 @@
 [build.environment]
   NODE_VERSION = "18"
 
+[functions]
+  timeout = 120
+
 [[redirects]]
   from = "/api/shakespeare"
   to = "/.netlify/functions/shakespeare"
