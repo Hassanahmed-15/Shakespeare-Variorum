@@ -513,7 +513,7 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(payload),
-          timeout: 120000 // 2 minute timeout for complex analyses
+          timeout: 300000 // 5 minute timeout for complex analyses
         });
 
         const endTime = Date.now();
@@ -526,7 +526,7 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
           statusCode: 504,
           headers,
           body: JSON.stringify({
-            error: 'Network timeout: The request took too long to complete. Please try again or use a shorter text selection.',
+            error: 'Network timeout: The request took longer than 5 minutes to complete. Please try again or use a shorter text selection.',
             details: fetchError.message
           })
         };
@@ -541,7 +541,7 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
             statusCode: 504,
             headers,
             body: JSON.stringify({
-              error: 'Analysis timeout: The request took too long to process. This may happen with complex passages. Please try again or use a shorter text selection.',
+              error: 'Analysis timeout: The request took longer than 5 minutes to process. This may happen with very complex passages. Please try again or use a shorter text selection.',
               details: data
             })
           };
