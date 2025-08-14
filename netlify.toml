@@ -10,3 +10,7 @@
   from = "/api/shakespeare"
   to = "/.netlify/functions/shakespeare"
   status = 200
+
+[[edge_functions]]
+  function = "variorum-edge"
+  path = "/api/variorum-edge"
