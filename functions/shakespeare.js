@@ -503,8 +503,7 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
                 'Content-Type': 'application/json',
                 'anthropic-version': '2023-06-01'
               },
-              body: JSON.stringify(claudePayload),
-              timeout: 300000 // 5 minute timeout for complex analyses
+              body: JSON.stringify(claudePayload)
             });
         } else {
           // OpenAI API for Basic and Expert levels
@@ -514,8 +513,7 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
               'Authorization': `Bearer ${OPENAI_API_KEY}`,
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(payload),
-            timeout: 300000 // 5 minute timeout for complex analyses
+            body: JSON.stringify(payload)
           });
         }
 
