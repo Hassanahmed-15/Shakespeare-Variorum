@@ -259,7 +259,10 @@ FORMAT REQUIREMENTS:
 - Use complete sentences and paragraphs
 - Include exhaustive analysis with specific citations, evidence, and critical perspectives
 - Avoid abbreviations and shorthand
-- Write book titles in italics
+- Write ALL book titles, play titles, movie titles, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>Daemonologie</em>, <em>First Folio</em>)
+- NEVER use asterisks (*) for titles - always use <em>italics</em>
+- NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
+- Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
 - Use proper academic formatting
 - For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
 - Include comprehensive scholarly references, performance history, and critical reception
@@ -268,22 +271,36 @@ FORMAT REQUIREMENTS:
 - Address multiple interpretive possibilities and scholarly debates
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
+CRITICAL: You MUST follow the exact section order listed above. Do not put content from one section under another section's heading.
+
+CRITICAL: Each section must contain content appropriate to that section. Plain-Language Paraphrase should contain a simple explanation, not critical reception or performance history.
+
+CRITICAL: After each section heading, provide ONLY content relevant to that section. Do not include other section headings within a section.
+
 EXAMPLE FORMAT:
-**Plain-Language Paraphrase:** This passage from ${currentPlayName} means [explanation in simple terms].
+**Plain-Language Paraphrase:**
+This passage from ${currentPlayName} means [explanation in simple terms].
 
-**Synopsis:** This language in ${currentPlayName} [what it does in context].
+**Synopsis:**
+This language in ${currentPlayName} [what it does in context].
 
-**Textual Variants:** [variants or "Early editions are identical to Folger."]
+**Textual Variants:**
+[variants or "Early editions are identical to Folger."]
 
-**Key Words & Glosses:** "word" means [definition]; "word" means [definition].
+**Key Words & Glosses:**
+"word" means [definition]; "word" means [definition].
 
-**Historical Context:** [relevant historical background in ${currentPlayName}].
+**Historical Context:**
+[relevant historical background in ${currentPlayName}].
 
-**Literary Analysis:** [detailed literary analysis of ${currentPlayName}].
+**Literary Analysis:**
+[detailed literary analysis of ${currentPlayName}].
 
-**Critical Reception:** [scholarly perspectives on ${currentPlayName}].
+**Critical Reception:**
+[scholarly perspectives on ${currentPlayName}].
 
-**Performance History:** [performance history and interpretations of ${currentPlayName}].
+**Performance History:**
+[performance history and interpretations of ${currentPlayName}].
 
 
 
