@@ -1306,25 +1306,29 @@
         }
 
         .highlight {
-            background: #e5e7eb;
+            background: #e5e7eb !important;
             border-radius: 4px;
             transition: background .18s;
             /* Preserve original text formatting */
-            font-family: inherit;
-            font-size: inherit;
-            font-weight: inherit;
-            font-style: inherit;
-            line-height: 1.6 !important;
-            white-space: inherit;
-            word-wrap: inherit;
-            overflow-wrap: inherit;
-            word-break: inherit;
-            display: inline;
-            padding: 0;
-            margin: 0;
+            font-family: inherit !important;
+            font-size: inherit !important;
+            font-weight: inherit !important;
+            font-style: inherit !important;
+            line-height: inherit !important;
+            white-space: inherit !important;
+            word-wrap: inherit !important;
+            overflow-wrap: inherit !important;
+            word-break: inherit !important;
+            display: inline !important;
+            padding: 0 !important;
+            margin: 0 !important;
             /* Prevent breaking text flow */
-            vertical-align: baseline;
-            text-decoration: none;
+            vertical-align: baseline !important;
+            text-decoration: none !important;
+            /* Ensure no layout disruption */
+            box-sizing: border-box !important;
+            float: none !important;
+            position: static !important;
         }
 
         /* Analysis Mode Selector */
@@ -3606,36 +3610,67 @@
                 // Clear any existing highlights first
                 clearAllHighlights();
                 
-                // Use a simpler highlighting method that preserves text flow
+                // Use CSS-based highlighting that doesn't modify DOM structure
                 try {
                     const range = selection.getRangeAt(0);
                     
-                    // Create highlight span
-                    const span = document.createElement('span');
-                    span.className = 'highlight';
+                    // Create a marker element that doesn't break text flow
+                    const marker = document.createElement('mark');
+                    marker.className = 'highlight';
+                    marker.style.cssText = `
+                        background-color: #e5e7eb;
+                        border-radius: 4px;
+                        padding: 0;
+                        margin: 0;
+                        display: inline;
+                        line-height: inherit;
+                        font-family: inherit;
+                        font-size: inherit;
+                        font-weight: inherit;
+                        font-style: inherit;
+                        white-space: inherit;
+                        word-wrap: inherit;
+                        overflow-wrap: inherit;
+                        word-break: inherit;
+                        vertical-align: baseline;
+                        text-decoration: none;
+                    `;
                     
-                    // Use surroundContents which preserves text flow better
-                    range.surroundContents(span);
+                    // Use surroundContents with the marker element
+                    range.surroundContents(marker);
                     
-                    console.log('Highlighting successful');
+                    console.log('CSS-based highlighting successful');
                 } catch (highlightError) {
-                    console.warn('surroundContents failed, trying alternative method:', highlightError);
+                    console.warn('CSS highlighting failed, trying minimal DOM approach:', highlightError);
                     
-                    // Alternative method that preserves text flow
+                    // Minimal DOM approach - just wrap without any complex operations
                     try {
                         const range = selection.getRangeAt(0);
-                        const span = document.createElement('span');
-                        span.className = 'highlight';
+                        const wrapper = document.createElement('span');
+                        wrapper.className = 'highlight';
+                        wrapper.style.cssText = `
+                            background-color: #e5e7eb;
+                            border-radius: 4px;
+                            padding: 0;
+                            margin: 0;
+                            display: inline;
+                            line-height: inherit;
+                            font-family: inherit;
+                            font-size: inherit;
+                            font-weight: inherit;
+                            font-style: inherit;
+                            white-space: inherit;
+                            word-wrap: inherit;
+                            overflow-wrap: inherit;
+                            word-break: inherit;
+                            vertical-align: baseline;
+                            text-decoration: none;
+                        `;
                         
-                        // Clone the range contents instead of extracting
-                        const clonedContents = range.cloneContents();
-                        span.appendChild(clonedContents);
+                        // Simple wrap without extracting content
+                        range.surroundContents(wrapper);
                         
-                        // Delete the original content and insert the highlighted version
-                        range.deleteContents();
-                        range.insertNode(span);
-                        
-                        console.log('Alternative highlighting successful');
+                        console.log('Minimal DOM highlighting successful');
                     } catch (fallbackError) {
                         console.warn('All highlighting methods failed:', fallbackError);
                         // Even if highlighting fails, we still have the selected text
