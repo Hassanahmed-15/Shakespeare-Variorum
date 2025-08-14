@@ -441,7 +441,7 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
       } else if (level === 'fullfathomfive') {
         // Use Claude for Full Fathom Five
         modelConfig = {
-          model: 'claude-3-haiku-20240307',
+          model: 'claude-3-5-sonnet-20241022',
           temperature: 0.7
         };
       }
@@ -490,7 +490,7 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
           // Claude API payload format
           const claudePayload = {
             model: modelConfig.model,
-            max_tokens: 4096,
+            max_tokens: 8000,
             messages: [
               { role: 'user', content: `${systemPrompt}\n\nAnalyze this Shakespeare text: "${text}"` }
             ]
