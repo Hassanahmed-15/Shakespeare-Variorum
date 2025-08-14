@@ -48,53 +48,48 @@ export default async (request, context) => {
             // Send initial header
             controller.enqueue(new TextEncoder().encode('data: {"type": "start", "message": "Starting Full Fathom Five analysis..."}\n\n'));
 
-            // Simplified Variorum prompt
-            const fullPrompt = `You are providing a simplified but scholarly New Variorum Shakespeare-style commentary. Your analysis should capture the essential elements of Furness's approach while being more concise and accessible.
+            // Streamlined Full Fathom Five prompt
+            const fullPrompt = `You are a Shakespeare scholar providing a comprehensive but concise analysis in the style of the New Variorum editions. Focus on the most important scholarly insights.
 
-IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your analysis.
+CONTEXT: Analyzing "${text}" from ${currentPlayName} (${currentSceneName}).
 
-MANDATORY FORMAT AND STRUCTURE:
+FORMAT:
 
 ## FULL FATHOM FIVE Analysis: "${text}" (${currentPlayName} ${currentSceneName})
 
-### TEXTUAL VARIATIONS
-Brief overview of key textual differences between early editions (Q1, F1, etc.) if any exist.
+### TEXTUAL NOTES
+Brief mention of any significant textual variants between early editions (Q1, F1, etc.).
 
-### CRITICAL COMMENTARY
-Present 3-5 key critical interpretations chronologically with brief citations:
-**YEAR CRITIC NAME** (*Work Title*): Brief summary of their interpretation.
+### CRITICAL PERSPECTIVES
+3-4 key interpretations from major critics:
+**YEAR NAME** (*Work*): Brief insight about this passage.
 
-Include major critics like Johnson, Coleridge, Hazlitt, and 1-2 modern scholars.
+### PERFORMANCE TRADITION
+2-3 notable actor interpretations:
+**ACTOR** (period): How they delivered this line.
 
-### PERFORMANCE HISTORY
-How notable actors have interpreted this line (2-3 examples):
-**ACTOR NAME** (period): Brief description of their interpretation.
+### SOURCES
+Brief mention of any known sources (Holinshed, Plutarch, etc.) or note if Shakespeare invented this.
 
-### SOURCES & INFLUENCES
-Brief mention of any known sources (Holinshed, Plutarch, etc.) or note if Shakespeare appears to have invented this.
+### WORD STUDY
+Brief definitions of key words, preserving original capitalization.
 
-### KEY WORDS & MEANINGS
-Brief etymology and definitions of important words, preserving original capitalization.
-
-### SHAKESPEAREAN PARALLELS
+### SHAKESPEAREAN ECHOES
 1-2 similar passages from other plays if relevant.
 
-### DRAMATIC FUNCTION
-How this passage works in the immediate scene and broader play structure.
+### DRAMATIC PURPOSE
+How this passage functions in the scene and play.
 
-### MODERN PERSPECTIVES
-Brief mention of 1-2 modern critical approaches (feminist, psychoanalytic, etc.) if relevant.
+### MODERN VIEWS
+Brief mention of relevant modern critical approaches.
 
-### SYNTHESIS
-Concise summary of the passage's significance and meaning.
+### CONCLUSION
+Concise summary of the passage's significance.
 
-LENGTH: 800-1200 words total
+LENGTH: 600-800 words
+TONE: Scholarly but clear. Use <em>italics</em> for titles.
 
-TONE: Scholarly but accessible. Focus on the most important insights rather than exhaustive detail.
-
-Use <em>italics</em> for titles and preserve exact capitalization from the highlighted text.
-
-Analyze this Shakespeare text: "${text}"`;
+Analyze: "${text}"`;
 
             // Send section start
             controller.enqueue(new TextEncoder().encode('data: {"type": "section", "message": "TEXTUAL COLLATION"}\n\n'));
