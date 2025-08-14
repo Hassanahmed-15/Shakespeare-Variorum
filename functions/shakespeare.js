@@ -477,13 +477,17 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
         
         // Use Claude API for Full Fathom Five only, OpenAI for Basic and Expert
         if (level === 'fullfathomfive') {
-                  if (!CLAUDE_API_KEY) {
-          return {
-            statusCode: 500,
-            headers,
-            body: JSON.stringify({ error: 'Claude API key not configured for Full Fathom Five analysis' })
-          };
-        }
+          console.log('Full Fathom Five level detected, checking Claude API key...');
+          console.log('CLAUDE_API_KEY exists:', !!CLAUDE_API_KEY);
+          console.log('CLAUDE_API_KEY starts with sk-ant-:', CLAUDE_API_KEY ? CLAUDE_API_KEY.startsWith('sk-ant-') : 'N/A');
+          
+          if (!CLAUDE_API_KEY) {
+            return {
+              statusCode: 500,
+              headers,
+              body: JSON.stringify({ error: 'Claude API key not configured for Full Fathom Five analysis' })
+            };
+          }
           
           // Claude API payload format
           const claudePayload = {
