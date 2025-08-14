@@ -475,15 +475,15 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
           };
         } else if (baseLevel === 'fullfathomfive') {
           modelConfig = {
-            model: 'o3',
-            reasoning_effort: 'high'
+            model: 'gpt-4-turbo',
+            temperature: 0.7
           };
         }
       } else if (level === 'fullfathomfive') {
-        // Use o3 for Full Fathom Five for enhanced reasoning
+        // Use gpt-4-turbo for Full Fathom Five for enhanced reasoning
         modelConfig = {
-          model: 'o3',
-          reasoning_effort: 'high'
+          model: 'gpt-4-turbo',
+          temperature: 0.7
         };
       }
       
