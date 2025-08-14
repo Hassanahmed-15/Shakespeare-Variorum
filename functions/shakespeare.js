@@ -91,13 +91,15 @@ CRITICAL: You MUST provide responses for ALL of these sections in exactly this o
 ${sections.map((section, index) => `**${section}:**`).join('\n')}
 
 FORMAT REQUIREMENTS:
-- Use the exact heading format shown above - do not add additional colons
+- CRITICAL: Use EXACTLY the heading format shown above with ONE colon only (e.g., **Sources:** NOT **Sources::**)
 - Provide 2-4 sentences for each section
 - Use complete sentences and paragraphs
 - Write in clear, accessible language
 - If a section seems inapplicable, still provide a brief explanation of why
 - Avoid abbreviations and shorthand
-- Write ALL book titles, play titles, movie titles, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>)
+- CRITICAL: Write ALL book titles, play titles, movie titles, films, novels, articles, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>, <em>The Chronicles of Scotland England, and Ireland</em>)
+- NEVER use quotation marks for titles - always use <em>italics</em>
+- NEVER put book titles, play titles, or any media titles in quotation marks
 - NEVER use asterisks (*) for titles - always use <em>italics</em>
 - NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
 - Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
@@ -125,13 +127,14 @@ CRITICAL: You MUST provide responses for ALL of these sections in exactly this o
 ${sections.map((section, index) => `**${section}:**`).join('\n')}
 
 FORMAT REQUIREMENTS:
-- Use the exact heading format shown above - do not add additional colons
+- CRITICAL: Use EXACTLY the heading format shown above with ONE colon only (e.g., **Sources:** NOT **Sources::**)
 - Provide 4-8 sentences for each section
 - Use complete sentences and paragraphs
 - Include detailed analysis with specific citations and evidence
 - Avoid abbreviations and shorthand
-- CRITICAL: Write ALL book titles, play titles, movie titles, films, novels, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>, <em>Romeo and Juliet</em>, <em>The Tempest</em>)
+- CRITICAL: Write ALL book titles, play titles, movie titles, films, novels, articles, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>, <em>Romeo and Juliet</em>, <em>The Tempest</em>, <em>The Chronicles of Scotland England, and Ireland</em>)
 - NEVER use quotation marks for titles - always use <em>italics</em>
+- NEVER put book titles, play titles, or any media titles in quotation marks
 - NEVER use asterisks (*) for titles - always use <em>italics</em>
 - NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
 - Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
