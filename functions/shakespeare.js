@@ -56,6 +56,7 @@ exports.handler = async (event, context) => {
           'Textual Variants',
           'Key Words & Glosses',
           'Historical Context',
+          'Sources',
           'Literary Analysis',
           'Critical Reception',
           'Similar phrases or themes in other plays',
@@ -138,6 +139,7 @@ FORMAT REQUIREMENTS:
 - Include scholarly references and critical perspectives
 - For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]
 - For Similar phrases or themes in other plays: Include 3-5 thematically related passages from other Shakespeare plays. Find passages that share: similar imagery, parallel themes, echoed language, or comparable dramatic situations. Explain the literary connection. Format: 'Thematic parallel in [Play] (Act.Scene if known): "[quote]" - [explanation of connection]'. When finding similar passages, search for: exact phrase repetitions, parallel metaphors (life as theater, time as thief, love as madness), similar imagery clusters (darkness/light, storm/calm, garden/wilderness), rhetorical patterns (questions, lists, paradoxes), and recurring themes (appearance vs reality, order vs chaos, nature vs nurture).
+- For Sources: Identify specific sources Shakespeare drew on for plot, character, or content. Include primary sources (Plutarch's Lives, Holinshed's Chronicles, North's translation), earlier plays he adapted (Kyd's Spanish Tragedy, Marlowe's works), contemporary works, classical sources, medieval romances, or other influences. Explain how Shakespeare transformed or adapted these sources.
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
 EXAMPLE FORMAT:
@@ -150,6 +152,8 @@ EXAMPLE FORMAT:
 **Key Words & Glosses:** "word" means [definition]; "word" means [definition].
 
 **Historical Context:** [relevant historical background in ${currentPlayName}].
+
+**Sources:** [specific sources Shakespeare drew on for plot, character, or content - e.g., Plutarch, Holinshed, earlier plays, contemporary works, etc.].
 
 **Literary Analysis:** [detailed literary analysis of ${currentPlayName}].
 
