@@ -3876,7 +3876,9 @@
                     body: JSON.stringify({
                         text: text,
                         level: currentAnalysisMode,
-                        model: 'gpt-4o-mini'
+                        model: 'gpt-4o-mini',
+                        playName: playName,
+                        sceneName: currentScene
                     })
                 });
                 
@@ -3891,7 +3893,9 @@
                         body: JSON.stringify({
                             text: text,
                             level: currentAnalysisMode,
-                            model: 'gpt-4o-mini'
+                            model: 'gpt-4o-mini',
+                            playName: playName,
+                            sceneName: currentScene
                         })
                     });
                 }
