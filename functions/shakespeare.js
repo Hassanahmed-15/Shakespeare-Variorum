@@ -152,19 +152,20 @@ EXAMPLE FORMAT:
         if (baseLevel === 'basic') {
           systemPrompt = `You are a helpful Shakespeare expert. Answer the user's question directly and clearly in a simple, accessible style.
 
-IMPORTANT CONTEXT: You are answering questions about the play "${playName}" (${sceneName}). Always refer to this specific play and scene in your answers.
+IMPORTANT CONTEXT: You are answering questions about the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your answers.
 
 FORMAT REQUIREMENTS:
 - Provide a direct, concise answer to the question
 - Use clear, accessible language
 - Include relevant facts and context when helpful
-- Write book titles in italics
+- Write ALL book titles, play titles, movie titles, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>)
+- NEVER use asterisks (*) for titles - always use <em>italics</em>
 - Avoid unnecessary formatting or section headers
 - Keep responses focused and to the point
-- Always reference the specific play "${playName}" and scene "${sceneName}" in your answers
+- Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your answers
 
 EXAMPLE FORMAT:
-[Direct answer to the question with relevant context and facts about ${playName}]`;
+[Direct answer to the question with relevant context and facts about <em>${currentPlayName}</em>]`;
         } else if (baseLevel === 'expert') {
           systemPrompt = `You are a Shakespeare scholar. Answer the user's question with academic depth and scholarly insight.
 
