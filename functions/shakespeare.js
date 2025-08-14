@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
 
   try {
     const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-    const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY;
+    const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
     
     if (!OPENAI_API_KEY) {
       return {
@@ -473,13 +473,13 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
         
         // Use Claude API for Full Fathom Five, OpenAI for other levels
         if (level === 'fullfathomfive') {
-          if (!CLAUDE_API_KEY) {
-            return {
-              statusCode: 500,
-              headers,
-              body: JSON.stringify({ error: 'Claude API key not configured for Full Fathom Five analysis' })
-            };
-          }
+                  if (!ANTHROPIC_API_KEY) {
+          return {
+            statusCode: 500,
+            headers,
+            body: JSON.stringify({ error: 'Anthropic API key not configured for Full Fathom Five analysis' })
+          };
+        }
           
           // Claude API payload format
           const claudePayload = {
@@ -490,16 +490,16 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
             ]
           };
           
-          response = await fetch('https://api.anthropic.com/v1/messages', {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${CLAUDE_API_KEY}`,
-              'Content-Type': 'application/json',
-              'anthropic-version': '2023-06-01'
-            },
-            body: JSON.stringify(claudePayload),
-            timeout: 300000 // 5 minute timeout for complex analyses
-          });
+                      response = await fetch('https://api.anthropic.com/v1/messages', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${ANTHROPIC_API_KEY}`,
+                'Content-Type': 'application/json',
+                'anthropic-version': '2023-06-01'
+              },
+              body: JSON.stringify(claudePayload),
+              timeout: 300000 // 5 minute timeout for complex analyses
+            });
         } else {
           // OpenAI API for Basic and Expert levels
           response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -586,7 +586,7 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
         body: JSON.stringify({ 
           status: 'ok', 
           openai: !!OPENAI_API_KEY,
-          claude: !!CLAUDE_API_KEY
+          anthropic: !!ANTHROPIC_API_KEY
         })
       };
     }
