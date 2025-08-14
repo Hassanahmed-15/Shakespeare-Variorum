@@ -416,7 +416,7 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
         };
       } else if (level === 'expert') {
         modelConfig = {
-          model: 'gpt-4',
+          model: 'claude-3-5-sonnet-20241022',
           temperature: 0.7
         };
       } else if (level === 'followup') {
@@ -429,7 +429,7 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
           };
         } else if (baseLevel === 'expert') {
           modelConfig = {
-            model: 'gpt-4',
+            model: 'claude-3-5-sonnet-20241022',
             temperature: 0.7
           };
         } else if (baseLevel === 'fullfathomfive') {
@@ -475,13 +475,13 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
         console.log(`Starting API call for level: ${level}, text length: ${text.length}`);
         const startTime = Date.now();
         
-        // Use Claude API for Full Fathom Five, OpenAI for other levels
-        if (level === 'fullfathomfive') {
+        // Use Claude API for Full Fathom Five and Expert, OpenAI for Basic
+        if (level === 'fullfathomfive' || level === 'expert') {
                   if (!CLAUDE_API_KEY) {
           return {
             statusCode: 500,
             headers,
-            body: JSON.stringify({ error: 'Claude API key not configured for Full Fathom Five analysis' })
+            body: JSON.stringify({ error: 'Claude API key not configured for Expert and Full Fathom Five analysis' })
           };
         }
           
@@ -534,7 +534,7 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
       }
       
       if (!response.ok) {
-        console.error(`${level === 'fullfathomfive' ? 'Claude' : 'OpenAI'} API error:`, data);
+        console.error(`${level === 'fullfathomfive' || level === 'expert' ? 'Claude' : 'OpenAI'} API error:`, data);
         
         // Special handling for timeout errors
         if (response.status === 504 || (data.error && data.error.message && data.error.message.includes('timeout'))) {
@@ -548,18 +548,18 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
           };
         }
         
-        return {
-          statusCode: response.status,
-          headers,
-          body: JSON.stringify({
-            error: `${level === 'fullfathomfive' ? 'Claude' : 'OpenAI'} API error: ${data.error?.message || 'Unknown error'}`,
-            details: data
-          })
-        };
+                  return {
+            statusCode: response.status,
+            headers,
+            body: JSON.stringify({
+              error: `${level === 'fullfathomfive' || level === 'expert' ? 'Claude' : 'OpenAI'} API error: ${data.error?.message || 'Unknown error'}`,
+              details: data
+            })
+          };
       }
 
       // Handle different response formats
-      if (level === 'fullfathomfive') {
+      if (level === 'fullfathomfive' || level === 'expert') {
         // Claude API response format
         return {
           statusCode: 200,
