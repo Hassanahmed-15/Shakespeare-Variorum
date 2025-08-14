@@ -501,7 +501,7 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
                       response = await fetch('https://api.anthropic.com/v1/messages', {
               method: 'POST',
               headers: {
-                'Authorization': `Bearer ${CLAUDE_API_KEY}`,
+                'x-api-key': `${CLAUDE_API_KEY}`,
                 'Content-Type': 'application/json',
                 'anthropic-version': '2023-06-01'
               },
