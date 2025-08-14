@@ -126,23 +126,23 @@ FORMAT REQUIREMENTS:
 - Use proper academic formatting
 - For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
 - Include scholarly references and critical perspectives
-- For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations
-- Always reference the specific play "${playName}" and scene "${sceneName}" in your analysis
+- For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]
+- Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
 EXAMPLE FORMAT:
-**Plain-Language Paraphrase:** This passage from ${playName} means [explanation in simple terms].
+**Plain-Language Paraphrase:** This passage from ${currentPlayName} means [explanation in simple terms].
 
-**Synopsis:** This language in ${playName} [what it does in context].
+**Synopsis:** This language in ${currentPlayName} [what it does in context].
 
 **Textual Variants:** [variants or "Early editions are identical to Folger."]
 
-**Key Words & Glosses:** [word] means [definition]; [word] means [definition].
+**Key Words & Glosses:** "word" means [definition]; "word" means [definition].
 
-**Historical Context:** [relevant historical background in ${playName}].
+**Historical Context:** [relevant historical background in ${currentPlayName}].
 
-**Literary Analysis:** [detailed literary analysis of ${playName}].
+**Literary Analysis:** [detailed literary analysis of ${currentPlayName}].
 
-**Critical Reception:** [scholarly perspectives on ${playName}].
+**Critical Reception:** [scholarly perspectives on ${currentPlayName}].
 
 **Pointers for Further Reading:** Consider reading [suggestions].`;
       } else if (level === 'followup') {
@@ -218,26 +218,26 @@ FORMAT REQUIREMENTS:
 - For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
 - Include comprehensive scholarly references, performance history, and critical reception
 - Provide detailed footnotes
-- For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations
+- For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]
 - Address multiple interpretive possibilities and scholarly debates
-- Always reference the specific play "${playName}" and scene "${sceneName}" in your analysis
+- Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
 EXAMPLE FORMAT:
-**Plain-Language Paraphrase:** This passage from ${playName} means [explanation in simple terms].
+**Plain-Language Paraphrase:** This passage from ${currentPlayName} means [explanation in simple terms].
 
-**Synopsis:** This language in ${playName} [what it does in context].
+**Synopsis:** This language in ${currentPlayName} [what it does in context].
 
 **Textual Variants:** [variants or "Early editions are identical to Folger."]
 
-**Key Words & Glosses:** [word] means [definition]; [word] means [definition].
+**Key Words & Glosses:** "word" means [definition]; "word" means [definition].
 
-**Historical Context:** [relevant historical background in ${playName}].
+**Historical Context:** [relevant historical background in ${currentPlayName}].
 
-**Literary Analysis:** [detailed literary analysis of ${playName}].
+**Literary Analysis:** [detailed literary analysis of ${currentPlayName}].
 
-**Critical Reception:** [scholarly perspectives on ${playName}].
+**Critical Reception:** [scholarly perspectives on ${currentPlayName}].
 
-**Performance History:** [performance history and interpretations of ${playName}].
+**Performance History:** [performance history and interpretations of ${currentPlayName}].
 
 
 
