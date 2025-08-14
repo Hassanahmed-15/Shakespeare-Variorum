@@ -82,7 +82,7 @@ exports.handler = async (event, context) => {
       let systemPrompt = '';
       
       if (level === 'basic') {
-        systemPrompt = `You are a friendly Shakespeare teacher helping general readers understand and appreciate Shakespeare. 
+        systemPrompt = `You are a university professor speaking to very smart undergraduates about Shakespeare. 
 
 IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your analysis.
 
