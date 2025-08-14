@@ -3871,7 +3871,13 @@
                 console.log('Analyzing text:', text.substring(0, 100) + '...');
                 console.log('Making API request...');
                 
-                // Try the redirect path first
+                // Handle Full Fathom Five with SSE streaming
+                if (currentAnalysisMode === 'fullfathomfive') {
+                    await handleFullFathomFiveSSE(text, playName, currentScene);
+                    return;
+                }
+                
+                // Try the redirect path first for other levels
                 let response = await fetch('/api/shakespeare', {
                     method: 'POST',
                     headers: {
@@ -3949,6 +3955,95 @@
             } finally {
                 // Reset analysis in progress flag
                 analysisInProgress = false;
+            }
+        }
+
+        async function handleFullFathomFiveSSE(text, playName, sceneName) {
+            try {
+                console.log('Starting Full Fathom Five SSE streaming...');
+                
+                // Get the current site URL for the edge function
+                const siteUrl = window.location.hostname;
+                const protocol = window.location.protocol;
+                const edgeFunctionUrl = `${protocol}//${siteUrl}/api/variorum-edge`;
+                
+                // Create EventSource for SSE
+                const eventSource = new EventSource(edgeFunctionUrl);
+                
+                let fullContent = '';
+                let isComplete = false;
+                
+                // Update the analysis content to show streaming
+                const analysisContent = document.querySelector('.analysis-content');
+                analysisContent.innerHTML = '<p style="font-family: var(--ui); font-style: italic;">Starting Full Fathom Five analysis...</p>';
+                
+                // Handle SSE events
+                eventSource.onmessage = function(event) {
+                    try {
+                        const data = JSON.parse(event.data);
+                        console.log('SSE event received:', data);
+                        
+                        switch(data.type) {
+                            case 'start':
+                                analysisContent.innerHTML = '<p style="font-family: var(--ui); font-style: italic;">' + data.message + '</p>';
+                                break;
+                                
+                            case 'section':
+                                analysisContent.innerHTML += '<p style="font-family: var(--ui); font-style: italic;">Processing: ' + data.message + '</p>';
+                                break;
+                                
+                            case 'content':
+                                fullContent += data.word;
+                                analysisContent.innerHTML = formatAnalysisContent(fullContent);
+                                break;
+                                
+                            case 'complete':
+                                isComplete = true;
+                                eventSource.close();
+                                console.log('SSE streaming completed');
+                                break;
+                                
+                            case 'error':
+                                throw new Error(data.message);
+                        }
+                    } catch (parseError) {
+                        console.error('Error parsing SSE data:', parseError);
+                    }
+                };
+                
+                // Handle SSE errors
+                eventSource.onerror = function(error) {
+                    console.error('SSE error:', error);
+                    eventSource.close();
+                    throw new Error('SSE connection failed');
+                };
+                
+                // Send the POST request to start the analysis
+                const response = await fetch(edgeFunctionUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        text: text,
+                        playName: playName,
+                        sceneName: sceneName
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Edge function error: ${response.status}`);
+                }
+                
+                // Wait for completion
+                while (!isComplete) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+                
+            } catch (error) {
+                console.error('Full Fathom Five SSE error:', error);
+                const analysisContent = document.querySelector('.analysis-content');
+                analysisContent.innerHTML = '<p style="color: red;">Error: ' + error.message + '</p>';
             }
         }
 

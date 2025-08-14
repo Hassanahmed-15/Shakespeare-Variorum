@@ -41,127 +41,199 @@ export default async (request, context) => {
       const currentPlayName = playName || 'Shakespeare';
       const currentSceneName = sceneName || 'scene';
 
-      // Helper function for Claude API calls
-      async function callClaude(prompt) {
-        try {
-          const claudePayload = {
-            model: 'claude-sonnet-4-20250514',
-            max_tokens: 2000,
-            messages: [
-              { role: 'user', content: prompt }
-            ]
-          };
-          
-          const claudeResponse = await fetch('https://api.anthropic.com/v1/messages', {
-            method: 'POST',
-            headers: {
-              'x-api-key': `${CLAUDE_API_KEY}`,
-              'Content-Type': 'application/json',
-              'anthropic-version': '2023-06-01'
-            },
-            body: JSON.stringify(claudePayload)
-          });
-          
-          if (!claudeResponse.ok) {
-            throw new Error(`Claude API error: ${claudeResponse.status}`);
-          }
-          
-          const claudeData = await claudeResponse.json();
-          return claudeData.content[0].text;
-        } catch (error) {
-          console.error('Claude API error:', error);
-          return "Section temporarily unavailable.";
-        }
-      }
-      
-      // Part 1: Textual Collation & Commentary History (~1000 words)
-      const part1Prompt = `Provide ONLY these sections for "${text}" from ${currentPlayName} (${currentSceneName}):
+      // Create SSE stream
+      const stream = new ReadableStream({
+        async start(controller) {
+          try {
+            // Send initial header
+            controller.enqueue(new TextEncoder().encode('data: {"type": "start", "message": "Starting Full Fathom Five analysis..."}\n\n'));
+
+            // Full Variorum prompt
+            const fullPrompt = `You are providing exhaustive New Variorum Shakespeare-style commentary at the highest scholarly level. Your analysis must follow the EXACT format and citation style of Horace Howard Furness's New Variorum editions (1871-1919).
+
+IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your analysis.
+
+MANDATORY FORMAT AND STRUCTURE:
+
+## FULL FATHOM FIVE Analysis: "[quoted text]" ([Play] [Act.Scene.Line])
 
 ### TEXTUAL COLLATION
-List all variants (Q1, Q2, F1, F2, etc.) with exact spellings
+List EVERY textual variant chronologically:
+**Q1 (year):** "[exact spelling from quarto]"
+**Q2 (year):** "[exact spelling]"
+**F1 (1623):** "[exact spelling from First Folio]"
+**F2 (1632):** "[variant or 'maintains F1 reading']"
+**Modern editions:** [describe modernization choices]
 
 ### COMMENTARY HISTORY (Variorum Tradition)
-Chronological critical commentary from 1709-1890s with full citations:
-- Format: **YEAR NAME** (*Title*, City: Publisher, Year, p. X): "Commentary"
-- Include: Rowe, Pope, Johnson, Steevens, Malone, Coleridge, Hazlitt, Furness
+Present ALL critical commentary chronologically with FULL bibliographic citations.
 
-Maximum 1200 words. Be specific with citations. Use <em>italics</em> for titles.`;
-      
-      // Part 2: Performance & Sources (~1000 words)
-      const part2Prompt = `Continue analysis of "${text}" with ONLY:
+FORMAT EXACTLY AS FOLLOWS:
+**YEAR FULL NAME OF CRITIC** (*Title of Work in Italics*, City: Publisher, Year of publication, Vol. [if applicable], p. [exact page], [additional note if needed]): "Quote the critic's exact interpretation or closely paraphrase with clear indication this is their view."
+
+REQUIRED CRITICS TO INCLUDE (where relevant):
+- 1709-1725: ROWE, POPE, THEOBALD
+- 1733-1744: HANMER, WARBURTON
+- 1765: SAMUEL JOHNSON (both Dictionary and edition)
+- 1773-1793: STEEVENS, MALONE, CAPELL
+- 1800-1821: COLERIDGE (lectures), HAZLITT (Characters), LAMB
+- 1840s-1860s: GERMAN CRITICS (Ulrici, Gervinus, Schlegel - with translation notes)
+- 1870s-1890s: Victorian scholars (Ingleby, Halliwell-Phillipps, Dowden, Swinburne)
+- 1890s: FURNESS'S SYNTHESIS (always quote his conclusion)
+
+Each entry must include:
+- Full name (not just surname on first mention)
+- Complete work title in italics
+- Full publication information
+- Exact page numbers
+- Volume numbers where applicable
 
 ### PERFORMANCE TRADITION
-How major actors delivered this line (Garrick, Kemble, Siddons, Irving, etc.)
+Chronicle how major actors delivered the line:
+
+**ACTOR NAME** (years performed, source for information - memoir, review, promptbook): Description of delivery, gesture, or interpretation.
+
+Include: Restoration adaptations, 18th century (Garrick, Kemble), 19th century (Kean, Macready, Siddons, Terry, Booth, Irving), notable foreign (Bernhardt, Salvini).
+
+Cite sources: actor memoirs, reviews in periodicals (The Theatre, Athenaeum, etc.), promptbooks (specify library holdings).
 
 ### SOURCE STUDY
-- Holinshed, Plutarch, Biblical parallels
-- Note if "NOT in [source]"
+**Primary source** (*Full title*, edition year, page/signature): Quote parallel if exists or state "NOT in [source]"
+
+Document:
+- Holinshed's Chronicles (1587)
+- Plutarch (North's translation, 1579)
+- Biblical parallels (Geneva Bible 1599)
+- Classical sources
+- Contemporary plays/pamphlets
 
 ### LINGUISTIC ARCHAEOLOGY
-Etymology and contemporary usage of key words
+For key words, provide:
+**"Word" etymology per [Dictionary source]** (*Full dictionary citation*, Vol., p.):
+- Historical development
+- First recorded uses
+- Shakespeare's other uses
+- Contemporary (1590-1610) uses by other writers
+- CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text
 
-Maximum 1000 words. Use <em>italics</em> for titles.`;
-      
-      // Part 3: Cross-references & Controversies (~1000 words)
-      const part3Prompt = `Continue analysis of "${text}" with ONLY:
+Include technical terminology from contemporary manuals (military, musical, etc.) with full citations.
 
 ### CROSS-REFERENCES IN SHAKESPEARE
-Similar passages across the canon
+List parallel passages:
+**Similar usage in [Play] (Act.Scene.Line):** "Quote the parallel"
+Track specific words, images, themes across canon.
 
 ### CRITICAL CONTROVERSIES
-Major interpretive debates
+Document ALL interpretive debates:
+**The [Name] Debate (years):**
+- **CRITIC NAME** (*Work*, year, pp.): [position]
+- **OPPOSING CRITIC** (*Work*, year, pp.): [counter-position]
+- Resolution or ongoing status
 
 ### DRAMATURGICAL SIGNIFICANCE
-Function in scene, character, play structure
+Explain the passage's function in:
+- Immediate scene
+- Character development
+- Play's structure
+- Performance considerations
 
-Maximum 1000 words. Use <em>italics</em> for titles.`;
-      
-      // Part 4: Modern Perspectives & Synthesis (~800 words)
-      const part4Prompt = `Complete analysis of "${text}" with:
-
-### MODERN CRITICAL PERSPECTIVES
-Brief: Psychoanalytic, Feminist, New Historicist, etc.
+### MODERN CRITICAL PERSPECTIVES (post-1900)
+Brief mentions of 20th/21st century approaches:
+**[School of criticism]:** [interpretation]
+- Include: Psychoanalytic, Feminist, Marxist, New Historicist, Postcolonial, Queer Theory, Ecocritical, etc.
 
 ### SYNTHESIS
-Comprehensive summary in Furness's style, weighing all evidence
+Conclude with comprehensive summary in Furness's style, weighing all evidence.
 
-Maximum 800 words. Use <em>italics</em> for titles.`;
-      
-      // Make all 4 API calls
-      console.log('Making Part 1 API call...');
-      const part1 = await callClaude(part1Prompt);
-      
-      console.log('Making Part 2 API call...');
-      const part2 = await callClaude(part2Prompt);
-      
-      console.log('Making Part 3 API call...');
-      const part3 = await callClaude(part3Prompt);
-      
-      console.log('Making Part 4 API call...');
-      const part4 = await callClaude(part4Prompt);
-      
-      // Combine all parts
-      const combinedContent = `## FULL FATHOM FIVE Analysis: "${text}" (${currentPlayName} ${currentSceneName})
+CITATION REQUIREMENTS:
+- NEVER give partial citations
+- ALWAYS include publisher, city, year
+- ALWAYS provide page numbers
+- If work spans multiple pages, give range (pp. 234-239)
+- For journals: (*Journal Title*, Vol. X, No. Y, Month Year, pp. 123-145)
+- For manuscripts: (Library, MS collection, catalogue number)
+- When uncertain of exact page, note: [page uncertain]
+- When paraphrasing rather than quoting, make this clear
 
-${part1}
+LENGTH: 3000-5000 words minimum
 
-${part2}
+TONE: Scholarly but accessible. Include amusing critical eccentricities when relevant. Never simplify - present everything and trust reader's intelligence.
 
-${part3}
+SPECIAL INSTRUCTIONS:
+- When sexual or bawdy implications exist, document them scholarly (cite Partridge, etc.)
+- Include rejected interpretations and eccentric theories
+- Note when interpretations are "conjectural" vs. documented
+- Use "NOT in [source]" when Shakespeare invents beyond sources
+- Include foreign criticism with translation acknowledgments
+- Document bowdlerization when it occurred
 
-${part4}`;
-      
-      return new Response(JSON.stringify({
-        choices: [{
-          message: {
-            content: combinedContent
+Remember: You are channeling Furness's exhaustive scholarship. Every significant word has a history. Every interpretation deserves documentation. Nothing is too minor to note if it illuminates meaning.
+
+Analyze this Shakespeare text: "${text}"`;
+
+            // Send section start
+            controller.enqueue(new TextEncoder().encode('data: {"type": "section", "message": "TEXTUAL COLLATION"}\n\n'));
+
+            // Make Claude API call with streaming
+            const claudePayload = {
+              model: 'claude-sonnet-4-20250514',
+              max_tokens: 4000,
+              messages: [
+                { role: 'user', content: fullPrompt }
+              ]
+            };
+
+            const claudeResponse = await fetch('https://api.anthropic.com/v1/messages', {
+              method: 'POST',
+              headers: {
+                'x-api-key': `${CLAUDE_API_KEY}`,
+                'Content-Type': 'application/json',
+                'anthropic-version': '2023-06-01'
+              },
+              body: JSON.stringify(claudePayload)
+            });
+
+            if (!claudeResponse.ok) {
+              throw new Error(`Claude API error: ${claudeResponse.status}`);
+            }
+
+            const claudeData = await claudeResponse.json();
+            const content = claudeData.content[0].text;
+
+            // Stream the content word by word
+            const words = content.split(' ');
+            for (let i = 0; i < words.length; i++) {
+              const word = words[i];
+              const isLastWord = i === words.length - 1;
+              
+              // Add space after word (except for last word)
+              const wordWithSpace = isLastWord ? word : word + ' ';
+              
+              controller.enqueue(new TextEncoder().encode(`data: {"type": "content", "word": "${wordWithSpace}"}\n\n`));
+              
+              // Small delay to simulate streaming
+              await new Promise(resolve => setTimeout(resolve, 50));
+            }
+
+            // Send completion signal
+            controller.enqueue(new TextEncoder().encode('data: {"type": "complete"}\n\n'));
+            controller.close();
+
+          } catch (error) {
+            console.error('Streaming error:', error);
+            controller.enqueue(new TextEncoder().encode(`data: {"type": "error", "message": "${error.message}"}\n\n`));
+            controller.close();
           }
-        }]
-      }), {
-        status: 200,
+        }
+      });
+
+      return new Response(stream, {
         headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
+          'Content-Type': 'text/event-stream',
+          'Cache-Control': 'no-cache',
+          'Connection': 'keep-alive',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Content-Type'
         }
       });
     }
