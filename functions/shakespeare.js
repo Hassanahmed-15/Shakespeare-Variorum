@@ -58,6 +58,7 @@ exports.handler = async (event, context) => {
           'Historical Context',
           'Literary Analysis',
           'Critical Reception',
+          'Similar phrases or themes in other plays',
           'Pointers for Further Reading'
         ],
         fullfathomfive: [
@@ -68,6 +69,7 @@ exports.handler = async (event, context) => {
           'Historical Context',
           'Literary Analysis',
           'Critical Reception',
+          'Similar phrases or themes in other plays',
           'Performance History'
         ]
       };
@@ -99,6 +101,7 @@ FORMAT REQUIREMENTS:
 - NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
 - Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
 - For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]
+- For Similar phrases or themes in other plays: Do NOT include any cross-references to other Shakespeare plays. Focus only on explaining the highlighted passage itself.
 - Use proper academic formatting
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
@@ -134,6 +137,7 @@ FORMAT REQUIREMENTS:
 - For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
 - Include scholarly references and critical perspectives
 - For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]
+- For Similar phrases or themes in other plays: Include 3-5 thematically related passages from other Shakespeare plays. Find passages that share: similar imagery, parallel themes, echoed language, or comparable dramatic situations. Explain the literary connection. Format: 'Thematic parallel in [Play] (Act.Scene if known): "[quote]" - [explanation of connection]'. When finding similar passages, search for: exact phrase repetitions, parallel metaphors (life as theater, time as thief, love as madness), similar imagery clusters (darkness/light, storm/calm, garden/wilderness), rhetorical patterns (questions, lists, paradoxes), and recurring themes (appearance vs reality, order vs chaos, nature vs nurture).
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
 EXAMPLE FORMAT:
@@ -150,6 +154,8 @@ EXAMPLE FORMAT:
 **Literary Analysis:** [detailed literary analysis of ${currentPlayName}].
 
 **Critical Reception:** [scholarly perspectives on ${currentPlayName}].
+
+**Similar phrases or themes in other plays:** [connections to other Shakespeare plays and works].
 
 **Pointers for Further Reading:** Consider reading [suggestions].`;
       } else if (level === 'followup') {
@@ -269,6 +275,7 @@ FORMAT REQUIREMENTS:
 - For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
 - Include comprehensive scholarly references, performance history, and critical reception
 - For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]
+- For Similar phrases or themes in other plays: Include 6-10 interconnected passages across Shakespeare's complete works. Trace how Shakespeare develops this specific theme/image/language throughout his career. Show evolution from early plays to late plays when relevant. Include both obvious echoes AND subtle thematic variations. Consider genre differences (comedy vs tragedy vs history vs romance). Identify source materials (Plutarch, Holinshed, earlier plays) when relevant. Format: 'Evolution across plays: [Play1]: "[quote]" → [Play2]: "[quote]" - [explain development]'. When finding similar passages, search for: exact phrase repetitions, parallel metaphors (life as theater, time as thief, love as madness), similar imagery clusters (darkness/light, storm/calm, garden/wilderness), rhetorical patterns (questions, lists, paradoxes), and recurring themes (appearance vs reality, order vs chaos, nature vs nurture).
 - Address multiple interpretive possibilities and scholarly debates
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
@@ -299,6 +306,9 @@ This language in ${currentPlayName} [what it does in context].
 
 **Critical Reception:**
 [scholarly perspectives on ${currentPlayName}].
+
+**Similar phrases or themes in other plays:**
+[connections to other Shakespeare plays and works].
 
 **Performance History:**
 [performance history and interpretations of ${currentPlayName}].
