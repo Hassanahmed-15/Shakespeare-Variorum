@@ -503,20 +503,46 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
         payload.reasoning_effort = modelConfig.reasoning_effort;
       }
 
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${OPENAI_API_KEY}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload),
-        timeout: 180000 // 3 minute timeout
-      });
+      let response, data;
+      try {
+        response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${OPENAI_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload),
+          timeout: 300000 // 5 minute timeout for complex analyses
+        });
 
-      const data = await response.json();
+        data = await response.json();
+      } catch (fetchError) {
+        console.error('Fetch error:', fetchError);
+        return {
+          statusCode: 504,
+          headers,
+          body: JSON.stringify({
+            error: 'Network timeout: The request took too long to complete. Please try again or use a shorter text selection.',
+            details: fetchError.message
+          })
+        };
+      }
       
       if (!response.ok) {
         console.error('OpenAI API error:', data);
+        
+        // Special handling for timeout errors
+        if (response.status === 504 || (data.error && data.error.message && data.error.message.includes('timeout'))) {
+          return {
+            statusCode: 504,
+            headers,
+            body: JSON.stringify({
+              error: 'Analysis timeout: The request took too long to process. This may happen with complex passages. Please try again or use a shorter text selection.',
+              details: data
+            })
+          };
+        }
+        
         return {
           statusCode: response.status,
           headers,
