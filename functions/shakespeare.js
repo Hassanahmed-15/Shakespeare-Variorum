@@ -490,7 +490,7 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
           // Claude API payload format
           const claudePayload = {
             model: modelConfig.model,
-            max_tokens: 8000,
+            max_tokens: 4096,
             messages: [
               { role: 'user', content: `${systemPrompt}\n\nAnalyze this Shakespeare text: "${text}"` }
             ]
