@@ -439,9 +439,9 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
           };
         }
       } else if (level === 'fullfathomfive') {
-        // Use gpt-4o for Full Fathom Five for enhanced reasoning
+        // Use Claude for Full Fathom Five
         modelConfig = {
-          model: 'gpt-4o',
+          model: 'claude-3-5-sonnet',
           temperature: 0.7
         };
       }
@@ -491,7 +491,7 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
           
           // Claude API payload format
           const claudePayload = {
-            model: "claude-3-5-sonnet-20241022",
+            model: modelConfig.model,
             max_tokens: 8000,
             messages: [
               { role: 'user', content: `${systemPrompt}\n\nAnalyze this Shakespeare text: "${text}"` }
