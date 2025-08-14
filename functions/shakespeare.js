@@ -473,7 +473,7 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
         console.log(`Starting API call for level: ${level}, text length: ${text.length}`);
         const startTime = Date.now();
         
-        // Use Claude API for Full Fathom Five only, OpenAI for Basic and Expert
+                // Use Claude API for Full Fathom Five only, OpenAI for Basic and Expert
         if (level === 'fullfathomfive') {
           console.log('Full Fathom Five level detected, checking Claude API key...');
           console.log('CLAUDE_API_KEY exists:', !!CLAUDE_API_KEY);
@@ -487,24 +487,127 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
             };
           }
           
-          // Claude API payload format
-          const claudePayload = {
-            model: modelConfig.model,
-            max_tokens: 8000,
-            messages: [
-              { role: 'user', content: `${systemPrompt}\n\nAnalyze this Shakespeare text: "${text}"` }
-            ]
-          };
+          // Helper function for Claude API calls
+          async function callClaude(prompt) {
+            try {
+              const claudePayload = {
+                model: modelConfig.model,
+                max_tokens: 2000,
+                messages: [
+                  { role: 'user', content: prompt }
+                ]
+              };
+              
+              const claudeResponse = await fetch('https://api.anthropic.com/v1/messages', {
+                method: 'POST',
+                headers: {
+                  'x-api-key': `${CLAUDE_API_KEY}`,
+                  'Content-Type': 'application/json',
+                  'anthropic-version': '2023-06-01'
+                },
+                body: JSON.stringify(claudePayload)
+              });
+              
+              if (!claudeResponse.ok) {
+                throw new Error(`Claude API error: ${claudeResponse.status}`);
+              }
+              
+              const claudeData = await claudeResponse.json();
+              return claudeData.content[0].text;
+            } catch (error) {
+              console.error('Claude API error:', error);
+              return "Section temporarily unavailable.";
+            }
+          }
           
-          response = await fetch('https://api.anthropic.com/v1/messages', {
-              method: 'POST',
-              headers: {
-                'x-api-key': `${CLAUDE_API_KEY}`,
-                'Content-Type': 'application/json',
-                'anthropic-version': '2023-06-01'
-              },
-              body: JSON.stringify(claudePayload)
-            });
+          // Part 1: Textual Collation & Commentary History (~1000 words)
+          const part1Prompt = `Provide ONLY these sections for "${text}" from ${playName} (${sceneName}):
+
+### TEXTUAL COLLATION
+List all variants (Q1, Q2, F1, F2, etc.) with exact spellings
+
+### COMMENTARY HISTORY (Variorum Tradition)
+Chronological critical commentary from 1709-1890s with full citations:
+- Format: **YEAR NAME** (*Title*, City: Publisher, Year, p. X): "Commentary"
+- Include: Rowe, Pope, Johnson, Steevens, Malone, Coleridge, Hazlitt, Furness
+
+Maximum 1200 words. Be specific with citations. Use <em>italics</em> for titles.`;
+          
+          // Part 2: Performance & Sources (~1000 words)
+          const part2Prompt = `Continue analysis of "${text}" with ONLY:
+
+### PERFORMANCE TRADITION
+How major actors delivered this line (Garrick, Kemble, Siddons, Irving, etc.)
+
+### SOURCE STUDY
+- Holinshed, Plutarch, Biblical parallels
+- Note if "NOT in [source]"
+
+### LINGUISTIC ARCHAEOLOGY
+Etymology and contemporary usage of key words
+
+Maximum 1000 words. Use <em>italics</em> for titles.`;
+          
+          // Part 3: Cross-references & Controversies (~1000 words)
+          const part3Prompt = `Continue analysis of "${text}" with ONLY:
+
+### CROSS-REFERENCES IN SHAKESPEARE
+Similar passages across the canon
+
+### CRITICAL CONTROVERSIES
+Major interpretive debates
+
+### DRAMATURGICAL SIGNIFICANCE
+Function in scene, character, play structure
+
+Maximum 1000 words. Use <em>italics</em> for titles.`;
+          
+          // Part 4: Modern Perspectives & Synthesis (~800 words)
+          const part4Prompt = `Complete analysis of "${text}" with:
+
+### MODERN CRITICAL PERSPECTIVES
+Brief: Psychoanalytic, Feminist, New Historicist, etc.
+
+### SYNTHESIS
+Comprehensive summary in Furness's style, weighing all evidence
+
+Maximum 800 words. Use <em>italics</em> for titles.`;
+          
+          // Make all 4 API calls
+          console.log('Making Part 1 API call...');
+          const part1 = await callClaude(part1Prompt);
+          
+          console.log('Making Part 2 API call...');
+          const part2 = await callClaude(part2Prompt);
+          
+          console.log('Making Part 3 API call...');
+          const part3 = await callClaude(part3Prompt);
+          
+          console.log('Making Part 4 API call...');
+          const part4 = await callClaude(part4Prompt);
+          
+          // Combine all parts
+          const combinedContent = `## FULL FATHOM FIVE Analysis: "${text}" (${playName} ${sceneName})
+
+${part1}
+
+${part2}
+
+${part3}
+
+${part4}`;
+          
+          return {
+            statusCode: 200,
+            headers,
+            body: JSON.stringify({
+              choices: [{
+                message: {
+                  content: combinedContent
+                }
+              }]
+            })
+          };
         } else {
           // OpenAI API for Basic and Expert levels
           response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -558,28 +661,12 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
           };
       }
 
-      // Handle different response formats
-      if (level === 'fullfathomfive') {
-        // Claude API response format
-        return {
-          statusCode: 200,
-          headers,
-          body: JSON.stringify({
-            choices: [{
-              message: {
-                content: data.content[0].text
-              }
-            }]
-          })
-        };
-      } else {
-        // OpenAI API response format (unchanged)
-        return {
-          statusCode: 200,
-          headers,
-          body: JSON.stringify(data)
-        };
-      }
+      // OpenAI API response format (Full Fathom Five returns early)
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify(data)
+      };
     }
 
     // Health check
