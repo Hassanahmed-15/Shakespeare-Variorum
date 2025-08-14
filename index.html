@@ -2320,6 +2320,7 @@
         let plays = {};
         let currentPlay = '';
         let currentScene = '';
+        let analysisInProgress = false;
         
         // Cache removed for testing
 
@@ -3652,12 +3653,16 @@
             const readerElement = document.querySelector('.reader');
             if (!readerElement) return;
             
-            // Don't clear highlights if clicking on input fields, buttons, or other interactive elements
+            // Don't clear highlights if clicking on any interactive elements
             if (event.target.tagName === 'INPUT' || 
                 event.target.tagName === 'BUTTON' || 
                 event.target.tagName === 'TEXTAREA' ||
                 event.target.closest('.analysis') ||
-                event.target.closest('.segment')) {
+                event.target.closest('.segment') ||
+                event.target.closest('.analysis-header') ||
+                event.target.closest('.follow-up-input') ||
+                event.target.closest('.media-actions') ||
+                event.target.closest('.research-actions')) {
                 return;
             }
             
@@ -3666,11 +3671,18 @@
                 const selection = window.getSelection();
                 const selectedText = selection.toString().trim();
                 
-                // Only clear highlighting if no text is currently selected
-                if (!selectedText && document.querySelectorAll('.highlight').length > 0) {
-                    console.log('Clearing highlights due to click in reading pane');
-                    clearAllHighlights();
-                    updateMetaLine();
+                // Only clear highlighting if no text is currently selected AND we're clicking on actual text content
+                if (!selectedText && document.querySelectorAll('.highlight').length > 0 && !analysisInProgress) {
+                    // Make sure we're clicking on text content, not just any element in the reader
+                    const clickedElement = event.target;
+                    if (clickedElement.nodeType === Node.TEXT_NODE || 
+                        clickedElement.tagName === 'P' || 
+                        clickedElement.tagName === 'DIV' ||
+                        clickedElement.classList.contains('reader')) {
+                        console.log('Clearing highlights due to click in reading pane text area');
+                        clearAllHighlights();
+                        updateMetaLine();
+                    }
                 }
             }
         });
@@ -3764,6 +3776,9 @@
             console.log('Current play:', currentPlay);
             console.log('Current scene:', currentScene);
             console.log('Analysis mode:', currentAnalysisMode);
+            
+            // Set analysis in progress flag to prevent highlight clearing
+            analysisInProgress = true;
             
             // Check cache first
             const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Unknown Play';
@@ -3888,6 +3903,9 @@
                 } else {
                     alert(`Error analyzing text: ${error.message}. Please try again.`);
                 }
+            } finally {
+                // Reset analysis in progress flag
+                analysisInProgress = false;
             }
         }
 
