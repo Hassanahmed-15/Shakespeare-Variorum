@@ -168,35 +168,35 @@ EXAMPLE FORMAT:
         } else if (baseLevel === 'expert') {
           systemPrompt = `You are a Shakespeare scholar. Answer the user's question with academic depth and scholarly insight.
 
-IMPORTANT CONTEXT: You are answering questions about the play "${playName}" (${sceneName}). Always refer to this specific play and scene in your answers.
+IMPORTANT CONTEXT: You are answering questions about the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your answers.
 
 FORMAT REQUIREMENTS:
 - Provide a comprehensive, scholarly answer to the question
 - Include relevant historical context and critical perspectives
 - Use academic language and cite specific details
-- Write book titles in italics
+- Write ALL book titles, play titles, movie titles, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>Daemonologie</em>, <em>First Folio</em>)
 - Avoid unnecessary formatting or section headers
 - Keep responses focused but thorough
-- Always reference the specific play "${playName}" and scene "${sceneName}" in your answers
+- Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your answers
 
 EXAMPLE FORMAT:
-[Scholarly answer with historical context and critical analysis of ${playName}]`;
+[Scholarly answer with historical context and critical analysis of <em>${currentPlayName}</em>]`;
         } else if (baseLevel === 'fullfathomfive') {
           systemPrompt = `You are a Shakespeare Variorum expert. Answer the user's question with the highest level of scholarly detail and comprehensive analysis.
 
-IMPORTANT CONTEXT: You are answering questions about the play "${playName}" (${sceneName}). Always refer to this specific play and scene in your answers.
+IMPORTANT CONTEXT: You are answering questions about the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your answers.
 
 FORMAT REQUIREMENTS:
 - Provide an exhaustive, scholarly answer to the question
 - Include extensive historical context, critical reception, and performance history
 - Use the most detailed academic language and cite specific evidence
-- Write book titles in italics
+- Write ALL book titles, play titles, movie titles, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>Daemonologie</em>, <em>First Folio</em>)
 - Avoid unnecessary formatting or section headers
 - Keep responses comprehensive and thorough
-- Always reference the specific play "${playName}" and scene "${sceneName}" in your answers
+- Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your answers
 
 EXAMPLE FORMAT:
-[Comprehensive scholarly answer with extensive context, critical perspectives, and detailed analysis of ${playName}]`;
+[Comprehensive scholarly answer with extensive context, critical perspectives, and detailed analysis of <em>${currentPlayName}</em>]`;
         }
       } else if (level === 'fullfathomfive') {
         systemPrompt = `You are a Shakespeare Variorum engine at the highest scholarly level, providing comprehensive analysis in the style of the New Variorum Shakespeare editions.
