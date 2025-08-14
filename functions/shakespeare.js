@@ -27,7 +27,7 @@ exports.handler = async (event, context) => {
     }
 
     if (event.httpMethod === 'POST') {
-      const { text, level, model } = JSON.parse(event.body);
+      const { text, level, model, playName, sceneName } = JSON.parse(event.body);
 
       if (!text) {
         return {
@@ -36,6 +36,10 @@ exports.handler = async (event, context) => {
           body: JSON.stringify({ error: 'Text is required' })
         };
       }
+
+      // Set default values for play and scene if not provided
+      const currentPlayName = playName || 'Shakespeare';
+      const currentSceneName = sceneName || 'scene';
 
       // Define the uniform structure for all analysis levels
       const analysisStructure = {
@@ -77,7 +81,7 @@ exports.handler = async (event, context) => {
       if (level === 'basic') {
         systemPrompt = `You are a friendly Shakespeare teacher helping general readers understand and appreciate Shakespeare. 
 
-IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneName}). Always refer to this specific play and scene in your analysis.
+IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your analysis.
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
