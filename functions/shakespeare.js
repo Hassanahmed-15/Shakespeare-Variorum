@@ -126,6 +126,7 @@ FORMAT REQUIREMENTS:
 - Use proper academic formatting
 - For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
 - Include scholarly references and critical perspectives
+- For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations
 - Always reference the specific play "${playName}" and scene "${sceneName}" in your analysis
 
 EXAMPLE FORMAT:
@@ -217,6 +218,7 @@ FORMAT REQUIREMENTS:
 - For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
 - Include comprehensive scholarly references, performance history, and critical reception
 - Provide detailed footnotes
+- For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations
 - Address multiple interpretive possibilities and scholarly debates
 - Always reference the specific play "${playName}" and scene "${sceneName}" in your analysis
 
