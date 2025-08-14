@@ -4145,17 +4145,17 @@
                     
                     if (sectionName === 'Key Words & Glosses') {
                         formattedContent += `<div class="section">`;
-                        formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
+                        formattedContent += `<h3><strong>${sectionName}</strong></h3>`;
                         formattedContent += formatKeyWords(content);
                         formattedContent += `</div>`;
                     } else if (sectionName === 'Pointers for Further Reading') {
                         formattedContent += `<div class="section">`;
-                        formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
+                        formattedContent += `<h3><strong>${sectionName}</strong></h3>`;
                         formattedContent += formatFurtherReading(content);
                         formattedContent += `</div>`;
                     } else if (sectionName === 'Textual Variants') {
                         formattedContent += `<div class="section">`;
-                        formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
+                        formattedContent += `<h3><strong>${sectionName}</strong></h3>`;
                         formattedContent += formatTextualVariants(content);
                         formattedContent += `</div>`;
 
@@ -4164,7 +4164,7 @@
                         notesContent = content;
                     } else {
                         formattedContent += `<div class="section">`;
-                        formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
+                        formattedContent += `<h3><strong>${sectionName}</strong></h3>`;
                         const processedContent = processContentForFormatting(content);
                         formattedContent += `<p>${processedContent}</p>`;
                         formattedContent += `</div>`;
@@ -4177,7 +4177,7 @@
                  if (!standardSections.includes(sectionName) && sectionName !== 'Notes') {
                      const content = sectionContent[sectionName];
                      formattedContent += `<div class="section">`;
-                     formattedContent += `<h3><strong>${sectionName}:</strong></h3>`;
+                     formattedContent += `<h3><strong>${sectionName}</strong></h3>`;
                      const processedContent = processContentForFormatting(content);
                      formattedContent += `<p>${processedContent}</p>`;
                      formattedContent += `</div>`;

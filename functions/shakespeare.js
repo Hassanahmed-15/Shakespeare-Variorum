@@ -129,21 +129,21 @@ IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneNa
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
-**Plain-Language Paraphrase**
-**Synopsis**
-**Textual Variants**
-**Key Words & Glosses**
-**Historical Context**
-**Sources**
-**Literary Analysis**
-**Critical Reception**
-**Similar phrases or themes in other plays**
-**Pointers for Further Reading**
+**Plain-Language Paraphrase:**
+**Synopsis:**
+**Textual Variants:**
+**Key Words & Glosses:**
+**Historical Context:**
+**Sources:**
+**Literary Analysis:**
+**Critical Reception:**
+**Similar phrases or themes in other plays:**
+**Pointers for Further Reading:**
 
 FORMAT REQUIREMENTS:
-- Start each section with the exact heading format shown above, then add a single colon (e.g., **Sources:** not **Sources::**)
-- CRITICAL: You MUST use EXACTLY these section headers and add ONE colon after each. DO NOT add extra colons.
-- CRITICAL: The headers "Sources" and "Similar phrases or themes in other plays" should have exactly ONE colon each: "Sources:" and "Similar phrases or themes in other plays:" - NOT double colons.
+- Start each section with the exact heading format shown above (colons are already included)
+- CRITICAL: You MUST use EXACTLY these section headers as shown. DO NOT add extra colons.
+- CRITICAL: The headers "Sources:" and "Similar phrases or themes in other plays:" should have exactly ONE colon each - NOT double colons.
 - Provide 4-8 sentences for each section
 - Use complete sentences and paragraphs
 - Include detailed analysis with specific citations and evidence
