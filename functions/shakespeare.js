@@ -263,10 +263,10 @@ FORMAT REQUIREMENTS:
 - NEVER use asterisks (*) for titles - always use <em>italics</em>
 - NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
 - Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
+- NEVER use footnote markers (^1, ^2, etc.) - integrate citations naturally into the text
 - Use proper academic formatting
 - For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
 - Include comprehensive scholarly references, performance history, and critical reception
-- Provide detailed footnotes
 - For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]
 - Address multiple interpretive possibilities and scholarly debates
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
