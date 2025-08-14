@@ -452,9 +452,8 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
         };
       } else if (level === 'expert') {
         modelConfig = {
-          model: 'o4-mini',
-          reasoning_effort: 'medium'
-          // o4-mini doesn't support custom temperature, uses default (1)
+          model: 'gpt-4.1',
+          temperature: 0.7
         };
       } else if (level === 'followup') {
         // Use appropriate model based on base level
@@ -466,9 +465,8 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
           };
         } else if (baseLevel === 'expert') {
           modelConfig = {
-            model: 'o4-mini',
-            reasoning_effort: 'medium'
-            // o4-mini doesn't support custom temperature, uses default (1)
+            model: 'gpt-4.1',
+            temperature: 0.7
           };
         } else if (baseLevel === 'fullfathomfive') {
           modelConfig = {
