@@ -446,28 +446,26 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
         };
       }
       
-      // Build payload with conditional temperature
-      const payload = {
-        model: modelConfig.model,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
-        ]
-      };
-      
-      // Only add temperature for models that support it
-      if (modelConfig.temperature !== undefined) {
-        payload.temperature = modelConfig.temperature;
-      }
-      
-      // Add reasoning_effort for models that support it
-      if (modelConfig.reasoning_effort !== undefined) {
-        payload.reasoning_effort = modelConfig.reasoning_effort;
-      }
-
-      // Set max_tokens for Full Fathom Five to ensure complete responses
-      if (level === 'fullfathomfive') {
-        payload.max_tokens = 8000; // Ensure we get a full response
+      // Build payload for OpenAI levels (Basic and Expert)
+      let payload;
+      if (level !== 'fullfathomfive') {
+        payload = {
+          model: modelConfig.model,
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
+          ]
+        };
+        
+        // Only add temperature for models that support it
+        if (modelConfig.temperature !== undefined) {
+          payload.temperature = modelConfig.temperature;
+        }
+        
+        // Add reasoning_effort for models that support it
+        if (modelConfig.reasoning_effort !== undefined) {
+          payload.reasoning_effort = modelConfig.reasoning_effort;
+        }
       }
 
       let response, data;
