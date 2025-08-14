@@ -441,7 +441,7 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
       } else if (level === 'fullfathomfive') {
         // Use Claude for Full Fathom Five
         modelConfig = {
-          model: 'claude-3-5-sonnet-latest',
+          model: 'claude-sonnet-4-20250514',
           temperature: 0.7
         };
       }
