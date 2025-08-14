@@ -3602,25 +3602,23 @@
                 // Clear any existing highlights first
                 clearAllHighlights();
                 
-                // Use a more robust highlighting method that preserves word boundaries
+                // Use a more robust highlighting method with word boundary detection
                 try {
                     const range = selection.getRangeAt(0);
                     
-                    // Check if we need to expand to word boundaries
+                    // Try to expand to word boundaries if selection is within a word
+                    let expandedRange = range.cloneRange();
                     const startContainer = range.startContainer;
                     const endContainer = range.endContainer;
                     
-                    // If selection starts or ends in the middle of a word, expand to word boundaries
-                    let expandedRange = range.cloneRange();
-                    
-                    // Expand start to word boundary if needed
+                    // Expand start boundary if needed
                     if (startContainer.nodeType === Node.TEXT_NODE) {
                         const text = startContainer.textContent;
                         const startOffset = range.startOffset;
                         
-                        // Find word boundary at start
+                        // Look for word boundary at start
                         let wordStart = startOffset;
-                        while (wordStart > 0 && /\S/.test(text[wordStart - 1])) {
+                        while (wordStart > 0 && /\w/.test(text[wordStart - 1])) {
                             wordStart--;
                         }
                         
@@ -3629,14 +3627,14 @@
                         }
                     }
                     
-                    // Expand end to word boundary if needed
+                    // Expand end boundary if needed
                     if (endContainer.nodeType === Node.TEXT_NODE) {
                         const text = endContainer.textContent;
                         const endOffset = range.endOffset;
                         
-                        // Find word boundary at end
+                        // Look for word boundary at end
                         let wordEnd = endOffset;
-                        while (wordEnd < text.length && /\S/.test(text[wordEnd])) {
+                        while (wordEnd < text.length && /\w/.test(text[wordEnd])) {
                             wordEnd++;
                         }
                         
@@ -3649,21 +3647,40 @@
                     const span = document.createElement('span');
                     span.className = 'highlight';
                     
-                    // Extract the expanded content
-                    const contents = expandedRange.extractContents();
-                    span.appendChild(contents);
+                    // Use the expanded range for highlighting
+                    try {
+                        expandedRange.surroundContents(span);
+                        console.log('Word-boundary highlighting successful');
+                    } catch (surroundError) {
+                        // Fallback to extract/insert method
+                        const contents = expandedRange.extractContents();
+                        span.appendChild(contents);
+                        expandedRange.insertNode(span);
+                        console.log('Word-boundary highlighting with fallback successful');
+                    }
                     
-                    // Insert the highlighted span
-                    expandedRange.insertNode(span);
-                    
-                    // Update the selection to match the expanded range
+                    // Update selection to match expanded range
                     selection.removeAllRanges();
                     selection.addRange(expandedRange);
                     
-                    console.log('Word-boundary highlighting successful');
                 } catch (highlightError) {
-                    console.warn('Highlighting failed, but keeping selection:', highlightError);
-                    // Even if highlighting fails, we still have the selected text
+                    console.warn('Highlighting failed, trying simple method:', highlightError);
+                    
+                    // Simple fallback method
+                    try {
+                        const range = selection.getRangeAt(0);
+                        const span = document.createElement('span');
+                        span.className = 'highlight';
+                        
+                        const contents = range.extractContents();
+                        span.appendChild(contents);
+                        range.insertNode(span);
+                        
+                        console.log('Simple highlighting successful');
+                    } catch (fallbackError) {
+                        console.warn('All highlighting methods failed:', fallbackError);
+                        // Even if highlighting fails, we still have the selected text
+                    }
                 }
             }
             
@@ -3676,6 +3693,15 @@
         document.addEventListener('click', function(event) {
             const readerElement = document.querySelector('.reader');
             if (!readerElement) return;
+            
+            // Don't clear highlights if clicking on input fields, buttons, or other interactive elements
+            if (event.target.tagName === 'INPUT' || 
+                event.target.tagName === 'BUTTON' || 
+                event.target.tagName === 'TEXTAREA' ||
+                event.target.closest('.analysis') ||
+                event.target.closest('.segment')) {
+                return;
+            }
             
             // Check if click is within the reading pane
             if (readerElement.contains(event.target)) {
