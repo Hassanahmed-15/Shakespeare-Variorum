@@ -297,7 +297,7 @@ IMPORTANT: Use the exact format above with **bold section headers** and no numbe
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload),
-        timeout: 60000 // 60 second timeout
+        timeout: 180000 // 3 minute timeout
       });
 
       const data = await response.json();
