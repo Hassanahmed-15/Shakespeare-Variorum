@@ -346,7 +346,7 @@ CRITICAL CITATION REQUIREMENTS:
 LENGTH: 800-1200 words total
 
 Analyze: "${text}"`;
-      }
+        }
 
       // Smart model routing based on text length and analysis level
       let modelConfig = {
