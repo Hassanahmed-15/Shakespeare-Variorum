@@ -28,7 +28,11 @@ exports.handler = async (event, context) => {
     }
 
     if (event.httpMethod === 'POST') {
-      const { text, level, model, playName, sceneName } = JSON.parse(event.body);
+      const { text, level, model, playName, sceneName, version } = JSON.parse(event.body);
+      
+      console.log('=== REQUEST DEBUG ===');
+      console.log('Request version:', version);
+      console.log('Request timestamp:', new Date().toISOString());
 
       if (!text) {
         return {
@@ -83,6 +87,12 @@ exports.handler = async (event, context) => {
 
       // Create the system prompt based on level
       let systemPrompt = '';
+      
+      console.log('=== FUNCTION DEBUG ===');
+      console.log('Level requested:', level);
+      console.log('Analysis structure for this level:', analysisStructure[level]);
+      console.log('Current timestamp:', new Date().toISOString());
+      console.log('Function file version: 2024-12-19 with Expert Language & Rhetoric');
       
       if (level === 'basic') {
         systemPrompt = `You are a university professor speaking to very smart undergraduates about Shakespeare. 
@@ -145,6 +155,7 @@ EXAMPLE FORMAT:
       } else if (level === 'expert') {
         console.log('Expert level detected - using comprehensive prompt with Textual Variants section');
         console.log('DEBUG: Function version updated at', new Date().toISOString());
+        console.log('DEBUG: Expert level sections should include Textual Variants and Language and Rhetoric');
         systemPrompt = `You are an expert Shakespearean scholar with comprehensive knowledge of 500 years of Shakespeare scholarship.
 
 IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your analysis.
@@ -447,6 +458,9 @@ Analyze: "${text}"`;
       // Build payload for OpenAI levels (Basic and Expert)
       let payload;
       if (level !== 'fullfathomfive') {
+        console.log('DEBUG: Building payload for level:', level);
+        console.log('DEBUG: System prompt length:', systemPrompt.length);
+        console.log('DEBUG: System prompt preview:', systemPrompt.substring(0, 200) + '...');
         payload = {
           model: modelConfig.model,
           messages: [
