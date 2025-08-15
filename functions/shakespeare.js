@@ -439,44 +439,7 @@ Analyze: "${text}"`;
           
           const fullFathomFivePrompt = `Analyze this Shakespeare text: "${text}" from ${currentPlayName} (${currentSceneName}).
 
-Write exactly these 11 sections in this order:
-
-1. **Textual Variants:** "Early editions are identical to Folger."
-
-2. **Plain-Language Paraphrase:** Translate the text above into modern English.
-
-3. **Language and Rhetoric:** Etymology, rhetorical devices, and meter.
-
-4. **Synopsis:** What this does in the play.
-
-5. **Key Words & Glosses:** Define important words.
-
-6. **Historical Context:** Historical background.
-
-7. **Sources:** Shakespeare's sources.
-
-8. **Literary Analysis:** Analysis with citations. Include one Marxist critic.
-
-9. **Critical Reception:** Scholarly views.
-
-10. **Similar phrases or themes in other plays:** Parallels from other plays.
-
-11. **Pointers for Further Reading:** Book recommendations.
-
-CRITICAL FORMATTING RULES:
-- CRITICAL: ALL book titles, play titles, article titles, film titles, and ANY media titles MUST be in <em>italics</em> - NEVER use quotation marks
-- CRITICAL: Write <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>, <em>Book Title</em> - NEVER "Macbeth" or "Book Title"
-- CRITICAL: Author names stay in plain text - never italicize names
-- CRITICAL: Use exact headers shown above - do not change them
-- CRITICAL: Plain-Language Paraphrase should be a simple translation, NOT meter analysis
-- CRITICAL: Meter analysis belongs ONLY in Language and Rhetoric section
-- CRITICAL: Each bullet point (-) must be on its own separate line - NEVER enjamb multiple points on one line
-- CRITICAL: Sub-headers (like "Etymological Analysis:", "Rhetorical Figures:", "Meter Analysis:") must be on separate lines - NEVER enjamb with previous text
-- CRITICAL: Sub-sub-headers (like "Apostrophe:", "Antonomasia:") must be in <em>italics</em> - NEVER bold
-- CRITICAL: Always write "A.C. Bradley" exactly as shown - never "A.circa Bradley" or "A. C. Bradley"
-- CRITICAL: Remove extra colons from main section headers - use "Language and Rhetoric" not "Language and Rhetoric:"
-
-Analyze: "${text}"`;
+Provide a comprehensive analysis of this passage.`;
 
           const fullFathomFivePayload = {
             model: 'gpt-4o',
@@ -501,45 +464,7 @@ Analyze: "${text}"`;
           
           const expertPrompt = `Analyze this Shakespeare text: "${text}" from ${currentPlayName} (${currentSceneName}).
 
-Write exactly these 11 sections in this order:
-
-1. **Textual Variants:** "Early editions are identical to Folger."
-
-2. **Plain-Language Paraphrase:** Translate the text above into modern English.
-
-3. **Language and Rhetoric:** Etymology, rhetorical devices, and meter.
-
-4. **Synopsis:** What this does in the play.
-
-5. **Key Words & Glosses:** Define important words.
-
-6. **Historical Context:** Historical background.
-
-7. **Sources:** Shakespeare's sources.
-
-8. **Literary Analysis:** Analysis with citations. Include one Marxist critic.
-
-9. **Critical Reception:** Scholarly views.
-
-10. **Similar phrases or themes in other plays:** Parallels from other plays.
-
-11. **Pointers for Further Reading:** Book recommendations.
-
-CRITICAL FORMATTING RULES:
-- CRITICAL: ALL book titles, play titles, article titles, film titles, and ANY media titles MUST be in <em>italics</em> - NEVER use quotation marks
-- CRITICAL: Write <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>, <em>Book Title</em> - NEVER "Macbeth" or "Book Title"
-- CRITICAL: Author names stay in plain text - never italicize names
-- CRITICAL: Use exact headers shown above - do not change them
-- CRITICAL: Plain-Language Paraphrase should be a simple translation, NOT meter analysis
-- CRITICAL: Meter analysis belongs ONLY in Language and Rhetoric section
-- CRITICAL: Each bullet point (-) must be on its own separate line - NEVER enjamb multiple points on one line
-- CRITICAL: Sub-headers (like "Etymological Analysis:", "Rhetorical Figures:", "Meter Analysis:") must be on separate lines - NEVER enjamb with previous text
-- CRITICAL: Sub-sub-headers (like "Apostrophe:", "Antonomasia:") must be in <em>italics</em> - NEVER bold
-- CRITICAL: Always write "A.C. Bradley" exactly as shown - never "A.circa Bradley" or "A. C. Bradley"
-- CRITICAL: Remove extra colons from main section headers - use "Language and Rhetoric" not "Language and Rhetoric:"
-- CRITICAL: Keep each section concise (3-5 sentences)
-
-Analyze: "${text}"`;
+Provide a detailed analysis of this passage.`;
 
           const expertPayload = {
             model: 'gpt-4',
