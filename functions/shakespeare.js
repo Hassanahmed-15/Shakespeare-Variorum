@@ -125,7 +125,7 @@ CITATION REQUIREMENTS:
   * 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington, Michael Dobson, Tiffany Stern, Laurie Maguire, Peter Holland, Russ McDonald, Coppélia Kahn, Gail Kern Paster, Lena Cowen Orlin, Margreta de Grazia, Leah Marcus, Jean Howard, Phyllis Rackin
 - Also consider: feminist critics (Lisa Jardine, Valerie Traub, Dympna Callaghan), performance critics (Marvin Rosenberg, John Russell Brown), textual critics (W.W. Greg, Fredson Bowers, Charlton Hinman), and international scholars
 - Vary your citations extensively - don't rely on the same critics repeatedly
-- When citing, provide full publication information: Author (*Title*, City: Publisher, Year, p. [page number])
+- When citing, provide full publication information: Author (*Title*, City: Publisher, Year) - DO NOT include page numbers
 
 EXAMPLE FORMAT:
 **Plain-Language Paraphrase:** This passage from ${currentPlayName} means [explanation in simple terms].
@@ -187,7 +187,7 @@ CITATION REQUIREMENTS:
   * 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington, Michael Dobson, Tiffany Stern, Laurie Maguire, Peter Holland, Russ McDonald, Coppélia Kahn, Gail Kern Paster, Lena Cowen Orlin, Margreta de Grazia, Leah Marcus, Jean Howard, Phyllis Rackin, Bruce Smith, Valerie Traub, Dympna Callaghan, Lisa Jardine, Carol Thomas Neely, Marianne Novy, Ann Thompson, Marvin Rosenberg, Robert Weimann, W.W. Greg, Fredson Bowers, Charlton Hinman, Paul Werstine, Alan Stewart, Wendy Wall, Jan Kott, Grigori Kozintsev, Yukio Ninagawa
 - Then add 1-2 additional random selections from any century
 - AVOID repeatedly citing the same few critics - sample randomly from the full range
-- When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable], p. [page number])
+- When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable]) - DO NOT include page numbers
 
 EXAMPLE FORMAT:
 **Plain-Language Paraphrase:** [Direct modern English translation of the highlighted text].
@@ -356,7 +356,7 @@ CRITICAL CITATION REQUIREMENTS:
   * 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington, Michael Dobson, Tiffany Stern, Laurie Maguire, Peter Holland, Russ McDonald, Coppélia Kahn, Gail Kern Paster, Lena Cowen Orlin, Margreta de Grazia, Leah Marcus, Jean Howard, Phyllis Rackin, Bruce Smith, Valerie Traub, Dympna Callaghan, Lisa Jardine, Carol Thomas Neely, Marianne Novy, Ann Thompson, Marvin Rosenberg, Robert Weimann, W.W. Greg, Fredson Bowers, Charlton Hinman, Paul Werstine, Alan Stewart, Wendy Wall, Jan Kott, Grigori Kozintsev, Yukio Ninagawa
 - Then add 2-3 additional random selections from any century
 - AVOID repeatedly citing the same few critics - sample randomly from the full range
-- When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable], p. [page number])
+- When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable]) - DO NOT include page numbers
 
 LENGTH: 800-1200 words total
 
