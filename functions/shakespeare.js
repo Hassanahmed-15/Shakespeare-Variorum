@@ -58,6 +58,7 @@ exports.handler = async (event, context) => {
         expert: [
           'Textual Variants',
           'Plain-Language Paraphrase',
+          'Language and Rhetoric',
           'Synopsis',
           'Key Words & Glosses',
           'Historical Context',
@@ -188,15 +189,14 @@ Analyze: "${text}"`;
           max_tokens: 1500
         };
 
-        response = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${OPENAI_API_KEY}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(expertPayload),
-          signal: AbortSignal.timeout(60000) // 60 second timeout
-        });
+                  response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${OPENAI_API_KEY}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(expertPayload)
+          });
       } else if (level === 'followup') {
         // Special follow-up prompt that gives direct answers in the style of the current tier
         const baseLevel = event.body ? JSON.parse(event.body).baseLevel || 'basic' : 'basic';
@@ -413,14 +413,11 @@ Analyze: "${text}"`;
         };
       }
       
-      // Build payload for OpenAI levels (Basic and Expert)
+      // Build payload for Basic level only (Expert and FFF handled separately)
       let payload;
-      if (level !== 'fullfathomfive') {
-        console.log('DEBUG: Building payload for level:', level);
+      if (level === 'basic') {
+        console.log('DEBUG: Building payload for Basic level');
         console.log('DEBUG: System prompt length:', systemPrompt.length);
-        console.log('DEBUG: System prompt preview:', systemPrompt.substring(0, 200) + '...');
-        console.log('DEBUG: System prompt contains Textual Variants:', systemPrompt.includes('Textual Variants'));
-        console.log('DEBUG: System prompt contains Language and Rhetoric:', systemPrompt.includes('Language and Rhetoric'));
         payload = {
           model: modelConfig.model,
           messages: [
@@ -438,6 +435,9 @@ Analyze: "${text}"`;
         if (modelConfig.reasoning_effort !== undefined) {
           payload.reasoning_effort = modelConfig.reasoning_effort;
         }
+      } else {
+        // For Expert and Full Fathom Five, systemPrompt is not used
+        console.log('DEBUG: Expert/FFF level - using inline prompts');
       }
 
       let response, data;
@@ -483,8 +483,7 @@ Analyze: "${text}"`;
               'Authorization': `Bearer ${OPENAI_API_KEY}`,
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(fullFathomFivePayload),
-            signal: AbortSignal.timeout(90000) // 90 second timeout
+            body: JSON.stringify(fullFathomFivePayload)
           });
         } else if (level === 'expert') {
           console.log('Expert level detected - using optimized single-call approach...');
@@ -523,8 +522,7 @@ Analyze: "${text}"`;
               'Authorization': `Bearer ${OPENAI_API_KEY}`,
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(expertPayload),
-            signal: AbortSignal.timeout(60000) // 60 second timeout
+            body: JSON.stringify(expertPayload)
           });
         } else {
           // OpenAI API for Basic level
