@@ -475,21 +475,28 @@ Analyze: "${text}"`;
         if (level === 'fullfathomfive') {
           console.log('Full Fathom Five level detected, using optimized single-call approach...');
           
-          const fullFathomFivePrompt = `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ALL these sections in order:
+          const fullFathomFivePrompt = `You are analyzing "${currentPlayName}" (${currentSceneName}). 
 
-**Textual Variants:** (if no variants: "Early editions are identical to Folger.")
-**Plain-Language Paraphrase:** (direct modern English translation)
-**Language and Rhetoric:** (comprehensive etymological analysis using 1914 OED, rhetorical figures, meter analysis)
-**Synopsis:** (what this does in context)
-**Key Words & Glosses:** (key word definitions)
-**Historical Context:** (historical background)
-**Sources:** (Shakespeare's sources)
-**Literary Analysis:** (detailed analysis with 3-4 citations from different centuries, MUST include one Marxist critic)
-**Critical Reception:** (scholarly perspectives with citations)
-**Similar phrases or themes in other plays:** (4-5 thematic parallels)
-**Pointers for Further Reading:** (3-4 book recommendations)
+CRITICAL SECTION ORDER - YOU MUST FOLLOW THIS EXACT ORDER:
+1. **Textual Variants:** (if no variants: "Early editions are identical to Folger.")
+2. **Plain-Language Paraphrase:** (DIRECT modern English translation of the Shakespeare text - NOT meter analysis)
+3. **Language and Rhetoric:** (etymological analysis using 1914 OED, rhetorical figures, AND meter analysis)
+4. **Synopsis:** (what this does in context)
+5. **Key Words & Glosses:** (key word definitions)
+6. **Historical Context:** (historical background)
+7. **Sources:** (Shakespeare's sources)
+8. **Literary Analysis:** (detailed analysis with 3-4 citations from different centuries, MUST include one Marxist critic)
+9. **Critical Reception:** (scholarly perspectives with citations)
+10. **Similar phrases or themes in other plays:** (4-5 thematic parallels)
+11. **Pointers for Further Reading:** (3-4 book recommendations)
 
-CRITICAL: Keep each section focused but comprehensive. Include all sections. Use exact headers shown.
+CRITICAL FORMATTING RULES:
+- CRITICAL: ALL book titles, play titles, article titles, film titles, and ANY media titles MUST be in <em>italics</em> - NEVER use quotation marks
+- CRITICAL: Write <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>, <em>Book Title</em> - NEVER "Macbeth" or "Book Title"
+- CRITICAL: Author names stay in plain text - never italicize names
+- CRITICAL: Use exact headers shown above - do not change them
+- CRITICAL: Plain-Language Paraphrase should be a simple translation, NOT meter analysis
+- CRITICAL: Meter analysis belongs ONLY in Language and Rhetoric section
 
 Analyze: "${text}"`;
 
@@ -514,21 +521,29 @@ Analyze: "${text}"`;
         } else if (level === 'expert') {
           console.log('Expert level detected - using optimized single-call approach...');
           
-          const expertPrompt = `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ALL these sections in order:
+          const expertPrompt = `You are analyzing "${currentPlayName}" (${currentSceneName}). 
 
-**Textual Variants:** (if no variants: "Early editions are identical to Folger.")
-**Plain-Language Paraphrase:** (direct modern English translation)
-**Language and Rhetoric:** (brief etymological analysis, rhetorical figures, meter)
-**Synopsis:** (what this does in context)
-**Key Words & Glosses:** (key word definitions)
-**Historical Context:** (brief historical background)
-**Sources:** (Shakespeare's sources)
-**Literary Analysis:** (analysis with 2-3 citations, MUST include one Marxist critic)
-**Critical Reception:** (scholarly perspectives)
-**Similar phrases or themes in other plays:** (3-4 parallels)
-**Pointers for Further Reading:** (2-3 book recommendations)
+CRITICAL SECTION ORDER - YOU MUST FOLLOW THIS EXACT ORDER:
+1. **Textual Variants:** (if no variants: "Early editions are identical to Folger.")
+2. **Plain-Language Paraphrase:** (DIRECT modern English translation of the Shakespeare text - NOT meter analysis)
+3. **Language and Rhetoric:** (brief etymological analysis, rhetorical figures, AND meter)
+4. **Synopsis:** (what this does in context)
+5. **Key Words & Glosses:** (key word definitions)
+6. **Historical Context:** (brief historical background)
+7. **Sources:** (Shakespeare's sources)
+8. **Literary Analysis:** (analysis with 2-3 citations, MUST include one Marxist critic)
+9. **Critical Reception:** (scholarly perspectives)
+10. **Similar phrases or themes in other plays:** (3-4 parallels)
+11. **Pointers for Further Reading:** (2-3 book recommendations)
 
-CRITICAL: Keep each section concise (3-5 sentences). Include all sections. Use exact headers shown.
+CRITICAL FORMATTING RULES:
+- CRITICAL: ALL book titles, play titles, article titles, film titles, and ANY media titles MUST be in <em>italics</em> - NEVER use quotation marks
+- CRITICAL: Write <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>, <em>Book Title</em> - NEVER "Macbeth" or "Book Title"
+- CRITICAL: Author names stay in plain text - never italicize names
+- CRITICAL: Use exact headers shown above - do not change them
+- CRITICAL: Plain-Language Paraphrase should be a simple translation, NOT meter analysis
+- CRITICAL: Meter analysis belongs ONLY in Language and Rhetoric section
+- CRITICAL: Keep each section concise (3-5 sentences)
 
 Analyze: "${text}"`;
 
