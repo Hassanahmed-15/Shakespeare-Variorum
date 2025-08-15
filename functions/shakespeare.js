@@ -429,9 +429,11 @@ Analyze: "${text}"`;
         }
       } else if (level === 'fullfathomfive') {
         // Use GPT-4o for Full Fathom Five (more reliable than Claude)
+        // Fallback to gpt-4 if gpt-4o hits quota limits
         modelConfig = {
           model: 'gpt-4o',
-          temperature: 0.7
+          temperature: 0.7,
+          fallbackModel: 'gpt-4' // Fallback option
         };
       }
       
@@ -518,6 +520,18 @@ Analyze: "${text}"`;
       
       if (!response.ok) {
         console.error(`${level === 'fullfathomfive' ? 'Claude' : 'OpenAI'} API error:`, data);
+        
+        // Special handling for quota/rate limit errors
+        if (response.status === 429 || (data.error && data.error.message && data.error.message.includes('quota'))) {
+          return {
+            statusCode: 429,
+            headers,
+            body: JSON.stringify({
+              error: 'Rate limit exceeded: Please wait a moment and try again. If this persists, you may need to check your OpenAI account limits.',
+              details: data
+            })
+          };
+        }
         
         // Special handling for timeout errors
         if (response.status === 504 || (data.error && data.error.message && data.error.message.includes('timeout'))) {
