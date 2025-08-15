@@ -115,12 +115,16 @@ FORMAT REQUIREMENTS:
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
 CITATION REQUIREMENTS:
-- Include citations from major periods of Shakespeare criticism:
-  * 18th century: Samuel Johnson, Alexander Pope, William Warburton
-  * 19th century: Samuel Taylor Coleridge, William Hazlitt, A.C. Bradley
-  * 20th century: G. Wilson Knight, Caroline Spurgeon, Harold Bloom
-  * 21st century: Stephen Greenblatt, Emma Smith, James Shapiro
-- Vary your citations - don't rely on the same critics repeatedly
+- CRITICAL: Draw from a BROAD range of Shakespeare scholarship - avoid repeating the same few critics
+- Include citations from major periods and approaches:
+  * 18th century: Samuel Johnson, Alexander Pope, William Warburton, George Steevens, Edmond Malone, Lewis Theobald, Charlotte Lennox, Elizabeth Montagu
+  * 19th century: Samuel Taylor Coleridge, William Hazlitt, A.C. Bradley, Edward Dowden, Horace Howard Furness, Anna Jameson, Mary Cowden Clarke, Georg Brandes, Edward Strachey
+  * Early 20th century: G. Wilson Knight, Caroline Spurgeon, E.M.W. Tillyard, John Dover Wilson, Harley Granville-Barker, L.C. Knights, G.B. Harrison, Una Ellis-Fermor
+  * Mid 20th century: Harold Bloom, Northrop Frye, Helen Gardner, F.R. Leavis, William Empson, Kenneth Muir, Nevill Coghill, M.C. Bradbrook, J.L. Styan
+  * Late 20th century: Stephen Greenblatt, Janet Adelman, Stanley Wells, Anne Barton, Jonathan Dollimore, Alan Sinfield, Catherine Belsey, Terence Hawkes, Jonathan Bate
+  * 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington, Michael Dobson, Tiffany Stern, Laurie Maguire, Peter Holland, Russ McDonald, Coppélia Kahn, Gail Kern Paster, Lena Cowen Orlin, Margreta de Grazia, Leah Marcus, Jean Howard, Phyllis Rackin
+- Also consider: feminist critics (Lisa Jardine, Valerie Traub, Dympna Callaghan), performance critics (Marvin Rosenberg, John Russell Brown), textual critics (W.W. Greg, Fredson Bowers, Charlton Hinman), and international scholars
+- Vary your citations extensively - don't rely on the same critics repeatedly
 - When citing, provide full publication information: Author (*Title*, City: Publisher, Year, p. [page number])
 
 EXAMPLE FORMAT:
@@ -176,12 +180,16 @@ FORMAT REQUIREMENTS:
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
 CITATION REQUIREMENTS:
-- Include citations from major periods of Shakespeare criticism:
-  * 18th century: Samuel Johnson, Alexander Pope, William Warburton, George Steevens, Edmond Malone
-  * 19th century: Samuel Taylor Coleridge, William Hazlitt, A.C. Bradley, Edward Dowden, Horace Howard Furness
-  * 20th century: G. Wilson Knight, Caroline Spurgeon, Harold Bloom, Stephen Greenblatt, Janet Adelman
-  * 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington
-- Vary your citations - don't rely on the same critics repeatedly
+- CRITICAL: Draw from a BROAD range of Shakespeare scholarship - avoid repeating the same few critics
+- Include citations from major periods and approaches:
+  * 18th century: Samuel Johnson, Alexander Pope, William Warburton, George Steevens, Edmond Malone, Lewis Theobald, Charlotte Lennox, Elizabeth Montagu, Thomas Warton, Joseph Ritson
+  * 19th century: Samuel Taylor Coleridge, William Hazlitt, A.C. Bradley, Edward Dowden, Horace Howard Furness, Anna Jameson, Mary Cowden Clarke, Georg Brandes, Edward Strachey, Henry Hallam, Thomas Campbell, Charles Lamb
+  * Early 20th century: G. Wilson Knight, Caroline Spurgeon, E.M.W. Tillyard, John Dover Wilson, Harley Granville-Barker, L.C. Knights, G.B. Harrison, Una Ellis-Fermor, John Bailey, Walter Raleigh, A.C. Swinburne
+  * Mid 20th century: Harold Bloom, Northrop Frye, Helen Gardner, F.R. Leavis, William Empson, Kenneth Muir, Nevill Coghill, M.C. Bradbrook, J.L. Styan, Derek Traversi, L.G. Salingar, John Russell Brown
+  * Late 20th century: Stephen Greenblatt, Janet Adelman, Stanley Wells, Anne Barton, Jonathan Dollimore, Alan Sinfield, Catherine Belsey, Terence Hawkes, Jonathan Bate, Peter Erickson, Patricia Parker, Lynda Boose, Peter Stallybrass, Allon White
+  * 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington, Michael Dobson, Tiffany Stern, Laurie Maguire, Peter Holland, Russ McDonald, Coppélia Kahn, Gail Kern Paster, Lena Cowen Orlin, Margreta de Grazia, Leah Marcus, Jean Howard, Phyllis Rackin, Bruce Smith, Valerie Traub, Dympna Callaghan, Lisa Jardine
+- Also consider: feminist critics (Carol Thomas Neely, Marianne Novy, Ann Thompson), performance critics (Marvin Rosenberg, John Russell Brown, Robert Weimann), textual critics (W.W. Greg, Fredson Bowers, Charlton Hinman, Paul Werstine), material culture scholars (Alan Stewart, Wendy Wall), and international scholars (Jan Kott, Grigori Kozintsev, Yukio Ninagawa)
+- Vary your citations extensively - don't rely on the same critics repeatedly
 - Include both historical and contemporary perspectives
 - When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable], p. [page number])
 
@@ -466,7 +474,14 @@ FORMAT:
 - For Textual Variants: "Early editions are identical to Folger" if no variants
 - For Similar phrases: Include 3-5 thematic parallels from other plays
 
-CITATIONS: Include varied critics from 18th-21st centuries with full publication info.
+CITATIONS: CRITICAL - Draw from a BROAD range of Shakespeare scholarship across all periods:
+- 18th century: Samuel Johnson, Alexander Pope, William Warburton, George Steevens, Edmond Malone, Lewis Theobald, Charlotte Lennox, Elizabeth Montagu, Thomas Warton, Joseph Ritson, Thomas Tyrwhitt
+- 19th century: Samuel Taylor Coleridge, William Hazlitt, A.C. Bradley, Edward Dowden, Horace Howard Furness, Anna Jameson, Mary Cowden Clarke, Georg Brandes, Edward Strachey, Henry Hallam, Thomas Campbell, Charles Lamb, Hermann Ulrici, Friedrich Gundolf
+- Early 20th century: G. Wilson Knight, Caroline Spurgeon, E.M.W. Tillyard, John Dover Wilson, Harley Granville-Barker, L.C. Knights, G.B. Harrison, Una Ellis-Fermor, John Bailey, Walter Raleigh, A.C. Swinburne, Arthur Quiller-Couch, John Masefield
+- Mid 20th century: Harold Bloom, Northrop Frye, Helen Gardner, F.R. Leavis, William Empson, Kenneth Muir, Nevill Coghill, M.C. Bradbrook, J.L. Styan, Derek Traversi, L.G. Salingar, John Russell Brown, Wolfgang Clemen, Robert Heilman
+- Late 20th century: Stephen Greenblatt, Janet Adelman, Stanley Wells, Anne Barton, Jonathan Dollimore, Alan Sinfield, Catherine Belsey, Terence Hawkes, Jonathan Bate, Peter Erickson, Patricia Parker, Lynda Boose, Peter Stallybrass, Allon White, Leonard Tennenhouse, Mary Beth Rose
+- 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington, Michael Dobson, Tiffany Stern, Laurie Maguire, Peter Holland, Russ McDonald, Coppélia Kahn, Gail Kern Paster, Lena Cowen Orlin, Margreta de Grazia, Leah Marcus, Jean Howard, Phyllis Rackin, Bruce Smith, Valerie Traub, Dympna Callaghan, Lisa Jardine, Carol Thomas Neely, Marianne Novy, Ann Thompson, Marvin Rosenberg, Robert Weimann, W.W. Greg, Fredson Bowers, Charlton Hinman, Paul Werstine, Alan Stewart, Wendy Wall, Jan Kott, Grigori Kozintsev, Yukio Ninagawa
+- AVOID repeatedly citing the same few critics - vary extensively across all periods and approaches
 
 LENGTH: 600-800 words total
 
