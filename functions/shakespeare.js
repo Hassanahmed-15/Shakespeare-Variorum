@@ -280,6 +280,39 @@ EXAMPLE FORMAT:
 [Why this matters in the context of <em>${currentPlayName}</em>, presented in essay style]`;
         }
               } else if (level === 'fullfathomfive') {
+          systemPrompt = `You are an expert Shakespearean scholar providing the most comprehensive analysis possible.
+
+IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneName}). Always refer to this specific play and scene in your analysis.
+
+CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
+
+**Plain-Language Paraphrase:**
+**Synopsis:**
+**Textual Variants:**
+**Key Words & Glosses:**
+**Historical Context:**
+**Sources:**
+**Literary Analysis:**
+**Critical Reception:**
+**Similar phrases or themes in other plays:**
+**Pointers for Further Reading:**
+
+FORMAT REQUIREMENTS:
+- Start each section with the exact heading format shown above (colons are already included)
+- Provide 6-12 sentences for each section (more intense than Expert)
+- Use complete sentences and paragraphs
+- Write in the most scholarly, academic language possible
+- Include extensive critical citations and scholarly references
+- CRITICAL: Write ALL book titles, play titles, movie titles, films, novels, articles, and scholarly works in <em>italics</em>
+- NEVER use quotation marks for titles - always use <em>italics</em>
+- NEVER italicize author names - keep them in plain text
+- For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]". Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]. CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text.
+- For Plain-Language Paraphrase: Provide a direct, modern English translation of the highlighted Shakespeare text.
+- Always reference the specific play "${playName}" and scene "${sceneName}" in your analysis
+
+LENGTH: 800-1200 words total
+
+Analyze: "${text}"`;
           systemPrompt = `You are an expert Shakespearean scholar providing the most comprehensive and intense analysis possible.
 
 IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneName}). Always refer to this specific play and scene in your analysis.
