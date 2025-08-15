@@ -64,15 +64,16 @@ exports.handler = async (event, context) => {
           'Pointers for Further Reading'
         ],
         fullfathomfive: [
-          'TEXTUAL COLLATION',
-          'COMPLETE COMMENTARY HISTORY',
-          'PERFORMANCE TRADITION',
-          'SOURCE STUDY',
-          'LINGUISTIC ARCHAEOLOGY',
-          'THE GREAT DEBATES',
-          'CROSS-REFERENCES',
-          'VARIORUM SPECIAL FEATURES',
-          'MODERN SUPPLEMENTS'
+          'Plain-Language Paraphrase',
+          'Synopsis',
+          'Textual Variants',
+          'Key Words & Glosses',
+          'Historical Context',
+          'Sources',
+          'Literary Analysis',
+          'Critical Reception',
+          'Similar phrases or themes in other plays',
+          'Pointers for Further Reading'
         ]
       };
 
@@ -477,35 +478,97 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
         if (level === 'fullfathomfive') {
           console.log('Full Fathom Five level detected, using simplified prompt...');
           
-          // Simplified Full Fathom Five prompt
-          const fullFathomFivePrompt = `Analyze this Shakespeare text: "${text}" from ${playName} (${sceneName}).
+          // Original Full Fathom Five prompt - comprehensive scholarly analysis
+          const fullFathomFivePrompt = `You are providing comprehensive New Variorum Shakespeare-style commentary at the highest scholarly level. Your analysis must follow the format and citation style of Horace Howard Furness's New Variorum editions.
 
-Provide a scholarly analysis with these 7 sections:
+IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneName}). Always refer to this specific play and scene in your analysis.
+
+MANDATORY FORMAT AND STRUCTURE:
 
 ## FULL FATHOM FIVE Analysis: "${text}" (${playName} ${sceneName})
 
-### CRITICAL PERSPECTIVES
-2-3 key interpretations from major critics.
+### TEXTUAL COLLATION
+List textual variants chronologically:
+**Q1 (year):** "[exact spelling from quarto]"
+**F1 (1623):** "[exact spelling from First Folio]"
+**Modern editions:** [describe modernization choices]
+
+### COMMENTARY HISTORY (Variorum Tradition)
+Present critical commentary chronologically with bibliographic citations:
+**YEAR FULL NAME OF CRITIC** (*Title of Work in Italics*, City: Publisher, Year, p. [exact page]): "Quote the critic's exact interpretation or closely paraphrase."
+
+Include: Johnson, Coleridge, Hazlitt, and 2-3 other major critics.
 
 ### PERFORMANCE TRADITION
-1-2 notable actor interpretations.
+Chronicle how major actors delivered the line:
+**ACTOR NAME** (years performed, source): Description of delivery, gesture, or interpretation.
 
-### SOURCES
-Brief mention of any known sources.
+Include: Garrick, Kemble, Kean, Macready, Siddons, Terry, Booth, Irving.
 
-### WORD STUDY
-Brief definitions of key words.
+### SOURCE STUDY
+**Primary source** (*Full title*, edition year, page/signature): Quote parallel if exists or state "NOT in [source]"
 
-### SHAKESPEAREAN ECHOES
-1 similar passage from another play.
+Document: Holinshed's Chronicles (1587), Plutarch (North's translation, 1579), Biblical parallels (Geneva Bible 1599), Classical sources.
 
-### DRAMATIC PURPOSE
-How this passage functions in the scene and play.
+### LINGUISTIC ARCHAEOLOGY
+For key words, provide:
+**"Word" etymology per [Dictionary source]** (*Full dictionary citation*, Vol., p.):
+- Historical development
+- First recorded uses
+- Shakespeare's other uses
+- CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text
 
-### CONCLUSION
-Summary of the passage's significance.
+### CROSS-REFERENCES IN SHAKESPEARE
+List parallel passages:
+**Similar usage in [Play] (Act.Scene.Line):** "Quote the parallel"
+Track specific words, images, themes across canon.
 
-Use <em>italics</em> for titles. 400-500 words total.`;
+### CRITICAL CONTROVERSIES
+Document interpretive debates:
+**The [Name] Debate (years):**
+- **CRITIC NAME** (*Work*, year, pp.): [position]
+- **OPPOSING CRITIC** (*Work*, year, pp.): [counter-position]
+- Resolution or ongoing status
+
+### DRAMATURGICAL SIGNIFICANCE
+Explain the passage's function in:
+- Immediate scene
+- Character development
+- Play's structure
+- Performance considerations
+
+### MODERN CRITICAL PERSPECTIVES (post-1900)
+Brief mentions of 20th/21st century approaches:
+**[School of criticism]:** [interpretation]
+Include: Psychoanalytic, Feminist, Marxist, New Historicist, Postcolonial, Queer Theory, Ecocritical, etc.
+
+### SYNTHESIS
+Conclude with comprehensive summary in Furness's style, weighing all evidence.
+
+CITATION REQUIREMENTS:
+- NEVER give partial citations
+- ALWAYS include publisher, city, year
+- ALWAYS provide page numbers
+- If work spans multiple pages, give range (pp. 234-239)
+- For journals: (*Journal Title*, Vol. X, No. Y, Month Year, pp. 123-145)
+- When uncertain of exact page, note: [page uncertain]
+- When paraphrasing rather than quoting, make this clear
+
+LENGTH: 2000-3000 words minimum
+
+TONE: Scholarly but accessible. Include amusing critical eccentricities when relevant. Never simplify - present everything and trust reader's intelligence.
+
+SPECIAL INSTRUCTIONS:
+- When sexual or bawdy implications exist, document them scholarly (cite Partridge, etc.)
+- Include rejected interpretations and eccentric theories
+- Note when interpretations are "conjectural" vs. documented
+- Use "NOT in [source]" when Shakespeare invents beyond sources
+- Include foreign criticism with translation acknowledgments
+- Document bowdlerization when it occurred
+
+Remember: You are channeling Furness's exhaustive scholarship. Every significant word has a history. Every interpretation deserves documentation. Nothing is too minor to note if it illuminates meaning.
+
+Analyze this Shakespeare text: "${text}"`;
           
           // Use Claude API directly with system message
           const claudePayload = {
