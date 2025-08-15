@@ -512,13 +512,41 @@ TONE: Scholarly but clear. Use <em>italics</em> for titles.
 
 CRITICAL: You MUST include ALL 7 sections above. Do not skip any sections.
 
+REQUIRED STRUCTURE - COPY EXACTLY:
+## FULL FATHOM FIVE Analysis: "${text}" (${playName} ${sceneName})
+
+### CRITICAL PERSPECTIVES
+[Your content here]
+
+### PERFORMANCE TRADITION
+[Your content here]
+
+### SOURCES
+[Your content here]
+
+### WORD STUDY
+[Your content here]
+
+### SHAKESPEAREAN ECHOES
+[Your content here]
+
+### DRAMATIC PURPOSE
+[Your content here]
+
+### CONCLUSION
+[Your content here]
+
 Analyze: "${text}"`;
           
-          // Use Claude API directly
+          // Use Claude API directly with system message
           const claudePayload = {
             model: 'claude-sonnet-4-20250514',
-            max_tokens: 1500,
+            max_tokens: 2000,
             messages: [
+              { 
+                role: 'system', 
+                content: 'You are a Shakespeare scholar. You MUST provide ALL 7 sections requested. Do not skip any sections. Each section must be clearly marked with ### headers.' 
+              },
               { role: 'user', content: fullFathomFivePrompt }
             ]
           };
