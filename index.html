@@ -4631,6 +4631,11 @@
             processed = processed.replace(/\bA\s*C\s*Bradley\b/gi, 'A.C. Bradley');
             processed = processed.replace(/\bA\.\s*circa\s*\.\s*Bradley\b/gi, 'A.C. Bradley');
             
+            // Fix transition words inserted between scholar names
+            processed = processed.replace(/\bStephen\s+(?:Also|Finally|Additionally|Moreover)\s+Greenblatt\b/gi, 'Stephen Greenblatt');
+            processed = processed.replace(/\bJanet\s+(?:Also|Finally|Additionally|Moreover)\s+Adelman\b/gi, 'Janet Adelman');
+            processed = processed.replace(/\bA\.\s*C\.\s+(?:Also|Finally|Additionally|Moreover)\s+Bradley\b/gi, 'A.C. Bradley');
+            
             // Fix common formatting issues
             processed = processed.replace(/\s+/g, ' '); // Normalize multiple spaces
             processed = processed.replace(/\n\s*\n/g, '\n\n'); // Normalize paragraph breaks

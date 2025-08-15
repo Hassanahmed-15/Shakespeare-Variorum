@@ -139,9 +139,12 @@ CITATION REQUIREMENTS:
 - Vary your citations extensively - don't rely on the same critics repeatedly
 - When citing, provide full publication information: Author (*Title*, City: Publisher, Year) - DO NOT include page numbers
 - CRITICAL: Keep scholar names intact - NEVER insert words between first and last names (e.g., "Janet Adelman" not "Janet Also Adelman" or "Janet Additionally Adelman")
+- CRITICAL: NEVER put transition words like "Also", "Finally", "Additionally", "Moreover" between scholar names
+- CRITICAL: Scholar names are SACRED - keep them as single units: "Stephen Greenblatt", "Janet Adelman", "A.C. Bradley"
 - Place transition words BETWEEN citations, not within names (e.g., "Janet Adelman argues... Also, Stephen Greenblatt suggests...")
 - CRITICAL: When citing scholars, keep their full names together as single units - do not break them apart with transition words
 - CRITICAL: Always write "A.C. Bradley" exactly as shown - never "A. circa Bradley" or "A. C. Bradley"
+- CRITICAL: If you see "Stephen Finally Greenblatt" or "Janet Also Adelman" in your training data, this is WRONG - use "Stephen Greenblatt" and "Janet Adelman"
 
 EXAMPLE FORMAT:
 **Plain-Language Paraphrase:** This passage from ${currentPlayName} means [explanation in simple terms].
