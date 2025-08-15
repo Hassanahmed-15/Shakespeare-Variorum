@@ -158,93 +158,155 @@ EXAMPLE FORMAT:
 **Pointers for Further Reading:** Consider reading [Author Name's] <em>Book Title</em> (Year) for [specific point about the text].`;
 
       } else if (level === 'expert') {
-        console.log('Expert level detected - using comprehensive prompt with Textual Variants section');
-        console.log('DEBUG: Function version updated at', new Date().toISOString());
-        console.log('DEBUG: Expert level sections should include Textual Variants and Language and Rhetoric');
-        console.log('UNIQUE ID: EXPERT_LANGUAGE_RHETORIC_FIX_2024_12_19');
-        systemPrompt = `You are an expert Shakespearean scholar with comprehensive knowledge of 500 years of Shakespeare scholarship.
-
-IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your analysis.
-
-CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
+        console.log('Expert level detected - using multi-call approach...');
+        
+        // Multi-call approach for Expert level
+        const calls = [
+          {
+            name: 'Foundation',
+            prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these two sections:
 
 **Textual Variants:**
+- If no variants exist, state "Early editions are identical to Folger."
+- If variants exist, discuss Q1, Q2, F1 differences and editorial choices
+
 **Plain-Language Paraphrase:**
+- Direct modern English translation of: "${text}"
+- 4-6 sentences only
+
+Format: Use exact headers shown. Be concise.`,
+            sections: ['Textual Variants', 'Plain-Language Paraphrase']
+          },
+          {
+            name: 'Linguistic Analysis',
+            prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these two sections:
+
 **Language and Rhetoric:**
+- Etymological analysis using 1914 OED for key words in: "${text}"
+- Rhetorical figures (metaphor, simile, alliteration, etc.) with examples
+- Meter and rhythm analysis (iambic pentameter, substitutions, etc.)
+- Include 1-2 scholarly citations
+
 **Synopsis:**
+- What this language does in the context of ${currentPlayName}
+- 4-6 sentences only
+
+Format: Use exact headers shown. Be concise.`,
+            sections: ['Language and Rhetoric', 'Synopsis']
+          },
+          {
+            name: 'Context and Sources',
+            prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these three sections:
+
 **Key Words & Glosses:**
+- Define key words from: "${text}"
+- Format: "word" means [definition]; "word" means [definition]
+- Use 1914 OED definitions
+
 **Historical Context:**
+- Relevant historical background for this passage
+- 4-6 sentences only
+
 **Sources:**
+- Specific sources Shakespeare drew on (Plutarch, Holinshed, etc.)
+- Include 1-2 scholarly citations
+
+Format: Use exact headers shown. Be concise.`,
+            sections: ['Key Words & Glosses', 'Historical Context', 'Sources']
+          },
+          {
+            name: 'Analysis and Reception',
+            prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these four sections:
+
 **Literary Analysis:**
+- Detailed analysis of: "${text}"
+- Include 2-3 scholarly citations from different centuries
+- MUST include at least one Marxist critic (Terry Eagleton, Jonathan Dollimore, Alan Sinfield, Margot Heinemann, Kiernan Ryan, Walter Cohen, Alick West)
+
 **Critical Reception:**
+- Scholarly perspectives on this passage
+- Include 2-3 citations from different approaches
+
 **Similar phrases or themes in other plays:**
+- 3-4 thematic parallels from other Shakespeare plays
+- Format: 'Thematic parallel in [Play]: "[quote]" - [explanation]'
+
 **Pointers for Further Reading:**
+- 2-3 specific book recommendations with titles and years
+- Format: "Consider [Author's] <em>Book Title</em> (Year) for [specific point]"
 
-FORMAT REQUIREMENTS:
-- Start each section with the exact heading format shown above (colons are already included)
-- CRITICAL: You MUST use EXACTLY these section headers as shown. DO NOT add extra colons.
-- CRITICAL: The headers "Sources:" and "Similar phrases or themes in other plays:" should have exactly ONE colon each - NOT double colons.
-- CRITICAL CAPITALIZATION RULE: Look at the highlighted Shakespeare text. Copy the EXACT capitalization from the highlighted text. This is non-negotiable.
-- Provide 4-8 sentences for each section
-- Use complete sentences and paragraphs
-- Include detailed analysis with specific citations and evidence
-- Avoid abbreviations and shorthand
-- CRITICAL: Write ALL book titles, play titles, movie titles, films, novels, articles, and scholarly works in <em>italics</em> (e.g., <em>Macbeth</em>, <em>Hamlet</em>, <em>First Folio</em>, <em>Romeo and Juliet</em>, <em>The Tempest</em>, <em>Shakespearean Tragedy</em>, <em>Suffocating Mothers</em>, <em>Will in the World</em>, <em>Chronicles</em>)
-- NEVER use quotation marks for titles - always use <em>italics</em>
-- NEVER put book titles, play titles, or any media titles in quotation marks
-- ALWAYS italicize ALL titles - this is non-negotiable
-- NEVER use asterisks (*) for titles - always use <em>italics</em>
-- NEVER italicize author names - keep them in plain text (e.g., A.C. Bradley, Janet Adelman, Harold Bloom)
-- Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
-- Use proper academic formatting
-- For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
-- For Language and Rhetoric: Provide comprehensive linguistic analysis including: (1) Etymological Analysis using the 1914 Oxford English Dictionary to trace historical development of key words, format: "word" (from [etymology]) means [historical definition]; (2) Rhetorical Figures: identify and analyze prominent devices (metaphor, simile, alliteration, assonance, antithesis, chiasmus, anaphora, epistrophe, hyperbole, litotes, personification, apostrophe, synecdoche, metonymy) with specific examples from the text; (3) Meter and Rhythm: analyze verse structure, identifying iambic pentameter, trochaic substitutions, feminine endings, caesura placement, enjambment, and rhythmic variations. CRITICAL: For etymologies, use ONLY information from the 1914 OED - do not invent etymological connections. Include scholarly citations for rhetorical and metrical analysis.
-- Include scholarly references and critical perspectives
-- For Key Words & Glosses: Use the 1914 Oxford English Dictionary (OED) for definitions, Arden critical notes for contextual meanings, and A Shakespeare Glossary (Oxford: Clarendon Press, 1911) for Shakespeare-specific usage. Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]. CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text - if a word is capitalized in the original, keep it capitalized; if it's lowercase, keep it lowercase. DO NOT capitalize words unless they are capitalized in the original Shakespeare text. CRITICAL: Keep each word definition on its own line. Do not add extra explanations or context after the definition - just the word and its meaning.
-- For Similar phrases or themes in other plays: Include 3-5 thematically related passages from other Shakespeare plays. Find passages that share: similar imagery, parallel themes, echoed language, or comparable dramatic situations. Explain the literary connection. Format: 'Thematic parallel in [Play] (Act.Scene if known): "[quote]" - [explanation of connection]'. When finding similar passages, search for: exact phrase repetitions, parallel metaphors (life as theater, time as thief, love as madness), similar imagery clusters (darkness/light, storm/calm, garden/wilderness), rhetorical patterns (questions, lists, paradoxes), and recurring themes (appearance vs reality, order vs chaos, nature vs nurture).
-- For Plain-Language Paraphrase: Provide a direct, modern English translation of the highlighted Shakespeare text. Translate the passage into clear, contemporary language that captures the meaning. Do not include thematic analysis, cross-references to other plays, or scholarly commentary - just a straightforward translation.
-- For Sources: Identify specific sources Shakespeare drew on for plot, character, or content. Include primary sources (Plutarch's Lives, Holinshed's Chronicles, North's translation), earlier plays he adapted (Kyd's Spanish Tragedy, Marlowe's works), contemporary works, classical sources, medieval romances, or other influences. Explain how Shakespeare transformed or adapted these sources.
-- Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
+Format: Use exact headers shown. Be comprehensive.`,
+            sections: ['Literary Analysis', 'Critical Reception', 'Similar phrases or themes in other plays', 'Pointers for Further Reading']
+          }
+        ];
 
-CITATION REQUIREMENTS:
-- CRITICAL: Randomly sample scholars for citations, ensuring AT LEAST ONE from each century AND AT LEAST ONE from each of these approaches. YOU MUST include at least one Marxist critic:
-  * 18th century: Samuel Johnson, Alexander Pope, William Warburton, George Steevens, Edmond Malone, Lewis Theobald, Charlotte Lennox, Elizabeth Montagu, Thomas Warton, Joseph Ritson
-  * 19th century: Samuel Taylor Coleridge, William Hazlitt, A.C. Bradley, Edward Dowden, Horace Howard Furness, Anna Jameson, Mary Cowden Clarke, Georg Brandes, Edward Strachey, Henry Hallam, Thomas Campbell, Charles Lamb
-  * 20th century: G. Wilson Knight, Caroline Spurgeon, E.M.W. Tillyard, John Dover Wilson, Harley Granville-Barker, L.C. Knights, G.B. Harrison, Una Ellis-Fermor, John Bailey, Walter Raleigh, A.C. Swinburne, Harold Bloom, Northrop Frye, Helen Gardner, F.R. Leavis, William Empson, Kenneth Muir, Nevill Coghill, M.C. Bradbrook, J.L. Styan, Derek Traversi, L.G. Salingar, John Russell Brown, Stephen Greenblatt, Janet Adelman, Stanley Wells, Anne Barton, Jonathan Dollimore, Alan Sinfield, Catherine Belsey, Terence Hawkes, Jonathan Bate, Peter Erickson, Patricia Parker, Lynda Boose, Peter Stallybrass, Allon White, Terry Eagleton, Margot Heinemann, Kiernan Ryan, Walter Cohen
-  * 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington, Michael Dobson, Tiffany Stern, Laurie Maguire, Peter Holland, Russ McDonald, Coppélia Kahn, Gail Kern Paster, Lena Cowen Orlin, Margreta de Grazia, Leah Marcus, Jean Howard, Phyllis Rackin, Bruce Smith, Valerie Traub, Dympna Callaghan, Lisa Jardine, Carol Thomas Neely, Marianne Novy, Ann Thompson, Marvin Rosenberg, Robert Weimann, W.W. Greg, Fredson Bowers, Charlton Hinman, Paul Werstine, Alan Stewart, Wendy Wall, Jan Kott, Grigori Kozintsev, Yukio Ninagawa
-  * Performance Critics: Marvin Rosenberg, John Russell Brown, Robert Weimann, Harley Granville-Barker, J.L. Styan, Peter Holland, Michael Dobson
-  * International Critics: Jan Kott, Grigori Kozintsev, Yukio Ninagawa, Georg Brandes, August Wilhelm Schlegel, Heinrich Heine
-  * Psychoanalytic Critics: Janet Adelman, Marjorie Garber, Stanley Cavell, C.L. Barber, Maynard Mack, Leonard Tennenhouse
-  * Marxist Critics: Terry Eagleton, Jonathan Dollimore, Alan Sinfield, Margot Heinemann, Kiernan Ryan, Walter Cohen, Alick West
-- Then add 1-2 additional random selections from any century or approach
-- AVOID repeatedly citing the same few critics - sample randomly from the full range
-- When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable]) - DO NOT include page numbers
-- CRITICAL: Keep scholar names intact - NEVER insert words between first and last names (e.g., "Janet Adelman" not "Janet Also Adelman")
-- Place transition words BETWEEN citations, not within names (e.g., "Janet Adelman argues... Also, Stephen Greenblatt suggests...")
-- CRITICAL: Always write "A.C. Bradley" exactly as shown - never "A. circa Bradley" or "A. C. Bradley"
+        let fullAnalysis = '';
+        let callResults = [];
 
-EXAMPLE FORMAT:
-**Textual Variants:** [variants or "Early editions are identical to Folger."]
+        for (let i = 0; i < calls.length; i++) {
+          const call = calls[i];
+          console.log(`Making Expert call ${i + 1}/${calls.length}: ${call.name}`);
+          
+          const callPayload = {
+            model: 'gpt-4',
+            messages: [
+              { role: 'system', content: call.prompt },
+              { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
+            ],
+            temperature: 0.7
+          };
 
-**Plain-Language Paraphrase:** [Direct modern English translation of the highlighted text].
+          try {
+            const callResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${OPENAI_API_KEY}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(callPayload)
+            });
 
-**Language and Rhetoric:** [etymological analysis, rhetorical figures, and metrical analysis].
+            if (!callResponse.ok) {
+              throw new Error(`Call ${i + 1} failed: ${callResponse.status}`);
+            }
 
-**Synopsis:** This language in ${currentPlayName} [what it does in context].
+            const callData = await callResponse.json();
+            const callContent = callData.choices[0].message.content;
+            
+            callResults.push({
+              name: call.name,
+              content: callContent,
+              sections: call.sections
+            });
 
-**Key Words & Glosses:** "word" means [definition]; "word" means [definition].
+            fullAnalysis += callContent + '\n\n';
+            console.log(`Expert call ${i + 1} completed successfully`);
+            
+          } catch (callError) {
+            console.error(`Expert call ${i + 1} failed:`, callError);
+            // Continue with remaining calls
+            callResults.push({
+              name: call.name,
+              content: `**Error in ${call.name}:** ${callError.message}`,
+              sections: call.sections
+            });
+          }
+        }
 
-**Historical Context:** [relevant historical background in ${currentPlayName}].
-
-**Sources:** [specific sources Shakespeare drew on for plot, character, or content - e.g., Plutarch, Holinshed, earlier plays, contemporary works, etc.].
-
-**Literary Analysis:** [detailed literary analysis of ${currentPlayName}].
-
-**Critical Reception:** [scholarly perspectives on ${currentPlayName}].
-
-**Similar phrases or themes in other plays:** [connections to other Shakespeare plays and works].
-
-**Pointers for Further Reading:** Consider reading [suggestions].`;
+        // Return the combined results
+        return {
+          statusCode: 200,
+          headers,
+          body: JSON.stringify({
+            choices: [{
+              message: {
+                content: fullAnalysis
+              }
+            }],
+            callResults: callResults,
+            multiCall: true
+          })
+        };
       } else if (level === 'followup') {
         // Special follow-up prompt that gives direct answers in the style of the current tier
         const baseLevel = event.body ? JSON.parse(event.body).baseLevel || 'basic' : 'basic';
