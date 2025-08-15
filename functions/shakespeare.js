@@ -402,9 +402,9 @@ Analyze: "${text}"`;
           };
         }
       } else if (level === 'fullfathomfive') {
-        // Use Claude for Full Fathom Five
+        // Use GPT-4o for Full Fathom Five (more reliable than Claude)
         modelConfig = {
-          model: 'claude-3-5-sonnet-20241022',
+          model: 'gpt-4o',
           temperature: 0.7
         };
       }
@@ -436,14 +436,16 @@ Analyze: "${text}"`;
         console.log(`Starting API call for level: ${level}, text length: ${text.length}`);
         const startTime = Date.now();
         
-                // Handle Full Fathom Five with clean Expert-style prompt
+                // Handle Full Fathom Five with OpenAI (more reliable than Claude)
         if (level === 'fullfathomfive') {
-          console.log('Full Fathom Five level detected, using clean Expert-style prompt...');
+          console.log('Full Fathom Five level detected, using OpenAI GPT-4o...');
           
-          // Clean Full Fathom Five prompt using Expert sections with ramped-up intensity
-          const fullFathomFivePrompt = `You are an expert Shakespearean scholar providing comprehensive analysis of "${currentPlayName}" (${currentSceneName}).
+          // Use the same system prompt structure as other levels but with enhanced content
+          systemPrompt = `You are an expert Shakespearean scholar providing the most comprehensive analysis possible.
 
-CRITICAL: Provide ALL these sections in order:
+IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your analysis.
+
+CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
 **Plain-Language Paraphrase:**
 **Synopsis:**
@@ -457,17 +459,19 @@ CRITICAL: Provide ALL these sections in order:
 **Pointers for Further Reading:**
 
 FORMAT REQUIREMENTS:
-- Use exact headers shown above (colons are already included)
-- Provide 6-12 sentences per section (more intense than Expert)
-- Write book/play titles in <em>italics</em>
-- Keep author names in plain text
-- For Key Words: "word" means [definition]; preserve original capitalization
-- For Plain-Language Paraphrase: Direct modern English translation
-- For Textual Variants: "Early editions are identical to Folger" if no variants
-- For Similar phrases: Include 3-5 thematic parallels from other plays
+- Start each section with the exact heading format shown above (colons are already included)
+- Provide 6-12 sentences for each section (more intense than Expert)
+- Use complete sentences and paragraphs
+- Write in the most scholarly, academic language possible
+- Include extensive critical citations and scholarly references from a BROAD range of critics
+- CRITICAL: Write ALL book titles, play titles, movie titles, films, novels, articles, and scholarly works in <em>italics</em>
+- NEVER use quotation marks for titles - always use <em>italics</em>
+- NEVER italicize author names - keep them in plain text
+- For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]". Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]. CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text.
+- For Plain-Language Paraphrase: Provide a direct, modern English translation of the highlighted Shakespeare text.
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
-CITATION REQUIREMENTS:
+CRITICAL CITATION REQUIREMENTS:
 - Include citations from ALL major periods of Shakespeare criticism:
   * 18th century: Alexander Pope, Lewis Theobald, William Warburton, Samuel Johnson, George Steevens, Edmond Malone
   * Early 19th century: Samuel Taylor Coleridge, William Hazlitt, Charles Lamb, August Wilhelm Schlegel, Heinrich Heine
@@ -484,75 +488,6 @@ CITATION REQUIREMENTS:
 LENGTH: 600-800 words total
 
 Analyze: "${text}"`;
-          
-          // Use Claude API directly with system message
-          const claudePayload = {
-            model: 'claude-3-5-sonnet-20241022',
-            max_tokens: 4000,
-            temperature: 0.7,
-            messages: [
-              { 
-                role: 'system', 
-                content: 'You are a Shakespeare scholar. You MUST provide ALL 10 sections requested. Do not skip any sections. Each section must be clearly marked with ** headers.' 
-              },
-              { role: 'user', content: fullFathomFivePrompt }
-            ]
-          };
-          
-          try {
-            console.log('Making Claude API call for Full Fathom Five...');
-            console.log('CLAUDE_API_KEY exists:', !!CLAUDE_API_KEY);
-            
-            const claudeResponse = await fetch('https://api.anthropic.com/v1/messages', {
-              method: 'POST',
-              headers: {
-                'x-api-key': `${CLAUDE_API_KEY}`,
-                'Content-Type': 'application/json',
-                'anthropic-version': '2023-06-01'
-              },
-              body: JSON.stringify(claudePayload)
-            });
-            
-            console.log('Claude response status:', claudeResponse.status);
-            
-            if (!claudeResponse.ok) {
-              const errorText = await claudeResponse.text();
-              console.error('Claude API error response:', errorText);
-              throw new Error(`Claude API error: ${claudeResponse.status} - ${errorText}`);
-            }
-            
-            const claudeData = await claudeResponse.json();
-            console.log('Claude response data received');
-            
-            if (!claudeData.content || !claudeData.content[0] || !claudeData.content[0].text) {
-              throw new Error('Invalid Claude response format');
-            }
-            
-            const content = claudeData.content[0].text;
-            console.log('Full Fathom Five content length:', content.length);
-            
-            return {
-              statusCode: 200,
-              headers,
-              body: JSON.stringify({
-                choices: [{
-                  message: {
-                    content: content
-                  }
-                }]
-              })
-            };
-          } catch (claudeError) {
-            console.error('Full Fathom Five Claude API error:', claudeError);
-            return {
-              statusCode: 500,
-              headers,
-              body: JSON.stringify({ 
-                error: 'Full Fathom Five analysis failed. Please try again.',
-                details: claudeError.message
-              })
-            };
-          }
         } else {
           // OpenAI API for Basic and Expert levels
           response = await fetch('https://api.openai.com/v1/chat/completions', {
