@@ -552,6 +552,9 @@ Analyze: "${text}"`;
           };
           
           try {
+            console.log('Making Claude API call for Full Fathom Five...');
+            console.log('CLAUDE_API_KEY exists:', !!CLAUDE_API_KEY);
+            
             const claudeResponse = await fetch('https://api.anthropic.com/v1/messages', {
               method: 'POST',
               headers: {
@@ -562,12 +565,23 @@ Analyze: "${text}"`;
               body: JSON.stringify(claudePayload)
             });
             
+            console.log('Claude response status:', claudeResponse.status);
+            
             if (!claudeResponse.ok) {
-              throw new Error(`Claude API error: ${claudeResponse.status}`);
+              const errorText = await claudeResponse.text();
+              console.error('Claude API error response:', errorText);
+              throw new Error(`Claude API error: ${claudeResponse.status} - ${errorText}`);
             }
             
             const claudeData = await claudeResponse.json();
+            console.log('Claude response data received');
+            
+            if (!claudeData.content || !claudeData.content[0] || !claudeData.content[0].text) {
+              throw new Error('Invalid Claude response format');
+            }
+            
             const content = claudeData.content[0].text;
+            console.log('Full Fathom Five content length:', content.length);
             
             return {
               statusCode: 200,
@@ -581,7 +595,7 @@ Analyze: "${text}"`;
               })
             };
           } catch (claudeError) {
-            console.error('Claude API error:', claudeError);
+            console.error('Full Fathom Five Claude API error:', claudeError);
             return {
               statusCode: 500,
               headers,
