@@ -477,38 +477,40 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
         if (level === 'fullfathomfive') {
           console.log('Full Fathom Five level detected, using simplified prompt...');
           
-          // Simplified Full Fathom Five system prompt
-          const fullFathomFivePrompt = `You are a Shakespeare scholar providing a concise scholarly analysis. Focus on the most important insights.
+          // Full Fathom Five system prompt - MUST include ALL sections
+          const fullFathomFivePrompt = `You are a Shakespeare scholar providing a comprehensive analysis. You MUST provide ALL sections listed below.
 
 CONTEXT: Analyzing "${text}" from ${playName} (${sceneName}).
 
-Provide this analysis in exactly this format:
+CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
 ## FULL FATHOM FIVE Analysis: "${text}" (${playName} ${sceneName})
 
 ### CRITICAL PERSPECTIVES
-2-3 key interpretations from major critics with brief citations.
+Provide 2-3 key interpretations from major critics with brief citations. Include critics like Johnson, Coleridge, Hazlitt, or modern scholars.
 
 ### PERFORMANCE TRADITION
-1-2 notable actor interpretations.
+Provide 1-2 notable actor interpretations. Mention how actors like Garrick, Kemble, or modern performers have delivered this line.
 
 ### SOURCES
-Brief mention of any known sources or note if Shakespeare invented this.
+Briefly mention any known sources (Holinshed, Plutarch, etc.) or note if Shakespeare appears to have invented this material.
 
 ### WORD STUDY
-Brief definitions of key words, preserving original capitalization.
+Provide brief definitions of key words from the text, preserving the exact capitalization as it appears in the original.
 
 ### SHAKESPEAREAN ECHOES
-1 similar passage from another play if relevant.
+Provide 1 similar passage from another Shakespeare play if relevant, or note if no clear parallel exists.
 
 ### DRAMATIC PURPOSE
-How this passage functions in the scene and play.
+Explain how this passage functions in the immediate scene and broader play structure.
 
 ### CONCLUSION
-Concise summary of the passage's significance.
+Provide a concise summary of the passage's significance and meaning.
 
-LENGTH: 400-500 words
+LENGTH: 400-500 words total
 TONE: Scholarly but clear. Use <em>italics</em> for titles.
+
+CRITICAL: You MUST include ALL 7 sections above. Do not skip any sections.
 
 Analyze: "${text}"`;
           
