@@ -111,6 +111,7 @@ FORMAT REQUIREMENTS:
 - Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
 - For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]. CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text - if a word is capitalized in the original, keep it capitalized; if it's lowercase, keep it lowercase.
 - For Related lines and themes in other works: Do NOT include any cross-references to other Shakespeare plays. Focus only on explaining the highlighted passage itself.
+- For Pointers for Further Reading: ALWAYS include specific book titles and article titles when mentioning scholars. Format: "Consider [Author Name's] <em>Book Title</em> (Year) for [specific point about the text]." Do NOT mention scholars without their specific works.
 - Use proper academic formatting
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
@@ -126,8 +127,9 @@ CITATION REQUIREMENTS:
 - Also consider: feminist critics (Lisa Jardine, Valerie Traub, Dympna Callaghan), performance critics (Marvin Rosenberg, John Russell Brown), textual critics (W.W. Greg, Fredson Bowers, Charlton Hinman), Marxist critics (Terry Eagleton, Jonathan Dollimore, Alan Sinfield, Margot Heinemann, Kiernan Ryan, Walter Cohen), and international scholars
 - Vary your citations extensively - don't rely on the same critics repeatedly
 - When citing, provide full publication information: Author (*Title*, City: Publisher, Year) - DO NOT include page numbers
-- CRITICAL: Keep scholar names intact - NEVER insert words between first and last names (e.g., "Janet Adelman" not "Janet Also Adelman")
+- CRITICAL: Keep scholar names intact - NEVER insert words between first and last names (e.g., "Janet Adelman" not "Janet Also Adelman" or "Janet Additionally Adelman")
 - Place transition words BETWEEN citations, not within names (e.g., "Janet Adelman argues... Also, Stephen Greenblatt suggests...")
+- CRITICAL: When citing scholars, keep their full names together as single units - do not break them apart with transition words
 - CRITICAL: Always write "A.C. Bradley" exactly as shown - never "A. circa Bradley" or "A. C. Bradley"
 
 EXAMPLE FORMAT:
@@ -137,7 +139,7 @@ EXAMPLE FORMAT:
 
 **Key Words & Glosses:** "word" means [definition]; "word" means [definition].
 
-**Pointers for Further Reading:** Consider reading [suggestions].`;
+**Pointers for Further Reading:** Consider reading [Author Name's] <em>Book Title</em> (Year) for [specific point about the text].`;
 
       } else if (level === 'expert') {
         systemPrompt = `You are an expert Shakespearean scholar with comprehensive knowledge of 500 years of Shakespeare scholarship.
