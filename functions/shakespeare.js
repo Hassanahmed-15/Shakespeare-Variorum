@@ -158,157 +158,45 @@ EXAMPLE FORMAT:
 **Pointers for Further Reading:** Consider reading [Author Name's] <em>Book Title</em> (Year) for [specific point about the text].`;
 
       } else if (level === 'expert') {
-        console.log('Expert level detected - using multi-call approach...');
+        console.log('Expert level detected - using optimized single-call approach...');
         
-        // Multi-call approach for Expert level
-        const calls = [
-          {
-            name: 'Foundation',
-            prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these two sections:
+        const expertPrompt = `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ALL these sections in order:
 
-**Textual Variants:**
-- If no variants exist, state "Early editions are identical to Folger."
-- If variants exist, discuss Q1, Q2, F1 differences and editorial choices
+**Textual Variants:** (if no variants: "Early editions are identical to Folger.")
+**Plain-Language Paraphrase:** (direct modern English translation)
+**Language and Rhetoric:** (brief etymological analysis, rhetorical figures, meter)
+**Synopsis:** (what this does in context)
+**Key Words & Glosses:** (key word definitions)
+**Historical Context:** (brief historical background)
+**Sources:** (Shakespeare's sources)
+**Literary Analysis:** (analysis with 2-3 citations, MUST include one Marxist critic)
+**Critical Reception:** (scholarly perspectives)
+**Similar phrases or themes in other plays:** (3-4 parallels)
+**Pointers for Further Reading:** (2-3 book recommendations)
 
-**Plain-Language Paraphrase:**
-- Direct modern English translation of: "${text}"
-- 4-6 sentences only
+CRITICAL: Keep each section concise (3-5 sentences). Include all sections. Use exact headers shown.
 
-Format: Use exact headers shown. Be concise.`,
-            sections: ['Textual Variants', 'Plain-Language Paraphrase']
-          },
-          {
-            name: 'Linguistic Analysis',
-            prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these two sections:
+Analyze: "${text}"`;
 
-**Language and Rhetoric:**
-- Etymological analysis using 1914 OED for key words in: "${text}"
-- Rhetorical figures (metaphor, simile, alliteration, etc.) with examples
-- Meter and rhythm analysis (iambic pentameter, substitutions, etc.)
-- Include 1-2 scholarly citations
-
-**Synopsis:**
-- What this language does in the context of ${currentPlayName}
-- 4-6 sentences only
-
-Format: Use exact headers shown. Be concise.`,
-            sections: ['Language and Rhetoric', 'Synopsis']
-          },
-          {
-            name: 'Context and Sources',
-            prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these three sections:
-
-**Key Words & Glosses:**
-- Define key words from: "${text}"
-- Format: "word" means [definition]; "word" means [definition]
-- Use 1914 OED definitions
-
-**Historical Context:**
-- Relevant historical background for this passage
-- 4-6 sentences only
-
-**Sources:**
-- Specific sources Shakespeare drew on (Plutarch, Holinshed, etc.)
-- Include 1-2 scholarly citations
-
-Format: Use exact headers shown. Be concise.`,
-            sections: ['Key Words & Glosses', 'Historical Context', 'Sources']
-          },
-          {
-            name: 'Analysis and Reception',
-            prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these four sections:
-
-**Literary Analysis:**
-- Detailed analysis of: "${text}"
-- Include 2-3 scholarly citations from different centuries
-- MUST include at least one Marxist critic (Terry Eagleton, Jonathan Dollimore, Alan Sinfield, Margot Heinemann, Kiernan Ryan, Walter Cohen, Alick West)
-
-**Critical Reception:**
-- Scholarly perspectives on this passage
-- Include 2-3 citations from different approaches
-
-**Similar phrases or themes in other plays:**
-- 3-4 thematic parallels from other Shakespeare plays
-- Format: 'Thematic parallel in [Play]: "[quote]" - [explanation]'
-
-**Pointers for Further Reading:**
-- 2-3 specific book recommendations with titles and years
-- Format: "Consider [Author's] <em>Book Title</em> (Year) for [specific point]"
-
-Format: Use exact headers shown. Be comprehensive.`,
-            sections: ['Literary Analysis', 'Critical Reception', 'Similar phrases or themes in other plays', 'Pointers for Further Reading']
-          }
-        ];
-
-        let fullAnalysis = '';
-        let callResults = [];
-
-        for (let i = 0; i < calls.length; i++) {
-          const call = calls[i];
-          console.log(`Making Expert call ${i + 1}/${calls.length}: ${call.name}`);
-          
-          const callPayload = {
-            model: 'gpt-4',
-            messages: [
-              { role: 'system', content: call.prompt },
-              { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
-            ],
-            temperature: 0.7,
-            max_tokens: 800 // Limit response length to speed up calls
-          };
-
-          try {
-            const callResponse = await fetch('https://api.openai.com/v1/chat/completions', {
-              method: 'POST',
-              headers: {
-                'Authorization': `Bearer ${OPENAI_API_KEY}`,
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(callPayload),
-              signal: AbortSignal.timeout(30000) // 30 second timeout per call
-            });
-
-            if (!callResponse.ok) {
-              throw new Error(`Call ${i + 1} failed: ${callResponse.status}`);
-            }
-
-            const callData = await callResponse.json();
-            const callContent = callData.choices[0].message.content;
-            
-            callResults.push({
-              name: call.name,
-              content: callContent,
-              sections: call.sections
-            });
-
-            fullAnalysis += callContent + '\n\n';
-            console.log(`Expert call ${i + 1} completed successfully`);
-            
-          } catch (callError) {
-            console.error(`Expert call ${i + 1} failed:`, callError);
-            // Continue with remaining calls
-            callResults.push({
-              name: call.name,
-              content: `**Error in ${call.name}:** ${callError.message}`,
-              sections: call.sections
-            });
-          }
-        }
-
-        // Return the combined results
-        return {
-          statusCode: 200,
-          headers,
-          body: JSON.stringify({
-            choices: [{
-              message: {
-                content: fullAnalysis
-              }
-            }],
-            callResults: callResults,
-            multiCall: true
-          })
+        const expertPayload = {
+          model: 'gpt-4',
+          messages: [
+            { role: 'system', content: expertPrompt },
+            { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
+          ],
+          temperature: 0.7,
+          max_tokens: 1500
         };
+
+        response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${OPENAI_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(expertPayload),
+          signal: AbortSignal.timeout(60000) // 60 second timeout
+        });
       } else if (level === 'followup') {
         // Special follow-up prompt that gives direct answers in the style of the current tier
         const baseLevel = event.body ? JSON.parse(event.body).baseLevel || 'basic' : 'basic';
@@ -557,203 +445,89 @@ Analyze: "${text}"`;
         console.log(`Starting API call for level: ${level}, text length: ${text.length}`);
         const startTime = Date.now();
         
-                // Handle Full Fathom Five with multi-call approach
+                        // Handle Full Fathom Five with optimized single-call approach
         if (level === 'fullfathomfive') {
-          console.log('Full Fathom Five level detected, using multi-call approach...');
+          console.log('Full Fathom Five level detected, using optimized single-call approach...');
           
-          // Check if text is too long for multi-call approach
-          if (text.length > 2000) {
-            console.log('Text too long for multi-call, using single call approach...');
-            // Fall back to single call for long texts
-            const singleCallPrompt = `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide a concise analysis with these sections:
+          const fullFathomFivePrompt = `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ALL these sections in order:
 
 **Textual Variants:** (if no variants: "Early editions are identical to Folger.")
-**Plain-Language Paraphrase:** (direct translation)
-**Language and Rhetoric:** (brief etymological and rhetorical analysis)
+**Plain-Language Paraphrase:** (direct modern English translation)
+**Language and Rhetoric:** (comprehensive etymological analysis using 1914 OED, rhetorical figures, meter analysis)
+**Synopsis:** (what this does in context)
+**Key Words & Glosses:** (key word definitions)
+**Historical Context:** (historical background)
+**Sources:** (Shakespeare's sources)
+**Literary Analysis:** (detailed analysis with 3-4 citations from different centuries, MUST include one Marxist critic)
+**Critical Reception:** (scholarly perspectives with citations)
+**Similar phrases or themes in other plays:** (4-5 thematic parallels)
+**Pointers for Further Reading:** (3-4 book recommendations)
+
+CRITICAL: Keep each section focused but comprehensive. Include all sections. Use exact headers shown.
+
+Analyze: "${text}"`;
+
+          const fullFathomFivePayload = {
+            model: 'gpt-4o',
+            messages: [
+              { role: 'system', content: fullFathomFivePrompt },
+              { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
+            ],
+            temperature: 0.7,
+            max_tokens: 2000
+          };
+
+          response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${OPENAI_API_KEY}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(fullFathomFivePayload),
+            signal: AbortSignal.timeout(90000) // 90 second timeout
+          });
+        } else if (level === 'expert') {
+          console.log('Expert level detected - using optimized single-call approach...');
+          
+          const expertPrompt = `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ALL these sections in order:
+
+**Textual Variants:** (if no variants: "Early editions are identical to Folger.")
+**Plain-Language Paraphrase:** (direct modern English translation)
+**Language and Rhetoric:** (brief etymological analysis, rhetorical figures, meter)
 **Synopsis:** (what this does in context)
 **Key Words & Glosses:** (key word definitions)
 **Historical Context:** (brief historical background)
 **Sources:** (Shakespeare's sources)
-**Literary Analysis:** (brief analysis with 1-2 citations)
-**Critical Reception:** (brief scholarly perspectives)
-**Similar phrases or themes in other plays:** (2-3 parallels)
+**Literary Analysis:** (analysis with 2-3 citations, MUST include one Marxist critic)
+**Critical Reception:** (scholarly perspectives)
+**Similar phrases or themes in other plays:** (3-4 parallels)
 **Pointers for Further Reading:** (2-3 book recommendations)
+
+CRITICAL: Keep each section concise (3-5 sentences). Include all sections. Use exact headers shown.
 
 Analyze: "${text}"`;
 
-            const singleCallPayload = {
-              model: 'gpt-4o',
-              messages: [
-                { role: 'system', content: singleCallPrompt },
-                { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
-              ],
-              temperature: 0.7,
-              max_tokens: 1200
-            };
-
-            response = await fetch('https://api.openai.com/v1/chat/completions', {
-              method: 'POST',
-              headers: {
-                'Authorization': `Bearer ${OPENAI_API_KEY}`,
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(singleCallPayload),
-              signal: AbortSignal.timeout(45000) // 45 second timeout
-            });
-          } else {
-          
-          // Multi-call approach for Full Fathom Five
-          const calls = [
-            {
-              name: 'Foundation',
-              prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these two sections:
-
-**Textual Variants:**
-- If no variants exist, state "Early editions are identical to Folger."
-- If variants exist, discuss Q1, Q2, F1 differences and editorial choices
-
-**Plain-Language Paraphrase:**
-- Direct modern English translation of: "${text}"
-- 4-6 sentences only
-
-Format: Use exact headers shown. Be concise.`,
-              sections: ['Textual Variants', 'Plain-Language Paraphrase']
-            },
-            {
-              name: 'Linguistic Analysis',
-              prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these two sections:
-
-**Language and Rhetoric:**
-- Etymological analysis using 1914 OED for key words in: "${text}"
-- Rhetorical figures (metaphor, simile, alliteration, etc.) with examples
-- Meter and rhythm analysis (iambic pentameter, substitutions, etc.)
-- Include 1-2 scholarly citations
-
-**Synopsis:**
-- What this language does in the context of ${currentPlayName}
-- 4-6 sentences only
-
-Format: Use exact headers shown. Be concise.`,
-              sections: ['Language and Rhetoric', 'Synopsis']
-            },
-            {
-              name: 'Context and Sources',
-              prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these three sections:
-
-**Key Words & Glosses:**
-- Define key words from: "${text}"
-- Format: "word" means [definition]; "word" means [definition]
-- Use 1914 OED definitions
-
-**Historical Context:**
-- Relevant historical background for this passage
-- 4-6 sentences only
-
-**Sources:**
-- Specific sources Shakespeare drew on (Plutarch, Holinshed, etc.)
-- Include 1-2 scholarly citations
-
-Format: Use exact headers shown. Be concise.`,
-              sections: ['Key Words & Glosses', 'Historical Context', 'Sources']
-            },
-            {
-              name: 'Analysis and Reception',
-              prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these four sections:
-
-**Literary Analysis:**
-- Detailed analysis of: "${text}"
-- Include 2-3 scholarly citations from different centuries
-- MUST include at least one Marxist critic (Terry Eagleton, Jonathan Dollimore, Alan Sinfield, Margot Heinemann, Kiernan Ryan, Walter Cohen, Alick West)
-
-**Critical Reception:**
-- Scholarly perspectives on this passage
-- Include 2-3 citations from different approaches
-
-**Similar phrases or themes in other plays:**
-- 3-4 thematic parallels from other Shakespeare plays
-- Format: 'Thematic parallel in [Play]: "[quote]" - [explanation]'
-
-**Pointers for Further Reading:**
-- 2-3 specific book recommendations with titles and years
-- Format: "Consider [Author's] <em>Book Title</em> (Year) for [specific point]"
-
-Format: Use exact headers shown. Be comprehensive.`,
-              sections: ['Literary Analysis', 'Critical Reception', 'Similar phrases or themes in other plays', 'Pointers for Further Reading']
-            }
-          ];
-
-          let fullAnalysis = '';
-          let callResults = [];
-
-                  for (let i = 0; i < calls.length; i++) {
-          const call = calls[i];
-          console.log(`Making Full Fathom Five call ${i + 1}/${calls.length}: ${call.name}`);
-          
-          const callPayload = {
-            model: 'gpt-4o',
+          const expertPayload = {
+            model: 'gpt-4',
             messages: [
-              { role: 'system', content: call.prompt },
+              { role: 'system', content: expertPrompt },
               { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
             ],
             temperature: 0.7,
-            max_tokens: 800 // Limit response length to speed up calls
+            max_tokens: 1500
           };
 
-          try {
-            const callResponse = await fetch('https://api.openai.com/v1/chat/completions', {
-              method: 'POST',
-              headers: {
-                'Authorization': `Bearer ${OPENAI_API_KEY}`,
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(callPayload),
-              signal: AbortSignal.timeout(30000) // 30 second timeout per call
-            });
-
-            if (!callResponse.ok) {
-              throw new Error(`Call ${i + 1} failed: ${callResponse.status}`);
-            }
-
-            const callData = await callResponse.json();
-            const callContent = callData.choices[0].message.content;
-            
-            callResults.push({
-              name: call.name,
-              content: callContent,
-              sections: call.sections
-            });
-
-            fullAnalysis += callContent + '\n\n';
-            console.log(`Call ${i + 1} completed successfully`);
-            
-          } catch (callError) {
-            console.error(`Call ${i + 1} failed:`, callError);
-            // Continue with remaining calls
-            callResults.push({
-              name: call.name,
-              content: `**Error in ${call.name}:** ${callError.message}`,
-              sections: call.sections
-            });
-          }
-        }
-
-          // Return the combined results
-          return {
-            statusCode: 200,
-            headers,
-            body: JSON.stringify({
-              choices: [{
-                message: {
-                  content: fullAnalysis
-                }
-              }],
-              callResults: callResults,
-              multiCall: true
-            })
-          };
-        }
-      } else {
-        // OpenAI API for Basic and Expert levels
+          response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${OPENAI_API_KEY}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(expertPayload),
+            signal: AbortSignal.timeout(60000) // 60 second timeout
+          });
+        } else {
+          // OpenAI API for Basic level
           response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {
