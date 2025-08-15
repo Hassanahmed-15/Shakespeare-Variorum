@@ -439,19 +439,41 @@ Analyze: "${text}"`;
           
           const fullFathomFivePrompt = `You are analyzing "${currentPlayName}" (${currentSceneName}). 
 
-Provide ALL these sections in exactly this order:
+You MUST provide ALL 11 sections in this exact order. Each section must contain the specified content:
 
-**Textual Variants:** (if no variants: "Early editions are identical to Folger.")
-**Plain-Language Paraphrase:** (direct modern English translation of the Shakespeare text)
-**Language and Rhetoric:** (etymological analysis using 1914 OED, rhetorical figures, meter analysis)
-**Synopsis:** (what this does in context)
-**Key Words & Glosses:** (key word definitions)
-**Historical Context:** (historical background)
-**Sources:** (Shakespeare's sources)
-**Literary Analysis:** (detailed analysis with 3-4 citations from different centuries, MUST include one Marxist critic)
-**Critical Reception:** (scholarly perspectives with citations)
-**Similar phrases or themes in other plays:** (4-5 thematic parallels)
-**Pointers for Further Reading:** (3-4 book recommendations)
+**Textual Variants:**
+If no variants exist, write: "Early editions are identical to Folger."
+
+**Plain-Language Paraphrase:**
+Provide a direct, modern English translation of this Shakespeare text: "${text}"
+Do NOT include book recommendations or citations here. Only provide the translation.
+
+**Language and Rhetoric:**
+Include: (1) Etymological analysis of key words using 1914 OED, (2) Rhetorical figures found in the text, (3) Meter analysis
+
+**Synopsis:**
+Explain what this language does in the context of the play
+
+**Key Words & Glosses:**
+Define key words from the text using 1914 OED definitions
+
+**Historical Context:**
+Provide relevant historical background for this passage
+
+**Sources:**
+Discuss specific sources Shakespeare drew on (Plutarch, Holinshed, etc.)
+
+**Literary Analysis:**
+Detailed analysis with 3-4 citations from different centuries. MUST include one Marxist critic.
+
+**Critical Reception:**
+Scholarly perspectives on this passage with citations
+
+**Similar phrases or themes in other plays:**
+4-5 thematic parallels from other Shakespeare plays
+
+**Pointers for Further Reading:**
+3-4 specific book recommendations with titles and years
 
 CRITICAL FORMATTING RULES:
 - CRITICAL: ALL book titles, play titles, article titles, film titles, and ANY media titles MUST be in <em>italics</em> - NEVER use quotation marks
@@ -491,19 +513,41 @@ Analyze: "${text}"`;
           
           const expertPrompt = `You are analyzing "${currentPlayName}" (${currentSceneName}). 
 
-Provide ALL these sections in exactly this order:
+You MUST provide ALL 11 sections in this exact order. Each section must contain the specified content:
 
-**Textual Variants:** (if no variants: "Early editions are identical to Folger.")
-**Plain-Language Paraphrase:** (direct modern English translation of the Shakespeare text)
-**Language and Rhetoric:** (brief etymological analysis, rhetorical figures, meter)
-**Synopsis:** (what this does in context)
-**Key Words & Glosses:** (key word definitions)
-**Historical Context:** (brief historical background)
-**Sources:** (Shakespeare's sources)
-**Literary Analysis:** (analysis with 2-3 citations, MUST include one Marxist critic)
-**Critical Reception:** (scholarly perspectives)
-**Similar phrases or themes in other plays:** (3-4 parallels)
-**Pointers for Further Reading:** (2-3 book recommendations)
+**Textual Variants:**
+If no variants exist, write: "Early editions are identical to Folger."
+
+**Plain-Language Paraphrase:**
+Provide a direct, modern English translation of this Shakespeare text: "${text}"
+Do NOT include book recommendations or citations here. Only provide the translation.
+
+**Language and Rhetoric:**
+Include: (1) Brief etymological analysis of key words, (2) Rhetorical figures found in the text, (3) Meter analysis
+
+**Synopsis:**
+Explain what this language does in the context of the play
+
+**Key Words & Glosses:**
+Define key words from the text
+
+**Historical Context:**
+Provide brief relevant historical background for this passage
+
+**Sources:**
+Discuss specific sources Shakespeare drew on (Plutarch, Holinshed, etc.)
+
+**Literary Analysis:**
+Analysis with 2-3 citations from different centuries. MUST include one Marxist critic.
+
+**Critical Reception:**
+Scholarly perspectives on this passage
+
+**Similar phrases or themes in other plays:**
+3-4 thematic parallels from other Shakespeare plays
+
+**Pointers for Further Reading:**
+2-3 specific book recommendations with titles and years
 
 CRITICAL FORMATTING RULES:
 - CRITICAL: ALL book titles, play titles, article titles, film titles, and ANY media titles MUST be in <em>italics</em> - NEVER use quotation marks
