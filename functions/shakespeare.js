@@ -279,8 +279,8 @@ EXAMPLE FORMAT:
 <strong>Significance:</strong>
 [Why this matters in the context of <em>${currentPlayName}</em>, presented in essay style]`;
         }
-      } else if (level === 'fullfathomfive') {
-        systemPrompt = `You are providing exhaustive New Variorum Shakespeare-style commentary at the highest scholarly level. Your analysis must follow the EXACT format and citation style of Horace Howard Furness's New Variorum editions (1871-1919).
+              } else if (level === 'fullfathomfive') {
+          systemPrompt = `You are an expert Shakespearean scholar providing the most comprehensive and intense analysis possible.
 
 IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneName}). Always refer to this specific play and scene in your analysis.
 
