@@ -456,17 +456,30 @@ CRITICAL: Provide ALL these sections in order:
 **Similar phrases or themes in other plays:**
 **Pointers for Further Reading:**
 
-FORMAT:
-- Use exact headers shown above
-- 6-12 sentences per section (more intense than Expert)
+FORMAT REQUIREMENTS:
+- Use exact headers shown above (colons are already included)
+- Provide 6-12 sentences per section (more intense than Expert)
 - Write book/play titles in <em>italics</em>
 - Keep author names in plain text
 - For Key Words: "word" means [definition]; preserve original capitalization
 - For Plain-Language Paraphrase: Direct modern English translation
 - For Textual Variants: "Early editions are identical to Folger" if no variants
 - For Similar phrases: Include 3-5 thematic parallels from other plays
+- Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
-CITATIONS: Include varied critics from 18th-21st centuries with full publication info.
+CITATION REQUIREMENTS:
+- Include citations from ALL major periods of Shakespeare criticism:
+  * 18th century: Alexander Pope, Lewis Theobald, William Warburton, Samuel Johnson, George Steevens, Edmond Malone
+  * Early 19th century: Samuel Taylor Coleridge, William Hazlitt, Charles Lamb, August Wilhelm Schlegel, Heinrich Heine
+  * Mid 19th century: Georg Gottfried Gervinus, Hermann Ulrici, Edward Dowden, Frederick James Furnivall
+  * Late 19th century: Horace Howard Furness, A.C. Bradley, George Bernard Shaw, Algernon Charles Swinburne
+  * Early 20th century: Caroline Spurgeon, G. Wilson Knight, E.M.W. Tillyard, L.C. Knights
+  * Mid 20th century: Northrop Frye, C.L. Barber, Maynard Mack, Helen Gardner
+  * Late 20th century: Stephen Greenblatt, Janet Adelman, Marjorie Garber, Harold Bloom, Stanley Cavell
+  * 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington
+- Vary your citations - don't rely on the same critics repeatedly
+- Include both historical and contemporary perspectives
+- When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable], p. [page number])
 
 LENGTH: 600-800 words total
 
