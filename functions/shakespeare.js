@@ -158,45 +158,7 @@ EXAMPLE FORMAT:
 
 **Pointers for Further Reading:** Consider reading [Author Name's] <em>Book Title</em> (Year) for [specific point about the text].`;
 
-      } else if (level === 'expert') {
-        console.log('Expert level detected - using optimized single-call approach...');
-        
-        const expertPrompt = `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ALL these sections in order:
 
-**Textual Variants:** (if no variants: "Early editions are identical to Folger.")
-**Plain-Language Paraphrase:** (direct modern English translation)
-**Language and Rhetoric:** (brief etymological analysis, rhetorical figures, meter)
-**Synopsis:** (what this does in context)
-**Key Words & Glosses:** (key word definitions)
-**Historical Context:** (brief historical background)
-**Sources:** (Shakespeare's sources)
-**Literary Analysis:** (analysis with 2-3 citations, MUST include one Marxist critic)
-**Critical Reception:** (scholarly perspectives)
-**Similar phrases or themes in other plays:** (3-4 parallels)
-**Pointers for Further Reading:** (2-3 book recommendations)
-
-CRITICAL: Keep each section concise (3-5 sentences). Include all sections. Use exact headers shown.
-
-Analyze: "${text}"`;
-
-        const expertPayload = {
-          model: 'gpt-4',
-          messages: [
-            { role: 'system', content: expertPrompt },
-            { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
-          ],
-          temperature: 0.7,
-          max_tokens: 1500
-        };
-
-                  response = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${OPENAI_API_KEY}`,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(expertPayload)
-          });
       } else if (level === 'followup') {
         // Special follow-up prompt that gives direct answers in the style of the current tier
         const baseLevel = event.body ? JSON.parse(event.body).baseLevel || 'basic' : 'basic';
