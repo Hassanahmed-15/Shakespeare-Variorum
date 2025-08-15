@@ -404,7 +404,7 @@ Analyze: "${text}"`;
       } else if (level === 'fullfathomfive') {
         // Use Claude for Full Fathom Five
         modelConfig = {
-          model: 'claude-sonnet-4-20250514',
+          model: 'claude-3-5-sonnet-20241022',
           temperature: 0.7
         };
       }
@@ -474,7 +474,7 @@ Analyze: "${text}"`;
           
           // Use Claude API directly with system message
           const claudePayload = {
-            model: 'claude-sonnet-4-20250514',
+            model: 'claude-3-5-sonnet-20241022',
             max_tokens: 2000,
             messages: [
               { 
