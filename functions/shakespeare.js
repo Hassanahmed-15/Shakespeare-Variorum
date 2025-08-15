@@ -183,12 +183,15 @@ FORMAT REQUIREMENTS:
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
 CITATION REQUIREMENTS:
-- CRITICAL: Randomly sample scholars for citations, ensuring AT LEAST ONE from each century:
+- CRITICAL: Randomly sample scholars for citations, ensuring AT LEAST ONE from each century AND AT LEAST ONE from each of these approaches:
   * 18th century: Samuel Johnson, Alexander Pope, William Warburton, George Steevens, Edmond Malone, Lewis Theobald, Charlotte Lennox, Elizabeth Montagu, Thomas Warton, Joseph Ritson
   * 19th century: Samuel Taylor Coleridge, William Hazlitt, A.C. Bradley, Edward Dowden, Horace Howard Furness, Anna Jameson, Mary Cowden Clarke, Georg Brandes, Edward Strachey, Henry Hallam, Thomas Campbell, Charles Lamb
   * 20th century: G. Wilson Knight, Caroline Spurgeon, E.M.W. Tillyard, John Dover Wilson, Harley Granville-Barker, L.C. Knights, G.B. Harrison, Una Ellis-Fermor, John Bailey, Walter Raleigh, A.C. Swinburne, Harold Bloom, Northrop Frye, Helen Gardner, F.R. Leavis, William Empson, Kenneth Muir, Nevill Coghill, M.C. Bradbrook, J.L. Styan, Derek Traversi, L.G. Salingar, John Russell Brown, Stephen Greenblatt, Janet Adelman, Stanley Wells, Anne Barton, Jonathan Dollimore, Alan Sinfield, Catherine Belsey, Terence Hawkes, Jonathan Bate, Peter Erickson, Patricia Parker, Lynda Boose, Peter Stallybrass, Allon White
   * 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington, Michael Dobson, Tiffany Stern, Laurie Maguire, Peter Holland, Russ McDonald, Coppélia Kahn, Gail Kern Paster, Lena Cowen Orlin, Margreta de Grazia, Leah Marcus, Jean Howard, Phyllis Rackin, Bruce Smith, Valerie Traub, Dympna Callaghan, Lisa Jardine, Carol Thomas Neely, Marianne Novy, Ann Thompson, Marvin Rosenberg, Robert Weimann, W.W. Greg, Fredson Bowers, Charlton Hinman, Paul Werstine, Alan Stewart, Wendy Wall, Jan Kott, Grigori Kozintsev, Yukio Ninagawa
-- Then add 1-2 additional random selections from any century
+  * Performance Critics: Marvin Rosenberg, John Russell Brown, Robert Weimann, Harley Granville-Barker, J.L. Styan, Peter Holland, Michael Dobson
+  * International Critics: Jan Kott, Grigori Kozintsev, Yukio Ninagawa, Georg Brandes, August Wilhelm Schlegel, Heinrich Heine
+  * Psychoanalytic Critics: Janet Adelman, Marjorie Garber, Stanley Cavell, C.L. Barber, Maynard Mack, Leonard Tennenhouse
+- Then add 1-2 additional random selections from any century or approach
 - AVOID repeatedly citing the same few critics - sample randomly from the full range
 - When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable]) - DO NOT include page numbers
 - CRITICAL: Keep scholar names intact - NEVER insert words between first and last names (e.g., "Janet Adelman" not "Janet Also Adelman")
@@ -355,12 +358,15 @@ FORMAT REQUIREMENTS:
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
 CRITICAL CITATION REQUIREMENTS:
-- CRITICAL: Randomly sample scholars for citations, ensuring AT LEAST ONE from each century:
+- CRITICAL: Randomly sample scholars for citations, ensuring AT LEAST ONE from each century AND AT LEAST ONE from each of these approaches:
   * 18th century: Samuel Johnson, Alexander Pope, William Warburton, George Steevens, Edmond Malone, Lewis Theobald, Charlotte Lennox, Elizabeth Montagu, Thomas Warton, Joseph Ritson, Thomas Tyrwhitt
   * 19th century: Samuel Taylor Coleridge, William Hazlitt, A.C. Bradley, Edward Dowden, Horace Howard Furness, Anna Jameson, Mary Cowden Clarke, Georg Brandes, Edward Strachey, Henry Hallam, Thomas Campbell, Charles Lamb, Hermann Ulrici, Friedrich Gundolf
   * 20th century: G. Wilson Knight, Caroline Spurgeon, E.M.W. Tillyard, John Dover Wilson, Harley Granville-Barker, L.C. Knights, G.B. Harrison, Una Ellis-Fermor, John Bailey, Walter Raleigh, A.C. Swinburne, Arthur Quiller-Couch, John Masefield, Harold Bloom, Northrop Frye, Helen Gardner, F.R. Leavis, William Empson, Kenneth Muir, Nevill Coghill, M.C. Bradbrook, J.L. Styan, Derek Traversi, L.G. Salingar, John Russell Brown, Wolfgang Clemen, Robert Heilman, Stephen Greenblatt, Janet Adelman, Stanley Wells, Anne Barton, Jonathan Dollimore, Alan Sinfield, Catherine Belsey, Terence Hawkes, Jonathan Bate, Peter Erickson, Patricia Parker, Lynda Boose, Peter Stallybrass, Allon White, Leonard Tennenhouse, Mary Beth Rose
   * 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington, Michael Dobson, Tiffany Stern, Laurie Maguire, Peter Holland, Russ McDonald, Coppélia Kahn, Gail Kern Paster, Lena Cowen Orlin, Margreta de Grazia, Leah Marcus, Jean Howard, Phyllis Rackin, Bruce Smith, Valerie Traub, Dympna Callaghan, Lisa Jardine, Carol Thomas Neely, Marianne Novy, Ann Thompson, Marvin Rosenberg, Robert Weimann, W.W. Greg, Fredson Bowers, Charlton Hinman, Paul Werstine, Alan Stewart, Wendy Wall, Jan Kott, Grigori Kozintsev, Yukio Ninagawa
-- Then add 2-3 additional random selections from any century
+  * Performance Critics: Marvin Rosenberg, John Russell Brown, Robert Weimann, Harley Granville-Barker, J.L. Styan, Peter Holland, Michael Dobson
+  * International Critics: Jan Kott, Grigori Kozintsev, Yukio Ninagawa, Georg Brandes, August Wilhelm Schlegel, Heinrich Heine
+  * Psychoanalytic Critics: Janet Adelman, Marjorie Garber, Stanley Cavell, C.L. Barber, Maynard Mack, Leonard Tennenhouse
+- Then add 2-3 additional random selections from any century or approach
 - AVOID repeatedly citing the same few critics - sample randomly from the full range
 - When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable]) - DO NOT include page numbers
 - CRITICAL: Keep scholar names intact - NEVER insert words between first and last names (e.g., "Janet Adelman" not "Janet Also Adelman")
