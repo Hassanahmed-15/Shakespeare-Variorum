@@ -146,9 +146,9 @@ IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
+**Textual Variants:**
 **Plain-Language Paraphrase:**
 **Synopsis:**
-**Textual Variants:**
 **Key Words & Glosses:**
 **Historical Context:**
 **Sources:**
@@ -200,11 +200,11 @@ CITATION REQUIREMENTS:
 - CRITICAL: Always write "A.C. Bradley" exactly as shown - never "A. circa Bradley" or "A. C. Bradley"
 
 EXAMPLE FORMAT:
+**Textual Variants:** [variants or "Early editions are identical to Folger."]
+
 **Plain-Language Paraphrase:** [Direct modern English translation of the highlighted text].
 
 **Synopsis:** This language in ${currentPlayName} [what it does in context].
-
-**Textual Variants:** [variants or "Early editions are identical to Folger."]
 
 **Key Words & Glosses:** "word" means [definition]; "word" means [definition].
 
@@ -334,9 +334,9 @@ IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneNa
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
+**Textual Variants:**
 **Plain-Language Paraphrase:**
 **Synopsis:**
-**Textual Variants:**
 **Key Words & Glosses:**
 **Historical Context:**
 **Sources:**
