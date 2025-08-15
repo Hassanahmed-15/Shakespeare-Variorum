@@ -143,6 +143,7 @@ EXAMPLE FORMAT:
 
       } else if (level === 'expert') {
         console.log('Expert level detected - using comprehensive prompt with Textual Variants section');
+        console.log('DEBUG: Function version updated at', new Date().toISOString());
         systemPrompt = `You are an expert Shakespearean scholar with comprehensive knowledge of 500 years of Shakespeare scholarship.
 
 IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your analysis.
@@ -332,6 +333,7 @@ EXAMPLE FORMAT:
         }
               } else if (level === 'fullfathomfive') {
           console.log('Full Fathom Five level detected - using comprehensive prompt with Textual Variants and Language and Rhetoric sections');
+        console.log('DEBUG: Function version updated at', new Date().toISOString());
           systemPrompt = `You are an expert Shakespearean scholar providing the most comprehensive analysis possible.
 
 IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your analysis.
@@ -540,7 +542,8 @@ Analyze: "${text}"`;
             headers,
             body: JSON.stringify({
               error: 'Analysis timeout: The request took longer than 5 minutes to process. This may happen with very complex passages. Please try again or use a shorter text selection.',
-              details: data
+              details: data,
+              suggestion: 'Try using Expert level instead of Full Fathom Five for complex passages'
             })
           };
         }

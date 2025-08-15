@@ -3584,6 +3584,34 @@
             
             console.log('Mouseup event - selected text:', newSelectedText, 'length:', newSelectedText.length);
             
+            // Get context including speaker attribution
+            let contextualText = newSelectedText;
+            if (newSelectedText) {
+                try {
+                    const range = selection.getRangeAt(0);
+                    const container = range.commonAncestorContainer;
+                    
+                    // Find the speaker attribution by looking backwards for character names
+                    const textNode = container.nodeType === Node.TEXT_NODE ? container : container.querySelector('*');
+                    if (textNode && textNode.parentElement) {
+                        const parentText = textNode.parentElement.textContent;
+                        const selectedIndex = parentText.indexOf(newSelectedText);
+                        
+                        if (selectedIndex > 0) {
+                            // Look backwards for speaker attribution (CHARACTER: pattern)
+                            const beforeText = parentText.substring(0, selectedIndex);
+                            const speakerMatch = beforeText.match(/([A-Z][A-Z\s]+):\s*$/);
+                            if (speakerMatch) {
+                                contextualText = `${speakerMatch[1].trim()}: ${newSelectedText}`;
+                                console.log('Added speaker context:', contextualText);
+                            }
+                        }
+                    }
+                } catch (contextError) {
+                    console.warn('Could not add speaker context:', contextError);
+                }
+            }
+            
             // Check if selection is within the reading pane
             const readerElement = document.querySelector('.reader');
             if (!readerElement) {
@@ -3606,8 +3634,8 @@
                 }
             }
             
-            // Update selected text
-            selectedText = newSelectedText;
+            // Update selected text with context
+            selectedText = contextualText;
             console.log('Updated selectedText to:', selectedText, 'length:', selectedText.length);
             
             if (selectedText) {
@@ -3874,7 +3902,7 @@
                 // Full Fathom Five now uses regular API call like other levels
                 
                 // Try the redirect path first for other levels
-                let response = await fetch('/api/shakespeare', {
+                let response = await fetch('/api/shakespeare?v=' + Date.now(), {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -3891,7 +3919,7 @@
                 // If that fails, try the direct function path
                 if (!response.ok) {
                     console.log('Redirect failed, trying direct function path...');
-                    response = await fetch('/.netlify/functions/shakespeare', {
+                    response = await fetch('/.netlify/functions/shakespeare?v=' + Date.now(), {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
