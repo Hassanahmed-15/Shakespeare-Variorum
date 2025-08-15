@@ -583,14 +583,14 @@ Analyze: "${text}"`;
           };
         }
         
-                  return {
-            statusCode: response.status,
-            headers,
-            body: JSON.stringify({
-              error: `${level === 'fullfathomfive' ? 'Claude' : 'OpenAI'} API error: ${data.error?.message || 'Unknown error'}`,
-              details: data
-            })
-          };
+        return {
+          statusCode: response.status,
+          headers,
+          body: JSON.stringify({
+            error: `${level === 'fullfathomfive' ? 'Claude' : 'OpenAI'} API error: ${data.error?.message || 'Unknown error'}`,
+            details: data
+          })
+        };
       }
 
       // OpenAI API response format (Full Fathom Five returns early)
