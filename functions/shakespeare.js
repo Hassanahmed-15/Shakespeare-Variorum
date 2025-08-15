@@ -126,6 +126,8 @@ CITATION REQUIREMENTS:
 - Also consider: feminist critics (Lisa Jardine, Valerie Traub, Dympna Callaghan), performance critics (Marvin Rosenberg, John Russell Brown), textual critics (W.W. Greg, Fredson Bowers, Charlton Hinman), and international scholars
 - Vary your citations extensively - don't rely on the same critics repeatedly
 - When citing, provide full publication information: Author (*Title*, City: Publisher, Year) - DO NOT include page numbers
+- CRITICAL: Keep scholar names intact - NEVER insert words between first and last names (e.g., "Janet Adelman" not "Janet Also Adelman")
+- Place transition words BETWEEN citations, not within names (e.g., "Janet Adelman argues... Also, Stephen Greenblatt suggests...")
 
 EXAMPLE FORMAT:
 **Plain-Language Paraphrase:** This passage from ${currentPlayName} means [explanation in simple terms].
@@ -188,6 +190,8 @@ CITATION REQUIREMENTS:
 - Then add 1-2 additional random selections from any century
 - AVOID repeatedly citing the same few critics - sample randomly from the full range
 - When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable]) - DO NOT include page numbers
+- CRITICAL: Keep scholar names intact - NEVER insert words between first and last names (e.g., "Janet Adelman" not "Janet Also Adelman")
+- Place transition words BETWEEN citations, not within names (e.g., "Janet Adelman argues... Also, Stephen Greenblatt suggests...")
 
 EXAMPLE FORMAT:
 **Plain-Language Paraphrase:** [Direct modern English translation of the highlighted text].
@@ -357,6 +361,8 @@ CRITICAL CITATION REQUIREMENTS:
 - Then add 2-3 additional random selections from any century
 - AVOID repeatedly citing the same few critics - sample randomly from the full range
 - When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable]) - DO NOT include page numbers
+- CRITICAL: Keep scholar names intact - NEVER insert words between first and last names (e.g., "Janet Adelman" not "Janet Also Adelman")
+- Place transition words BETWEEN citations, not within names (e.g., "Janet Adelman argues... Also, Stephen Greenblatt suggests...")
 
 LENGTH: 800-1200 words total
 
