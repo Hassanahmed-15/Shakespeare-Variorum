@@ -439,7 +439,21 @@ Analyze: "${text}"`;
           
           const fullFathomFivePrompt = `Analyze this Shakespeare text: "${text}" from ${currentPlayName} (${currentSceneName}).
 
-Provide a comprehensive analysis of this passage.`;
+Please provide analysis in these 11 sections:
+
+**Textual Variants**
+**Plain-Language Paraphrase**
+**Language and Rhetoric**
+**Synopsis**
+**Key Words & Glosses**
+**Historical Context**
+**Sources**
+**Literary Analysis**
+**Critical Reception**
+**Similar phrases or themes in other plays**
+**Pointers for Further Reading**
+
+Use italics for book and play titles.`;
 
           const fullFathomFivePayload = {
             model: 'gpt-4o',
@@ -464,7 +478,21 @@ Provide a comprehensive analysis of this passage.`;
           
           const expertPrompt = `Analyze this Shakespeare text: "${text}" from ${currentPlayName} (${currentSceneName}).
 
-Provide a detailed analysis of this passage.`;
+Please provide analysis in these 11 sections:
+
+**Textual Variants**
+**Plain-Language Paraphrase**
+**Language and Rhetoric**
+**Synopsis**
+**Key Words & Glosses**
+**Historical Context**
+**Sources**
+**Literary Analysis**
+**Critical Reception**
+**Similar phrases or themes in other plays**
+**Pointers for Further Reading**
+
+Use italics for book and play titles.`;
 
           const expertPayload = {
             model: 'gpt-4',
