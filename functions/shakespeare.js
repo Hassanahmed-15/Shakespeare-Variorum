@@ -441,11 +441,9 @@ Analyze: "${text}"`;
           console.log('Full Fathom Five level detected, using clean Expert-style prompt...');
           
           // Clean Full Fathom Five prompt using Expert sections with ramped-up intensity
-          const fullFathomFivePrompt = `You are an expert Shakespearean scholar providing the most comprehensive analysis possible.
+          const fullFathomFivePrompt = `You are an expert Shakespearean scholar providing comprehensive analysis of "${playName}" (${sceneName}).
 
-IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneName}). Always refer to this specific play and scene in your analysis.
-
-CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
+CRITICAL: Provide ALL these sections in order:
 
 **Plain-Language Paraphrase:**
 **Synopsis:**
@@ -458,34 +456,19 @@ CRITICAL: You MUST provide responses for ALL of these sections in exactly this o
 **Similar phrases or themes in other plays:**
 **Pointers for Further Reading:**
 
-FORMAT REQUIREMENTS:
-- Start each section with the exact heading format shown above (colons are already included)
-- Provide 6-12 sentences for each section (more intense than Expert)
-- Use complete sentences and paragraphs
-- Write in the most scholarly, academic language possible
-- Include extensive critical citations and scholarly references from a BROAD range of critics
-- CRITICAL: Write ALL book titles, play titles, movie titles, films, novels, articles, and scholarly works in <em>italics</em>
-- NEVER use quotation marks for titles - always use <em>italics</em>
-- NEVER italicize author names - keep them in plain text
-- For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]". Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]. CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text.
-- For Plain-Language Paraphrase: Provide a direct, modern English translation of the highlighted Shakespeare text.
-- Always reference the specific play "${playName}" and scene "${sceneName}" in your analysis
+FORMAT:
+- Use exact headers shown above
+- 6-12 sentences per section (more intense than Expert)
+- Write book/play titles in <em>italics</em>
+- Keep author names in plain text
+- For Key Words: "word" means [definition]; preserve original capitalization
+- For Plain-Language Paraphrase: Direct modern English translation
+- For Textual Variants: "Early editions are identical to Folger" if no variants
+- For Similar phrases: Include 3-5 thematic parallels from other plays
 
-CRITICAL CITATION REQUIREMENTS:
-- Include citations from ALL major periods of Shakespeare criticism:
-  * 18th century: Alexander Pope, Lewis Theobald, William Warburton, Samuel Johnson, George Steevens, Edmond Malone
-  * Early 19th century: Samuel Taylor Coleridge, William Hazlitt, Charles Lamb, August Wilhelm Schlegel, Heinrich Heine
-  * Mid 19th century: Georg Gottfried Gervinus, Hermann Ulrici, Edward Dowden, Frederick James Furnivall
-  * Late 19th century: Horace Howard Furness, A.C. Bradley, George Bernard Shaw, Algernon Charles Swinburne
-  * Early 20th century: Caroline Spurgeon, G. Wilson Knight, E.M.W. Tillyard, L.C. Knights
-  * Mid 20th century: Northrop Frye, C.L. Barber, Maynard Mack, Helen Gardner
-  * Late 20th century: Stephen Greenblatt, Janet Adelman, Marjorie Garber, Harold Bloom, Stanley Cavell
-  * 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington
-- Vary your citations - don't rely on the same 2-3 critics repeatedly
-- Include both historical and contemporary perspectives
-- When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable], p. [page number])
+CITATIONS: Include varied critics from 18th-21st centuries with full publication info.
 
-LENGTH: 800-1200 words total
+LENGTH: 600-800 words total
 
 Analyze: "${text}"`;
           
@@ -496,7 +479,7 @@ Analyze: "${text}"`;
             messages: [
               { 
                 role: 'system', 
-                content: 'You are a Shakespeare scholar. You MUST provide ALL 7 sections requested. Do not skip any sections. Each section must be clearly marked with ### headers.' 
+                content: 'You are a Shakespeare scholar. You MUST provide ALL 10 sections requested. Do not skip any sections. Each section must be clearly marked with ** headers.' 
               },
               { role: 'user', content: fullFathomFivePrompt }
             ]
