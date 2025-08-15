@@ -93,6 +93,8 @@ exports.handler = async (event, context) => {
       console.log('Analysis structure for this level:', analysisStructure[level]);
       console.log('Current timestamp:', new Date().toISOString());
       console.log('Function file version: 2024-12-19 with Expert Language & Rhetoric');
+      console.log('EXPERT SECTIONS CHECK:', analysisStructure.expert);
+      console.log('EXPERT SHOULD HAVE:', ['Textual Variants', 'Language and Rhetoric']);
       
       if (level === 'basic') {
         systemPrompt = `You are a university professor speaking to very smart undergraduates about Shakespeare. 
@@ -159,6 +161,7 @@ EXAMPLE FORMAT:
         console.log('Expert level detected - using comprehensive prompt with Textual Variants section');
         console.log('DEBUG: Function version updated at', new Date().toISOString());
         console.log('DEBUG: Expert level sections should include Textual Variants and Language and Rhetoric');
+        console.log('UNIQUE ID: EXPERT_LANGUAGE_RHETORIC_FIX_2024_12_19');
         systemPrompt = `You are an expert Shakespearean scholar with comprehensive knowledge of 500 years of Shakespeare scholarship.
 
 IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your analysis.
@@ -464,6 +467,8 @@ Analyze: "${text}"`;
         console.log('DEBUG: Building payload for level:', level);
         console.log('DEBUG: System prompt length:', systemPrompt.length);
         console.log('DEBUG: System prompt preview:', systemPrompt.substring(0, 200) + '...');
+        console.log('DEBUG: System prompt contains Textual Variants:', systemPrompt.includes('Textual Variants'));
+        console.log('DEBUG: System prompt contains Language and Rhetoric:', systemPrompt.includes('Language and Rhetoric'));
         payload = {
           model: modelConfig.model,
           messages: [
