@@ -321,6 +321,63 @@
             text-decoration: underline;
         }
 
+        /* Progress display for multi-call analysis */
+        .analysis-progress {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--r-lg);
+            padding: var(--s-3);
+            margin-bottom: var(--s-4);
+        }
+
+        .analysis-progress h3 {
+            font: 600 16px Inter, system-ui;
+            color: var(--ink-1);
+            margin: 0 0 var(--s-2);
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            gap: var(--s-2);
+            padding: var(--s-2);
+            border-radius: var(--r-md);
+            margin-bottom: var(--s-1);
+        }
+
+        .progress-item.complete {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+        }
+
+        .progress-item.error {
+            background: #fef2f2;
+            border: 1px solid #ef4444;
+        }
+
+        .progress-number {
+            background: var(--accent);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .progress-name {
+            font: 500 14px Inter, system-ui;
+            color: var(--ink-1);
+            flex: 1;
+        }
+
+        .progress-status {
+            font: 500 14px Inter, system-ui;
+        }
+
         /* Settings layout + controls */
         .settings {
             display: grid;
@@ -3957,10 +4014,13 @@
                 if (data.choices && data.choices[0] && data.choices[0].message) {
                     const content = data.choices[0].message.content;
                     
-                    // Cache the analysis
-                    // Cache removed
-                    
-                    updateAnalysis(content, text);
+                    // Handle multi-call results for Full Fathom Five
+                    if (data.multiCall && data.callResults) {
+                        console.log('Multi-call results received:', data.callResults);
+                        updateAnalysisWithProgress(content, text, data.callResults);
+                    } else {
+                        updateAnalysis(content, text);
+                    }
                 } else if (data.error) {
                     throw new Error(data.error);
                 } else {
@@ -4070,6 +4130,37 @@
                 console.error('Full Fathom Five SSE error:', error);
                 const analysisContent = document.querySelector('.analysis-content');
                 analysisContent.innerHTML = '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+
+        function updateAnalysisWithProgress(content, selectedText, callResults) {
+            const analysisPanel = document.getElementById('analysisPanel');
+            if (!analysisPanel) return;
+
+            // Show progressive loading for multi-call results
+            let progressHtml = '<div class="analysis-progress">';
+            progressHtml += '<h3>Full Fathom Five Analysis Progress:</h3>';
+            
+            callResults.forEach((result, index) => {
+                const status = result.content.includes('Error') ? '❌ Failed' : '✅ Complete';
+                progressHtml += `<div class="progress-item ${status === '✅ Complete' ? 'complete' : 'error'}">`;
+                progressHtml += `<span class="progress-number">${index + 1}</span>`;
+                progressHtml += `<span class="progress-name">${result.name}</span>`;
+                progressHtml += `<span class="progress-status">${status}</span>`;
+                progressHtml += '</div>';
+            });
+            
+            progressHtml += '</div>';
+            
+            // Update the analysis content first
+            updateAnalysis(content, selectedText);
+            
+            // Add progress display above the analysis content
+            const analysisContent = document.querySelector('.analysis-content');
+            if (analysisContent) {
+                const progressDiv = document.createElement('div');
+                progressDiv.innerHTML = progressHtml;
+                analysisContent.insertBefore(progressDiv, analysisContent.firstChild);
             }
         }
 

@@ -493,32 +493,157 @@ Analyze: "${text}"`;
         console.log(`Starting API call for level: ${level}, text length: ${text.length}`);
         const startTime = Date.now();
         
-                // Handle Full Fathom Five with OpenAI (more reliable than Claude)
+                // Handle Full Fathom Five with multi-call approach
         if (level === 'fullfathomfive') {
-          console.log('Full Fathom Five level detected, using OpenAI GPT-4o...');
+          console.log('Full Fathom Five level detected, using multi-call approach...');
           
-          // Use the comprehensive prompt already defined above (DO NOT override)
-          // systemPrompt is already set correctly in the level detection section
-          
-          // Build payload for Full Fathom Five
-          const fullFathomFivePayload = {
-            model: modelConfig.model,
-            messages: [
-              { role: 'system', content: systemPrompt },
-              { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
-            ],
-            temperature: modelConfig.temperature
-          };
-          
-          // Make API call for Full Fathom Five
-          response = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${OPENAI_API_KEY}`,
-              'Content-Type': 'application/json'
+          // Multi-call approach for Full Fathom Five
+          const calls = [
+            {
+              name: 'Foundation',
+              prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these two sections:
+
+**Textual Variants:**
+- If no variants exist, state "Early editions are identical to Folger."
+- If variants exist, discuss Q1, Q2, F1 differences and editorial choices
+
+**Plain-Language Paraphrase:**
+- Direct modern English translation of: "${text}"
+- 4-6 sentences only
+
+Format: Use exact headers shown. Be concise.`,
+              sections: ['Textual Variants', 'Plain-Language Paraphrase']
             },
-            body: JSON.stringify(fullFathomFivePayload)
-          });
+            {
+              name: 'Linguistic Analysis',
+              prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these two sections:
+
+**Language and Rhetoric:**
+- Etymological analysis using 1914 OED for key words in: "${text}"
+- Rhetorical figures (metaphor, simile, alliteration, etc.) with examples
+- Meter and rhythm analysis (iambic pentameter, substitutions, etc.)
+- Include 1-2 scholarly citations
+
+**Synopsis:**
+- What this language does in the context of ${currentPlayName}
+- 4-6 sentences only
+
+Format: Use exact headers shown. Be concise.`,
+              sections: ['Language and Rhetoric', 'Synopsis']
+            },
+            {
+              name: 'Context and Sources',
+              prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these three sections:
+
+**Key Words & Glosses:**
+- Define key words from: "${text}"
+- Format: "word" means [definition]; "word" means [definition]
+- Use 1914 OED definitions
+
+**Historical Context:**
+- Relevant historical background for this passage
+- 4-6 sentences only
+
+**Sources:**
+- Specific sources Shakespeare drew on (Plutarch, Holinshed, etc.)
+- Include 1-2 scholarly citations
+
+Format: Use exact headers shown. Be concise.`,
+              sections: ['Key Words & Glosses', 'Historical Context', 'Sources']
+            },
+            {
+              name: 'Analysis and Reception',
+              prompt: `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide ONLY these four sections:
+
+**Literary Analysis:**
+- Detailed analysis of: "${text}"
+- Include 2-3 scholarly citations from different centuries
+- MUST include at least one Marxist critic (Terry Eagleton, Jonathan Dollimore, Alan Sinfield, Margot Heinemann, Kiernan Ryan, Walter Cohen, Alick West)
+
+**Critical Reception:**
+- Scholarly perspectives on this passage
+- Include 2-3 citations from different approaches
+
+**Similar phrases or themes in other plays:**
+- 3-4 thematic parallels from other Shakespeare plays
+- Format: 'Thematic parallel in [Play]: "[quote]" - [explanation]'
+
+**Pointers for Further Reading:**
+- 2-3 specific book recommendations with titles and years
+- Format: "Consider [Author's] <em>Book Title</em> (Year) for [specific point]"
+
+Format: Use exact headers shown. Be comprehensive.`,
+              sections: ['Literary Analysis', 'Critical Reception', 'Similar phrases or themes in other plays', 'Pointers for Further Reading']
+            }
+          ];
+
+          let fullAnalysis = '';
+          let callResults = [];
+
+          for (let i = 0; i < calls.length; i++) {
+            const call = calls[i];
+            console.log(`Making Full Fathom Five call ${i + 1}/${calls.length}: ${call.name}`);
+            
+            const callPayload = {
+              model: 'gpt-4o',
+              messages: [
+                { role: 'system', content: call.prompt },
+                { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
+              ],
+              temperature: 0.7
+            };
+
+            try {
+              const callResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                  'Authorization': `Bearer ${OPENAI_API_KEY}`,
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(callPayload)
+              });
+
+              if (!callResponse.ok) {
+                throw new Error(`Call ${i + 1} failed: ${callResponse.status}`);
+              }
+
+              const callData = await callResponse.json();
+              const callContent = callData.choices[0].message.content;
+              
+              callResults.push({
+                name: call.name,
+                content: callContent,
+                sections: call.sections
+              });
+
+              fullAnalysis += callContent + '\n\n';
+              console.log(`Call ${i + 1} completed successfully`);
+              
+            } catch (callError) {
+              console.error(`Call ${i + 1} failed:`, callError);
+              // Continue with remaining calls
+              callResults.push({
+                name: call.name,
+                content: `**Error in ${call.name}:** ${callError.message}`,
+                sections: call.sections
+              });
+            }
+          }
+
+          // Return the combined results
+          return {
+            statusCode: 200,
+            headers,
+            body: JSON.stringify({
+              choices: [{
+                message: {
+                  content: fullAnalysis
+                }
+              }],
+              callResults: callResults,
+              multiCall: true
+            })
+          };
         } else {
           // OpenAI API for Basic and Expert levels
           response = await fetch('https://api.openai.com/v1/chat/completions', {
