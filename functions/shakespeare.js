@@ -114,6 +114,15 @@ FORMAT REQUIREMENTS:
 - Use proper academic formatting
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
+CITATION REQUIREMENTS:
+- Include citations from major periods of Shakespeare criticism:
+  * 18th century: Samuel Johnson, Alexander Pope, William Warburton
+  * 19th century: Samuel Taylor Coleridge, William Hazlitt, A.C. Bradley
+  * 20th century: G. Wilson Knight, Caroline Spurgeon, Harold Bloom
+  * 21st century: Stephen Greenblatt, Emma Smith, James Shapiro
+- Vary your citations - don't rely on the same critics repeatedly
+- When citing, provide full publication information: Author (*Title*, City: Publisher, Year, p. [page number])
+
 EXAMPLE FORMAT:
 **Plain-Language Paraphrase:** This passage from ${playName} means [explanation in simple terms].
 
@@ -165,6 +174,16 @@ FORMAT REQUIREMENTS:
 - For Plain-Language Paraphrase: Provide a direct, modern English translation of the highlighted Shakespeare text. Translate the passage into clear, contemporary language that captures the meaning. Do not include thematic analysis, cross-references to other plays, or scholarly commentary - just a straightforward translation.
 - For Sources: Identify specific sources Shakespeare drew on for plot, character, or content. Include primary sources (Plutarch's Lives, Holinshed's Chronicles, North's translation), earlier plays he adapted (Kyd's Spanish Tragedy, Marlowe's works), contemporary works, classical sources, medieval romances, or other influences. Explain how Shakespeare transformed or adapted these sources.
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
+
+CITATION REQUIREMENTS:
+- Include citations from major periods of Shakespeare criticism:
+  * 18th century: Samuel Johnson, Alexander Pope, William Warburton, George Steevens, Edmond Malone
+  * 19th century: Samuel Taylor Coleridge, William Hazlitt, A.C. Bradley, Edward Dowden, Horace Howard Furness
+  * 20th century: G. Wilson Knight, Caroline Spurgeon, Harold Bloom, Stephen Greenblatt, Janet Adelman
+  * 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington
+- Vary your citations - don't rely on the same critics repeatedly
+- Include both historical and contemporary perspectives
+- When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable], p. [page number])
 
 EXAMPLE FORMAT:
 **Plain-Language Paraphrase:** [Direct modern English translation of the highlighted text].
