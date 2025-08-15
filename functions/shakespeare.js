@@ -477,66 +477,35 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
         if (level === 'fullfathomfive') {
           console.log('Full Fathom Five level detected, using simplified prompt...');
           
-          // Full Fathom Five system prompt - MUST include ALL sections
-          const fullFathomFivePrompt = `You are a Shakespeare scholar providing a comprehensive analysis. You MUST provide ALL sections listed below.
+          // Simplified Full Fathom Five prompt
+          const fullFathomFivePrompt = `Analyze this Shakespeare text: "${text}" from ${playName} (${sceneName}).
 
-CONTEXT: Analyzing "${text}" from ${playName} (${sceneName}).
-
-CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
+Provide a scholarly analysis with these 7 sections:
 
 ## FULL FATHOM FIVE Analysis: "${text}" (${playName} ${sceneName})
 
 ### CRITICAL PERSPECTIVES
-Provide 2-3 key interpretations from major critics with brief citations. Include critics like Johnson, Coleridge, Hazlitt, or modern scholars.
+2-3 key interpretations from major critics.
 
 ### PERFORMANCE TRADITION
-Provide 1-2 notable actor interpretations. Mention how actors like Garrick, Kemble, or modern performers have delivered this line.
+1-2 notable actor interpretations.
 
 ### SOURCES
-Briefly mention any known sources (Holinshed, Plutarch, etc.) or note if Shakespeare appears to have invented this material.
+Brief mention of any known sources.
 
 ### WORD STUDY
-Provide brief definitions of key words from the text, preserving the exact capitalization as it appears in the original.
+Brief definitions of key words.
 
 ### SHAKESPEAREAN ECHOES
-Provide 1 similar passage from another Shakespeare play if relevant, or note if no clear parallel exists.
+1 similar passage from another play.
 
 ### DRAMATIC PURPOSE
-Explain how this passage functions in the immediate scene and broader play structure.
+How this passage functions in the scene and play.
 
 ### CONCLUSION
-Provide a concise summary of the passage's significance and meaning.
+Summary of the passage's significance.
 
-LENGTH: 400-500 words total
-TONE: Scholarly but clear. Use <em>italics</em> for titles.
-
-CRITICAL: You MUST include ALL 7 sections above. Do not skip any sections.
-
-REQUIRED STRUCTURE - COPY EXACTLY:
-## FULL FATHOM FIVE Analysis: "${text}" (${playName} ${sceneName})
-
-### CRITICAL PERSPECTIVES
-[Your content here]
-
-### PERFORMANCE TRADITION
-[Your content here]
-
-### SOURCES
-[Your content here]
-
-### WORD STUDY
-[Your content here]
-
-### SHAKESPEAREAN ECHOES
-[Your content here]
-
-### DRAMATIC PURPOSE
-[Your content here]
-
-### CONCLUSION
-[Your content here]
-
-Analyze: "${text}"`;
+Use <em>italics</em> for titles. 400-500 words total.`;
           
           // Use Claude API directly with system message
           const claudePayload = {
