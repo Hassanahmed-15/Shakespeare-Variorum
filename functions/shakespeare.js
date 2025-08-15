@@ -52,9 +52,9 @@ exports.handler = async (event, context) => {
         ],
 
         expert: [
+          'Textual Variants',
           'Plain-Language Paraphrase',
           'Synopsis',
-          'Textual Variants',
           'Key Words & Glosses',
           'Historical Context',
           'Sources',
@@ -64,9 +64,10 @@ exports.handler = async (event, context) => {
           'Pointers for Further Reading'
         ],
         fullfathomfive: [
-          'Plain-Language Paraphrase',
-          'Synopsis',
           'Textual Variants',
+          'Plain-Language Paraphrase',
+          'Language and Rhetoric',
+          'Synopsis',
           'Key Words & Glosses',
           'Historical Context',
           'Sources',
@@ -152,6 +153,7 @@ CRITICAL: You MUST provide responses for ALL of these sections in exactly this o
 
 **Textual Variants:**
 **Plain-Language Paraphrase:**
+**Language and Rhetoric:**
 **Synopsis:**
 **Key Words & Glosses:**
 **Historical Context:**
@@ -179,6 +181,7 @@ FORMAT REQUIREMENTS:
 - Always write "A.C. Bradley" (not "A. circa Bradley" or "A. C. Bradley")
 - Use proper academic formatting
 - For Textual Variants: If no variants exist, state "Early editions are identical to Folger."
+- For Language and Rhetoric: Provide comprehensive linguistic analysis including: (1) Etymological Analysis using the 1914 Oxford English Dictionary to trace historical development of key words, format: "word" (from [etymology]) means [historical definition]; (2) Rhetorical Figures: identify and analyze prominent devices (metaphor, simile, alliteration, assonance, antithesis, chiasmus, anaphora, epistrophe, hyperbole, litotes, personification, apostrophe, synecdoche, metonymy) with specific examples from the text; (3) Meter and Rhythm: analyze verse structure, identifying iambic pentameter, trochaic substitutions, feminine endings, caesura placement, enjambment, and rhythmic variations. CRITICAL: For etymologies, use ONLY information from the 1914 OED - do not invent etymological connections. Include scholarly citations for rhetorical and metrical analysis.
 - Include scholarly references and critical perspectives
 - For Key Words & Glosses: Use the 1914 Oxford English Dictionary (OED) for definitions, Arden critical notes for contextual meanings, and A Shakespeare Glossary (Oxford: Clarendon Press, 1911) for Shakespeare-specific usage. Use simple format "[word] means [definition]; [word] means [definition]" - do not include parts of speech or citations. Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]. CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text - if a word is capitalized in the original, keep it capitalized; if it's lowercase, keep it lowercase. DO NOT capitalize words unless they are capitalized in the original Shakespeare text. CRITICAL: Keep each word definition on its own line. Do not add extra explanations or context after the definition - just the word and its meaning.
 - For Similar phrases or themes in other plays: Include 3-5 thematically related passages from other Shakespeare plays. Find passages that share: similar imagery, parallel themes, echoed language, or comparable dramatic situations. Explain the literary connection. Format: 'Thematic parallel in [Play] (Act.Scene if known): "[quote]" - [explanation of connection]'. When finding similar passages, search for: exact phrase repetitions, parallel metaphors (life as theater, time as thief, love as madness), similar imagery clusters (darkness/light, storm/calm, garden/wilderness), rhetorical patterns (questions, lists, paradoxes), and recurring themes (appearance vs reality, order vs chaos, nature vs nurture).
@@ -187,7 +190,7 @@ FORMAT REQUIREMENTS:
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
 CITATION REQUIREMENTS:
-- CRITICAL: Randomly sample scholars for citations, ensuring AT LEAST ONE from each century AND AT LEAST ONE from each of these approaches:
+- CRITICAL: Randomly sample scholars for citations, ensuring AT LEAST ONE from each century AND AT LEAST ONE from each of these approaches. YOU MUST include at least one Marxist critic:
   * 18th century: Samuel Johnson, Alexander Pope, William Warburton, George Steevens, Edmond Malone, Lewis Theobald, Charlotte Lennox, Elizabeth Montagu, Thomas Warton, Joseph Ritson
   * 19th century: Samuel Taylor Coleridge, William Hazlitt, A.C. Bradley, Edward Dowden, Horace Howard Furness, Anna Jameson, Mary Cowden Clarke, Georg Brandes, Edward Strachey, Henry Hallam, Thomas Campbell, Charles Lamb
   * 20th century: G. Wilson Knight, Caroline Spurgeon, E.M.W. Tillyard, John Dover Wilson, Harley Granville-Barker, L.C. Knights, G.B. Harrison, Una Ellis-Fermor, John Bailey, Walter Raleigh, A.C. Swinburne, Harold Bloom, Northrop Frye, Helen Gardner, F.R. Leavis, William Empson, Kenneth Muir, Nevill Coghill, M.C. Bradbrook, J.L. Styan, Derek Traversi, L.G. Salingar, John Russell Brown, Stephen Greenblatt, Janet Adelman, Stanley Wells, Anne Barton, Jonathan Dollimore, Alan Sinfield, Catherine Belsey, Terence Hawkes, Jonathan Bate, Peter Erickson, Patricia Parker, Lynda Boose, Peter Stallybrass, Allon White, Terry Eagleton, Margot Heinemann, Kiernan Ryan, Walter Cohen
@@ -207,6 +210,8 @@ EXAMPLE FORMAT:
 **Textual Variants:** [variants or "Early editions are identical to Folger."]
 
 **Plain-Language Paraphrase:** [Direct modern English translation of the highlighted text].
+
+**Language and Rhetoric:** [etymological analysis, rhetorical figures, and metrical analysis].
 
 **Synopsis:** This language in ${currentPlayName} [what it does in context].
 
