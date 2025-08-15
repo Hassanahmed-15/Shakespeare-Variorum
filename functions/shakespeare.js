@@ -459,7 +459,7 @@ CRITICAL: Provide ALL these sections in order:
 FORMAT:
 - Use exact headers shown above
 - 6-12 sentences per section (more intense than Expert)
-- Write book/play titles in <em>italics</em>
+- CRITICAL: ALWAYS italicize ALL book titles, play titles, article titles, film titles, and other media using <em>italics</em> - NEVER use quotes
 - Keep author names in plain text
 - For Key Words: "word" means [definition]; preserve original capitalization
 - For Plain-Language Paraphrase: Direct modern English translation
