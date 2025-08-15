@@ -253,7 +253,8 @@ Format: Use exact headers shown. Be comprehensive.`,
               { role: 'system', content: call.prompt },
               { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
             ],
-            temperature: 0.7
+            temperature: 0.7,
+            max_tokens: 800 // Limit response length to speed up calls
           };
 
           try {
@@ -263,7 +264,8 @@ Format: Use exact headers shown. Be comprehensive.`,
                 'Authorization': `Bearer ${OPENAI_API_KEY}`,
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify(callPayload)
+              body: JSON.stringify(callPayload),
+              signal: AbortSignal.timeout(30000) // 30 second timeout per call
             });
 
             if (!callResponse.ok) {
@@ -559,6 +561,47 @@ Analyze: "${text}"`;
         if (level === 'fullfathomfive') {
           console.log('Full Fathom Five level detected, using multi-call approach...');
           
+          // Check if text is too long for multi-call approach
+          if (text.length > 2000) {
+            console.log('Text too long for multi-call, using single call approach...');
+            // Fall back to single call for long texts
+            const singleCallPrompt = `You are analyzing "${currentPlayName}" (${currentSceneName}). Provide a concise analysis with these sections:
+
+**Textual Variants:** (if no variants: "Early editions are identical to Folger.")
+**Plain-Language Paraphrase:** (direct translation)
+**Language and Rhetoric:** (brief etymological and rhetorical analysis)
+**Synopsis:** (what this does in context)
+**Key Words & Glosses:** (key word definitions)
+**Historical Context:** (brief historical background)
+**Sources:** (Shakespeare's sources)
+**Literary Analysis:** (brief analysis with 1-2 citations)
+**Critical Reception:** (brief scholarly perspectives)
+**Similar phrases or themes in other plays:** (2-3 parallels)
+**Pointers for Further Reading:** (2-3 book recommendations)
+
+Analyze: "${text}"`;
+
+            const singleCallPayload = {
+              model: 'gpt-4o',
+              messages: [
+                { role: 'system', content: singleCallPrompt },
+                { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
+              ],
+              temperature: 0.7,
+              max_tokens: 1200
+            };
+
+            response = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${OPENAI_API_KEY}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(singleCallPayload),
+              signal: AbortSignal.timeout(45000) // 45 second timeout
+            });
+          } else {
+          
           // Multi-call approach for Full Fathom Five
           const calls = [
             {
@@ -642,55 +685,57 @@ Format: Use exact headers shown. Be comprehensive.`,
           let fullAnalysis = '';
           let callResults = [];
 
-          for (let i = 0; i < calls.length; i++) {
-            const call = calls[i];
-            console.log(`Making Full Fathom Five call ${i + 1}/${calls.length}: ${call.name}`);
-            
-            const callPayload = {
-              model: 'gpt-4o',
-              messages: [
-                { role: 'system', content: call.prompt },
-                { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
-              ],
-              temperature: 0.7
-            };
+                  for (let i = 0; i < calls.length; i++) {
+          const call = calls[i];
+          console.log(`Making Full Fathom Five call ${i + 1}/${calls.length}: ${call.name}`);
+          
+          const callPayload = {
+            model: 'gpt-4o',
+            messages: [
+              { role: 'system', content: call.prompt },
+              { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
+            ],
+            temperature: 0.7,
+            max_tokens: 800 // Limit response length to speed up calls
+          };
 
-            try {
-              const callResponse = await fetch('https://api.openai.com/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                  'Authorization': `Bearer ${OPENAI_API_KEY}`,
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(callPayload)
-              });
+          try {
+            const callResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${OPENAI_API_KEY}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(callPayload),
+              signal: AbortSignal.timeout(30000) // 30 second timeout per call
+            });
 
-              if (!callResponse.ok) {
-                throw new Error(`Call ${i + 1} failed: ${callResponse.status}`);
-              }
-
-              const callData = await callResponse.json();
-              const callContent = callData.choices[0].message.content;
-              
-              callResults.push({
-                name: call.name,
-                content: callContent,
-                sections: call.sections
-              });
-
-              fullAnalysis += callContent + '\n\n';
-              console.log(`Call ${i + 1} completed successfully`);
-              
-            } catch (callError) {
-              console.error(`Call ${i + 1} failed:`, callError);
-              // Continue with remaining calls
-              callResults.push({
-                name: call.name,
-                content: `**Error in ${call.name}:** ${callError.message}`,
-                sections: call.sections
-              });
+            if (!callResponse.ok) {
+              throw new Error(`Call ${i + 1} failed: ${callResponse.status}`);
             }
+
+            const callData = await callResponse.json();
+            const callContent = callData.choices[0].message.content;
+            
+            callResults.push({
+              name: call.name,
+              content: callContent,
+              sections: call.sections
+            });
+
+            fullAnalysis += callContent + '\n\n';
+            console.log(`Call ${i + 1} completed successfully`);
+            
+          } catch (callError) {
+            console.error(`Call ${i + 1} failed:`, callError);
+            // Continue with remaining calls
+            callResults.push({
+              name: call.name,
+              content: `**Error in ${call.name}:** ${callError.message}`,
+              sections: call.sections
+            });
           }
+        }
 
           // Return the combined results
           return {
@@ -706,8 +751,9 @@ Format: Use exact headers shown. Be comprehensive.`,
               multiCall: true
             })
           };
-        } else {
-          // OpenAI API for Basic and Expert levels
+        }
+      } else {
+        // OpenAI API for Basic and Expert levels
           response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {
