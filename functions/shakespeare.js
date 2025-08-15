@@ -128,6 +128,7 @@ CITATION REQUIREMENTS:
 - When citing, provide full publication information: Author (*Title*, City: Publisher, Year) - DO NOT include page numbers
 - CRITICAL: Keep scholar names intact - NEVER insert words between first and last names (e.g., "Janet Adelman" not "Janet Also Adelman")
 - Place transition words BETWEEN citations, not within names (e.g., "Janet Adelman argues... Also, Stephen Greenblatt suggests...")
+- CRITICAL: Always write "A.C. Bradley" exactly as shown - never "A. circa Bradley" or "A. C. Bradley"
 
 EXAMPLE FORMAT:
 **Plain-Language Paraphrase:** This passage from ${currentPlayName} means [explanation in simple terms].
@@ -192,6 +193,7 @@ CITATION REQUIREMENTS:
 - When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable]) - DO NOT include page numbers
 - CRITICAL: Keep scholar names intact - NEVER insert words between first and last names (e.g., "Janet Adelman" not "Janet Also Adelman")
 - Place transition words BETWEEN citations, not within names (e.g., "Janet Adelman argues... Also, Stephen Greenblatt suggests...")
+- CRITICAL: Always write "A.C. Bradley" exactly as shown - never "A. circa Bradley" or "A. C. Bradley"
 
 EXAMPLE FORMAT:
 **Plain-Language Paraphrase:** [Direct modern English translation of the highlighted text].
@@ -363,6 +365,7 @@ CRITICAL CITATION REQUIREMENTS:
 - When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable]) - DO NOT include page numbers
 - CRITICAL: Keep scholar names intact - NEVER insert words between first and last names (e.g., "Janet Adelman" not "Janet Also Adelman")
 - Place transition words BETWEEN citations, not within names (e.g., "Janet Adelman argues... Also, Stephen Greenblatt suggests...")
+- CRITICAL: Always write "A.C. Bradley" exactly as shown - never "A. circa Bradley" or "A. C. Bradley"
 
 LENGTH: 800-1200 words total
 
