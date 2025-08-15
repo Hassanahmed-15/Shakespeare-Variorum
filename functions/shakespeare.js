@@ -437,7 +437,7 @@ Analyze: "${text}"`;
         }
       } else {
         // For Expert and Full Fathom Five, systemPrompt is not used
-        console.log('DEBUG: Expert/FFF level - using inline prompts');
+        console.log('DEBUG: Expert/FFF level - using inline prompts - FIXED RESPONSE VARIABLE');
       }
 
       let response, data;
