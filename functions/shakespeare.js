@@ -124,9 +124,9 @@ CITATION REQUIREMENTS:
 - When citing, provide full publication information: Author (*Title*, City: Publisher, Year, p. [page number])
 
 EXAMPLE FORMAT:
-**Plain-Language Paraphrase:** This passage from ${playName} means [explanation in simple terms].
+**Plain-Language Paraphrase:** This passage from ${currentPlayName} means [explanation in simple terms].
 
-**Synopsis:** This language in ${playName} [what it does in context].
+**Synopsis:** This language in ${currentPlayName} [what it does in context].
 
 **Key Words & Glosses:** "word" means [definition]; "word" means [definition].
 
@@ -135,7 +135,7 @@ EXAMPLE FORMAT:
       } else if (level === 'expert') {
         systemPrompt = `You are an expert Shakespearean scholar with comprehensive knowledge of 500 years of Shakespeare scholarship.
 
-IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneName}). Always refer to this specific play and scene in your analysis.
+IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your analysis.
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
@@ -342,7 +342,7 @@ FORMAT REQUIREMENTS:
 - NEVER italicize author names - keep them in plain text
 - For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]". Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]. CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text.
 - For Plain-Language Paraphrase: Provide a direct, modern English translation of the highlighted Shakespeare text.
-- Always reference the specific play "${playName}" and scene "${sceneName}" in your analysis
+- Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
 CRITICAL CITATION REQUIREMENTS:
 - Include citations from ALL major periods of Shakespeare criticism:
