@@ -466,44 +466,8 @@ Analyze: "${text}"`;
         if (level === 'fullfathomfive') {
           console.log('Full Fathom Five level detected, using OpenAI GPT-4o...');
           
-          // Use a simplified but comprehensive prompt for Full Fathom Five
-          systemPrompt = `You are an expert Shakespearean scholar providing comprehensive analysis of "${currentPlayName}" (${currentSceneName}).
-
-CRITICAL: Provide ALL these sections in order:
-
-**Plain-Language Paraphrase:**
-**Synopsis:**
-**Textual Variants:**
-**Key Words & Glosses:**
-**Historical Context:**
-**Sources:**
-**Literary Analysis:**
-**Critical Reception:**
-**Similar phrases or themes in other plays:**
-**Pointers for Further Reading:**
-
-FORMAT:
-- Use exact headers shown above
-- 6-12 sentences per section (more intense than Expert)
-- CRITICAL: ALWAYS italicize ALL book titles, play titles, article titles, film titles, and other media using <em>italics</em> - NEVER use quotes
-- Keep author names in plain text
-- For Key Words: "word" means [definition]; preserve original capitalization
-- For Plain-Language Paraphrase: Direct modern English translation
-- For Textual Variants: "Early editions are identical to Folger" if no variants
-- For Similar phrases: Include 3-5 thematic parallels from other plays
-
-CITATIONS: CRITICAL - Draw from a BROAD range of Shakespeare scholarship across all periods:
-- 18th century: Samuel Johnson, Alexander Pope, William Warburton, George Steevens, Edmond Malone, Lewis Theobald, Charlotte Lennox, Elizabeth Montagu, Thomas Warton, Joseph Ritson, Thomas Tyrwhitt
-- 19th century: Samuel Taylor Coleridge, William Hazlitt, A.C. Bradley, Edward Dowden, Horace Howard Furness, Anna Jameson, Mary Cowden Clarke, Georg Brandes, Edward Strachey, Henry Hallam, Thomas Campbell, Charles Lamb, Hermann Ulrici, Friedrich Gundolf
-- Early 20th century: G. Wilson Knight, Caroline Spurgeon, E.M.W. Tillyard, John Dover Wilson, Harley Granville-Barker, L.C. Knights, G.B. Harrison, Una Ellis-Fermor, John Bailey, Walter Raleigh, A.C. Swinburne, Arthur Quiller-Couch, John Masefield
-- Mid 20th century: Harold Bloom, Northrop Frye, Helen Gardner, F.R. Leavis, William Empson, Kenneth Muir, Nevill Coghill, M.C. Bradbrook, J.L. Styan, Derek Traversi, L.G. Salingar, John Russell Brown, Wolfgang Clemen, Robert Heilman
-- Late 20th century: Stephen Greenblatt, Janet Adelman, Stanley Wells, Anne Barton, Jonathan Dollimore, Alan Sinfield, Catherine Belsey, Terence Hawkes, Jonathan Bate, Peter Erickson, Patricia Parker, Lynda Boose, Peter Stallybrass, Allon White, Leonard Tennenhouse, Mary Beth Rose
-- 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington, Michael Dobson, Tiffany Stern, Laurie Maguire, Peter Holland, Russ McDonald, Coppélia Kahn, Gail Kern Paster, Lena Cowen Orlin, Margreta de Grazia, Leah Marcus, Jean Howard, Phyllis Rackin, Bruce Smith, Valerie Traub, Dympna Callaghan, Lisa Jardine, Carol Thomas Neely, Marianne Novy, Ann Thompson, Marvin Rosenberg, Robert Weimann, W.W. Greg, Fredson Bowers, Charlton Hinman, Paul Werstine, Alan Stewart, Wendy Wall, Jan Kott, Grigori Kozintsev, Yukio Ninagawa
-- AVOID repeatedly citing the same few critics - vary extensively across all periods and approaches
-
-LENGTH: 600-800 words total
-
-Analyze: "${text}"`;
+          // Use the comprehensive prompt already defined above (DO NOT override)
+          // systemPrompt is already set correctly in the level detection section
           
           // Build payload for Full Fathom Five
           const fullFathomFivePayload = {
