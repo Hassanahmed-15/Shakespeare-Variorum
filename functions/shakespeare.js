@@ -459,6 +459,11 @@ CRITICAL FORMATTING RULES:
 - CRITICAL: Use exact headers shown above - do not change them
 - CRITICAL: Plain-Language Paraphrase should be a simple translation, NOT meter analysis
 - CRITICAL: Meter analysis belongs ONLY in Language and Rhetoric section
+- CRITICAL: Each bullet point (-) must be on its own separate line - NEVER enjamb multiple points on one line
+- CRITICAL: Sub-headers (like "Etymological Analysis:", "Rhetorical Figures:", "Meter Analysis:") must be on separate lines - NEVER enjamb with previous text
+- CRITICAL: Sub-sub-headers (like "Apostrophe:", "Antonomasia:") must be in <em>italics</em> - NEVER bold
+- CRITICAL: Always write "A.C. Bradley" exactly as shown - never "A.circa Bradley" or "A. C. Bradley"
+- CRITICAL: Remove extra colons from main section headers - use "Language and Rhetoric" not "Language and Rhetoric:"
 
 Analyze: "${text}"`;
 
@@ -505,6 +510,11 @@ CRITICAL FORMATTING RULES:
 - CRITICAL: Use exact headers shown above - do not change them
 - CRITICAL: Plain-Language Paraphrase should be a simple translation, NOT meter analysis
 - CRITICAL: Meter analysis belongs ONLY in Language and Rhetoric section
+- CRITICAL: Each bullet point (-) must be on its own separate line - NEVER enjamb multiple points on one line
+- CRITICAL: Sub-headers (like "Etymological Analysis:", "Rhetorical Figures:", "Meter Analysis:") must be on separate lines - NEVER enjamb with previous text
+- CRITICAL: Sub-sub-headers (like "Apostrophe:", "Antonomasia:") must be in <em>italics</em> - NEVER bold
+- CRITICAL: Always write "A.C. Bradley" exactly as shown - never "A.circa Bradley" or "A. C. Bradley"
+- CRITICAL: Remove extra colons from main section headers - use "Language and Rhetoric" not "Language and Rhetoric:"
 - CRITICAL: Keep each section concise (3-5 sentences)
 
 Analyze: "${text}"`;
