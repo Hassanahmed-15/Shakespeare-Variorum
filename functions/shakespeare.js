@@ -439,18 +439,18 @@ Analyze: "${text}"`;
           
           const fullFathomFivePrompt = `You are analyzing "${currentPlayName}" (${currentSceneName}). 
 
-CRITICAL SECTION ORDER - YOU MUST FOLLOW THIS EXACT ORDER:
-1. **Textual Variants:** (if no variants: "Early editions are identical to Folger.")
-2. **Plain-Language Paraphrase:** (DIRECT modern English translation of the Shakespeare text - NOT meter analysis)
-3. **Language and Rhetoric:** (etymological analysis using 1914 OED, rhetorical figures, AND meter analysis)
-4. **Synopsis:** (what this does in context)
-5. **Key Words & Glosses:** (key word definitions)
-6. **Historical Context:** (historical background)
-7. **Sources:** (Shakespeare's sources)
-8. **Literary Analysis:** (detailed analysis with 3-4 citations from different centuries, MUST include one Marxist critic)
-9. **Critical Reception:** (scholarly perspectives with citations)
-10. **Similar phrases or themes in other plays:** (4-5 thematic parallels)
-11. **Pointers for Further Reading:** (3-4 book recommendations)
+MANDATORY SECTION ORDER - VIOLATION WILL RESULT IN ERROR:
+SECTION 1: **Textual Variants** - ONLY: "Early editions are identical to Folger." (if no variants exist)
+SECTION 2: **Plain-Language Paraphrase** - ONLY: Direct modern English translation of the Shakespeare text. NO meter analysis. NO book recommendations. ONLY translation.
+SECTION 3: **Language and Rhetoric** - ONLY: Etymological analysis, rhetorical figures, AND meter analysis
+SECTION 4: **Synopsis** - ONLY: What this does in context
+SECTION 5: **Key Words & Glosses** - ONLY: Key word definitions
+SECTION 6: **Historical Context** - ONLY: Historical background
+SECTION 7: **Sources** - ONLY: Shakespeare's sources
+SECTION 8: **Literary Analysis** - ONLY: Detailed analysis with 3-4 citations from different centuries, MUST include one Marxist critic
+SECTION 9: **Critical Reception** - ONLY: Scholarly perspectives with citations
+SECTION 10: **Similar phrases or themes in other plays** - ONLY: 4-5 thematic parallels
+SECTION 11: **Pointers for Further Reading** - ONLY: 3-4 book recommendations
 
 CRITICAL FORMATTING RULES:
 - CRITICAL: ALL book titles, play titles, article titles, film titles, and ANY media titles MUST be in <em>italics</em> - NEVER use quotation marks
@@ -490,18 +490,18 @@ Analyze: "${text}"`;
           
           const expertPrompt = `You are analyzing "${currentPlayName}" (${currentSceneName}). 
 
-CRITICAL SECTION ORDER - YOU MUST FOLLOW THIS EXACT ORDER:
-1. **Textual Variants:** (if no variants: "Early editions are identical to Folger.")
-2. **Plain-Language Paraphrase:** (DIRECT modern English translation of the Shakespeare text - NOT meter analysis)
-3. **Language and Rhetoric:** (brief etymological analysis, rhetorical figures, AND meter)
-4. **Synopsis:** (what this does in context)
-5. **Key Words & Glosses:** (key word definitions)
-6. **Historical Context:** (brief historical background)
-7. **Sources:** (Shakespeare's sources)
-8. **Literary Analysis:** (analysis with 2-3 citations, MUST include one Marxist critic)
-9. **Critical Reception:** (scholarly perspectives)
-10. **Similar phrases or themes in other plays:** (3-4 parallels)
-11. **Pointers for Further Reading:** (2-3 book recommendations)
+MANDATORY SECTION ORDER - VIOLATION WILL RESULT IN ERROR:
+SECTION 1: **Textual Variants** - ONLY: "Early editions are identical to Folger." (if no variants exist)
+SECTION 2: **Plain-Language Paraphrase** - ONLY: Direct modern English translation of the Shakespeare text. NO meter analysis. NO book recommendations. ONLY translation.
+SECTION 3: **Language and Rhetoric** - ONLY: Brief etymological analysis, rhetorical figures, AND meter
+SECTION 4: **Synopsis** - ONLY: What this does in context
+SECTION 5: **Key Words & Glosses** - ONLY: Key word definitions
+SECTION 6: **Historical Context** - ONLY: Brief historical background
+SECTION 7: **Sources** - ONLY: Shakespeare's sources
+SECTION 8: **Literary Analysis** - ONLY: Analysis with 2-3 citations, MUST include one Marxist critic
+SECTION 9: **Critical Reception** - ONLY: Scholarly perspectives
+SECTION 10: **Similar phrases or themes in other plays** - ONLY: 3-4 parallels
+SECTION 11: **Pointers for Further Reading** - ONLY: 2-3 book recommendations
 
 CRITICAL FORMATTING RULES:
 - CRITICAL: ALL book titles, play titles, article titles, film titles, and ANY media titles MUST be in <em>italics</em> - NEVER use quotation marks
