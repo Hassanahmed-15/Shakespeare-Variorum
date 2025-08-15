@@ -436,101 +436,58 @@ Analyze: "${text}"`;
         console.log(`Starting API call for level: ${level}, text length: ${text.length}`);
         const startTime = Date.now();
         
-                // Handle Full Fathom Five with simplified prompt
+                // Handle Full Fathom Five with clean Expert-style prompt
         if (level === 'fullfathomfive') {
-          console.log('Full Fathom Five level detected, using simplified prompt...');
+          console.log('Full Fathom Five level detected, using clean Expert-style prompt...');
           
-          // Original Full Fathom Five prompt - comprehensive scholarly analysis
-          const fullFathomFivePrompt = `You are providing comprehensive New Variorum Shakespeare-style commentary at the highest scholarly level. Your analysis must follow the format and citation style of Horace Howard Furness's New Variorum editions.
+          // Clean Full Fathom Five prompt using Expert sections with ramped-up intensity
+          const fullFathomFivePrompt = `You are an expert Shakespearean scholar providing the most comprehensive analysis possible.
 
 IMPORTANT CONTEXT: You are analyzing text from the play "${playName}" (${sceneName}). Always refer to this specific play and scene in your analysis.
 
-MANDATORY FORMAT AND STRUCTURE:
+CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections:
 
-## FULL FATHOM FIVE Analysis: "${text}" (${playName} ${sceneName})
+**Plain-Language Paraphrase:**
+**Synopsis:**
+**Textual Variants:**
+**Key Words & Glosses:**
+**Historical Context:**
+**Sources:**
+**Literary Analysis:**
+**Critical Reception:**
+**Similar phrases or themes in other plays:**
+**Pointers for Further Reading:**
 
-### TEXTUAL COLLATION
-List textual variants chronologically:
-**Q1 (year):** "[exact spelling from quarto]"
-**F1 (1623):** "[exact spelling from First Folio]"
-**Modern editions:** [describe modernization choices]
+FORMAT REQUIREMENTS:
+- Start each section with the exact heading format shown above (colons are already included)
+- Provide 6-12 sentences for each section (more intense than Expert)
+- Use complete sentences and paragraphs
+- Write in the most scholarly, academic language possible
+- Include extensive critical citations and scholarly references from a BROAD range of critics
+- CRITICAL: Write ALL book titles, play titles, movie titles, films, novels, articles, and scholarly works in <em>italics</em>
+- NEVER use quotation marks for titles - always use <em>italics</em>
+- NEVER italicize author names - keep them in plain text
+- For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]". Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]. CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text.
+- For Plain-Language Paraphrase: Provide a direct, modern English translation of the highlighted Shakespeare text.
+- Always reference the specific play "${playName}" and scene "${sceneName}" in your analysis
 
-### COMMENTARY HISTORY (Variorum Tradition)
-Present critical commentary chronologically with bibliographic citations:
-**YEAR FULL NAME OF CRITIC** (*Title of Work in Italics*, City: Publisher, Year, p. [exact page]): "Quote the critic's exact interpretation or closely paraphrase."
+CRITICAL CITATION REQUIREMENTS:
+- Include citations from ALL major periods of Shakespeare criticism:
+  * 18th century: Alexander Pope, Lewis Theobald, William Warburton, Samuel Johnson, George Steevens, Edmond Malone
+  * Early 19th century: Samuel Taylor Coleridge, William Hazlitt, Charles Lamb, August Wilhelm Schlegel, Heinrich Heine
+  * Mid 19th century: Georg Gottfried Gervinus, Hermann Ulrici, Edward Dowden, Frederick James Furnivall
+  * Late 19th century: Horace Howard Furness, A.C. Bradley, George Bernard Shaw, Algernon Charles Swinburne
+  * Early 20th century: Caroline Spurgeon, G. Wilson Knight, E.M.W. Tillyard, L.C. Knights
+  * Mid 20th century: Northrop Frye, C.L. Barber, Maynard Mack, Helen Gardner
+  * Late 20th century: Stephen Greenblatt, Janet Adelman, Marjorie Garber, Harold Bloom, Stanley Cavell
+  * 21st century: Emma Smith, James Shapiro, Stephen Orgel, David Bevington
+- Vary your citations - don't rely on the same 2-3 critics repeatedly
+- Include both historical and contemporary perspectives
+- When citing, provide full publication information: Author (*Title*, City: Publisher, Year, Vol. [if applicable], p. [page number])
 
-Include: Johnson, Coleridge, Hazlitt, and 2-3 other major critics.
+LENGTH: 800-1200 words total
 
-### PERFORMANCE TRADITION
-Chronicle how major actors delivered the line:
-**ACTOR NAME** (years performed, source): Description of delivery, gesture, or interpretation.
-
-Include: Garrick, Kemble, Kean, Macready, Siddons, Terry, Booth, Irving.
-
-### SOURCE STUDY
-**Primary source** (*Full title*, edition year, page/signature): Quote parallel if exists or state "NOT in [source]"
-
-Document: Holinshed's Chronicles (1587), Plutarch (North's translation, 1579), Biblical parallels (Geneva Bible 1599), Classical sources.
-
-### LINGUISTIC ARCHAEOLOGY
-For key words, provide:
-**"Word" etymology per [Dictionary source]** (*Full dictionary citation*, Vol., p.):
-- Historical development
-- First recorded uses
-- Shakespeare's other uses
-- CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text
-
-### CROSS-REFERENCES IN SHAKESPEARE
-List parallel passages:
-**Similar usage in [Play] (Act.Scene.Line):** "Quote the parallel"
-Track specific words, images, themes across canon.
-
-### CRITICAL CONTROVERSIES
-Document interpretive debates:
-**The [Name] Debate (years):**
-- **CRITIC NAME** (*Work*, year, pp.): [position]
-- **OPPOSING CRITIC** (*Work*, year, pp.): [counter-position]
-- Resolution or ongoing status
-
-### DRAMATURGICAL SIGNIFICANCE
-Explain the passage's function in:
-- Immediate scene
-- Character development
-- Play's structure
-- Performance considerations
-
-### MODERN CRITICAL PERSPECTIVES (post-1900)
-Brief mentions of 20th/21st century approaches:
-**[School of criticism]:** [interpretation]
-Include: Psychoanalytic, Feminist, Marxist, New Historicist, Postcolonial, Queer Theory, Ecocritical, etc.
-
-### SYNTHESIS
-Conclude with comprehensive summary in Furness's style, weighing all evidence.
-
-CITATION REQUIREMENTS:
-- NEVER give partial citations
-- ALWAYS include publisher, city, year
-- ALWAYS provide page numbers
-- If work spans multiple pages, give range (pp. 234-239)
-- For journals: (*Journal Title*, Vol. X, No. Y, Month Year, pp. 123-145)
-- When uncertain of exact page, note: [page uncertain]
-- When paraphrasing rather than quoting, make this clear
-
-LENGTH: 2000-3000 words minimum
-
-TONE: Scholarly but accessible. Include amusing critical eccentricities when relevant. Never simplify - present everything and trust reader's intelligence.
-
-SPECIAL INSTRUCTIONS:
-- When sexual or bawdy implications exist, document them scholarly (cite Partridge, etc.)
-- Include rejected interpretations and eccentric theories
-- Note when interpretations are "conjectural" vs. documented
-- Use "NOT in [source]" when Shakespeare invents beyond sources
-- Include foreign criticism with translation acknowledgments
-- Document bowdlerization when it occurred
-
-Remember: You are channeling Furness's exhaustive scholarship. Every significant word has a history. Every interpretation deserves documentation. Nothing is too minor to note if it illuminates meaning.
-
-Analyze this Shakespeare text: "${text}"`;
+Analyze: "${text}"`;
           
           // Use Claude API directly with system message
           const claudePayload = {
