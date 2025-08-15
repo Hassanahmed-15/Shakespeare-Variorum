@@ -3871,11 +3871,7 @@
                 console.log('Analyzing text:', text.substring(0, 100) + '...');
                 console.log('Making API request...');
                 
-                // Handle Full Fathom Five with SSE streaming
-                if (currentAnalysisMode === 'fullfathomfive') {
-                    await handleFullFathomFiveSSE(text, playName, currentScene);
-                    return;
-                }
+                // Full Fathom Five now uses regular API call like other levels
                 
                 // Try the redirect path first for other levels
                 let response = await fetch('/api/shakespeare', {

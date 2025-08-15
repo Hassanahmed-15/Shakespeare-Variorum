@@ -473,46 +473,91 @@ Remember: You are channeling Furness's exhaustive scholarship. Every significant
         console.log(`Starting API call for level: ${level}, text length: ${text.length}`);
         const startTime = Date.now();
         
-                // Route Full Fathom Five to Edge Function for longer timeout
+                // Handle Full Fathom Five with simplified prompt
         if (level === 'fullfathomfive') {
-          console.log('Full Fathom Five level detected, routing to Edge Function...');
+          console.log('Full Fathom Five level detected, using simplified prompt...');
           
-          // Get the current site URL for the edge function
-          const siteUrl = event.headers.host || 'shakespeare-variorum.netlify.app';
-          const protocol = event.headers['x-forwarded-proto'] || 'https';
-          const edgeFunctionUrl = `${protocol}://${siteUrl}/api/variorum-edge`;
+          // Simplified Full Fathom Five system prompt
+          const fullFathomFivePrompt = `You are a Shakespeare scholar providing a concise scholarly analysis. Focus on the most important insights.
+
+CONTEXT: Analyzing "${text}" from ${playName} (${sceneName}).
+
+Provide this analysis in exactly this format:
+
+## FULL FATHOM FIVE Analysis: "${text}" (${playName} ${sceneName})
+
+### CRITICAL PERSPECTIVES
+2-3 key interpretations from major critics with brief citations.
+
+### PERFORMANCE TRADITION
+1-2 notable actor interpretations.
+
+### SOURCES
+Brief mention of any known sources or note if Shakespeare invented this.
+
+### WORD STUDY
+Brief definitions of key words, preserving original capitalization.
+
+### SHAKESPEAREAN ECHOES
+1 similar passage from another play if relevant.
+
+### DRAMATIC PURPOSE
+How this passage functions in the scene and play.
+
+### CONCLUSION
+Concise summary of the passage's significance.
+
+LENGTH: 400-500 words
+TONE: Scholarly but clear. Use <em>italics</em> for titles.
+
+Analyze: "${text}"`;
+          
+          // Use Claude API directly
+          const claudePayload = {
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1500,
+            messages: [
+              { role: 'user', content: fullFathomFivePrompt }
+            ]
+          };
           
           try {
-            const edgeResponse = await fetch(edgeFunctionUrl, {
+            const claudeResponse = await fetch('https://api.anthropic.com/v1/messages', {
               method: 'POST',
               headers: {
-                'Content-Type': 'application/json'
+                'x-api-key': `${CLAUDE_API_KEY}`,
+                'Content-Type': 'application/json',
+                'anthropic-version': '2023-06-01'
               },
-              body: JSON.stringify({
-                text: text,
-                playName: playName,
-                sceneName: sceneName
-              })
+              body: JSON.stringify(claudePayload)
             });
             
-            if (!edgeResponse.ok) {
-              throw new Error(`Edge function error: ${edgeResponse.status}`);
+            if (!claudeResponse.ok) {
+              throw new Error(`Claude API error: ${claudeResponse.status}`);
             }
             
-            const edgeData = await edgeResponse.json();
+            const claudeData = await claudeResponse.json();
+            const content = claudeData.content[0].text;
+            
             return {
               statusCode: 200,
               headers,
-              body: JSON.stringify(edgeData)
+              body: JSON.stringify({
+                choices: [{
+                  message: {
+                    content: content
+                  }
+                }]
+              })
             };
-          } catch (edgeError) {
-            console.error('Edge function call failed:', edgeError);
+          } catch (claudeError) {
+            console.error('Claude API error:', claudeError);
             return {
               statusCode: 500,
               headers,
               body: JSON.stringify({ 
                 error: 'Full Fathom Five analysis failed. Please try again.',
-                details: edgeError.message
+                details: claudeError.message
               })
             };
           }
