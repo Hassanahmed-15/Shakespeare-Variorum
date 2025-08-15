@@ -441,7 +441,7 @@ Analyze: "${text}"`;
           console.log('Full Fathom Five level detected, using clean Expert-style prompt...');
           
           // Clean Full Fathom Five prompt using Expert sections with ramped-up intensity
-          const fullFathomFivePrompt = `You are an expert Shakespearean scholar providing comprehensive analysis of "${playName}" (${sceneName}).
+          const fullFathomFivePrompt = `You are an expert Shakespearean scholar providing comprehensive analysis of "${currentPlayName}" (${currentSceneName}).
 
 CRITICAL: Provide ALL these sections in order:
 
