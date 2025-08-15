@@ -142,6 +142,7 @@ EXAMPLE FORMAT:
 **Pointers for Further Reading:** Consider reading [Author Name's] <em>Book Title</em> (Year) for [specific point about the text].`;
 
       } else if (level === 'expert') {
+        console.log('Expert level detected - using comprehensive prompt with Textual Variants section');
         systemPrompt = `You are an expert Shakespearean scholar with comprehensive knowledge of 500 years of Shakespeare scholarship.
 
 IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your analysis.
@@ -330,23 +331,24 @@ EXAMPLE FORMAT:
 [Why this matters in the context of <em>${currentPlayName}</em>, presented in essay style]`;
         }
               } else if (level === 'fullfathomfive') {
+          console.log('Full Fathom Five level detected - using comprehensive prompt with Textual Variants and Language and Rhetoric sections');
           systemPrompt = `You are an expert Shakespearean scholar providing the most comprehensive analysis possible.
 
 IMPORTANT CONTEXT: You are analyzing text from the play "${currentPlayName}" (${currentSceneName}). Always refer to this specific play and scene in your analysis.
 
 CRITICAL: You MUST provide responses for ALL of these sections in exactly this order. Do not skip any sections. EVERY section must be included:
 
-**Textual Variants:**
-**Plain-Language Paraphrase:**
-**Language and Rhetoric:**
-**Synopsis:**
-**Key Words & Glosses:**
-**Historical Context:**
-**Sources:**
-**Literary Analysis:**
-**Critical Reception:**
-**Similar phrases or themes in other plays:**
-**Pointers for Further Reading:**
+**Textual Variants:** (REQUIRED - FIRST SECTION)
+**Plain-Language Paraphrase:** (REQUIRED)
+**Language and Rhetoric:** (REQUIRED - NEW SECTION)
+**Synopsis:** (REQUIRED)
+**Key Words & Glosses:** (REQUIRED)
+**Historical Context:** (REQUIRED)
+**Sources:** (REQUIRED)
+**Literary Analysis:** (REQUIRED)
+**Critical Reception:** (REQUIRED)
+**Similar phrases or themes in other plays:** (REQUIRED)
+**Pointers for Further Reading:** (REQUIRED)
 
 FORMAT REQUIREMENTS:
 - Start each section with the exact heading format shown above (colons are already included)
@@ -364,7 +366,7 @@ FORMAT REQUIREMENTS:
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
 CRITICAL CITATION REQUIREMENTS:
-- CRITICAL: Randomly sample scholars for citations, ensuring AT LEAST ONE from each century AND AT LEAST ONE from each of these approaches. YOU MUST include at least one Marxist critic:
+- CRITICAL: Randomly sample scholars for citations, ensuring AT LEAST ONE from each century AND AT LEAST ONE from each of these approaches. YOU MUST include at least one Marxist critic. THIS IS MANDATORY:
   * 18th century: Samuel Johnson, Alexander Pope, William Warburton, George Steevens, Edmond Malone, Lewis Theobald, Charlotte Lennox, Elizabeth Montagu, Thomas Warton, Joseph Ritson, Thomas Tyrwhitt
   * 19th century: Samuel Taylor Coleridge, William Hazlitt, A.C. Bradley, Edward Dowden, Horace Howard Furness, Anna Jameson, Mary Cowden Clarke, Georg Brandes, Edward Strachey, Henry Hallam, Thomas Campbell, Charles Lamb, Hermann Ulrici, Friedrich Gundolf
   * 20th century: G. Wilson Knight, Caroline Spurgeon, E.M.W. Tillyard, John Dover Wilson, Harley Granville-Barker, L.C. Knights, G.B. Harrison, Una Ellis-Fermor, John Bailey, Walter Raleigh, A.C. Swinburne, Arthur Quiller-Couch, John Masefield, Harold Bloom, Northrop Frye, Helen Gardner, F.R. Leavis, William Empson, Kenneth Muir, Nevill Coghill, M.C. Bradbrook, J.L. Styan, Derek Traversi, L.G. Salingar, John Russell Brown, Wolfgang Clemen, Robert Heilman, Stephen Greenblatt, Janet Adelman, Stanley Wells, Anne Barton, Jonathan Dollimore, Alan Sinfield, Catherine Belsey, Terence Hawkes, Jonathan Bate, Peter Erickson, Patricia Parker, Lynda Boose, Peter Stallybrass, Allon White, Leonard Tennenhouse, Mary Beth Rose, Terry Eagleton, Margot Heinemann, Kiernan Ryan, Walter Cohen
