@@ -336,6 +336,7 @@ CRITICAL: You MUST provide responses for ALL of these sections in exactly this o
 
 **Textual Variants:**
 **Plain-Language Paraphrase:**
+**Language and Rhetoric:**
 **Synopsis:**
 **Key Words & Glosses:**
 **Historical Context:**
@@ -356,6 +357,7 @@ FORMAT REQUIREMENTS:
 - NEVER italicize author names - keep them in plain text
 - For Key Words & Glosses: Use simple format "[word] means [definition]; [word] means [definition]". Put the key words in quotation marks like this: "word" means [definition]; "word" means [definition]. CRITICAL: Preserve the exact capitalization of words as they appear in the highlighted text.
 - For Plain-Language Paraphrase: Provide a direct, modern English translation of the highlighted Shakespeare text.
+- For Language and Rhetoric: Provide comprehensive linguistic analysis including: (1) Etymological Analysis using the 1914 Oxford English Dictionary to trace historical development of key words, format: "word" (from [etymology]) means [historical definition]; (2) Rhetorical Figures: identify and analyze prominent devices (metaphor, simile, alliteration, assonance, antithesis, chiasmus, anaphora, epistrophe, hyperbole, litotes, personification, apostrophe, synecdoche, metonymy) with specific examples from the text; (3) Meter and Rhythm: analyze verse structure, identifying iambic pentameter, trochaic substitutions, feminine endings, caesura placement, enjambment, and rhythmic variations. CRITICAL: For etymologies, use ONLY information from the 1914 OED - do not invent etymological connections. Include scholarly citations for rhetorical and metrical analysis.
 - Always reference the specific play "${currentPlayName}" and scene "${currentSceneName}" in your analysis
 
 CRITICAL CITATION REQUIREMENTS:
