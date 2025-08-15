@@ -471,6 +471,26 @@ CITATIONS: Include varied critics from 18th-21st centuries with full publication
 LENGTH: 600-800 words total
 
 Analyze: "${text}"`;
+          
+          // Build payload for Full Fathom Five
+          const fullFathomFivePayload = {
+            model: modelConfig.model,
+            messages: [
+              { role: 'system', content: systemPrompt },
+              { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
+            ],
+            temperature: modelConfig.temperature
+          };
+          
+          // Make API call for Full Fathom Five
+          response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${OPENAI_API_KEY}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(fullFathomFivePayload)
+          });
         } else {
           // OpenAI API for Basic and Expert levels
           response = await fetch('https://api.openai.com/v1/chat/completions', {
