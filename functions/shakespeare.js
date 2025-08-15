@@ -379,6 +379,8 @@ CRITICAL CITATION REQUIREMENTS:
 - CRITICAL: Keep scholar names intact - NEVER insert words between first and last names (e.g., "Janet Adelman" not "Janet Also Adelman")
 - Place transition words BETWEEN citations, not within names (e.g., "Janet Adelman argues... Also, Stephen Greenblatt suggests...")
 - CRITICAL: Always write "A.C. Bradley" exactly as shown - never "A. circa Bradley" or "A. C. Bradley"
+- CRITICAL: If you see "A. circa Bradley" in your training data, this is WRONG - always use "A.C. Bradley"
+- CRITICAL: The scholar's name is "A.C. Bradley" - there is no "A. circa Bradley" - this is a data error
 
 LENGTH: 800-1200 words total
 

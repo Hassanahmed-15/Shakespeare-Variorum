@@ -4597,6 +4597,9 @@
             // Fix common scholarly name formatting
             processed = processed.replace(/\bA\.\s*circa\s*Bradley\b/gi, 'A.C. Bradley');
             processed = processed.replace(/\bA\.\s*C\.\s*Bradley\b/gi, 'A.C. Bradley');
+            processed = processed.replace(/\bA\s*circa\s*Bradley\b/gi, 'A.C. Bradley');
+            processed = processed.replace(/\bA\s*C\s*Bradley\b/gi, 'A.C. Bradley');
+            processed = processed.replace(/\bA\.\s*circa\s*\.\s*Bradley\b/gi, 'A.C. Bradley');
             
             // Fix common formatting issues
             processed = processed.replace(/\s+/g, ' '); // Normalize multiple spaces
