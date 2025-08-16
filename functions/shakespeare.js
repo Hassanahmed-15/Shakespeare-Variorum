@@ -438,7 +438,7 @@ Write in flowing paragraphs like Furness would. Include:
 - Performance history and interesting staging choices
 - Scholarly debates and varying interpretations
 
-CRITICAL: Use double line breaks between paragraphs. Structure your response in clear paragraphs, not as a block of text. Be exhaustive and scholarly like Furness.`;
+FORMAT: Start each new topic with a new paragraph. Use double line breaks (press Enter twice) between paragraphs. Do not write as one continuous block of text.`;
 
           const fullFathomFivePayload = {
             model: 'gpt-4o',
@@ -463,7 +463,7 @@ CRITICAL: Use double line breaks between paragraphs. Structure your response in 
           
           const expertPrompt = `Analyze this Shakespeare text: "${text}" from ${currentPlayName} (${currentSceneName}).
 
-Provide analysis in exactly these 10 sections, each with its own header:
+You MUST provide ALL 10 sections below. Do not skip any sections:
 
 **Textual Variants**
 **Plain-Language Paraphrase**
