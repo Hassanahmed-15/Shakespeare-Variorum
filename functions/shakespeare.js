@@ -428,25 +428,7 @@ Analyze: "${text}"`;
         if (level === 'fullfathomfive') {
           console.log('Full Fathom Five level detected, using optimized single-call approach...');
           
-          const fullFathomFivePrompt = `Analyze this Shakespeare text: "${text}" from ${currentPlayName} (${currentSceneName}).
-
-Emulate the style and approach of Horace Howard Furness's New Variorum Shakespeare editions - comprehensive, scholarly, and exhaustive in coverage.
-
-Please provide analysis in these 11 sections:
-
-**Textual Variants**
-**Plain-Language Paraphrase**
-**Language and Rhetoric**
-**Synopsis**
-**Key Words & Glosses**
-**Historical Context**
-**Sources**
-**Literary Analysis**
-**Critical Reception**
-**Similar phrases or themes in other plays**
-**Performance History**
-
-Use italics for book and play titles.`;
+          const fullFathomFivePrompt = `Imagine you are Furness, the editor of the New Variorum Shakespeare. Answer as if you are Furness in explicating this passage: "${text}" from ${currentPlayName} (${currentSceneName}).`;
 
           const fullFathomFivePayload = {
             model: 'gpt-4o',
