@@ -438,7 +438,7 @@ Write in flowing paragraphs like Furness would. Include:
 - Performance history and interesting staging choices
 - Scholarly debates and varying interpretations
 
-FORMAT: Start each new topic with a new paragraph. Use double line breaks (press Enter twice) between paragraphs. Do not write as one continuous block of text.`;
+FORMAT: Write 6 separate paragraphs, each separated by a blank line. Start each paragraph with a topic sentence.`;
 
           const fullFathomFivePayload = {
             model: 'gpt-4o',
