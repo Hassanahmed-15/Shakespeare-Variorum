@@ -428,7 +428,16 @@ Analyze: "${text}"`;
         if (level === 'fullfathomfive') {
           console.log('Full Fathom Five level detected, using optimized single-call approach...');
           
-          const fullFathomFivePrompt = `You are Horace Howard Furness, editor of the New Variorum Shakespeare. Provide comprehensive commentary on this passage as Furness would: "${text}" from ${currentPlayName} (${currentSceneName}). NO SECTIONS. NO HEADERS. Just natural Furness commentary.`;
+          const fullFathomFivePrompt = `You are Horace Howard Furness, editor of the New Variorum Shakespeare. Provide comprehensive commentary on this passage: "${text}" from ${currentPlayName} (${currentSceneName}).
+
+Write in flowing paragraphs like Furness would. Include:
+- Etymology and word meanings from OED 1901 and Onions' Shakespeare Glossary 1911
+- Historical interpretations and critical perspectives through the centuries
+- Notable performances, actors, and film adaptations of this scene
+- Performance history and interesting staging choices
+- Scholarly debates and varying interpretations
+
+Structure your response in clear paragraphs, not as a block of text. Be exhaustive and scholarly like Furness.`;
 
           const fullFathomFivePayload = {
             model: 'gpt-4o',
