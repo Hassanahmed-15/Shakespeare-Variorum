@@ -430,6 +430,8 @@ Analyze: "${text}"`;
           
           const fullFathomFivePrompt = `Analyze this Shakespeare text: "${text}" from ${currentPlayName} (${currentSceneName}).
 
+Emulate the style and approach of Horace Howard Furness's New Variorum Shakespeare editions - comprehensive, scholarly, and exhaustive in coverage.
+
 Please provide analysis in these 11 sections:
 
 **Textual Variants**
