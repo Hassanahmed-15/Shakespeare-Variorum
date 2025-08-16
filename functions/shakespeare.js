@@ -434,7 +434,7 @@ You MUST provide analysis in exactly these 11 sections in this order:
 
 **Textual Variants**
 **Plain-Language Paraphrase**
-**Language and Rhetoric**
+**Language and Rhetoric** (consult OED 1914 edition and 1911 Shakespeare word usage book)
 **Synopsis**
 **Key Words & Glosses**
 **Historical Context**
@@ -475,7 +475,7 @@ Please provide analysis in these 10 sections:
 
 **Textual Variants**
 **Plain-Language Paraphrase**
-**Language and Rhetoric**
+**Language and Rhetoric** (consult OED 1914 edition and 1911 Shakespeare word usage book)
 **Synopsis**
 **Key Words & Glosses**
 **Historical Context**
