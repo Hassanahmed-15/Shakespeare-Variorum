@@ -365,32 +365,6 @@ Analyze: "${text}"`;
             temperature: 0.7
           };
         }
-      } else if (level === 'followup') {
-        // Follow-up logic - use the systemPrompt that was set above
-        console.log('Follow-up level detected, using systemPrompt for API call');
-        
-        // Build payload for follow-up
-        const followupPayload = {
-          model: modelConfig.model,
-          messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: `Answer this follow-up question: "${text}"` }
-          ]
-        };
-        
-        // Add temperature if defined
-        if (modelConfig.temperature !== undefined) {
-          followupPayload.temperature = modelConfig.temperature;
-        }
-        
-        response = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${OPENAI_API_KEY}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(followupPayload)
-        });
       } else if (level === 'fullfathomfive') {
         // Use GPT-4o for Full Fathom Five (more reliable than Claude)
         // Fallback to gpt-4 if gpt-4o hits quota limits
@@ -423,10 +397,36 @@ Analyze: "${text}"`;
         if (modelConfig.reasoning_effort !== undefined) {
           payload.reasoning_effort = modelConfig.reasoning_effort;
         }
-      } else {
-        // For Expert and Full Fathom Five, systemPrompt is not used
-        console.log('DEBUG: Expert/FFF level - using inline prompts - FIXED RESPONSE VARIABLE');
-      }
+              } else if (level === 'followup') {
+          // Follow-up logic - use the systemPrompt that was set above
+          console.log('Follow-up level detected, using systemPrompt for API call');
+          
+          // Build payload for follow-up
+          const followupPayload = {
+            model: modelConfig.model,
+            messages: [
+              { role: 'system', content: systemPrompt },
+              { role: 'user', content: `Answer this follow-up question: "${text}"` }
+            ]
+          };
+          
+          // Add temperature if defined
+          if (modelConfig.temperature !== undefined) {
+            followupPayload.temperature = modelConfig.temperature;
+          }
+          
+          response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${OPENAI_API_KEY}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(followupPayload)
+          });
+        } else {
+          // For Expert and Full Fathom Five, systemPrompt is not used
+          console.log('DEBUG: Expert/FFF level - using inline prompts - FIXED RESPONSE VARIABLE');
+        }
 
       let response, data;
       try {
