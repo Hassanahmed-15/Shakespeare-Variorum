@@ -398,11 +398,11 @@ Analyze: "${text}"`;
           payload.reasoning_effort = modelConfig.reasoning_effort;
         }
               } else if (level === 'followup') {
-          // Follow-up logic - use the systemPrompt that was set above
-          console.log('Follow-up level detected, using systemPrompt for API call');
+          // Follow-up logic - build payload for follow-up
+          console.log('Follow-up level detected, building payload for API call');
           
           // Build payload for follow-up
-          const followupPayload = {
+          payload = {
             model: modelConfig.model,
             messages: [
               { role: 'system', content: systemPrompt },
@@ -412,17 +412,8 @@ Analyze: "${text}"`;
           
           // Add temperature if defined
           if (modelConfig.temperature !== undefined) {
-            followupPayload.temperature = modelConfig.temperature;
+            payload.temperature = modelConfig.temperature;
           }
-          
-          response = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${OPENAI_API_KEY}`,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(followupPayload)
-          });
         } else {
           // For Expert and Full Fathom Five, systemPrompt is not used
           console.log('DEBUG: Expert/FFF level - using inline prompts - FIXED RESPONSE VARIABLE');
@@ -511,6 +502,16 @@ Use italics for book and play titles.`;
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(expertPayload)
+          });
+        } else if (level === 'followup') {
+          // OpenAI API for Follow-up level
+          response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${OPENAI_API_KEY}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
           });
         } else {
           // OpenAI API for Basic level
