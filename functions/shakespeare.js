@@ -441,7 +441,7 @@ You MUST provide analysis in exactly these 11 sections in this order:
 **Sources**
 **Literary Analysis**
 **Critical Reception**
-**Similar phrases or themes in other plays**
+**Similar phrases or themes in other plays** (include specific quotes and act/scene citations)
 **Performance History**
 
 IMPORTANT: Each section must contain appropriate content for that section. Plain-Language Paraphrase should be a direct translation, not thematic analysis. Performance History should focus on how this scene or act has been performed throughout history.
@@ -482,7 +482,7 @@ Please provide analysis in these 10 sections:
 **Sources** (Shakespeare's historical/literary sources for the play's plot and characters - like Holinshed, Plutarch, etc.)
 **Literary Analysis**
 **Critical Reception**
-**Similar phrases or themes in other plays**
+**Similar phrases or themes in other plays** (include specific quotes and act/scene citations)
 
 Use italics for book and play titles.`;
 
