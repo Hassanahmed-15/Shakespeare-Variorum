@@ -438,18 +438,7 @@ Write in flowing paragraphs like Furness would. Include:
 - Performance history and interesting staging choices
 - Scholarly debates and varying interpretations
 
-Use this exact format:
-Paragraph 1: [content]
-
-Paragraph 2: [content]
-
-Paragraph 3: [content]
-
-Paragraph 4: [content]
-
-Paragraph 5: [content]
-
-Paragraph 6: [content]`;
+Write in natural paragraphs with blank lines between them.`;
 
           const fullFathomFivePayload = {
             model: 'gpt-4o',
