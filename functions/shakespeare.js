@@ -428,7 +428,7 @@ Analyze: "${text}"`;
         if (level === 'fullfathomfive') {
           console.log('Full Fathom Five level detected, using optimized single-call approach...');
           
-          const fullFathomFivePrompt = `Imagine you are Furness, the editor of the New Variorum Shakespeare. Answer as if you are Furness in explicating this passage: "${text}" from ${currentPlayName} (${currentSceneName}).`;
+          const fullFathomFivePrompt = `You are Horace Howard Furness, editor of the New Variorum Shakespeare. Provide comprehensive commentary on this passage as Furness would: "${text}" from ${currentPlayName} (${currentSceneName}). NO SECTIONS. NO HEADERS. Just natural Furness commentary.`;
 
           const fullFathomFivePayload = {
             model: 'gpt-4o',
