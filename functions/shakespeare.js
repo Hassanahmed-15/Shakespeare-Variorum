@@ -438,7 +438,7 @@ Write in flowing paragraphs like Furness would. Include:
 - Performance history and interesting staging choices
 - Scholarly debates and varying interpretations
 
-Structure your response in clear paragraphs, not as a block of text. Be exhaustive and scholarly like Furness.`;
+CRITICAL: Use double line breaks between paragraphs. Structure your response in clear paragraphs, not as a block of text. Be exhaustive and scholarly like Furness.`;
 
           const fullFathomFivePayload = {
             model: 'gpt-4o',
@@ -463,7 +463,7 @@ Structure your response in clear paragraphs, not as a block of text. Be exhausti
           
           const expertPrompt = `Analyze this Shakespeare text: "${text}" from ${currentPlayName} (${currentSceneName}).
 
-Please provide analysis in these 10 sections:
+Provide analysis in exactly these 10 sections, each with its own header:
 
 **Textual Variants**
 **Plain-Language Paraphrase**
@@ -485,7 +485,7 @@ Use italics for book and play titles.`;
               { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
             ],
             temperature: 0.7,
-            max_tokens: 1500
+            max_tokens: 2500
           };
 
           response = await fetch('https://api.openai.com/v1/chat/completions', {
