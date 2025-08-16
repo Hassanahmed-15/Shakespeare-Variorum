@@ -436,7 +436,7 @@ You MUST provide analysis in exactly these 11 sections in this order:
 **Plain-Language Paraphrase**
 **Language and Rhetoric** (consult OED 1901 edition and C.T. Onions' "A Shakespeare Glossary" 1911)
 **Synopsis**
-**Key Words & Glosses**
+**Key Words & Glosses** (for the 2-3 most important words, include relevant OED 1901 and Onions 1911 entries)
 **Historical Context**
 **Sources**
 **Literary Analysis**
@@ -444,7 +444,7 @@ You MUST provide analysis in exactly these 11 sections in this order:
 **Similar phrases or themes in other plays** (include specific quotes and act/scene citations)
 **Performance History**
 
-IMPORTANT: Each section must contain appropriate content for that section. Plain-Language Paraphrase should be a direct translation, not thematic analysis. Performance History should focus on how this scene or act has been performed throughout history.
+IMPORTANT: Each section must contain appropriate content for that section. Plain-Language Paraphrase should be a direct translation, not thematic analysis. Performance History should focus on how this scene or act has been performed throughout history. For Key Words & Glosses, focus on the most important 2-3 words and provide focused, relevant entries from OED 1901 and Onions 1911.
 
 Use italics for book and play titles.`;
 
