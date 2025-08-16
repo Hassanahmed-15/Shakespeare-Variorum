@@ -439,7 +439,7 @@ Analyze: "${text}"`;
           
           const fullFathomFivePrompt = `Analyze this Shakespeare text: "${text}" from ${currentPlayName} (${currentSceneName}).
 
-Please provide analysis in these 11 sections:
+Please provide analysis in these 10 sections:
 
 **Textual Variants**
 **Plain-Language Paraphrase**
@@ -451,7 +451,6 @@ Please provide analysis in these 11 sections:
 **Literary Analysis**
 **Critical Reception**
 **Similar phrases or themes in other plays**
-**Pointers for Further Reading**
 
 Use italics for book and play titles.`;
 
@@ -478,7 +477,7 @@ Use italics for book and play titles.`;
           
           const expertPrompt = `Analyze this Shakespeare text: "${text}" from ${currentPlayName} (${currentSceneName}).
 
-Please provide analysis in these 11 sections:
+Please provide analysis in these 10 sections:
 
 **Textual Variants**
 **Plain-Language Paraphrase**
@@ -490,7 +489,6 @@ Please provide analysis in these 11 sections:
 **Literary Analysis**
 **Critical Reception**
 **Similar phrases or themes in other plays**
-**Pointers for Further Reading**
 
 Use italics for book and play titles.`;
 
