@@ -441,7 +441,7 @@ Write in flowing paragraphs like Furness would. Include:
 Write in natural paragraphs with blank lines between them.`;
 
           const fullFathomFivePayload = {
-            model: 'gpt-4o',
+            model: 'gpt-4',
             messages: [
               { role: 'system', content: fullFathomFivePrompt },
               { role: 'user', content: `Analyze this Shakespeare text: "${text}"` }
