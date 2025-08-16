@@ -478,7 +478,7 @@ Please provide analysis in these 10 sections:
 **Synopsis**
 **Key Words & Glosses**
 **Historical Context**
-**Sources** (Shakespeare's historical/literary sources like Holinshed, Plutarch, etc.)
+**Sources** (Shakespeare's historical/literary sources for the play's plot and characters - like Holinshed, Plutarch, etc.)
 **Literary Analysis**
 **Critical Reception**
 **Similar phrases or themes in other plays**
