@@ -4173,8 +4173,9 @@
             // Format the content with proper sections (bypass for Full Fathom Five)
             let formattedContent;
             if (currentAnalysisMode === 'fullfathomfive') {
-                // For Full Fathom Five, display raw content without section formatting
-                formattedContent = content;
+                // For Full Fathom Five, apply paragraph formatting but not section formatting
+                formattedContent = content.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+                formattedContent = '<p>' + formattedContent + '</p>';
             } else {
                 formattedContent = formatAnalysisContent(content);
             }
