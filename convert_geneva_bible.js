@@ -91,7 +91,7 @@ async function convertGenevaBibleFile() {
         // Check if input file exists
         if (!fs.existsSync(inputPath)) {
             console.error(`Input file not found: ${inputPath}`);
-            return;
+            return; 
         }
         
         // Read the original file
