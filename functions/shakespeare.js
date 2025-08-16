@@ -430,19 +430,19 @@ Analyze: "${text}"`;
           
           const fullFathomFivePrompt = `Analyze this Shakespeare text: "${text}" from ${currentPlayName} (${currentSceneName}).
 
-Provide exactly these 11 sections in this exact order:
+Please provide analysis in these 11 sections:
 
-1. **Textual Variants** - "Early editions are identical to Folger."
-2. **Plain-Language Paraphrase** - Direct modern English translation of the text above
-3. **Language and Rhetoric** - Etymology, rhetorical devices, meter (consult OED 1901 and Onions 1911)
-4. **Synopsis** - What this does in the play
-5. **Key Words & Glosses** - Define important words
-6. **Historical Context** - Historical background
-7. **Sources** - Shakespeare's sources for plot/characters
-8. **Literary Analysis** - Analysis with citations, include one Marxist critic
-9. **Critical Reception** - Scholarly views
-10. **Similar phrases or themes in other plays** - Include specific quotes and act/scene citations
-11. **Performance History** - How this scene/act has been performed throughout history
+**Textual Variants**
+**Plain-Language Paraphrase**
+**Language and Rhetoric**
+**Synopsis**
+**Key Words & Glosses**
+**Historical Context**
+**Sources**
+**Literary Analysis**
+**Critical Reception**
+**Similar phrases or themes in other plays**
+**Performance History**
 
 Use italics for book and play titles.`;
 
