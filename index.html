@@ -4170,8 +4170,14 @@
             const playName = currentPlay && plays[currentPlay] ? plays[currentPlay].name : 'Unknown Play';
             const playInfo = `<em>${playName}</em> · ${currentScene}`;
             
-            // Format the content with proper sections
-            const formattedContent = formatAnalysisContent(content);
+            // Format the content with proper sections (bypass for Full Fathom Five)
+            let formattedContent;
+            if (currentAnalysisMode === 'fullfathomfive') {
+                // For Full Fathom Five, display raw content without section formatting
+                formattedContent = content;
+            } else {
+                formattedContent = formatAnalysisContent(content);
+            }
             
             // Get the correct title based on current mode
             let analysisTitle = 'Basic Analysis';
