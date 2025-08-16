@@ -439,7 +439,7 @@ Analyze: "${text}"`;
           
           const fullFathomFivePrompt = `Analyze this Shakespeare text: "${text}" from ${currentPlayName} (${currentSceneName}).
 
-Please provide analysis in these 10 sections:
+You MUST provide analysis in exactly these 10 sections in this order:
 
 **Textual Variants**
 **Plain-Language Paraphrase**
@@ -451,6 +451,8 @@ Please provide analysis in these 10 sections:
 **Literary Analysis**
 **Critical Reception**
 **Similar phrases or themes in other plays**
+
+IMPORTANT: Each section must contain appropriate content for that section. Plain-Language Paraphrase should be a direct translation, not thematic analysis.
 
 Use italics for book and play titles.`;
 
