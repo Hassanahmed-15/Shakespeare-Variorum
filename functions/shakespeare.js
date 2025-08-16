@@ -430,21 +430,19 @@ Analyze: "${text}"`;
           
           const fullFathomFivePrompt = `Analyze this Shakespeare text: "${text}" from ${currentPlayName} (${currentSceneName}).
 
-You MUST provide analysis in exactly these 11 sections in this order:
+Provide exactly these 11 sections in this exact order:
 
-**Textual Variants**
-**Plain-Language Paraphrase**
-**Language and Rhetoric** (consult OED 1901 edition and C.T. Onions' "A Shakespeare Glossary" 1911)
-**Synopsis**
-**Key Words & Glosses** (for the 2-3 most important words, include relevant OED 1901 and Onions 1911 entries)
-**Historical Context**
-**Sources**
-**Literary Analysis**
-**Critical Reception**
-**Similar phrases or themes in other plays** (include specific quotes and act/scene citations)
-**Performance History**
-
-IMPORTANT: Each section must contain appropriate content for that section. Plain-Language Paraphrase should be a direct translation, not thematic analysis. Performance History should focus on how this scene or act has been performed throughout history. For Key Words & Glosses, focus on the most important 2-3 words and provide focused, relevant entries from OED 1901 and Onions 1911.
+1. **Textual Variants** - "Early editions are identical to Folger."
+2. **Plain-Language Paraphrase** - Direct modern English translation of the text above
+3. **Language and Rhetoric** - Etymology, rhetorical devices, meter (consult OED 1901 and Onions 1911)
+4. **Synopsis** - What this does in the play
+5. **Key Words & Glosses** - Define important words
+6. **Historical Context** - Historical background
+7. **Sources** - Shakespeare's sources for plot/characters
+8. **Literary Analysis** - Analysis with citations, include one Marxist critic
+9. **Critical Reception** - Scholarly views
+10. **Similar phrases or themes in other plays** - Include specific quotes and act/scene citations
+11. **Performance History** - How this scene/act has been performed throughout history
 
 Use italics for book and play titles.`;
 
