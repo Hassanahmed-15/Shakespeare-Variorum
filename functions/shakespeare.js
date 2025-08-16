@@ -432,6 +432,7 @@ Analyze: "${text}"`;
 
 Write in flowing paragraphs like Furness would. Include:
 - Etymology and word meanings from OED 1901 and Onions' Shakespeare Glossary 1911
+- Textual variants between folios and quartos, editing issues, and textual criticism
 - Historical interpretations and critical perspectives through the centuries
 - Notable performances, actors, and film adaptations of this scene
 - Performance history and interesting staging choices
