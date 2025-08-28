@@ -85,7 +85,7 @@ For enhanced Biblical allusion detection:
 
 ## Development
 
-To test locally with Netlify CLI:
+To test locally with Netlify CLI::
 
 ```bash
 npm install -g netlify-cli
