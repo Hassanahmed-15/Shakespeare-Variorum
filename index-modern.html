@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shakespeare Digital Variorum</title>
+    <link rel="stylesheet" href="styles/modern-ui.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Modern Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="brand">
+                <div class="brand-logo">S</div>
+                <div class="brand-text">
+                    <h1>Shakespeare Digital Variorum</h1>
+                    <p>Scholarly commentary meets modern technology</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="openSettings()">Settings</button>
+                <button class="btn btn-primary" onclick="explainHighlighted()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    Analyze Text
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <main class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h2 class="sidebar-title">Library</h2>
+                <div class="play-selector-container">
+                    <select class="play-selector" id="playSelector" onchange="loadSelectedPlay()">
+                        <option value="">Choose a Play</option>
+                        <option value="macbeth">Macbeth</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h2 class="sidebar-title">Navigation</h2>
+                <nav>
+                    <ul class="nav-list" id="navigationList">
+                        <!-- Navigation will be populated dynamically -->
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Reader Panel -->
+        <section class="reader-panel">
+            <div id="readerContent">
+                <div class="empty-state">
+                    <div class="empty-state-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3>Welcome to Shakespeare Digital Variorum</h3>
+                    <p>Select Macbeth from the library to begin exploring the play with scholarly commentary and AI analysis.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analysis Panel -->
+        <aside class="analysis-panel">
+            <div class="analysis-header">
+                <h2 class="analysis-title">Analysis</h2>
+                <p class="analysis-meta">Highlight text to analyze</p>
+            </div>
+
+            <!-- Analysis Mode Selector -->
+            <div class="analysis-mode-selector">
+                <div class="mode-tabs">
+                    <button class="mode-tab active" onclick="setAnalysisMode('basic')">Basic</button>
+                    <button class="mode-tab" onclick="setAnalysisMode('expert')">Expert</button>
+                    <button class="mode-tab" onclick="setAnalysisMode('fullfathomfive')">Full Fathom Five</button>
+                </div>
+            </div>
+
+            <!-- Notes Container -->
+            <div class="notes-container" id="notesContainer" style="display: none;">
+                <!-- Notes will be displayed here -->
+            </div>
+
+            <!-- AI Analysis Container -->
+            <div class="ai-analysis" id="aiAnalysisContainer" style="display: none;">
+                <!-- AI analysis will be displayed here -->
+            </div>
+
+            <!-- Follow-up Section -->
+            <div class="follow-up-section" id="followUpSection" style="display: none;">
+                <h3>Ask a follow-up question</h3>
+                <div class="follow-up-input">
+                    <input type="text" placeholder="Ask a follow-up question..." id="followUpQuestion">
+                    <button class="btn btn-primary" onclick="askFollowUp()">Ask</button>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="btn btn-ghost" onclick="closeSettings()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Settings content will go here.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="Public/Data/notes-integration.js"></script>
+    <script>
+        // Global variables
+        let selectedText = '';
+        let currentPlay = '';
+        let currentScene = '';
+        let currentAnalysisMode = 'basic';
+        let analysisInProgress = false;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Shakespeare Digital Variorum initialized');
+            
+            // Set up text selection handling
+            setupTextSelection();
+            
+            // Set up keyboard shortcuts
+            setupKeyboardShortcuts();
+        });
+
+        // Set up text selection handling
+        function setupTextSelection() {
+            document.addEventListener('mouseup', function() {
+                const selection = window.getSelection();
+                const newSelectedText = selection.toString().trim();
+                
+                if (newSelectedText && newSelectedText.length > 0) {
+                    selectedText = newSelectedText;
+                    highlightSelectedText();
+                    checkForNotes();
+                } else {
+                    clearHighlighting();
+                }
+            });
+
+            // Clear highlighting when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.reader-panel') && !event.target.closest('.analysis-panel')) {
+                    clearHighlighting();
+                }
+            });
+        }
+
+        // Highlight selected text
+        function highlightSelectedText() {
+            clearHighlighting();
+            
+            const selection = window.getSelection();
+            if (selection.rangeCount > 0) {
+                const range = selection.getRangeAt(0);
+                const span = document.createElement('span');
+                span.className = 'highlight';
+                range.surroundContents(span);
+            }
+        }
+
+        // Clear highlighting
+        function clearHighlighting() {
+            const highlights = document.querySelectorAll('.highlight');
+            highlights.forEach(highlight => {
+                const parent = highlight.parentNode;
+                parent.replaceChild(document.createTextNode(highlight.textContent), highlight);
+                parent.normalize();
+            });
+        }
+
+        // Check for notes in macbeth_notes.json
+        async function checkForNotes() {
+            if (!window.notesIntegration || !window.notesIntegration.isLoaded) {
+                return;
+            }
+
+            // Set context for notes integration
+            window.notesIntegration.setContext(currentPlay, currentScene);
+            
+            // Find notes for the selected text
+            const notesData = window.notesIntegration.findNotesForLine(selectedText);
+            
+            if (notesData) {
+                // Display notes
+                displayNotes(notesData);
+                return true;
+            } else {
+                // No notes found, hide notes container
+                document.getElementById('notesContainer').style.display = 'none';
+                return false;
+            }
+        }
+
+        // Display notes
+        function displayNotes(notesData) {
+            const notesContainer = document.getElementById('notesContainer');
+            const formattedNotes = window.notesIntegration.formatNotes(notesData);
+            
+            if (formattedNotes) {
+                notesContainer.innerHTML = formattedNotes;
+                notesContainer.style.display = 'block';
+                
+                // Hide AI analysis when showing notes
+                document.getElementById('aiAnalysisContainer').style.display = 'none';
+                document.getElementById('followUpSection').style.display = 'none';
+            }
+        }
+
+        // Load selected play
+        function loadSelectedPlay() {
+            const selector = document.getElementById('playSelector');
+            const selectedValue = selector.value;
+            
+            if (selectedValue === 'macbeth') {
+                currentPlay = 'Macbeth';
+                loadMacbeth();
+            } else {
+                // Show empty state
+                document.getElementById('readerContent').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
+                        <h3>Select a Play</h3>
+                        <p>Choose a play from the library to begin reading.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Load Macbeth content
+        function loadMacbeth() {
+            // Update navigation
+            updateNavigation();
+            
+            // Load first scene
+            loadScene('ACT 1, SCENE 1');
+        }
+
+        // Update navigation
+        function updateNavigation() {
+            const navList = document.getElementById('navigationList');
+            
+            // Macbeth acts and scenes
+            const macbethStructure = {
+                'ACT 1': ['SCENE 1', 'SCENE 2', 'SCENE 3', 'SCENE 4', 'SCENE 5', 'SCENE 6', 'SCENE 7'],
+                'ACT 2': ['SCENE 1', 'SCENE 2', 'SCENE 3', 'SCENE 4'],
+                'ACT 3': ['SCENE 1', 'SCENE 2', 'SCENE 3', 'SCENE 4', 'SCENE 5', 'SCENE 6'],
+                'ACT 4': ['SCENE 1', 'SCENE 2', 'SCENE 3'],
+                'ACT 5': ['SCENE 1', 'SCENE 2', 'SCENE 3', 'SCENE 4', 'SCENE 5', 'SCENE 6', 'SCENE 7', 'SCENE 8']
+            };
+            
+            let navHTML = '';
+            
+            Object.keys(macbethStructure).forEach(act => {
+                navHTML += `<li class="nav-item">
+                    <a href="#" class="nav-link" onclick="loadAct('${act}')">${act}</a>
+                </li>`;
+                
+                macbethStructure[act].forEach(scene => {
+                    const sceneKey = `${act}, ${scene}`;
+                    navHTML += `<li class="nav-item nav-subitem">
+                        <a href="#" class="nav-link" onclick="loadScene('${sceneKey}')">${scene}</a>
+                    </li>`;
+                });
+            });
+            
+            navList.innerHTML = navHTML;
+        }
+
+        // Load a specific scene
+        function loadScene(sceneName) {
+            currentScene = sceneName;
+            
+            // Update active navigation
+            updateActiveNavigation(sceneName);
+            
+            // Load scene content (this would normally load from a file)
+            // For now, we'll show a placeholder
+            const readerContent = document.getElementById('readerContent');
+            readerContent.innerHTML = `
+                <div class="scene-header">
+                    <h1 class="scene-title">${sceneName}</h1>
+                    <p class="scene-meta">Macbeth • ${sceneName}</p>
+                </div>
+                <div class="play-content">
+                    <div class="play-line">
+                        <div class="character-name">First Witch</div>
+                        <div class="dialogue-text">When shall we three meet again<br>In thunder, lightning, or in rain?</div>
+                    </div>
+                    <div class="play-line">
+                        <div class="character-name">Second Witch</div>
+                        <div class="dialogue-text">When the hurlyburly's done,<br>When the battle's lost and won.</div>
+                    </div>
+                    <div class="play-line">
+                        <div class="character-name">Third Witch</div>
+                        <div class="dialogue-text">That will be ere the set of sun.</div>
+                    </div>
+                    <div class="play-line">
+                        <div class="character-name">First Witch</div>
+                        <div class="dialogue-text">Where the place?</div>
+                    </div>
+                    <div class="play-line">
+                        <div class="character-name">Second Witch</div>
+                        <div class="dialogue-text">Upon the heath.</div>
+                    </div>
+                    <div class="play-line">
+                        <div class="character-name">Third Witch</div>
+                        <div class="dialogue-text">There to meet with Macbeth.</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load an act overview
+        function loadAct(actName) {
+            // This would show an act overview
+            console.log('Loading act:', actName);
+        }
+
+        // Update active navigation
+        function updateActiveNavigation(sceneName) {
+            // Remove all active classes
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Add active class to current scene
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.textContent === sceneName.split(', ')[1]) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Set analysis mode
+        function setAnalysisMode(mode) {
+            currentAnalysisMode = mode;
+            
+            // Update tab states
+            document.querySelectorAll('.mode-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            event.target.classList.add('active');
+            
+            // Update analysis title
+            const analysisTitle = document.querySelector('.analysis-title');
+            switch(mode) {
+                case 'basic':
+                    analysisTitle.textContent = 'Basic Analysis';
+                    break;
+                case 'expert':
+                    analysisTitle.textContent = 'Expert Analysis';
+                    break;
+                case 'fullfathomfive':
+                    analysisTitle.textContent = 'Full Fathom Five Analysis';
+                    break;
+            }
+        }
+
+        // Explain highlighted text
+        async function explainHighlighted() {
+            if (!selectedText || selectedText.length === 0) {
+                alert('Please highlight some text first, then click "Analyze Text".');
+                return;
+            }
+
+            // Check if notes exist first
+            const hasNotes = await checkForNotes();
+            
+            if (!hasNotes) {
+                // No notes found, generate AI analysis
+                generateAIAnalysis();
+            }
+        }
+
+        // Generate AI analysis
+        async function generateAIAnalysis() {
+            if (analysisInProgress) return;
+            
+            analysisInProgress = true;
+            
+            // Show loading state
+            const aiContainer = document.getElementById('aiAnalysisContainer');
+            aiContainer.innerHTML = `
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <span>Generating ${currentAnalysisMode} analysis...</span>
+                </div>
+            `;
+            aiContainer.style.display = 'block';
+            
+            // Hide notes container
+            document.getElementById('notesContainer').style.display = 'none';
+            
+            try {
+                const response = await fetch('/.netlify/functions/shakespeare', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        text: selectedText,
+                        level: currentAnalysisMode,
+                        playName: currentPlay,
+                        sceneName: currentScene
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.choices && data.choices[0] && data.choices[0].message) {
+                    const content = data.choices[0].message.content;
+                    displayAIAnalysis(content);
+                } else {
+                    throw new Error('Invalid response format');
+                }
+                
+            } catch (error) {
+                console.error('Error generating analysis:', error);
+                aiContainer.innerHTML = `
+                    <div class="error">
+                        <p>Error generating analysis: ${error.message}</p>
+                        <button class="btn btn-primary" onclick="explainHighlighted()">Try Again</button>
+                    </div>
+                `;
+            } finally {
+                analysisInProgress = false;
+            }
+        }
+
+        // Display AI analysis
+        function displayAIAnalysis(content) {
+            const aiContainer = document.getElementById('aiAnalysisContainer');
+            
+            // Format the content
+            const formattedContent = formatAnalysisContent(content);
+            
+            aiContainer.innerHTML = `
+                <div class="ai-analysis-content">
+                    ${formattedContent}
+                </div>
+            `;
+            
+            // Show follow-up section
+            document.getElementById('followUpSection').style.display = 'block';
+        }
+
+        // Format analysis content
+        function formatAnalysisContent(content) {
+            // Simple formatting - you can enhance this
+            return content
+                .replace(/\*\*(.*?)\*\*/g, '<h4>$1</h4>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+        }
+
+        // Ask follow-up question
+        async function askFollowUp() {
+            const question = document.getElementById('followUpQuestion').value.trim();
+            if (!question) {
+                alert('Please enter a question.');
+                return;
+            }
+            
+            // Implementation for follow-up questions
+            console.log('Follow-up question:', question);
+            // This would call the AI function with the follow-up question
+        }
+
+        // Modal functions
+        function openSettings() {
+            document.getElementById('settingsModal').style.display = 'block';
+        }
+
+        function closeSettings() {
+            document.getElementById('settingsModal').style.display = 'none';
+        }
+
+        // Keyboard shortcuts
+        function setupKeyboardShortcuts() {
+            document.addEventListener('keydown', function(event) {
+                // Ctrl/Cmd + Enter to analyze
+                if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+                    event.preventDefault();
+                    explainHighlighted();
+                }
+                
+                // Escape to close modals
+                if (event.key === 'Escape') {
+                    closeSettings();
+                }
+            });
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('settingsModal');
+            if (event.target === modal) {
+                closeSettings();
+            }
+        }
+    </script>
+</body>
+</html>
