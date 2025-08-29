@@ -1,15 +1,24 @@
 [build]
-  command = ""
-  publish = "."
-  functions = "functions"
+  command = "npm run build"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "18"
 
 [[redirects]]
-  from = "/api/shakespeare"
-  to = "/.netlify/functions/shakespeare"
+  from = "/.netlify/functions/*"
+  to = "/.netlify/functions/:splat"
   status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  command = "npm run dev"
+  port = 3000
+  publish = "dist"
 
 [[edge_functions]]
   function = "variorum-edge"
