@@ -26,10 +26,25 @@ const ReaderPanel = ({ selectedText, setSelectedText, onBackToLibrary }) => {
   const [fontSize, setFontSize] = useState('text-lg')
   const [lineSpacing, setLineSpacing] = useState('leading-relaxed')
   const [expandedActs, setExpandedActs] = useState({ 'ACT 1': true })
+  const [forceUpdate, setForceUpdate] = useState(0)
+
+  // Force re-render when scene changes
+  React.useEffect(() => {
+    console.log('Scene changed to:', currentScene)
+    setForceUpdate(prev => prev + 1)
+  }, [currentScene])
 
   const actsAndScenes = getActsAndScenes()
-  const sceneContent = getSceneContent(currentScene)
-  const sceneMetadata = getSceneMetadata(currentScene)
+  
+  // Force re-calculation of scene content when currentScene changes
+  const sceneContent = React.useMemo(() => {
+    console.log('Calculating scene content for:', currentScene)
+    return getSceneContent(currentScene)
+  }, [currentScene, getSceneContent])
+  
+  const sceneMetadata = React.useMemo(() => {
+    return getSceneMetadata(currentScene)
+  }, [currentScene, getSceneMetadata])
 
   // Copy text to clipboard
   const copyToClipboard = async (text) => {
@@ -79,15 +94,17 @@ const ReaderPanel = ({ selectedText, setSelectedText, onBackToLibrary }) => {
     console.log('Previous scene:', currentScene)
     console.log('Available acts and scenes:', actsAndScenes)
     
-    setCurrentScene(sceneName)
+    // Clear selections first
     setSelectedLine(null)
     setSelectedText('')
     
-    // Force a re-render by updating state
-    setTimeout(() => {
-      console.log('Scene selection completed. New scene:', sceneName)
-      console.log('Scene content length:', getSceneContent(sceneName).length)
-    }, 100)
+    // Update scene
+    setCurrentScene(sceneName)
+    
+    // Force immediate re-render
+    setForceUpdate(prev => prev + 1)
+    
+    console.log('Scene selection completed. New scene:', sceneName)
   }
 
   if (!isLoaded) {
@@ -107,7 +124,8 @@ const ReaderPanel = ({ selectedText, setSelectedText, onBackToLibrary }) => {
     currentScene,
     sceneContent: sceneContent.length,
     actsAndScenes: Object.keys(actsAndScenes),
-    sceneContentSample: sceneContent.slice(0, 2)
+    sceneContentSample: sceneContent.slice(0, 2),
+    forceUpdate
   })
 
   return (
@@ -189,7 +207,7 @@ const ReaderPanel = ({ selectedText, setSelectedText, onBackToLibrary }) => {
       </div>
 
       {/* Scene Content */}
-      <div className="flex-1 overflow-y-auto p-6">
+      <div className="flex-1 overflow-y-auto p-6" key={`${currentScene}-${forceUpdate}`}>
         {currentScene && sceneContent.length > 0 ? (
           <div className="space-y-6">
             {/* Scene Header */}
