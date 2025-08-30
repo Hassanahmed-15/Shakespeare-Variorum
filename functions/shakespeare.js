@@ -95,7 +95,20 @@ exports.handler = async (event, context) => {
     }
 
     if (analysisMode === 'fullfathomfive') {
-      systemPrompt += `\n\nIn Full Fathom Five mode, you should provide both commentary (if available for the text) and analysis. If no specific commentary exists for the selected text, indicate this clearly and provide comprehensive analysis instead.`
+      systemPrompt += `\n\nIn Full Fathom Five mode, you should provide INSANELY DETAILED and COMPREHENSIVE analysis. This is the highest level of scholarly analysis available. You must:
+
+1. Provide EXTREMELY detailed analysis for each section
+2. Include extensive historical context and background
+3. Reference multiple scholarly sources and interpretations
+4. Analyze every word, phrase, and literary device in depth
+5. Compare with similar passages across Shakespeare's works
+6. Include critical reception from multiple time periods
+7. Provide detailed textual variants and editorial history
+8. Analyze meter, rhythm, and poetic techniques extensively
+9. Include cultural, political, and social context
+10. Reference contemporary scholarship and modern interpretations
+
+This should be the most comprehensive analysis possible - think doctoral-level scholarship. Each section should be extensive and thorough.`
     }
 
     systemPrompt += `\n\nProvide analysis in the following structure:\n${structure.map(section => `- ${section}`).join('\n')}`
@@ -113,7 +126,14 @@ For the Commentary section (in Full Fathom Five mode), provide traditional schol
       userPrompt += `\n\nThis selection contains ${lines.length} lines. Please provide analysis that considers both the individual lines and their relationship to each other.`
     }
 
-    userPrompt += `\n\nPlease provide a comprehensive ${analysisMode} analysis of this text.`
+    if (analysisMode === 'fullfathomfive') {
+      userPrompt += `\n\nPlease provide an INSANELY DETAILED and COMPREHENSIVE Full Fathom Five analysis of this text. This should be the most thorough scholarly analysis possible - equivalent to doctoral-level research. Be extremely detailed in every section, providing extensive context, multiple interpretations, and thorough scholarly analysis.`
+    } else {
+      userPrompt += `\n\nPlease provide a comprehensive ${analysisMode} analysis of this text.`
+    }
+
+    // Get max_tokens from request or use default
+    const maxTokens = event.body.max_tokens || (analysisMode === 'fullfathomfive' ? 8000 : 3000)
 
     // Make the API call
     const completion = await openai.chat.completions.create({
@@ -128,8 +148,8 @@ For the Commentary section (in Full Fathom Five mode), provide traditional schol
           content: userPrompt
         }
       ],
-      temperature: 0.7,
-      max_tokens: 3000
+      temperature: analysisMode === 'fullfathomfive' ? 0.3 : 0.7,
+      max_tokens: maxTokens
     })
 
     const response = completion.choices[0].message.content

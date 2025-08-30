@@ -402,6 +402,29 @@
             overflow-y: auto;
         }
 
+        .result.fullfathomfive {
+            background: #0a0a0a;
+            border-left: 5px solid #fbbf24;
+            padding: 30px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-height: 800px;
+        }
+
+        .result.fullfathomfive h4 {
+            color: #fbbf24;
+            font-size: 1.3rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #fbbf24;
+            padding-bottom: 8px;
+        }
+
+        .result.fullfathomfive p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
         .stats {
             background: #374151;
             padding: 15px;
@@ -900,6 +923,7 @@
 
 
         function clearSelection() {
+            console.log('Clearing selection');
             selectedLines = [];
             firstSelectedLine = null;
             document.getElementById('selectedLinesDisplay').style.display = 'none';
@@ -909,9 +933,10 @@
             
             // Reset selection info
             const selectionInfo = document.getElementById('selectionInfo');
-            selectionInfo.textContent = 'Click a line to select it, then click another to select a range (2-5 lines for Full Fathom Five).';
+            selectionInfo.textContent = 'Click a line to select it, then click another to select a range (2-5 lines).';
             
             updateAnalysisPanel();
+            console.log('Selection cleared');
         }
 
         function loadPlay() {
@@ -977,6 +1002,8 @@
         }
 
         function selectLine(element, text, lineNum) {
+            console.log('Selecting line:', lineNum, 'Text:', text);
+            
             if (!firstSelectedLine) {
                 // First selection
                 firstSelectedLine = lineNum;
@@ -988,21 +1015,25 @@
                 
                 // Update selection info
                 const selectionInfo = document.getElementById('selectionInfo');
-                if (currentTab === 'fullfathomfive') {
-                    selectionInfo.textContent = 'Click another line to select a range (2-5 lines).';
-                } else {
-                    selectionInfo.textContent = 'Click another line to select a range (2-5 lines).';
-                }
+                selectionInfo.textContent = 'Click another line to select a range (2-5 lines).';
+                
+                console.log('First selection made:', selectedLines);
             } else {
                 // Second selection - create range
                 const start = Math.min(firstSelectedLine, lineNum);
                 const end = Math.max(firstSelectedLine, lineNum);
                 const lineCount = end - start + 1;
                 
-                const maxLines = currentTab === 'fullfathomfive' ? 5 : 5;
+                console.log('Creating range from', start, 'to', end, 'count:', lineCount);
                 
-                if (lineCount > maxLines) {
-                    alert(`Please select between 2 and ${maxLines} consecutive lines.`);
+                if (lineCount < 2) {
+                    alert('Please select at least 2 consecutive lines.');
+                    clearSelection();
+                    return;
+                }
+                
+                if (lineCount > 5) {
+                    alert('Please select between 2 and 5 consecutive lines.');
                     clearSelection();
                     return;
                 }
@@ -1018,10 +1049,10 @@
                     const lineElement = document.querySelector(`[data-line-num="${i}"]`);
                     if (lineElement) {
                         lineElement.classList.add('range-selected');
-                        // Get the original line text from the data attribute
                         const lineText = lineElement.getAttribute('data-line-text');
                         if (lineText) {
                             selectedLines.push(lineText);
+                            console.log('Added line to selection:', lineText);
                         }
                     }
                 }
@@ -1031,6 +1062,8 @@
                 // Update selection info
                 const selectionInfo = document.getElementById('selectionInfo');
                 selectionInfo.textContent = `${lineCount} lines selected. Ready for analysis.`;
+                
+                console.log('Range selection complete:', selectedLines);
             }
             
             displaySelectedLines();
@@ -1159,6 +1192,10 @@
             const resultElement = document.getElementById(targetSection === 'analysis' ? 'analysisResult' : 'explanationResult');
             resultElement.innerHTML = '<div class="loading">🤔 Analyzing text with AI...</div>';
 
+            // Use different model and settings for Full Fathom Five
+            const model = currentTab === 'fullfathomfive' ? 'gpt-4o' : 'gpt-4o-mini';
+            const maxTokens = currentTab === 'fullfathomfive' ? 8000 : 3000;
+
             // Call the API
             fetch('/.netlify/functions/shakespeare', {
                 method: 'POST',
@@ -1168,8 +1205,9 @@
                 body: JSON.stringify({
                     text: text,
                     level: currentTab,
-                    model: 'gpt-4o-mini',
-                    mode: currentTab
+                    model: model,
+                    mode: currentTab,
+                    max_tokens: maxTokens
                 })
             })
             .then(response => response.json())
@@ -1186,8 +1224,9 @@
                         formattedContent = data.analysis.replace(/\n/g, '<br>');
                     }
                     
+                    const resultClass = currentTab === 'fullfathomfive' ? 'result fullfathomfive' : 'result';
                     resultElement.innerHTML = `
-                        <div class="result">
+                        <div class="${resultClass}">
                             ${formattedContent}
                         </div>
                         ${data.usage ? `
