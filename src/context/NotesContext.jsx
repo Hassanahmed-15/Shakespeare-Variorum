@@ -14,36 +14,38 @@ export const NotesProvider = ({ children }) => {
   const [macbethData, setMacbethData] = useState(null)
   const [notesData, setNotesData] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
-  const [currentPlay, setCurrentPlay] = useState('')
-  const [currentScene, setCurrentScene] = useState('')
+  const [currentPlay, setCurrentPlay] = useState('Macbeth')
+  const [currentScene, setCurrentScene] = useState('ACT 1, SCENE 1')
 
   // Load both macbeth data and notes data
   useEffect(() => {
     const loadData = async () => {
       try {
         // Load the complete Macbeth database
-        const macbethResponse = await fetch('/Public/Data/macbeth_complete.json')
+        const macbethResponse = await fetch('/Data/macbeth_complete.json')
         if (macbethResponse.ok) {
           const macbethJson = await macbethResponse.json()
           setMacbethData(macbethJson)
           console.log('Macbeth data loaded successfully')
         } else {
-          console.warn('Could not load macbeth_complete.json')
+          console.warn('Could not load macbeth_complete.json:', macbethResponse.status, macbethResponse.statusText)
         }
 
         // Load the scholarly notes
-        const notesResponse = await fetch('/Public/Data/macbeth_notes.json')
+        const notesResponse = await fetch('/Data/macbeth_notes.json')
         if (notesResponse.ok) {
           const notesJson = await notesResponse.json()
           setNotesData(notesJson)
           console.log('Notes data loaded successfully')
         } else {
-          console.warn('Could not load macbeth_notes.json')
+          console.warn('Could not load macbeth_notes.json:', notesResponse.status, notesResponse.statusText)
         }
 
         setIsLoaded(true)
       } catch (error) {
         console.error('Error loading data:', error)
+        // Set loaded to true even if there's an error so the app doesn't get stuck
+        setIsLoaded(true)
       }
     }
 

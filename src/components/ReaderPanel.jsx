@@ -111,7 +111,10 @@ const ReaderPanel = ({ selectedText, setSelectedText, onAnalyze }) => {
   if (!isLoaded) {
     return (
       <div className="flex items-center justify-center h-full">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading Shakespeare Database...</p>
+        </div>
       </div>
     )
   }
@@ -289,8 +292,12 @@ const ReaderPanel = ({ selectedText, setSelectedText, onAnalyze }) => {
         ) : (
           <div className="text-center text-gray-400 py-12">
             <BookOpen className="w-12 h-12 mx-auto mb-4 opacity-50" />
-            <p>Select a scene to begin reading</p>
-            <p className="text-sm mt-2">Click on any line to analyze it</p>
+            <p>Scene content not available</p>
+            <p className="text-sm mt-2">Database may still be loading or scene not found</p>
+            <div className="mt-4 p-4 bg-gray-800/50 rounded-lg">
+              <p className="text-sm">Current Scene: {currentScene}</p>
+              <p className="text-xs text-gray-500 mt-1">Available scenes: {Object.keys(actsAndScenes).length} acts</p>
+            </div>
           </div>
         )}
       </div>
