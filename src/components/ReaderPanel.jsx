@@ -72,6 +72,14 @@ const ReaderPanel = ({ selectedText, setSelectedText, onBackToLibrary }) => {
     }))
   }
 
+  // Handle scene selection
+  const handleSceneSelect = (sceneName) => {
+    console.log('Selecting scene:', sceneName)
+    setCurrentScene(sceneName)
+    setSelectedLine(null)
+    setSelectedText('')
+  }
+
   if (!isLoaded) {
     return (
       <div className="flex items-center justify-center h-full">
@@ -88,7 +96,8 @@ const ReaderPanel = ({ selectedText, setSelectedText, onBackToLibrary }) => {
     isLoaded,
     currentScene,
     sceneContent: sceneContent.length,
-    actsAndScenes: Object.keys(actsAndScenes)
+    actsAndScenes: Object.keys(actsAndScenes),
+    sceneContentSample: sceneContent.slice(0, 2)
   })
 
   return (
@@ -151,14 +160,14 @@ const ReaderPanel = ({ selectedText, setSelectedText, onBackToLibrary }) => {
                     {actData.scenes.map((sceneName) => (
                       <button
                         key={sceneName}
-                        onClick={() => setCurrentScene(sceneName)}
+                        onClick={() => handleSceneSelect(sceneName)}
                         className={`w-full p-2 text-left rounded text-sm transition-colors ${
                           currentScene === sceneName
                             ? 'bg-blue-600 text-white'
                             : 'text-gray-300 hover:bg-gray-700'
                         }`}
                       >
-                        {sceneName.replace('ACT 1, ', '')}
+                        {sceneName.replace(/^ACT \d+, /, '')}
                       </button>
                     ))}
                   </div>
@@ -248,8 +257,13 @@ const ReaderPanel = ({ selectedText, setSelectedText, onBackToLibrary }) => {
         ) : (
           <div className="text-center text-gray-400 py-12">
             <BookOpen className="w-12 h-12 mx-auto mb-4 opacity-50" />
-            <p>Select a scene to begin reading</p>
-            <p className="text-sm mt-2">Click on any line to analyze it</p>
+            <p>No content available for this scene</p>
+            <p className="text-sm mt-2">Please select a different scene</p>
+            <div className="mt-4 p-4 bg-gray-800/50 rounded-lg">
+              <p className="text-xs text-gray-500">Debug Info:</p>
+              <p className="text-xs text-gray-500">Current Scene: {currentScene}</p>
+              <p className="text-xs text-gray-500">Available Scenes: {Object.keys(actsAndScenes).join(', ')}</p>
+            </div>
           </div>
         )}
       </div>
