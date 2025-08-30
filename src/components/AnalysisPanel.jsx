@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Brain, BookOpen, MessageSquare, Loader2 } from 'lucide-react'
+import { Brain, BookOpen, MessageSquare, Loader2, Play, Sparkles } from 'lucide-react'
 import { useNotes } from '../context/NotesContext'
 
 const AnalysisPanel = ({ selectedText, analysisMode, setAnalysisMode, currentPlay, currentScene }) => {
@@ -114,6 +114,15 @@ const AnalysisPanel = ({ selectedText, analysisMode, setAnalysisMode, currentPla
     }
   }
 
+  const getModeDescription = () => {
+    switch(analysisMode) {
+      case 'basic': return 'Clear, accessible analysis for undergraduates'
+      case 'expert': return 'Comprehensive scholarly analysis with citations'
+      case 'fullfathomfive': return 'Deepest analysis with commentary and sources'
+      default: return 'Analysis'
+    }
+  }
+
   const formatAnalysisContent = (content) => {
     return content
       .replace(/\*\*(.*?)\*\*/g, '<h4 class="text-lg font-semibold text-primary-400 mb-2">$1</h4>')
@@ -129,9 +138,16 @@ const AnalysisPanel = ({ selectedText, analysisMode, setAnalysisMode, currentPla
           <h2 className="text-xl font-bold text-gray-100 mb-2">
             {getModeTitle()}
           </h2>
-          <p className="text-sm text-gray-400">
-            {selectedText ? `Analyzing: "${selectedText.substring(0, 50)}${selectedText.length > 50 ? '...' : ''}"` : 'Highlight text to analyze'}
+          <p className="text-sm text-gray-400 mb-3">
+            {getModeDescription()}
           </p>
+          {selectedText && (
+            <div className="bg-gray-800/50 p-3 rounded-lg border-l-4 border-primary-500">
+              <p className="text-sm text-gray-300">
+                "{selectedText.substring(0, 100)}{selectedText.length > 100 ? '...' : ''}"
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Mode Selector */}
@@ -154,6 +170,19 @@ const AnalysisPanel = ({ selectedText, analysisMode, setAnalysisMode, currentPla
             ))}
           </div>
         </div>
+
+        {/* Analyze Button */}
+        {selectedText && !isLoading && !analysisContent && (
+          <div className="mb-6">
+            <button
+              onClick={handleAnalyze}
+              className="w-full btn btn-primary flex items-center justify-center gap-2 py-3"
+            >
+              <Sparkles className="w-4 h-4" />
+              Analyze Text
+            </button>
+          </div>
+        )}
 
         {/* Content Area */}
         <div className="space-y-6">
@@ -262,7 +291,7 @@ const AnalysisPanel = ({ selectedText, analysisMode, setAnalysisMode, currentPla
           {!selectedText && (
             <div className="text-center py-8">
               <BookOpen className="w-12 h-12 text-gray-500 mx-auto mb-3" />
-              <p className="text-gray-400">Highlight text to analyze</p>
+              <p className="text-gray-400">Highlight text or click on a line to analyze</p>
             </div>
           )}
         </div>
