@@ -6,11 +6,12 @@ import AnalysisPanel from './components/AnalysisPanel'
 import { BookOpen, Sparkles } from 'lucide-react'
 
 // Component to handle context updates
-const PlayViewWithContext = ({ selectedPlay, selectedText, setSelectedText, onBackToLibrary }) => {
+const PlayViewWithContext = ({ selectedPlay, selectedText, setSelectedText, onBackToLibrary, resetInitialScene }) => {
   const { setCurrentPlay, setCurrentScene, getScenes, isLoaded } = useNotes()
+  const [initialSceneSet, setInitialSceneSet] = React.useState(false)
 
   React.useEffect(() => {
-    if (selectedPlay && isLoaded) {
+    if (selectedPlay && isLoaded && !initialSceneSet) {
       console.log('Setting up play context for:', selectedPlay)
       setCurrentPlay(selectedPlay)
       const scenes = getScenes()
@@ -19,10 +20,11 @@ const PlayViewWithContext = ({ selectedPlay, selectedText, setSelectedText, onBa
         const firstScene = scenes[0]
         console.log('Setting first scene:', firstScene)
         setCurrentScene(firstScene)
+        setInitialSceneSet(true)
         console.log('Set context:', { play: selectedPlay, scene: firstScene })
       }
     }
-  }, [selectedPlay, isLoaded, setCurrentPlay, setCurrentScene, getScenes])
+  }, [selectedPlay, isLoaded, initialSceneSet]) // Only run when play is selected or data is loaded
 
   return (
     <main className="flex h-[calc(100vh-4rem)]">
@@ -31,7 +33,10 @@ const PlayViewWithContext = ({ selectedPlay, selectedText, setSelectedText, onBa
         <ReaderPanel 
           selectedText={selectedText}
           setSelectedText={setSelectedText}
-          onBackToLibrary={onBackToLibrary}
+          onBackToLibrary={() => {
+            resetInitialScene()
+            onBackToLibrary()
+          }}
         />
       </div>
       
@@ -58,6 +63,8 @@ function App() {
   const handleBackToLibrary = () => {
     setSelectedPlay('')
     setSelectedText('')
+    // Reset the initial scene flag when going back to library
+    setInitialSceneSet(false)
   }
 
   return (
@@ -96,6 +103,7 @@ function App() {
             selectedText={selectedText}
             setSelectedText={setSelectedText}
             onBackToLibrary={handleBackToLibrary}
+            resetInitialScene={() => setInitialSceneSet(false)}
           />
         )}
 
