@@ -3,12 +3,10 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "22"
 
-[[redirects]]
-  from = "/.netlify/functions/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
+# Functions are handled automatically by Netlify
+# No need for explicit redirects for /.netlify/functions/*
 
 [[redirects]]
   from = "/*"
