@@ -669,24 +669,143 @@
         let macbethData = null;
         let currentTab = 'basic';
         let firstSelectedLine = null;
+        let notesIntegration = null;
 
-        // Load saved settings on page load
+        // Notes Integration System
+        class NotesIntegration {
+            constructor() {
+                this.notesData = null;
+                this.currentPlay = '';
+                this.currentScene = '';
+                this.isLoaded = false;
+            }
+
+            async loadNotes() {
+                try {
+                    const response = await fetch('/Public/Data/macbeth_notes.json');
+                    if (!response.ok) {
+                        console.warn('Could not load macbeth_notes.json');
+                        return false;
+                    }
+                    this.notesData = await response.json();
+                    this.isLoaded = true;
+                    console.log('Notes data loaded successfully');
+                    return true;
+                } catch (error) {
+                    console.error('Error loading notes:', error);
+                    return false;
+                }
+            }
+
+            setContext(playName, sceneName) {
+                this.currentPlay = playName;
+                this.currentScene = sceneName;
+            }
+
+            findNotesForLine(text, sceneName = null) {
+                if (!this.isLoaded || !this.notesData) {
+                    return null;
+                }
+
+                const targetScene = sceneName || this.currentScene;
+                if (!targetScene || !this.notesData[targetScene]) {
+                    return null;
+                }
+
+                const sceneNotes = this.notesData[targetScene];
+                
+                for (const lineNumber in sceneNotes) {
+                    const lineData = sceneNotes[lineNumber];
+                    if (lineData && lineData.play) {
+                        const playLine = lineData.play.toLowerCase().trim();
+                        const searchText = text.toLowerCase().trim();
+                        
+                        if (this.matchesText(playLine, searchText)) {
+                            return {
+                                lineNumber: lineNumber,
+                                playLine: lineData.play,
+                                notes: lineData.notes || [],
+                                scene: targetScene
+                            };
+                        }
+                    }
+                }
+                
+                return null;
+            }
+
+            matchesText(playLine, searchText) {
+                if (playLine === searchText) return true;
+                if (playLine.includes(searchText) && searchText.length > 3) return true;
+                if (searchText.includes(playLine) && playLine.length > 3) return true;
+                
+                const playWords = playLine.split(/\s+/).filter(word => word.length > 2);
+                const searchWords = searchText.split(/\s+/).filter(word => word.length > 2);
+                
+                if (playWords.length > 0 && searchWords.length > 0) {
+                    const matchingWords = playWords.filter(word => 
+                        searchWords.some(searchWord => 
+                            word.includes(searchWord) || searchWord.includes(word)
+                        )
+                    );
+                    
+                    return (matchingWords.length / playWords.length) > 0.5;
+                }
+                
+                return false;
+            }
+
+            formatNotes(notesData) {
+                if (!notesData || !notesData.notes || notesData.notes.length === 0) {
+                    return null;
+                }
+
+                let formattedHTML = `
+                    <div class="notes-header">
+                        <h4 style="color: #f59e0b; margin-bottom: 10px;">Traditional Commentary</h4>
+                        <p style="font-style: italic; color: #9ca3af; margin-bottom: 15px;">
+                            Line ${notesData.lineNumber}: "${notesData.playLine}"
+                        </p>
+                    </div>
+                `;
+
+                notesData.notes.forEach((note, index) => {
+                    formattedHTML += `
+                        <div class="note-item" style="margin-bottom: 15px; padding: 10px; background: #1a1a1a; border-radius: 6px; border-left: 3px solid #f59e0b;">
+                            <p style="margin: 0; line-height: 1.6;">${note}</p>
+                        </div>
+                    `;
+                });
+
+                return formattedHTML;
+            }
+        }
+
+        // Load saved settings and data on page load
         document.addEventListener('DOMContentLoaded', async function() {
-            const savedModel = localStorage.getItem('shakespeare_model');
+            console.log('🎭 Shakespeare Digital Variorum - Loading...');
             
+            const savedModel = localStorage.getItem('shakespeare_model');
             if (savedModel) {
                 document.getElementById('model').value = savedModel;
             }
+
+            // Initialize notes integration
+            notesIntegration = new NotesIntegration();
+            await notesIntegration.loadNotes();
 
             // Load Macbeth data
             try {
                 const response = await fetch('/Public/Data/macbeth_notes.json');
                 if (response.ok) {
                     macbethData = await response.json();
-                    console.log('Macbeth data loaded successfully');
+                    console.log('✅ Macbeth data loaded successfully');
+                    console.log('Available scenes:', Object.keys(macbethData));
+                } else {
+                    console.error('❌ Failed to load Macbeth data:', response.status);
                 }
             } catch (error) {
-                console.error('Error loading Macbeth data:', error);
+                console.error('❌ Error loading Macbeth data:', error);
             }
         });
 
@@ -715,6 +834,7 @@
                 document.getElementById('playContent').style.display = 'block';
                 updateSceneNavigation();
                 loadScene('ACT 1, SCENE 1');
+                console.log('✅ Macbeth loaded successfully');
             } else {
                 alert('Please select a play to load.');
             }
@@ -732,6 +852,7 @@
                     button.onclick = () => loadScene(scene);
                     sceneNav.appendChild(button);
                 });
+                console.log('✅ Scene navigation updated');
             }
         }
 
@@ -754,8 +875,10 @@
                     sceneContent += `<div class="play-line" data-line-num="${lineNum}" onclick="selectLine(this, '${lineData.play}', ${lineNum})">${lineData.play}</div>`;
                 });
                 playText.innerHTML = sceneContent;
+                console.log(`✅ Loaded scene: ${sceneName} with ${Object.keys(macbethData[sceneName]).length} lines`);
             } else {
                 playText.innerHTML = '<p>Scene not found.</p>';
+                console.error(`❌ Scene not found: ${sceneName}`);
             }
         }
 
@@ -819,7 +942,6 @@
             
             if (selectedLines.length > 0) {
                 const lineCount = selectedLines.length;
-                const preview = selectedLines[0].substring(0, 50);
                 analysisContent.textContent = `${currentPlay} · ${currentScene} · ${lineCount} line${lineCount > 1 ? 's' : ''} selected`;
                 analysisInstruction.textContent = `Click "Explain Highlighted Text" to analyze ${lineCount} line${lineCount > 1 ? 's' : ''}.`;
             } else {
@@ -841,52 +963,74 @@
 
             const textToAnalyze = selectedLines.join('\n');
 
-            // Call the API
-            fetch('/.netlify/functions/shakespeare', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    text: textToAnalyze,
-                    level: currentTab,
-                    model: model,
-                    mode: currentTab
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.analysis) {
-                    let formattedContent = '';
-                    
-                    if (typeof data.analysis === 'object') {
-                        for (const [section, content] of Object.entries(data.analysis)) {
-                            formattedContent += `<h4 style="color: #f59e0b; margin-top: 15px; margin-bottom: 8px;">${section}</h4>`;
-                            formattedContent += `<p style="margin-bottom: 12px;">${content.replace(/\n/g, '<br>')}</p>`;
+            // Check for traditional commentary first
+            let commentaryFound = false;
+            if (notesIntegration && notesIntegration.isLoaded) {
+                notesIntegration.setContext(currentPlay, currentScene);
+                
+                // Check each selected line for commentary
+                for (const line of selectedLines) {
+                    const notesData = notesIntegration.findNotesForLine(line, currentScene);
+                    if (notesData && notesData.notes && notesData.notes.length > 0) {
+                        const formattedNotes = notesIntegration.formatNotes(notesData);
+                        if (formattedNotes) {
+                            analysisResult.innerHTML = formattedNotes;
+                            commentaryFound = true;
+                            break;
                         }
-                    } else {
-                        formattedContent = data.analysis.replace(/\n/g, '<br>');
                     }
-                    
-                    analysisResult.innerHTML = `
-                        <div class="result">
-                            ${formattedContent}
-                        </div>
-                        ${data.usage ? `
-                        <div class="stats">
-                            📊 Usage: ${data.usage.prompt_tokens || 'N/A'} prompt tokens, 
-                            ${data.usage.completion_tokens || 'N/A'} completion tokens, 
-                            ${data.usage.total_tokens || 'N/A'} total tokens
-                        </div>
-                        ` : ''}
-                    `;
-                } else {
-                    analysisResult.innerHTML = '<div class="error">Error: Invalid response from API</div>';
                 }
-            })
-            .catch(error => {
-                analysisResult.innerHTML = `<div class="error">Error: ${error.message}</div>`;
-            });
+            }
+
+            // If no commentary found or not in Full Fathom Five mode, proceed with AI analysis
+            if (!commentaryFound || currentTab !== 'fullfathomfive') {
+                // Call the API
+                fetch('/.netlify/functions/shakespeare', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        text: textToAnalyze,
+                        level: currentTab,
+                        model: model,
+                        mode: currentTab
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.analysis) {
+                        let formattedContent = '';
+                        
+                        if (typeof data.analysis === 'object') {
+                            for (const [section, content] of Object.entries(data.analysis)) {
+                                formattedContent += `<h4 style="color: #f59e0b; margin-top: 15px; margin-bottom: 8px;">${section}</h4>`;
+                                formattedContent += `<p style="margin-bottom: 12px;">${content.replace(/\n/g, '<br>')}</p>`;
+                            }
+                        } else {
+                            formattedContent = data.analysis.replace(/\n/g, '<br>');
+                        }
+                        
+                        analysisResult.innerHTML = `
+                            <div class="result">
+                                ${formattedContent}
+                            </div>
+                            ${data.usage ? `
+                            <div class="stats">
+                                📊 Usage: ${data.usage.prompt_tokens || 'N/A'} prompt tokens, 
+                                ${data.usage.completion_tokens || 'N/A'} completion tokens, 
+                                ${data.usage.total_tokens || 'N/A'} total tokens
+                            </div>
+                            ` : ''}
+                        `;
+                    } else {
+                        analysisResult.innerHTML = '<div class="error">Error: Invalid response from API</div>';
+                    }
+                })
+                .catch(error => {
+                    analysisResult.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+                });
+            }
         }
 
         function switchTab(tab) {
