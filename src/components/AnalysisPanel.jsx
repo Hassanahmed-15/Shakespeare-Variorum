@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Brain, BookOpen, MessageSquare, Loader2, Play, Sparkles } from 'lucide-react'
+import { Brain, BookOpen, MessageSquare, Loader2, Sparkles, Search, BookMarked, Zap } from 'lucide-react'
 import { useNotes } from '../context/NotesContext'
 
 const AnalysisPanel = ({ selectedText, analysisMode, setAnalysisMode, currentPlay, currentScene }) => {
@@ -123,6 +123,15 @@ const AnalysisPanel = ({ selectedText, analysisMode, setAnalysisMode, currentPla
     }
   }
 
+  const getModeIcon = () => {
+    switch(analysisMode) {
+      case 'basic': return <BookOpen className="w-5 h-5" />
+      case 'expert': return <Search className="w-5 h-5" />
+      case 'fullfathomfive': return <Zap className="w-5 h-5" />
+      default: return <Brain className="w-5 h-5" />
+    }
+  }
+
   const formatAnalysisContent = (content) => {
     return content
       .replace(/\*\*(.*?)\*\*/g, '<h4 class="text-lg font-semibold text-primary-400 mb-2">$1</h4>')
@@ -132,15 +141,23 @@ const AnalysisPanel = ({ selectedText, analysisMode, setAnalysisMode, currentPla
 
   return (
     <div className="w-96 flex-shrink-0">
-      <div className="card p-6 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto">
+      <div className="card p-6 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto bg-gray-800/95 backdrop-blur-sm">
         {/* Header */}
         <div className="mb-6 pb-4 border-b border-gray-700">
-          <h2 className="text-xl font-bold text-gray-100 mb-2">
-            {getModeTitle()}
-          </h2>
-          <p className="text-sm text-gray-400 mb-3">
-            {getModeDescription()}
-          </p>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg flex items-center justify-center">
+              {getModeIcon()}
+            </div>
+            <div>
+              <h2 className="text-xl font-bold text-gray-100">
+                {getModeTitle()}
+              </h2>
+              <p className="text-sm text-gray-400">
+                {getModeDescription()}
+              </p>
+            </div>
+          </div>
+          
           {selectedText && (
             <div className="bg-gray-800/50 p-3 rounded-lg border-l-4 border-primary-500">
               <p className="text-sm text-gray-300">
@@ -176,7 +193,7 @@ const AnalysisPanel = ({ selectedText, analysisMode, setAnalysisMode, currentPla
           <div className="mb-6">
             <button
               onClick={handleAnalyze}
-              className="w-full btn btn-primary flex items-center justify-center gap-2 py-3"
+              className="w-full btn btn-primary flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800"
             >
               <Sparkles className="w-4 h-4" />
               Analyze Text
@@ -200,7 +217,7 @@ const AnalysisPanel = ({ selectedText, analysisMode, setAnalysisMode, currentPla
               {analysisContent.type === 'notes' && (
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-lg font-semibold text-gray-100 mb-3">
-                    <BookOpen className="w-5 h-5 text-primary-400" />
+                    <BookMarked className="w-5 h-5 text-primary-400" />
                     📚 Scholarly Notes
                   </div>
                   <div className="text-sm text-gray-400 mb-3">
@@ -225,7 +242,7 @@ const AnalysisPanel = ({ selectedText, analysisMode, setAnalysisMode, currentPla
               {analysisContent.type === 'commentary' && (
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-lg font-semibold text-gray-100 mb-3">
-                    <BookOpen className="w-5 h-5 text-primary-400" />
+                    <BookMarked className="w-5 h-5 text-primary-400" />
                     📚 Scholarly Commentary
                   </div>
                   <div className="text-sm text-gray-400 mb-3">

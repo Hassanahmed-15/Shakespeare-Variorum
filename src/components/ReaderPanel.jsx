@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { BookOpen, Search, Copy, Share2 } from 'lucide-react'
+import { BookOpen, Search, Copy, Share2, Play, Pause, Volume2, Settings } from 'lucide-react'
 
 const ReaderPanel = ({ selectedPlay, currentScene, setSelectedText }) => {
   const contentRef = useRef(null)
   const [selectedLine, setSelectedLine] = useState(null)
-  const [showLineNumbers, setShowLineNumbers] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [fontSize, setFontSize] = useState('lg')
 
   // Handle text selection
   useEffect(() => {
@@ -73,42 +74,7 @@ const ReaderPanel = ({ selectedPlay, currentScene, setSelectedText }) => {
       'ACT 1, SCENE 2': [
         { character: 'DUNCAN', dialogue: 'What bloody man is that? He can report,\nAs seemeth by his plight, of the revolt\nThe newest state.' },
         { character: 'MALCOLM', dialogue: 'This is the sergeant\nWho like a good and hardy soldier fought\n\'Gainst my captivity. Hail, brave friend!\nSay to the king the knowledge of the broil\nAs thou didst leave it.' },
-        { character: 'Sergeant', dialogue: 'Doubtful it stood;\nAs two spent swimmers, that do cling together\nAnd choke their art. The merciless Macdonwald—\nWorthy to be a rebel, for to that\nThe multiplying villanies of nature\nDo swarm upon him—from the western isles\nOf kerns and gallowglasses is supplied;\nAnd fortune, on his damned quarrel smiling,\nShow\'d like a rebel\'s whore: but all\'s too weak:\nFor brave Macbeth—well he deserves that name—\nDisdaining fortune, with his brandish\'d steel,\nWhich smoked with bloody execution,\nLike valour\'s minion carved out his passage\nTill he faced the slave;\nWhich ne\'er shook hands, nor bade farewell to him,\nTill he unseam\'d him from the nave to the chaps,\nAnd fix\'d his head upon our battlements.' },
-        { character: 'DUNCAN', dialogue: 'O valiant cousin! worthy gentleman!' },
-        { character: 'Sergeant', dialogue: 'As whence the sun \'gins his reflection\nShipwrecking storms and direful thunders break,\nSo from that spring whence comfort seem\'d to come\nDiscomfort swells. Mark, king of Scotland, mark:\nNo sooner justice had with valour arm\'d\nCompell\'d these skipping kerns to trust their heels,\nBut the Norweyan lord surveying vantage,\nWith furbish\'d arms and new supplies of men\nBegan a fresh assault.' },
-        { character: 'DUNCAN', dialogue: 'Dismay\'d not this\nOur captains, Macbeth and Banquo?' },
-        { character: 'Sergeant', dialogue: 'Yes;\nAs sparrows eagles, or the hare the lion.\nIf I say sooth, I must report they were\nAs cannons overcharged with double cracks, so they\nDoubly redoubled strokes upon the foe:\nExcept they meant to bathe in reeking wounds,\nOr memorise another Golgotha,\nI cannot tell.\nBut I am faint, my gashes cry for help.' },
-        { character: 'DUNCAN', dialogue: 'So well thy words become thee as thy wounds;\nThey smack of honour both. Go get him surgeons.' }
-      ],
-      'ACT 1, SCENE 3': [
-        { character: 'First Witch', dialogue: 'Where hast thou been, sister?' },
-        { character: 'Second Witch', dialogue: 'Killing swine.' },
-        { character: 'Third Witch', dialogue: 'Sister, where thou?' },
-        { character: 'First Witch', dialogue: 'A sailor\'s wife had chestnuts in her lap,\nAnd munch\'d, and munch\'d, and munch\'d:—\'Give me,\' quoth I:\n\'Aroint thee, witch!\' the rump-fed ronyon cries.\nHer husband\'s to Aleppo gone, master o\' the Tiger:\nBut in a sieve I\'ll thither sail,\nAnd, like a rat without a tail,\nI\'ll do, I\'ll do, and I\'ll do.' },
-        { character: 'Second Witch', dialogue: 'I\'ll give thee a wind.' },
-        { character: 'First Witch', dialogue: 'Thou\'rt kind.' },
-        { character: 'Third Witch', dialogue: 'And I another.' },
-        { character: 'First Witch', dialogue: 'I myself have all the other,\nAnd the very ports they blow,\nAll the quarters that they know\nI\' the shipman\'s card.\nI will drain him dry as hay:\nSleep shall neither night nor day\nHang upon his pent-house lid;\nHe shall live a man forbid:\nWeary se\'nnights nine times nine\nShall he dwindle, peak and pine:\nThough his bark cannot be lost,\nYet it shall be tempest-tost.\nLook what I have.' },
-        { character: 'Second Witch', dialogue: 'Show me, show me.' },
-        { character: 'First Witch', dialogue: 'Here I have a pilot\'s thumb,\nWreck\'d as homeward he did come.' },
-        { character: 'Third Witch', dialogue: 'A drum, a drum!\nMacbeth doth come.' },
-        { character: 'ALL', dialogue: 'The weird sisters, hand in hand,\nPosters of the sea and land,\nThus do go about, about:\nThrice to thine and thrice to mine\nAnd thrice again, to make up nine.\nPeace! the charm\'s wound up.' }
-      ],
-      'ACT 1, SCENE 4': [
-        { character: 'DUNCAN', dialogue: 'Is execution done on Cawdor? Are not\nThose in commission yet return\'d?' },
-        { character: 'MALCOLM', dialogue: 'My liege,\nThey are not yet come back. But I have spoke\nWith one that saw him die: who did report\nThat very frankly he confess\'d his treasons,\nImplored your highness\' pardon and set forth\nA deep repentance: nothing in his life\nBecame him like the leaving it; he died\nAs one that had been studied in his death\nTo throw away the dearest thing he owed,\nAs \'twere a careless trifle.' },
-        { character: 'DUNCAN', dialogue: 'There\'s no art\nTo find the mind\'s construction in the face:\nHe was a gentleman on whom I built\nAn absolute trust.\n\nEnter MACBETH, BANQUO, ROSS, and ANGUS\n\nO worthiest cousin!\nThe sin of my ingratitude even now\nWas heavy on me: thou art so far before\nThat swiftest wing of recompense is slow\nTo overtake thee. Would thou hadst less deserved,\nThat the proportion both of thanks and payment\nMight have been mine! only I have left to say,\nMore is thy due than more than all can pay.' },
-        { character: 'MACBETH', dialogue: 'The service and the loyalty I owe,\nIn doing it, pays itself. Your highness\' part\nIs to receive our duties; and our duties\nAre to your throne and state children and servants,\nWhich do but what they should, by doing every thing\nSafe toward your love and honour.' },
-        { character: 'DUNCAN', dialogue: 'Welcome hither:\nI have begun to plant thee, and will labour\nTo make thee full of growing. Noble Banquo,\nThat hast no less deserved, nor must be known\nNo less to have done so, let me enfold thee\nAnd hold thee to my heart.' },
-        { character: 'BANQUO', dialogue: 'There if I grow,\nThe harvest is your own.' },
-        { character: 'DUNCAN', dialogue: 'My plenteous joys,\nWanton in fulness, seek to hide themselves\nIn drops of sorrow. Sons, kinsmen, thanes,\nAnd you whose places are the nearest, know\nWe will establish our estate upon\nOur eldest, Malcolm, whom we name hereafter\nThe Prince of Cumberland; which honour must\nNot unaccompanied invest him only,\nBut signs of nobleness, like stars, shall shine\nOn all deservers. From hence to Inverness,\nAnd bind us further to you.' },
-        { character: 'MACBETH', dialogue: 'The rest is labour, which is not used for you:\nI\'ll be myself the harbinger and make joyful\nThe hearing of my wife with your approach;\nSo humbly take my leave.' },
-        { character: 'DUNCAN', dialogue: 'My worthy Cawdor!' },
-        { character: 'MACBETH', dialogue: '[Aside] The Prince of Cumberland! that is a step\nOn which I must fall down, or else o\'erleap,\nFor in my way it lies. Stars, hide your fires;\nLet not light see my black and deep desires:\nThe eye wink at the hand; yet let that be,\nWhich the eye fears, when it is done, to see.' },
-        { character: 'DUNCAN', dialogue: 'True, worthy Banquo; he is full so valiant,\nAnd in his commendations I am fed;\nIt is a banquet to me. Let\'s after him,\nWhose care is gone before to bid us welcome:\nIt is a peerless kinsman.' }
-      ],
-      'ACT 1, SCENE 5': [
-        { character: 'LADY MACBETH', dialogue: 'They met me in the day of success: and I have\nlearned by the perfectest report, they have more in\nthem than mortal knowledge. When I burned in desire\nto question them further, they made themselves air,\ninto which they vanished. Whiles I stood rapt in\nthe wonder of it, came missives from the king, who\nall-hailed me \'Thane of Cawdor;\' by which title,\nbefore, these weird sisters saluted me, and referred\nme to the coming on of time, with \'Hail, king that\nshalt be!\' This have I thought good to deliver\nthee, my dearest partner of greatness, that thou\nmightst not lose the dues of rejoicing, by being\nignorant of what greatness is promised thee. Lay it\nto thy heart, and farewell.\n\nGlamis thou art, and Cawdor; and shalt be\nWhat thou art promised: yet do I fear thy nature;\nIt is too full o\' the milk of human kindness\nTo catch the nearest way: thou wouldst be great;\nArt not without ambition, but without\nThe illness should attend it: what thou wouldst highly,\nThat thou wouldst holily; wouldst not play false,\nAnd yet wouldst wrongly win: thou\'ldst have, great\nGlamis, that which cries \'Thus thou must do, if thou\nhave it;\' and that which rather thou dost fear to do\nThan wishest should be undone. Hie thee hither,\nThat I may pour my spirits in thine ear;\nAnd chastise with the valour of my tongue\nAll that impedes thee from the golden round,\nWhich fate and metaphysical aid doth seem\nTo have thee crown\'d withal.' }
+        { character: 'Sergeant', dialogue: 'Doubtful it stood;\nAs two spent swimmers, that do cling together\nAnd choke their art. The merciless Macdonwald—\nWorthy to be a rebel, for to that\nThe multiplying villanies of nature\nDo swarm upon him—from the western isles\nOf kerns and gallowglasses is supplied;\nAnd fortune, on his damned quarrel smiling,\nShow\'d like a rebel\'s whore: but all\'s too weak:\nFor brave Macbeth—well he deserves that name—\nDisdaining fortune, with his brandish\'d steel,\nWhich smoked with bloody execution,\nLike valour\'s minion carved out his passage\nTill he faced the slave;\nWhich ne\'er shook hands, nor bade farewell to him,\nTill he unseam\'d him from the nave to the chaps,\nAnd fix\'d his head upon our battlements.' }
       ]
     }
 
@@ -119,7 +85,6 @@ const ReaderPanel = ({ selectedPlay, currentScene, setSelectedText }) => {
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text)
-    // You could add a toast notification here
   }
 
   const shareText = (text) => {
@@ -133,19 +98,30 @@ const ReaderPanel = ({ selectedPlay, currentScene, setSelectedText }) => {
     }
   }
 
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying)
+  }
+
   if (!selectedPlay) {
     return (
       <div className="flex-1">
-        <div className="card p-12 text-center">
-          <div className="w-20 h-20 mx-auto mb-6 text-gray-500">
-            <BookOpen className="w-full h-full" />
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center p-8">
+          <div className="max-w-2xl text-center">
+            <div className="w-32 h-32 mx-auto mb-8 bg-gradient-to-br from-primary-600 to-primary-800 rounded-full flex items-center justify-center shadow-2xl">
+              <BookOpen className="w-16 h-16 text-white" />
+            </div>
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent mb-6">
+              Shakespeare Digital Variorum
+            </h1>
+            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              Experience Shakespeare's works with scholarly commentary, AI analysis, and interactive research tools.
+            </p>
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
+              <p className="text-gray-400">
+                Select Macbeth from the library to begin your scholarly exploration.
+              </p>
+            </div>
           </div>
-          <h3 className="text-2xl font-semibold text-gray-300 mb-3">
-            Welcome to Shakespeare Digital Variorum
-          </h3>
-          <p className="text-gray-400 max-w-md mx-auto">
-            Select Macbeth from the library to begin exploring the play with scholarly commentary and AI analysis.
-          </p>
         </div>
       </div>
     )
@@ -154,13 +130,18 @@ const ReaderPanel = ({ selectedPlay, currentScene, setSelectedText }) => {
   if (!currentScene) {
     return (
       <div className="flex-1">
-        <div className="card p-12 text-center">
-          <h3 className="text-2xl font-semibold text-gray-300 mb-3">
-            Select a Scene
-          </h3>
-          <p className="text-gray-400">
-            Choose a scene from the navigation to begin reading.
-          </p>
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center p-8">
+          <div className="max-w-md text-center">
+            <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-primary-600 to-primary-800 rounded-full flex items-center justify-center shadow-xl">
+              <Play className="w-12 h-12 text-white" />
+            </div>
+            <h2 className="text-2xl font-bold text-gray-100 mb-4">
+              Select a Scene
+            </h2>
+            <p className="text-gray-400">
+              Choose a scene from the navigation to begin reading with scholarly commentary.
+            </p>
+          </div>
         </div>
       </div>
     )
@@ -169,85 +150,151 @@ const ReaderPanel = ({ selectedPlay, currentScene, setSelectedText }) => {
   const sceneContent = getSceneContent(currentScene)
 
   return (
-    <div className="flex-1">
-      <div className="card p-8" ref={contentRef}>
-        {/* Scene Header */}
-        <div className="mb-8 pb-6 border-b border-gray-700">
+    <div className="flex-1 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen">
+      {/* Header with Controls */}
+      <div className="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-700/50">
+        <div className="p-6">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-3xl font-bold gradient-text">
-              {currentScene}
-            </h1>
-            <div className="flex items-center gap-2">
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
+                {currentScene}
+              </h1>
+              <p className="text-gray-400 mt-1">
+                {selectedPlay} • Shakespeare Digital Variorum
+              </p>
+            </div>
+            
+            {/* Playback Controls */}
+            <div className="flex items-center gap-4">
               <button
-                onClick={() => setShowLineNumbers(!showLineNumbers)}
-                className="btn btn-ghost text-sm"
-                title="Toggle line numbers"
+                onClick={togglePlay}
+                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg hover:from-primary-700 hover:to-primary-800 transition-all duration-200 shadow-lg hover:shadow-xl"
               >
-                <Search className="w-4 h-4" />
+                {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying ? 'Pause' : 'Play'}
               </button>
+              
+              <div className="flex items-center gap-2">
+                <Volume2 className="w-4 h-4 text-gray-400" />
+                <div className="w-20 h-2 bg-gray-700 rounded-full">
+                  <div className="w-3/4 h-full bg-primary-500 rounded-full"></div>
+                </div>
+              </div>
             </div>
           </div>
-          <p className="text-gray-400">
-            {selectedPlay} • {currentScene}
-          </p>
-        </div>
 
-        {/* Play Content */}
-        <div className="space-y-4 font-serif text-lg leading-relaxed">
-          {sceneContent.map((line, index) => (
-            <div 
-              key={index}
-              className="group p-4 rounded-lg bg-gray-800/50 border border-gray-700 hover:bg-gray-800 hover:border-gray-600 transition-all duration-200 cursor-pointer"
-              onClick={() => {
-                setSelectedLine(line)
-                setSelectedText(line.dialogue)
-              }}
-            >
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className="font-sans font-semibold text-primary-400 uppercase tracking-wide text-sm mb-2">
+          {/* Settings Bar */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-400">Font:</span>
+                <select 
+                  value={fontSize} 
+                  onChange={(e) => setFontSize(e.target.value)}
+                  className="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm text-gray-200"
+                >
+                  <option value="sm">Small</option>
+                  <option value="md">Medium</option>
+                  <option value="lg">Large</option>
+                  <option value="xl">Extra Large</option>
+                  <option value="2xl">2XL</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 text-sm text-gray-400">
+              <Settings className="w-4 h-4" />
+              <span>Reading Mode</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Content Area */}
+      <div className="p-8" ref={contentRef}>
+        <div className="max-w-4xl mx-auto">
+          {/* Scene Content - Subtitle Style */}
+          <div className="space-y-8 text-lg leading-relaxed">
+            {sceneContent.map((line, index) => (
+              <div 
+                key={index}
+                className={`group relative p-6 rounded-2xl transition-all duration-300 cursor-pointer ${
+                  selectedLine === line 
+                    ? 'bg-gradient-to-r from-primary-900/50 to-primary-800/50 border-2 border-primary-500/50 shadow-2xl' 
+                    : 'bg-gray-800/30 border border-gray-700/30 hover:bg-gray-800/50 hover:border-gray-600/50 hover:shadow-xl'
+                }`}
+                onClick={() => {
+                  setSelectedLine(line)
+                  setSelectedText(line.dialogue)
+                }}
+              >
+                {/* Character Name - Subtitle Style */}
+                <div className="mb-3">
+                  <div className="inline-block px-3 py-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-sm font-semibold rounded-full shadow-lg">
                     {line.character}
                   </div>
-                  <div className="text-gray-100 leading-relaxed select-text">
-                    {line.dialogue.split('\n').map((text, i) => (
-                      <div key={i} className="mb-2 last:mb-0">
-                        {text}
-                      </div>
-                    ))}
-                  </div>
                 </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex gap-1">
+
+                {/* Dialogue Text - Subtitle Style */}
+                <div className="text-gray-100 leading-relaxed select-text">
+                  {line.dialogue.split('\n').map((text, i) => (
+                    <div key={i} className="mb-2 last:mb-0">
+                      {text}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Action Buttons - Appear on Hover */}
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex gap-2">
                   <button
                     onClick={(e) => {
                       e.stopPropagation()
                       copyToClipboard(line.dialogue)
                     }}
-                    className="btn btn-ghost text-xs p-1"
+                    className="p-2 bg-gray-700/80 hover:bg-gray-600/80 rounded-lg transition-colors duration-200"
                     title="Copy text"
                   >
-                    <Copy className="w-3 h-3" />
+                    <Copy className="w-4 h-4 text-gray-300" />
                   </button>
                   <button
                     onClick={(e) => {
                       e.stopPropagation()
                       shareText(line.dialogue)
                     }}
-                    className="btn btn-ghost text-xs p-1"
+                    className="p-2 bg-gray-700/80 hover:bg-gray-600/80 rounded-lg transition-colors duration-200"
                     title="Share text"
                   >
-                    <Share2 className="w-3 h-3" />
+                    <Share2 className="w-4 h-4 text-gray-300" />
                   </button>
                 </div>
+
+                {/* Line Number */}
+                <div className="absolute bottom-2 right-2 text-xs text-gray-500 font-mono">
+                  {index + 1}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Instructions */}
+          <div className="mt-12 p-6 bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-700/30 rounded-2xl backdrop-blur-sm">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <Search className="w-4 h-4 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-100 mb-2">
+                  How to Use This Digital Variorum
+                </h3>
+                <ul className="text-gray-300 space-y-1 text-sm">
+                  <li>• <strong>Click on any line</strong> to select it for analysis</li>
+                  <li>• <strong>Highlight specific text</strong> for detailed scholarly commentary</li>
+                  <li>• <strong>Use the analysis panel</strong> to explore different levels of interpretation</li>
+                  <li>• <strong>Access research links</strong> for further scholarly exploration</li>
+                </ul>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Instructions */}
-        <div className="mt-8 p-4 bg-blue-900/20 border border-blue-700/50 rounded-lg">
-          <p className="text-blue-300 text-sm">
-            💡 <strong>Tip:</strong> Click on any line to select it for analysis, or highlight specific text to analyze.
-          </p>
+          </div>
         </div>
       </div>
     </div>
