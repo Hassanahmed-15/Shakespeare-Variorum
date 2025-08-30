@@ -1,12 +1,14 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  functions = "functions"
 
 [build.environment]
   NODE_VERSION = "22"
 
-# Functions are handled automatically by Netlify
-# No need for explicit redirects for /.netlify/functions/*
+# Functions configuration
+[functions]
+  directory = "functions"
 
 [[redirects]]
   from = "/*"

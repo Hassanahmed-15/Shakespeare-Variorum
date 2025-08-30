@@ -95,7 +95,8 @@ const AnalysisPanel = ({ selectedText, setSelectedText }) => {
         play: currentPlay || 'Macbeth'
       })
 
-      const response = await fetch('/.netlify/functions/shakespeare', {
+      // First try the Netlify function
+      let response = await fetch('/.netlify/functions/shakespeare', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -110,6 +111,23 @@ const AnalysisPanel = ({ selectedText, setSelectedText }) => {
 
       console.log('Response status:', response.status)
       console.log('Response headers:', response.headers)
+
+      // If Netlify function fails, try local development server
+      if (!response.ok) {
+        console.log('Netlify function failed, trying local server...')
+        response = await fetch('http://localhost:8888/.netlify/functions/shakespeare', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            text: selectedText,
+            mode: analysisMode,
+            scene: currentScene,
+            play: currentPlay || 'Macbeth'
+          }),
+        })
+      }
 
       if (!response.ok) {
         const errorText = await response.text()
