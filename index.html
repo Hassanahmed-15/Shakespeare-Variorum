@@ -133,6 +133,36 @@
             background: #333;
         }
 
+        /* API Configuration */
+        .api-section {
+            background: #374151;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #4b5563;
+        }
+
+        .api-group {
+            margin-bottom: 15px;
+        }
+
+        .api-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #f59e0b;
+        }
+
+        .api-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #4b5563;
+            border-radius: 4px;
+            font-family: inherit;
+            background: #1a1a1a;
+            color: #f9fafb;
+        }
+
         /* Main Content */
         .main-content {
             grid-column: 2;
@@ -231,6 +261,7 @@
             border-radius: 4px;
             transition: background 0.2s;
             cursor: pointer;
+            user-select: none;
         }
 
         .play-line:hover {
@@ -240,6 +271,47 @@
         .play-line.selected {
             background: #f59e0b;
             color: #000;
+        }
+
+        .play-line.range-selected {
+            background: #fbbf24;
+            color: #000;
+        }
+
+        .line-selection-info {
+            background: #374151;
+            border: 1px solid #f59e0b;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #f9fafb;
+        }
+
+        .selected-lines {
+            background: #374151;
+            border: 2px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Georgia', serif;
+            line-height: 1.5;
+            display: none;
+        }
+
+        .clear-selection {
+            background: #dc3545;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .clear-selection:hover {
+            background: #c82333;
         }
 
         /* Analysis Panel */
@@ -317,6 +389,28 @@
             line-height: 1.6;
         }
 
+        .result {
+            background: #1a1a1a;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .stats {
+            background: #374151;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #f59e0b;
+        }
+
         .follow-up-section {
             margin-top: 20px;
         }
@@ -374,6 +468,31 @@
             background: #4b5563;
         }
 
+        /* Loading and Error States */
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #9ca3af;
+        }
+
+        .error {
+            background: #dc2626;
+            color: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .success {
+            color: #10b981;
+            background: #064e3b;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 5px solid #10b981;
+        }
+
         /* Footer */
         .footer {
             grid-column: 1 / -1;
@@ -395,22 +514,6 @@
             color: #9ca3af;
             font-size: 0.9rem;
             line-height: 1.6;
-        }
-
-        /* Loading and Error States */
-        .loading {
-            text-align: center;
-            padding: 20px;
-            color: #9ca3af;
-        }
-
-        .error {
-            background: #dc2626;
-            color: #fff;
-            padding: 15px;
-            border-radius: 6px;
-            margin: 10px 0;
-            font-size: 0.9rem;
         }
 
         /* Responsive Design */
@@ -471,6 +574,27 @@
                 </select>
                 <button class="go-button" onclick="loadPlay()">Go</button>
             </div>
+
+            <!-- API Configuration -->
+            <div class="api-section">
+                <h3>⚙️ Analysis Settings</h3>
+                <div class="api-group">
+                    <label for="model">Model:</label>
+                    <select id="model" onchange="saveModel()">
+                        <option value="gpt-4o">GPT-4o (Most Capable)</option>
+                        <option value="gpt-4o-mini" selected>GPT-4o Mini (Fast & Efficient)</option>
+                        <option value="gpt-4-turbo">GPT-4 Turbo</option>
+                        <option value="gpt-3.5-turbo">GPT-3.5 Turbo (Legacy)</option>
+                    </select>
+                    <small style="color: #9ca3af; font-size: 12px;">Choose your preferred AI model</small>
+                </div>
+            </div>
+
+            <div class="line-selection-info">
+                <strong>Line Selection:</strong> You can select 2-5 consecutive lines at once for combined analysis. 
+                <button class="clear-selection" onclick="clearSelection()">Clear Selection</button>
+            </div>
+            <div id="selectedLinesDisplay" class="selected-lines"></div>
         </aside>
 
         <!-- Main Content -->
@@ -478,7 +602,7 @@
             <div class="empty-state" id="emptyState">
                 <div class="empty-icon">📚</div>
                 <h2 class="empty-title">Add a play to begin</h2>
-                <p class="empty-text">Upload a text file in Settings. We'll auto-index acts and scenes.</p>
+                <p class="empty-text">Select Macbeth from the library to begin reading and analyzing.</p>
                 <button class="settings-button">Open Settings</button>
             </div>
 
@@ -492,13 +616,14 @@
         <aside class="analysis-panel">
             <div class="analysis-tabs">
                 <button class="analysis-tab active" onclick="switchTab('basic')">Basic</button>
+                <button class="analysis-tab" onclick="switchTab('detailed')">Detailed</button>
                 <button class="analysis-tab" onclick="switchTab('expert')">Expert</button>
                 <button class="analysis-tab" onclick="switchTab('fullfathomfive')">Full Fathom Five</button>
             </div>
 
             <div class="analysis-section">
                 <div class="analysis-title">
-                    Basic Analysis
+                    <span id="analysisTitle">Basic Analysis</span>
                     <button class="copy-button" onclick="copyAnalysis()">Copy</button>
                 </div>
                 <div class="analysis-content" id="analysisContent">
@@ -507,6 +632,7 @@
                 <div class="analysis-content" id="analysisInstruction">
                     Highlight text in the play to get AI-powered analysis.
                 </div>
+                <div id="analysisResult"></div>
             </div>
 
             <div class="follow-up-section">
@@ -539,12 +665,20 @@
     <script>
         let currentPlay = null;
         let currentScene = null;
-        let selectedText = '';
+        let selectedLines = [];
         let macbethData = null;
         let currentTab = 'basic';
+        let firstSelectedLine = null;
 
-        // Load Macbeth data on page load
+        // Load saved settings on page load
         document.addEventListener('DOMContentLoaded', async function() {
+            const savedModel = localStorage.getItem('shakespeare_model');
+            
+            if (savedModel) {
+                document.getElementById('model').value = savedModel;
+            }
+
+            // Load Macbeth data
             try {
                 const response = await fetch('/Public/Data/macbeth_notes.json');
                 if (response.ok) {
@@ -555,6 +689,21 @@
                 console.error('Error loading Macbeth data:', error);
             }
         });
+
+        function saveModel() {
+            const model = document.getElementById('model').value;
+            localStorage.setItem('shakespeare_model', model);
+        }
+
+        function clearSelection() {
+            selectedLines = [];
+            firstSelectedLine = null;
+            document.getElementById('selectedLinesDisplay').style.display = 'none';
+            document.querySelectorAll('.play-line').forEach(line => {
+                line.classList.remove('selected', 'range-selected');
+            });
+            updateAnalysisPanel();
+        }
 
         function loadPlay() {
             const playSelect = document.getElementById('playSelect');
@@ -602,7 +751,7 @@
                 let sceneContent = '';
                 Object.keys(macbethData[sceneName]).forEach(lineNum => {
                     const lineData = macbethData[sceneName][lineNum];
-                    sceneContent += `<div class="play-line" onclick="selectLine(this, '${lineData.play}')">${lineData.play}</div>`;
+                    sceneContent += `<div class="play-line" data-line-num="${lineNum}" onclick="selectLine(this, '${lineData.play}', ${lineNum})">${lineData.play}</div>`;
                 });
                 playText.innerHTML = sceneContent;
             } else {
@@ -610,27 +759,69 @@
             }
         }
 
-        function selectLine(element, text) {
-            // Clear previous selections
-            document.querySelectorAll('.play-line').forEach(line => {
-                line.classList.remove('selected');
-            });
+        function selectLine(element, text, lineNum) {
+            if (!firstSelectedLine) {
+                // First selection
+                firstSelectedLine = lineNum;
+                selectedLines = [text];
+                element.classList.add('selected');
+                document.querySelectorAll('.play-line').forEach(line => {
+                    line.classList.remove('range-selected');
+                });
+            } else {
+                // Second selection - create range
+                const start = Math.min(firstSelectedLine, lineNum);
+                const end = Math.max(firstSelectedLine, lineNum);
+                const lineCount = end - start + 1;
+                
+                if (lineCount > 5) {
+                    alert('Please select between 2 and 5 consecutive lines.');
+                    clearSelection();
+                    return;
+                }
+                
+                // Clear previous selections
+                document.querySelectorAll('.play-line').forEach(line => {
+                    line.classList.remove('selected', 'range-selected');
+                });
+                
+                // Select range
+                selectedLines = [];
+                for (let i = start; i <= end; i++) {
+                    const lineElement = document.querySelector(`[data-line-num="${i}"]`);
+                    if (lineElement) {
+                        lineElement.classList.add('range-selected');
+                        selectedLines.push(lineElement.textContent);
+                    }
+                }
+                
+                firstSelectedLine = null;
+            }
             
-            // Select current line
-            element.classList.add('selected');
-            selectedText = text;
-            
-            // Update analysis panel
+            displaySelectedLines();
             updateAnalysisPanel();
+        }
+
+        function displaySelectedLines() {
+            const display = document.getElementById('selectedLinesDisplay');
+            if (selectedLines.length > 0) {
+                display.innerHTML = '<strong>Selected Lines:</strong><br>' + 
+                    selectedLines.map((line, index) => `${index + 1}. ${line}`).join('<br>');
+                display.style.display = 'block';
+            } else {
+                display.style.display = 'none';
+            }
         }
 
         function updateAnalysisPanel() {
             const analysisContent = document.getElementById('analysisContent');
             const analysisInstruction = document.getElementById('analysisInstruction');
             
-            if (selectedText) {
-                analysisContent.textContent = `${currentPlay} · ${currentScene} · "${selectedText.substring(0, 50)}..."`;
-                analysisInstruction.textContent = 'Click "Explain Highlighted Text" to analyze this selection.';
+            if (selectedLines.length > 0) {
+                const lineCount = selectedLines.length;
+                const preview = selectedLines[0].substring(0, 50);
+                analysisContent.textContent = `${currentPlay} · ${currentScene} · ${lineCount} line${lineCount > 1 ? 's' : ''} selected`;
+                analysisInstruction.textContent = `Click "Explain Highlighted Text" to analyze ${lineCount} line${lineCount > 1 ? 's' : ''}.`;
             } else {
                 analysisContent.textContent = 'Unknown Play · No text highlighted';
                 analysisInstruction.textContent = 'Highlight text in the play to get AI-powered analysis.';
@@ -638,13 +829,17 @@
         }
 
         function explainHighlighted() {
-            if (!selectedText) {
+            if (selectedLines.length === 0) {
                 alert('Please select text in the play first.');
                 return;
             }
 
-            const analysisContent = document.getElementById('analysisContent');
-            analysisContent.innerHTML = '<div class="loading">🤔 Analyzing text with AI...</div>';
+            const analysisResult = document.getElementById('analysisResult');
+            const model = document.getElementById('model').value;
+            
+            analysisResult.innerHTML = '<div class="loading">🤔 Analyzing text with AI...</div>';
+
+            const textToAnalyze = selectedLines.join('\n');
 
             // Call the API
             fetch('/.netlify/functions/shakespeare', {
@@ -653,9 +848,9 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    text: selectedText,
+                    text: textToAnalyze,
                     level: currentTab,
-                    model: 'gpt-4o-mini',
+                    model: model,
                     mode: currentTab
                 })
             })
@@ -673,13 +868,24 @@
                         formattedContent = data.analysis.replace(/\n/g, '<br>');
                     }
                     
-                    analysisContent.innerHTML = formattedContent;
+                    analysisResult.innerHTML = `
+                        <div class="result">
+                            ${formattedContent}
+                        </div>
+                        ${data.usage ? `
+                        <div class="stats">
+                            📊 Usage: ${data.usage.prompt_tokens || 'N/A'} prompt tokens, 
+                            ${data.usage.completion_tokens || 'N/A'} completion tokens, 
+                            ${data.usage.total_tokens || 'N/A'} total tokens
+                        </div>
+                        ` : ''}
+                    `;
                 } else {
-                    analysisContent.innerHTML = '<div class="error">Error: Invalid response from API</div>';
+                    analysisResult.innerHTML = '<div class="error">Error: Invalid response from API</div>';
                 }
             })
             .catch(error => {
-                analysisContent.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+                analysisResult.innerHTML = `<div class="error">Error: ${error.message}</div>`;
             });
         }
 
@@ -691,10 +897,13 @@
             event.target.classList.add('active');
             
             // Update analysis title
-            const analysisTitle = document.querySelector('.analysis-title');
+            const analysisTitle = document.getElementById('analysisTitle');
             switch(tab) {
                 case 'basic':
                     analysisTitle.textContent = 'Basic Analysis';
+                    break;
+                case 'detailed':
+                    analysisTitle.textContent = 'Detailed Analysis';
                     break;
                 case 'expert':
                     analysisTitle.textContent = 'Expert Analysis';
@@ -705,7 +914,7 @@
             }
             
             // Re-analyze if text is selected
-            if (selectedText) {
+            if (selectedLines.length > 0) {
                 explainHighlighted();
             }
         }
@@ -719,13 +928,17 @@
                 return;
             }
             
-            if (!selectedText) {
+            if (selectedLines.length === 0) {
                 alert('Please select text in the play first.');
                 return;
             }
 
-            const analysisContent = document.getElementById('analysisContent');
-            analysisContent.innerHTML = '<div class="loading">🤔 Processing follow-up question...</div>';
+            const analysisResult = document.getElementById('analysisResult');
+            const model = document.getElementById('model').value;
+            
+            analysisResult.innerHTML = '<div class="loading">🤔 Processing follow-up question...</div>';
+
+            const textToAnalyze = selectedLines.join('\n');
 
             // Call the API with follow-up question
             fetch('/.netlify/functions/shakespeare', {
@@ -734,9 +947,9 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    text: selectedText,
+                    text: textToAnalyze,
                     level: currentTab,
-                    model: 'gpt-4o-mini',
+                    model: model,
                     mode: currentTab,
                     followUp: question
                 })
@@ -744,21 +957,25 @@
             .then(response => response.json())
             .then(data => {
                 if (data.analysis) {
-                    analysisContent.innerHTML = data.analysis.replace(/\n/g, '<br>');
+                    analysisResult.innerHTML = `
+                        <div class="result">
+                            ${data.analysis.replace(/\n/g, '<br>')}
+                        </div>
+                    `;
                 } else {
-                    analysisContent.innerHTML = '<div class="error">Error: Invalid response from API</div>';
+                    analysisResult.innerHTML = '<div class="error">Error: Invalid response from API</div>';
                 }
             })
             .catch(error => {
-                analysisContent.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+                analysisResult.innerHTML = `<div class="error">Error: ${error.message}</div>`;
             });
 
             followUpInput.value = '';
         }
 
         function copyAnalysis() {
-            const analysisContent = document.getElementById('analysisContent');
-            const textToCopy = analysisContent.textContent;
+            const analysisResult = document.getElementById('analysisResult');
+            const textToCopy = analysisResult.textContent;
             
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const copyButton = document.querySelector('.copy-button');
@@ -776,7 +993,9 @@
             const selectedTextFromPage = selection.toString().trim();
             
             if (selectedTextFromPage && selectedTextFromPage.length > 0) {
-                selectedText = selectedTextFromPage;
+                // This handles text selection outside of the play lines
+                selectedLines = [selectedTextFromPage];
+                displaySelectedLines();
                 updateAnalysisPanel();
             }
         });
