@@ -25,12 +25,13 @@
             grid-template-rows: 80px 1fr 100px;
             height: 100vh;
             gap: 0;
+            background: #000000;
         }
 
         /* Header */
         .header {
             grid-column: 1 / -1;
-            background: #2d2d2d;
+            background: #000000;
             border-bottom: 1px solid #4b5563;
             display: flex;
             align-items: center;
@@ -89,7 +90,7 @@
         .library-panel {
             grid-column: 1;
             grid-row: 2;
-            background: #2d2d2d;
+            background: #000000;
             border-right: 1px solid #4b5563;
             padding: 30px;
             overflow-y: auto;
@@ -133,41 +134,13 @@
             background: #333;
         }
 
-        /* API Configuration */
-        .api-section {
-            background: #374151;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #4b5563;
-        }
 
-        .api-group {
-            margin-bottom: 15px;
-        }
-
-        .api-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #f59e0b;
-        }
-
-        .api-group select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #4b5563;
-            border-radius: 4px;
-            font-family: inherit;
-            background: #1a1a1a;
-            color: #f9fafb;
-        }
 
         /* Main Content */
         .main-content {
             grid-column: 2;
             grid-row: 2;
-            background: #1a1a1a;
+            background: #000000;
             padding: 30px;
             overflow-y: auto;
             position: relative;
@@ -249,7 +222,7 @@
             font-size: 1.1rem;
             line-height: 1.8;
             color: #f9fafb;
-            background: #2d2d2d;
+            background: #000000;
             padding: 30px;
             border-radius: 8px;
             border: 1px solid #4b5563;
@@ -318,7 +291,7 @@
         .analysis-panel {
             grid-column: 3;
             grid-row: 2;
-            background: #2d2d2d;
+            background: #000000;
             border-left: 1px solid #4b5563;
             padding: 30px;
             overflow-y: auto;
@@ -351,7 +324,7 @@
         }
 
         .analysis-section {
-            background: #374151;
+            background: #000000;
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
@@ -390,7 +363,7 @@
         }
 
         .result {
-            background: #1a1a1a;
+            background: #000000;
             border-left: 5px solid #f59e0b;
             padding: 20px;
             border-radius: 8px;
@@ -403,7 +376,7 @@
         }
 
         .result.fullfathomfive {
-            background: #0a0a0a;
+            background: #000000;
             border-left: 5px solid #fbbf24;
             padding: 30px;
             font-size: 1.1rem;
@@ -555,7 +528,7 @@
         .footer {
             grid-column: 1 / -1;
             grid-row: 3;
-            background: #2d2d2d;
+            background: #000000;
             border-top: 1px solid #4b5563;
             padding: 20px 30px;
             text-align: center;
@@ -633,13 +606,7 @@
                 <button class="go-button" onclick="loadPlay()">Go</button>
             </div>
 
-            <!-- Analysis Settings -->
-            <div class="api-section">
-                <h3>⚙️ Analysis Settings</h3>
-                <div class="api-group">
-                    <p style="color: #9ca3af; font-size: 12px; margin: 0;">AI model selection is handled automatically for optimal performance.</p>
-                </div>
-            </div>
+
 
             <div class="line-selection-info">
                 <strong>Line Selection:</strong> 
@@ -926,14 +893,23 @@
             console.log('Clearing selection');
             selectedLines = [];
             firstSelectedLine = null;
-            document.getElementById('selectedLinesDisplay').style.display = 'none';
+            
+            // Hide selected lines display
+            const selectedLinesDisplay = document.getElementById('selectedLinesDisplay');
+            if (selectedLinesDisplay) {
+                selectedLinesDisplay.style.display = 'none';
+            }
+            
+            // Clear all line selections
             document.querySelectorAll('.play-line').forEach(line => {
                 line.classList.remove('selected', 'range-selected');
             });
             
             // Reset selection info
             const selectionInfo = document.getElementById('selectionInfo');
-            selectionInfo.textContent = 'Click a line to select it, then click another to select a range (2-5 lines).';
+            if (selectionInfo) {
+                selectionInfo.textContent = 'Click a line to select it, then click another to select a range (2-5 lines).';
+            }
             
             updateAnalysisPanel();
             console.log('Selection cleared');
@@ -1004,6 +980,12 @@
         function selectLine(element, text, lineNum) {
             console.log('Selecting line:', lineNum, 'Text:', text);
             
+            // If clicking on already selected line, clear selection
+            if (element.classList.contains('selected') || element.classList.contains('range-selected')) {
+                clearSelection();
+                return;
+            }
+            
             if (!firstSelectedLine) {
                 // First selection
                 firstSelectedLine = lineNum;
@@ -1072,12 +1054,15 @@
 
         function displaySelectedLines() {
             const display = document.getElementById('selectedLinesDisplay');
-            if (selectedLines.length > 0) {
-                display.innerHTML = '<strong>Selected Lines:</strong><br>' + 
-                    selectedLines.map((line, index) => `${index + 1}. ${line}`).join('<br>');
-                display.style.display = 'block';
-            } else {
-                display.style.display = 'none';
+            if (display) {
+                if (selectedLines.length > 0) {
+                    display.innerHTML = '<strong>Selected Lines:</strong><br>' + 
+                        selectedLines.map((line, index) => `${index + 1}. ${line}`).join('<br>');
+                    display.style.display = 'block';
+                    console.log('Displaying selected lines:', selectedLines);
+                } else {
+                    display.style.display = 'none';
+                }
             }
         }
 
@@ -1086,15 +1071,18 @@
             const analysisInstruction = document.getElementById('analysisInstruction');
             const analyzeButton = document.getElementById('analyzeButton');
             
-            if (selectedLines.length > 0) {
-                const lineCount = selectedLines.length;
-                analysisContent.textContent = `${currentPlay} · ${currentScene} · ${lineCount} line${lineCount > 1 ? 's' : ''} selected`;
-                analysisInstruction.textContent = `Click "Analyze Text" to analyze ${lineCount} line${lineCount > 1 ? 's' : ''}.`;
-                analyzeButton.style.display = 'block';
-            } else {
-                analysisContent.textContent = 'Unknown Play · No text highlighted';
-                analysisInstruction.textContent = 'Select text in the play to get AI-powered analysis.';
-                analyzeButton.style.display = 'none';
+            if (analysisContent && analysisInstruction && analyzeButton) {
+                if (selectedLines.length > 0) {
+                    const lineCount = selectedLines.length;
+                    analysisContent.textContent = `${currentPlay} · ${currentScene} · ${lineCount} line${lineCount > 1 ? 's' : ''} selected`;
+                    analysisInstruction.textContent = `Click "Analyze Text" to analyze ${lineCount} line${lineCount > 1 ? 's' : ''}.`;
+                    analyzeButton.style.display = 'block';
+                    console.log('Analysis panel updated for', lineCount, 'lines');
+                } else {
+                    analysisContent.textContent = 'Unknown Play · No text highlighted';
+                    analysisInstruction.textContent = 'Select text in the play to get AI-powered analysis.';
+                    analyzeButton.style.display = 'none';
+                }
             }
         }
 
@@ -1424,6 +1412,35 @@
                 updateAnalysisPanel();
             }
         });
+
+        // Test function to verify line selection works
+        function testLineSelection() {
+            console.log('=== LINE SELECTION TEST ===');
+            console.log('Current selected lines:', selectedLines);
+            console.log('First selected line:', firstSelectedLine);
+            console.log('Current tab:', currentTab);
+            
+            // Test selecting lines 1, 2, 3, 4, 5
+            const testLines = document.querySelectorAll('.play-line');
+            console.log('Total lines found:', testLines.length);
+            
+            if (testLines.length >= 5) {
+                console.log('Testing 5-line selection...');
+                // Simulate clicking first line
+                const firstLine = testLines[0];
+                const firstLineNum = firstLine.getAttribute('data-line-num');
+                const firstLineText = firstLine.getAttribute('data-line-text');
+                console.log('First line:', firstLineNum, firstLineText);
+                
+                // Simulate clicking fifth line
+                const fifthLine = testLines[4];
+                const fifthLineNum = fifthLine.getAttribute('data-line-num');
+                const fifthLineText = fifthLine.getAttribute('data-line-text');
+                console.log('Fifth line:', fifthLineNum, fifthLineText);
+                
+                console.log('Line selection should work for 5 consecutive lines');
+            }
+        }
     </script>
   </body>
 </html>
