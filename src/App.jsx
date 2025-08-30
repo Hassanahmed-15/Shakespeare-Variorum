@@ -19,6 +19,45 @@ function App() {
     setSelectedText('')
   }
 
+  // Component to handle context updates
+  const PlayViewWithContext = ({ selectedText, setSelectedText, onBackToLibrary }) => {
+    const { setCurrentPlay, setCurrentScene, getScenes, isLoaded } = useNotes()
+
+    React.useEffect(() => {
+      if (selectedPlay && isLoaded) {
+        setCurrentPlay(selectedPlay)
+        const scenes = getScenes()
+        if (scenes.length > 0 && !scenes.includes('ACT 1, SCENE 1')) {
+          setCurrentScene(scenes[0])
+        } else {
+          setCurrentScene('ACT 1, SCENE 1')
+        }
+        console.log('Set context:', { play: selectedPlay, scene: scenes[0] || 'ACT 1, SCENE 1' })
+      }
+    }, [selectedPlay, isLoaded, setCurrentPlay, setCurrentScene, getScenes])
+
+    return (
+      <main className="flex h-[calc(100vh-4rem)]">
+        {/* Reader Panel - Takes up most of the space */}
+        <div className="flex-1 border-r border-gray-700">
+          <ReaderPanel 
+            selectedText={selectedText}
+            setSelectedText={setSelectedText}
+            onBackToLibrary={onBackToLibrary}
+          />
+        </div>
+        
+        {/* Analysis Panel - Fixed width sidebar */}
+        <div className="w-96 flex-shrink-0">
+          <AnalysisPanel 
+            selectedText={selectedText}
+            setSelectedText={setSelectedText}
+          />
+        </div>
+      </main>
+    )
+  }
+
   return (
     <NotesProvider>
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
@@ -50,24 +89,11 @@ function App() {
         {!selectedPlay ? (
           <LibraryPanel onSelectPlay={handleSelectPlay} />
         ) : (
-          <main className="flex h-[calc(100vh-4rem)]">
-            {/* Reader Panel - Takes up most of the space */}
-            <div className="flex-1 border-r border-gray-700">
-              <ReaderPanel 
-                selectedText={selectedText}
-                setSelectedText={setSelectedText}
-                onBackToLibrary={handleBackToLibrary}
-              />
-            </div>
-            
-            {/* Analysis Panel - Fixed width sidebar */}
-            <div className="w-96 flex-shrink-0">
-              <AnalysisPanel 
-                selectedText={selectedText}
-                setSelectedText={setSelectedText}
-              />
-            </div>
-          </main>
+          <PlayViewWithContext 
+            selectedText={selectedText}
+            setSelectedText={setSelectedText}
+            onBackToLibrary={handleBackToLibrary}
+          />
         )}
 
         {/* Footer */}

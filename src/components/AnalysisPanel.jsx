@@ -88,6 +88,13 @@ const AnalysisPanel = ({ selectedText, setSelectedText }) => {
     setAnalysisContent(null)
 
     try {
+      console.log('Sending analysis request:', {
+        text: selectedText,
+        mode: analysisMode,
+        scene: currentScene,
+        play: currentPlay || 'Macbeth'
+      })
+
       const response = await fetch('/.netlify/functions/shakespeare', {
         method: 'POST',
         headers: {
@@ -101,11 +108,17 @@ const AnalysisPanel = ({ selectedText, setSelectedText }) => {
         }),
       })
 
+      console.log('Response status:', response.status)
+      console.log('Response headers:', response.headers)
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
+        const errorText = await response.text()
+        console.error('Response error text:', errorText)
+        throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`)
       }
 
       const data = await response.json()
+      console.log('Analysis response:', data)
       
       // Handle the response format
       if (data.analysis) {
@@ -302,16 +315,38 @@ const AnalysisPanel = ({ selectedText, setSelectedText }) => {
               </div>
             ) : null}
 
-            {/* Analyze Button */}
-            {!analysisContent && !isAnalyzing && (
+            {/* Test and Analyze Buttons */}
+            <div className="space-y-2">
+              {/* Test Function Button */}
               <button
-                onClick={analyzeText}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                onClick={async () => {
+                  try {
+                    console.log('Testing Netlify function...')
+                    const response = await fetch('/.netlify/functions/test')
+                    const data = await response.json()
+                    console.log('Test response:', data)
+                    alert(`Function test: ${data.message}`)
+                  } catch (error) {
+                    console.error('Test error:', error)
+                    alert(`Test failed: ${error.message}`)
+                  }
+                }}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-all duration-200"
               >
-                <Zap className="w-4 h-4" />
-                Analyze Text
+                Test Function
               </button>
-            )}
+
+              {/* Analyze Button */}
+              {!analysisContent && !isAnalyzing && (
+                <button
+                  onClick={analyzeText}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                >
+                  <Zap className="w-4 h-4" />
+                  Analyze Text
+                </button>
+              )}
+            </div>
 
             {/* Loading State */}
             {isAnalyzing && (
