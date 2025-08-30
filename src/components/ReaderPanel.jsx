@@ -1,300 +1,346 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { BookOpen, Search, Copy, Share2, Play, Pause, Volume2, Settings } from 'lucide-react'
+import React, { useState, useEffect } from 'react'
+import { useNotes } from '../context/NotesContext'
+import { 
+  BookOpen, 
+  Play, 
+  Pause, 
+  Volume2, 
+  VolumeX, 
+  Copy, 
+  Share2,
+  ChevronDown,
+  ChevronUp,
+  Settings,
+  Type,
+  AlignLeft
+} from 'lucide-react'
 
-const ReaderPanel = ({ selectedPlay, currentScene, setSelectedText }) => {
-  const contentRef = useRef(null)
+const ReaderPanel = ({ selectedText, setSelectedText, onAnalyze }) => {
+  const { 
+    isLoaded, 
+    currentScene, 
+    setCurrentScene, 
+    getSceneContent, 
+    getActsAndScenes,
+    getSceneMetadata 
+  } = useNotes()
+  
   const [selectedLine, setSelectedLine] = useState(null)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [fontSize, setFontSize] = useState('lg')
+  const [showLineNumbers, setShowLineNumbers] = useState(true)
+  const [fontSize, setFontSize] = useState('text-lg')
+  const [lineSpacing, setLineSpacing] = useState('leading-relaxed')
+  const [expandedActs, setExpandedActs] = useState({ 'ACT 1': true })
+  const [currentLineIndex, setCurrentLineIndex] = useState(0)
+  const [playbackSpeed, setPlaybackSpeed] = useState(1)
 
-  // Handle text selection
+  const actsAndScenes = getActsAndScenes()
+  const sceneContent = getSceneContent(currentScene)
+  const sceneMetadata = getSceneMetadata(currentScene)
+
+  // Auto-play functionality
   useEffect(() => {
-    const handleSelection = () => {
-      const selection = window.getSelection()
-      const selectedText = selection.toString().trim()
-      
-      if (selectedText && selectedText.length > 0) {
-        setSelectedText(selectedText)
-        highlightSelectedText()
-      } else {
-        clearHighlighting()
-      }
+    let interval
+    if (isPlaying && sceneContent.length > 0) {
+      interval = setInterval(() => {
+        setCurrentLineIndex(prev => {
+          if (prev >= sceneContent.length - 1) {
+            setIsPlaying(false)
+            return 0
+          }
+          return prev + 1
+        })
+      }, 3000 / playbackSpeed) // 3 seconds per line, adjusted for speed
     }
+    return () => clearInterval(interval)
+  }, [isPlaying, sceneContent.length, playbackSpeed])
 
-    const handleClickOutside = (event) => {
-      if (!contentRef.current?.contains(event.target)) {
-        clearHighlighting()
-      }
-    }
-
-    document.addEventListener('mouseup', handleSelection)
-    document.addEventListener('click', handleClickOutside)
-
-    return () => {
-      document.removeEventListener('mouseup', handleSelection)
-      document.removeEventListener('click', handleClickOutside)
-    }
-  }, [setSelectedText])
-
-  const highlightSelectedText = () => {
-    clearHighlighting()
-    
-    const selection = window.getSelection()
-    if (selection.rangeCount > 0) {
-      const range = selection.getRangeAt(0)
-      const span = document.createElement('span')
-      span.className = 'highlight'
-      range.surroundContents(span)
+  // Copy text to clipboard
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      // You could add a toast notification here
+    } catch (err) {
+      console.error('Failed to copy text: ', err)
     }
   }
 
-  const clearHighlighting = () => {
-    const highlights = document.querySelectorAll('.highlight')
-    highlights.forEach(highlight => {
-      const parent = highlight.parentNode
-      parent.replaceChild(document.createTextNode(highlight.textContent), highlight)
-      parent.normalize()
-    })
-  }
-
-  const getSceneContent = (sceneName) => {
-    const macbethText = {
-      'ACT 1, SCENE 1': [
-        { character: 'First Witch', dialogue: 'When shall we three meet again\nIn thunder, lightning, or in rain?' },
-        { character: 'Second Witch', dialogue: 'When the hurlyburly\'s done,\nWhen the battle\'s lost and won.' },
-        { character: 'Third Witch', dialogue: 'That will be ere the set of sun.' },
-        { character: 'First Witch', dialogue: 'Where the place?' },
-        { character: 'Second Witch', dialogue: 'Upon the heath.' },
-        { character: 'Third Witch', dialogue: 'There to meet with Macbeth.' },
-        { character: 'First Witch', dialogue: 'I come, Graymalkin!' },
-        { character: 'Second Witch', dialogue: 'Paddock calls.' },
-        { character: 'Third Witch', dialogue: 'Anon.' },
-        { character: 'ALL', dialogue: 'Fair is foul, and foul is fair:\nHover through the fog and filthy air.' }
-      ],
-      'ACT 1, SCENE 2': [
-        { character: 'DUNCAN', dialogue: 'What bloody man is that? He can report,\nAs seemeth by his plight, of the revolt\nThe newest state.' },
-        { character: 'MALCOLM', dialogue: 'This is the sergeant\nWho like a good and hardy soldier fought\n\'Gainst my captivity. Hail, brave friend!\nSay to the king the knowledge of the broil\nAs thou didst leave it.' },
-        { character: 'Sergeant', dialogue: 'Doubtful it stood;\nAs two spent swimmers, that do cling together\nAnd choke their art. The merciless Macdonwald—\nWorthy to be a rebel, for to that\nThe multiplying villanies of nature\nDo swarm upon him—from the western isles\nOf kerns and gallowglasses is supplied;\nAnd fortune, on his damned quarrel smiling,\nShow\'d like a rebel\'s whore: but all\'s too weak:\nFor brave Macbeth—well he deserves that name—\nDisdaining fortune, with his brandish\'d steel,\nWhich smoked with bloody execution,\nLike valour\'s minion carved out his passage\nTill he faced the slave;\nWhich ne\'er shook hands, nor bade farewell to him,\nTill he unseam\'d him from the nave to the chaps,\nAnd fix\'d his head upon our battlements.' }
-      ]
-    }
-
-    return macbethText[sceneName] || [
-      { character: 'Narrator', dialogue: `Content for ${sceneName} is being prepared. This scene will be available soon with full text and scholarly notes.` }
-    ]
-  }
-
-  const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text)
-  }
-
-  const shareText = (text) => {
+  // Share text
+  const shareText = async (text) => {
     if (navigator.share) {
-      navigator.share({
-        title: `${currentScene} - ${selectedPlay}`,
-        text: text
-      })
+      try {
+        await navigator.share({
+          title: 'Shakespeare Quote',
+          text: text,
+          url: window.location.href
+        })
+      } catch (err) {
+        console.error('Error sharing:', err)
+      }
     } else {
       copyToClipboard(text)
     }
   }
 
-  const togglePlay = () => {
+  // Handle line selection
+  const handleLineClick = (line, index) => {
+    setSelectedLine(line)
+    setSelectedText(line.text)
+    setCurrentLineIndex(index)
+  }
+
+  // Toggle act expansion
+  const toggleAct = (actName) => {
+    setExpandedActs(prev => ({
+      ...prev,
+      [actName]: !prev[actName]
+    }))
+  }
+
+  // Play/pause functionality
+  const togglePlayback = () => {
     setIsPlaying(!isPlaying)
   }
 
-  if (!selectedPlay) {
+  // Reset playback
+  const resetPlayback = () => {
+    setIsPlaying(false)
+    setCurrentLineIndex(0)
+  }
+
+  if (!isLoaded) {
     return (
-      <div className="flex-1">
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center p-8">
-          <div className="max-w-2xl text-center">
-            <div className="w-32 h-32 mx-auto mb-8 bg-gradient-to-br from-primary-600 to-primary-800 rounded-full flex items-center justify-center shadow-2xl">
-              <BookOpen className="w-16 h-16 text-white" />
-            </div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent mb-6">
-              Shakespeare Digital Variorum
-            </h1>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Experience Shakespeare's works with scholarly commentary, AI analysis, and interactive research tools.
-            </p>
-            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
-              <p className="text-gray-400">
-                Select Macbeth from the library to begin your scholarly exploration.
-              </p>
-            </div>
-          </div>
-        </div>
+      <div className="flex items-center justify-center h-full">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
       </div>
     )
   }
-
-  if (!currentScene) {
-    return (
-      <div className="flex-1">
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center p-8">
-          <div className="max-w-md text-center">
-            <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-primary-600 to-primary-800 rounded-full flex items-center justify-center shadow-xl">
-              <Play className="w-12 h-12 text-white" />
-            </div>
-            <h2 className="text-2xl font-bold text-gray-100 mb-4">
-              Select a Scene
-            </h2>
-            <p className="text-gray-400">
-              Choose a scene from the navigation to begin reading with scholarly commentary.
-            </p>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  const sceneContent = getSceneContent(currentScene)
 
   return (
-    <div className="flex-1 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen">
-      {/* Header with Controls */}
-      <div className="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-700/50">
-        <div className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
-                {currentScene}
-              </h1>
-              <p className="text-gray-400 mt-1">
-                {selectedPlay} • Shakespeare Digital Variorum
-              </p>
-            </div>
-            
-            {/* Playback Controls */}
-            <div className="flex items-center gap-4">
-              <button
-                onClick={togglePlay}
-                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg hover:from-primary-700 hover:to-primary-800 transition-all duration-200 shadow-lg hover:shadow-xl"
-              >
-                {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                {isPlaying ? 'Pause' : 'Play'}
-              </button>
-              
-              <div className="flex items-center gap-2">
-                <Volume2 className="w-4 h-4 text-gray-400" />
-                <div className="w-20 h-2 bg-gray-700 rounded-full">
-                  <div className="w-3/4 h-full bg-primary-500 rounded-full"></div>
-                </div>
-              </div>
-            </div>
+    <div className="flex flex-col h-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      {/* Header */}
+      <div className="flex items-center justify-between p-4 border-b border-gray-700 bg-gray-800/50">
+        <div className="flex items-center gap-3">
+          <BookOpen className="w-6 h-6 text-blue-400" />
+          <div>
+            <h2 className="text-lg font-semibold text-white">Macbeth</h2>
+            {currentScene && (
+              <p className="text-sm text-gray-400">{currentScene}</p>
+            )}
           </div>
-
-          {/* Settings Bar */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-400">Font:</span>
-                <select 
-                  value={fontSize} 
-                  onChange={(e) => setFontSize(e.target.value)}
-                  className="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm text-gray-200"
-                >
-                  <option value="sm">Small</option>
-                  <option value="md">Medium</option>
-                  <option value="lg">Large</option>
-                  <option value="xl">Extra Large</option>
-                  <option value="2xl">2XL</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2 text-sm text-gray-400">
-              <Settings className="w-4 h-4" />
-              <span>Reading Mode</span>
-            </div>
-          </div>
+        </div>
+        
+        {/* Playback Controls */}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={togglePlayback}
+            className="p-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors"
+            title={isPlaying ? 'Pause' : 'Play'}
+          >
+            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+          </button>
+          
+          <button
+            onClick={resetPlayback}
+            className="p-2 rounded-lg bg-gray-600 hover:bg-gray-700 text-white transition-colors"
+            title="Reset"
+          >
+            <Settings className="w-4 h-4" />
+          </button>
+          
+          <select
+            value={playbackSpeed}
+            onChange={(e) => setPlaybackSpeed(parseFloat(e.target.value))}
+            className="px-2 py-1 rounded bg-gray-700 text-white text-sm border border-gray-600"
+          >
+            <option value={0.5}>0.5x</option>
+            <option value={1}>1x</option>
+            <option value={1.5}>1.5x</option>
+            <option value={2}>2x</option>
+          </select>
         </div>
       </div>
 
-      {/* Content Area */}
-      <div className="p-8" ref={contentRef}>
-        <div className="max-w-4xl mx-auto">
-          {/* Scene Content - Subtitle Style */}
-          <div className="space-y-8 text-lg leading-relaxed">
-            {sceneContent.map((line, index) => (
-              <div 
-                key={index}
-                className={`group relative p-6 rounded-2xl transition-all duration-300 cursor-pointer ${
-                  selectedLine === line 
-                    ? 'bg-gradient-to-r from-primary-900/50 to-primary-800/50 border-2 border-primary-500/50 shadow-2xl' 
-                    : 'bg-gray-800/30 border border-gray-700/30 hover:bg-gray-800/50 hover:border-gray-600/50 hover:shadow-xl'
-                }`}
-                onClick={() => {
-                  setSelectedLine(line)
-                  setSelectedText(line.dialogue)
-                }}
-              >
-                {/* Character Name - Subtitle Style */}
-                <div className="mb-3">
-                  <div className="inline-block px-3 py-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-sm font-semibold rounded-full shadow-lg">
-                    {line.character}
+      {/* Scene Selector */}
+      <div className="flex-shrink-0 border-b border-gray-700">
+        <div className="p-4">
+          <h3 className="text-sm font-medium text-gray-300 mb-3">Select Scene</h3>
+          <div className="space-y-2 max-h-40 overflow-y-auto">
+            {Object.entries(actsAndScenes).map(([actName, actData]) => (
+              <div key={actName} className="border border-gray-700 rounded-lg">
+                <button
+                  onClick={() => toggleAct(actName)}
+                  className="w-full p-3 text-left flex items-center justify-between bg-gray-800 hover:bg-gray-700 transition-colors rounded-lg"
+                >
+                  <span className="font-medium text-white">{actName}</span>
+                  {expandedActs[actName] ? (
+                    <ChevronUp className="w-4 h-4 text-gray-400" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4 text-gray-400" />
+                  )}
+                </button>
+                
+                {expandedActs[actName] && (
+                  <div className="p-2 space-y-1">
+                    {actData.scenes.map((sceneName) => (
+                      <button
+                        key={sceneName}
+                        onClick={() => setCurrentScene(sceneName)}
+                        className={`w-full p-2 text-left rounded text-sm transition-colors ${
+                          currentScene === sceneName
+                            ? 'bg-blue-600 text-white'
+                            : 'text-gray-300 hover:bg-gray-700'
+                        }`}
+                      >
+                        {sceneName.replace('ACT 1, ', '')}
+                      </button>
+                    ))}
                   </div>
-                </div>
-
-                {/* Dialogue Text - Subtitle Style */}
-                <div className="text-gray-100 leading-relaxed select-text">
-                  {line.dialogue.split('\n').map((text, i) => (
-                    <div key={i} className="mb-2 last:mb-0">
-                      {text}
-                    </div>
-                  ))}
-                </div>
-
-                {/* Action Buttons - Appear on Hover */}
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex gap-2">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      copyToClipboard(line.dialogue)
-                    }}
-                    className="p-2 bg-gray-700/80 hover:bg-gray-600/80 rounded-lg transition-colors duration-200"
-                    title="Copy text"
-                  >
-                    <Copy className="w-4 h-4 text-gray-300" />
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      shareText(line.dialogue)
-                    }}
-                    className="p-2 bg-gray-700/80 hover:bg-gray-600/80 rounded-lg transition-colors duration-200"
-                    title="Share text"
-                  >
-                    <Share2 className="w-4 h-4 text-gray-300" />
-                  </button>
-                </div>
-
-                {/* Line Number */}
-                <div className="absolute bottom-2 right-2 text-xs text-gray-500 font-mono">
-                  {index + 1}
-                </div>
+                )}
               </div>
             ))}
           </div>
+        </div>
+      </div>
 
-          {/* Instructions */}
-          <div className="mt-12 p-6 bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-700/30 rounded-2xl backdrop-blur-sm">
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <Search className="w-4 h-4 text-white" />
+      {/* Scene Content */}
+      <div className="flex-1 overflow-y-auto p-6">
+        {currentScene && sceneContent.length > 0 ? (
+          <div className="space-y-6">
+            {/* Scene Header */}
+            {sceneMetadata && (
+              <div className="text-center pb-6 border-b border-gray-700">
+                <h2 className="text-2xl font-bold text-white mb-2">{currentScene}</h2>
+                {sceneMetadata.location && (
+                  <p className="text-gray-400 italic">{sceneMetadata.location}</p>
+                )}
+                {sceneMetadata.characters && (
+                  <p className="text-sm text-gray-500 mt-2">
+                    Characters: {sceneMetadata.characters.join(', ')}
+                  </p>
+                )}
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-100 mb-2">
-                  How to Use This Digital Variorum
-                </h3>
-                <ul className="text-gray-300 space-y-1 text-sm">
-                  <li>• <strong>Click on any line</strong> to select it for analysis</li>
-                  <li>• <strong>Highlight specific text</strong> for detailed scholarly commentary</li>
-                  <li>• <strong>Use the analysis panel</strong> to explore different levels of interpretation</li>
-                  <li>• <strong>Access research links</strong> for further scholarly exploration</li>
-                </ul>
-              </div>
+            )}
+
+            {/* Lines */}
+            <div className="space-y-4">
+              {sceneContent.map((line, index) => (
+                <div
+                  key={line.id}
+                  className={`group relative p-4 rounded-lg border transition-all duration-300 cursor-pointer ${
+                    selectedLine?.id === line.id
+                      ? 'border-blue-500 bg-blue-500/10 shadow-lg'
+                      : 'border-gray-700 hover:border-gray-600 bg-gray-800/50 hover:bg-gray-800'
+                  } ${
+                    isPlaying && index === currentLineIndex
+                      ? 'animate-pulse border-yellow-500 bg-yellow-500/10'
+                      : ''
+                  }`}
+                  onClick={() => handleLineClick(line, index)}
+                >
+                  {/* Line Number */}
+                  {showLineNumbers && (
+                    <div className="absolute top-2 left-2 text-xs text-gray-500 font-mono">
+                      {line.line_number}
+                    </div>
+                  )}
+
+                  {/* Character Name */}
+                  <div className="text-sm font-semibold text-blue-400 mb-2">
+                    {line.character}
+                  </div>
+
+                  {/* Line Text */}
+                  <div className={`${fontSize} ${lineSpacing} text-white leading-relaxed`}>
+                    {line.text.split('\n').map((part, i) => (
+                      <div key={i} className="mb-2">
+                        {part}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Action Buttons (visible on hover) */}
+                  <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        copyToClipboard(line.text)
+                      }}
+                      className="p-1 rounded bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white transition-colors"
+                      title="Copy"
+                    >
+                      <Copy className="w-3 h-3" />
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        shareText(line.text)
+                      }}
+                      className="p-1 rounded bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white transition-colors"
+                      title="Share"
+                    >
+                      <Share2 className="w-3 h-3" />
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
+        ) : (
+          <div className="text-center text-gray-400 py-12">
+            <BookOpen className="w-12 h-12 mx-auto mb-4 opacity-50" />
+            <p>Select a scene to begin reading</p>
+            <p className="text-sm mt-2">Click on any line to analyze it</p>
+          </div>
+        )}
+      </div>
+
+      {/* Settings Panel */}
+      <div className="flex-shrink-0 border-t border-gray-700 p-4 bg-gray-800/50">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            {/* Font Size */}
+            <div className="flex items-center gap-2">
+              <Type className="w-4 h-4 text-gray-400" />
+              <select
+                value={fontSize}
+                onChange={(e) => setFontSize(e.target.value)}
+                className="px-2 py-1 rounded bg-gray-700 text-white text-sm border border-gray-600"
+              >
+                <option value="text-sm">Small</option>
+                <option value="text-base">Medium</option>
+                <option value="text-lg">Large</option>
+                <option value="text-xl">Extra Large</option>
+              </select>
+            </div>
+
+            {/* Line Spacing */}
+            <div className="flex items-center gap-2">
+              <AlignLeft className="w-4 h-4 text-gray-400" />
+              <select
+                value={lineSpacing}
+                onChange={(e) => setLineSpacing(e.target.value)}
+                className="px-2 py-1 rounded bg-gray-700 text-white text-sm border border-gray-600"
+              >
+                <option value="leading-tight">Tight</option>
+                <option value="leading-normal">Normal</option>
+                <option value="leading-relaxed">Relaxed</option>
+                <option value="leading-loose">Loose</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Line Numbers Toggle */}
+          <button
+            onClick={() => setShowLineNumbers(!showLineNumbers)}
+            className={`px-3 py-1 rounded text-sm transition-colors ${
+              showLineNumbers
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+          >
+            {showLineNumbers ? 'Hide' : 'Show'} Numbers
+          </button>
         </div>
       </div>
     </div>

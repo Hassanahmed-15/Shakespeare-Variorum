@@ -1,399 +1,403 @@
 import React, { useState, useEffect } from 'react'
-import { Brain, BookOpen, MessageSquare, Loader2, Sparkles, Search, BookMarked, Zap } from 'lucide-react'
 import { useNotes } from '../context/NotesContext'
+import { 
+  Sparkles, 
+  Search, 
+  BookMarked, 
+  Zap, 
+  MessageSquare, 
+  Send, 
+  Loader2,
+  BookOpen,
+  ExternalLink,
+  Youtube,
+  FileText,
+  Globe,
+  Database
+} from 'lucide-react'
 
-const AnalysisPanel = ({ selectedText, analysisMode, setAnalysisMode, currentPlay, currentScene }) => {
+const AnalysisPanel = ({ selectedText, setSelectedText }) => {
+  const { 
+    isLoaded, 
+    currentScene, 
+    findNotesForLine, 
+    formatNotes,
+    currentPlay 
+  } = useNotes()
+  
+  const [analysisMode, setAnalysisMode] = useState('basic')
   const [analysisContent, setAnalysisContent] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [followUpQuestion, setFollowUpQuestion] = useState('')
-  const { findNotesForLine, formatNotes } = useNotes()
+  const [followUpResponse, setFollowUpResponse] = useState('')
+  const [isFollowUpLoading, setIsFollowUpLoading] = useState(false)
+  const [commentary, setCommentary] = useState(null)
 
-  // Check for notes when selected text changes
+  // Check for commentary when text is selected
   useEffect(() => {
-    if (selectedText && currentPlay && currentScene) {
-      const notesData = findNotesForLine(selectedText, currentScene)
-      
-      if (notesData) {
-        const formattedNotes = formatNotes(notesData)
-        setAnalysisContent({ type: 'notes', data: formattedNotes })
+    if (selectedText && selectedText.trim()) {
+      const foundNotes = findNotesForLine(selectedText, currentScene)
+      if (foundNotes) {
+        const formattedNotes = formatNotes(foundNotes)
+        setCommentary(formattedNotes)
+        console.log('Found commentary:', formattedNotes)
       } else {
-        setAnalysisContent(null)
+        setCommentary(null)
+        console.log('No commentary found for:', selectedText)
       }
     } else {
-      setAnalysisContent(null)
+      setCommentary(null)
     }
-  }, [selectedText, currentPlay, currentScene, findNotesForLine, formatNotes])
+  }, [selectedText, currentScene, findNotesForLine, formatNotes])
 
-  const handleAnalyze = async () => {
-    if (!selectedText) {
-      alert('Please highlight some text first.')
-      return
-    }
-
-    // Check if we have notes first
-    const notesData = findNotesForLine(selectedText, currentScene)
-    
-    if (notesData && analysisMode === 'fullfathomfive') {
-      // Show commentary for Full Fathom Five mode
-      const formattedNotes = formatNotes(notesData)
-      setAnalysisContent({ type: 'commentary', data: formattedNotes })
-    } else if (notesData && (analysisMode === 'basic' || analysisMode === 'expert')) {
-      // Show analysis for Basic/Expert modes (not commentary)
-      await generateAIAnalysis()
-    } else if (!notesData && analysisMode === 'fullfathomfive') {
-      // No commentary available, show analysis with message
-      await generateAIAnalysis('No commentary for this line.')
-    } else {
-      // Generate AI analysis for Basic/Expert modes
-      await generateAIAnalysis()
+  // Get mode icon and description
+  const getModeIcon = (mode) => {
+    switch (mode) {
+      case 'basic':
+        return <BookOpen className="w-5 h-5" />
+      case 'expert':
+        return <Search className="w-5 h-5" />
+      case 'fullfathomfive':
+        return <BookMarked className="w-5 h-5" />
+      default:
+        return <Sparkles className="w-5 h-5" />
     }
   }
 
-  const generateAIAnalysis = async (noCommentaryMessage = null) => {
-    setIsLoading(true)
-    
+  const getModeDescription = (mode) => {
+    switch (mode) {
+      case 'basic':
+        return 'Essential analysis with plain language paraphrase and key glosses'
+      case 'expert':
+        return 'Comprehensive scholarly analysis with textual variants and critical reception'
+      case 'fullfathomfive':
+        return 'Complete scholarly commentary with database integration and research links'
+      default:
+        return 'Select an analysis mode to begin'
+    }
+  }
+
+  // Analyze text function
+  const analyzeText = async () => {
+    if (!selectedText || !selectedText.trim()) {
+      alert('Please select some text to analyze')
+      return
+    }
+
+    setIsAnalyzing(true)
+    setAnalysisContent(null)
+
     try {
       const response = await fetch('/.netlify/functions/shakespeare', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           text: selectedText,
-          level: analysisMode,
-          playName: currentPlay,
-          sceneName: currentScene
-        })
+          mode: analysisMode,
+          scene: currentScene,
+          play: currentPlay || 'Macbeth'
+        }),
       })
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
-      
+
       const data = await response.json()
-      
-      if (data.choices && data.choices[0] && data.choices[0].message) {
-        const content = data.choices[0].message.content
-        setAnalysisContent({ 
-          type: 'analysis', 
-          data: content,
-          noCommentaryMessage 
-        })
-      } else {
-        throw new Error('Invalid response format')
-      }
-      
+      setAnalysisContent(data.analysis)
+      console.log('Analysis completed:', data)
     } catch (error) {
-      console.error('Error generating analysis:', error)
-      setAnalysisContent({ 
-        type: 'error', 
-        data: `Error generating analysis: ${error.message}` 
+      console.error('Error analyzing text:', error)
+      setAnalysisContent({
+        error: 'Failed to analyze text. Please try again.',
+        details: error.message
       })
     } finally {
-      setIsLoading(false)
+      setIsAnalyzing(false)
     }
   }
 
+  // Handle follow-up question
   const handleFollowUp = async () => {
-    if (!followUpQuestion.trim()) {
-      alert('Please enter a question.')
-      return
-    }
-    
-    // Implementation for follow-up questions
-    console.log('Follow-up question:', followUpQuestion)
-    setFollowUpQuestion('')
-  }
+    if (!followUpQuestion.trim() || !analysisContent) return
 
-  const getModeTitle = () => {
-    switch(analysisMode) {
-      case 'basic': return 'Basic Analysis'
-      case 'expert': return 'Expert Analysis'
-      case 'fullfathomfive': return 'Full Fathom Five Analysis'
-      default: return 'Analysis'
-    }
-  }
+    setIsFollowUpLoading(true)
+    try {
+      const response = await fetch('/.netlify/functions/shakespeare', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text: selectedText,
+          mode: analysisMode,
+          followUp: followUpQuestion,
+          previousAnalysis: analysisContent,
+          scene: currentScene,
+          play: currentPlay || 'Macbeth'
+        }),
+      })
 
-  const getModeDescription = () => {
-    switch(analysisMode) {
-      case 'basic': return 'Clear, accessible analysis for undergraduates'
-      case 'expert': return 'Comprehensive scholarly analysis with citations'
-      case 'fullfathomfive': return 'Deepest analysis with commentary and sources'
-      default: return 'Analysis'
-    }
-  }
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
 
-  const getModeIcon = () => {
-    switch(analysisMode) {
-      case 'basic': return <BookOpen className="w-5 h-5" />
-      case 'expert': return <Search className="w-5 h-5" />
-      case 'fullfathomfive': return <Zap className="w-5 h-5" />
-      default: return <Brain className="w-5 h-5" />
+      const data = await response.json()
+      setFollowUpResponse(data.analysis)
+      setFollowUpQuestion('')
+    } catch (error) {
+      console.error('Error with follow-up:', error)
+      setFollowUpResponse('Sorry, I encountered an error. Please try again.')
+    } finally {
+      setIsFollowUpLoading(false)
     }
   }
 
-  const formatAnalysisContent = (content) => {
-    return content
-      .replace(/\*\*(.*?)\*\*/g, '<h4 class="text-lg font-semibold text-primary-400 mb-2">$1</h4>')
-      .replace(/\n\n/g, '</p><p class="mb-3">')
-      .replace(/\n/g, '<br>')
+  // Handle research link clicks
+  const handleResearchLink = (type) => {
+    if (!selectedText) return
+
+    let url = ''
+    const encodedText = encodeURIComponent(`"${selectedText}"`)
+    const encodedScene = encodeURIComponent(currentScene || 'Macbeth')
+    const encodedPlay = encodeURIComponent(currentPlay || 'Macbeth')
+
+    switch (type) {
+      case 'youtube':
+        url = `https://www.youtube.com/results?search_query=${encodedText} Shakespeare ${encodedPlay} ${encodedScene}`
+        break
+      case 'jstor-exact':
+        url = `https://www.jstor.org/action/doBasicSearch?Query=${encodedText} Shakespeare`
+        break
+      case 'jstor-passage':
+        url = `https://www.jstor.org/action/doBasicSearch?Query=${encodedScene} ${encodedPlay} Shakespeare`
+        break
+      case 'scholar':
+        url = `https://scholar.google.com/scholar?q=${encodedText} Shakespeare ${encodedPlay}`
+        break
+      case 'internet-shakespeare':
+        url = `https://internetshakespeare.uvic.ca/search/?q=${encodedText}`
+        break
+      default:
+        return
+    }
+
+    window.open(url, '_blank')
   }
 
   return (
-    <div className="w-96 flex-shrink-0">
-      <div className="card p-6 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto bg-gray-800/95 backdrop-blur-sm">
-        {/* Header */}
-        <div className="mb-6 pb-4 border-b border-gray-700">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg flex items-center justify-center">
-              {getModeIcon()}
-            </div>
-            <div>
-              <h2 className="text-xl font-bold text-gray-100">
-                {getModeTitle()}
-              </h2>
-              <p className="text-sm text-gray-400">
-                {getModeDescription()}
-              </p>
-            </div>
+    <div className="flex flex-col h-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      {/* Header */}
+      <div className="flex-shrink-0 p-4 border-b border-gray-700 bg-gray-800/50">
+        <div className="flex items-center gap-3 mb-3">
+          {getModeIcon(analysisMode)}
+          <div>
+            <h2 className="text-lg font-semibold text-white">
+              {analysisMode === 'basic' && 'Basic Analysis'}
+              {analysisMode === 'expert' && 'Expert Analysis'}
+              {analysisMode === 'fullfathomfive' && 'Full Fathom Five'}
+            </h2>
+            <p className="text-sm text-gray-400">{getModeDescription(analysisMode)}</p>
           </div>
-          
-          {selectedText && (
-            <div className="bg-gray-800/50 p-3 rounded-lg border-l-4 border-primary-500">
-              <p className="text-sm text-gray-300">
-                "{selectedText.substring(0, 100)}{selectedText.length > 100 ? '...' : ''}"
-              </p>
-            </div>
-          )}
         </div>
 
         {/* Mode Selector */}
-        <div className="mb-6">
-          <div className="flex bg-gray-800 rounded-lg p-1 gap-1">
-            {['basic', 'expert', 'fullfathomfive'].map((mode) => (
-              <button
-                key={mode}
-                onClick={() => setAnalysisMode(mode)}
-                className={`flex-1 px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
-                  analysisMode === mode
-                    ? 'bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-lg'
-                    : 'text-gray-400 hover:text-white hover:bg-gray-700'
-                }`}
-              >
-                {mode === 'basic' && 'Basic'}
-                {mode === 'expert' && 'Expert'}
-                {mode === 'fullfathomfive' && 'Full Fathom Five'}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Analyze Button */}
-        {selectedText && !isLoading && !analysisContent && (
-          <div className="mb-6">
+        <div className="flex gap-2">
+          {['basic', 'expert', 'fullfathomfive'].map((mode) => (
             <button
-              onClick={handleAnalyze}
-              className="w-full btn btn-primary flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800"
+              key={mode}
+              onClick={() => setAnalysisMode(mode)}
+              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                analysisMode === mode
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
+              }`}
             >
-              <Sparkles className="w-4 h-4" />
-              Analyze Text
+              {getModeIcon(mode)}
+              {mode === 'basic' && 'Basic'}
+              {mode === 'expert' && 'Expert'}
+              {mode === 'fullfathomfive' && 'FFF'}
             </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Content Area */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-6">
+        {!selectedText ? (
+          <div className="text-center text-gray-400 py-12">
+            <Sparkles className="w-12 h-12 mx-auto mb-4 opacity-50" />
+            <p>Highlight text or click on a line to analyze</p>
+            <p className="text-sm mt-2">Select from Basic, Expert, or Full Fathom Five modes</p>
           </div>
-        )}
-
-        {/* Content Area */}
-        <div className="space-y-6">
-          {isLoading && (
-            <div className="flex items-center justify-center py-12">
-              <div className="text-center">
-                <Loader2 className="w-8 h-8 text-primary-500 animate-spin mx-auto mb-3" />
-                <p className="text-gray-400">Generating {analysisMode} analysis...</p>
-              </div>
+        ) : (
+          <>
+            {/* Selected Text Display */}
+            <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+              <h3 className="text-sm font-semibold text-gray-300 mb-2 flex items-center gap-2">
+                <MessageSquare className="w-4 h-4" />
+                Selected Text
+              </h3>
+              <p className="text-white italic">"{selectedText}"</p>
             </div>
-          )}
 
-          {!isLoading && analysisContent && (
-            <div className="animate-fade-in">
-              {analysisContent.type === 'notes' && (
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2 text-lg font-semibold text-gray-100 mb-3">
-                    <BookMarked className="w-5 h-5 text-primary-400" />
-                    📚 Scholarly Notes
+            {/* Commentary Section (Full Fathom Five) */}
+            {analysisMode === 'fullfathomfive' && commentary && (
+              <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-700/30 rounded-lg p-4">
+                <h3 className="text-sm font-semibold text-blue-300 mb-3 flex items-center gap-2">
+                  <Database className="w-4 h-4" />
+                  Scholarly Commentary
+                </h3>
+                <div className="space-y-3">
+                  <div className="text-xs text-gray-400">
+                    Line {commentary.lineNumber} • {commentary.scene}
                   </div>
-                  <div className="text-sm text-gray-400 mb-3">
-                    Line {analysisContent.data.lineNumber} from {analysisContent.data.scene}
+                  <div className="text-sm text-gray-300 italic mb-3">
+                    "{commentary.playLine}"
                   </div>
-                  <div className="bg-gray-800/50 p-4 rounded-lg border-l-4 border-primary-500 mb-4">
-                    <strong className="text-gray-200">Original Text:</strong> "{analysisContent.data.playLine}"
-                  </div>
-                  <div className="space-y-3 max-h-96 overflow-y-auto">
-                    {analysisContent.data.notes.map((note, index) => (
-                      <div key={index} className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
-                        <div 
-                          className="text-sm text-gray-200 leading-relaxed"
-                          dangerouslySetInnerHTML={{ __html: note }}
-                        />
-                      </div>
-                    ))}
-                  </div>
+                  {commentary.notes.map((note, index) => (
+                    <div 
+                      key={index}
+                      className="text-sm text-gray-200 leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: note }}
+                    />
+                  ))}
                 </div>
-              )}
+              </div>
+            )}
 
-              {analysisContent.type === 'commentary' && (
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2 text-lg font-semibold text-gray-100 mb-3">
-                    <BookMarked className="w-5 h-5 text-primary-400" />
-                    📚 Scholarly Commentary
+            {/* Analysis Content */}
+            {analysisContent && !analysisContent.error ? (
+              <div className="space-y-4">
+                {Object.entries(analysisContent).map(([section, content]) => (
+                  <div key={section} className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+                    <h3 className="text-sm font-semibold text-gray-300 mb-2 capitalize">
+                      {section.replace(/([A-Z])/g, ' $1').trim()}
+                    </h3>
+                    <div 
+                      className="text-sm text-gray-200 leading-relaxed prose prose-invert max-w-none"
+                      dangerouslySetInnerHTML={{ __html: content }}
+                    />
                   </div>
-                  <div className="text-sm text-gray-400 mb-3">
-                    Line {analysisContent.data.lineNumber} from {analysisContent.data.scene}
-                  </div>
-                  <div className="bg-gray-800/50 p-4 rounded-lg border-l-4 border-primary-500 mb-4">
-                    <strong className="text-gray-200">Original Text:</strong> "{analysisContent.data.playLine}"
-                  </div>
-                  <div className="space-y-3 max-h-96 overflow-y-auto">
-                    {analysisContent.data.notes.map((note, index) => (
-                      <div key={index} className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
-                        <div 
-                          className="text-sm text-gray-200 leading-relaxed"
-                          dangerouslySetInnerHTML={{ __html: note }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+                ))}
+              </div>
+            ) : analysisContent?.error ? (
+              <div className="bg-red-900/20 border border-red-700/30 rounded-lg p-4">
+                <h3 className="text-sm font-semibold text-red-300 mb-2">Analysis Error</h3>
+                <p className="text-sm text-red-200">{analysisContent.error}</p>
+                {analysisContent.details && (
+                  <p className="text-xs text-red-300 mt-2">{analysisContent.details}</p>
+                )}
+              </div>
+            ) : null}
 
-              {analysisContent.type === 'analysis' && (
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2 text-lg font-semibold text-gray-100 mb-3">
-                    <Brain className="w-5 h-5 text-primary-400" />
-                    AI Analysis
-                  </div>
-                  {analysisContent.noCommentaryMessage && (
-                    <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-lg p-3 mb-4">
-                      <p className="text-yellow-300 text-sm">{analysisContent.noCommentaryMessage}</p>
-                    </div>
-                  )}
-                  <div 
-                    className="prose prose-invert max-w-none text-sm leading-relaxed"
-                    dangerouslySetInnerHTML={{ 
-                      __html: `<p class="mb-3">${formatAnalysisContent(analysisContent.data)}</p>` 
-                    }}
-                  />
-                </div>
-              )}
+            {/* Analyze Button */}
+            {!analysisContent && !isAnalyzing && (
+              <button
+                onClick={analyzeText}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                <Zap className="w-4 h-4" />
+                Analyze Text
+              </button>
+            )}
 
-              {analysisContent.type === 'error' && (
-                <div className="bg-red-900/20 border border-red-700/50 rounded-lg p-4">
-                  <p className="text-red-300 text-sm">{analysisContent.data}</p>
-                  <button 
-                    className="btn btn-primary mt-3"
-                    onClick={handleAnalyze}
+            {/* Loading State */}
+            {isAnalyzing && (
+              <div className="flex items-center justify-center gap-2 px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg">
+                <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
+                <span className="text-gray-300">Analyzing text...</span>
+              </div>
+            )}
+
+            {/* Research Links */}
+            {analysisContent && selectedText && (
+              <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+                <h3 className="text-sm font-semibold text-gray-300 mb-3 flex items-center gap-2">
+                  <ExternalLink className="w-4 h-4" />
+                  Research & Media Links
+                </h3>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => handleResearchLink('youtube')}
+                    className="flex items-center gap-2 px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded text-sm transition-colors"
                   >
-                    Try Again
+                    <Youtube className="w-4 h-4" />
+                    YouTube
+                  </button>
+                  <button
+                    onClick={() => handleResearchLink('jstor-exact')}
+                    className="flex items-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-sm transition-colors"
+                  >
+                    <FileText className="w-4 h-4" />
+                    JSTOR (Exact)
+                  </button>
+                  <button
+                    onClick={() => handleResearchLink('jstor-passage')}
+                    className="flex items-center gap-2 px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded text-sm transition-colors"
+                  >
+                    <FileText className="w-4 h-4" />
+                    JSTOR (Passage)
+                  </button>
+                  <button
+                    onClick={() => handleResearchLink('scholar')}
+                    className="flex items-center gap-2 px-3 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded text-sm transition-colors"
+                  >
+                    <Globe className="w-4 h-4" />
+                    Google Scholar
+                  </button>
+                  <button
+                    onClick={() => handleResearchLink('internet-shakespeare')}
+                    className="flex items-center gap-2 px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded text-sm transition-colors col-span-2"
+                  >
+                    <BookOpen className="w-4 h-4" />
+                    Internet Shakespeare Editions
                   </button>
                 </div>
-              )}
-            </div>
-          )}
+              </div>
+            )}
 
-          {!isLoading && !analysisContent && selectedText && (
-            <div className="text-center py-8">
-              <Brain className="w-12 h-12 text-gray-500 mx-auto mb-3" />
-              <p className="text-gray-400">Click "Analyze Text" to generate analysis</p>
-            </div>
-          )}
-
-          {!selectedText && (
-            <div className="text-center py-8">
-              <BookOpen className="w-12 h-12 text-gray-500 mx-auto mb-3" />
-              <p className="text-gray-400">Highlight text or click on a line to analyze</p>
-            </div>
-          )}
-        </div>
-
-        {/* Media and Research Links */}
-        {analysisContent && selectedText && (
-          <div className="mt-6 pt-6 border-t border-gray-700">
-            <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
-              <BookOpen className="w-4 h-4" />
-              Research & Media Links
-            </h3>
-            <div className="grid grid-cols-2 gap-2">
-              <button 
-                className="btn btn-secondary text-xs py-2"
-                onClick={() => {
-                  const searchQuery = encodeURIComponent(`"${selectedText}" Shakespeare ${currentPlay} ${currentScene}`);
-                  window.open(`https://www.youtube.com/results?search_query=${searchQuery}`, '_blank');
-                }}
-              >
-                Search YouTube
-              </button>
-              <button 
-                className="btn btn-secondary text-xs py-2"
-                onClick={() => {
-                  const searchQuery = encodeURIComponent(`"${selectedText}" Shakespeare`);
-                  window.open(`https://www.jstor.org/action/doBasicSearch?Query=${searchQuery}`, '_blank');
-                }}
-              >
-                Search JSTOR (Exact)
-              </button>
-              <button 
-                className="btn btn-secondary text-xs py-2"
-                onClick={() => {
-                  const searchQuery = encodeURIComponent(`${selectedText} Shakespeare ${currentPlay} ${currentScene}`);
-                  window.open(`https://www.jstor.org/action/doBasicSearch?Query=${searchQuery}`, '_blank');
-                }}
-              >
-                Search JSTOR (Passage)
-              </button>
-              <button 
-                className="btn btn-secondary text-xs py-2"
-                onClick={() => {
-                  const searchQuery = encodeURIComponent(`"${selectedText}" Shakespeare ${currentPlay}`);
-                  window.open(`https://scholar.google.com/scholar?q=${searchQuery}`, '_blank');
-                }}
-              >
-                Google Scholar
-              </button>
-              <button 
-                className="btn btn-secondary text-xs py-2 col-span-2"
-                onClick={() => {
-                  const searchQuery = encodeURIComponent(`${selectedText} ${currentPlay}`);
-                  window.open(`https://internetshakespeare.uvic.ca/Library/SLT/plays/${currentPlay?.toLowerCase()}/`, '_blank');
-                }}
-              >
-                Internet Shakespeare Editions
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Follow-up Section */}
-        {analysisContent && analysisContent.type === 'analysis' && (
-          <div className="mt-6 pt-6 border-t border-gray-700">
-            <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
-              <MessageSquare className="w-4 h-4" />
-              Ask a follow-up question
-            </h3>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={followUpQuestion}
-                onChange={(e) => setFollowUpQuestion(e.target.value)}
-                placeholder="Ask a follow-up question..."
-                className="input flex-1"
-                onKeyPress={(e) => e.key === 'Enter' && handleFollowUp()}
-              />
-              <button 
-                className="btn btn-primary"
-                onClick={handleFollowUp}
-              >
-                Ask
-              </button>
-            </div>
-          </div>
+            {/* Follow-up Question */}
+            {analysisContent && !analysisContent.error && (
+              <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+                <h3 className="text-sm font-semibold text-gray-300 mb-3 flex items-center gap-2">
+                  <MessageSquare className="w-4 h-4" />
+                  Ask a Follow-up Question
+                </h3>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={followUpQuestion}
+                    onChange={(e) => setFollowUpQuestion(e.target.value)}
+                    placeholder="Ask a question about this analysis..."
+                    className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+                    onKeyPress={(e) => e.key === 'Enter' && handleFollowUp()}
+                  />
+                  <button
+                    onClick={handleFollowUp}
+                    disabled={!followUpQuestion.trim() || isFollowUpLoading}
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white rounded transition-colors"
+                  >
+                    {isFollowUpLoading ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <Send className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
+                {followUpResponse && (
+                  <div className="mt-3 p-3 bg-blue-900/20 border border-blue-700/30 rounded">
+                    <div 
+                      className="text-sm text-gray-200 leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: followUpResponse }}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

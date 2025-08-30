@@ -11,31 +11,52 @@ export const useNotes = () => {
 }
 
 export const NotesProvider = ({ children }) => {
+  const [macbethData, setMacbethData] = useState(null)
   const [notesData, setNotesData] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [currentPlay, setCurrentPlay] = useState('')
   const [currentScene, setCurrentScene] = useState('')
 
-  // Load notes data
+  // Load both macbeth data and notes data
   useEffect(() => {
-    const loadNotes = async () => {
+    const loadData = async () => {
       try {
-        const response = await fetch('/Public/Data/macbeth_notes.json')
-        if (!response.ok) {
-          console.warn('Could not load macbeth_notes.json')
-          return
+        // Load the complete Macbeth database
+        const macbethResponse = await fetch('/Public/Data/macbeth_complete.json')
+        if (macbethResponse.ok) {
+          const macbethJson = await macbethResponse.json()
+          setMacbethData(macbethJson)
+          console.log('Macbeth data loaded successfully')
+        } else {
+          console.warn('Could not load macbeth_complete.json')
         }
-        const data = await response.json()
-        setNotesData(data)
+
+        // Load the scholarly notes
+        const notesResponse = await fetch('/Public/Data/macbeth_notes.json')
+        if (notesResponse.ok) {
+          const notesJson = await notesResponse.json()
+          setNotesData(notesJson)
+          console.log('Notes data loaded successfully')
+        } else {
+          console.warn('Could not load macbeth_notes.json')
+        }
+
         setIsLoaded(true)
-        console.log('Notes data loaded successfully')
       } catch (error) {
-        console.error('Error loading notes:', error)
+        console.error('Error loading data:', error)
       }
     }
 
-    loadNotes()
+    loadData()
   }, [])
+
+  // Get scene content from macbeth database
+  const getSceneContent = (sceneName) => {
+    if (!macbethData || !macbethData.scenes || !macbethData.scenes[sceneName]) {
+      return []
+    }
+    return macbethData.scenes[sceneName].lines || []
+  }
 
   // Find notes for a specific line of text
   const findNotesForLine = (text, sceneName = null) => {
@@ -110,51 +131,39 @@ export const NotesProvider = ({ children }) => {
 
   // Format notes for display
   const formatNotes = (notesData) => {
-    if (!notesData || !notesData.notes || notesData.notes.length === 0) {
-      return null
-    }
+    if (!notesData) return null
 
     return {
       lineNumber: notesData.lineNumber,
       playLine: notesData.playLine,
-      scene: notesData.scene,
-      notes: notesData.notes.map(note => formatNoteText(note))
+      notes: notesData.notes.map(note => {
+        // Format the scholarly note with proper HTML
+        return note
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.*?)\*/g, '<em>$1</em>')
+          .replace(/\n/g, '<br>')
+      }),
+      scene: notesData.scene
     }
   }
 
-  // Format individual note text
-  const formatNoteText = (note) => {
-    // Clean up the note text
-    return note
-      .replace(/\*\*/g, '<strong>') // Bold text
-      .replace(/\*/g, '<em>') // Italic text
-      .replace(/\n/g, '<br>') // Line breaks
-      .replace(/\[([^\]]+)\]/g, '<em>$1</em>') // Stage directions in italics
-      .replace(/--/g, '—') // Em dashes
-      .replace(/\.\.\./g, '…') // Ellipsis
+  // Get all acts and scenes
+  const getActsAndScenes = () => {
+    if (!macbethData || !macbethData.acts) {
+      return {}
+    }
+    return macbethData.acts
   }
 
-  // Check if notes exist for the current play
-  const hasNotesForPlay = (playName) => {
-    if (!isLoaded || !notesData) {
-      return false
+  // Get scene metadata
+  const getSceneMetadata = (sceneName) => {
+    if (!macbethData || !macbethData.scenes || !macbethData.scenes[sceneName]) {
+      return null
     }
-    
-    // Currently only Macbeth has notes
-    return playName.toLowerCase().includes('macbeth')
-  }
-
-  // Get all available scenes with notes
-  const getScenesWithNotes = () => {
-    if (!isLoaded || !notesData) {
-      return []
-    }
-    
-    return Object.keys(notesData)
+    return macbethData.scenes[sceneName]
   }
 
   const value = {
-    notesData,
     isLoaded,
     currentPlay,
     setCurrentPlay,
@@ -162,8 +171,11 @@ export const NotesProvider = ({ children }) => {
     setCurrentScene,
     findNotesForLine,
     formatNotes,
-    hasNotesForPlay,
-    getScenesWithNotes
+    getSceneContent,
+    getActsAndScenes,
+    getSceneMetadata,
+    macbethData,
+    notesData
   }
 
   return (
