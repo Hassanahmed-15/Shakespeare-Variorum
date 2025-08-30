@@ -1,9 +1,46 @@
 import React, { useState } from 'react'
-import { NotesProvider } from './context/NotesContext'
+import { NotesProvider, useNotes } from './context/NotesContext'
 import LibraryPanel from './components/LibraryPanel'
 import ReaderPanel from './components/ReaderPanel'
 import AnalysisPanel from './components/AnalysisPanel'
 import { BookOpen, Sparkles } from 'lucide-react'
+
+// Component to handle context updates
+const PlayViewWithContext = ({ selectedPlay, selectedText, setSelectedText, onBackToLibrary }) => {
+  const { setCurrentPlay, setCurrentScene, getScenes, isLoaded } = useNotes()
+
+  React.useEffect(() => {
+    if (selectedPlay && isLoaded) {
+      setCurrentPlay(selectedPlay)
+      const scenes = getScenes()
+      if (scenes.length > 0) {
+        setCurrentScene(scenes[0])
+        console.log('Set context:', { play: selectedPlay, scene: scenes[0] })
+      }
+    }
+  }, [selectedPlay, isLoaded, setCurrentPlay, setCurrentScene, getScenes])
+
+  return (
+    <main className="flex h-[calc(100vh-4rem)]">
+      {/* Reader Panel - Takes up most of the space */}
+      <div className="flex-1 border-r border-gray-700">
+        <ReaderPanel 
+          selectedText={selectedText}
+          setSelectedText={setSelectedText}
+          onBackToLibrary={onBackToLibrary}
+        />
+      </div>
+      
+      {/* Analysis Panel - Fixed width sidebar */}
+      <div className="w-96 flex-shrink-0">
+        <AnalysisPanel 
+          selectedText={selectedText}
+          setSelectedText={setSelectedText}
+        />
+      </div>
+    </main>
+  )
+}
 
 function App() {
   const [selectedPlay, setSelectedPlay] = useState('')
@@ -17,45 +54,6 @@ function App() {
   const handleBackToLibrary = () => {
     setSelectedPlay('')
     setSelectedText('')
-  }
-
-  // Component to handle context updates
-  const PlayViewWithContext = ({ selectedText, setSelectedText, onBackToLibrary }) => {
-    const { setCurrentPlay, setCurrentScene, getScenes, isLoaded } = useNotes()
-
-    React.useEffect(() => {
-      if (selectedPlay && isLoaded) {
-        setCurrentPlay(selectedPlay)
-        const scenes = getScenes()
-        if (scenes.length > 0 && !scenes.includes('ACT 1, SCENE 1')) {
-          setCurrentScene(scenes[0])
-        } else {
-          setCurrentScene('ACT 1, SCENE 1')
-        }
-        console.log('Set context:', { play: selectedPlay, scene: scenes[0] || 'ACT 1, SCENE 1' })
-      }
-    }, [selectedPlay, isLoaded, setCurrentPlay, setCurrentScene, getScenes])
-
-    return (
-      <main className="flex h-[calc(100vh-4rem)]">
-        {/* Reader Panel - Takes up most of the space */}
-        <div className="flex-1 border-r border-gray-700">
-          <ReaderPanel 
-            selectedText={selectedText}
-            setSelectedText={setSelectedText}
-            onBackToLibrary={onBackToLibrary}
-          />
-        </div>
-        
-        {/* Analysis Panel - Fixed width sidebar */}
-        <div className="w-96 flex-shrink-0">
-          <AnalysisPanel 
-            selectedText={selectedText}
-            setSelectedText={setSelectedText}
-          />
-        </div>
-      </main>
-    )
   }
 
   return (
@@ -90,6 +88,7 @@ function App() {
           <LibraryPanel onSelectPlay={handleSelectPlay} />
         ) : (
           <PlayViewWithContext 
+            selectedPlay={selectedPlay}
             selectedText={selectedText}
             setSelectedText={setSelectedText}
             onBackToLibrary={handleBackToLibrary}

@@ -83,6 +83,14 @@ const ReaderPanel = ({ selectedText, setSelectedText, onBackToLibrary }) => {
     )
   }
 
+  // Debug info
+  console.log('ReaderPanel debug:', {
+    isLoaded,
+    currentScene,
+    sceneContent: sceneContent.length,
+    actsAndScenes: Object.keys(actsAndScenes)
+  })
+
   return (
     <div className="flex flex-col h-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       {/* Header */}
