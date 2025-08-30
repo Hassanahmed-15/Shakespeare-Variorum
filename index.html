@@ -1,31 +1,785 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shakespeare Digital Variorum</title>
-    <meta name="description" content="Shakespeare Digital Variorum with modern React frontend and scholarly commentary" />
-    <meta name="keywords" content="Shakespeare, Macbeth, Digital Variorum, Literature, Analysis" />
-    <meta name="author" content="Brad Carson MIT 2025" />
-    
-    <!-- Preconnect to Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Shakespeare Digital Variorum" />
-    <meta property="og:description" content="Scholarly commentary meets modern technology" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://shakespeare-variorum.netlify.app" />
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Shakespeare Digital Variorum" />
-    <meta name="twitter:description" content="Scholarly commentary meets modern technology" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a1a;
+            color: #f9fafb;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            display: grid;
+            grid-template-columns: 300px 1fr 400px;
+            grid-template-rows: 80px 1fr 100px;
+            height: 100vh;
+            gap: 0;
+        }
+
+        /* Header */
+        .header {
+            grid-column: 1 / -1;
+            background: #2d2d2d;
+            border-bottom: 1px solid #4b5563;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            position: relative;
+        }
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #f9fafb;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #d1d5db;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #f9fafb;
+        }
+
+        .explain-button {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .explain-button:hover {
+            background: #333;
+            transform: translateY(-1px);
+        }
+
+        .explain-instruction {
+            color: #9ca3af;
+            font-size: 0.8rem;
+            margin-left: 15px;
+        }
+
+        /* Library Panel */
+        .library-panel {
+            grid-column: 1;
+            grid-row: 2;
+            background: #2d2d2d;
+            border-right: 1px solid #4b5563;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .library-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #f9fafb;
+        }
+
+        .play-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .play-select {
+            flex: 1;
+            background: #374151;
+            border: 1px solid #4b5563;
+            color: #f9fafb;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .go-button {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .go-button:hover {
+            background: #333;
+        }
+
+        /* Main Content */
+        .main-content {
+            grid-column: 2;
+            grid-row: 2;
+            background: #1a1a1a;
+            padding: 30px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #9ca3af;
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .empty-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #f9fafb;
+        }
+
+        .empty-text {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .settings-button {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .settings-button:hover {
+            background: #333;
+        }
+
+        .play-content {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .scene-navigation {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .scene-button {
+            background: #374151;
+            color: #f9fafb;
+            border: 1px solid #4b5563;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .scene-button:hover {
+            background: #4b5563;
+        }
+
+        .scene-button.active {
+            background: #000;
+            border-color: #000;
+        }
+
+        .play-text {
+            font-family: 'Georgia', serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #f9fafb;
+            background: #2d2d2d;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #4b5563;
+        }
+
+        .play-line {
+            margin-bottom: 15px;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .play-line:hover {
+            background: #374151;
+        }
+
+        .play-line.selected {
+            background: #f59e0b;
+            color: #000;
+        }
+
+        /* Analysis Panel */
+        .analysis-panel {
+            grid-column: 3;
+            grid-row: 2;
+            background: #2d2d2d;
+            border-left: 1px solid #4b5563;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .analysis-tabs {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 30px;
+            background: #374151;
+            border-radius: 6px;
+            padding: 4px;
+        }
+
+        .analysis-tab {
+            flex: 1;
+            background: transparent;
+            color: #9ca3af;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .analysis-tab.active {
+            background: #000;
+            color: #fff;
+        }
+
+        .analysis-section {
+            background: #374151;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #4b5563;
+        }
+
+        .analysis-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #f9fafb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-button {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .copy-button:hover {
+            background: #333;
+        }
+
+        .analysis-content {
+            color: #d1d5db;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .follow-up-section {
+            margin-top: 20px;
+        }
+
+        .follow-up-input {
+            width: 100%;
+            background: #1a1a1a;
+            border: 1px solid #4b5563;
+            color: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            resize: vertical;
+        }
+
+        .follow-up-input:focus {
+            outline: none;
+            border-color: #f59e0b;
+        }
+
+        .ask-button {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .ask-button:hover {
+            background: #333;
+        }
+
+        .media-section, .research-section {
+            margin-top: 20px;
+        }
+
+        .media-button, .research-button {
+            width: 100%;
+            background: #374151;
+            color: #f9fafb;
+            border: 1px solid #4b5563;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 10px;
+        }
+
+        .media-button:hover, .research-button:hover {
+            background: #4b5563;
+        }
+
+        /* Footer */
+        .footer {
+            grid-column: 1 / -1;
+            grid-row: 3;
+            background: #2d2d2d;
+            border-top: 1px solid #4b5563;
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #f9fafb;
+        }
+
+        .footer-text {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Loading and Error States */
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #9ca3af;
+        }
+
+        .error {
+            background: #dc2626;
+            color: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .app-container {
+                grid-template-columns: 250px 1fr 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto 1fr auto;
+            }
+            
+            .library-panel, .analysis-panel {
+                grid-column: 1;
+            }
+            
+            .library-panel {
+                grid-row: 2;
+                border-right: none;
+                border-bottom: 1px solid #4b5563;
+            }
+            
+            .main-content {
+                grid-row: 3;
+            }
+            
+            .analysis-panel {
+                grid-row: 4;
+                border-left: none;
+                border-top: 1px solid #4b5563;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-title">Shakespeare Digital Variorum</div>
+            <div class="header-nav">
+                <a href="#" class="nav-link">Settings</a>
+                <a href="#" class="nav-link">About</a>
+                <button class="explain-button" onclick="explainHighlighted()">Explain Highlighted Text</button>
+                <span class="explain-instruction">Use your cursor to highlight text in the play, then click this button for analysis.</span>
+            </div>
+        </header>
+
+        <!-- Library Panel -->
+        <aside class="library-panel">
+            <h3 class="library-title">Library</h3>
+            <div class="play-selector">
+                <select class="play-select" id="playSelect">
+                    <option value="">Choose a Play</option>
+                    <option value="macbeth">Macbeth</option>
+                </select>
+                <button class="go-button" onclick="loadPlay()">Go</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="empty-state" id="emptyState">
+                <div class="empty-icon">📚</div>
+                <h2 class="empty-title">Add a play to begin</h2>
+                <p class="empty-text">Upload a text file in Settings. We'll auto-index acts and scenes.</p>
+                <button class="settings-button">Open Settings</button>
+            </div>
+
+            <div class="play-content" id="playContent">
+                <div class="scene-navigation" id="sceneNavigation"></div>
+                <div class="play-text" id="playText"></div>
+            </div>
+        </main>
+
+        <!-- Analysis Panel -->
+        <aside class="analysis-panel">
+            <div class="analysis-tabs">
+                <button class="analysis-tab active" onclick="switchTab('basic')">Basic</button>
+                <button class="analysis-tab" onclick="switchTab('expert')">Expert</button>
+                <button class="analysis-tab" onclick="switchTab('fullfathomfive')">Full Fathom Five</button>
+            </div>
+
+            <div class="analysis-section">
+                <div class="analysis-title">
+                    Basic Analysis
+                    <button class="copy-button" onclick="copyAnalysis()">Copy</button>
+                </div>
+                <div class="analysis-content" id="analysisContent">
+                    Unknown Play · No text highlighted
+                </div>
+                <div class="analysis-content" id="analysisInstruction">
+                    Highlight text in the play to get AI-powered analysis.
+                </div>
+            </div>
+
+            <div class="follow-up-section">
+                <input type="text" class="follow-up-input" placeholder="Ask a follow-up question..." id="followUpInput">
+                <button class="ask-button" onclick="askFollowUp()">Ask</button>
+            </div>
+
+            <div class="media-section">
+                <button class="media-button">Search YouTube for this scene</button>
+            </div>
+
+            <div class="research-section">
+                <button class="research-button">Search JSTOR for exact quotation</button>
+            </div>
+        </aside>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <h4 class="footer-title">About This Project</h4>
+            <p class="footer-text">
+                Shakespeare Digital Variorum combines centuries of scholarly commentary with AI analysis. 
+                All Shakespeare texts are public domain and based on the Folger Shakespeare Library editions.
+            </p>
+            <p class="footer-text">
+                Created by Jack David Carson, Massachusetts Institute of Technology · 2025 · Full Rights & Usage Information
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        let currentPlay = null;
+        let currentScene = null;
+        let selectedText = '';
+        let macbethData = null;
+        let currentTab = 'basic';
+
+        // Load Macbeth data on page load
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const response = await fetch('/Public/Data/macbeth_notes.json');
+                if (response.ok) {
+                    macbethData = await response.json();
+                    console.log('Macbeth data loaded successfully');
+                }
+            } catch (error) {
+                console.error('Error loading Macbeth data:', error);
+            }
+        });
+
+        function loadPlay() {
+            const playSelect = document.getElementById('playSelect');
+            const selectedPlay = playSelect.value;
+
+            if (selectedPlay === 'macbeth' && macbethData) {
+                currentPlay = 'Macbeth';
+                document.getElementById('emptyState').style.display = 'none';
+                document.getElementById('playContent').style.display = 'block';
+                updateSceneNavigation();
+                loadScene('ACT 1, SCENE 1');
+            } else {
+                alert('Please select a play to load.');
+            }
+        }
+
+        function updateSceneNavigation() {
+            const sceneNav = document.getElementById('sceneNavigation');
+            sceneNav.innerHTML = '';
+
+            if (macbethData) {
+                Object.keys(macbethData).forEach(scene => {
+                    const button = document.createElement('button');
+                    button.className = 'scene-button';
+                    button.textContent = scene;
+                    button.onclick = () => loadScene(scene);
+                    sceneNav.appendChild(button);
+                });
+            }
+        }
+
+        function loadScene(sceneName) {
+            currentScene = sceneName;
+            const playText = document.getElementById('playText');
+            
+            // Update active scene button
+            document.querySelectorAll('.scene-button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === sceneName) {
+                    btn.classList.add('active');
+                }
+            });
+
+            if (macbethData && macbethData[sceneName]) {
+                let sceneContent = '';
+                Object.keys(macbethData[sceneName]).forEach(lineNum => {
+                    const lineData = macbethData[sceneName][lineNum];
+                    sceneContent += `<div class="play-line" onclick="selectLine(this, '${lineData.play}')">${lineData.play}</div>`;
+                });
+                playText.innerHTML = sceneContent;
+            } else {
+                playText.innerHTML = '<p>Scene not found.</p>';
+            }
+        }
+
+        function selectLine(element, text) {
+            // Clear previous selections
+            document.querySelectorAll('.play-line').forEach(line => {
+                line.classList.remove('selected');
+            });
+            
+            // Select current line
+            element.classList.add('selected');
+            selectedText = text;
+            
+            // Update analysis panel
+            updateAnalysisPanel();
+        }
+
+        function updateAnalysisPanel() {
+            const analysisContent = document.getElementById('analysisContent');
+            const analysisInstruction = document.getElementById('analysisInstruction');
+            
+            if (selectedText) {
+                analysisContent.textContent = `${currentPlay} · ${currentScene} · "${selectedText.substring(0, 50)}..."`;
+                analysisInstruction.textContent = 'Click "Explain Highlighted Text" to analyze this selection.';
+            } else {
+                analysisContent.textContent = 'Unknown Play · No text highlighted';
+                analysisInstruction.textContent = 'Highlight text in the play to get AI-powered analysis.';
+            }
+        }
+
+        function explainHighlighted() {
+            if (!selectedText) {
+                alert('Please select text in the play first.');
+                return;
+            }
+
+            const analysisContent = document.getElementById('analysisContent');
+            analysisContent.innerHTML = '<div class="loading">🤔 Analyzing text with AI...</div>';
+
+            // Call the API
+            fetch('/.netlify/functions/shakespeare', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text: selectedText,
+                    level: currentTab,
+                    model: 'gpt-4o-mini',
+                    mode: currentTab
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.analysis) {
+                    let formattedContent = '';
+                    
+                    if (typeof data.analysis === 'object') {
+                        for (const [section, content] of Object.entries(data.analysis)) {
+                            formattedContent += `<h4 style="color: #f59e0b; margin-top: 15px; margin-bottom: 8px;">${section}</h4>`;
+                            formattedContent += `<p style="margin-bottom: 12px;">${content.replace(/\n/g, '<br>')}</p>`;
+                        }
+                    } else {
+                        formattedContent = data.analysis.replace(/\n/g, '<br>');
+                    }
+                    
+                    analysisContent.innerHTML = formattedContent;
+                } else {
+                    analysisContent.innerHTML = '<div class="error">Error: Invalid response from API</div>';
+                }
+            })
+            .catch(error => {
+                analysisContent.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+            });
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            
+            // Update tab buttons
+            document.querySelectorAll('.analysis-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update analysis title
+            const analysisTitle = document.querySelector('.analysis-title');
+            switch(tab) {
+                case 'basic':
+                    analysisTitle.textContent = 'Basic Analysis';
+                    break;
+                case 'expert':
+                    analysisTitle.textContent = 'Expert Analysis';
+                    break;
+                case 'fullfathomfive':
+                    analysisTitle.textContent = 'Full Fathom Five Analysis';
+                    break;
+            }
+            
+            // Re-analyze if text is selected
+            if (selectedText) {
+                explainHighlighted();
+            }
+        }
+
+        function askFollowUp() {
+            const followUpInput = document.getElementById('followUpInput');
+            const question = followUpInput.value.trim();
+            
+            if (!question) {
+                alert('Please enter a follow-up question.');
+                return;
+            }
+            
+            if (!selectedText) {
+                alert('Please select text in the play first.');
+                return;
+            }
+
+            const analysisContent = document.getElementById('analysisContent');
+            analysisContent.innerHTML = '<div class="loading">🤔 Processing follow-up question...</div>';
+
+            // Call the API with follow-up question
+            fetch('/.netlify/functions/shakespeare', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text: selectedText,
+                    level: currentTab,
+                    model: 'gpt-4o-mini',
+                    mode: currentTab,
+                    followUp: question
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.analysis) {
+                    analysisContent.innerHTML = data.analysis.replace(/\n/g, '<br>');
+                } else {
+                    analysisContent.innerHTML = '<div class="error">Error: Invalid response from API</div>';
+                }
+            })
+            .catch(error => {
+                analysisContent.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+            });
+
+            followUpInput.value = '';
+        }
+
+        function copyAnalysis() {
+            const analysisContent = document.getElementById('analysisContent');
+            const textToCopy = analysisContent.textContent;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const copyButton = document.querySelector('.copy-button');
+                const originalText = copyButton.textContent;
+                copyButton.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyButton.textContent = originalText;
+                }, 2000);
+            });
+        }
+
+        // Handle text selection
+        document.addEventListener('mouseup', function() {
+            const selection = window.getSelection();
+            const selectedTextFromPage = selection.toString().trim();
+            
+            if (selectedTextFromPage && selectedTextFromPage.length > 0) {
+                selectedText = selectedTextFromPage;
+                updateAnalysisPanel();
+            }
+        });
+    </script>
+</body>
 </html>

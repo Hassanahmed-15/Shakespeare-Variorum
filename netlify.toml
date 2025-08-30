@@ -1,6 +1,5 @@
 [build]
-  command = "npm run build"
-  publish = "dist"
+  publish = "."
   functions = "functions"
 
 [build.environment]
@@ -14,11 +13,6 @@
   from = "/*"
   to = "/index.html"
   status = 200
-
-[dev]
-  command = "npm run dev"
-  port = 3000
-  publish = "dist"
 
 [[edge_functions]]
   function = "variorum-edge"

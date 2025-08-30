@@ -1,99 +1,100 @@
 # Shakespeare Digital Variorum
 
-A secure, AI-powered Shakespeare analysis tool that uses serverless functions to keep your API keys safe.
+A classic, elegant frontend for the Shakespeare Digital Variorum project, featuring advanced AI-powered analysis and scholarly commentary.
 
-## Features
+## 🚀 Features
 
-- 🔒 **Secure API Key Storage** - API keys are stored server-side, never exposed to the browser 
-- 🎭 **Advanced Shakespeare Analysis** - Multiple analysis levels from basic to expert
-- 🤖 **Multiple AI Models** - Support for GPT-4o, GPT-4o Mini, GPT-4 Turbo, and GPT-3.5 Turbo
-- 📱 **Responsive Design** - Works perfectly on desktop and mobile devices
-- ⚡ **Fast Performance** - Serverless functions for quick responses
+### Classic UI/UX
+- **Light/Dark Mode Toggle**: Switch between light and dark themes for comfortable reading
+- **Responsive Design**: Works beautifully on all devices
+- **Elegant Typography**: Georgia serif font for authentic reading experience
+- **Smooth Animations**: Subtle transitions and hover effects
 
-## Setup Instructions
+### Enhanced Analysis Features
+- **Multiple Line Selection**: Select 2-5 lines at once for combined analysis
+- **Four Analysis Modes**:
+  - **Basic Analysis**: Perfect for students and general readers
+  - **Detailed Analysis**: Advanced analysis with historical context
+  - **Expert Analysis**: Comprehensive scholarly analysis
+  - **Full Fathom Five**: Traditional commentary + modern analysis
+- **Larger Analysis Section**: More space for comprehensive results
+- **Re-analysis Capability**: Clear previous analysis and start fresh with new selections
 
-### 1. Get Your OpenAI API Key
+### Technical Features
+- **AI-Powered Analysis**: Multiple GPT models supported
+- **Structured Output**: Organized analysis sections
+- **Real-time Processing**: Fast, responsive analysis
+- **Error Handling**: Graceful error messages and recovery
 
-1. Visit [OpenAI's API page](https://platform.openai.com/api-keys)
-2. Create a new API key
-3. Copy the key (starts with `sk-`)
+## 🛠️ Usage
 
-### 2. Deploy to Netlify
+### Text Input
+1. **Paste Text**: Copy and paste Shakespeare text into the input area
+2. **Select Lines**: Click and drag to select 2-5 lines for analysis
+3. **Choose Analysis Level**: Select from Basic, Detailed, Expert, or Full Fathom Five
+4. **Analyze**: Click "Analyze Text" to get comprehensive results
 
-1. Push your code to GitHub
-2. Connect your repository to Netlify
-3. Set the environment variable:
-   - **Variable name**: `OPENAI_API_KEY`
-   - **Value**: Your OpenAI API key (e.g., `sk-...`)
+### Analysis Modes
+- **Basic**: Plain-language paraphrase, synopsis, key words, and reading pointers
+- **Detailed**: Includes language analysis, historical context, and literary analysis
+- **Expert**: Full scholarly analysis with textual variants, sources, and critical reception
+- **Full Fathom Five**: Traditional commentary (when available) plus comprehensive analysis
 
-### 3. Environment Variables
+### Theme Toggle
+- Click the theme toggle button in the top-right corner
+- Switch between light and dark modes
+- Your preference is saved for future visits
 
-In your Netlify dashboard, go to **Site settings > Environment variables** and add:
+## 🎨 Design
 
-```
-OPENAI_API_KEY=sk-your-actual-api-key-here
-APIBIBLE_KEY=your-api-bible-key-here
-```
+### Light Mode
+- Clean, professional appearance
+- Easy on the eyes for daytime reading
+- Subtle gradients and shadows
 
-#### Optional: API Bible Integration
+### Dark Mode
+- Reduced eye strain for evening reading
+- High contrast for better readability
+- Modern, sophisticated appearance
 
-For enhanced Biblical allusion detection:
+## 🔧 Configuration
 
-1. Visit [API.Bible](https://scripture.api.bible/) and sign up for a free account
-2. Get your API key from the dashboard
-3. Add `APIBIBLE_KEY` to your Netlify environment variables
-4. The system will automatically search for Biblical references in Shakespeare text
+### AI Models
+- **GPT-4o**: Most capable model for complex analysis
+- **GPT-4o Mini**: Fast and efficient for quick analysis
+- **GPT-4 Turbo**: Balanced performance and capability
+- **GPT-3.5 Turbo**: Legacy model for basic analysis
 
-## How It Works
+### Analysis Settings
+- Model selection is saved in browser storage
+- Theme preference is remembered
+- Responsive design adapts to screen size
 
-1. **Frontend**: The HTML interface sends text analysis requests to the serverless function
-2. **Serverless Function**: `functions/shakespeare.js` handles the OpenAI API calls securely
-3. **API Key Security**: Your API key is stored as an environment variable and never exposed to the browser
-4. **Response**: Analysis results are returned to the frontend and displayed to the user
+## 🚀 Deployment
 
-## File Structure
+The project is configured for deployment on Netlify with:
+- Static file hosting for the frontend
+- Serverless functions for AI analysis
+- Automatic HTTPS and CDN distribution
 
-```
-├── index.html              # Main application interface
-├── functions/
-│   └── shakespeare.js      # Serverless function for API calls
-├── netlify.toml           # Netlify configuration
-├── package.json           # Dependencies
-└── README.md             # This file
-```
+## 📝 Key Features
 
-## Security Benefits
+1. **Restored Classic Frontend**: Elegant, traditional design with modern functionality
+2. **Multiple Line Selection**: Analyze 2-5 lines simultaneously
+3. **Enhanced Analysis**: Four distinct analysis modes for different needs
+4. **Theme Support**: Light and dark mode for comfortable reading
+5. **Responsive Design**: Works perfectly on desktop, tablet, and mobile
+6. **Fast Performance**: Optimized for quick analysis and smooth interactions
 
-- ✅ API keys are never visible in browser developer tools
-- ✅ No client-side API calls to OpenAI
-- ✅ Environment variables are encrypted at rest
-- ✅ Serverless functions run in isolated environments
+## 🎯 Future Enhancements
 
-## Usage
+- Add more Shakespeare plays beyond Macbeth
+- Implement advanced search functionality
+- Add user preferences and settings
+- Enhance mobile responsiveness
+- Add keyboard shortcuts
+- Implement offline support
 
-1. Select your preferred AI model
-2. Choose the analysis level (Basic, Detailed, or Expert)
-3. Paste Shakespeare text into the input area
-4. Click "🔍 Analyze Text"
-5. View the AI-powered analysis results
+## 📄 License
 
-## Troubleshooting
-
-- **"OpenAI API key not configured"**: Make sure you've set the `OPENAI_API_KEY` environment variable in Netlify
-- **"Model not available"**: Check that your API key has access to the selected model
-- **Connection errors**: Verify your Netlify deployment is working correctly
-
-## Development
-
-To test locally with Netlify CLI::
-
-```bash
-npm install -g netlify-cli
-netlify dev
-```
-
-Make sure to set your environment variables in a `.env` file:
-
-```
-OPENAI_API_KEY=sk-your-api-key-here
-```
+Created by Brad Carson MIT 2025
