@@ -11,11 +11,15 @@ const PlayViewWithContext = ({ selectedPlay, selectedText, setSelectedText, onBa
 
   React.useEffect(() => {
     if (selectedPlay && isLoaded) {
+      console.log('Setting up play context for:', selectedPlay)
       setCurrentPlay(selectedPlay)
       const scenes = getScenes()
+      console.log('Available scenes:', scenes)
       if (scenes.length > 0) {
-        setCurrentScene(scenes[0])
-        console.log('Set context:', { play: selectedPlay, scene: scenes[0] })
+        const firstScene = scenes[0]
+        console.log('Setting first scene:', firstScene)
+        setCurrentScene(firstScene)
+        console.log('Set context:', { play: selectedPlay, scene: firstScene })
       }
     }
   }, [selectedPlay, isLoaded, setCurrentPlay, setCurrentScene, getScenes])

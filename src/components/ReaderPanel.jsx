@@ -74,10 +74,20 @@ const ReaderPanel = ({ selectedText, setSelectedText, onBackToLibrary }) => {
 
   // Handle scene selection
   const handleSceneSelect = (sceneName) => {
+    console.log('=== SCENE SELECTION ===')
     console.log('Selecting scene:', sceneName)
+    console.log('Previous scene:', currentScene)
+    console.log('Available acts and scenes:', actsAndScenes)
+    
     setCurrentScene(sceneName)
     setSelectedLine(null)
     setSelectedText('')
+    
+    // Force a re-render by updating state
+    setTimeout(() => {
+      console.log('Scene selection completed. New scene:', sceneName)
+      console.log('Scene content length:', getSceneContent(sceneName).length)
+    }, 100)
   }
 
   if (!isLoaded) {

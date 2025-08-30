@@ -46,11 +46,23 @@ export const NotesProvider = ({ children }) => {
 
   // Get scene content from notes data
   const getSceneContent = (sceneName) => {
-    if (!notesData || !notesData[sceneName]) {
+    console.log('getSceneContent called with:', sceneName)
+    console.log('notesData available:', !!notesData)
+    
+    if (!notesData) {
+      console.log('No notesData available')
+      return []
+    }
+    
+    if (!notesData[sceneName]) {
+      console.log('Scene not found in notesData:', sceneName)
+      console.log('Available scenes:', Object.keys(notesData).slice(0, 10))
       return []
     }
     
     const sceneData = notesData[sceneName]
+    console.log('Scene data found:', Object.keys(sceneData).length, 'lines')
+    
     const lines = []
     
     // Convert the scene data to a structured format
@@ -79,7 +91,9 @@ export const NotesProvider = ({ children }) => {
       }
     })
     
-    return lines.sort((a, b) => a.lineNumber - b.lineNumber)
+    const sortedLines = lines.sort((a, b) => a.lineNumber - b.lineNumber)
+    console.log('Returning', sortedLines.length, 'lines for scene:', sceneName)
+    return sortedLines
   }
 
   // Find notes for a specific line of text
