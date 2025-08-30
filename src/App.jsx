@@ -1,11 +1,23 @@
 import React, { useState } from 'react'
 import { NotesProvider } from './context/NotesContext'
+import LibraryPanel from './components/LibraryPanel'
 import ReaderPanel from './components/ReaderPanel'
 import AnalysisPanel from './components/AnalysisPanel'
 import { BookOpen, Sparkles } from 'lucide-react'
 
 function App() {
+  const [selectedPlay, setSelectedPlay] = useState('')
   const [selectedText, setSelectedText] = useState('')
+
+  const handleSelectPlay = (playId) => {
+    setSelectedPlay(playId)
+    setSelectedText('')
+  }
+
+  const handleBackToLibrary = () => {
+    setSelectedPlay('')
+    setSelectedText('')
+  }
 
   return (
     <NotesProvider>
@@ -20,7 +32,9 @@ function App() {
                 </div>
                 <div>
                   <h1 className="text-xl font-bold text-white">Shakespeare Digital Variorum</h1>
-                  <p className="text-sm text-gray-400">Macbeth • Scholarly Edition</p>
+                  <p className="text-sm text-gray-400">
+                    {selectedPlay ? `${selectedPlay.charAt(0).toUpperCase() + selectedPlay.slice(1)} • Scholarly Edition` : 'Select a Play'}
+                  </p>
                 </div>
               </div>
               
@@ -33,23 +47,28 @@ function App() {
         </header>
 
         {/* Main Content */}
-        <main className="flex h-[calc(100vh-4rem)]">
-          {/* Reader Panel - Takes up most of the space */}
-          <div className="flex-1 border-r border-gray-700">
-            <ReaderPanel 
-              selectedText={selectedText}
-              setSelectedText={setSelectedText}
-            />
-          </div>
-          
-          {/* Analysis Panel - Fixed width sidebar */}
-          <div className="w-96 flex-shrink-0">
-            <AnalysisPanel 
-              selectedText={selectedText}
-              setSelectedText={setSelectedText}
-            />
-          </div>
-        </main>
+        {!selectedPlay ? (
+          <LibraryPanel onSelectPlay={handleSelectPlay} />
+        ) : (
+          <main className="flex h-[calc(100vh-4rem)]">
+            {/* Reader Panel - Takes up most of the space */}
+            <div className="flex-1 border-r border-gray-700">
+              <ReaderPanel 
+                selectedText={selectedText}
+                setSelectedText={setSelectedText}
+                onBackToLibrary={handleBackToLibrary}
+              />
+            </div>
+            
+            {/* Analysis Panel - Fixed width sidebar */}
+            <div className="w-96 flex-shrink-0">
+              <AnalysisPanel 
+                selectedText={selectedText}
+                setSelectedText={setSelectedText}
+              />
+            </div>
+          </main>
+        )}
 
         {/* Footer */}
         <footer className="bg-gray-800/50 border-t border-gray-700">

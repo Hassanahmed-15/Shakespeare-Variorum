@@ -106,7 +106,16 @@ const AnalysisPanel = ({ selectedText, setSelectedText }) => {
       }
 
       const data = await response.json()
-      setAnalysisContent(data.analysis)
+      
+      // Handle the response format
+      if (data.analysis) {
+        setAnalysisContent(data.analysis)
+      } else if (data.error) {
+        setAnalysisContent({ error: data.error })
+      } else {
+        setAnalysisContent({ error: 'Invalid response format' })
+      }
+      
       console.log('Analysis completed:', data)
     } catch (error) {
       console.error('Error analyzing text:', error)
@@ -145,7 +154,7 @@ const AnalysisPanel = ({ selectedText, setSelectedText }) => {
       }
 
       const data = await response.json()
-      setFollowUpResponse(data.analysis)
+      setFollowUpResponse(data.analysis || data.error || 'No response received')
       setFollowUpQuestion('')
     } catch (error) {
       console.error('Error with follow-up:', error)
@@ -229,7 +238,7 @@ const AnalysisPanel = ({ selectedText, setSelectedText }) => {
         {!selectedText ? (
           <div className="text-center text-gray-400 py-12">
             <Sparkles className="w-12 h-12 mx-auto mb-4 opacity-50" />
-            <p>Highlight text or click on a line to analyze</p>
+            <p>Click on a line to analyze it</p>
             <p className="text-sm mt-2">Select from Basic, Expert, or Full Fathom Five modes</p>
           </div>
         ) : (

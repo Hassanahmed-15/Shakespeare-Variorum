@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useNotes } from '../context/NotesContext'
 import { 
   BookOpen, 
-  Play, 
-  Pause, 
-  Volume2, 
-  VolumeX, 
   Copy, 
   Share2,
   ChevronDown,
   ChevronUp,
-  Settings,
   Type,
-  AlignLeft
+  AlignLeft,
+  ArrowLeft
 } from 'lucide-react'
 
-const ReaderPanel = ({ selectedText, setSelectedText, onAnalyze }) => {
+const ReaderPanel = ({ selectedText, setSelectedText, onBackToLibrary }) => {
   const { 
     isLoaded, 
     currentScene, 
@@ -26,34 +22,14 @@ const ReaderPanel = ({ selectedText, setSelectedText, onAnalyze }) => {
   } = useNotes()
   
   const [selectedLine, setSelectedLine] = useState(null)
-  const [isPlaying, setIsPlaying] = useState(false)
   const [showLineNumbers, setShowLineNumbers] = useState(true)
   const [fontSize, setFontSize] = useState('text-lg')
   const [lineSpacing, setLineSpacing] = useState('leading-relaxed')
   const [expandedActs, setExpandedActs] = useState({ 'ACT 1': true })
-  const [currentLineIndex, setCurrentLineIndex] = useState(0)
-  const [playbackSpeed, setPlaybackSpeed] = useState(1)
 
   const actsAndScenes = getActsAndScenes()
   const sceneContent = getSceneContent(currentScene)
   const sceneMetadata = getSceneMetadata(currentScene)
-
-  // Auto-play functionality
-  useEffect(() => {
-    let interval
-    if (isPlaying && sceneContent.length > 0) {
-      interval = setInterval(() => {
-        setCurrentLineIndex(prev => {
-          if (prev >= sceneContent.length - 1) {
-            setIsPlaying(false)
-            return 0
-          }
-          return prev + 1
-        })
-      }, 3000 / playbackSpeed) // 3 seconds per line, adjusted for speed
-    }
-    return () => clearInterval(interval)
-  }, [isPlaying, sceneContent.length, playbackSpeed])
 
   // Copy text to clipboard
   const copyToClipboard = async (text) => {
@@ -83,10 +59,9 @@ const ReaderPanel = ({ selectedText, setSelectedText, onAnalyze }) => {
   }
 
   // Handle line selection
-  const handleLineClick = (line, index) => {
+  const handleLineClick = (line) => {
     setSelectedLine(line)
     setSelectedText(line.text)
-    setCurrentLineIndex(index)
   }
 
   // Toggle act expansion
@@ -95,17 +70,6 @@ const ReaderPanel = ({ selectedText, setSelectedText, onAnalyze }) => {
       ...prev,
       [actName]: !prev[actName]
     }))
-  }
-
-  // Play/pause functionality
-  const togglePlayback = () => {
-    setIsPlaying(!isPlaying)
-  }
-
-  // Reset playback
-  const resetPlayback = () => {
-    setIsPlaying(false)
-    setCurrentLineIndex(0)
   }
 
   if (!isLoaded) {
@@ -124,6 +88,13 @@ const ReaderPanel = ({ selectedText, setSelectedText, onAnalyze }) => {
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-700 bg-gray-800/50">
         <div className="flex items-center gap-3">
+          <button
+            onClick={onBackToLibrary}
+            className="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-white transition-colors"
+            title="Back to Library"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </button>
           <BookOpen className="w-6 h-6 text-blue-400" />
           <div>
             <h2 className="text-lg font-semibold text-white">Macbeth</h2>
@@ -133,34 +104,18 @@ const ReaderPanel = ({ selectedText, setSelectedText, onAnalyze }) => {
           </div>
         </div>
         
-        {/* Playback Controls */}
+        {/* Settings */}
         <div className="flex items-center gap-2">
           <button
-            onClick={togglePlayback}
-            className="p-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors"
-            title={isPlaying ? 'Pause' : 'Play'}
+            onClick={() => setShowLineNumbers(!showLineNumbers)}
+            className={`px-3 py-1 rounded text-sm transition-colors ${
+              showLineNumbers
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
           >
-            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+            {showLineNumbers ? 'Hide' : 'Show'} Numbers
           </button>
-          
-          <button
-            onClick={resetPlayback}
-            className="p-2 rounded-lg bg-gray-600 hover:bg-gray-700 text-white transition-colors"
-            title="Reset"
-          >
-            <Settings className="w-4 h-4" />
-          </button>
-          
-          <select
-            value={playbackSpeed}
-            onChange={(e) => setPlaybackSpeed(parseFloat(e.target.value))}
-            className="px-2 py-1 rounded bg-gray-700 text-white text-sm border border-gray-600"
-          >
-            <option value={0.5}>0.5x</option>
-            <option value={1}>1x</option>
-            <option value={1.5}>1.5x</option>
-            <option value={2}>2x</option>
-          </select>
         </div>
       </div>
 
@@ -214,10 +169,7 @@ const ReaderPanel = ({ selectedText, setSelectedText, onAnalyze }) => {
             {sceneMetadata && (
               <div className="text-center pb-6 border-b border-gray-700">
                 <h2 className="text-2xl font-bold text-white mb-2">{currentScene}</h2>
-                {sceneMetadata.location && (
-                  <p className="text-gray-400 italic">{sceneMetadata.location}</p>
-                )}
-                {sceneMetadata.characters && (
+                {sceneMetadata.characters && sceneMetadata.characters.length > 0 && (
                   <p className="text-sm text-gray-500 mt-2">
                     Characters: {sceneMetadata.characters.join(', ')}
                   </p>
@@ -234,12 +186,8 @@ const ReaderPanel = ({ selectedText, setSelectedText, onAnalyze }) => {
                     selectedLine?.id === line.id
                       ? 'border-blue-500 bg-blue-500/10 shadow-lg'
                       : 'border-gray-700 hover:border-gray-600 bg-gray-800/50 hover:bg-gray-800'
-                  } ${
-                    isPlaying && index === currentLineIndex
-                      ? 'animate-pulse border-yellow-500 bg-yellow-500/10'
-                      : ''
                   }`}
-                  onClick={() => handleLineClick(line, index)}
+                  onClick={() => handleLineClick(line)}
                 >
                   {/* Line Number */}
                   {showLineNumbers && (
@@ -292,12 +240,8 @@ const ReaderPanel = ({ selectedText, setSelectedText, onAnalyze }) => {
         ) : (
           <div className="text-center text-gray-400 py-12">
             <BookOpen className="w-12 h-12 mx-auto mb-4 opacity-50" />
-            <p>Scene content not available</p>
-            <p className="text-sm mt-2">Database may still be loading or scene not found</p>
-            <div className="mt-4 p-4 bg-gray-800/50 rounded-lg">
-              <p className="text-sm">Current Scene: {currentScene}</p>
-              <p className="text-xs text-gray-500 mt-1">Available scenes: {Object.keys(actsAndScenes).length} acts</p>
-            </div>
+            <p>Select a scene to begin reading</p>
+            <p className="text-sm mt-2">Click on any line to analyze it</p>
           </div>
         )}
       </div>
@@ -336,18 +280,6 @@ const ReaderPanel = ({ selectedText, setSelectedText, onAnalyze }) => {
               </select>
             </div>
           </div>
-
-          {/* Line Numbers Toggle */}
-          <button
-            onClick={() => setShowLineNumbers(!showLineNumbers)}
-            className={`px-3 py-1 rounded text-sm transition-colors ${
-              showLineNumbers
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-            }`}
-          >
-            {showLineNumbers ? 'Hide' : 'Show'} Numbers
-          </button>
         </div>
       </div>
     </div>

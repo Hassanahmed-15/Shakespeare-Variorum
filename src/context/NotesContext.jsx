@@ -11,40 +11,26 @@ export const useNotes = () => {
 }
 
 export const NotesProvider = ({ children }) => {
-  const [macbethData, setMacbethData] = useState(null)
   const [notesData, setNotesData] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
-  const [currentPlay, setCurrentPlay] = useState('Macbeth')
-  const [currentScene, setCurrentScene] = useState('ACT 1, SCENE 1')
+  const [currentPlay, setCurrentPlay] = useState('')
+  const [currentScene, setCurrentScene] = useState('')
 
-  // Load both macbeth data and notes data
+  // Load notes data from macbeth_notes.json
   useEffect(() => {
     const loadData = async () => {
       try {
-        // Load the complete Macbeth database
-        const macbethResponse = await fetch('/Data/macbeth_complete.json')
-        if (macbethResponse.ok) {
-          const macbethJson = await macbethResponse.json()
-          setMacbethData(macbethJson)
-          console.log('Macbeth data loaded successfully')
+        const response = await fetch('/Data/macbeth_notes.json')
+        if (response.ok) {
+          const data = await response.json()
+          setNotesData(data)
+          console.log('Macbeth notes loaded successfully')
         } else {
-          console.warn('Could not load macbeth_complete.json:', macbethResponse.status, macbethResponse.statusText)
+          console.warn('Could not load macbeth_notes.json:', response.status, response.statusText)
         }
-
-        // Load the scholarly notes
-        const notesResponse = await fetch('/Data/macbeth_notes.json')
-        if (notesResponse.ok) {
-          const notesJson = await notesResponse.json()
-          setNotesData(notesJson)
-          console.log('Notes data loaded successfully')
-        } else {
-          console.warn('Could not load macbeth_notes.json:', notesResponse.status, notesResponse.statusText)
-        }
-
         setIsLoaded(true)
       } catch (error) {
         console.error('Error loading data:', error)
-        // Set loaded to true even if there's an error so the app doesn't get stuck
         setIsLoaded(true)
       }
     }
@@ -52,12 +38,48 @@ export const NotesProvider = ({ children }) => {
     loadData()
   }, [])
 
-  // Get scene content from macbeth database
+  // Get all available scenes
+  const getScenes = () => {
+    if (!notesData) return []
+    return Object.keys(notesData).sort()
+  }
+
+  // Get scene content from notes data
   const getSceneContent = (sceneName) => {
-    if (!macbethData || !macbethData.scenes || !macbethData.scenes[sceneName]) {
+    if (!notesData || !notesData[sceneName]) {
       return []
     }
-    return macbethData.scenes[sceneName].lines || []
+    
+    const sceneData = notesData[sceneName]
+    const lines = []
+    
+    // Convert the scene data to a structured format
+    Object.keys(sceneData).forEach(lineNumber => {
+      const lineData = sceneData[lineNumber]
+      if (lineData && lineData.play) {
+        // Extract character name and text from the play line
+        const playText = lineData.play
+        const colonIndex = playText.indexOf(':')
+        
+        let character = 'Unknown'
+        let text = playText
+        
+        if (colonIndex !== -1) {
+          character = playText.substring(0, colonIndex).trim()
+          text = playText.substring(colonIndex + 1).trim()
+        }
+        
+        lines.push({
+          id: `${sceneName}-${lineNumber}`,
+          lineNumber: parseInt(lineNumber),
+          character: character,
+          text: text,
+          notes: lineData.notes || []
+        })
+      }
+    })
+    
+    return lines.sort((a, b) => a.lineNumber - b.lineNumber)
   }
 
   // Find notes for a specific line of text
@@ -71,17 +93,16 @@ export const NotesProvider = ({ children }) => {
       return null
     }
 
-    const sceneNotes = notesData[targetScene]
+    const sceneData = notesData[targetScene]
     
     // Search through all line entries in the scene
-    for (const lineNumber in sceneNotes) {
-      const lineData = sceneNotes[lineNumber]
+    for (const lineNumber in sceneData) {
+      const lineData = sceneData[lineNumber]
       if (lineData && lineData.play) {
         // Check if the highlighted text matches or is contained in the play line
         const playLine = lineData.play.toLowerCase().trim()
         const searchText = text.toLowerCase().trim()
         
-        // Multiple matching strategies
         if (matchesText(playLine, searchText)) {
           return {
             lineNumber: lineNumber,
@@ -149,20 +170,68 @@ export const NotesProvider = ({ children }) => {
     }
   }
 
-  // Get all acts and scenes
+  // Get acts and scenes organized by act
   const getActsAndScenes = () => {
-    if (!macbethData || !macbethData.acts) {
-      return {}
-    }
-    return macbethData.acts
+    if (!notesData) return {}
+    
+    const acts = {}
+    
+    Object.keys(notesData).forEach(sceneName => {
+      const actMatch = sceneName.match(/ACT (\d+)/)
+      if (actMatch) {
+        const actNumber = actMatch[1]
+        const actKey = `ACT ${actNumber}`
+        
+        if (!acts[actKey]) {
+          acts[actKey] = { scenes: [] }
+        }
+        acts[actKey].scenes.push(sceneName)
+      }
+    })
+    
+    // Sort scenes within each act
+    Object.keys(acts).forEach(actKey => {
+      acts[actKey].scenes.sort()
+    })
+    
+    return acts
   }
 
   // Get scene metadata
   const getSceneMetadata = (sceneName) => {
-    if (!macbethData || !macbethData.scenes || !macbethData.scenes[sceneName]) {
+    if (!notesData || !notesData[sceneName]) {
       return null
     }
-    return macbethData.scenes[sceneName]
+    
+    // Extract location and characters from the first few lines
+    const sceneData = notesData[sceneName]
+    const firstLine = Object.values(sceneData)[0]
+    
+    return {
+      location: sceneName,
+      characters: extractCharacters(sceneData)
+    }
+  }
+
+  // Extract character names from scene data
+  const extractCharacters = (sceneData) => {
+    const characters = new Set()
+    
+    Object.values(sceneData).forEach(lineData => {
+      if (lineData && lineData.play) {
+        const playText = lineData.play
+        const colonIndex = playText.indexOf(':')
+        
+        if (colonIndex !== -1) {
+          const character = playText.substring(0, colonIndex).trim()
+          if (character && character !== 'ALL') {
+            characters.add(character)
+          }
+        }
+      }
+    })
+    
+    return Array.from(characters).sort()
   }
 
   const value = {
@@ -176,7 +245,7 @@ export const NotesProvider = ({ children }) => {
     getSceneContent,
     getActsAndScenes,
     getSceneMetadata,
-    macbethData,
+    getScenes,
     notesData
   }
 
