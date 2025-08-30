@@ -681,20 +681,32 @@
             }
 
             async loadNotes() {
-                try {
-                    const response = await fetch('/Public/Data/macbeth_notes.json');
-                    if (!response.ok) {
-                        console.warn('Could not load macbeth_notes.json');
-                        return false;
+                const possiblePaths = [
+                    '/Public/Data/macbeth_notes.json',
+                    './Public/Data/macbeth_notes.json',
+                    'Public/Data/macbeth_notes.json',
+                    '/macbeth_notes.json'
+                ];
+
+                for (const path of possiblePaths) {
+                    try {
+                        console.log(`🔍 Notes: Trying to load from: ${path}`);
+                        const response = await fetch(path);
+                        if (!response.ok) {
+                            console.warn(`Notes: Could not load from ${path}`);
+                            continue;
+                        }
+                        this.notesData = await response.json();
+                        this.isLoaded = true;
+                        console.log('✅ Notes data loaded successfully from:', path);
+                        return true;
+                    } catch (error) {
+                        console.warn(`Notes: Error loading from ${path}:`, error.message);
                     }
-                    this.notesData = await response.json();
-                    this.isLoaded = true;
-                    console.log('Notes data loaded successfully');
-                    return true;
-                } catch (error) {
-                    console.error('Error loading notes:', error);
-                    return false;
                 }
+                
+                console.error('❌ Could not load notes data from any path');
+                return false;
             }
 
             setContext(playName, sceneName) {
@@ -795,17 +807,51 @@
             await notesIntegration.loadNotes();
 
             // Load Macbeth data
-            try {
-                const response = await fetch('/Public/Data/macbeth_notes.json');
-                if (response.ok) {
-                    macbethData = await response.json();
-                    console.log('✅ Macbeth data loaded successfully');
-                    console.log('Available scenes:', Object.keys(macbethData));
-                } else {
-                    console.error('❌ Failed to load Macbeth data:', response.status);
+            const possiblePaths = [
+                '/Public/Data/macbeth_notes.json',
+                './Public/Data/macbeth_notes.json',
+                'Public/Data/macbeth_notes.json',
+                '/macbeth_notes.json'
+            ];
+
+            for (const path of possiblePaths) {
+                try {
+                    console.log(`🔍 Trying to load Macbeth data from: ${path}`);
+                    const response = await fetch(path);
+                    if (response.ok) {
+                        macbethData = await response.json();
+                        console.log('✅ Macbeth data loaded successfully from:', path);
+                        console.log('Available scenes:', Object.keys(macbethData));
+                        
+                        // Update the play selector to show Macbeth is available
+                        const playSelect = document.getElementById('playSelect');
+                        if (playSelect) {
+                            playSelect.innerHTML = `
+                                <option value="">Choose a Play</option>
+                                <option value="macbeth">Macbeth (${Object.keys(macbethData).length} scenes)</option>
+                            `;
+                        }
+                        break;
+                    } else {
+                        console.warn(`❌ Failed to load from ${path}: ${response.status}`);
+                    }
+                } catch (error) {
+                    console.warn(`❌ Error loading from ${path}:`, error.message);
                 }
-            } catch (error) {
-                console.error('❌ Error loading Macbeth data:', error);
+            }
+
+            if (!macbethData) {
+                console.error('❌ Could not load Macbeth data from any path');
+                // Show error in the UI
+                const emptyState = document.getElementById('emptyState');
+                if (emptyState) {
+                    emptyState.innerHTML = `
+                        <div class="empty-icon">⚠️</div>
+                        <h2 class="empty-title">Database Connection Error</h2>
+                        <p class="empty-text">Could not load Macbeth data. Please check the file path and try again.</p>
+                        <button class="settings-button" onclick="location.reload()">Retry Loading</button>
+                    `;
+                }
             }
         });
 
