@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shakespeare Digital Variorum</title>
@@ -447,6 +447,41 @@
             background: #333;
         }
 
+        .analyze-button {
+            background: #f59e0b;
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        .analyze-button:hover {
+            background: #fbbf24;
+            transform: translateY(-1px);
+        }
+
+        .line-analyze-button {
+            background: #374151;
+            color: #f9fafb;
+            border: 1px solid #4b5563;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 10px;
+        }
+
+        .line-analyze-button:hover {
+            background: #4b5563;
+        }
+
         .media-section, .research-section {
             margin-top: 20px;
         }
@@ -550,8 +585,8 @@
             }
         }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="app-container">
         <!-- Header -->
         <header class="header">
@@ -575,23 +610,17 @@
                 <button class="go-button" onclick="loadPlay()">Go</button>
             </div>
 
-            <!-- API Configuration -->
+            <!-- Analysis Settings -->
             <div class="api-section">
                 <h3>⚙️ Analysis Settings</h3>
                 <div class="api-group">
-                    <label for="model">Model:</label>
-                    <select id="model" onchange="saveModel()">
-                        <option value="gpt-4o">GPT-4o (Most Capable)</option>
-                        <option value="gpt-4o-mini" selected>GPT-4o Mini (Fast & Efficient)</option>
-                        <option value="gpt-4-turbo">GPT-4 Turbo</option>
-                        <option value="gpt-3.5-turbo">GPT-3.5 Turbo (Legacy)</option>
-                    </select>
-                    <small style="color: #9ca3af; font-size: 12px;">Choose your preferred AI model</small>
+                    <p style="color: #9ca3af; font-size: 12px; margin: 0;">AI model selection is handled automatically for optimal performance.</p>
                 </div>
             </div>
 
             <div class="line-selection-info">
-                <strong>Line Selection:</strong> You can select 2-5 consecutive lines at once for combined analysis. 
+                <strong>Line Selection:</strong> 
+                <span id="selectionInfo">Click a line to select it, then click another to select a range (2-5 lines for Full Fathom Five).</span>
                 <button class="clear-selection" onclick="clearSelection()">Clear Selection</button>
             </div>
             <div id="selectedLinesDisplay" class="selected-lines"></div>
@@ -621,18 +650,44 @@
                 <button class="analysis-tab" onclick="switchTab('fullfathomfive')">Full Fathom Five</button>
             </div>
 
-            <div class="analysis-section">
+            <!-- Enhanced Explanation Section -->
+            <div class="analysis-section" id="explanationSection">
                 <div class="analysis-title">
-                    <span id="analysisTitle">Basic Analysis</span>
+                    <span id="explanationTitle">Enhanced Explanation</span>
+                    <button class="copy-button" onclick="copyExplanation()">Copy</button>
+                </div>
+                <div class="analysis-content" id="explanationContent">
+                    Select text in the play to get enhanced AI-powered explanation.
+                </div>
+                <div id="explanationResult"></div>
+            </div>
+
+            <!-- Analysis Section -->
+            <div class="analysis-section" id="analysisSection">
+                <div class="analysis-title">
+                    <span id="analysisTitle">Analysis</span>
                     <button class="copy-button" onclick="copyAnalysis()">Copy</button>
                 </div>
                 <div class="analysis-content" id="analysisContent">
                     Unknown Play · No text highlighted
                 </div>
                 <div class="analysis-content" id="analysisInstruction">
-                    Highlight text in the play to get AI-powered analysis.
+                    Click "Analyze Text" to get AI-powered analysis.
                 </div>
+                <button class="analyze-button" id="analyzeButton" onclick="analyzeText()" style="display: none;">Analyze Text</button>
                 <div id="analysisResult"></div>
+            </div>
+
+            <!-- New Variorum Analysis Section (Full Fathom Five Only) -->
+            <div class="analysis-section" id="variorumSection" style="display: none;">
+                <div class="analysis-title">
+                    <span>New Variorum Analysis</span>
+                    <button class="copy-button" onclick="copyVariorum()">Copy</button>
+                </div>
+                <div class="analysis-content" id="variorumContent">
+                    Traditional commentary will appear here for Full Fathom Five mode.
+                </div>
+                <div id="variorumResult"></div>
             </div>
 
             <div class="follow-up-section">
@@ -797,10 +852,8 @@
         document.addEventListener('DOMContentLoaded', async function() {
             console.log('🎭 Shakespeare Digital Variorum - Loading...');
             
-            const savedModel = localStorage.getItem('shakespeare_model');
-            if (savedModel) {
-                document.getElementById('model').value = savedModel;
-            }
+            // Set default model internally (not user-selectable)
+            const defaultModel = 'gpt-4o-mini';
 
             // Initialize notes integration
             notesIntegration = new NotesIntegration();
@@ -855,10 +908,7 @@
             }
         });
 
-        function saveModel() {
-            const model = document.getElementById('model').value;
-            localStorage.setItem('shakespeare_model', model);
-        }
+
 
         function clearSelection() {
             selectedLines = [];
@@ -867,6 +917,11 @@
             document.querySelectorAll('.play-line').forEach(line => {
                 line.classList.remove('selected', 'range-selected');
             });
+            
+            // Reset selection info
+            const selectionInfo = document.getElementById('selectionInfo');
+            selectionInfo.textContent = 'Click a line to select it, then click another to select a range (2-5 lines for Full Fathom Five).';
+            
             updateAnalysisPanel();
         }
 
@@ -918,7 +973,11 @@
                 let sceneContent = '';
                 Object.keys(macbethData[sceneName]).forEach(lineNum => {
                     const lineData = macbethData[sceneName][lineNum];
-                    sceneContent += `<div class="play-line" data-line-num="${lineNum}" onclick="selectLine(this, '${lineData.play}', ${lineNum})">${lineData.play}</div>`;
+                    sceneContent += `
+                        <div class="play-line" data-line-num="${lineNum}" onclick="selectLine(this, '${lineData.play}', ${lineNum})">
+                            ${lineData.play}
+                            <button class="line-analyze-button" onclick="analyzeSingleLine('${lineData.play}', ${lineNum}, event)">Analyze</button>
+                        </div>`;
                 });
                 playText.innerHTML = sceneContent;
                 console.log(`✅ Loaded scene: ${sceneName} with ${Object.keys(macbethData[sceneName]).length} lines`);
@@ -937,14 +996,24 @@
                 document.querySelectorAll('.play-line').forEach(line => {
                     line.classList.remove('range-selected');
                 });
+                
+                // Update selection info
+                const selectionInfo = document.getElementById('selectionInfo');
+                if (currentTab === 'fullfathomfive') {
+                    selectionInfo.textContent = 'Click another line to select a range (2-5 lines).';
+                } else {
+                    selectionInfo.textContent = 'Click another line to select a range (2-5 lines).';
+                }
             } else {
                 // Second selection - create range
                 const start = Math.min(firstSelectedLine, lineNum);
                 const end = Math.max(firstSelectedLine, lineNum);
                 const lineCount = end - start + 1;
                 
-                if (lineCount > 5) {
-                    alert('Please select between 2 and 5 consecutive lines.');
+                const maxLines = currentTab === 'fullfathomfive' ? 5 : 5;
+                
+                if (lineCount > maxLines) {
+                    alert(`Please select between 2 and ${maxLines} consecutive lines.`);
                     clearSelection();
                     return;
                 }
@@ -960,11 +1029,17 @@
                     const lineElement = document.querySelector(`[data-line-num="${i}"]`);
                     if (lineElement) {
                         lineElement.classList.add('range-selected');
-                        selectedLines.push(lineElement.textContent);
+                        // Remove the "Analyze" button text from the line content
+                        const lineText = lineElement.textContent.replace('Analyze', '').trim();
+                        selectedLines.push(lineText);
                     }
                 }
                 
                 firstSelectedLine = null;
+                
+                // Update selection info
+                const selectionInfo = document.getElementById('selectionInfo');
+                selectionInfo.textContent = `${lineCount} lines selected. Ready for analysis.`;
             }
             
             displaySelectedLines();
@@ -985,34 +1060,128 @@
         function updateAnalysisPanel() {
             const analysisContent = document.getElementById('analysisContent');
             const analysisInstruction = document.getElementById('analysisInstruction');
+            const analyzeButton = document.getElementById('analyzeButton');
             
             if (selectedLines.length > 0) {
                 const lineCount = selectedLines.length;
                 analysisContent.textContent = `${currentPlay} · ${currentScene} · ${lineCount} line${lineCount > 1 ? 's' : ''} selected`;
-                analysisInstruction.textContent = `Click "Explain Highlighted Text" to analyze ${lineCount} line${lineCount > 1 ? 's' : ''}.`;
+                analysisInstruction.textContent = `Click "Analyze Text" to analyze ${lineCount} line${lineCount > 1 ? 's' : ''}.`;
+                analyzeButton.style.display = 'block';
             } else {
                 analysisContent.textContent = 'Unknown Play · No text highlighted';
-                analysisInstruction.textContent = 'Highlight text in the play to get AI-powered analysis.';
+                analysisInstruction.textContent = 'Select text in the play to get AI-powered analysis.';
+                analyzeButton.style.display = 'none';
             }
         }
 
-        function explainHighlighted() {
+        function analyzeText() {
             if (selectedLines.length === 0) {
                 alert('Please select text in the play first.');
                 return;
             }
 
-            const analysisResult = document.getElementById('analysisResult');
-            const model = document.getElementById('model').value;
-            
-            analysisResult.innerHTML = '<div class="loading">🤔 Analyzing text with AI...</div>';
-
             const textToAnalyze = selectedLines.join('\n');
+            
+            // Always show enhanced explanation first
+            generateEnhancedExplanation(textToAnalyze);
+            
+            // Handle Full Fathom Five mode specially
+            if (currentTab === 'fullfathomfive') {
+                handleFullFathomFiveAnalysis(textToAnalyze);
+            } else {
+                // For other modes, just do regular analysis
+                performAnalysis(textToAnalyze, 'analysis');
+            }
+        }
 
-            // Check for traditional commentary first
+        function analyzeSingleLine(text, lineNum, event) {
+            event.stopPropagation(); // Prevent line selection
+            
+            // Set this as the selected line
+            selectedLines = [text];
+            firstSelectedLine = lineNum;
+            
+            // Update UI
+            document.querySelectorAll('.play-line').forEach(line => {
+                line.classList.remove('selected', 'range-selected');
+            });
+            const lineElement = document.querySelector(`[data-line-num="${lineNum}"]`);
+            if (lineElement) {
+                lineElement.classList.add('selected');
+            }
+            
+            displaySelectedLines();
+            updateAnalysisPanel();
+            
+            // Perform analysis
+            analyzeText();
+        }
+
+        function generateEnhancedExplanation(text) {
+            const explanationResult = document.getElementById('explanationResult');
+            explanationResult.innerHTML = '<div class="loading">🤔 Generating enhanced explanation...</div>';
+
+            // Call the API for enhanced explanation
+            fetch('/.netlify/functions/shakespeare', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text: text,
+                    level: currentTab === 'fullfathomfive' ? 'expert' : currentTab,
+                    model: 'gpt-4o-mini',
+                    mode: 'explanation'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.analysis) {
+                    let formattedContent = '';
+                    
+                    if (typeof data.analysis === 'object') {
+                        for (const [section, content] of Object.entries(data.analysis)) {
+                            formattedContent += `<h4 style="color: #f59e0b; margin-top: 15px; margin-bottom: 8px;">${section}</h4>`;
+                            formattedContent += `<p style="margin-bottom: 12px;">${content.replace(/\n/g, '<br>')}</p>`;
+                        }
+                    } else {
+                        formattedContent = data.analysis.replace(/\n/g, '<br>');
+                    }
+                    
+                    explanationResult.innerHTML = `
+                        <div class="result">
+                            ${formattedContent}
+                        </div>
+                        ${data.usage ? `
+                        <div class="stats">
+                            📊 Usage: ${data.usage.prompt_tokens || 'N/A'} prompt tokens, 
+                            ${data.usage.completion_tokens || 'N/A'} completion tokens, 
+                            ${data.usage.total_tokens || 'N/A'} total tokens
+                        </div>
+                        ` : ''}
+                    `;
+                } else {
+                    explanationResult.innerHTML = '<div class="error">Error: Invalid response from API</div>';
+                }
+            })
+            .catch(error => {
+                explanationResult.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+            });
+        }
+
+        function handleFullFathomFiveAnalysis(text) {
+            const variorumSection = document.getElementById('variorumSection');
+            const variorumResult = document.getElementById('variorumResult');
+            
+            // Show the variorum section
+            variorumSection.style.display = 'block';
+            
+            // Check for traditional commentary
             let commentaryFound = false;
             if (notesIntegration && notesIntegration.isLoaded) {
                 notesIntegration.setContext(currentPlay, currentScene);
+                
+                let combinedCommentary = '';
                 
                 // Check each selected line for commentary
                 for (const line of selectedLines) {
@@ -1020,63 +1189,80 @@
                     if (notesData && notesData.notes && notesData.notes.length > 0) {
                         const formattedNotes = notesIntegration.formatNotes(notesData);
                         if (formattedNotes) {
-                            analysisResult.innerHTML = formattedNotes;
+                            combinedCommentary += formattedNotes + '<hr style="margin: 20px 0; border: 1px solid #4b5563;">';
                             commentaryFound = true;
-                            break;
                         }
                     }
                 }
+                
+                if (commentaryFound) {
+                    variorumResult.innerHTML = combinedCommentary;
+                } else {
+                    variorumResult.innerHTML = '<div class="loading">No traditional commentary found for selected lines.</div>';
+                }
+            } else {
+                variorumResult.innerHTML = '<div class="loading">Traditional commentary database not loaded.</div>';
             }
+            
+            // Also perform regular analysis
+            performAnalysis(text, 'analysis');
+        }
 
-            // If no commentary found or not in Full Fathom Five mode, proceed with AI analysis
-            if (!commentaryFound || currentTab !== 'fullfathomfive') {
-                // Call the API
-                fetch('/.netlify/functions/shakespeare', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        text: textToAnalyze,
-                        level: currentTab,
-                        model: model,
-                        mode: currentTab
-                    })
+        function performAnalysis(text, targetSection) {
+            const resultElement = document.getElementById(targetSection === 'analysis' ? 'analysisResult' : 'explanationResult');
+            resultElement.innerHTML = '<div class="loading">🤔 Analyzing text with AI...</div>';
+
+            // Call the API
+            fetch('/.netlify/functions/shakespeare', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text: text,
+                    level: currentTab,
+                    model: 'gpt-4o-mini',
+                    mode: currentTab
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.analysis) {
-                        let formattedContent = '';
-                        
-                        if (typeof data.analysis === 'object') {
-                            for (const [section, content] of Object.entries(data.analysis)) {
-                                formattedContent += `<h4 style="color: #f59e0b; margin-top: 15px; margin-bottom: 8px;">${section}</h4>`;
-                                formattedContent += `<p style="margin-bottom: 12px;">${content.replace(/\n/g, '<br>')}</p>`;
-                            }
-                        } else {
-                            formattedContent = data.analysis.replace(/\n/g, '<br>');
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.analysis) {
+                    let formattedContent = '';
+                    
+                    if (typeof data.analysis === 'object') {
+                        for (const [section, content] of Object.entries(data.analysis)) {
+                            formattedContent += `<h4 style="color: #f59e0b; margin-top: 15px; margin-bottom: 8px;">${section}</h4>`;
+                            formattedContent += `<p style="margin-bottom: 12px;">${content.replace(/\n/g, '<br>')}</p>`;
                         }
-                        
-                        analysisResult.innerHTML = `
-                            <div class="result">
-                                ${formattedContent}
-                            </div>
-                            ${data.usage ? `
-                            <div class="stats">
-                                📊 Usage: ${data.usage.prompt_tokens || 'N/A'} prompt tokens, 
-                                ${data.usage.completion_tokens || 'N/A'} completion tokens, 
-                                ${data.usage.total_tokens || 'N/A'} total tokens
-                            </div>
-                            ` : ''}
-                        `;
                     } else {
-                        analysisResult.innerHTML = '<div class="error">Error: Invalid response from API</div>';
+                        formattedContent = data.analysis.replace(/\n/g, '<br>');
                     }
-                })
-                .catch(error => {
-                    analysisResult.innerHTML = `<div class="error">Error: ${error.message}</div>`;
-                });
-            }
+                    
+                    resultElement.innerHTML = `
+                        <div class="result">
+                            ${formattedContent}
+                        </div>
+                        ${data.usage ? `
+                        <div class="stats">
+                            📊 Usage: ${data.usage.prompt_tokens || 'N/A'} prompt tokens, 
+                            ${data.usage.completion_tokens || 'N/A'} completion tokens, 
+                            ${data.usage.total_tokens || 'N/A'} total tokens
+                        </div>
+                        ` : ''}
+                    `;
+                } else {
+                    resultElement.innerHTML = '<div class="error">Error: Invalid response from API</div>';
+                }
+            })
+            .catch(error => {
+                resultElement.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+            });
+        }
+
+        function explainHighlighted() {
+            // This function now just calls analyzeText for backward compatibility
+            analyzeText();
         }
 
         function switchTab(tab) {
@@ -1088,24 +1274,30 @@
             
             // Update analysis title
             const analysisTitle = document.getElementById('analysisTitle');
+            const variorumSection = document.getElementById('variorumSection');
+            
             switch(tab) {
                 case 'basic':
                     analysisTitle.textContent = 'Basic Analysis';
+                    variorumSection.style.display = 'none';
                     break;
                 case 'detailed':
                     analysisTitle.textContent = 'Detailed Analysis';
+                    variorumSection.style.display = 'none';
                     break;
                 case 'expert':
                     analysisTitle.textContent = 'Expert Analysis';
+                    variorumSection.style.display = 'none';
                     break;
                 case 'fullfathomfive':
                     analysisTitle.textContent = 'Full Fathom Five Analysis';
+                    variorumSection.style.display = 'block';
                     break;
             }
             
             // Re-analyze if text is selected
             if (selectedLines.length > 0) {
-                explainHighlighted();
+                analyzeText();
             }
         }
 
@@ -1124,7 +1316,7 @@
             }
 
             const analysisResult = document.getElementById('analysisResult');
-            const model = document.getElementById('model').value;
+            const model = 'gpt-4o-mini'; // Use default model
             
             analysisResult.innerHTML = '<div class="loading">🤔 Processing follow-up question...</div>';
 
@@ -1168,7 +1360,35 @@
             const textToCopy = analysisResult.textContent;
             
             navigator.clipboard.writeText(textToCopy).then(() => {
-                const copyButton = document.querySelector('.copy-button');
+                const copyButton = document.querySelector('#analysisSection .copy-button');
+                const originalText = copyButton.textContent;
+                copyButton.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyButton.textContent = originalText;
+                }, 2000);
+            });
+        }
+
+        function copyExplanation() {
+            const explanationResult = document.getElementById('explanationResult');
+            const textToCopy = explanationResult.textContent;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const copyButton = document.querySelector('#explanationSection .copy-button');
+                const originalText = copyButton.textContent;
+                copyButton.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyButton.textContent = originalText;
+                }, 2000);
+            });
+        }
+
+        function copyVariorum() {
+            const variorumResult = document.getElementById('variorumResult');
+            const textToCopy = variorumResult.textContent;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const copyButton = document.querySelector('#variorumSection .copy-button');
                 const originalText = copyButton.textContent;
                 copyButton.textContent = 'Copied!';
                 setTimeout(() => {
@@ -1190,6 +1410,8 @@
             }
         });
     </script>
-</body>
+  </body>
 </html>
+
+
 
