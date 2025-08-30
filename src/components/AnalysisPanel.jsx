@@ -267,6 +267,63 @@ const AnalysisPanel = ({ selectedText, analysisMode, setAnalysisMode, currentPla
           )}
         </div>
 
+        {/* Media and Research Links */}
+        {analysisContent && selectedText && (
+          <div className="mt-6 pt-6 border-t border-gray-700">
+            <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+              <BookOpen className="w-4 h-4" />
+              Research & Media Links
+            </h3>
+            <div className="grid grid-cols-2 gap-2">
+              <button 
+                className="btn btn-secondary text-xs py-2"
+                onClick={() => {
+                  const searchQuery = encodeURIComponent(`"${selectedText}" Shakespeare ${currentPlay} ${currentScene}`);
+                  window.open(`https://www.youtube.com/results?search_query=${searchQuery}`, '_blank');
+                }}
+              >
+                Search YouTube
+              </button>
+              <button 
+                className="btn btn-secondary text-xs py-2"
+                onClick={() => {
+                  const searchQuery = encodeURIComponent(`"${selectedText}" Shakespeare`);
+                  window.open(`https://www.jstor.org/action/doBasicSearch?Query=${searchQuery}`, '_blank');
+                }}
+              >
+                Search JSTOR (Exact)
+              </button>
+              <button 
+                className="btn btn-secondary text-xs py-2"
+                onClick={() => {
+                  const searchQuery = encodeURIComponent(`${selectedText} Shakespeare ${currentPlay} ${currentScene}`);
+                  window.open(`https://www.jstor.org/action/doBasicSearch?Query=${searchQuery}`, '_blank');
+                }}
+              >
+                Search JSTOR (Passage)
+              </button>
+              <button 
+                className="btn btn-secondary text-xs py-2"
+                onClick={() => {
+                  const searchQuery = encodeURIComponent(`"${selectedText}" Shakespeare ${currentPlay}`);
+                  window.open(`https://scholar.google.com/scholar?q=${searchQuery}`, '_blank');
+                }}
+              >
+                Google Scholar
+              </button>
+              <button 
+                className="btn btn-secondary text-xs py-2 col-span-2"
+                onClick={() => {
+                  const searchQuery = encodeURIComponent(`${selectedText} ${currentPlay}`);
+                  window.open(`https://internetshakespeare.uvic.ca/Library/SLT/plays/${currentPlay?.toLowerCase()}/`, '_blank');
+                }}
+              >
+                Internet Shakespeare Editions
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Follow-up Section */}
         {analysisContent && analysisContent.type === 'analysis' && (
           <div className="mt-6 pt-6 border-t border-gray-700">
