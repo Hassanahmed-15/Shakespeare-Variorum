@@ -1,5 +1,0 @@
-[33m3258547[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Add Netlify compatibility with Node.js 18 and proper build configuration
-[33m0ffaff6[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Add modern React frontend with improved UI and commentary logic
-[33mff1cf1b[m Complete UI/UX redesign with dark theme, bug fixes, and enhanced functionality
-[33ma3f5be6[m Replace index.html with modern interface
-[33me1dddbb[m Add modern Shakespeare Digital Variorum with notes integration and improved UI
