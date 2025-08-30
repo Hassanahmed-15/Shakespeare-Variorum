@@ -92,7 +92,10 @@
 
   /* Text selection */
   .select-text {
-    @apply select-text;
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
   }
 
   /* Loading states */
