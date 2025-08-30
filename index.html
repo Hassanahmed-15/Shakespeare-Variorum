@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #1a1a1a;
+            background: #000000;
             color: #f9fafb;
             line-height: 1.6;
             overflow-x: hidden;
@@ -650,18 +650,6 @@
                 <button class="analysis-tab" onclick="switchTab('fullfathomfive')">Full Fathom Five</button>
             </div>
 
-            <!-- Enhanced Explanation Section -->
-            <div class="analysis-section" id="explanationSection">
-                <div class="analysis-title">
-                    <span id="explanationTitle">Enhanced Explanation</span>
-                    <button class="copy-button" onclick="copyExplanation()">Copy</button>
-                </div>
-                <div class="analysis-content" id="explanationContent">
-                    Select text in the play to get enhanced AI-powered explanation.
-                </div>
-                <div id="explanationResult"></div>
-            </div>
-
             <!-- Analysis Section -->
             <div class="analysis-section" id="analysisSection">
                 <div class="analysis-title">
@@ -696,11 +684,12 @@
             </div>
 
             <div class="media-section">
-                <button class="media-button">Search YouTube for this scene</button>
+                <button class="media-button" onclick="searchYouTube()">Search YouTube for this scene</button>
             </div>
 
             <div class="research-section">
-                <button class="research-button">Search JSTOR for exact quotation</button>
+                <button class="research-button" onclick="searchJSTOR()">Search JSTOR for exact quotation</button>
+                <button class="research-button" onclick="searchGoogleScholar()">Search Google Scholar</button>
             </div>
         </aside>
 
@@ -974,7 +963,7 @@
                 Object.keys(macbethData[sceneName]).forEach(lineNum => {
                     const lineData = macbethData[sceneName][lineNum];
                     sceneContent += `
-                        <div class="play-line" data-line-num="${lineNum}" onclick="selectLine(this, '${lineData.play}', ${lineNum})">
+                        <div class="play-line" data-line-num="${lineNum}" data-line-text="${lineData.play}" onclick="selectLine(this, '${lineData.play}', ${lineNum})">
                             ${lineData.play}
                             <button class="line-analyze-button" onclick="analyzeSingleLine('${lineData.play}', ${lineNum}, event)">Analyze</button>
                         </div>`;
@@ -1029,9 +1018,11 @@
                     const lineElement = document.querySelector(`[data-line-num="${i}"]`);
                     if (lineElement) {
                         lineElement.classList.add('range-selected');
-                        // Remove the "Analyze" button text from the line content
-                        const lineText = lineElement.textContent.replace('Analyze', '').trim();
-                        selectedLines.push(lineText);
+                        // Get the original line text from the data attribute
+                        const lineText = lineElement.getAttribute('data-line-text');
+                        if (lineText) {
+                            selectedLines.push(lineText);
+                        }
                     }
                 }
                 
@@ -1082,9 +1073,6 @@
 
             const textToAnalyze = selectedLines.join('\n');
             
-            // Always show enhanced explanation first
-            generateEnhancedExplanation(textToAnalyze);
-            
             // Handle Full Fathom Five mode specially
             if (currentTab === 'fullfathomfive') {
                 handleFullFathomFiveAnalysis(textToAnalyze);
@@ -1117,64 +1105,19 @@
             analyzeText();
         }
 
-        function generateEnhancedExplanation(text) {
-            const explanationResult = document.getElementById('explanationResult');
-            explanationResult.innerHTML = '<div class="loading">🤔 Generating enhanced explanation...</div>';
 
-            // Call the API for enhanced explanation
-            fetch('/.netlify/functions/shakespeare', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    text: text,
-                    level: currentTab === 'fullfathomfive' ? 'expert' : currentTab,
-                    model: 'gpt-4o-mini',
-                    mode: 'explanation'
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.analysis) {
-                    let formattedContent = '';
-                    
-                    if (typeof data.analysis === 'object') {
-                        for (const [section, content] of Object.entries(data.analysis)) {
-                            formattedContent += `<h4 style="color: #f59e0b; margin-top: 15px; margin-bottom: 8px;">${section}</h4>`;
-                            formattedContent += `<p style="margin-bottom: 12px;">${content.replace(/\n/g, '<br>')}</p>`;
-                        }
-                    } else {
-                        formattedContent = data.analysis.replace(/\n/g, '<br>');
-                    }
-                    
-                    explanationResult.innerHTML = `
-                        <div class="result">
-                            ${formattedContent}
-                        </div>
-                        ${data.usage ? `
-                        <div class="stats">
-                            📊 Usage: ${data.usage.prompt_tokens || 'N/A'} prompt tokens, 
-                            ${data.usage.completion_tokens || 'N/A'} completion tokens, 
-                            ${data.usage.total_tokens || 'N/A'} total tokens
-                        </div>
-                        ` : ''}
-                    `;
-                } else {
-                    explanationResult.innerHTML = '<div class="error">Error: Invalid response from API</div>';
-                }
-            })
-            .catch(error => {
-                explanationResult.innerHTML = `<div class="error">Error: ${error.message}</div>`;
-            });
-        }
 
         function handleFullFathomFiveAnalysis(text) {
             const variorumSection = document.getElementById('variorumSection');
             const variorumResult = document.getElementById('variorumResult');
+            const analysisResult = document.getElementById('analysisResult');
             
             // Show the variorum section
             variorumSection.style.display = 'block';
+            
+            // Clear previous results
+            variorumResult.innerHTML = '';
+            analysisResult.innerHTML = '';
             
             // Check for traditional commentary
             let commentaryFound = false;
@@ -1184,12 +1127,16 @@
                 let combinedCommentary = '';
                 
                 // Check each selected line for commentary
-                for (const line of selectedLines) {
+                for (let i = 0; i < selectedLines.length; i++) {
+                    const line = selectedLines[i];
                     const notesData = notesIntegration.findNotesForLine(line, currentScene);
                     if (notesData && notesData.notes && notesData.notes.length > 0) {
                         const formattedNotes = notesIntegration.formatNotes(notesData);
                         if (formattedNotes) {
-                            combinedCommentary += formattedNotes + '<hr style="margin: 20px 0; border: 1px solid #4b5563;">';
+                            combinedCommentary += formattedNotes;
+                            if (i < selectedLines.length - 1) {
+                                combinedCommentary += '<hr style="margin: 20px 0; border: 1px solid #4b5563;">';
+                            }
                             commentaryFound = true;
                         }
                     }
@@ -1299,6 +1246,14 @@
             if (selectedLines.length > 0) {
                 analyzeText();
             }
+            
+            // Update selection info based on current tab
+            const selectionInfo = document.getElementById('selectionInfo');
+            if (currentTab === 'fullfathomfive') {
+                selectionInfo.textContent = 'Click a line to select it, then click another to select a range (2-5 lines for Full Fathom Five).';
+            } else {
+                selectionInfo.textContent = 'Click a line to select it, then click another to select a range (2-5 lines).';
+            }
         }
 
         function askFollowUp() {
@@ -1369,19 +1324,7 @@
             });
         }
 
-        function copyExplanation() {
-            const explanationResult = document.getElementById('explanationResult');
-            const textToCopy = explanationResult.textContent;
-            
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const copyButton = document.querySelector('#explanationSection .copy-button');
-                const originalText = copyButton.textContent;
-                copyButton.textContent = 'Copied!';
-                setTimeout(() => {
-                    copyButton.textContent = originalText;
-                }, 2000);
-            });
-        }
+
 
         function copyVariorum() {
             const variorumResult = document.getElementById('variorumResult');
@@ -1395,6 +1338,39 @@
                     copyButton.textContent = originalText;
                 }, 2000);
             });
+        }
+
+        function searchYouTube() {
+            if (selectedLines.length === 0) {
+                alert('Please select text in the play first.');
+                return;
+            }
+            
+            const searchQuery = encodeURIComponent(`${currentPlay} ${currentScene} ${selectedLines.join(' ')}`);
+            const youtubeUrl = `https://www.youtube.com/results?search_query=${searchQuery}`;
+            window.open(youtubeUrl, '_blank');
+        }
+
+        function searchJSTOR() {
+            if (selectedLines.length === 0) {
+                alert('Please select text in the play first.');
+                return;
+            }
+            
+            const searchQuery = encodeURIComponent(`"${selectedLines.join(' ')}" Shakespeare`);
+            const jstorUrl = `https://www.jstor.org/action/doBasicSearch?Query=${searchQuery}`;
+            window.open(jstorUrl, '_blank');
+        }
+
+        function searchGoogleScholar() {
+            if (selectedLines.length === 0) {
+                alert('Please select text in the play first.');
+                return;
+            }
+            
+            const searchQuery = encodeURIComponent(`"${selectedLines.join(' ')}" Shakespeare analysis`);
+            const scholarUrl = `https://scholar.google.com/scholar?q=${searchQuery}`;
+            window.open(scholarUrl, '_blank');
         }
 
         // Handle text selection
