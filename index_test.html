@@ -16406,8 +16406,8 @@
             // Display each line exactly as it appears in the file, preserving whitespace
             // Lines use data attributes instead of inline onclick to avoid quote-escaping issues
             sceneContent.forEach((line, index) => {
-                if (line === '') {
-                    html += `<div class="play-line">&nbsp;</div>`;
+                if (line === '' || (typeof line === 'string' && line.trim() === '')) {
+                    return; // skip empty lines — no blank gap rendered
                 } else {
                     const escaped = line.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
                     html += `<div class="play-line" data-line-index="${index}">${escaped}</div>`;

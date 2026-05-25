@@ -18976,8 +18976,8 @@
             // Display each line exactly as it appears in the file, preserving whitespace
             // Lines use data attributes instead of inline onclick to avoid quote-escaping issues
             displayLines.forEach((line, index) => {
-                if (line === '') {
-                    html += `<div class="play-line">&nbsp;</div>`;
+                if (line === '' || (typeof line === 'string' && line.trim() === '')) {
+                    return; // skip empty lines — no blank gap rendered
                 } else {
                     const escaped = line.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
                     html += `<div class="play-line" data-line-index="${index}">${escaped}</div>`;
@@ -23244,9 +23244,6 @@
                 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a>
                 (Creative Commons Attribution-NonCommercial-ShareAlike): free for non-commercial, educational use with attribution.
                 <a href="#" onclick="openRights(); return false;">Full rights &amp; usage information</a>
-            </p>
-            <p class="footer-site-line footer-site-attrib">
-                Created by Jack David Carson, Massachusetts Institute of Technology · 2026
             </p>
         </div>
     </footer>

@@ -240,11 +240,11 @@
       "notes": []
     },
     "11": {
-      "play": "[Enter the Earl Northumberland, his head wrapped in a",
+      "play": "[Enter the Earl Northumberland, his head wrapped in a kerchief and supporting himself with a crutch.]",
       "notes": []
     },
     "12": {
-      "play": "kerchief and supporting himself with a crutch.]",
+      "play": "",
       "notes": []
     },
     "13": {
@@ -1502,13 +1502,13 @@
   },
   "ACT 1, SCENE 2": {
     "1": {
-      "play": "[Enter Sir John Falstaff, with his Page bearing his sword",
+      "play": "[Enter Sir John Falstaff, with his Page bearing his sword and buckler.]",
       "notes": [
         "Enter ...] DELIUS (Jahrbuch viii, 1873, p. 185): Falstaff walks alone, and behind him the page drags himself along with the knight’s sword and shield.—RHODES (1922, p. 23): [F] directs “Enter Falstaffe, and Page,” obviously on one side and a little later “Enter Chiefe Justice, and Servant,” obviously on the other.—[Here and at III.ii.2, Q directs a character to enter “alone” when he is actually accompanied by a page. Could “alone” therefore mean “in advance of an attendant”?—See also pp. 490, 512.—ED.]"
       ]
     },
     "2": {
-      "play": "and buckler.]",
+      "play": "",
       "notes": []
     },
     "3": {
@@ -2804,11 +2804,11 @@
   },
   "ACT 1, SCENE 3": {
     "1": {
-      "play": "[Enter th’ Archbishop of York, Thomas Mowbray (Earl",
+      "play": "[Enter th’ Archbishop of York, Thomas Mowbray (Earl Marshal), the Lord Hastings, and Lord Bardolph.]",
       "notes": []
     },
     "2": {
-      "play": "Marshal), the Lord Hastings, and Lord Bardolph.]",
+      "play": "",
       "notes": []
     },
     "3": {
@@ -3454,33 +3454,34 @@
     },
     "119": {
       "play": "[They exit.]",
-      "notes": []
-    },
-    "154": {
       "notes": [
-        "power] See note on I.i.149."
-      ]
-    },
-    "215": {
-      "notes": [
-        "] BÜTTNER (1904, p. 83) argues that the archbishop is not justified in the event because of the jubilation in the rebel camp when the truce is announced (iv.ii.94 ff.)."
-      ]
-    },
-    "237": {
-      "notes": [
+        "power] See note on I.i.149.",
+        "] BÜTTNER (1904, p. 83) argues that the archbishop is not justified in the event because of the jubilation in the rebel camp when the truce is announced (iv.ii.94 ff.).",
         "] Miss WINSTANLEY (ed. 1918): As many men as we can possibly expect."
       ]
+    },
+    "154": {
+      "notes": [],
+      "play": ""
+    },
+    "215": {
+      "notes": [],
+      "play": ""
+    },
+    "237": {
+      "notes": [],
+      "play": ""
     }
   },
   "ACT 2, SCENE 1": {
     "1": {
-      "play": "[Enter Hostess Quickly of the tavern with two Officers,",
+      "play": "[Enter Hostess Quickly of the tavern with two Officers, Fang and Snare, who lags behind.]",
       "notes": [
         "Enter ...] On the indefiniteness of the Q stage-direction see p. 491. On the F stage-direction see pp. 512 ff.—Fang's boy was added by CAPELL on the supposition that he is needed to be asked “Sirrah, where’s Snare?” But sirrah might just as well be addressed to Snare; when he doesn’t reply, Fang looks round and asks “Where’s Snare?” I am afraid that the editors have foisted upon Sh. a character whom he never thought of.—ED. 2. Fang, and Snare] COWL (ed. 1923): Fang and Snare are respectively the sergeant and his yeoman. 3. Mr.] COWL (ed. 1923): The Hostess, blunderingly, or from a desire to be on the right side of the two officers, confers on them a title not warranted by their rank. 3. entred the Action] SCHMIDT (1874): Commenced a lawsuit. 5.] MORGAN (1777, pp. 29 f.) takes the fact that the hostess hires two officers to arrest Falstaff as evidence of his valor. 5. Yeoman] N.E.D. (Yeoman 1b): An attendant or assistant to an official, etc. 5. Is it] N.E.D. (It pron. 1b): Used contemptuously or humorously of a person. 6. stand to it] N.E.D. (Stand v. 76c): To stand to it, to fight stoutly. 13. chance] N.E.D. (Chance sb. C): As adv.: By chance, perchance, haply. arch. 15. Alas ... beastly] Furnivall (Old Sp. ed., 1909, p. 102): Should perhaps be set as verse, thus: Alas ... me In ... faith. 15. stabd ... weapon ... foyne] Delius (ed. 1857): To stab is used with the same indecent double meaning as the hostess uses it here in Caesar: \"if Caesar had stabbed their mothers, they would have done no less\".—Wurth (1895, p. 60): The hostess understands to stab, intended in its proper sense, in an obscene sense.—Stoll (M.P. xii, 1914, p. 209) extends the quibble to weapon, foin, and also thrust. 16. and that] On the difference between Q and F see p. 505. 18. foyne] N.E.D. (Foin v. 1): intr. To make a thrust with a pointed weapon. arch. 20. close] N.E.D. (Close v. 13): To come to close quarters or to grips; to engage in hand-to-hand fight, grapple with. 21. nor I neither] See note on 1 Henry IV. 22.] Furnivall (Old Sp. ed., 1909, pp. 102 f.) thinks this may be one line of doggerel verse. 22. fist] Schmidt (1874): To grasp.—N.E.D. (Fist v.1 2): To strike with the fist, beat, punch. 23. Vice] Pope (ed. 1723): Grasp, a metaphor taken from a smith’s vice.—[Q view is obviously a misreading.—Ed.] 24. vndone] Onions (1911): Ruined. 24. with his going] Rann (ed. 1789): If he goes upon this expedition, and leaves my debt unpaid. 24. with] By. See Abbott (1870) §193, Franz (3 ed., 1924) §535. 24. I warrant] N.E.D. (Warrant v. 4a): Often used colloq. as a mere expression of strong belief = ‘I’ll be bound’. 25. infinituie] Delius (ed. 1857): The hostess ... would say infinite.—Miss Hanscom (ed. 1912): It is useless to attempt an explanation of Mistress Quickly’s expressions. It should be noted, however, that her vocabulary is large and far from illiterate. 25. my score] Onions (1911): Account kept by means of tallies or marks on a door, &c. 26. sure] ONIONS (1911): (With the verbs hold, guard) unable to do harm, harmless. 27. continuantly] N.E.D. (Continuantly adv.): A humorous perversion: cf. Continuately.—DELIUS (ed. 1857) and most others take it as a perversion of incontinently. 27. Py-Corner] SUGDEN (1925, p. 411): The corner of Giltspur St. and Cock Lane in W. Smithfield, London. It was so called from the cooks’ shops which stood there. 28. saving your manhoods] SCHMIDT (1875): All due respect shown to, no offence to [your manhoods]. Especially used to apologize for the boldness or impropriety of an expression.—COWL (ed. 1923): The allusion ... is to the native offensiveness of Pie-corner to refined noses and ears. 29. indited] SCHMIDT (1874): Blunderingly for invite[d]. 29. Lubbar's head] JOHNSON (ed. 1765): This is, I suppose, a colloquial corruption of the Libbard’s head.—COWL (ed. 1923): The sign was appropriate to a silkman’s establishment. 29. Lombardstreet] SUGDEN (1925, p. 312): Running from the Mansion House to Gracechurch Street. 32. brought in] COWL (ed. 1923): Sc. into court. 32. to his answer] N.E.D. (To prep. 8): For the purpose of. 33. Mark] See note on I.ii.176. 33. a long one] THEOBALD (letter to Warburton): A long one, [of w]hat? a long Mark? That’s the only antecedent Subst[antive] it can agree with; & com[mon sense] won’t admit of its being coupled to That. I need not to observe to You, how famili[ar it is w]th our Poet to play the Chimes upon Words similar in Sound, & differing in Signifi[cation. I] doubt not, but you’ll read w[ith me—A hundred Marks is a long t]ONE [for a poor lone] woman to bear; [i.e. one hundred marks is a] good round sumie for a poor Widow to venture on Trust. 34. lone woman] STEEVENS (ed. 1793): An unmarried woman.—N.E.D. (Lone a. 2): Unmarried; single or widowed. 35. fub'd off] N.E.D. (Fob v.1 3a): Fob off. To put off deceitfully. 45. whose ... dead?] SCHMIDT (1875): Proverbial phrase = what is the matter? what is amiss? 49. Varlets] SCHMIDT (1875): A term of reproach, = knave, rascal.—COWL (ed. 1923) notes that the word also means sergeant. 49. draw Bardolfe] MORGAN (1777, p. 30): When they lay hold on him he resists to the utmost of his power, and calls upon Bardolph, whose arms are at liberty, to draw. 49. me] See note on l. 38 above. 50. Queane] N.E.D. (Quean 1): A bold, impudent, or ill-behaved woman; a jade, hussy; and spec. a harlot, strumpet. 51. Channel] N.E.D. (Channel sb.1 3a): The watercourse in a street or by a roadway, the gutter. 51. there] On the difference between Q and F see p. 506. 52.] Miss MACKENZIE (1924, p. 105): When the battle is joined she dances round the outskirts of the fray in “a tempest of exclamation”. 53. bastardly] COWL (ed. 1923): A portmanteau word, blending “bastard” and “dastardly”. 54. Hony-suckle ... hony-seed] THEOBALD (ed. 1733): [Hony-seed] instead of homicide.—HANMER (ed. 1743): She means to say, homicidal villain, and homicide rogue. 57. Man-queller] SCHMIDT (1875): Murderer. 59. rescu] N.E.D. (Rescue sb. 2): Law. The forcible taking of a person or goods out of legal custody. 60. bring a rescu] Q bring a reskew or two.—DELIUS (ed. 1857): The hostess understands the cry a rescue as though rescue were the name of a particular person.—DEIGHTON (ed. 1893): The Hostess takes the word to be some weapon that the officer called for. 61. Thou wilt not?] Q wot is a dialectal form of will derived, according to FRANZ (3 ed., 1924, §176), from M.E. wolt. 61. Do, do] SCHMIDT (1874): Used as a term of encouragement (= go on!). 62. Hempseed] DELIUS (ed. 1872): One who ought to be hanged. 63. Page] JOHNSON (ed. 1765): This speech is given to the page in all the editions to the folio of 1664. It is more proper for Falstaff, but that the boy must not stand quite silent and useless on the stage.—CAPELL (Notes, 1779, p. 172): Care, judgment, faithfulness, all the qualities with which an editor ought to be gifted, are display’d in the assignment of this speech by the moderns to Falstaff... 63. Scullion] SCHMIDT (1875): The lowest domestic servant, that washes the kettles and dishes in the kitchen; used as a term of contempt. 63. Rampallian] GENTLEMAN (ed. 1773): A low reptile.—STEEVENS (Var. ’78): May be derived from ramper, Fr. to be low in the world. 64. tucke your Catastrophe] See textual notes; tucke is evidently a misreading or misprint.—Seymour (1805, i. 324): I’ll whip your breech, make your latter-end smart or itch. 65. Enter ...] On the Q stage-direction see p. 491. On the F stage-direction, p. 512. 67. be good to mee] Cowl (ed. 1923): An expression used in appealing for protection or favour to persons in authority. 68. stand to me] N.E.D. (Stand v. 76h): To side with, help, back, support (a person). 69. What] See note on I.ii.109. 73. Stand from him] DEIGHTON (ed. 1893): Let go of him. 73. hang'st vpon] On the difference between Q and F see p. 501. 75. your Grace] Just as the hostess promotes Fang to mastership, she addresses the chief justice by a title usually reserved for royalties, dukes, and archbishops.—Ed. 76. Eastcheap] SUGDEN (1925, p. 165): A street in London running east from the junction of Cannon St. and Gracechurch St. to Great Tower St. The famous Boar’s Head Tavern was at the west end of Eastcheap. 79. all: all] Although I suspect that the editors adopt this rather than Q al because they like it better rather than because of its merits from the strictly textual point of view, the probabilities seem to favor it. 81. substance] N.E.D. (Substance sb. 16): Possessions; means, wealth. arch. 83. o'Nights] On Q a nights=by night, see N.E.D. (A-nights adv. phr.). 83. Mare] Steevens (Var. ’78): The Incubus or Night-Mare.—N.E.D. (Mare sb.2 1) Obs. A kind of goblin supposed to produce nightmare by sitting on the chest of the sleeper. 84. ride the Mare] Steevens (Var. ’78): His allusion, (if it be not a wanton one) is to the Gallows, which was ludicrously called the Timber, or two-legg’d Mare. 85. vantage] N.E.D. (Vantage sb. 3): Position or opportunity likely to give superiority. 85. get vp] N.E.D. (Get v. 72b): To ascend, mount, climb up: esp. to mount on horseback. 86. Fy, what a] On the difference between Q and F see p. 505. 87. temper] Schmidt (1875): Disposition, constitution. 89. exclamation] Rolfe (ed. 1880): Outcry. 91. grosses] N.E.D. (Gross a. 6): Entire, total, whole. 92.] TECK (c. 1794; Das Buck, 1920, p. 233): The citation of these small incidental details is used in a very comical manner in Measure II.i.86 ff., where it again produces extraordinarily rich comic effects.—COLERIDGE (The Friend, 1818; ed. Raysor, 1930, ii. 336): The difference between the products of a well disciplined and those of an uncultivated understanding ... is often and admirably exhibited by our great Dramatist. 94. a parcell gilt Goblet] N.E.D. (Parcel-gilt a.): Partly gilded; esp. of silver ware, as bowls, cups, etc., having the inner surface gilt. 94. Dolphin-chamber] The name of a room in Mrs. Quickly’s tavern. See 1 Henry IV II.iv.26, where another is called the Half-moon. 95. sea-cole] ONIONS (1911): Mineral coal (as distinguished from charcoal). 97. lik'ning him] Q liking means comparing (N.E.D., Like v.2 1b).—Delius (ed. 1857): Perhaps at the behest of the censor, who would permit no ridicule of a reigning king, liking his father was changed to likening him. 97. a singing man of Windsor] Delius (ed. 1857): Falstaff had compared the respectable, perhaps morose, appearance of the king to that of a chorister in the royal chapel at Windsor. 99. my Lady] Cowl (ed. 1923) cites various instances, from the drama, of satire of “the weakness of citizens’ widows for the title ‘lady’”. 100. goodwife] N.E.D. (Goodwife 2): Prefixed to surnames (= Mrs.). Obs. 100. Keech] Steevens (Var. ’78): The fat of an ox rolled up by the butcher into a round lump. 101. gossip] Schmidt (1874): Used as a familiar compellation to a female friend or neighbour. 102. messe] N.E.D. (Mess sb. 1c): A quantity (of meat, fruit, etc.) sufficient to make a dish. (Now dial. and U.S.) 103. whereby] N.E.D. (Whereby adv. 3b): Upon which, whereupon. dial. ?Obs. 105. greene] N.E.D. (Green a. 10): Of a wound: Recent, fresh, unhealed, raw. 105. And ... staires] FURNIVALL (Old Sp. ed., 1909, p. 103): Should perhaps be set as [one line of] verse. 107. familiar] Q familiarity may be something of a stock malapropism; at any rate, it also occurs in Munday's John a Kent (1594). 108. Madam] HARRISON (Description of England, 1577, bk. iii, ch. 4; ed. Furnivall, 1877, i. 115): Howsoever one be dubbed or made Knight, his wyfe is by and by called Madame, or Ladye, so well as the Barons wyfe. 110. Book-oath] SCHMIDT (1874): Oath made on the Bible. 112. My ... her] COWL (ed. 1923): Suggested, perhaps, by ... Lodge and Greene, A Looking-Glass for London: \"Dread Monarch, this is but a lunacie, Which griefe and want hath brought the woman to\". 112. mad] Q made, according to the N.E.D., is a 15th-century variant spelling. 114. in good case] N.E.D. (Case sb.1 5): Well off. 115. distracted] N.E.D. (Distract v. 6): To render insane, drive mad. Obs. in lit. sense. 118.] SQUIRE (1935, p. 176): The Chief Justice [rebukes Falstaff] in set and sonorous phrases that admirably characterize the judge, from the reproving repetition to the lawyer-like termination. ... We can even guess, underneath the lectures of this severe magistrate, the amusement that he 119. true cause] COWL. (ed. 1923): Truth of the matter. 120. It ... consideration] FURNIVALL (Old Sp. ed., 1909, pp. 102 f.): Should perhaps be set [as three lines of] verse. 120. brow] N.E.D. (Brow sb.1 5c): Fronting, aspect, countenance. 121. (more then impudent)] P. SIMPSON (1911, p. 93): Compound nouns or adjectives are enclosed within brackets where we should employ the hyphen if we used any punctuation at all. 122. leuell] SCHMIDT (1874): Equipoised, steady. [Obs.] 123. I know you ha'] The substitution of this for Q you haue as it appeares to me was certainly deliberate, and while it was probably made at the same time that 103 was omitted, the motive for it is not easy to guess. 126.] On the omission of this line from F, see p. 500. 128. peace] SCHMIDT (1875): Be silent. 129. vnpay] DELIUS (ed. 1857): In contrast to to pay.—N.E.D. (Unpay v.²): Obs.¹ To undo, make good. 131. currant] N.E.D. (Current a. 5): Sterling, genuine, authentic: opposed to counterfeit. Obs.—LEE (ed. 1908): The chief justice seems addicted to numismatic punning. 132.] QUILLER-COUCH (Tales, 1900, p. 219): The reply was poor perhaps; but it showed that Falstaff, though careless with the low company of his choice, had shame enough left, being a gentleman himself, to wince under the rebuke of a gentleman. 132. sneape] POPE (ed. 1723): A yorkshire word for rebuke. 134. curt'sie] See textual notes.—N.E.D. (Courtesy sb. 8): The action of inclining, bowing, or lowering the body; usually in phrase to make or do courtesy. Obs. 136. your] On the difference between Q and F see p. 506. 136. [duty] N.E.D. (Duty 1): Due respect, reverence. 137. I desire ... Affaires] KNIGHT (ed. 1839, i. 256): “Falstaff claimed the protection legally called quid protecturus. (See Coke upon Littleton, 130 a.) 137. deliu'rance] N.E.D. (Deliverance 1): Release. 138. hasty] SCHMIDT (1874): Quick, speedy. [Arch.] 139. as hauing] As if you had. 140. in ... Reputation] JOHNSON (ed. 1765): In a manner suitable to your character.—CAPELL (Notes, 1779, p. 172): Suitably to what you know your 144. Enter ...] On the relation of this to the Q stage-direction see pp. 511 ff. 145.] JANSSEN (1897, p. 91): The verse-dialogue between Gower and the chief justice, like that between the prince and Peto in II.iv, introduced into a prose scene, is written in meter, not as Delius says “to emphasize the disparity which separates them from the rest,” but merely because it is concerned with war and therefore has a pathetic interest. 152. of] Concerning. See ABBOTT (1870) §174, FRANZ (3 ed., 1924) §517. 153. Heavenly ground] DELIUS (ed. 1857): She confounds by heaven with another oath, by this ground. 153. must be faine] N.E.D. (Fain a. 2): Const. to with inf. Glad under the circumstances; glad or content to take a certain course as the lesser of two evils. 154. Tapisstry] Wall hangings. See Sh.'s England (1916) ii. 128 ff. 156. Glasses, glasses] STEEVENS (ed. 1793): Mrs. Quickly is here in the same state as the Earl of Shrewsbury, who not having been paid for the diet, &c. of Mary Queen of Scots... 156. oneely] N.E.D. (Only a. 5): Unique in quality, character, rank, etc.; peerless, preëminent. 156. for ... Tapistries] CUST (Sh.'s England, 1916, ii. 4): Elsewhere Shakespeare suggests that tapestry was in his day in process of supersession by the painted cloth. 157. slight] N.E.D. (Slight a. 3): Of light, thin, or poor texture or material. 157. Drollery] STAUNTON (ed. 1858): [One] of those scenes of coarse humor which the painters of the Dutch school introduced, between the end of the sixteenth, and the middle of the seventeenth century. 157. the Storie of the Prodigall] Miss WINSTANLEY (ed. 1918): One of the favorite subjects for \"painted cloths\". 158. the Germane hunting] FARMER (Var. ’73, App. II): I suppose, hunting the wild boar.—STAUNTON (ed. 1858): The words may possibly have reference to the famous German legend of “the Wild Huntsman,” which had, perhaps, found its way to England during the reign of Elizabeth. 158. Waterwork] WARBURTON (ed. 1747): Water-colours. [So also most other editors.]—N.E.D. (Waterwork 4): A kind of imitation tapestry, painted in size or distemper. Obs. 159. Bed-hangings] JOHNSON (ed. 1765): He calls [tapestries] bed-hangings, in contempt, as fitter to make curtains than to hang walls.—Q bed-hangers is not necessarily an error; see N.E.D. (Hanger² 2a, “A piece of tapestry hanging”). If bed-hangers is what Sh. wrote, F Bed-hangings is very likely a modernization or an “improvement”. 160. tenne pound] On the use of the singular form of nouns of measure instead of the plural after numerals, see FRANZ (3 ed., 1924) §190. 161. were ... is] On the discrepancy between these verbs in mood and tense see ABBOTT (1870) §371. 161. humors] N.E.D. (Humour sb. 6c): pl. Moods or fancies exhibited in action; vagaries; fantastic, whimsical, odd, quaint, or humorous traits. 162. Go ... Come] FURNIVALL (Old Sp. ed., 1909, pp. 102 f.): Should perhaps be set as verse. 162. wash thy face] ROLFE (ed. 1880): The poor dame has been crying. 163. draw] MASON (1785, p. 188): Withdraw. 162. thy] If Sh. wrote thy, Q the is an unintentional substitution of a weaker for a stronger word of the same kind. But Q may very well be right and F thy the result of attraction exercised by the previous thy in the same line.—Ed. 163. come ... this] FURNIVALL (Old Sp. ed., 1909, pp. 102 f.): Should perhaps be set as verse: Come, come! ... this! 165. set on] N.E.D. (Set v. 148c): To instigate, incite, urge on (a person) to do something. 167. Nobles] ROLFE (ed. 1880): The noble was a gold coin, worth 6s. 8d. 168. la] N.E.D. (La int.): An exclamation formerly used to introduce or accompany a conventional phrase or an address, or to call attention to an emphatic statement. 169. make ... shift] ONIONS (1911): Manage some other way. 174. Will I liue?] LEE (ed. 1908): As sure as life.—[Cf. Shrew I.ii.193.] 181. bitter newes] See textual notes.—DELIUS (ed. 1857): Better news concerning the king’s health than that given in the paper delivered by Gower.—DEIGHTON (ed. 1893): This is not as good news as it might be.—[On the difference between Q and F see p. 506.] 182. good] On the difference between Q and F see p. 505. 184. lay] N.E.D. (Lie v. 1 5): To dwell or sojourn; esp. to sleep or pass the night (in a place). Now rare or arch. 185. last night] Q to night means the same thing (N.E.D., To-night adv. 3). 186. Basingstoke] SUGDEN (1925, p. 49): A market town in Hants., 46 m. S.W. of London, on the Great Western Road.—AX (1912, p. 65): None of the historical allusions can be supported by an excerpt from the chronicle, neither that to the number of troops destined to join the forces of John of Lancaster, nor those relating to the details of Henry’s stay at Basingstoke. 187.] THEOBALD (ed. 1733): This same Affectation of Inadvertence is again practis’d by our Poet in the 1st Part of Henry VI betwixt Princess Margaret and Suffolk, where He has made her his Prisoner. 190.] AX (1912, p. 65): We are even inclined to see a deviation from Holinshed when, upon the Chief Justice’s question Gower answers... 191. Are march'd] See note on I.i.8. 194.] JANSSEN (1897, p. 91): Falstaff speaks blank verse trying to thrust himself into the conversation between the chief justice and Gower. 196. presently] SCHMIDT (1875): Immediately. 197. go] ABBOTT (1870, §30): “Go” is used where we should say “come”. 198.] QUILLER-COUCH (Tales, 1900, p. 220): Falstaff cleared his throat. 200. entreate you ... to] According to FRANZ (3 ed., 1924, §656), after entreat and similar verbs Sh. sometimes uses to followed by an object where modern idiom requires an infinitive. 202. waite vpon] N.E.D. (Wait v.1 14k): To accompany on one's way (as a mark of respect or to render service or assistance); to escort. Now rare. 204.] COWL (ed. 1923): The dialogue was, perhaps, originally arranged as verse, and retains, in prose, something of the rhythm and diction of verse; e.g. \"in counties as you go.\" 204. being] N.E.D. (Be v. 3): Being that = it being the case that, seeing that, since. 205. take ... vp] N.E.D. (Take v. 90j): To levy, raise, enlist (troops). Obs. 205. Countries] Though this is perfectly intelligible (=counties; see N.E.D., Country 2), I suppose there can be little doubt that it is a typographical error for Q Counties. 206. sup] SCHMIDT (1875): To eat the evening meal [dinner being eaten at noon or earlier]. 207. these manners] Miss PORTER (ed. 1911): As the following lines show, the silly old knight makes a show of several fencing passes to exhibit his dexterity. 211. tap for tap] N.E.D. quotes this line under the sense “A single act of tapping; a light but audible blow or rap”. 211. part faire] N.E.D. (Fair adv. 2b): (To keep, part) fair: i.e. on good terms with. Obs. or arch. 212. lighten] N.E.D. (Lighten v.² 3): To enlighten or illuminate spiritually. arch. [Quotes this line.]—VAUGHAN (1878, i. 489): Possibly the Chief Justice here plays upon the word ‘lighten’ ... He prays that as Falstaff is so ‘great’ a ‘fool’ the Lord will lighten his weight and enlighten his conscience and intellect."
       ]
     },
     "2": {
-      "play": "Fang and Snare, who lags behind.]",
+      "play": "",
       "notes": []
     },
     "3": {
@@ -5253,26 +5254,27 @@
     },
     "183": {
       "play": "[They exit.]",
-      "notes": []
-    },
-    "311": {
       "notes": [
-        "] AX (1912, p. 65): To judge from Harry’s very first words, he seems to have just arrived from Wales.—[Cf. ii.iv.297.]"
-      ]
-    },
-    "382": {
-      "notes": [
+        "] AX (1912, p. 65): To judge from Harry’s very first words, he seems to have just arrived from Wales.—[Cf. ii.iv.297.]",
         "idly] N.E.D. (Idly adv. 1): Vainly; uselessly; ineffectively."
       ]
+    },
+    "311": {
+      "notes": [],
+      "play": ""
+    },
+    "382": {
+      "notes": [],
+      "play": ""
     }
   },
   "ACT 2, SCENE 3": {
     "1": {
-      "play": "[Enter Northumberland, his wife, and the wife to",
+      "play": "[Enter Northumberland, his wife, and the wife to Harry Percy.]",
       "notes": []
     },
     "2": {
-      "play": "Harry Percy.]",
+      "play": "",
       "notes": []
     },
     "3": {
@@ -5661,27 +5663,28 @@
     },
     "74": {
       "play": "[They exit.]",
-      "notes": []
-    },
-    "79": {
       "notes": [
-        "all] Cowl (ed. 1923) understands this to mean both."
-      ]
-    },
-    "84": {
-      "notes": [
-        "am] CLARKE (ed. 1865): [An example of] how peculiarly Shakespeare uses the present tense of a verb at the very time that he is using past or future tenses of other verbs in the same passage. ... This peculiar mode of Shakespeare’s has admirably concentrative force."
-      ]
-    },
-    "96": {
-      "notes": [
-        "when] On the difference between Q and F see p. 506."
-      ]
-    },
-    "110": {
-      "notes": [
+        "all] Cowl (ed. 1923) understands this to mean both.",
+        "am] CLARKE (ed. 1865): [An example of] how peculiarly Shakespeare uses the present tense of a verb at the very time that he is using past or future tenses of other verbs in the same passage. ... This peculiar mode of Shakespeare’s has admirably concentrative force.",
+        "when] On the difference between Q and F see p. 506.",
         "Booke] N.E.D. (Book sb. 4a): fig. That in which we may read, and find instruction and lessons. [Quotes As You Like It ii.i.16, \"books in the running brooks\".]"
       ]
+    },
+    "79": {
+      "notes": [],
+      "play": ""
+    },
+    "84": {
+      "notes": [],
+      "play": ""
+    },
+    "96": {
+      "notes": [],
+      "play": ""
+    },
+    "110": {
+      "notes": [],
+      "play": ""
     }
   },
   "ACT 2, SCENE 4": {
@@ -9005,15 +9008,15 @@
       "notes": []
     },
     "109": {
-      "play": "[Enter Mouldy, followed by Shadow, Wart, Feeble,",
+      "play": "[Enter Mouldy, followed by Shadow, Wart, Feeble, and Bullcalf.]",
       "notes": []
     },
     "110": {
-      "play": "and Bullcalf.]",
+      "play": "Let me see, where is Mouldy?",
       "notes": []
     },
     "111": {
-      "play": "Let me see, where is Mouldy?",
+      "play": "",
       "notes": []
     },
     "112": {
@@ -10267,17 +10270,17 @@
   },
   "ACT 4, SCENE 1": {
     "1": {
-      "play": "[Enter the Archbishop of York, Mowbray, Lord",
+      "play": "[Enter the Archbishop of York, Mowbray, Lord Bardolph, Hastings, and their officers within the Forest of Gaultree.]",
       "notes": [
         "] On the F stage-direction see p. 512."
       ]
     },
     "2": {
-      "play": "Bardolph, Hastings, and their officers within the Forest",
+      "play": "",
       "notes": []
     },
     "3": {
-      "play": "of Gaultree.]",
+      "play": "",
       "notes": []
     },
     "4": {
@@ -13011,28 +13014,29 @@
     },
     "144": {
       "play": "[They exit.]",
-      "notes": []
-    },
-    "227": {
       "notes": [
         "that] So that. See note on I.i.198.",
         "that] So that. See note on 1.i.198."
       ]
+    },
+    "227": {
+      "notes": [],
+      "play": ""
     }
   },
   "ACT 4, SCENE 3": {
     "1": {
-      "play": "[Enter the King in a chair, Warwick, Thomas Duke of",
-      "notes": []
-    },
-    "2": {
-      "play": "Clarence, Humphrey Duke of Gloucester, and",
+      "play": "[Enter the King in a chair, Warwick, Thomas Duke of Clarence, Humphrey Duke of Gloucester, and Attendants.]",
       "notes": [
         "Clarence] Ax (1912, pp. 87 f.): As to the persons who attend on the King ..., none is explicitly named by the chronicler except the Prince of Wales. But it is possible that all may have been present, especially his sons, save Thomas, Duke of Clarence, whom the King, in the play, advises how to treat his eldest brother. Thomas, as Sh. could have seen in the chronicle, was at that time in France; for we read in iii. 541: \"The duke of Clarence immediatlie vpon knowledge had of his father king Henrie the fourth his death, returned out of Guien into England.\""
       ]
     },
+    "2": {
+      "play": "",
+      "notes": []
+    },
     "3": {
-      "play": "Attendants.]",
+      "play": "",
       "notes": []
     },
     "4": {
@@ -16303,11 +16307,11 @@
   },
   "ACT 5, SCENE 3": {
     "1": {
-      "play": "[Enter Sir John Falstaff, Shallow, Silence, Davy,",
+      "play": "[Enter Sir John Falstaff, Shallow, Silence, Davy, Bardolph, and Page.]",
       "notes": []
     },
     "2": {
-      "play": "Bardolph, and Page.]",
+      "play": "",
       "notes": []
     },
     "3": {
@@ -16398,34 +16402,32 @@
       ]
     },
     "19": {
-      "play": "[Sings. Do nothing but eat and make good cheer,]",
+      "play": "[Sings. Do nothing but eat and make good cheer, And praise God for the merry year, When flesh is cheap and females dear, And lusty lads roam here and there So merrily, And ever among so merrily.]",
       "notes": [
-        "make good cheer] N.E.D. (Cheer sb. 6): To make good (etc.) cheer: to feast and make merry."
+        "make good cheer] N.E.D. (Cheer sb. 6): To make good (etc.) cheer: to feast and make merry.",
+        "dear] FARMER (Var. ’73, Appendix II) calls attention to the punning sense of the word in antithesis to cheape.",
+        "ever among] N.E.D. (Among adv. 1): During this (period), meanwhile, all the while, at the same time. Obs. [Quotes this line.]"
       ]
     },
     "20": {
-      "play": "And praise God for the merry year,",
+      "play": "",
       "notes": []
     },
     "21": {
-      "play": "When flesh is cheap and females dear,",
-      "notes": [
-        "dear] FARMER (Var. ’73, Appendix II) calls attention to the punning sense of the word in antithesis to cheape."
-      ]
+      "play": "",
+      "notes": []
     },
     "22": {
-      "play": "And lusty lads roam here and there",
+      "play": "",
       "notes": []
     },
     "23": {
-      "play": "So merrily,",
+      "play": "",
       "notes": []
     },
     "24": {
-      "play": "And ever among so merrily.",
-      "notes": [
-        "ever among] N.E.D. (Among adv. 1): During this (period), meanwhile, all the while, at the same time. Obs. [Quotes this line.]"
-      ]
+      "play": "",
+      "notes": []
     },
     "25": {
       "play": "FALSTAFF: There’s a merry heart!—Good Master Silence,",
@@ -17264,12 +17266,13 @@
     },
     "34": {
       "play": "[They exit.]",
-      "notes": []
-    },
-    "65": {
       "notes": [
         "thing] See note on iv.v.76."
       ]
+    },
+    "65": {
+      "notes": [],
+      "play": ""
     }
   },
   "ACT 5, SCENE 5": {
@@ -17307,17 +17310,17 @@
       "notes": []
     },
     "7": {
-      "play": "[Trumpets sound, and the King and his train pass over",
+      "play": "[Trumpets sound, and the King and his train pass over the stage. After them enter Falstaff, Shallow, Pistol, Bardolph, and the Page.]",
       "notes": [
         "] CAMBRIDGE EDITORS (1864, p. 488): It seems probable from the stage-direction of the Quarto, that the king first crossed the stage in procession to his coronation, which is supposed to take place during the dialogue between Falstaff and the others, and that on his second entrance he appeared with the crown on his head.—[See p. 511.]"
       ]
     },
     "8": {
-      "play": "the stage. After them enter Falstaff, Shallow, Pistol,",
+      "play": "",
       "notes": []
     },
     "9": {
-      "play": "Bardolph, and the Page.]",
+      "play": "",
       "notes": []
     },
     "10": {
@@ -17776,11 +17779,11 @@
       ]
     },
     "102": {
-      "play": "[Enter the Lord Chief Justice and Prince John, with",
+      "play": "[Enter the Lord Chief Justice and Prince John, with Officers.]",
       "notes": []
     },
     "103": {
-      "play": "Officers.]",
+      "play": "",
       "notes": []
     },
     "104": {

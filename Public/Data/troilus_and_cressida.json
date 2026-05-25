@@ -1964,13 +1964,13 @@
   },
   "ACT 1, SCENE 3": {
     "1": {
-      "play": "[Sennet. Enter Agamemnon, Nestor, Ulysses, Diomedes,",
+      "play": "[Sennet. Enter Agamemnon, Nestor, Ulysses, Diomedes, Menelaus, with others.]",
       "notes": [
         "iii.1. Diomedes] WHITE (ed. 1865): The folio brings in Diomedes with the rest of the Grecian leaders; it being plain that there is a general council. But because he has nothing to say, modern editors hitherto have omitted his name."
       ]
     },
     "2": {
-      "play": "Menelaus, with others.]",
+      "play": "",
       "notes": []
     },
     "3": {
@@ -5703,15 +5703,15 @@
       "notes": []
     },
     "76": {
-      "play": "[Enter at a distance Agamemnon, Ulysses, Nestor,",
+      "play": "[Enter at a distance Agamemnon, Ulysses, Nestor, Diomedes, Ajax, and Calchas.]",
       "notes": []
     },
     "77": {
-      "play": "Diomedes, Ajax, and Calchas.]",
+      "play": "Look you, who comes here?",
       "notes": []
     },
     "78": {
-      "play": "Look you, who comes here?",
+      "play": "",
       "notes": []
     },
     "79": {
@@ -6669,11 +6669,11 @@
   },
   "ACT 3, SCENE 1": {
     "1": {
-      "play": "[Music sounds within. Enter Pandarus and Paris’s",
+      "play": "[Music sounds within. Enter Pandarus and Paris’s Servingman.]",
       "notes": []
     },
     "2": {
-      "play": "Servingman.]",
+      "play": "",
       "notes": []
     },
     "3": {
@@ -8361,11 +8361,11 @@
   },
   "ACT 3, SCENE 3": {
     "1": {
-      "play": "[Flourish. Enter Ulysses, Diomedes, Nestor,",
+      "play": "[Flourish. Enter Ulysses, Diomedes, Nestor, Agamemnon, Calchas, Menelaus, and Ajax.]",
       "notes": []
     },
     "2": {
-      "play": "Agamemnon, Calchas, Menelaus, and Ajax.]",
+      "play": "",
       "notes": []
     },
     "3": {
@@ -9815,15 +9815,15 @@
   },
   "ACT 4, SCENE 1": {
     "1": {
-      "play": "[Enter at one door Aeneas with a Torchbearer, at",
+      "play": "[Enter at one door Aeneas with a Torchbearer, at another Paris, Deiphobus, Antenor, Diomedes and Grecians with torches.]",
       "notes": []
     },
     "2": {
-      "play": "another Paris, Deiphobus, Antenor, Diomedes and",
+      "play": "",
       "notes": []
     },
     "3": {
-      "play": "Grecians with torches.]",
+      "play": "",
       "notes": []
     },
     "4": {
@@ -10728,11 +10728,11 @@
   },
   "ACT 4, SCENE 3": {
     "1": {
-      "play": "[Enter Paris, Troilus, Aeneas, Deiphobus, Antenor,",
+      "play": "[Enter Paris, Troilus, Aeneas, Deiphobus, Antenor, and Diomedes.]",
       "notes": []
     },
     "2": {
-      "play": "and Diomedes.]",
+      "play": "",
       "notes": []
     },
     "3": {
@@ -11330,19 +11330,19 @@
       "notes": []
     },
     "124": {
-      "play": "[Enter Aeneas, Paris, Antenor, Deiphobus, and",
+      "play": "[Enter Aeneas, Paris, Antenor, Deiphobus, and Diomedes.]",
       "notes": []
     },
     "125": {
-      "play": "Diomedes.]",
+      "play": "Welcome, Sir Diomed. Here is the lady Which for Antenor we deliver you.",
       "notes": []
     },
     "126": {
-      "play": "Welcome, Sir Diomed. Here is the lady",
+      "play": "",
       "notes": []
     },
     "127": {
-      "play": "Which for Antenor we deliver you.",
+      "play": "",
       "notes": []
     },
     "128": {
@@ -11542,28 +11542,27 @@
   },
   "ACT 4, SCENE 5": {
     "1": {
-      "play": "[Enter Ajax, armed, Achilles, Patroclus, Agamemnon,",
-      "notes": []
+      "play": "[Enter Ajax, armed, Achilles, Patroclus, Agamemnon, Menelaus, Ulysses, Nestor, etc. and Trumpeter.] AGAMEMNON, to Ajax Here art thou in appointment fresh and fair, Anticipating time with starting courage.]",
+      "notes": [
+        "appointment;] C. A. PELL (Notes, i, 150, ii, 133): Ajax’s dress, the “fittings-out” he appears in.",
+        "Anticipating ... courage] THEOBALD (ed. 1733): I have alter’d the Pointing of this Passage for this Reason: The Poet seems to mean, that Ajax shew’d his starting Courage in coming into the Field before the Challenger.—DEIGHTON (ed. 1906): Modern editors, almost without exception, here follow Theobald’s punctuation in removing the full stop after “time” and placing it at the end of the line. Knight and Schmidt (Lexicon) retain the punctuation of all the old copies, and with this I interpret “starting courage” as “bold defiance”; “the appalled air” seems to bear out this sense. ... Shakespeare more than once uses “start” transitively for “startle.” With Theobald’s punctuation I can see no satisfactory explanation of “starting courage.”—[Where the two basic copies agree in pointing, and where the old pointing makes sense, it should be against sound editorial policy to change. There is no compelling reason for repunctuating these lines. “With starting courage” may mean what Deighton suggests; I think it more probable that the phrase means “With courage to get things started, to get in ahead of the challenger.”—ED.]"
+      ]
     },
     "2": {
-      "play": "Menelaus, Ulysses, Nestor, etc. and Trumpeter.]",
+      "play": "",
       "notes": []
     },
     "3": {
-      "play": "AGAMEMNON, to Ajax",
+      "play": "",
       "notes": []
     },
     "4": {
-      "play": "Here art thou in appointment fresh and fair,",
-      "notes": [
-        "appointment;] C. A. PELL (Notes, i, 150, ii, 133): Ajax’s dress, the “fittings-out” he appears in."
-      ]
+      "play": "",
+      "notes": []
     },
     "5": {
-      "play": "Anticipating time with starting courage.",
-      "notes": [
-        "Anticipating ... courage] THEOBALD (ed. 1733): I have alter’d the Pointing of this Passage for this Reason: The Poet seems to mean, that Ajax shew’d his starting Courage in coming into the Field before the Challenger.—DEIGHTON (ed. 1906): Modern editors, almost without exception, here follow Theobald’s punctuation in removing the full stop after “time” and placing it at the end of the line. Knight and Schmidt (Lexicon) retain the punctuation of all the old copies, and with this I interpret “starting courage” as “bold defiance”; “the appalled air” seems to bear out this sense. ... Shakespeare more than once uses “start” transitively for “startle.” With Theobald’s punctuation I can see no satisfactory explanation of “starting courage.”—[Where the two basic copies agree in pointing, and where the old pointing makes sense, it should be against sound editorial policy to change. There is no compelling reason for repunctuating these lines. “With starting courage” may mean what Deighton suggests; I think it more probable that the phrase means “With courage to get things started, to get in ahead of the challenger.”—ED.]"
-      ]
+      "play": "",
+      "notes": []
     },
     "6": {
       "play": "Give with thy trumpet a loud note to Troy,",
@@ -11917,13 +11916,13 @@
       "notes": []
     },
     "85": {
-      "play": "[Enter all of Troy: Hector, armed, Paris, Aeneas,",
+      "play": "[Enter all of Troy: Hector, armed, Paris, Aeneas, Helenus, Troilus, and Attendants.]",
       "notes": [
         "Troians] DELIUS (ed. 1856) suggests “Trojan’s” (instead of the usual “Trojans'”), linking it with iv.iv.149: “Harke, Hector’s Trumpet.”"
       ]
     },
     "86": {
-      "play": "Helenus, Troilus, and Attendants.]",
+      "play": "",
       "notes": []
     },
     "87": {
@@ -13399,18 +13398,18 @@
       "notes": []
     },
     "72": {
-      "play": "[Enter Hector, Troilus, Ajax, Agamemnon, Ulysses,",
-      "notes": []
-    },
-    "73": {
-      "play": "Nestor, Menelaus, and Diomedes, with lights.]",
-      "notes": []
-    },
-    "74": {
-      "play": "Heyday! Sprites and fires!",
+      "play": "[Enter Hector, Troilus, Ajax, Agamemnon, Ulysses, Nestor, Menelaus, and Diomedes, with lights.] Heyday! Sprites and fires!]",
       "notes": [
         "[spirits and fires] JOHNSON (ed. 1765): This Thersites speaks upon the first sight of the distant lights."
       ]
+    },
+    "73": {
+      "play": "",
+      "notes": []
+    },
+    "74": {
+      "play": "",
+      "notes": []
     },
     "75": {
       "play": "AGAMEMNON: We go wrong, we go wrong.",
@@ -13627,19 +13626,19 @@
       "notes": []
     },
     "7": {
-      "play": "[Enter Troilus and Ulysses, at a distance, and then,",
+      "play": "[Enter Troilus and Ulysses, at a distance, and then, apart from them, Thersites.] ULYSSES, aside to Troilus Stand where the torch may not discover us.]",
       "notes": []
     },
     "8": {
-      "play": "apart from them, Thersites.]",
+      "play": "",
       "notes": []
     },
     "9": {
-      "play": "ULYSSES, aside to Troilus",
+      "play": "",
       "notes": []
     },
     "10": {
-      "play": "Stand where the torch may not discover us.",
+      "play": "",
       "notes": []
     },
     "11": {
@@ -15476,17 +15475,18 @@
     },
     "45": {
       "play": "[He exits.]",
-      "notes": []
-    },
-    "54": {
       "notes": [
-        "we draw together] STEEVENS (ed. 1793): This remark seems to be made by Nestor in consequence of the return of Ajax to the field, he having lately refused to co-operate or “draw together” with the Greeks, though at present he is roused from his sullen fit by the loss of a friend."
-      ]
-    },
-    "57": {
-      "notes": [
+        "we draw together] STEEVENS (ed. 1793): This remark seems to be made by Nestor in consequence of the return of Ajax to the field, he having lately refused to co-operate or “draw together” with the Greeks, though at present he is roused from his sullen fit by the loss of a friend.",
         "boy-queller] STEEVENS (ed. 1793): I.e. murderer of a boy. So, in II Henry IV [II.i.50-51]: \"... a man-queller, and a woman-queller.\""
       ]
+    },
+    "54": {
+      "notes": [],
+      "play": ""
+    },
+    "57": {
+      "notes": [],
+      "play": ""
     }
   },
   "ACT 5, SCENE 5": {
@@ -15569,11 +15569,11 @@
       "notes": []
     },
     "20": {
-      "play": "[Enter Nestor, with Soldiers bearing the body of",
+      "play": "[Enter Nestor, with Soldiers bearing the body of Patroclus.]",
       "notes": []
     },
     "21": {
-      "play": "Patroclus.]",
+      "play": "",
       "notes": []
     },
     "22": {
@@ -16191,56 +16191,57 @@
     },
     "29": {
       "play": "[They exit with the bodies.]",
-      "notes": []
-    },
-    "39": {
       "notes": [
-        "ignomy] See note on v.iii.133. 37-38. Hence ... name] WHITE (ed. 1865) considers this and the preceding speech to be in their right places here, but erroneously printed at the end of v.iii. His explanation, if it may be called such, is that “they came there [v.iii], doubtless, by some one of those many inexplicable accidents to which manuscript and ‘standing matter’ (i.e., standing in type) are subject in the printing office.”—COWDEN CLARKE (ed. 1868): [The repetition of this couplet from v.iii is] a circumstance which confirms our belief that the closing scenes and existing end are not Shakespeare’s own. It may be that he concluded the play there. It is possible that the final arrangement which he made may not have been considered to form an effective stage catastrophe, and he may have permitted the brief scenes descriptive of the various engagements on the battle-"
-      ]
-    },
-    "52": {
-      "notes": [
-        "coward] DELIUS (ed. 1856) takes this to mean Diomed. That is surely wrong. Troilus’ personal grievances have been wiped out of his mind by the death of Hector; he talks of nothing else. “Coward” refers to “murderer” of line 7. 33–34. Strike ... woe] STEEVENS (ed. 1793): This couplet affords a full and natural close to the play; and though I once thought differently, I must now declare my firm belief that Shakspeare designed it should end here, and that what follows is either a subsequent and injudicious restoration from the elder"
-      ]
-    },
-    "53": {
-      "notes": [
-        "painted cloathes] STEEVENS (ed. 1793): I.e. the painted canvas with which your rooms are hung.—ROLFE (ed. 1884) notes that such painted hangings had mottoes connected with the figures on them, and instances As You Like It, III.ii.358–59: “I answer you right painted cloth, from whence you have studied your questions.”"
-      ]
-    },
-    "59": {
-      "notes": [
-        "hold-dore trade] PARTRIDGE (Sh.’s Bawdy, 1947, p. 127): Prostitution.—prostitutes lounging at brothel-doors to attract customers.—[B]."
-      ]
-    },
-    "60": {
-      "notes": [
-        "my will] This has been taken as a promise of a sequent play. HERTZBERG (ed. 1877) is one of the most vigorous proponents of this interpretation. “Pandarus says that within two months he will make his will here; under no circumstances can that mean anything else than here on the stage. He will then come back, healed ... but in any case in a new play. ... But that can only happen in his Trojan and Greek setting, that is, in a play which will provide the continuation and presumably the conclusion of the action, which is here broken off in the middle."
-      ]
-    },
-    "62": {
-      "notes": [
-        "Goose of Wincheſter] POPE (ed. 1723): The publick stews were anciently under the jurisdiction of the Bishop of Winchester.—MASON (Comments, 1785, p. 319): A strumpet was called a Winchester goose, and a “galled Winchester goose” may mean, either a strumpet that had the venereal disease, or one that felt herself hurt by what Pandarus had said: It is probable that the word was purposefully used to express both these senses.—HERTZBERG (ed. 1877) insists vigorously that the term here refers to a syphilitic ulcer, not to a prostitute. To take the latter sense leads to absurdity. “For the whole distasteful joke turns on the supposition that Pandarus cannot bequeath his illness until he"
-      ]
-    },
-    "108": {
-      "notes": [
-        "coward] DELIUS (ed. 1856) takes this to mean Diomed. That is surely wrong. Troilus' personal grievances have been wiped out of his mind by the death of Hector; he talks of nothing else. \"Coward\" refers to \"murderer\" of line 7. 33-34. Strike ... woe] STEEVENS (ed. 1793): This couplet affords a full and natural close to the play; and though I once thought differently, I must now declare my firm belief that Shakspeare designed it should end here, and that what follows is either a subsequent and injudicious restoration from the elder"
-      ]
-    },
-    "117": {
-      "notes": [
+        "ignomy] See note on v.iii.133. 37-38. Hence ... name] WHITE (ed. 1865) considers this and the preceding speech to be in their right places here, but erroneously printed at the end of v.iii. His explanation, if it may be called such, is that “they came there [v.iii], doubtless, by some one of those many inexplicable accidents to which manuscript and ‘standing matter’ (i.e., standing in type) are subject in the printing office.”—COWDEN CLARKE (ed. 1868): [The repetition of this couplet from v.iii is] a circumstance which confirms our belief that the closing scenes and existing end are not Shakespeare’s own. It may be that he concluded the play there. It is possible that the final arrangement which he made may not have been considered to form an effective stage catastrophe, and he may have permitted the brief scenes descriptive of the various engagements on the battle-",
+        "coward] DELIUS (ed. 1856) takes this to mean Diomed. That is surely wrong. Troilus’ personal grievances have been wiped out of his mind by the death of Hector; he talks of nothing else. “Coward” refers to “murderer” of line 7. 33–34. Strike ... woe] STEEVENS (ed. 1793): This couplet affords a full and natural close to the play; and though I once thought differently, I must now declare my firm belief that Shakspeare designed it should end here, and that what follows is either a subsequent and injudicious restoration from the elder",
+        "painted cloathes] STEEVENS (ed. 1793): I.e. the painted canvas with which your rooms are hung.—ROLFE (ed. 1884) notes that such painted hangings had mottoes connected with the figures on them, and instances As You Like It, III.ii.358–59: “I answer you right painted cloth, from whence you have studied your questions.”",
+        "hold-dore trade] PARTRIDGE (Sh.’s Bawdy, 1947, p. 127): Prostitution.—prostitutes lounging at brothel-doors to attract customers.—[B].",
+        "my will] This has been taken as a promise of a sequent play. HERTZBERG (ed. 1877) is one of the most vigorous proponents of this interpretation. “Pandarus says that within two months he will make his will here; under no circumstances can that mean anything else than here on the stage. He will then come back, healed ... but in any case in a new play. ... But that can only happen in his Trojan and Greek setting, that is, in a play which will provide the continuation and presumably the conclusion of the action, which is here broken off in the middle.",
+        "Goose of Wincheſter] POPE (ed. 1723): The publick stews were anciently under the jurisdiction of the Bishop of Winchester.—MASON (Comments, 1785, p. 319): A strumpet was called a Winchester goose, and a “galled Winchester goose” may mean, either a strumpet that had the venereal disease, or one that felt herself hurt by what Pandarus had said: It is probable that the word was purposefully used to express both these senses.—HERTZBERG (ed. 1877) insists vigorously that the term here refers to a syphilitic ulcer, not to a prostitute. To take the latter sense leads to absurdity. “For the whole distasteful joke turns on the supposition that Pandarus cannot bequeath his illness until he",
+        "coward] DELIUS (ed. 1856) takes this to mean Diomed. That is surely wrong. Troilus' personal grievances have been wiped out of his mind by the death of Hector; he talks of nothing else. \"Coward\" refers to \"murderer\" of line 7. 33-34. Strike ... woe] STEEVENS (ed. 1793): This couplet affords a full and natural close to the play; and though I once thought differently, I must now declare my firm belief that Shakspeare designed it should end here, and that what follows is either a subsequent and injudicious restoration from the elder",
         "traitours] DEIGHTON (ed. 1906): Mr. Craig’s conjecture, “traders,” seems certain. Compare line 49 below, “Good traders in the flesh.”"
       ]
+    },
+    "39": {
+      "notes": [],
+      "play": ""
+    },
+    "52": {
+      "notes": [],
+      "play": ""
+    },
+    "53": {
+      "notes": [],
+      "play": ""
+    },
+    "59": {
+      "notes": [],
+      "play": ""
+    },
+    "60": {
+      "notes": [],
+      "play": ""
+    },
+    "62": {
+      "notes": [],
+      "play": ""
+    },
+    "108": {
+      "notes": [],
+      "play": ""
+    },
+    "117": {
+      "notes": [],
+      "play": ""
     }
   },
   "ACT 5, SCENE 10": {
     "1": {
-      "play": "[Sound retreat. Enter Agamemnon, Ajax, Menelaus,",
+      "play": "[Sound retreat. Enter Agamemnon, Ajax, Menelaus, Nestor, Diomedes, and the rest, marching to the beat of]",
       "notes": []
     },
     "2": {
-      "play": "Nestor, Diomedes, and the rest, marching to the beat of",
+      "play": "",
       "notes": []
     },
     "3": {
@@ -16298,11 +16299,11 @@
   },
   "ACT 5, SCENE 11": {
     "1": {
-      "play": "[Enter Aeneas, Paris, Antenor, Deiphobus, and Trojan",
+      "play": "[Enter Aeneas, Paris, Antenor, Deiphobus, and Trojan soldiers.]",
       "notes": []
     },
     "2": {
-      "play": "soldiers.]",
+      "play": "",
       "notes": []
     },
     "3": {
