@@ -4,3 +4,35 @@ tutu2.pdf
 
 # Folger full XML zip (re-download from folgerdigitaltexts.org if needed)
 Public/Data/folger_tei/complete.zip
+
+# Local Netlify folder
+.netlify
+
+# Environment variables (contains API keys)
+.env
+
+# Node modules
+node_modules/
+deno.lock
+
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# Backup files from SD fixing scripts
+*.bak
+*.bak2
+*.sd_bak
+*.split_bak
+*.split2_bak
+*.merge2_bak
+*.ghost_bak
+*.pre_dp_fix.backup
+*.pre_publish.backup
+*.pre_final.backup.json
+
+# Cropped notes images (generated artifacts)
+cropped_notes/
+
+# Folger TEI XML
+Public/Data/folger_tei/

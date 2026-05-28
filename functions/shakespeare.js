@@ -532,7 +532,25 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const { text, level = 'basic', model = 'gpt-4o-mini', mode, playName, sceneName } = JSON.parse(event.body)
+    const parsedBody = JSON.parse(event.body)
+    const { text, level = 'basic', model = 'gpt-4o-mini', mode, playName, sceneName, type } = parsedBody
+
+    // ── Annotation Chatbot handler ─────────────────────────────────────────
+    if (type === 'annotation_chat') {
+      const { systemPrompt, messages, max_tokens = 1200, temperature = 0.4 } = parsedBody
+      if (!systemPrompt || !messages) {
+        return { statusCode: 400, headers, body: JSON.stringify({ error: 'systemPrompt and messages required' }) }
+      }
+      const chatResp = await openai.chat.completions.create({
+        model: 'gpt-4o',
+        messages: [{ role: 'system', content: systemPrompt }, ...messages],
+        max_tokens,
+        temperature
+      })
+      const answer = chatResp.choices?.[0]?.message?.content || ''
+      return { statusCode: 200, headers, body: JSON.stringify({ answer }) }
+    }
+    // ── End Annotation Chatbot ─────────────────────────────────────────────
 
     if (!text) {
       return {

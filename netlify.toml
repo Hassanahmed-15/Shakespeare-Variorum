@@ -8,11 +8,37 @@
 # Functions configuration
 [functions]
   directory = "functions"
+  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/api/shakespeare"
   to = "/.netlify/functions/shakespeare"
   status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/auth"
+  to = "/.netlify/functions/auth"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/bookmarks"
+  to = "/.netlify/functions/bookmarks"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/reset-password"
+  to = "/.netlify/functions/reset-password"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/progress"
+  to = "/.netlify/functions/progress"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/api/test-shakespeare"

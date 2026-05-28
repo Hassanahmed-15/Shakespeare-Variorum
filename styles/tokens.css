@@ -15,8 +15,8 @@
   --ink-3:#6B7078;      /* tertiary */
 
   /* Accent */
-  --accent:#3B82F6;     /* iOS blue */
-  --accent-press:#2563EB;
+  --accent:#1d1d1f;
+  --accent-press:#000000;
 
   /* Highlight */
   --hl:#e5e7eb;

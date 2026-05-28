@@ -7,7 +7,12 @@
     "build": "echo 'No build step required'"
   },
   "dependencies": {
+    "@node-rs/bcrypt": "^1.10.7",
+    "@supabase/supabase-js": "^2.106.2",
+    "bcryptjs": "^3.0.3",
+    "jsonwebtoken": "^9.0.3",
     "node-fetch": "^2.6.1",
+    "nodemailer": "^8.0.8",
     "openai": "^4.28.0"
   },
   "engines": {
