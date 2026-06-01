@@ -16075,7 +16075,7 @@
 
         // Tokenize query into keywords, stripping common stop words and natural-language filler.
         function _tokenize(str) {
-            const stops = new Set(['a','an','the','of','in','on','at','to','for','and','or','but','is','are','was','were','be','been','have','has','had','with','by','from','give','me','all','notes','note','annotation','annotations','about','that','this','these','those','what','show','find','get','any','some','its','tell','say','says','said','do','does','did','we','us','our','which','who','whom','whose','how','can','will','would','could','should','may','might','shall','critics','critic','commentators','commentator','editors','editor','scholars','scholar','things','thing','matter','talk','talks','talked','talking','discuss','discusses','discussed','discussion','regarding','concerning','please']);
+            const stops = new Set(['a','an','the','of','in','on','at','to','for','and','or','but','is','are','was','were','be','been','have','has','had','with','by','from','give','me','all','notes','note','annotation','annotations','about','abt','that','this','these','those','what','wht','whats','show','find','get','any','some','its','tell','say','says','said','do','does','did','we','us','our','which','who','whom','whose','how','can','will','would','could','should','may','might','shall','critics','critic','commentators','commentator','editors','editor','scholars','scholar','things','thing','matter','talk','talks','talked','talking','discuss','discusses','discussed','discussion','regarding','concerning','please','pls','plz']);
             return String(str || '').toLowerCase()
                 .replace(/[\u2018\u2019\u201B]/g, "'")
                 .replace(/(\p{L}+)['’]s\b/gu, '$1')
