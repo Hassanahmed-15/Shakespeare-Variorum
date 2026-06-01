@@ -16359,9 +16359,16 @@
                             if (!match) return;
                         }
                         const noteLower = note.toLowerCase();
-                        const searchableLower = `${note} ${playText}`.toLowerCase();
+                        const playTextLower = playText.toLowerCase();
                         // If only annotator filter (no real search terms), include all notes for that annotator
-                        const score = tokens.length ? _scoreNote(searchableLower, tokens) : (annotF ? 1 : 0);
+                        let score = annotF ? 1 : 0;
+                        if (tokens.length) {
+                            const noteScore = _scoreNote(noteLower, tokens);
+                            const playTextScore = _scoreNote(playTextLower, tokens);
+                            // Annotation-text hits are much more likely to answer "what critics say";
+                            // play-line-only hits are kept, but ranked beneath substantive note hits.
+                            score = (noteScore * 10) + playTextScore;
+                        }
                         if (score === 0) return;
                         const snippet = _buildSnippet(note, tokens);
                         // Prefer the primary annotator matching the filter for the badge; else first primary
