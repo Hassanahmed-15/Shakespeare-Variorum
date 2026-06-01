@@ -3401,10 +3401,12 @@
                 <div style="display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap;">
                     <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:160px;">
                         <label style="font-size:11.5px;font-weight:600;color:#6e6e73;white-space:nowrap;">By annotator:</label>
-                        <input id="annotatorFilter" type="text" placeholder="e.g. Johnson, Coleridge…"
+                        <input id="annotatorFilter" type="text" placeholder="type any annotator name…"
+                            list="annotatorOptions"
                             style="flex:1;padding:5px 10px;border:1.5px solid #d2d2d7;border-radius:7px;font-size:12.5px;font-family:inherit;outline:none;transition:border-color 0.15s;"
                             onfocus="this.style.borderColor='#1d1d1f'" onblur="this.style.borderColor='#d2d2d7'"
                             onkeydown="if(event.key==='Enter')runAnnotationSearch()" />
+                        <datalist id="annotatorOptions"></datalist>
                     </div>
                     <div id="annotatorChips" style="display:flex;gap:5px;flex-wrap:wrap;">
                         <span style="font-size:11px;color:#86868b;align-self:center;">Quick:</span>
@@ -15858,6 +15860,7 @@
             // Top-right entry is locked to All Plays — hide the scope toggle
             const toggle = document.getElementById('annotScopeToggle');
             if (toggle) toggle.style.display = 'none';
+            _primeAnnotatorSuggestions('all');
             setTimeout(() => document.getElementById('annotSearchInput').focus(), 80);
         }
 
@@ -15874,6 +15877,7 @@
             // In-play entry is locked to the current play — hide the scope toggle
             const toggle = document.getElementById('annotScopeToggle');
             if (toggle) toggle.style.display = 'none';
+            _primeAnnotatorSuggestions('play');
             setTimeout(() => document.getElementById('annotSearchInput').focus(), 80);
         }
 
@@ -15933,6 +15937,10 @@
         // Normalize a name for comparison: lowercase, strip punctuation, collapse spaces
         function _normName(s) {
             return (s || '').toLowerCase().replace(/[.,;:’'"`]/g, '').replace(/\s+/g, ' ').trim();
+        }
+
+        function _normalizeApostrophes(s) {
+            return String(s || '').replace(/[\u2018\u2019\u201B]/g, "'");
         }
 
         function _escapeHtml(s) {
@@ -16196,6 +16204,69 @@
         // Global cache for annotators (populated on first search of a play)
         const _annotatorCache = {};
 
+        function _cacheAnnotatorsForPlay(data, playName) {
+            if (!_annotatorCache[playName]) {
+                _annotatorCache[playName] = _collectAnnotators(data);
+                _refreshAnnotatorOptions();
+            }
+            return _annotatorCache[playName];
+        }
+
+        function _refreshAnnotatorOptions() {
+            const list = document.getElementById('annotatorOptions');
+            if (!list) return;
+            const names = [];
+            for (const set of Object.values(_annotatorCache)) {
+                set.forEach(name => names.push(name));
+            }
+            const unique = [...new Set(names)]
+                .sort((a, b) => a.localeCompare(b))
+                .slice(0, 5000);
+            list.innerHTML = unique.map(name => `<option value="${_escapeHtml(name)}"></option>`).join('');
+        }
+
+        function _getCurrentAnnotationSearchTarget() {
+            let filename = null;
+            let displayName = 'Current Play';
+            const sel = document.getElementById('playSelector');
+            const selectedText = sel ? (sel.options[sel.selectedIndex]?.text || '') : '';
+            for (const [name, file] of Object.entries(PLAY_FILES)) {
+                if (name.toLowerCase() === selectedText.toLowerCase()) { filename = file; displayName = name; break; }
+            }
+            if (!filename && typeof currentPlay !== 'undefined') {
+                const mapped = PLAY_KEY_TO_NAME[currentPlay];
+                if (mapped && PLAY_FILES[mapped]) { filename = PLAY_FILES[mapped]; displayName = mapped; }
+                if (!filename) {
+                    for (const [name, file] of Object.entries(PLAY_FILES)) {
+                        if (name.toLowerCase().includes(currentPlay.toLowerCase()) || currentPlay.toLowerCase().includes(name.toLowerCase().split(' ')[0])) {
+                            filename = file; displayName = name; break;
+                        }
+                    }
+                }
+            }
+            return filename ? { filename, displayName } : null;
+        }
+
+        async function _primeAnnotatorSuggestions(scope) {
+            try {
+                if (scope === 'all') {
+                    const entries = Object.entries(PLAY_FILES);
+                    for (const [playName, filename] of entries) {
+                        if (_annotatorCache[playName]) continue;
+                        try {
+                            const data = await _loadPlayDataForSearch(filename);
+                            _cacheAnnotatorsForPlay(data, playName);
+                        } catch(e) {}
+                    }
+                } else {
+                    const target = _getCurrentAnnotationSearchTarget();
+                    if (!target || _annotatorCache[target.displayName]) return;
+                    const data = await _loadPlayDataForSearch(target.filename);
+                    _cacheAnnotatorsForPlay(data, target.displayName);
+                }
+            } catch(e) {}
+        }
+
         function _annotSuggestAnnotator(val) {
             const box = document.getElementById('annotatorSuggest');
             if (!box) return;
@@ -16222,9 +16293,7 @@
 
         function _searchNotesInData(data, query, playName, annotatorFilter) {
             // If filter looks like a full phrase, extract just the name from it
-            let cleanFilter = annotatorFilter || '';
-            const parsedFromFilter = _parseAnnotatorFromQuery(cleanFilter);
-            if (parsedFromFilter) cleanFilter = parsedFromFilter;
+            const cleanFilter = _cleanAnnotatorFilter(annotatorFilter || '');
             const annotF = _normName(cleanFilter);
             // Strip annotator name from keyword tokens to avoid double-filtering
             let tokens = _tokenize(query);
@@ -16235,9 +16304,7 @@
             const results = [];
 
             // Cache annotators for autocomplete
-            if (!_annotatorCache[playName]) {
-                _annotatorCache[playName] = _collectAnnotators(data);
-            }
+            _cacheAnnotatorsForPlay(data, playName);
 
             for (const [sceneKey, sceneVal] of Object.entries(data)) {
                 if (sceneKey === 'DRAMATIS PERSONAE' || typeof sceneVal !== 'object' || !sceneVal) continue;
@@ -16278,16 +16345,27 @@
 
         // Parse "Give me all of Johnson's notes" → "Johnson" from the main search box
         function _parseAnnotatorFromQuery(q) {
-            q = String(q || '').replace(/[\u2018\u2019\u201B]/g, "'");
+            q = _normalizeApostrophes(q);
             const pats = [
-                /\bgive\s+me\s+(?:all\s+(?:of\s+)?)?([a-z][a-z\s.\-]{1,30}?)(?:'s|s)?\s+notes?\b/i,
-                /\ball\s+(?:of\s+)?([a-z][a-z\s.\-]{1,30}?)(?:'s|s)?\s+notes?\b/i,
+                /\bgive\s+me\s+(?:all\s+(?:of\s+)?)?(?:the\s+)?([a-z][a-z\s.\-]{1,30}?)(?:'s|s)?\s+notes?\b/i,
+                /\ball\s+(?:of\s+)?(?:the\s+)?([a-z][a-z\s.\-]{1,30}?)(?:'s|s)?\s+notes?\b/i,
                 /\bnotes?\s+(?:by|from)\s+([a-z][a-z\s.\-]{1,30})/i,
                 /\bby\s+([a-z][a-z\s.\-]{1,30})\s*$/i,
-                /^([a-z][a-z\s.\-]{1,30}?)(?:'s|s)?\s+notes?\s*$/i,
+                /^(?:the\s+)?([a-z][a-z\s.\-]{1,30}?)(?:'s|s)?\s+notes?\s*$/i,
             ];
             for (const p of pats) { const m = q.match(p); if (m) return m[1].trim(); }
             return null;
+        }
+
+        function _cleanAnnotatorFilter(raw) {
+            const parsed = _parseAnnotatorFromQuery(raw);
+            if (parsed) return parsed;
+            return _normalizeApostrophes(raw)
+                .replace(/\b(?:give|show|find|get|me|all|of|the|notes?|annotations?|by|from|please)\b/gi, ' ')
+                .replace(/'s\b/gi, '')
+                .replace(/[^\p{L}\p{N}\s.\-]/gu, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
         }
 
         async function runAnnotationSearch() {
@@ -16307,7 +16385,12 @@
             } else if (playIntent) {
                 query = playIntent.queryWithoutPlay;
             }
-            const annotFilter = (document.getElementById('annotatorFilter')?.value || '').trim();
+            const rawAnnotFilter = (document.getElementById('annotatorFilter')?.value || '').trim();
+            const annotFilter = _cleanAnnotatorFilter(rawAnnotFilter);
+            if (rawAnnotFilter && annotFilter && rawAnnotFilter !== annotFilter) {
+                const filterEl = document.getElementById('annotatorFilter');
+                if (filterEl) filterEl.value = annotFilter;
+            }
             if (!query && !annotFilter) return;
             const resultsDiv = document.getElementById('annotSearchResults');
             const statusDiv  = document.getElementById('annotSearchStatus');
