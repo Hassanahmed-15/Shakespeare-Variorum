@@ -15802,7 +15802,7 @@
             "Merry Wives of Windsor":       "Public/Data/merry_wives_of_windsor.json",
             "A Midsummer Night's Dream":    "Public/Data/midsummer_nights_dream.json",
             "Much Ado About Nothing":       "Public/Data/much_ado_about_nothing.json",
-            "Othello":                      "Public/Data/othello.json",
+            "Othello":                      "Public/Data/othello_notes_folger.json",
             "Pericles":                     "Public/Data/pericles.json",
             "Richard II":                   "Public/Data/richard_ii.json",
             "Richard III":                  "Public/Data/richard_iii.json",
@@ -16225,6 +16225,41 @@
             list.innerHTML = unique.map(name => `<option value="${_escapeHtml(name)}"></option>`).join('');
         }
 
+        function _editDistance(a, b) {
+            a = _normName(a);
+            b = _normName(b);
+            if (!a || !b) return Math.max(a.length, b.length);
+            const prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+            const curr = Array(b.length + 1).fill(0);
+            for (let i = 1; i <= a.length; i++) {
+                curr[0] = i;
+                for (let j = 1; j <= b.length; j++) {
+                    const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+                    curr[j] = Math.min(prev[j] + 1, curr[j - 1] + 1, prev[j - 1] + cost);
+                }
+                for (let j = 0; j <= b.length; j++) prev[j] = curr[j];
+            }
+            return prev[b.length];
+        }
+
+        function _resolveAnnotatorFilter(normFilter, playName) {
+            if (!normFilter || !_annotatorCache[playName]) return normFilter;
+            const candidates = [..._annotatorCache[playName]].map(name => ({ name, norm: _normName(name) })).filter(c => c.norm);
+            const exact = candidates.find(c => c.norm === normFilter);
+            if (exact) return exact.norm;
+            const contains = candidates.find(c => c.norm.includes(normFilter) || normFilter.includes(c.norm));
+            if (contains) return contains.norm;
+            if (normFilter.length < 4) return normFilter;
+            let best = null;
+            for (const c of candidates) {
+                if (Math.abs(c.norm.length - normFilter.length) > 3) continue;
+                const dist = _editDistance(normFilter, c.norm);
+                if (!best || dist < best.dist) best = { ...c, dist };
+            }
+            const maxDist = normFilter.length <= 8 ? 2 : 3;
+            return best && best.dist <= maxDist ? best.norm : normFilter;
+        }
+
         function _getCurrentAnnotationSearchTarget() {
             let filename = null;
             let displayName = 'Current Play';
@@ -16294,7 +16329,7 @@
         function _searchNotesInData(data, query, playName, annotatorFilter) {
             // If filter looks like a full phrase, extract just the name from it
             const cleanFilter = _cleanAnnotatorFilter(annotatorFilter || '');
-            const annotF = _normName(cleanFilter);
+            let annotF = _normName(cleanFilter);
             // Strip annotator name from keyword tokens to avoid double-filtering
             let tokens = _tokenize(query);
             if (annotF) {
@@ -16305,6 +16340,7 @@
 
             // Cache annotators for autocomplete
             _cacheAnnotatorsForPlay(data, playName);
+            annotF = _resolveAnnotatorFilter(annotF, playName);
 
             for (const [sceneKey, sceneVal] of Object.entries(data)) {
                 if (sceneKey === 'DRAMATIS PERSONAE' || typeof sceneVal !== 'object' || !sceneVal) continue;
