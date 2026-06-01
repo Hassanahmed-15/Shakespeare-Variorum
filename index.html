@@ -16159,7 +16159,11 @@
         }
 
         function _searchNotesInData(data, query, playName, annotatorFilter) {
-            const annotF = _normName(annotatorFilter || '');
+            // If filter looks like a full phrase, extract just the name from it
+            let cleanFilter = annotatorFilter || '';
+            const parsedFromFilter = _parseAnnotatorFromQuery(cleanFilter);
+            if (parsedFromFilter) cleanFilter = parsedFromFilter;
+            const annotF = _normName(cleanFilter);
             // Strip annotator name from keyword tokens to avoid double-filtering
             let tokens = _tokenize(query);
             if (annotF) {
