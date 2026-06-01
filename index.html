@@ -16138,20 +16138,8 @@
             const box = document.getElementById('annotatorSuggest');
             if (!box) return;
             const q = val.trim().toLowerCase();
-            // Look for "give me X's notes" or "by X" or "X's notes" patterns to auto-fill filter
-            const namePatterns = [
-                /\bgive\s+me\s+(?:all\s+of\s+)?([a-z][a-z\s\.\-]{2,30})(?:'s)?\s+notes/i,
-                /\ball\s+(?:of\s+)?([a-z][a-z\s\.\-]{2,30})(?:'s)?\s+notes/i,
-                /\bby\s+([a-z][a-z\s\.\-]{2,30})\b/i,
-            ];
-            for (const pat of namePatterns) {
-                const m = val.match(pat);
-                if (m) {
-                    document.getElementById('annotatorFilter').value = m[1].trim();
-                    box.style.display = 'none';
-                    return;
-                }
-            }
+            // Don't auto-fill the filter on typing — let runAnnotationSearch handle it on submit
+            // Just show autocomplete suggestions if it looks like a plain name is being typed
             if (!q || q.length < 2) { box.style.display = 'none'; return; }
             // Build candidate list from all cached annotators
             const candidates = [];
@@ -16236,13 +16224,18 @@
 
         async function runAnnotationSearch() {
             const rawQuery = document.getElementById('annotSearchInput').value.trim();
-            // Auto-detect annotator intent typed in the main search box
+            // Auto-detect annotator intent from phrases like "Give me all of Johnson's notes"
             const detected = _parseAnnotatorFromQuery(rawQuery);
+            let query = rawQuery;
             if (detected) {
-                const el = document.getElementById('annotatorFilter');
-                if (el && !el.value.trim()) el.value = detected;
+                // Overwrite filter with just the name, clear the main input so it doesn't
+                // also try to keyword-match the full phrase
+                const filterEl = document.getElementById('annotatorFilter');
+                if (filterEl) filterEl.value = detected;
+                const searchEl = document.getElementById('annotSearchInput');
+                if (searchEl) searchEl.value = '';
+                query = '';
             }
-            const query       = rawQuery;
             const annotFilter = (document.getElementById('annotatorFilter')?.value || '').trim();
             if (!query && !annotFilter) return;
             const resultsDiv = document.getElementById('annotSearchResults');
