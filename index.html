@@ -16058,23 +16058,25 @@
 
         // Tokenize query into keywords, stripping common stop words
         function _tokenize(str) {
-            const stops = new Set(['a','an','the','of','in','on','at','to','for','and','or','but','is','are','was','were','be','been','have','has','had','with','by','from','give','me','all','notes','about','that','this','what','show','find','get','any','some','its']);
-            return str.toLowerCase().replace(/["""'']/g, '').split(/\s+/).filter(w => w.length > 1 && !stops.has(w));
+            const stops = new Set(['a','an','the','of','in','on','at','to','for','and','or','but','is','are','was','were','be','been','have','has','had','with','by','from','give','me','all','notes','note','about','that','this','what','show','find','get','any','some','its','tell','say','says','said','do','does','did','we','us','our','which','who','how','can','will','would','could','should','may','might','shall','critics','critic','things','thing']);
+            return str.toLowerCase()
+                .replace(/(\w+)[''']s\b/g, '$1') // strip possessives: johnson's → johnson
+                .replace(/["""''']/g, '')
+                .split(/\s+/)
+                .filter(w => w.length > 2 && !stops.has(w));
         }
 
-        // Score a note against query tokens — returns 0 if no match
+        // Score a note — ALL tokens must match (AND logic), bonus for exact phrase
         function _scoreNote(noteLower, tokens) {
             if (!tokens.length) return 0;
             let score = 0;
-            let matched = 0;
             for (const t of tokens) {
-                if (noteLower.includes(t)) { score += 1; matched++; }
+                if (!noteLower.includes(t)) return 0; // ALL tokens required
+                score += 1;
             }
-            if (matched === 0) return 0;
-            // Bonus for phrase match (all tokens adjacent)
             if (tokens.length > 1) {
                 const phrase = tokens.join(' ');
-                if (noteLower.includes(phrase)) score += tokens.length;
+                if (noteLower.includes(phrase)) score += tokens.length * 2;
             }
             return score;
         }
@@ -16169,8 +16171,13 @@
         }
 
         function _searchNotesInData(data, query, playName, annotatorFilter) {
-            const tokens = _tokenize(query);
             const annotF = _normName(annotatorFilter || '');
+            // Strip annotator name from keyword tokens to avoid double-filtering
+            let tokens = _tokenize(query);
+            if (annotF) {
+                const annotParts = annotF.split(/\s+/);
+                tokens = tokens.filter(t => !annotParts.some(p => p.includes(t) || t.includes(p)));
+            }
             const results = [];
 
             // Cache annotators for autocomplete
@@ -16214,8 +16221,28 @@
             return results;
         }
 
+        // Parse "Give me all of Johnson's notes" → "Johnson" from the main search box
+        function _parseAnnotatorFromQuery(q) {
+            const pats = [
+                /\bgive\s+me\s+(?:all\s+(?:of\s+)?)?([a-z][a-z\s\.\-]{2,30})(?:[''']s|s)?\s+notes?\b/i,
+                /\ball\s+(?:of\s+)?([a-z][a-z\s\.\-]{2,30})(?:[''']s|s)?\s+notes?\b/i,
+                /\bnotes?\s+(?:by|from)\s+([a-z][a-z\s\.\-]{2,30})/i,
+                /\bby\s+([a-z][a-z\s\.\-]{2,30})\s*$/i,
+                /^([a-z][a-z\s\.\-]{2,30})(?:[''']s|s)?\s+notes?\s*$/i,
+            ];
+            for (const p of pats) { const m = q.match(p); if (m) return m[1].trim(); }
+            return null;
+        }
+
         async function runAnnotationSearch() {
-            const query       = document.getElementById('annotSearchInput').value.trim();
+            const rawQuery = document.getElementById('annotSearchInput').value.trim();
+            // Auto-detect annotator intent typed in the main search box
+            const detected = _parseAnnotatorFromQuery(rawQuery);
+            if (detected) {
+                const el = document.getElementById('annotatorFilter');
+                if (el && !el.value.trim()) el.value = detected;
+            }
+            const query       = rawQuery;
             const annotFilter = (document.getElementById('annotatorFilter')?.value || '').trim();
             if (!query && !annotFilter) return;
             const resultsDiv = document.getElementById('annotSearchResults');
