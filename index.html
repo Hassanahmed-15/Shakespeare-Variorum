@@ -16383,13 +16383,20 @@
         function _parseAnnotatorFromQuery(q) {
             q = _normalizeApostrophes(q);
             const pats = [
+                /\bnotes?\s+(?:of|by|from)\s+(?:the\s+)?([a-z][a-z\s.\-]{1,30})\b/i,
+                /\bgive\s+me\s+(?:all\s+(?:of\s+)?)?(?:the\s+)?notes?\s+(?:of|by|from)\s+(?:the\s+)?([a-z][a-z\s.\-]{1,30})\b/i,
                 /\bgive\s+me\s+(?:all\s+(?:of\s+)?)?(?:the\s+)?([a-z][a-z\s.\-]{1,30}?)(?:'s|s)?\s+notes?\b/i,
                 /\ball\s+(?:of\s+)?(?:the\s+)?([a-z][a-z\s.\-]{1,30}?)(?:'s|s)?\s+notes?\b/i,
-                /\bnotes?\s+(?:by|from)\s+([a-z][a-z\s.\-]{1,30})/i,
                 /\bby\s+([a-z][a-z\s.\-]{1,30})\s*$/i,
                 /^(?:the\s+)?([a-z][a-z\s.\-]{1,30}?)(?:'s|s)?\s+notes?\s*$/i,
             ];
-            for (const p of pats) { const m = q.match(p); if (m) return m[1].trim(); }
+            const filler = new Set(['the','notes','note','annotation','annotations','all','of','by','from']);
+            for (const p of pats) {
+                const m = q.match(p);
+                if (!m) continue;
+                const candidate = m[1].trim();
+                if (candidate && !filler.has(candidate.toLowerCase())) return candidate;
+            }
             return null;
         }
 
