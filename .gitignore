@@ -39,6 +39,7 @@ data/onions_ocr.txt
 data/schmidt_ocr.txt
 data/schmidt_vol1_ocr.txt
 data/geneva_raw/
+data/leme_raw/
 
 # Folger TEI XML
 Public/Data/folger_tei/

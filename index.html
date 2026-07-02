@@ -14216,6 +14216,12 @@
                     <div id="schmidtContent"></div>
                 </div>
 
+                <div id="lemeSourceBlock" class="source-block" style="display: none;">
+                    <h4>Period Lexicons (LEME: Cawdrey 1604, Bullokar 1616, Cockeram 1623)</h4>
+                    <p class="source-citation" id="lemeCitation"></p>
+                    <div id="lemeContent"></div>
+                </div>
+
                 <div id="genevaSourceBlock" class="source-block" style="display: none;">
                     <h4>Geneva Bible (1599) — possible parallels</h4>
                     <p class="source-citation" id="genevaCitation"></p>
@@ -14954,6 +14960,12 @@
                             <h4>Schmidt Lexicon (1902)</h4>
                             <p class="source-citation" id="schmidtCitation"></p>
                             <div id="schmidtContent"></div>
+                        </div>
+
+                        <div id="lemeSourceBlock" class="source-block" style="display: none;">
+                            <h4>Period Lexicons (LEME: Cawdrey 1604, Bullokar 1616, Cockeram 1623)</h4>
+                            <p class="source-citation" id="lemeCitation"></p>
+                            <div id="lemeContent"></div>
                         </div>
 
                         <div id="genevaSourceBlock" class="source-block" style="display: none;">
@@ -21759,13 +21771,15 @@
 
             const onions = sourceLookup.onions;
             const schmidt = sourceLookup.schmidt;
+            const leme = sourceLookup.leme;
             const geneva = sourceLookup.geneva;
 
             const hasOnions = onions && onions.hits && onions.hits.length > 0;
             const hasSchmidt = schmidt && schmidt.hits && schmidt.hits.length > 0;
+            const hasLeme = leme && leme.hits && leme.hits.length > 0;
             const hasGeneva = geneva && geneva.hits && geneva.hits.length > 0;
 
-            if (!hasOnions && !hasSchmidt && !hasGeneva) {
+            if (!hasOnions && !hasSchmidt && !hasLeme && !hasGeneva) {
                 section.style.display = 'none';
                 return;
             }
@@ -21774,6 +21788,7 @@
 
             const onionsBlock = document.getElementById('onionsSourceBlock');
             const schmidtBlock = document.getElementById('schmidtSourceBlock');
+            const lemeBlock = document.getElementById('lemeSourceBlock');
             const genevaBlock = document.getElementById('genevaSourceBlock');
 
             if (onionsBlock) {
@@ -21796,6 +21811,16 @@
                 }
             }
 
+            if (lemeBlock) {
+                lemeBlock.style.display = hasLeme ? 'block' : 'none';
+                if (hasLeme) {
+                    const citation = document.getElementById('lemeCitation');
+                    const content = document.getElementById('lemeContent');
+                    if (citation) citation.textContent = leme.citation || '';
+                    if (content) content.innerHTML = formatLemeHits(leme.hits);
+                }
+            }
+
             if (genevaBlock) {
                 genevaBlock.style.display = hasGeneva ? 'block' : 'none';
                 if (hasGeneva) {
@@ -21809,6 +21834,21 @@
 
         function updateOnionsSection(sourceLookup) {
             updateSourceReferencesSection(sourceLookup);
+        }
+
+        function formatLemeHits(hits) {
+            if (!hits || !hits.length) return '';
+            let html = '';
+            for (const hit of hits) {
+                html += '<div class="source-entry">';
+                html += `<strong>${hit.headword}</strong>`;
+                if (hit.citation) {
+                    html += `<div style="font-size:0.85rem;color:#666;">${hit.citation}</div>`;
+                }
+                html += `<div>${processContentForFormatting(hit.text)}</div>`;
+                html += '</div>';
+            }
+            return html;
         }
 
         function normalizeLexicalHeadword(word) {
@@ -21832,6 +21872,13 @@
                 for (const hit of sourceLookup.schmidt.hits) {
                     if (hit.headword) map.set(normalizeLexicalHeadword(hit.headword), schmidtLabel);
                     if (hit.query) map.set(normalizeLexicalHeadword(hit.query), schmidtLabel);
+                }
+            }
+            if (sourceLookup.leme && sourceLookup.leme.hits) {
+                for (const hit of sourceLookup.leme.hits) {
+                    const label = hit.citation || `LEME (${hit.source_id || 'period'}, ${hit.source_year || ''})`;
+                    if (hit.headword) map.set(normalizeLexicalHeadword(hit.headword), label);
+                    if (hit.query) map.set(normalizeLexicalHeadword(hit.query), label);
                 }
             }
             return map;

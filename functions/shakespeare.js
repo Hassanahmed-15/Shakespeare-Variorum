@@ -824,7 +824,7 @@ Your job:
       sourceLookup = grounded.sourceLookup
       lexicalLookup = grounded.lexicalLookup
       console.log(
-        `📖 Sources: Onions ${sourceLookup?.onions?.hits?.length || 0}, Schmidt ${sourceLookup?.schmidt?.hits?.length || 0}, Geneva ${sourceLookup?.geneva?.hits?.length || 0}`
+        `📖 Sources: Onions ${sourceLookup?.onions?.hits?.length || 0}, Schmidt ${sourceLookup?.schmidt?.hits?.length || 0}, LEME ${sourceLookup?.leme?.hits?.length || 0}, Geneva ${sourceLookup?.geneva?.hits?.length || 0}`
       )
     }
     

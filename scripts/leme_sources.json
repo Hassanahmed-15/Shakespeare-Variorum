@@ -1,0 +1,49 @@
+[
+  {
+    "id": "cawdrey",
+    "lexicon_id": "0276",
+    "author": "Robert Cawdrey",
+    "title": "A Table Alphabeticall",
+    "year": 1604,
+    "type": "english_hard_word",
+    "url": "https://leme.library.utoronto.ca/plainText/lexicon0276.txt"
+  },
+  {
+    "id": "bullokar",
+    "lexicon_id": "0289",
+    "author": "John Bullokar",
+    "title": "An English Expositor",
+    "year": 1616,
+    "type": "english_hard_word",
+    "url": "https://leme.library.utoronto.ca/plainText/lexicon0289.txt"
+  },
+  {
+    "id": "cockeram",
+    "lexicon_id": "0343",
+    "author": "Henry Cockeram",
+    "title": "The English Dictionarie",
+    "year": 1623,
+    "type": "english_hard_word",
+    "url": "https://leme.library.utoronto.ca/plainText/lexicon0343.txt"
+  },
+  {
+    "id": "florio",
+    "lexicon_id": "0231",
+    "author": "John Florio",
+    "title": "A Worlde of Wordes",
+    "year": 1598,
+    "type": "italian_english",
+    "url": "https://leme.library.utoronto.ca/plainText/lexicon0231.txt",
+    "english_lookup": false
+  },
+  {
+    "id": "cotgrave",
+    "lexicon_id": "0298",
+    "author": "Randle Cotgrave",
+    "title": "A Dictionarie of the French and English Tongues",
+    "year": 1611,
+    "type": "french_english",
+    "url": "https://leme.library.utoronto.ca/plainText/lexicon0298.txt",
+    "english_lookup": false
+  }
+]

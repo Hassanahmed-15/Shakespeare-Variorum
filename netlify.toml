@@ -12,7 +12,8 @@
   included_files = [
     "data/onions_glossary_index.json",
     "data/schmidt_lexicon_index.json",
-    "data/geneva_bible_index.json"
+    "data/geneva_bible_index.json",
+    "data/leme_period_index.json"
   ]
 
 [[redirects]]

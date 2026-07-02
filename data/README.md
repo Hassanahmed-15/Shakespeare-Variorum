@@ -7,6 +7,17 @@ These JSON files power retrieval-based grounding for Basic, Expert, and Full Fat
 | `onions_glossary_index.json` | C. T. Onions, *A Shakespeare Glossary* (1911; rev. 1919) | ~7,800 headwords |
 | `schmidt_lexicon_index.json` | Alexander Schmidt, *Shakespeare-Lexicon* (3rd ed., Sarrazin, 1902) | ~16,750 headwords |
 | `geneva_bible_index.json` | Geneva Bible (1599), eBible.org USFM (`enggnv`) | ~31,090 verses |
+| `leme_period_index.json` | LEME period lexicons (Cawdrey 1604, Bullokar 1616, Cockeram 1623) | ~3,800 headwords |
+
+## LEME period lexicons (contemporary hard-word dictionaries)
+
+```bash
+python3 scripts/build_leme_index.py
+```
+
+Downloads plainText transcriptions from [LEME](https://leme.library.utoronto.ca/) (CC BY 4.0) into `data/leme_raw/`, then builds a merged English headword index.
+
+Configured sources: `scripts/leme_sources.json` (includes Florio 1598 and Cotgrave 1611 metadata; bilingual works are not yet indexed for English headword lookup).
 
 ## Onions
 
