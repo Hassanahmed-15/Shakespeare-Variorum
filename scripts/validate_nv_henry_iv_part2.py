@@ -6,24 +6,24 @@ from __future__ import annotations
 import json
 import re
 import sys
-import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+from nv_ia_witness import (  # noqa: E402
+    PARAPHRASE_RE as PARA,
+    SYNTHETIC_RE as SYNTH,
+    classify_match,
+    fetch_ia_text,
+    ia_match_score,
+)
+
 JSON_PATH = ROOT / "Public/Data/henry_iv_part2.json"
 IA_ID = "newvariorumediti23shak"
-IA_TXT_URL = f"https://archive.org/stream/{IA_ID}/{IA_ID}_djvu.txt"
+IA_STREAM = f"{IA_ID}_djvu.txt"
 IA_ITEM = f"https://archive.org/details/{IA_ID}"
 SAMPLE_SIZE = 40
-
-SYNTH = re.compile(
-    r"^(Editorial note|Annotation|Gloss|Note|Textual|Lexical|Critical note):",
-    re.I,
-)
-PARA = re.compile(
-    r"(notes various|discussion of|Debate among|Explanatory note|On the colloquial|and other editors note)",
-    re.I,
-)
 
 
 def is_clipped(note: str) -> bool:
@@ -79,28 +79,11 @@ def stratified_sample(rows: list[dict], n: int) -> list[dict]:
     return rows[::step][:n]
 
 
-def ia_match_score(ia_text: str, note: str) -> float:
-    note_clean = re.sub(r"\s+", " ", note.strip())
-    m = re.match(r"^[A-Za-z .'-]+:\s*(.{30,120})", note_clean)
-    needle = (m.group(1) if m else note_clean[:80]).strip(" \"'[]")
-    if len(needle) < 20:
-        return 0.0
-    if needle.lower() in ia_text.lower():
-        return 1.0
-    words = [w for w in re.findall(r"[A-Za-z']{4,}", needle.lower())[:12]]
-    if not words:
-        return 0.0
-    ia_low = ia_text.lower()
-    return sum(1 for w in words if w in ia_low) / len(words)
-
-
-def fetch_ia_text() -> str:
-    cache = ROOT / "data/h4p2_ia_djvu.txt"
-    if cache.is_file() and cache.stat().st_size > 100_000:
-        return cache.read_text(encoding="utf-8", errors="replace")
-    req = urllib.request.Request(IA_TXT_URL, headers={"User-Agent": "nv-validate-h4p2/1.0"})
-    with urllib.request.urlopen(req, timeout=180) as resp:
-        return resp.read().decode("utf-8", errors="replace")
+def fetch_ia_witness() -> str:
+    text, _src = fetch_ia_text(IA_ID, IA_STREAM)
+    if text is None:
+        raise OSError(f"could not load IA witness for {IA_ID}")
+    return text
 
 
 def main() -> int:
@@ -130,18 +113,11 @@ def main() -> int:
     sample = stratified_sample(iter_note_lines(data), SAMPLE_SIZE)
     print("\nFetching Internet Archive plain text …")
     try:
-        ia_text = fetch_ia_text()
+        ia_text = fetch_ia_witness()
         buckets = {"exact": 0, "high": 0, "partial": 0, "fail": 0}
         for row in sample:
             best = max((ia_match_score(ia_text, n) for n in row["notes"][:3]), default=0.0)
-            if best >= 0.95:
-                buckets["exact"] += 1
-            elif best >= 0.75:
-                buckets["high"] += 1
-            elif best >= 0.45:
-                buckets["partial"] += 1
-            else:
-                buckets["fail"] += 1
+            buckets[classify_match(best)] += 1
         l2 = {"buckets": buckets, "ia_chars": len(ia_text)}
         print("\n--- IA sample (editi23) ---")
         print(f"  IA: {IA_ITEM}")

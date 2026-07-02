@@ -11,14 +11,18 @@ from __future__ import annotations
 import json
 import re
 import sys
-import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+from nv_ia_witness import classify_match, fetch_ia_text, ia_match_score  # noqa: E402
+
 CANONICAL = ROOT / "Public/Data/hamlet_notes (1).json"
 SITE_JSON = ROOT / "Public/Data/hamlet.json"
-IA_TXT_URL = "https://archive.org/stream/newvariorumediti02shak/newvariorumediti02shak_djvu.txt"
-IA_ITEM = "https://archive.org/details/newvariorumediti02shak"
+IA_ID = "newvariorumediti02shak"
+IA_STREAM = "newvariorumediti02shak_djvu.txt"
+IA_ITEM = f"https://archive.org/details/{IA_ID}"
 SAMPLE_SIZE = 40
 
 
@@ -109,25 +113,11 @@ def stratified_sample(rows: list[dict], n: int) -> list[dict]:
     return picks[: n + 2]
 
 
-def ia_match_score(ia_text: str, note: str) -> float:
-    note_clean = re.sub(r"\s+", " ", note.strip())
-    m = re.match(r"^[A-Za-z .'-]+:\s*(.{30,120})", note_clean)
-    needle = (m.group(1) if m else note_clean[:80]).strip(" \"'[]")
-    if len(needle) < 20:
-        return 0.0
-    if needle.lower() in ia_text.lower():
-        return 1.0
-    words = [w for w in re.findall(r"[A-Za-z']{4,}", needle.lower())[:12]]
-    if not words:
-        return 0.0
-    ia_low = ia_text.lower()
-    return sum(1 for w in words if w in ia_low) / len(words)
-
-
-def fetch_ia_text() -> str:
-    req = urllib.request.Request(IA_TXT_URL, headers={"User-Agent": "nv-validate-hamlet/1.0"})
-    with urllib.request.urlopen(req, timeout=180) as resp:
-        return resp.read().decode("utf-8", errors="replace")
+def fetch_ia_witness() -> str:
+    text, _src = fetch_ia_text(IA_ID, IA_STREAM)
+    if text is None:
+        raise OSError(f"could not load IA witness for {IA_ID}")
+    return text
 
 
 def main() -> int:
@@ -155,18 +145,11 @@ def main() -> int:
     sample = stratified_sample(iter_note_lines(canonical), SAMPLE_SIZE)
     print("\nFetching Internet Archive plain text …")
     try:
-        ia_text = fetch_ia_text()
+        ia_text = fetch_ia_witness()
         buckets = {"exact": 0, "high": 0, "partial": 0, "fail": 0}
         for row in sample:
             best = max((ia_match_score(ia_text, n) for n in row["notes"][:3]), default=0.0)
-            if best >= 0.95:
-                buckets["exact"] += 1
-            elif best >= 0.75:
-                buckets["high"] += 1
-            elif best >= 0.45:
-                buckets["partial"] += 1
-            else:
-                buckets["fail"] += 1
+            buckets[classify_match(best)] += 1
         l2 = {"buckets": buckets, "ia_chars": len(ia_text)}
         print("\n--- Level 2: sample vs IA ---")
         print(f"  IA: {IA_ITEM}")

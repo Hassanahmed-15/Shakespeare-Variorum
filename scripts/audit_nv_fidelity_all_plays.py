@@ -7,55 +7,65 @@ import json
 import re
 import statistics
 import sys
-import urllib.error
-import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+from nv_ia_witness import (  # noqa: E402
+    PARAPHRASE_RE,
+    SYNTHETIC_RE,
+    fetch_ia_text,
+    score_note_sample,
+)
+
 OUT_JSON = ROOT / "validation" / "nv_fidelity_all_plays.json"
 OUT_CSV = ROOT / "validation" / "nv_fidelity_all_plays.csv"
-SAMPLE_N = 30
+OUT_SUMMARY = ROOT / "validation" / "nv_fidelity_summary.json"
+SAMPLE_N = 35
+TIER_A_L2_MIN = 85.0
+CLIP_MAX_PCT = 4.0
 
 # 22 NV dramatic volumes (Richard II excluded — site lists as forthcoming)
 PLAYS = [
     {"play": "Romeo and Juliet", "year": 1871, "json": "Public/Data/romeo_and_juliet.json",
-     "ia": "newvariorumediti00shak", "ia_stream": "newvariorumediti00shak_djvu.txt"},
+     "ia": "newvariorumediti01shak", "ia_stream": "newvariorumediti01shak_djvu.txt"},
     {"play": "Macbeth", "year": 1873, "json": "Public/Data/macbeth_notes_cleaned_play.json",
      "ia": "newvariorumediti10shak", "ia_stream": "newvariorumediti10shak_djvu.txt"},
     {"play": "Hamlet", "year": 1877, "json": "Public/Data/hamlet_notes (1).json",
      "ia": "newvariorumediti02shak", "ia_stream": "newvariorumediti02shak_djvu.txt"},
     {"play": "King Lear", "year": 1880, "json": "Public/Data/kinglear_notes.json",
-     "ia": "newvariorumediti03shak", "ia_stream": "newvariorumediti03shak_djvu.txt"},
+     "ia": "kinglearthenewva0005shak", "ia_stream": "kinglearthenewva0005shak_djvu.txt"},
     {"play": "Othello", "year": 1886, "json": "Public/Data/othello_notes_folger.json",
      "ia": "newvariorumediti13shak", "ia_stream": "newvariorumediti13shak_djvu.txt"},
     {"play": "The Merchant of Venice", "year": 1888, "json": "Public/Data/merchant_of_venice.json",
-     "ia": "newvariorumediti04shak", "ia_stream": "newvariorumediti04shak_djvu.txt"},
+     "ia": "newvariorumediti0000unse_h5u1", "ia_stream": "newvariorumediti0000unse_h5u1_djvu.txt"},
     {"play": "As You Like It", "year": 1890, "json": "Public/Data/as_you_like_it.json",
      "ia": "newvariorumediti05shak", "ia_stream": "newvariorumediti05shak_djvu.txt"},
     {"play": "The Tempest", "year": 1892, "json": "Public/Data/the_tempest.json",
-     "ia": "newvariorumediti06shak", "ia_stream": "newvariorumediti06shak_djvu.txt"},
+     "ia": "tempestnewvarior0009unse", "ia_stream": "tempestnewvarior0009unse_djvu.txt"},
     {"play": "A Midsummer Night's Dream", "year": 1895, "json": "Public/Data/midsummer_nights_dream.json",
      "ia": "newvariorumediti07shak", "ia_stream": "newvariorumediti07shak_djvu.txt"},
     {"play": "The Winter's Tale", "year": 1898, "json": "Public/Data/the_winters_tale.json",
-     "ia": "newvariorumediti08shak", "ia_stream": "newvariorumediti08shak_djvu.txt"},
+     "ia": "winterstale0007unse", "ia_stream": "winterstale0007unse_djvu.txt"},
     {"play": "Much Ado About Nothing", "year": 1899, "json": "Public/Data/much_ado_about_nothing.json",
-     "ia": "newvariorumediti09shak", "ia_stream": "newvariorumediti09shak_djvu.txt"},
+     "ia": "in.ernet.dli.2015.94001", "ia_stream": "2015.94001.A-New-Variorum-Edition-Of-Shakespearemuch-Adoe-About-Nothingvol12ed2_djvu.txt"},
     {"play": "Twelfth Night", "year": 1901, "json": "Public/Data/twelfth_night.json",
      "ia": "newvariorumediti11shak", "ia_stream": "newvariorumediti11shak_djvu.txt"},
     {"play": "Love's Labour's Lost", "year": 1904, "json": "Public/Data/loves_labours_lost.json",
      "ia": "newvariorumediti12shak", "ia_stream": "newvariorumediti12shak_djvu.txt"},
     {"play": "Antony and Cleopatra", "year": 1907, "json": "Public/Data/antony_and_cleopatra.json",
-     "ia": "newvariorumediti14shak", "ia_stream": "newvariorumediti14shak_djvu.txt"},
+     "ia": "tragedieofanthon0000hora", "ia_stream": "tragedieofanthon0000hora_djvu.txt"},
     {"play": "Richard III", "year": 1908, "json": "Public/Data/richard_iii.json",
      "ia": "newvariorumediti15shak", "ia_stream": "newvariorumediti15shak_djvu.txt"},
     {"play": "Julius Caesar", "year": 1913, "json": "Public/Data/julius_caesar.json",
      "ia": "newvariorumediti16shak", "ia_stream": "newvariorumediti16shak_djvu.txt"},
     {"play": "Cymbeline", "year": 1913, "json": "Public/Data/cymbeline.json",
-     "ia": "newvariorumediti17shak", "ia_stream": "newvariorumediti17shak_djvu.txt"},
+     "ia": "unset0000unse_m8h0", "ia_stream": "unset0000unse_m8h0_djvu.txt"},
     {"play": "King John", "year": 1919, "json": "Public/Data/king_john.json",
-     "ia": "newvariorumediti18shak", "ia_stream": "newvariorumediti18shak_djvu.txt"},
+     "ia": "in.ernet.dli.2015.262202", "ia_stream": "2015.262202.A-New_djvu.txt"},
     {"play": "Coriolanus", "year": 1928, "json": "Public/Data/Coriolanus.json",
-     "ia": "newvariorumediti19shak", "ia_stream": "newvariorumediti19shak_djvu.txt"},
+     "ia": "tragedieofcoriol0002edit", "ia_stream": "tragedieofcoriol0002edit_djvu.txt"},
     {"play": "Henry IV, Part 1", "year": 1936, "json": "Public/Data/henry_iv_part1.json",
      "ia": "newvariorumediti21shak", "ia_stream": "newvariorumediti21shak_djvu.txt"},
     {"play": "Henry IV, Part 2", "year": 1940, "json": "Public/Data/henry_iv_part2.json",
@@ -64,18 +74,25 @@ PLAYS = [
      "ia": "newvariorumediti22shak", "ia_stream": "newvariorumediti22shak_djvu.txt"},
 ]
 
-SYNTHETIC_RE = re.compile(
-    r"^(Editorial note|Annotation|Gloss|Note|Textual|Lexical|Critical note|Dramatic note|Editorial comment):",
-    re.I,
-)
-PARAPHRASE_RE = re.compile(
-    r"(notes various|discussion of|Debate among|Explanatory note|On the colloquial|and other editors note)",
-    re.I,
-)
 
-
-def alnum(s: str) -> str:
-    return re.sub(r"[^a-z0-9]", "", s.lower())
+def is_clipped(note: str) -> bool:
+    n = note.strip()
+    if not n:
+        return False
+    if re.search(
+        r"\b(to|the|a|an|of|in|that|which|with|for|as|is|are|was|were|be|"
+        r"have|has|had|not|but|on|at|from)\s*$",
+        n,
+        re.I,
+    ):
+        return True
+    if re.search(r"-\s*$", n):
+        return True
+    if n.count("(") > n.count(")"):
+        return True
+    if n.rstrip()[-1:] in ";:,":
+        return True
+    return False
 
 
 def collect_notes(data: dict) -> list[str]:
@@ -100,6 +117,8 @@ def structural_metrics(notes: list[str]) -> dict:
             "synthetic_prefix": 0,
             "paraphrase_style": 0,
             "long_nv_style": 0,
+            "clipped_notes": 0,
+            "clipped_pct": 0.0,
         }
     lens = [len(n) for n in notes]
     synthetic = sum(1 for n in notes if SYNTHETIC_RE.match(n.strip()))
@@ -107,6 +126,7 @@ def structural_metrics(notes: list[str]) -> dict:
         1 for n in notes
         if len(n) < 300 and (" — " in n or "—" in n) and PARAPHRASE_RE.search(n)
     )
+    clipped = sum(1 for n in notes if is_clipped(n))
     long_style = sum(1 for n in notes if len(n) > 800)
     return {
         "note_strings": len(notes),
@@ -117,30 +137,9 @@ def structural_metrics(notes: list[str]) -> dict:
         "synthetic_prefix": synthetic,
         "paraphrase_style": paraphrase,
         "long_nv_style": long_style,
+        "clipped_notes": clipped,
+        "clipped_pct": round(100 * clipped / len(notes), 2),
     }
-
-
-def ia_verdict(note: str, ia_alnum: str) -> str:
-    frag = alnum(note)
-    if len(frag) < 40:
-        return "short_lemma"
-    for size in (80, 60, 40):
-        if len(frag) >= size and frag[:size] in ia_alnum:
-            return "ia_traceable"
-    if len(note) < 220 and (" — " in note or PARAPHRASE_RE.search(note) or SYNTHETIC_RE.match(note)):
-        return "paraphrase"
-    return "unverified"
-
-
-def fetch_ia_alnum(ia_id: str, stream: str) -> tuple[str | None, str | None]:
-    url = f"https://archive.org/stream/{ia_id}/{stream}"
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "nv-fidelity-audit/1.0"})
-        with urllib.request.urlopen(req, timeout=90) as resp:
-            text = resp.read().decode("utf-8", errors="replace")
-        return alnum(text), url
-    except Exception as e:
-        return None, f"{url} ({e})"
 
 
 def sample_notes(notes: list[str], n: int) -> list[str]:
@@ -148,6 +147,20 @@ def sample_notes(notes: list[str], n: int) -> list[str]:
         return notes
     step = max(1, len(notes) // n)
     return notes[::step][:n]
+
+
+def assign_tier(metrics: dict, l2: dict | None) -> str:
+    if metrics["synthetic_prefix"] > 0 or metrics["paraphrase_style"] > 0:
+        return "C"
+    if metrics["clipped_pct"] > CLIP_MAX_PCT:
+        return "B"
+    if l2 is None:
+        return "A" if metrics["synthetic_prefix"] == 0 else "B"
+    if l2["exact_high_pct"] >= TIER_A_L2_MIN and l2["fail_pct"] == 0:
+        return "A"
+    if l2["exact_high_pct"] >= TIER_A_L2_MIN:
+        return "A"
+    return "B"
 
 
 def audit_play(spec: dict) -> dict:
@@ -166,54 +179,91 @@ def audit_play(spec: dict) -> dict:
         **metrics,
     }
 
-    ia_alnum, ia_meta = fetch_ia_alnum(spec["ia"], spec["ia_stream"])
-    if ia_alnum is None:
+    ia_text, ia_meta = fetch_ia_text(spec["ia"], spec["ia_stream"])
+    if ia_text is None:
         row["ia_status"] = "fetch_failed"
         row["ia_url"] = ia_meta
         row["ia_sample_n"] = 0
-        row["ia_traceable_pct"] = None
-        row["paraphrase_pct"] = None
+        row["l2_exact_pct"] = None
+        row["l2_exact_high_pct"] = None
+        row["l2_partial_pct"] = None
+        row["l2_fail_pct"] = None
+        row["tier"] = assign_tier(metrics, None)
         return row
 
     row["ia_status"] = "ok"
     row["ia_url"] = ia_meta
     sample = sample_notes(notes, SAMPLE_N) if notes else []
-    counts = {"ia_traceable": 0, "paraphrase": 0, "unverified": 0, "short_lemma": 0}
-    for note in sample:
-        counts[ia_verdict(note, ia_alnum)] += 1
-    row["ia_sample_n"] = len(sample)
-    row["ia_traceable_pct"] = round(100 * counts["ia_traceable"] / len(sample), 1) if sample else None
-    row["paraphrase_pct"] = round(100 * counts["paraphrase"] / len(sample), 1) if sample else None
-    row["ia_unverified_pct"] = round(100 * counts["unverified"] / len(sample), 1) if sample else None
-    row["ia_short_lemma_pct"] = round(100 * counts["short_lemma"] / len(sample), 1) if sample else None
+    l2 = score_note_sample(ia_text, sample)
+    row["ia_sample_n"] = l2["sample_n"]
+    row["l2_exact_pct"] = l2["exact_pct"]
+    row["l2_exact_high_pct"] = l2["exact_high_pct"]
+    row["l2_partial_pct"] = l2["partial_pct"]
+    row["l2_fail_pct"] = l2["fail_pct"]
+    row["l2_buckets"] = l2["buckets"]
+    # legacy column names for downstream readers
+    row["ia_traceable_pct"] = l2["exact_high_pct"]
+    row["ia_unverified_pct"] = l2["fail_pct"]
+    row["paraphrase_pct"] = round(
+        100 * metrics["paraphrase_style"] / max(metrics["note_strings"], 1), 1
+    )
+    row["tier"] = assign_tier(metrics, l2)
     return row
+
+
+def build_summary(rows: list[dict]) -> list[dict]:
+    summary = []
+    for r in rows:
+        if r.get("error"):
+            continue
+        summary.append({
+            "play": r["play"],
+            "notes": r["note_strings"],
+            "avg": r["avg_len"],
+            "med": r["median_len"],
+            "u250": r["pct_under_250"],
+            "o800": r["pct_over_800"],
+            "synth": r["synthetic_prefix"],
+            "para": r["paraphrase_style"],
+            "long": r["long_nv_style"],
+            "clipped_pct": r["clipped_pct"],
+            "ia_pct": r.get("l2_exact_high_pct"),
+            "l2_exact_pct": r.get("l2_exact_pct"),
+            "tier": r.get("tier", "?"),
+        })
+    return summary
 
 
 def main() -> int:
     rows = [audit_play(spec) for spec in PLAYS]
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(rows, indent=2) + "\n", encoding="utf-8")
+    OUT_SUMMARY.write_text(json.dumps(build_summary(rows), indent=2) + "\n", encoding="utf-8")
 
     headers = [
         "play", "year", "note_strings", "avg_len", "median_len", "pct_under_250",
-        "pct_over_800", "synthetic_prefix", "paraphrase_style", "ia_status",
-        "ia_traceable_pct", "paraphrase_pct", "ia_unverified_pct",
+        "pct_over_800", "synthetic_prefix", "paraphrase_style", "clipped_pct",
+        "ia_status", "l2_exact_high_pct", "l2_fail_pct", "tier",
     ]
     lines = [",".join(headers)]
     for r in rows:
         lines.append(",".join(str(r.get(h, "")) for h in headers))
     OUT_CSV.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-    print(f"Wrote {OUT_JSON}\nWrote {OUT_CSV}\n")
-    print(f"{'Play':<32} {'Notes':>6} {'Avg':>5} {'<250%':>6} {'>800%':>6} {'Synth':>5} {'IA%':>6} {'Para%':>6}")
+    print(f"Wrote {OUT_JSON}")
+    print(f"Wrote {OUT_SUMMARY}")
+    print(f"Wrote {OUT_CSV}\n")
+    print(
+        f"{'Play':<32} {'Notes':>6} {'Synth':>5} {'L2%':>6} {'Fail':>5} {'Tier':>4}"
+    )
     for r in rows:
         if r.get("error"):
             print(f"{r['play']:<32} ERROR: {r['error']}")
             continue
         print(
-            f"{r['play']:<32} {r['note_strings']:>6} {r['avg_len']:>5} "
-            f"{r['pct_under_250']:>6} {r['pct_over_800']:>6} {r['synthetic_prefix']:>5} "
-            f"{str(r.get('ia_traceable_pct','—')):>6} {str(r.get('paraphrase_pct','—')):>6}"
+            f"{r['play']:<32} {r['note_strings']:>6} {r['synthetic_prefix']:>5} "
+            f"{str(r.get('l2_exact_high_pct','—')):>6} "
+            f"{str(r.get('l2_fail_pct','—')):>5} {r.get('tier','?'):>4}"
         )
     return 0
 

@@ -9,7 +9,9 @@
     "synth": 0,
     "para": 0,
     "long": 175,
-    "ia_pct": null,
+    "clipped_pct": 1.25,
+    "ia_pct": 100.0,
+    "l2_exact_pct": 62.9,
     "tier": "A"
   },
   {
@@ -22,7 +24,9 @@
     "synth": 0,
     "para": 0,
     "long": 309,
-    "ia_pct": 70.0,
+    "clipped_pct": 1.76,
+    "ia_pct": 97.1,
+    "l2_exact_pct": 74.3,
     "tier": "A"
   },
   {
@@ -35,7 +39,9 @@
     "synth": 0,
     "para": 0,
     "long": 271,
-    "ia_pct": null,
+    "clipped_pct": 0.98,
+    "ia_pct": 91.4,
+    "l2_exact_pct": 31.4,
     "tier": "A"
   },
   {
@@ -48,7 +54,9 @@
     "synth": 0,
     "para": 0,
     "long": 184,
-    "ia_pct": null,
+    "clipped_pct": 0.34,
+    "ia_pct": 100.0,
+    "l2_exact_pct": 80.0,
     "tier": "A"
   },
   {
@@ -59,9 +67,11 @@
     "u250": 58.6,
     "o800": 13.2,
     "synth": 25,
-    "para": 28,
+    "para": 9,
     "long": 123,
-    "ia_pct": 73.3,
+    "clipped_pct": 0.75,
+    "ia_pct": 97.1,
+    "l2_exact_pct": 77.1,
     "tier": "C"
   },
   {
@@ -74,7 +84,9 @@
     "synth": 0,
     "para": 0,
     "long": 190,
-    "ia_pct": null,
+    "clipped_pct": 1.46,
+    "ia_pct": 100.0,
+    "l2_exact_pct": 82.9,
     "tier": "A"
   },
   {
@@ -85,10 +97,12 @@
     "u250": 42.7,
     "o800": 24.7,
     "synth": 0,
-    "para": 0,
+    "para": 1,
     "long": 232,
-    "ia_pct": null,
-    "tier": "A"
+    "clipped_pct": 0.74,
+    "ia_pct": 94.3,
+    "l2_exact_pct": 37.1,
+    "tier": "C"
   },
   {
     "play": "The Tempest",
@@ -100,7 +114,9 @@
     "synth": 0,
     "para": 0,
     "long": 219,
-    "ia_pct": null,
+    "clipped_pct": 2.34,
+    "ia_pct": 97.1,
+    "l2_exact_pct": 71.4,
     "tier": "A"
   },
   {
@@ -113,7 +129,9 @@
     "synth": 0,
     "para": 0,
     "long": 176,
-    "ia_pct": null,
+    "clipped_pct": 0.54,
+    "ia_pct": 85.7,
+    "l2_exact_pct": 42.9,
     "tier": "A"
   },
   {
@@ -126,8 +144,10 @@
     "synth": 0,
     "para": 0,
     "long": 205,
-    "ia_pct": null,
-    "tier": "A"
+    "clipped_pct": 4.18,
+    "ia_pct": 100.0,
+    "l2_exact_pct": 62.9,
+    "tier": "B"
   },
   {
     "play": "Much Ado About Nothing",
@@ -139,7 +159,9 @@
     "synth": 0,
     "para": 0,
     "long": 216,
-    "ia_pct": null,
+    "clipped_pct": 0.43,
+    "ia_pct": 100.0,
+    "l2_exact_pct": 74.3,
     "tier": "A"
   },
   {
@@ -152,7 +174,9 @@
     "synth": 0,
     "para": 0,
     "long": 279,
-    "ia_pct": 63.3,
+    "clipped_pct": 1.31,
+    "ia_pct": 97.1,
+    "l2_exact_pct": 22.9,
     "tier": "A"
   },
   {
@@ -165,8 +189,10 @@
     "synth": 0,
     "para": 0,
     "long": 254,
-    "ia_pct": null,
-    "tier": "A"
+    "clipped_pct": 2.05,
+    "ia_pct": 82.9,
+    "l2_exact_pct": 11.4,
+    "tier": "B"
   },
   {
     "play": "Antony and Cleopatra",
@@ -178,8 +204,10 @@
     "synth": 0,
     "para": 0,
     "long": 245,
-    "ia_pct": null,
-    "tier": "A"
+    "clipped_pct": 6.93,
+    "ia_pct": 100.0,
+    "l2_exact_pct": 80.0,
+    "tier": "B"
   },
   {
     "play": "Richard III",
@@ -191,8 +219,10 @@
     "synth": 0,
     "para": 0,
     "long": 191,
-    "ia_pct": null,
-    "tier": "A"
+    "clipped_pct": 5.46,
+    "ia_pct": 88.6,
+    "l2_exact_pct": 42.9,
+    "tier": "B"
   },
   {
     "play": "Julius Caesar",
@@ -204,8 +234,10 @@
     "synth": 0,
     "para": 0,
     "long": 151,
-    "ia_pct": null,
-    "tier": "A"
+    "clipped_pct": 5.53,
+    "ia_pct": 94.3,
+    "l2_exact_pct": 25.7,
+    "tier": "B"
   },
   {
     "play": "Cymbeline",
@@ -217,8 +249,10 @@
     "synth": 0,
     "para": 0,
     "long": 272,
-    "ia_pct": null,
-    "tier": "A"
+    "clipped_pct": 8.7,
+    "ia_pct": 100.0,
+    "l2_exact_pct": 94.3,
+    "tier": "B"
   },
   {
     "play": "King John",
@@ -230,8 +264,10 @@
     "synth": 0,
     "para": 0,
     "long": 246,
-    "ia_pct": null,
-    "tier": "A"
+    "clipped_pct": 9.59,
+    "ia_pct": 100.0,
+    "l2_exact_pct": 65.7,
+    "tier": "B"
   },
   {
     "play": "Coriolanus",
@@ -243,8 +279,10 @@
     "synth": 0,
     "para": 0,
     "long": 410,
-    "ia_pct": null,
-    "tier": "A"
+    "clipped_pct": 12.16,
+    "ia_pct": 100.0,
+    "l2_exact_pct": 91.4,
+    "tier": "B"
   },
   {
     "play": "Henry IV, Part 1",
@@ -256,7 +294,9 @@
     "synth": 0,
     "para": 0,
     "long": 57,
-    "ia_pct": null,
+    "clipped_pct": 3.25,
+    "ia_pct": 97.1,
+    "l2_exact_pct": 77.1,
     "tier": "A"
   },
   {
@@ -264,12 +304,14 @@
     "notes": 1982,
     "avg": 252,
     "med": 128,
-    "u250": 74.3,
+    "u250": 74.2,
     "o800": 5.4,
     "synth": 0,
     "para": 0,
     "long": 108,
-    "ia_pct": null,
+    "clipped_pct": 2.77,
+    "ia_pct": 100.0,
+    "l2_exact_pct": 85.7,
     "tier": "A"
   },
   {
@@ -282,7 +324,9 @@
     "synth": 0,
     "para": 0,
     "long": 132,
-    "ia_pct": null,
-    "tier": "A"
+    "clipped_pct": 11.15,
+    "ia_pct": 94.3,
+    "l2_exact_pct": 34.3,
+    "tier": "B"
   }
 ]
