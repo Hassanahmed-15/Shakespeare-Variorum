@@ -11,6 +11,10 @@ url: "https://newvariorum.com"
 license: MIT
 version: 1.0.0
 date-released: 2026-07-02
+doi: 10.5281/zenodo.21126208
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21126208
 keywords:
   - Shakespeare
   - New Variorum Shakespeare

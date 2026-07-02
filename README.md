@@ -483,9 +483,9 @@ This project welcomes contributions for:
 
 Development repository: [github.com/bradrcarson/Shakespeare-Variorum](https://github.com/bradrcarson/Shakespeare-Variorum)
 
-Zenodo archival releases are minted from [GitHub releases](https://github.com/bradrcarson/Shakespeare-Variorum/releases). After the first release is published, add the DOI here:
+Archival release (Zenodo): [doi.org/10.5281/zenodo.21126208](https://doi.org/10.5281/zenodo.21126208)
 
-> Carson, J. (2026). *Shakespeare Digital New Variorum: Corpus, Alignment Pipeline, and Analysis Platform* (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+> Carson, J. (2026). *Shakespeare Digital New Variorum: Corpus, Alignment Pipeline, and Analysis Platform* (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.21126208
 
 See also [`CITATION.cff`](CITATION.cff) for machine-readable citation metadata.
 
