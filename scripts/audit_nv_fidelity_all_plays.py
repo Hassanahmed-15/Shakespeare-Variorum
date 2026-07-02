@@ -57,9 +57,9 @@ PLAYS = [
     {"play": "Coriolanus", "year": 1928, "json": "Public/Data/Coriolanus.json",
      "ia": "newvariorumediti19shak", "ia_stream": "newvariorumediti19shak_djvu.txt"},
     {"play": "Henry IV, Part 1", "year": 1936, "json": "Public/Data/henry_iv_part1.json",
-     "ia": "newvariorumediti20shak", "ia_stream": "newvariorumediti20shak_djvu.txt"},
-    {"play": "Henry IV, Part 2", "year": 1940, "json": "Public/Data/henry_iv_part2.json",
      "ia": "newvariorumediti21shak", "ia_stream": "newvariorumediti21shak_djvu.txt"},
+    {"play": "Henry IV, Part 2", "year": 1940, "json": "Public/Data/henry_iv_part2.json",
+     "ia": "newvariorumediti23shak", "ia_stream": "newvariorumediti23shak_djvu.txt"},
     {"play": "Troilus and Cressida", "year": 1953, "json": "Public/Data/troilus_and_cressida.json",
      "ia": "newvariorumediti22shak", "ia_stream": "newvariorumediti22shak_djvu.txt"},
 ]

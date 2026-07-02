@@ -25,6 +25,26 @@ Pipeline
    By default, if Public/Data/othello_note_overrides.json exists, post-moves
    are applied (use --no-overrides to skip, or --overrides PATH for another file).
 
+Othello Macbeth-parity rebuild
+------------------------------
+Production Macbeth (macbeth_correct.json) came from a structured DOCX ingest, not
+from Folger alignment or IA djvu.txt parsing. Othello must follow the same path
+to match note fidelity (0 synthetic/paraphrase notes, ~700-char average lemmas).
+
+  1) OCR Furness Othello PDF (IA: newvariorumediti13shak) + Gemini page cleanup.
+  2) Structure as othello correct.docx — same layout as macbeth correct.docx:
+       ACT X, SCENE Y / PLAY TEXT / numbered lines / SCHOLARLY COMMENTARY / N. lemma] CRITIC: ...
+  3) python3 convert_othello_correct_to_json.py
+       → Public/Data/othello_notes_legacy.json (integer line keys; keep this file)
+  4) python3 scripts/rebuild_othello_notes.py --align --validate
+       → Public/Data/othello_notes_folger.json (+ othello_notes.json mirror)
+
+Gate: scripts/rebuild_othello_notes.py --report-only (synthetic_prefix=0,
+paraphrase_style=0). Then audit_nv_fidelity_all_plays.py for Tier A.
+
+Do not pass othello_notes_folger.json as --legacy; the current summaries in
+othello_notes.pre_normalize.backup.json predate Folger and must be replaced.
+
    Hamlet (use --no-overrides so othello_note_overrides.json is not applied):
 
    PYTHONPATH=. python3 -m scripts.folger_tei.align_nv_to_folger \

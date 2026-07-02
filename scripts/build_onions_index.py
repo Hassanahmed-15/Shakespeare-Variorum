@@ -158,7 +158,7 @@ def merge_entries(ocr_entries: dict[str, dict], perseus_entries: dict[str, dict]
             merged[key] = {k: v for k, v in pentry.items() if k != "perseus_slug"}
             continue
         ocr_text = oentry.get("text", "")
-        elif is_fragmentary_text(ocr_text):
+        if is_fragmentary_text(ocr_text):
             merged[key] = {
                 "headword": pentry.get("headword") or oentry.get("headword", key),
                 "forms": pentry.get("forms") or oentry.get("forms"),

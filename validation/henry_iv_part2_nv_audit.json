@@ -1,0 +1,21 @@
+{
+  "play": "henry_iv_part2",
+  "ia_item": "https://archive.org/details/newvariorumediti23shak",
+  "note_strings": 1982,
+  "annotated_lines": 1560,
+  "synthetic_prefix": 0,
+  "paraphrase_style": 0,
+  "clipped_notes": 55,
+  "clipped_pct": 2.77,
+  "level2": {
+    "buckets": {
+      "exact": 40,
+      "high": 0,
+      "partial": 0,
+      "fail": 0
+    },
+    "ia_chars": 2508448
+  },
+  "pass": true,
+  "tier": "A"
+}

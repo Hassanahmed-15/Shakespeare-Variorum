@@ -1,0 +1,46 @@
+{
+  "play": "othello",
+  "level1": {
+    "local_note_lines": 680,
+    "site_note_lines": 680,
+    "json_identical": true,
+    "json_diff_summary": "byte-identical after JSON parse",
+    "retrieval_pass": 22,
+    "retrieval_fail": 18,
+    "failures": [
+      "ACT 1, SCENE 1/1.1.22 anchor=1.1.22 client=OK server=MISMATCH",
+      "ACT 1, SCENE 1/1.1.38 anchor=1.1.38 client=OK server=MISMATCH",
+      "ACT 1, SCENE 1/1.1.53 anchor=1.1.53 client=OK server=MISMATCH",
+      "ACT 1, SCENE 1/1.1.71 anchor=1.1.71 client=OK server=MISMATCH",
+      "ACT 1, SCENE 2/1.2.12 anchor=1.2.12 client=OK server=MISMATCH",
+      "ACT 1, SCENE 2/1.2.34 anchor=1.2.34 client=OK server=MISMATCH",
+      "ACT 1, SCENE 2/1.2.65 anchor=1.2.65 client=OK server=MISMATCH",
+      "ACT 1, SCENE 3/1.3.356 anchor=1.3.356 client=OK server=MISMATCH",
+      "ACT 1, SCENE 3/1.3.399 anchor=1.3.399 client=OK server=MISMATCH",
+      "ACT 3, SCENE 3/3.3.113 anchor=3.3.113 client=OK server=MISMATCH",
+      "ACT 3, SCENE 4/3.4.67 anchor=3.4.67 client=OK server=MISMATCH",
+      "ACT 4, SCENE 1/4.1.145 anchor=4.1.145 client=OK server=MISMATCH",
+      "ACT 4, SCENE 1/4.1.40 anchor=4.1.40 client=OK server=MISMATCH",
+      "ACT 4, SCENE 2/4.2.32 anchor=4.2.32 client=OK server=MISMATCH",
+      "ACT 4, SCENE 3/4.3.26 anchor=4.3.26 client=OK server=MISMATCH"
+    ]
+  },
+  "level2": {
+    "buckets": {
+      "exact": 36,
+      "high": 2,
+      "partial": 2,
+      "fail": 0
+    },
+    "fail_examples": [],
+    "ia_chars": 1947999
+  },
+  "level3": {
+    "total_spine_lines": 3781,
+    "lines_with_notes": 680,
+    "lines_with_notes_but_empty_play": 0,
+    "lines_with_play_but_no_notes": 3101,
+    "note_coverage_pct": 17.98
+  },
+  "ia_item": "https://archive.org/details/newvariorumediti13shak"
+}
