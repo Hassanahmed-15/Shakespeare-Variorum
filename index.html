@@ -14937,6 +14937,32 @@
                         <div id="variorumResult"></div>
                     </div>
 
+                    <!-- Retrieved source references (Onions, Schmidt, Geneva Bible) -->
+                    <div class="analysis-section" id="sourceReferencesSection" style="display: none;">
+                        <div class="analysis-title">
+                            <span>Retrieved Sources</span>
+                        </div>
+                        <p class="source-references-intro">Lexical and biblical sources injected into this analysis:</p>
+
+                        <div id="onionsSourceBlock" class="source-block" style="display: none;">
+                            <h4>Onions Glossary (1911/1919)</h4>
+                            <p class="source-citation" id="onionsCitation"></p>
+                            <div id="onionsContent"></div>
+                        </div>
+
+                        <div id="schmidtSourceBlock" class="source-block" style="display: none;">
+                            <h4>Schmidt Lexicon (1902)</h4>
+                            <p class="source-citation" id="schmidtCitation"></p>
+                            <div id="schmidtContent"></div>
+                        </div>
+
+                        <div id="genevaSourceBlock" class="source-block" style="display: none;">
+                            <h4>Geneva Bible (1599) — possible parallels</h4>
+                            <p class="source-citation" id="genevaCitation"></p>
+                            <div id="genevaContent"></div>
+                        </div>
+                    </div>
+
                     <!-- Follow-up Section - Hidden until analysis is done -->
                     <div id="followUpSection" style="display: none;">
                         <h3>Ask a follow-up question</h3>
@@ -21716,7 +21742,10 @@
 
         function updateSourceReferencesSection(sourceLookup) {
             const section = document.getElementById('sourceReferencesSection');
-            if (!section) return;
+            if (!section) {
+                console.warn('sourceReferencesSection not found in DOM — tab panel may need refresh');
+                return;
+            }
 
             if (!sourceLookup) {
                 section.style.display = 'none';
