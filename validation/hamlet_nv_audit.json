@@ -1,0 +1,39 @@
+{
+  "play": "hamlet",
+  "level1": {
+    "canonical_note_lines": 1614,
+    "site_note_lines": 1614,
+    "identical": true,
+    "only_canonical": 0,
+    "only_site": 0,
+    "differing_notes": 0,
+    "summary": "identical note payloads"
+  },
+  "soliloquy_check": {
+    "scene": "ACT 3, SCENE 1",
+    "line_key": "70",
+    "note_count": 2,
+    "note_lengths": [
+      8898,
+      4813
+    ],
+    "has_johnson_block": true,
+    "has_del_block": true,
+    "pass": true
+  },
+  "level2": {
+    "buckets": {
+      "exact": 29,
+      "high": 10,
+      "partial": 2,
+      "fail": 1
+    },
+    "ia_chars": 2284933
+  },
+  "level3": {
+    "canonical_note_strings": 1948,
+    "annotated_lines": 1614
+  },
+  "pass": true,
+  "ia_item": "https://archive.org/details/newvariorumediti02shak"
+}

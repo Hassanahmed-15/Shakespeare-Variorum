@@ -1,0 +1,23 @@
+play,year,note_strings,avg_len,median_len,pct_under_250,pct_over_800,synthetic_prefix,paraphrase_style,ia_status,ia_traceable_pct,paraphrase_pct,ia_unverified_pct
+Romeo and Juliet,1871,720,703,359,38.8,24.3,0,0,ok,0.0,0.0,96.7
+Macbeth,1873,1253,701,337,38.3,24.7,0,0,ok,76.7,0.0,20.0
+Hamlet,1877,1948,498,210,56.5,13.9,0,0,ok,0.0,0.0,86.7
+King Lear,1880,1163,510,220,54.5,15.8,0,0,fetch_failed,None,None,
+Othello,1886,932,454,193,58.6,13.2,25,9,ok,80.0,3.3,13.3
+The Merchant of Venice,1888,1027,517,258,48.9,18.5,0,0,fetch_failed,None,None,
+As You Like It,1890,940,723,317,42.7,24.7,0,1,ok,0.0,0.0,90.0
+The Tempest,1892,770,936,354,40.4,28.4,0,0,fetch_failed,None,None,
+A Midsummer Night's Dream,1895,745,669,334,41.2,23.6,0,0,ok,0.0,0.0,96.7
+The Winter's Tale,1898,958,618,310,44.6,21.4,0,0,fetch_failed,None,None,
+Much Ado About Nothing,1899,931,637,310,44.4,23.2,0,0,fetch_failed,None,None,
+Twelfth Night,1901,1068,727,304,43.2,26.1,0,0,ok,0.0,0.0,96.7
+Love's Labour's Lost,1904,1171,632,316,42.9,21.7,0,0,ok,0.0,0.0,96.7
+Antony and Cleopatra,1907,1053,645,328,41.9,23.3,0,0,fetch_failed,None,None,
+Richard III,1908,1226,468,272,47.3,15.6,0,0,ok,0.0,0.0,93.3
+Julius Caesar,1913,723,574,312,41.8,20.9,0,0,ok,0.0,0.0,100.0
+Cymbeline,1913,1035,677,366,39.0,26.3,0,0,fetch_failed,None,None,
+King John,1919,886,743,374,37.1,27.8,0,0,fetch_failed,None,None,
+Coriolanus,1928,1192,870,487,28.9,34.4,0,0,fetch_failed,None,None,
+Henry IV, Part 1,1936,738,326,187,58.9,7.7,0,0,ok,0.0,0.0,93.3
+Henry IV, Part 2,1940,1982,252,128,74.3,5.4,0,0,ok,0.0,0.0,73.3
+Troilus and Cressida,1953,628,569,346,39.6,21.0,0,0,ok,0.0,0.0,100.0
