@@ -1893,8 +1893,15 @@
         }
 
         .play .speaker {
-            font-variant-caps: small-caps;
-            letter-spacing: .04em;
+            font-variant-caps: all-small-caps;
+            font-weight: 600;
+            letter-spacing: .06em;
+        }
+
+        .play-line .speaker {
+            font-variant-caps: all-small-caps;
+            font-weight: 600;
+            letter-spacing: .06em;
         }
 
         /* Verse line styling - preserve Shakespearean line structure */
@@ -16908,6 +16915,46 @@
             return sceneKey;
         }
 
+        /** Title-case speaker tags in some NV/Folger JSON (e.g. Captain:, Clown:). */
+        const TITLE_CASE_SPEAKER_PREFIX = /^([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,3}):\s+(.*)$/;
+
+        function normalizeSpeakerPrefixInLine(line) {
+            if (line == null || typeof line !== 'string') return line;
+            const trimmed = line.replace(/\u00a0/g, ' ').trim();
+            if (!trimmed || trimmed.startsWith('[')) return line;
+            if (/^[A-Z][A-Z0-9\s.'\u2019-]{1,70}:\s/.test(trimmed)) return line;
+
+            const m = trimmed.match(TITLE_CASE_SPEAKER_PREFIX);
+            if (!m) return line;
+
+            const speaker = m[1].replace(/\s+/g, ' ').trim().toUpperCase();
+            return `${speaker}: ${m[2]}`;
+        }
+
+        function parseSpeakerLine(line) {
+            const normalized = normalizeSpeakerPrefixInLine(line);
+            const trimmed = normalized.replace(/\u00a0/g, ' ').trim();
+            const m = trimmed.match(/^([A-Z][A-Z0-9\s.'\u2019-]{1,70}):\s*(.*)$/);
+            if (!m) return null;
+            return {
+                speaker: m[1].replace(/\s+/g, ' ').trim(),
+                text: m[2],
+            };
+        }
+
+        function escapeHtml(text) {
+            return String(text)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        function formatPlayLineHtml(line) {
+            const parsed = parseSpeakerLine(line);
+            if (!parsed) return escapeHtml(line);
+            return `<span class="speaker">${escapeHtml(parsed.speaker)}</span>: ${escapeHtml(parsed.text)}`;
+        }
+
         /**
          * Folger lines repeat "SPEAKER: …" on every verse line. Collapse repeats for display only.
          * (Raw text stays in plays.scenes; note matching uses matchesText/stripSpeaker.)
@@ -16916,7 +16963,7 @@
             if (!sceneContent || sceneContent.length === 0) return sceneContent;
             const out = [];
             let lastSpeaker = null;
-            const folgerLine = /^([A-Z][A-Z0-9\s\.''\u2019-]{0,70}):\s*(.*)$/;
+            const folgerLine = /^([A-Z][A-Z0-9\s.'\u2019-]{0,70}):\s*(.*)$/;
             for (let i = 0; i < sceneContent.length; i++) {
                 const raw = sceneContent[i];
                 const line = typeof raw === 'string' ? raw : String(raw);
@@ -19288,6 +19335,8 @@
             if (!sceneContent || sceneContent.length === 0) {
                 return sceneContent;
             }
+
+            sceneContent = sceneContent.map(normalizeSpeakerPrefixInLine);
             
             const optimizedContent = [];
             let currentSpeaker = '';
@@ -19663,7 +19712,8 @@
                                     lineCount++;
                                 }
                             } else {
-                                sceneContent.push(typeof text === 'string' ? text : String(text));
+                                const rawLine = typeof text === 'string' ? text : String(text);
+                                sceneContent.push(normalizeSpeakerPrefixInLine(rawLine));
                                 lineCount++;
                             }
                         });
@@ -20151,11 +20201,11 @@
                 if (line === '' || (typeof line === 'string' && line.trim() === '')) {
                     return; // skip empty lines — no blank gap rendered
                 } else {
-                    const escaped = line.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+                    line = normalizeSpeakerPrefixInLine(line);
                     const trimmedLine = line.trim();
                     const isSD = isStageDirection(trimmedLine);
                     const extraClass = isSD ? ' stage-direction' : '';
-                    html += `<div class="play-line${extraClass}" data-line-index="${index}">${escaped}</div>`;
+                    html += `<div class="play-line${extraClass}" data-line-index="${index}">${formatPlayLineHtml(line)}</div>`;
                     if (isSpeakerName(line)) {
                         currentSpeaker = line;
                     } else if (!trimmedLine || isSpeakerName(trimmedLine) || isSD) {
@@ -25070,7 +25120,8 @@
                     continue;
                 }
 
-                const speakerMatch = text.match(/^([A-Z][A-Z\s\.]{1,30}):\s*(.*)/);
+                text = normalizeSpeakerPrefixInLine(text);
+                const speakerMatch = text.match(/^([A-Z][A-Z\s.'\u2019-]{1,50}):\s*(.*)/);
                 if (speakerMatch) {
                     if (current && current.text.trim()) speeches.push(current);
                     lastSpeaker = speakerMatch[1].trim();
