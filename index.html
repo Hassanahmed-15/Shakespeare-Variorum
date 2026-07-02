@@ -21811,7 +21811,55 @@
             updateSourceReferencesSection(sourceLookup);
         }
 
-        function formatStructuredAnalysis(analysis, relevantNotes) {
+        function normalizeLexicalHeadword(word) {
+            return (word || '').toLowerCase().replace(/[^a-z'-]/g, '').trim();
+        }
+
+        function buildLexicalCitationMap(sourceLookup) {
+            const map = new Map();
+            if (!sourceLookup) return map;
+
+            const onionsLabel = 'Onions, <em>A Shakespeare Glossary</em>, 1911/1919';
+            const schmidtLabel = 'Schmidt, <em>Shakespeare-Lexicon</em>, 1902';
+
+            if (sourceLookup.onions && sourceLookup.onions.hits) {
+                for (const hit of sourceLookup.onions.hits) {
+                    if (hit.headword) map.set(normalizeLexicalHeadword(hit.headword), onionsLabel);
+                    if (hit.query) map.set(normalizeLexicalHeadword(hit.query), onionsLabel);
+                }
+            }
+            if (sourceLookup.schmidt && sourceLookup.schmidt.hits) {
+                for (const hit of sourceLookup.schmidt.hits) {
+                    if (hit.headword) map.set(normalizeLexicalHeadword(hit.headword), schmidtLabel);
+                    if (hit.query) map.set(normalizeLexicalHeadword(hit.query), schmidtLabel);
+                }
+            }
+            return map;
+        }
+
+        function annotateLexicalCitations(content, sourceLookup) {
+            if (!content || !sourceLookup) return content;
+
+            const citationMap = buildLexicalCitationMap(sourceLookup);
+            if (citationMap.size === 0) return content;
+
+            const clauses = content.split(/;\s*/);
+            const annotated = clauses.map(clause => {
+                const match = clause.match(/["'\u201c\u201d]([^"'\u201c\u201d]+)["'\u201c\u201d]\s+means\s+/i);
+                if (!match) return clause;
+
+                const cite = citationMap.get(normalizeLexicalHeadword(match[1]));
+                if (!cite) return clause;
+                if (/\(Onions|\(Schmidt/i.test(clause)) return clause;
+
+                const trimmed = clause.trim().replace(/[.\s]+$/, '');
+                return `${trimmed} (${cite}).`;
+            });
+
+            return annotated.join('; ');
+        }
+
+        function formatStructuredAnalysis(analysis, relevantNotes, sourceLookup) {
             console.log('=== FORMATTING STRUCTURED ANALYSIS ===');
             console.log('Analysis sections:', Object.keys(analysis));
             console.log('Relevant notes:', relevantNotes);
@@ -21845,8 +21893,14 @@
                     formattedContent += `<h4>${sectionName}</h4>`;
                     
                     let sectionHtml;
+                    const annotatedContent = annotateLexicalCitations(sectionContent, sourceLookup);
                     if (normalizedSectionName === 'key words & glosses') {
-                        sectionHtml = formatKeyWords(sectionContent);
+                        sectionHtml = formatKeyWords(annotatedContent);
+                    } else if (
+                        normalizedSectionName === 'language and rhetoric' ||
+                        normalizedSectionName === 'language and imagery'
+                    ) {
+                        sectionHtml = processContentForFormatting(annotatedContent);
                     } else {
                         sectionHtml = processContentForFormatting(sectionContent);
                     }
@@ -21940,7 +21994,7 @@
             
             // Format and update content (New Variorum Analysis section is filtered out)
             if (data.analysis && analysisContent) {
-                const formattedContent = formatStructuredAnalysis(data.analysis, data.relevantNotes);
+                const formattedContent = formatStructuredAnalysis(data.analysis, data.relevantNotes, data.sourceLookup);
                 analysisContent.innerHTML = formattedContent;
             }
 

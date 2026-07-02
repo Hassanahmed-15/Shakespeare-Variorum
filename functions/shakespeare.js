@@ -668,7 +668,7 @@ FORMAT REQUIREMENTS:
 - Clear, accessible language
 - Always reference "${currentPlayName}" directly
 - CRITICAL: Always italicize play titles using <em>italics</em>, never use asterisks (*) or quotes around titles
-- Key Words format: "word" means [definition]; "word" means [definition] (preserve capitalization)`
+- Key Words format: "word" means [definition] (Onions, A Shakespeare Glossary, 1911/1919); or (Schmidt, Shakespeare-Lexicon, 1902) when supplied from Schmidt; preserve capitalization`
     } else if (analysisMode === 'expert') {
       systemPrompt = `You are a Shakespeare scholar writing for advanced students.
 
@@ -688,6 +688,7 @@ FORMAT REQUIREMENTS:
 - Each section should be 5–8 sentences
 - Clear but scholarly tone
 - CRITICAL: Always italicize play titles using <em>italics</em>, never use asterisks (*) or quotes around titles. Example: <em>Macbeth</em> not *Macbeth* or "Macbeth"
+- **Language and Imagery:** When discussing archaic or unusual diction, cite supplied Onions or Schmidt entries inline: (Onions, A Shakespeare Glossary, 1911/1919) or (Schmidt, Shakespeare-Lexicon, 1902).
 - Always reference "${currentPlayName}"`
     } else if (analysisMode === 'fullfathomfive') {
       console.log('Full Fathom Five level detected - using comprehensive prompt with Language and Rhetoric sections');
@@ -717,8 +718,8 @@ FORMAT REQUIREMENTS:
 - Start each section with the exact heading format shown above (colons are already included).
 - Provide 6–12 sentences per section; use complete, scholarly style.
 - Always italicize titles using \`<em>italics</em>\`, never quote them or italicize author names.
-- **Key Words & Glosses**: Use format \`"word" means [definition]; "word" means [definition]\`.
-- **Language and Rhetoric**: Include (1) archaic usage and word history from Onions's Shakespeare Glossary (1911/1919) when supplied in the lexical source block, (2) rhetorical devices, (3) meter & rhythm, with citations.
+- **Key Words & Glosses**: Use format \`"word" means [definition] (Onions, A Shakespeare Glossary, 1911/1919)\` or \`(Schmidt, Shakespeare-Lexicon, 1902)\` when the supplied lexical block is Schmidt. Every gloss MUST end with its source citation.
+- **Language and Rhetoric**: Include (1) archaic usage and word history from the supplied Onions or Schmidt entries, with the same parenthetical citations after each lexical point, (2) rhetorical devices, (3) meter & rhythm.
 
 LITERARY ANALYSIS REQUIREMENTS:
 - Do NOT name any specific critics or scholars — no personal names whatsoever.

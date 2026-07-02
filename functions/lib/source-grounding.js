@@ -25,7 +25,14 @@ SOURCE GROUNDING RULES:
 - Geneva Bible (1599): candidate biblical parallels for Sources / historical-theological context only.
 - Use supplied source text verbatim; do not cite the Oxford English Dictionary unless a supplied entry references it.
 - Label Geneva matches as possible parallels unless the wording is an exact match.
-- If no entry is supplied for a word, write "not in retrieved [source name]."`
+- If no entry is supplied for a word, write "not in retrieved [source name]."
+
+CITATION FORMAT (REQUIRED in Key Words & Glosses and Language and Rhetoric):
+- End every gloss drawn from Onions with: (Onions, A Shakespeare Glossary, 1911/1919)
+- End every gloss drawn from Schmidt with: (Schmidt, Shakespeare-Lexicon, 1902)
+- Example: "incarnadine" means [to tinge with red] (Onions, A Shakespeare Glossary, 1911/1919).
+- Example: "coil" means [turmoil, bustle, confusion] (Schmidt, Shakespeare-Lexicon, 1902).
+- Do not gloss archaic words from model memory without a retrieved entry and citation.`
 
   const userAddendum = `
 
