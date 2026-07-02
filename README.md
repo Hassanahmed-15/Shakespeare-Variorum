@@ -476,7 +476,18 @@ This project welcomes contributions for:
 
 ## License
 
-This project is part of the Shakespeare Variorum digital initiative, designed for educational and scholarly purposes.
+- **Software** (code, scripts, UI): [MIT License](LICENSE)
+- **JSON corpus** (`Public/Data/`): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+## Citation & archival deposit
+
+Development repository: [github.com/bradrcarson/Shakespeare-Variorum](https://github.com/bradrcarson/Shakespeare-Variorum)
+
+Zenodo archival releases are minted from [GitHub releases](https://github.com/bradrcarson/Shakespeare-Variorum/releases). After the first release is published, add the DOI here:
+
+> Carson, J. (2026). *Shakespeare Digital New Variorum: Corpus, Alignment Pipeline, and Analysis Platform* (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+
+See also [`CITATION.cff`](CITATION.cff) for machine-readable citation metadata.
 
 ## Acknowledgments
 

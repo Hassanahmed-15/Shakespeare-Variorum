@@ -1,0 +1,36 @@
+{
+  "title": "Shakespeare Digital New Variorum: Corpus, Alignment Pipeline, and Analysis Platform",
+  "description": "Archival release of the Shakespeare Digital New Variorum (Full Fathom Five) platform: OCR-derived JSON corpus of pre-1956 New Variorum Shakespeare dramatic editions, Folger alignment scripts, bibliographic resolution agents, Netlify serverless analysis functions, and retrieval-based lexical grounding (Onions 1911/1919, Schmidt 1902, Geneva Bible 1599). Live deployment: https://newvariorum.com",
+  "upload_type": "software",
+  "publication_date": "2026-07-02",
+  "creators": [
+    {
+      "name": "Carson, Jack",
+      "affiliation": "Independent",
+      "orcid": ""
+    }
+  ],
+  "keywords": [
+    "Shakespeare",
+    "New Variorum Shakespeare",
+    "digital humanities",
+    "textual scholarship",
+    "OCR",
+    "corpus linguistics",
+    "Full Fathom Five"
+  ],
+  "license": "mit",
+  "version": "v1.0.0",
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://newvariorum.com",
+      "scheme": "url"
+    },
+    {
+      "relation": "isIdenticalTo",
+      "identifier": "https://github.com/bradrcarson/Shakespeare-Variorum",
+      "scheme": "url"
+    }
+  ]
+}

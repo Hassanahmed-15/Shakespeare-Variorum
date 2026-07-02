@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: "Shakespeare Digital New Variorum: Corpus, Alignment Pipeline, and Analysis Platform"
+message: "If you use this software or corpus, please cite it using the metadata from this file."
+type: software
+authors:
+  - family-names: Carson
+    given-names: Jack
+    email: bradrogerscarson@gmail.com
+repository-code: "https://github.com/bradrcarson/Shakespeare-Variorum"
+url: "https://newvariorum.com"
+license: MIT
+version: 1.0.0
+date-released: 2026-07-02
+keywords:
+  - Shakespeare
+  - New Variorum Shakespeare
+  - digital humanities
+  - textual scholarship
+abstract: "Digital platform and archival corpus for pre-1956 New Variorum Shakespeare editions, with Folger alignment, bibliographic resolution, and AI analysis tiers grounded in Onions, Schmidt, and the Geneva Bible."
