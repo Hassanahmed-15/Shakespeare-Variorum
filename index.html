@@ -2659,6 +2659,41 @@
             color: #333 !important;
         }
 
+        #sourceReferencesSection {
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border, #ddd);
+        }
+
+        #sourceReferencesSection .source-references-intro,
+        #sourceReferencesSection .source-citation {
+            font-size: 0.85rem;
+            color: var(--muted, #666);
+            margin-bottom: 0.75rem;
+        }
+
+        #sourceReferencesSection .source-block {
+            margin-bottom: 1rem;
+        }
+
+        #sourceReferencesSection .source-block h4 {
+            margin: 0 0 0.35rem 0;
+            font-size: 0.95rem;
+        }
+
+        #sourceReferencesSection .source-entry {
+            margin-bottom: 0.75rem;
+            padding: 0.65rem 0.75rem;
+            background: var(--surface-2, #f7f4ef);
+            border-radius: 6px;
+        }
+
+        #sourceReferencesSection .source-entry strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        /* legacy alias */
         #onionsSection {
             margin-top: 1.25rem;
             padding-top: 1rem;
@@ -14162,13 +14197,30 @@
                 <div id="variorumResult"></div>
             </div>
 
-            <!-- Onions Shakespeare Glossary (lexical source for AI tiers) -->
-            <div class="analysis-section" id="onionsSection" style="display: none;">
+            <!-- Retrieved source references (Onions, Schmidt, Geneva Bible) -->
+            <div class="analysis-section" id="sourceReferencesSection" style="display: none;">
                 <div class="analysis-title">
-                    <span>Onions Glossary</span>
+                    <span>Retrieved Sources</span>
                 </div>
-                <p class="onions-citation" id="onionsCitation"></p>
-                <div class="analysis-content" id="onionsContent"></div>
+                <p class="source-references-intro">Lexical and biblical sources injected into this analysis:</p>
+
+                <div id="onionsSourceBlock" class="source-block" style="display: none;">
+                    <h4>Onions Glossary (1911/1919)</h4>
+                    <p class="source-citation" id="onionsCitation"></p>
+                    <div id="onionsContent"></div>
+                </div>
+
+                <div id="schmidtSourceBlock" class="source-block" style="display: none;">
+                    <h4>Schmidt Lexicon (1902)</h4>
+                    <p class="source-citation" id="schmidtCitation"></p>
+                    <div id="schmidtContent"></div>
+                </div>
+
+                <div id="genevaSourceBlock" class="source-block" style="display: none;">
+                    <h4>Geneva Bible (1599) — possible parallels</h4>
+                    <p class="source-citation" id="genevaCitation"></p>
+                    <div id="genevaContent"></div>
+                </div>
             </div>
 
             <!-- Follow-up Section - Hidden until analysis is done -->
@@ -21635,13 +21687,11 @@
             }
         }
 
-        function formatOnionsGlosses(lexicalLookup) {
-            if (!lexicalLookup || !lexicalLookup.hits || lexicalLookup.hits.length === 0) {
-                return '';
-            }
+        function formatLexicalHits(hits) {
+            if (!hits || !hits.length) return '';
             let html = '';
-            for (const hit of lexicalLookup.hits) {
-                html += '<div class="onions-entry">';
+            for (const hit of hits) {
+                html += '<div class="source-entry">';
                 html += `<strong>${hit.headword}</strong>`;
                 html += `<div>${processContentForFormatting(hit.text)}</div>`;
                 html += '</div>';
@@ -21649,24 +21699,87 @@
             return html;
         }
 
-        function updateOnionsSection(lexicalLookup) {
-            const section = document.getElementById('onionsSection');
-            const citation = document.getElementById('onionsCitation');
-            const content = document.getElementById('onionsContent');
-            if (!section || !content) return;
+        function formatGenevaHits(hits) {
+            if (!hits || !hits.length) return '';
+            let html = '';
+            for (const hit of hits) {
+                html += '<div class="source-entry">';
+                html += `<strong>${hit.ref}</strong>`;
+                if (hit.matchedPhrase) {
+                    html += `<div style="font-size:0.85rem;color:#666;">matched: "${hit.matchedPhrase}"</div>`;
+                }
+                html += `<div>${processContentForFormatting(hit.text)}</div>`;
+                html += '</div>';
+            }
+            return html;
+        }
 
-            if (!lexicalLookup || !lexicalLookup.hits || lexicalLookup.hits.length === 0) {
+        function updateSourceReferencesSection(sourceLookup) {
+            const section = document.getElementById('sourceReferencesSection');
+            if (!section) return;
+
+            if (!sourceLookup) {
                 section.style.display = 'none';
-                content.innerHTML = '';
-                if (citation) citation.textContent = '';
+                return;
+            }
+
+            // Backward compat: flat onions-only lexicalLookup payload
+            if (sourceLookup.hits && !sourceLookup.onions) {
+                sourceLookup = { onions: sourceLookup };
+            }
+
+            const onions = sourceLookup.onions;
+            const schmidt = sourceLookup.schmidt;
+            const geneva = sourceLookup.geneva;
+
+            const hasOnions = onions && onions.hits && onions.hits.length > 0;
+            const hasSchmidt = schmidt && schmidt.hits && schmidt.hits.length > 0;
+            const hasGeneva = geneva && geneva.hits && geneva.hits.length > 0;
+
+            if (!hasOnions && !hasSchmidt && !hasGeneva) {
+                section.style.display = 'none';
                 return;
             }
 
             section.style.display = 'block';
-            if (citation) {
-                citation.textContent = lexicalLookup.citation || 'C. T. Onions, A Shakespeare Glossary (1911; rev. 1919)';
+
+            const onionsBlock = document.getElementById('onionsSourceBlock');
+            const schmidtBlock = document.getElementById('schmidtSourceBlock');
+            const genevaBlock = document.getElementById('genevaSourceBlock');
+
+            if (onionsBlock) {
+                onionsBlock.style.display = hasOnions ? 'block' : 'none';
+                if (hasOnions) {
+                    const citation = document.getElementById('onionsCitation');
+                    const content = document.getElementById('onionsContent');
+                    if (citation) citation.textContent = onions.citation || '';
+                    if (content) content.innerHTML = formatLexicalHits(onions.hits);
+                }
             }
-            content.innerHTML = formatOnionsGlosses(lexicalLookup);
+
+            if (schmidtBlock) {
+                schmidtBlock.style.display = hasSchmidt ? 'block' : 'none';
+                if (hasSchmidt) {
+                    const citation = document.getElementById('schmidtCitation');
+                    const content = document.getElementById('schmidtContent');
+                    if (citation) citation.textContent = schmidt.citation || '';
+                    if (content) content.innerHTML = formatLexicalHits(schmidt.hits);
+                }
+            }
+
+            if (genevaBlock) {
+                genevaBlock.style.display = hasGeneva ? 'block' : 'none';
+                if (hasGeneva) {
+                    const citation = document.getElementById('genevaCitation');
+                    const content = document.getElementById('genevaContent');
+                    if (citation) citation.textContent = geneva.citation || '';
+                    if (content) content.innerHTML = formatGenevaHits(geneva.hits);
+                }
+            }
+        }
+
+        function updateOnionsSection(sourceLookup) {
+            updateSourceReferencesSection(sourceLookup);
         }
 
         function formatStructuredAnalysis(analysis, relevantNotes) {
@@ -21802,7 +21915,7 @@
                 analysisContent.innerHTML = formattedContent;
             }
 
-            updateOnionsSection(data.lexicalLookup);
+            updateSourceReferencesSection(data.sourceLookup || data.lexicalLookup);
             
             // Ensure analyze button is visible
             if (analyzeButton) analyzeButton.style.display = 'block';

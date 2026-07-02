@@ -9,7 +9,11 @@
 [functions]
   directory = "functions"
   node_bundler = "esbuild"
-  included_files = ["data/onions_glossary_index.json"]
+  included_files = [
+    "data/onions_glossary_index.json",
+    "data/schmidt_lexicon_index.json",
+    "data/geneva_bible_index.json"
+  ]
 
 [[redirects]]
   from = "/api/shakespeare"

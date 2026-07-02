@@ -1,5 +1,5 @@
 const { OpenAI } = require('openai')
-const { applyLexicalGrounding } = require('./lib/lexical-grounding')
+const { applySourceGrounding } = require('./lib/source-grounding')
 
 // Add fetch polyfill for Node.js environments that don't have it
 if (!global.fetch) {
@@ -815,12 +815,16 @@ Your job:
     }
 
     let lexicalLookup = null
+    let sourceLookup = null
     if (analysisMode !== 'followup' && analysisMode !== 'critics') {
-      const grounded = applyLexicalGrounding({ analysisMode, text, systemPrompt, userPrompt })
+      const grounded = applySourceGrounding({ analysisMode, text, systemPrompt, userPrompt })
       systemPrompt = grounded.systemPrompt
       userPrompt = grounded.userPrompt
+      sourceLookup = grounded.sourceLookup
       lexicalLookup = grounded.lexicalLookup
-      console.log(`📖 Onions glossary: ${lexicalLookup?.hits?.length || 0} hits`)
+      console.log(
+        `📖 Sources: Onions ${sourceLookup?.onions?.hits?.length || 0}, Schmidt ${sourceLookup?.schmidt?.hits?.length || 0}, Geneva ${sourceLookup?.geneva?.hits?.length || 0}`
+      )
     }
     
     // Get max_tokens from request or use default
@@ -1064,6 +1068,7 @@ Your job:
         lineCount: lines.length,
         relevantNotes: relevantNotes,
         lexicalLookup: lexicalLookup,
+        sourceLookup: sourceLookup,
         usage: completion.usage
       })
     }
