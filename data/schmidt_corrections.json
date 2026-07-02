@@ -1,0 +1,27 @@
+{
+  "_meta": {
+    "description": "Manual and regex corrections for Schmidt OCR. Applied after parse in build_schmidt_index.py."
+  },
+  "global_replacements": [
+    ["Yen\\.", "Ven."],
+    ["\\bVen\\s+\\.", "Ven."],
+    ["\\bQq\\s+of\\b", "Qq of"],
+    ["—erf", "be her"],
+    ["let her he be her", "let her be her"],
+    ["\\s{2,}", " "],
+    ["\\bivish'd\\b", "wish'd"],
+    ["\\bin\\.\\s", "III. "],
+    ["\\bhi\\.\\s", "III. "],
+    ["\\bn\\.\\s", "II. "],
+    ["OSBOOE", "GREGOR"],
+    ["SABBAZIH", "SARRAZIN"]
+  ],
+  "entries": {
+    "never": {
+      "text": "1) not ever, at no time: Ven. 17. 48. 81. 126. 376. 377. 408. 420. 480. 489. 506. 548. 617. 708. 846. 1042. 1098. 1119 etc. n. is my day, never was my night."
+    },
+    "admit": {
+      "text": "1) to suffer to enter: his ear her prayers — , Lucr. 558. and will is — ed there, Sonn. 136, 3. let her be her, Meas. II, 2, 22. Merch. IV, 1, 146. Alls IV, 5, 94. Tw. I, 1, 24. I, 4, 20. H5 II, 2, 156. R3 I, 3, 343. IV, 4, 38. Tim. I, 2, 127. Hml."
+    }
+  }
+}

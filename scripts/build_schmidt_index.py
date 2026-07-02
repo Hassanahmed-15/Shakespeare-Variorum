@@ -9,6 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "schmidt_lexicon_index.json"
+CORRECTIONS = ROOT / "data" / "schmidt_corrections.json"
 OCR_FILES = [
     ROOT / "data" / "schmidt_vol1_ocr.txt",
     ROOT / "data" / "schmidt_ocr.txt",
@@ -86,6 +87,22 @@ def parse_schmidt_ocr(text: str) -> dict[str, dict]:
     return {k: v for k, v in entries.items() if len(v.get("text", "")) > 5}
 
 
+def apply_corrections(entries: dict[str, dict]) -> dict[str, dict]:
+    if not CORRECTIONS.exists():
+        return entries
+    spec = json.loads(CORRECTIONS.read_text(encoding="utf-8"))
+    for pattern, repl in spec.get("global_replacements", []):
+        for entry in entries.values():
+            entry["text"] = re.sub(pattern, repl, entry["text"])
+    for key, override in spec.get("entries", {}).items():
+        if key not in entries:
+            continue
+        text = override.get("text")
+        if text:
+            entries[key]["text"] = text
+    return entries
+
+
 def main() -> None:
     merged: dict[str, dict] = {}
     for ocr_path in OCR_FILES:
@@ -97,6 +114,8 @@ def main() -> None:
             if key not in merged or len(entry["text"]) > len(merged[key]["text"]):
                 merged[key] = entry
         print(f"Parsed {ocr_path.name}: {len(part)} entries")
+
+    merged = apply_corrections(merged)
 
     payload = {
         "_meta": {

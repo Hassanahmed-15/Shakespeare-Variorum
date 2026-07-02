@@ -13,7 +13,7 @@ function applySourceGrounding({ analysisMode, text, systemPrompt, userPrompt }) 
   const maxWords = analysisMode === 'basic' ? 4 : 8
 
   const onionsResult = onions.lookupForText(text, { maxWords })
-  const schmidtResult = schmidt.lookupMisses(onionsResult.misses.slice(0, maxWords))
+  const schmidtResult = schmidt.lookupForText(text, { maxWords })
   const lemeResult = leme.lookupForText(text, {
     maxWords,
     maxHits: analysisMode === 'basic' ? 2 : 4,
@@ -26,7 +26,7 @@ function applySourceGrounding({ analysisMode, text, systemPrompt, userPrompt }) 
 
 SOURCE GROUNDING RULES:
 - Onions (1911/1919): primary Shakespeare glossary for Key Words & Glosses and archaic usage.
-- Schmidt (1902): supplementary lexicon for headwords Onions does not cover.
+- Schmidt (1902): supplementary Shakespeare lexicon; retrieved in parallel with Onions for the same passage lemmas. Prefer Onions for Shakespeare-specific glosses; use Schmidt when it adds coverage or a fuller entry.
 - LEME period lexicons (Cawdrey 1604, Bullokar 1616, Cockeram 1623): contemporary hard-word dictionaries — use for Elizabethan/Jacobean senses in Historical Context and Key Words when supplied.
 - Geneva Bible (1599): candidate biblical parallels for Sources / historical-theological context only.
 - Use supplied source text verbatim; do not cite the Oxford English Dictionary unless a supplied entry references it.

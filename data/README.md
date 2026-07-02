@@ -24,15 +24,21 @@ Configured in `scripts/leme_sources.json`.
 
 ## Onions
 
+Primary witness: **Perseus Digital Library** keyed text ([1999.03.0068](http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.03.0068)). Internet Archive OCR is retained as fallback for headwords not yet cached from Perseus.
+
 ```bash
+# Optional: crawl Perseus entries into data/onions_perseus_cache.json (~1–2 hours)
+python3 scripts/fetch_onions_perseus.py
+
+# Rebuild index (Perseus cache + improved OCR parser)
 curl -L -o data/onions_ocr.txt \
   'https://archive.org/stream/shakespeareglos00onio/shakespeareglos00onio_djvu.txt'
 python3 scripts/build_onions_index.py
 ```
 
-Source: https://archive.org/details/shakespearegloss00oniouoft
-
 ## Schmidt
+
+Internet Archive OCR with manual corrections for high-traffic lemmas (`data/schmidt_corrections.json`).
 
 ```bash
 curl -L -o data/schmidt_vol1_ocr.txt \

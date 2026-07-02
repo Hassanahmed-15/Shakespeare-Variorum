@@ -59,7 +59,7 @@ function formatSchmidtBlock(lookupResult) {
 
   return [
     'LEXICAL SOURCE (Schmidt, Shakespeare-Lexicon, 1902) — USE VERBATIM.',
-    'Broader Shakespeare lexicon; use for headwords not covered by Onions.',
+    'Broader Shakespeare lexicon; retrieved in parallel with Onions. Use when Schmidt supplies a headword or a fuller entry than Onions.',
     `Cite as: ${CITATION}`,
     '',
     ...blocks,
