@@ -1,4 +1,5 @@
 const { OpenAI } = require('openai')
+const { applyLexicalGrounding } = require('./lib/lexical-grounding')
 
 // Add fetch polyfill for Node.js environments that don't have it
 if (!global.fetch) {
@@ -717,7 +718,7 @@ FORMAT REQUIREMENTS:
 - Provide 6–12 sentences per section; use complete, scholarly style.
 - Always italicize titles using \`<em>italics</em>\`, never quote them or italicize author names.
 - **Key Words & Glosses**: Use format \`"word" means [definition]; "word" means [definition]\`.
-- **Language and Rhetoric**: Include (1) etymology from 1914 OED, (2) rhetorical devices, (3) meter & rhythm, with citations.
+- **Language and Rhetoric**: Include (1) archaic usage and word history from Onions's Shakespeare Glossary (1911/1919) when supplied in the lexical source block, (2) rhetorical devices, (3) meter & rhythm, with citations.
 
 LITERARY ANALYSIS REQUIREMENTS:
 - Do NOT name any specific critics or scholars — no personal names whatsoever.
@@ -811,6 +812,15 @@ Your job:
       
       // Add critical instruction to avoid scene references
       userPrompt += `\n\nCRITICAL INSTRUCTION: Do NOT mention any specific scenes, acts, or play names in your synopsis. Focus only on the content and meaning of the selected text.`
+    }
+
+    let lexicalLookup = null
+    if (analysisMode !== 'followup' && analysisMode !== 'critics') {
+      const grounded = applyLexicalGrounding({ analysisMode, text, systemPrompt, userPrompt })
+      systemPrompt = grounded.systemPrompt
+      userPrompt = grounded.userPrompt
+      lexicalLookup = grounded.lexicalLookup
+      console.log(`📖 Onions glossary: ${lexicalLookup?.hits?.length || 0} hits`)
     }
     
     // Get max_tokens from request or use default
@@ -1053,6 +1063,7 @@ Your job:
         text: text,
         lineCount: lines.length,
         relevantNotes: relevantNotes,
+        lexicalLookup: lexicalLookup,
         usage: completion.usage
       })
     }

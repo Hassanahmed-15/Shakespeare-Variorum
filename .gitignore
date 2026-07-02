@@ -34,5 +34,8 @@ deno.lock
 # Cropped notes images (generated artifacts)
 cropped_notes/
 
+# Onions glossary build input (generated index is committed)
+data/onions_ocr.txt
+
 # Folger TEI XML
 Public/Data/folger_tei/

@@ -2658,6 +2658,30 @@
         #variorumSection .analysis-title span {
             color: #333 !important;
         }
+
+        #onionsSection {
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border, #ddd);
+        }
+
+        #onionsSection .onions-citation {
+            font-size: 0.85rem;
+            color: var(--muted, #666);
+            margin-bottom: 0.75rem;
+        }
+
+        #onionsSection .onions-entry {
+            margin-bottom: 0.75rem;
+            padding: 0.65rem 0.75rem;
+            background: var(--surface-2, #f7f4ef);
+            border-radius: 6px;
+        }
+
+        #onionsSection .onions-entry strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
         
         .notes-header h4 {
             color: #f59e0b;
@@ -14138,6 +14162,15 @@
                 <div id="variorumResult"></div>
             </div>
 
+            <!-- Onions Shakespeare Glossary (lexical source for AI tiers) -->
+            <div class="analysis-section" id="onionsSection" style="display: none;">
+                <div class="analysis-title">
+                    <span>Onions Glossary</span>
+                </div>
+                <p class="onions-citation" id="onionsCitation"></p>
+                <div class="analysis-content" id="onionsContent"></div>
+            </div>
+
             <!-- Follow-up Section - Hidden until analysis is done -->
             <div id="followUpSection" style="display: none;">
             <h3>Ask a follow-up question</h3>
@@ -15108,6 +15141,7 @@
             if (nvInfo) nvInfo.style.display = 'none';
             if (analyzeButton) analyzeButton.style.display = 'none';
             if (variorumSection) variorumSection.style.display = 'none';
+            updateOnionsSection(null);
             
             // Reset tab to basic
             currentTab = 'basic';
@@ -15154,6 +15188,7 @@
             if (analysisResult) analysisResult.innerHTML = '';
             if (variorumResult) variorumResult.innerHTML = '';
             if (variorumContent) variorumContent.innerHTML = '';
+            updateOnionsSection(null);
             
             // Hide any open info panels
             if (criticsInfo) criticsInfo.style.display = 'none';
@@ -15220,6 +15255,7 @@
             if (nvInfo) nvInfo.style.display = 'none';
             if (analyzeButton) analyzeButton.style.display = 'none';
             if (variorumSection) variorumSection.style.display = 'none';
+            updateOnionsSection(null);
             
             // Reset tab to basic
             currentTab = 'basic';
@@ -21219,6 +21255,7 @@
             
             // Hide variorum section at start (will be shown later if needed)
             if (variorumSection) variorumSection.style.display = 'none';
+            updateOnionsSection(null);
             
             // Reset follow-up, media, and research sections
             if (followUpSection) {
@@ -21598,6 +21635,40 @@
             }
         }
 
+        function formatOnionsGlosses(lexicalLookup) {
+            if (!lexicalLookup || !lexicalLookup.hits || lexicalLookup.hits.length === 0) {
+                return '';
+            }
+            let html = '';
+            for (const hit of lexicalLookup.hits) {
+                html += '<div class="onions-entry">';
+                html += `<strong>${hit.headword}</strong>`;
+                html += `<div>${processContentForFormatting(hit.text)}</div>`;
+                html += '</div>';
+            }
+            return html;
+        }
+
+        function updateOnionsSection(lexicalLookup) {
+            const section = document.getElementById('onionsSection');
+            const citation = document.getElementById('onionsCitation');
+            const content = document.getElementById('onionsContent');
+            if (!section || !content) return;
+
+            if (!lexicalLookup || !lexicalLookup.hits || lexicalLookup.hits.length === 0) {
+                section.style.display = 'none';
+                content.innerHTML = '';
+                if (citation) citation.textContent = '';
+                return;
+            }
+
+            section.style.display = 'block';
+            if (citation) {
+                citation.textContent = lexicalLookup.citation || 'C. T. Onions, A Shakespeare Glossary (1911; rev. 1919)';
+            }
+            content.innerHTML = formatOnionsGlosses(lexicalLookup);
+        }
+
         function formatStructuredAnalysis(analysis, relevantNotes) {
             console.log('=== FORMATTING STRUCTURED ANALYSIS ===');
             console.log('Analysis sections:', Object.keys(analysis));
@@ -21730,6 +21801,8 @@
                 const formattedContent = formatStructuredAnalysis(data.analysis, data.relevantNotes);
                 analysisContent.innerHTML = formattedContent;
             }
+
+            updateOnionsSection(data.lexicalLookup);
             
             // Ensure analyze button is visible
             if (analyzeButton) analyzeButton.style.display = 'block';
