@@ -14217,7 +14217,7 @@
                 </div>
 
                 <div id="lemeSourceBlock" class="source-block" style="display: none;">
-                    <h4>Period Lexicons (LEME: Cawdrey 1604, Bullokar 1616, Cockeram 1623)</h4>
+                    <h4>Period Lexicons (LEME: Cawdrey, Bullokar, Cockeram, Florio, Cotgrave)</h4>
                     <p class="source-citation" id="lemeCitation"></p>
                     <div id="lemeContent"></div>
                 </div>
@@ -14963,7 +14963,7 @@
                         </div>
 
                         <div id="lemeSourceBlock" class="source-block" style="display: none;">
-                            <h4>Period Lexicons (LEME: Cawdrey 1604, Bullokar 1616, Cockeram 1623)</h4>
+                            <h4>Period Lexicons (LEME: Cawdrey, Bullokar, Cockeram, Florio, Cotgrave)</h4>
                             <p class="source-citation" id="lemeCitation"></p>
                             <div id="lemeContent"></div>
                         </div>
@@ -21842,7 +21842,9 @@
             for (const hit of hits) {
                 html += '<div class="source-entry">';
                 html += `<strong>${hit.headword}</strong>`;
-                if (hit.citation) {
+                if (hit.lemma_lang) {
+                    html += `<div style="font-size:0.85rem;color:#666;">${hit.lemma_lang.toUpperCase()} lemma · matched via English gloss for "${hit.query || ''}"</div>`;
+                } else if (hit.citation) {
                     html += `<div style="font-size:0.85rem;color:#666;">${hit.citation}</div>`;
                 }
                 html += `<div>${processContentForFormatting(hit.text)}</div>`;

@@ -33,8 +33,9 @@
     "title": "A Worlde of Wordes",
     "year": 1598,
     "type": "italian_english",
-    "url": "https://leme.library.utoronto.ca/plainText/lexicon0231.txt",
-    "english_lookup": false
+    "lang": "it",
+    "lookup_mode": "english_gloss",
+    "url": "https://leme.library.utoronto.ca/plainText/lexicon0231.txt"
   },
   {
     "id": "cotgrave",
@@ -43,7 +44,8 @@
     "title": "A Dictionarie of the French and English Tongues",
     "year": 1611,
     "type": "french_english",
-    "url": "https://leme.library.utoronto.ca/plainText/lexicon0298.txt",
-    "english_lookup": false
+    "lang": "fr",
+    "lookup_mode": "english_gloss",
+    "url": "https://leme.library.utoronto.ca/plainText/lexicon0298.txt"
   }
 ]

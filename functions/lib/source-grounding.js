@@ -36,7 +36,7 @@ SOURCE GROUNDING RULES:
 CITATION FORMAT (REQUIRED in Key Words & Glosses and Language and Rhetoric):
 - Onions: (Onions, A Shakespeare Glossary, 1911/1919)
 - Schmidt: (Schmidt, Shakespeare-Lexicon, 1902)
-- LEME: (Cawdrey, A Table Alphabeticall, 1604), (Bullokar, An English Expositor, 1616), or (Cockeram, The English Dictionarie, 1623)
+- LEME: (Cawdrey, A Table Alphabeticall, 1604), (Bullokar, An English Expositor, 1616), (Cockeram, The English Dictionarie, 1623), (Florio, A Worlde of Wordes, 1598), or (Cotgrave, A Dictionarie of the French and English Tongues, 1611)
 - Example: "abandon" means [cast away] (Cawdrey, A Table Alphabeticall, 1604).
 - Do not gloss archaic words from model memory without a retrieved entry and citation.`
 
