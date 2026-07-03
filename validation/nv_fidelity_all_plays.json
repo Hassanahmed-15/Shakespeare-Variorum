@@ -749,13 +749,24 @@
     "long_nv_style": 127,
     "clipped_notes": 0,
     "clipped_pct": 0.0,
-    "ia_status": "fetch_failed",
-    "ia_url": "https://archive.org/download/newvariorumediti0000unse/newvariorumediti0000unse_djvu.txt (Command '['curl', '-fsSL', '-A', 'Mozilla/5.0 (compatible; nv-ia-witness/2.0; +https://github.com/)', '--max-time', '120', '-o', '/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti0000unse_djvu.txt.part', 'https://archive.org/download/newvariorumediti0000unse/newvariorumediti0000unse_djvu.txt']' returned non-zero exit status 22.; <urlopen error Tunnel connection failed: 403 Forbidden>)",
-    "ia_sample_n": 0,
-    "l2_exact_pct": null,
-    "l2_exact_high_pct": null,
-    "l2_partial_pct": null,
-    "l2_fail_pct": null,
+    "ia_status": "ok",
+    "ia_url": "/Users/work/Projects/Shakespeare-Variorum/data/troilus_nv_witness.txt",
+    "ia_sample_n": 35,
+    "l2_exact_pct": 85.7,
+    "l2_exact_high_pct": 100.0,
+    "l2_partial_pct": 0.0,
+    "l2_fail_pct": 0.0,
+    "l2_buckets": {
+      "exact": 30,
+      "high": 5,
+      "partial": 0,
+      "fail": 0,
+      "cross_ref": 0,
+      "short_gloss": 0
+    },
+    "ia_traceable_pct": 100.0,
+    "ia_unverified_pct": 0.0,
+    "paraphrase_pct": 0.0,
     "tier": "A"
   }
 ]

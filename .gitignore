@@ -43,3 +43,6 @@ data/leme_raw/
 
 # Folger TEI XML
 Public/Data/folger_tei/
+
+# Troilus 1953 NV PDF (local OCR source; use witness txt in repo)
+data/troilus_nv_1953.pdf

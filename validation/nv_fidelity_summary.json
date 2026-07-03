@@ -325,8 +325,8 @@
     "para": 0,
     "long": 127,
     "clipped_pct": 0.0,
-    "ia_pct": null,
-    "l2_exact_pct": null,
+    "ia_pct": 100.0,
+    "l2_exact_pct": 85.7,
     "tier": "A"
   }
 ]

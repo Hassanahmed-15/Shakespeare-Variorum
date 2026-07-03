@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from audit_nv_truncation import collect_notes, is_union_truncated  # noqa: E402
-from nv_ia_witness import fetch_ia_text, fold_apostrophe  # noqa: E402
+from nv_ia_witness import fetch_play_witness, fold_apostrophe  # noqa: E402
 from nv_repair import (  # noqa: E402
     repair_pass,
     split_mega_notes_in_data,
@@ -90,7 +90,7 @@ def process_play(name: str, spec: dict, *, dry_run: bool = False, repair_only: b
         return {"play": name, "error": f"missing {json_path}"}
 
     ia_id, stream = WITNESS_BY_PLAY[name]
-    ia_text, src = fetch_ia_text(ia_id, stream)
+    ia_text, src = fetch_play_witness(name)
     if ia_text is None:
         return {"play": name, "error": f"witness unavailable: {src}"}
 

@@ -6,6 +6,15 @@ sequential by play. Use resolve_nv_witnesses.py to validate candidates.
 
 from __future__ import annotations
 
+from pathlib import Path as _Path
+
+_ROOT = _Path(__file__).resolve().parents[1]
+
+# On-disk NV witness when IA text is restricted or wrong edition (play title -> path under repo root).
+LOCAL_WITNESS_BY_PLAY: dict[str, _Path] = {
+    "Troilus and Cressida": _ROOT / "data" / "troilus_nv_witness.txt",
+}
+
 WITNESS_BY_PLAY: dict[str, tuple[str, str]] = {
     "Romeo and Juliet": (
         "newvariorumediti01shak",
@@ -92,7 +101,7 @@ WITNESS_BY_PLAY: dict[str, tuple[str, str]] = {
         "newvariorumediti23shak_djvu.txt",
     ),
     # Canonical Vol. XXV (Hillebrand/Baldwin, 1953). IA djvu is lending-restricted (401);
-    # local witness may be built from SHAKSPER PDF (data/troilus_nv_witness.txt) when cached.
+    # Canonical text: data/troilus_nv_1953.pdf -> data/troilus_nv_witness.txt (1953 scan OCR).
     "Troilus and Cressida": (
         "newvariorumediti0000unse",
         "newvariorumediti0000unse_djvu.txt",

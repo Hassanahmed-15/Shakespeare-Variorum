@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from nv_ia_witness import (  # noqa: E402
     PARAPHRASE_RE,
     SYNTHETIC_RE,
-    fetch_ia_text,
+    fetch_play_witness,
     score_note_sample,
 )
 from nv_witness_map import WITNESS_BY_PLAY  # noqa: E402
@@ -175,7 +175,7 @@ def audit_play(spec: dict) -> dict:
         **metrics,
     }
 
-    ia_text, ia_meta = fetch_ia_text(spec["ia"], spec["ia_stream"])
+    ia_text, ia_meta = fetch_play_witness(spec["play"])
     if ia_text is None:
         row["ia_status"] = "fetch_failed"
         row["ia_url"] = ia_meta

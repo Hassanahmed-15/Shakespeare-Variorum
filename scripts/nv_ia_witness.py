@@ -99,6 +99,21 @@ def fetch_ia_text(ia_id: str, stream: str, *, force: bool = False) -> tuple[str 
             return None, f"{url} ({curl_exc}; {urllib_exc})"
 
 
+
+def fetch_play_witness(play: str, *, force: bool = False) -> tuple[str | None, str]:
+    """IA witness for play, preferring LOCAL_WITNESS_BY_PLAY when cached."""
+    from nv_witness_map import LOCAL_WITNESS_BY_PLAY, WITNESS_BY_PLAY
+
+    local = LOCAL_WITNESS_BY_PLAY.get(play)
+    if local is not None:
+        path = Path(local) if not isinstance(local, Path) else local
+        if path.is_file() and path.stat().st_size > MIN_CACHE_BYTES and not force:
+            return path.read_text(encoding="utf-8", errors="replace"), str(path)
+    if play not in WITNESS_BY_PLAY:
+        return None, f"unknown play: {play}"
+    ia_id, stream = WITNESS_BY_PLAY[play]
+    return fetch_ia_text(ia_id, stream, force=force)
+
 def is_cross_ref_note(note: str) -> bool:
     n = note.strip()
     if CROSS_REF_RE.search(n):
