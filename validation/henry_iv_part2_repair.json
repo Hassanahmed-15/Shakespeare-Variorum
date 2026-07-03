@@ -1,50 +1,11 @@
 {
+  "play": "Henry IV, Part 2",
   "ia_id": "newvariorumediti23shak",
-  "ia_url": "https://archive.org/download/newvariorumediti23shak/newvariorumediti23shak_djvu.txt",
-  "clipped_before": 54,
-  "clipped_after": 44,
-  "repaired": 10,
-  "unresolved": 44,
-  "examples": [
-    {
-      "before_len": 776,
-      "after_len": 2796,
-      "tail": "es, it would be as difficult to prove that they were not used as to prove that they were \u2014 likewise just as easy. \u2014 Ed.]"
-    },
-    {
-      "before_len": 534,
-      "after_len": 602,
-      "tail": " F (15-6) was added by Pope to the preceding speech of ACT II, SC. iv.] know\u2019ft Sir Iohn cannot endure an Apple- Iohn. 5"
-    },
-    {
-      "before_len": 66,
-      "after_len": 2085,
-      "tail": "iv.iii.32-3, v.i.49. to] See Franz (3 ed., 1924) \u00a7533. 58. Rheumatike] Hanmer (ed. 1743): She means to say splenetick. \u2014"
-    },
-    {
-      "before_len": 65,
-      "after_len": 1408,
-      "tail": "ds. Irv. Neil. Neighbors,] neighbours; Cap. et seq. Swaggerers] Swaggeres Rowe ii. hence, the wine made there, claret. \u2014"
-    },
-    {
-      "before_len": 298,
-      "after_len": 1027,
-      "tail": "we, Pope, Han. ( Whofe ... blood ) Theob. Warb. Cap. Varr. Rann, Mai. Steev. Varr. Sing, i, Knt, Dyce i, Sta. (subs.). \u2014"
-    },
-    {
-      "before_len": 96,
-      "after_len": 1093,
-      "tail": "mises confined, Herr. partners confirm'd, or par\u00ac takers so confirm\u2019d, Vaughan. 185. awfull] lawful Warb. Cap. allied. \u2014"
-    },
-    {
-      "before_len": 74,
-      "after_len": 1630,
-      "tail": "rince seems almost cold-blooded in turning from the thought of his father\u2019s death to that of his new responsibilities. \u2014"
-    },
-    {
-      "before_len": 69,
-      "after_len": 2697,
-      "tail": "bjects to this play on words too. 148. When that] See note on 11.iii.56. 149. Care] Tyrwhitt (Var. \u201978): I.e. Curator. \u2014"
-    }
-  ]
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti23shak_djvu.txt",
+  "bracket_orphans_fixed": 3,
+  "before": 47,
+  "repaired": 0,
+  "after": 47,
+  "unresolved": 47,
+  "examples": []
 }

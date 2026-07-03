@@ -1,0 +1,318 @@
+[
+  {
+    "play": "Romeo and Juliet",
+    "json": "Public/Data/romeo_and_juliet.json",
+    "ia_id": "newvariorumediti01shak",
+    "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti01shak_djvu.txt",
+    "truncated_before": 6,
+    "repair": {
+      "before": 6,
+      "repaired": 4,
+      "after": 4,
+      "unresolved": 4,
+      "examples": [
+        {
+          "before_len": 61,
+          "after_len": 188,
+          "tail": "ct i, sc. v. Like a rich jewel in an Ethiop's ear ; Beauty too rich for use, for earth too dear ! 45"
+        },
+        {
+          "before_len": 70,
+          "after_len": 498,
+          "tail": "er. Farewell, ancient lady ; farewell, \\singing\\ ' lady, lady, lady.' [ExcHui Mercutio and Benvolio."
+        },
+        {
+          "before_len": 186,
+          "after_len": 773,
+          "tail": " Q^Q,. doe note growth'^'). Y„. do note F K, Rowe, Pope, Han. 117. /adv...lives,~\\ F , Rowe, &c. Ca-"
+        },
+        {
+          "before_len": 70,
+          "after_len": 797,
+          "tail": "n, for, lo, his house Is empty on the back of Montague, And is mis-sheathed in my daughter's bosom !"
+        }
+      ]
+    },
+    "repaired": 4,
+    "truncated_after": 4,
+    "wrote": true
+  },
+  {
+    "play": "Macbeth",
+    "json": "Public/Data/macbeth_notes_cleaned_play.json",
+    "ia_id": "newvariorumediti10shak",
+    "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti10shak_djvu.txt",
+    "truncated_before": 21,
+    "repair": {
+      "before": 21,
+      "repaired": 5,
+      "after": 16,
+      "unresolved": 16,
+      "examples": [
+        {
+          "before_len": 1332,
+          "after_len": 1623,
+          "tail": "ss of Fortune's favors are not alone prominent in these words of the Sergeant, but elsewhere also. —"
+        },
+        {
+          "before_len": 69,
+          "after_len": 864,
+          "tail": "ine immediately following. We might read, fright, or fray >, but any change, perhaps, is needless. —"
+        },
+        {
+          "before_len": 1667,
+          "after_len": 2297,
+          "tail": "ssages must be explained. This is a reaL_djmculty and I^cannbT'5atiBfactorilv solve it at present. —"
+        },
+        {
+          "before_len": 70,
+          "after_len": 4623,
+          "tail": "ble to find this emendation of Singer's, nor is he credited with it by the Cambridge Editors. — Ed.]"
+        },
+        {
+          "before_len": 234,
+          "after_len": 3936,
+          "tail": "to that period, the king's third or fourth year, [James ascended the throne in March, 1602-3. — Ed.]"
+        }
+      ]
+    },
+    "repaired": 5,
+    "truncated_after": 16,
+    "wrote": true
+  },
+  {
+    "play": "King Lear",
+    "json": "Public/Data/kinglear_notes.json",
+    "ia_id": "newvariorumediti05shak",
+    "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti05shak_djvu.txt",
+    "truncated_before": 0,
+    "skipped_apply": true,
+    "truncated_after": 0,
+    "repaired": 0
+  },
+  {
+    "play": "Othello",
+    "json": "Public/Data/othello_notes_folger.json",
+    "ia_id": "newvariorumediti13shak",
+    "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti13shak_djvu.txt",
+    "truncated_before": 13,
+    "repair": {
+      "before": 13,
+      "repaired": 4,
+      "after": 9,
+      "unresolved": 9,
+      "examples": [
+        {
+          "before_len": 314,
+          "after_len": 3680,
+          "tail": "copy of Fx, from which Lionel Booth reprinted, and that from which this edition is reprinted. — Ed.]"
+        },
+        {
+          "before_len": 408,
+          "after_len": 2160,
+          "tail": " of whatever touches us nearly, either in love or hate, joy or sorrow.' See //am. I, ii, 182. — Ed.]"
+        },
+        {
+          "before_len": 636,
+          "after_len": 1222,
+          "tail": "not as significant as it is now. See the openness with which, in II, i, Cassio kisses Emilia. — Ed.]"
+        },
+        {
+          "before_len": 90,
+          "after_len": 2173,
+          "tail": "cet. 279. shalbe] Note Staunton's ingenious punctuation, which is likely to give ax* editor pause. —"
+        }
+      ]
+    },
+    "repaired": 4,
+    "truncated_after": 9,
+    "wrote": true
+  },
+  {
+    "play": "The Merchant of Venice",
+    "json": "Public/Data/merchant_of_venice.json",
+    "ia_id": "newvariorumediti0000unse_h5u1",
+    "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti0000unse_h5u1_djvu.txt",
+    "truncated_before": 19,
+    "repair": {
+      "before": 19,
+      "repaired": 6,
+      "after": 15,
+      "unresolved": 15,
+      "examples": [
+        {
+          "before_len": 152,
+          "after_len": 2765,
+          "tail": "but to me it seems simpler to hold it as an idiom that dy was used commonly after the verb ¢o mean.—"
+        },
+        {
+          "before_len": 79,
+          "after_len": 1334,
+          "tail": "omo nos- ter et dominicus mercator noster.’ See a protection granted to him, Rotuli Selecti 1834, p."
+        },
+        {
+          "before_len": 3661,
+          "after_len": 6344,
+          "tail": "s all subsequent commentators have, in effect, ranged themselves. At present, I prefer Malone.—ED. ]"
+        },
+        {
+          "before_len": 325,
+          "after_len": 747,
+          "tail": "e fo loud: Repaire thy wit good youth, or it will fall To endleffe ruine. I ftand heere for Law. 150"
+        },
+        {
+          "before_len": 167,
+          "after_len": 1119,
+          "tail": "is heart, thofe are the very words. Por. It is fo: Are there ballance heere to weigh the flefh ? 269"
+        },
+        {
+          "before_len": 781,
+          "after_len": 1130,
+          "tail": "aue the ring, Let his deferuings and my loue withall 470 Be valued again{ft your wiues commandement."
+        }
+      ]
+    },
+    "repaired": 6,
+    "truncated_after": 15,
+    "wrote": true
+  },
+  {
+    "play": "As You Like It",
+    "json": "Public/Data/as_you_like_it.json",
+    "ia_id": "newvariorumediti0000unse_v0h0",
+    "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti0000unse_v0h0_djvu.txt",
+    "truncated_before": 0,
+    "skipped_apply": true,
+    "truncated_after": 0,
+    "repaired": 0
+  },
+  {
+    "play": "A Midsummer Night's Dream",
+    "json": "Public/Data/midsummer_nights_dream.json",
+    "ia_id": "amidsommernight01furngoog",
+    "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/amidsommernight01furngoog_djvu.txt",
+    "truncated_before": 0,
+    "skipped_apply": true,
+    "truncated_after": 0,
+    "repaired": 0
+  },
+  {
+    "play": "Much Ado About Nothing",
+    "json": "Public/Data/much_ado_about_nothing.json",
+    "ia_id": "in.ernet.dli.2015.94001",
+    "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.94001.A-New-Variorum-Edition-Of-Shakespearemuch-Adoe-About-Nothingvol12ed2_djvu.txt",
+    "truncated_before": 11,
+    "repair": {
+      "before": 11,
+      "repaired": 7,
+      "after": 4,
+      "unresolved": 4,
+      "examples": [
+        {
+          "before_len": 4787,
+          "after_len": 5605,
+          "tail": "i, ii, thoti] ikon F^. Cam. Glo. Wh. ii. as... art] In parenthesis, Cap. II. morall] morta/l 'RovfQ."
+        },
+        {
+          "before_len": 3147,
+          "after_len": 4050,
+          "tail": "i, ii, thoti] ikon F^. Cam. Glo. Wh. ii. as... art] In parenthesis, Cap. II. morall] morta/l 'RovfQ."
+        },
+        {
+          "before_len": 474,
+          "after_len": 5673,
+          "tail": "e suggests that line 94 is ‘quoted from a .song or .some verses commonly known at that time.’ — Ed.]"
+        },
+        {
+          "before_len": 237,
+          "after_len": 906,
+          "tail": "y, and forms, as it were, a fellowship with him, then Adam at once addresses Orlando as thou. — El)."
+        },
+        {
+          "before_len": 472,
+          "after_len": 2457,
+          "tail": "s, and, handy-dandy, which is Dogberry, which is Warburton. In fairness, however, see Text. Notes. —"
+        },
+        {
+          "before_len": 994,
+          "after_len": 3269,
+          "tail": " which Claudio would write. This would involve the objectionable change of ‘.seem’ to seemed. — Ed.]"
+        },
+        {
+          "before_len": 690,
+          "after_len": 1768,
+          "tail": "ap KaKoi yvofiaiai rayaOdv ;(;epolv ’’Exovreg ovk icaac^ irptv Tig eK^aXy , — AiaSf 908, 909. — Ed.]"
+        }
+      ]
+    },
+    "repaired": 7,
+    "truncated_after": 4,
+    "wrote": true
+  },
+  {
+    "play": "Twelfth Night",
+    "json": "Public/Data/twelfth_night.json",
+    "ia_id": "twelfenightorwha0000hora",
+    "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/twelfenightorwha0000hora_djvu.txt",
+    "truncated_before": 6,
+    "repair": {
+      "before": 6,
+      "repaired": 1,
+      "after": 5,
+      "unresolved": 5,
+      "examples": [
+        {
+          "before_len": 219,
+          "after_len": 864,
+          "tail": "gon] F,, be-gon F,; begone F,. begun Rowe. 426. hey ho,] with hey, ho, Ff. 428. [Exit. Rowe. thief.—"
+        }
+      ]
+    },
+    "repaired": 1,
+    "truncated_after": 5,
+    "wrote": true
+  },
+  {
+    "play": "Love's Labour's Lost",
+    "json": "Public/Data/loves_labours_lost.json",
+    "ia_id": "in.ernet.dli.2015.94000",
+    "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.94000.A-New-Variorum-Edition-Of-Shakespeareloues-Labours-Lostvol14_djvu.txt",
+    "truncated_before": 22,
+    "repair": {
+      "before": 22,
+      "repaired": 5,
+      "after": 17,
+      "unresolved": 17,
+      "examples": [
+        {
+          "before_len": 68,
+          "after_len": 812,
+          "tail": " F^F^. 44. deuf-ace'\\ QF^. deuf-afe F^F^, Duke\\ King Tbeob. + . Rowe, deuce-ace Pope. deuX’-ace Cap."
+        },
+        {
+          "before_len": 406,
+          "after_len": 1604,
+          "tail": " Schmidt also follows Delius. It is the unfortunate hyphen in the text which has proved beguiling. —"
+        },
+        {
+          "before_len": 3849,
+          "after_len": 6018,
+          "tail": "d by Sir Nathaniel, — is become one of our hackneyed quota- tions : — seme/ insannnmus omnes. — En.]"
+        },
+        {
+          "before_len": 70,
+          "after_len": 1178,
+          "tail": "otes in this ed. on Ader, of Ven. V, i, 196; Mid. N. D. II, i, 32 ; Twelfth Eighty I, i, 12 , — Ed.]"
+        },
+        {
+          "before_len": 1131,
+          "after_len": 2069,
+          "tail": "39. [Aside. Cap. Aside to Dum. Cam. Glo. 740. [Aside. Cap. Aside to Boyet. Cam. Glo. [In sens, obs.]"
+        }
+      ]
+    },
+    "repaired": 5,
+    "truncated_after": 17,
+    "wrote": true
+  }
+]

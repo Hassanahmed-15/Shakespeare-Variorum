@@ -1,0 +1,43 @@
+{
+  "play": "Macbeth",
+  "json": "Public/Data/macbeth_notes_cleaned_play.json",
+  "ia_id": "newvariorumediti10shak",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti10shak_djvu.txt",
+  "truncated_before": 21,
+  "repair": {
+    "before": 21,
+    "repaired": 5,
+    "after": 16,
+    "unresolved": 16,
+    "examples": [
+      {
+        "before_len": 1332,
+        "after_len": 1623,
+        "tail": "ss of Fortune's favors are not alone prominent in these words of the Sergeant, but elsewhere also. —"
+      },
+      {
+        "before_len": 69,
+        "after_len": 864,
+        "tail": "ine immediately following. We might read, fright, or fray >, but any change, perhaps, is needless. —"
+      },
+      {
+        "before_len": 1667,
+        "after_len": 2297,
+        "tail": "ssages must be explained. This is a reaL_djmculty and I^cannbT'5atiBfactorilv solve it at present. —"
+      },
+      {
+        "before_len": 70,
+        "after_len": 4623,
+        "tail": "ble to find this emendation of Singer's, nor is he credited with it by the Cambridge Editors. — Ed.]"
+      },
+      {
+        "before_len": 234,
+        "after_len": 3936,
+        "tail": "to that period, the king's third or fourth year, [James ascended the throne in March, 1602-3. — Ed.]"
+      }
+    ]
+  },
+  "repaired": 5,
+  "truncated_after": 16,
+  "wrote": true
+}

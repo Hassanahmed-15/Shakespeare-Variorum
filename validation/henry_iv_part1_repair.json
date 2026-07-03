@@ -1,0 +1,61 @@
+{
+  "play": "Henry IV, Part 1",
+  "json_file": "Public/Data/henry_iv_part1.json",
+  "ia_id": "newvariorumediti21shak",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti21shak_djvu.txt",
+  "before": 66,
+  "repaired": 9,
+  "after": 58,
+  "unresolved": 57,
+  "attempted": 66,
+  "examples": [
+    {
+      "ref": "ACT 1,SCENE 1 / line 11 / note 0",
+      "before_len": 144,
+      "after_len": 599,
+      "tail": " region of the air, and sent out in different forms; as rain, hail, snow, wind, thunder, lightning."
+    },
+    {
+      "ref": "ACT 1,SCENE 1 / line 35 / note 0",
+      "before_len": 54,
+      "after_len": 55,
+      "tail": "hot . . . question] Wright (ed. 1897): Hotly discussed."
+    },
+    {
+      "ref": "ACT 2 ,SCENE 1 / line 73 / note 0",
+      "before_len": 54,
+      "after_len": 697,
+      "tail": "ble of Cant Expressions Used by Thieves, the cutting a pocket or picking a purse is called striking."
+    },
+    {
+      "ref": "ACT 2 SCENE 2 / line 3 / note 0",
+      "before_len": 147,
+      "after_len": 464,
+      "tail": "urther reference to \"gummed velvet,\" see, if necessary, Wright (ed. 1897) and Cowl (ed. 1914). —Ed.]"
+    },
+    {
+      "ref": "ACT 2 SCENE 2 / line 85 / note 0",
+      "before_len": 73,
+      "after_len": 184,
+      "tail": " — Cowl (ed. 1914): Falstaff turns against the bourgeoisie a reproach usually levelled at rogues."
+    },
+    {
+      "ref": "ACT 2 ,SCENE 4 / line 357 / note 0",
+      "before_len": 22,
+      "after_len": 116,
+      "tail": " i, 95. blew caps] Johnson (ed. 1765): A name of ridicule given to the Scots for their blue bonnets."
+    },
+    {
+      "ref": "ACT 2 ,SCENE 4 / line 385 / note 0",
+      "before_len": 119,
+      "after_len": 131,
+      "tail": "(ed. 1859): Not anger, but grief; the word being used in its radical sense, suffering. See also line"
+    }
+  ],
+  "reverted": [
+    {
+      "ref": "ACT 1,SCENE 1 / line 65 / note 0",
+      "reason": "IA witness continuation mis-anchored; left at pre-repair text"
+    }
+  ]
+}

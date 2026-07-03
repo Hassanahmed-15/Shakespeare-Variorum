@@ -1,0 +1,57 @@
+{
+  "play": "Julius Caesar",
+  "ia_id": "in.ernet.dli.2015.94007",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.94007.A-New-Variorum-Edition-Of-Shakespearethe-Tragedie-Of-Ivlivs-Caesar_djvu.txt",
+  "truncated_before": 81,
+  "mega_split": {},
+  "repair": {
+    "before": 81,
+    "repaired": 53,
+    "after": 28,
+    "unresolved": 28,
+    "examples": [
+      {
+        "before_len": 546,
+        "after_len": 1684,
+        "tail": "s not noticed by Mrs Inchbald, who has the same assignment of characters and speeches as has Bell. —"
+      },
+      {
+        "before_len": 301,
+        "after_len": 6611,
+        "tail": ". 316) : ‘There is no reason for supposing p, ph, qu to have been anything but p,f, and kw. J — Ed.]"
+      },
+      {
+        "before_len": 68,
+        "after_len": 339,
+        "tail": "fayer\\af- tcr them Murellus ayid Flauius. 3 Scene ii.] Pope et seq. The Same. A publick Place. Rowe."
+      },
+      {
+        "before_len": 616,
+        "after_len": 1832,
+        "tail": "d by the omission of the prefix. Capell’s reading (see Text. Notes ) is, perhaps, preferable. — Ed.]"
+      },
+      {
+        "before_len": 720,
+        "after_len": 1333,
+        "tail": "we et seq. pared to have me tell you ‘That of yourself, which you yet know not of’ ( 1 . 82). — Ed.]"
+      },
+      {
+        "before_len": 158,
+        "after_len": 1158,
+        "tail": "n’s explanation; but that given by Hudson seems preferable, and lias been generally followed. — Ed.]"
+      },
+      {
+        "before_len": 317,
+        "after_len": 1515,
+        "tail": " indebted for the happy and veracious phrase: ‘the idealess, but thought-swarming Warburton.’ — Ed.]"
+      },
+      {
+        "before_len": 1325,
+        "after_len": 2118,
+        "tail": "om Plutarch quoted]. We shall probably now hear no more of “old Ben’s malignity” in this instance.’]"
+      }
+    ]
+  },
+  "truncated_after": 28,
+  "repaired_this_phase": 53
+}

@@ -1,0 +1,26 @@
+{
+  "play": "Cymbeline",
+  "ia_id": "unset0000unse_m8h0",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/unset0000unse_m8h0_djvu.txt",
+  "before": 121,
+  "repaired": 3,
+  "after": 118,
+  "unresolved": 118,
+  "examples": [
+    {
+      "before_len": 795,
+      "after_len": 1721,
+      "tail": "l. Sta. more; Cap. et cet. Philario\u2019s; Theob. et cet. leaft| left Ff. 34. Who,] who F,. Rowe et seq."
+    },
+    {
+      "before_len": 66,
+      "after_len": 1428,
+      "tail": "reative cunning. At line 53 you see the snake, and hear the soft modulations of Mephistopheles.\u2014Ep.]"
+    },
+    {
+      "before_len": 1449,
+      "after_len": 1952,
+      "tail": " Pope, Han. bauble,| bauble! Rowe,+, Var. 25. Enter...] After line 26, Sing. ii, 85. Dyce, Glo. Cam."
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "before": 111,
+  "repaired": 5,
+  "unresolved": 106,
+  "after": 106,
+  "examples": [
+    {
+      "ref": "ACT 2 SCENE 1 / line 2 / note 4",
+      "before_len": 3346,
+      "after_len": 3372,
+      "tail": "all that is gracious and touch- ing in the figure is due to the great reviser. [See III, iv, 98 and notes thereon. —Ed.]"
+    },
+    {
+      "ref": "ACT 2 SCENE 1 / line 353 / note 0",
+      "before_len": 160,
+      "after_len": 219,
+      "tail": " of features to describe settled sorrow and wild despair, with notes of voice answerable to such affecting sensations. —"
+    },
+    {
+      "ref": "ACT 2 SCENE 1 / line 396 / note 0",
+      "before_len": 1688,
+      "after_len": 3081,
+      "tail": "jecture as to the source of Shakespeare’s knowledge of the incident, it may, I think, be considered as withdrawn. — Ed.]"
+    },
+    {
+      "ref": "ACT 3 SCENE 1 / line 71 / note 0",
+      "before_len": 1018,
+      "after_len": 5580,
+      "tail": " the verbal form of ‘down’ in the sense to put down are not common until much later than the six- teenth century. — Ed.]"
+    },
+    {
+      "ref": "ACT 3 SCENE 2 / line 3 / note 0",
+      "before_len": 817,
+      "after_len": 3236,
+      "tail": "ds: ‘An “airy devil” was not likely to be the Bastard’s word, in the midst of the heat and fury of the conflict.’ — Ed.]"
+    }
+  ],
+  "play": "King John",
+  "ia_id": "in.ernet.dli.2015.262202",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.262202.A-New_djvu.txt"
+}

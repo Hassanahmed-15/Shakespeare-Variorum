@@ -1,0 +1,48 @@
+{
+  "play": "The Merchant of Venice",
+  "json": "Public/Data/merchant_of_venice.json",
+  "ia_id": "newvariorumediti0000unse_h5u1",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti0000unse_h5u1_djvu.txt",
+  "truncated_before": 19,
+  "repair": {
+    "before": 19,
+    "repaired": 6,
+    "after": 15,
+    "unresolved": 15,
+    "examples": [
+      {
+        "before_len": 152,
+        "after_len": 2765,
+        "tail": "but to me it seems simpler to hold it as an idiom that dy was used commonly after the verb ¢o mean.—"
+      },
+      {
+        "before_len": 79,
+        "after_len": 1334,
+        "tail": "omo nos- ter et dominicus mercator noster.’ See a protection granted to him, Rotuli Selecti 1834, p."
+      },
+      {
+        "before_len": 3661,
+        "after_len": 6344,
+        "tail": "s all subsequent commentators have, in effect, ranged themselves. At present, I prefer Malone.—ED. ]"
+      },
+      {
+        "before_len": 325,
+        "after_len": 747,
+        "tail": "e fo loud: Repaire thy wit good youth, or it will fall To endleffe ruine. I ftand heere for Law. 150"
+      },
+      {
+        "before_len": 167,
+        "after_len": 1119,
+        "tail": "is heart, thofe are the very words. Por. It is fo: Are there ballance heere to weigh the flefh ? 269"
+      },
+      {
+        "before_len": 781,
+        "after_len": 1130,
+        "tail": "aue the ring, Let his deferuings and my loue withall 470 Be valued again{ft your wiues commandement."
+      }
+    ]
+  },
+  "repaired": 6,
+  "truncated_after": 15,
+  "wrote": true
+}

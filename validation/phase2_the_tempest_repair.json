@@ -1,0 +1,57 @@
+{
+  "play": "The Tempest",
+  "ia_id": "tempestnewvarior0009unse",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/tempestnewvarior0009unse_djvu.txt",
+  "truncated_before": 39,
+  "mega_split": {},
+  "repair": {
+    "before": 39,
+    "repaired": 10,
+    "after": 29,
+    "unresolved": 29,
+    "examples": [
+      {
+        "before_len": 1689,
+        "after_len": 3449,
+        "tail": " very common in our old writers. [Very far from being one of Staunton’s happiest emendations. — Ed.]"
+      },
+      {
+        "before_len": 1130,
+        "after_len": 5279,
+        "tail": ".’ Dr Johnson’s explanation, without his ‘ adjustment ’ of the text, is to me all-sufficient. — Ed.]"
+      },
+      {
+        "before_len": 3037,
+        "after_len": 4905,
+        "tail": " the peculiar use of ‘ vast ’ by Elizabethan writers Walker (Crit. ii, 38) devotes a chapter. — Ed.]"
+      },
+      {
+        "before_len": 69,
+        "after_len": 5356,
+        "tail": "hey actually kiss, not the •waves, but each other. [Allen’s interpretation is to me the best. — Ed.]"
+      },
+      {
+        "before_len": 153,
+        "after_len": 5487,
+        "tail": "n of exactness, but it does look here as though he were pommelling a foe of his own creation. — Ed.]"
+      },
+      {
+        "before_len": 162,
+        "after_len": 294,
+        "tail": "532. I am~\\ I Rowe ii. I'm Pope + , Dyce ii, iii. ous to your honour. See Mer. Wives, IV, ii, 161. —"
+      },
+      {
+        "before_len": 80,
+        "after_len": 2991,
+        "tail": "ady as anyone to apply Walker’s rule, failed to see its present appli¬ cation. See next note. — Ed.]"
+      },
+      {
+        "before_len": 152,
+        "after_len": 3090,
+        "tail": "y him¬ self.’ [Thombury’s book would be extremely valuable if his authorities were only given — Ed.]"
+      }
+    ]
+  },
+  "truncated_after": 29,
+  "repaired_this_phase": 10
+}

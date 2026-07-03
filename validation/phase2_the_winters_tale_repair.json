@@ -1,0 +1,16 @@
+{
+  "play": "The Winter's Tale",
+  "ia_id": "winterstale0007unse",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/winterstale0007unse_djvu.txt",
+  "truncated_before": 47,
+  "mega_split": {},
+  "repair": {
+    "before": 47,
+    "repaired": 0,
+    "after": 47,
+    "unresolved": 47,
+    "examples": []
+  },
+  "truncated_after": 47,
+  "repaired_this_phase": 0
+}

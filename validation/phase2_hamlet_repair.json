@@ -1,0 +1,52 @@
+{
+  "play": "Hamlet",
+  "ia_id": "newvariorumediti11shak",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti11shak_djvu.txt",
+  "truncated_before": 41,
+  "mega_split": {},
+  "repair": {
+    "before": 41,
+    "repaired": 7,
+    "after": 35,
+    "unresolved": 35,
+    "examples": [
+      {
+        "before_len": 138,
+        "after_len": 692,
+        "tail": "r us with message, Importing the surrender of those lands Lost by his father, with all bonds of law,"
+      },
+      {
+        "before_len": 2210,
+        "after_len": 2392,
+        "tail": "d be a villain ; At least I'm sure it may be so in Denmark. — \\_Writing. So, uncle, there you are. —"
+      },
+      {
+        "before_len": 75,
+        "after_len": 246,
+        "tail": ". Hillo, ho, ho, boy ! come, bird, come. Enter HORATIO and MARCELLUS. Mar. How is't, my noble lord ?"
+      },
+      {
+        "before_len": 156,
+        "after_len": 248,
+        "tail": "ic History act I, sc. v.| HAMLET H3 Ham. Indeed, upon my sword, indeed. 148 Ghost. [Beneath\"] Swear."
+      },
+      {
+        "before_len": 146,
+        "after_len": 2745,
+        "tail": "i' the Capitol; Brutus killed me. Ham. It was a brute part of him to kill so capital a calf there. —"
+      },
+      {
+        "before_len": 32,
+        "after_len": 126,
+        "tail": "ne 329 282. belike] Johnson : Ham. was going on to draw the consequence, when the courtiers entered."
+      },
+      {
+        "before_len": 155,
+        "after_len": 2659,
+        "tail": "ence ; and this vile deed 30 We must, with all our majesty and skill, Both countenance and excuse. —"
+      }
+    ]
+  },
+  "truncated_after": 35,
+  "repaired_this_phase": 7
+}

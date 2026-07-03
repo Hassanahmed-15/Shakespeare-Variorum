@@ -17,30 +17,25 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+from nv_ia_witness import fold_apostrophe  # noqa: E402
+from nv_repair import (  # noqa: E402
+    RESUME,
+    deinterleave_default as deinterleave,
+    extract_from_ia,
+    find_note_pos,
+    flex_pattern,
+    norm_space,
+    truncate_footnote,
+)
+
 JSON_PATH = ROOT / "Public/Data/henry_iv_part2.json"
 BACKUP = JSON_PATH.with_suffix(".json.pre_repair.backup")
 IA_ID = "newvariorumediti23shak"
 IA_STREAM = f"{IA_ID}_djvu.txt"
 IA_URL = f"https://archive.org/download/{IA_ID}/{IA_STREAM}"
 CACHE = ROOT / "data/h4p2_ia_djvu.txt"
-
-PLAY_BLOCK = re.compile(
-    r"ACT\s+[IVXLC\d]+\s*,\s*sc\.?\s*\d+\.?\]?\s*(?:HENRY\s+THE\s+FOURTH)?\s*\d*\s*",
-    re.I,
-)
-PAGE_HDR = re.compile(r"HENRY\s+THE\s+FOURTH\s+\d{1,3}\s+", re.I)
-RESUME = re.compile(
-    r"(it must be|nausea|[a-z]{4,}[\u2018\u2019',])|(?:\u2014|—)\s*\[|(?:\u2014|—)\s*$",
-    re.I,
-)
-
-
-def fold_apostrophe(s: str) -> str:
-    return s.replace("\u2019", "'").replace("\u2018", "'")
-
-
-def norm_space(s: str) -> str:
-    return re.sub(r"\s+", " ", s).strip()
 
 
 def is_clipped(note: str) -> bool:
@@ -61,103 +56,6 @@ def is_clipped(note: str) -> bool:
     if n.rstrip()[-1:] in ";:,":
         return True
     return False
-
-
-def flex_pattern(text: str, max_words: int = 14) -> re.Pattern[str] | None:
-    words = re.findall(r"[A-Za-z0-9\u2019']+", fold_apostrophe(text))
-    if len(words) < 4:
-        return None
-    words = words[:max_words]
-    return re.compile(r"\s+".join(re.escape(w) for w in words), re.I)
-
-
-def deinterleave(text: str) -> str:
-    text = PLAY_BLOCK.sub(" ||| ", text)
-    text = PAGE_HDR.sub(" ||| ", text)
-    parts = [p.strip() for p in text.split("|||") if p.strip()]
-    if not parts:
-        return norm_space(text)
-    out = parts[0]
-    for part in parts[1:]:
-        if len(re.findall(r"\b[A-Z][a-z]+\b", part)) > 8 and len(part) > 120:
-            m = RESUME.search(part)
-            if m:
-                out += " " + part[m.start() :]
-        else:
-            out += " " + part
-    return norm_space(out)
-
-
-def truncate_footnote(text: str, min_len: int = 40) -> str:
-    if len(text) <= min_len:
-        return text.strip()
-    for pat in (
-        r"—\s*Ed\.\]",
-        r"—\s*\[Ed\.\]",
-        r"\[Ed\.\]\s*$",
-        r"\.\s*—\s*Ed\.\]",
-    ):
-        m = re.search(pat, text)
-        if m and m.end() > min_len:
-            return text[: m.end()].strip()
-    for m in re.finditer(r"—\s*$", text):
-        if min_len < m.end() < 2800:
-            return text[: m.end()].strip()
-    for m in re.finditer(r"\.\s*—\s*(?=[A-Z\[\"'\u2018(]|$)", text):
-        if min_len < m.end() < 2800:
-            return text[: m.end()].strip()
-    m = re.search(r"\s(\d{1,3})\.\s+(?:[A-Za-z(\[]|\w+\]|\w+\.)", text[min_len:])
-    if m:
-        return text[: min_len + m.start()].strip()
-    if len(text) > 2800:
-        cut = text[:2800]
-        m = re.search(r"[.!?]\s*—?\s*$", cut)
-        if m:
-            return cut[: m.end()].strip()
-    return text.strip()
-
-
-def find_note_pos(ia: str, note: str) -> int:
-    body = note[note.index("]") + 1 :].strip() if "]" in note else note.strip()
-    folded_ia = fold_apostrophe(ia)
-    for size in (100, 80, 60, 45, 30):
-        if len(body) < size:
-            continue
-        pat = flex_pattern(body[:size])
-        if pat:
-            m = pat.search(folded_ia)
-            if m:
-                return m.start()
-    after_critic = re.search(r":\s*(.+)", body)
-    if after_critic:
-        pat = flex_pattern(after_critic.group(1)[:70])
-        if pat:
-            m = pat.search(folded_ia)
-            if m:
-                return m.start()
-    words = re.findall(r"[A-Za-z0-9\u2019']+", fold_apostrophe(body))
-    for n in (10, 8, 6):
-        if len(words) >= n:
-            pat = flex_pattern(" ".join(words[:n]), n)
-            if pat:
-                m = pat.search(folded_ia)
-                if m:
-                    return m.start()
-    return -1
-
-
-def extract_from_ia(ia: str, pos: int, json_note: str) -> str:
-    start = max(0, pos - 120)
-    chunk = ia[start : start + 6000]
-    m = re.search(r"(\d{1,3}\.\s*)?[\w .'-]+\]\s*[A-Z(]", chunk, re.I)
-    if m and m.start() <= (pos - start) + 10:
-        chunk = chunk[m.start() :]
-    ext = truncate_footnote(deinterleave(chunk))
-    if "]" in json_note:
-        json_lemma = json_note[: json_note.index("]") + 1]
-        em = re.match(r"^(\d{1,3}\.\s*)?[^\]]+\]\s*", ext)
-        ext = json_lemma + (" " + ext[em.end() :].lstrip() if em else " " + ext)
-    return norm_space(ext)
 
 
 def looks_contaminated(note: str) -> bool:

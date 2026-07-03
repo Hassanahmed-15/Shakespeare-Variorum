@@ -1,0 +1,528 @@
+[
+  {
+    "play": "Romeo and Juliet",
+    "best": {
+      "ia_id": "newvariorumediti01shak",
+      "stream": "newvariorumediti01shak_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti01shak_djvu.txt",
+      "exact_high_pct": 95.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "newvariorumediti01shak",
+        "stream": "newvariorumediti01shak_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti01shak_djvu.txt",
+        "exact_high_pct": 95.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "Macbeth",
+    "best": {
+      "ia_id": "newvariorumediti10shak",
+      "stream": "newvariorumediti10shak_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti10shak_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "newvariorumediti10shak",
+        "stream": "newvariorumediti10shak_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti10shak_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "Hamlet",
+    "best": {
+      "ia_id": "newvariorumediti11shak",
+      "stream": "newvariorumediti11shak_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti11shak_djvu.txt",
+      "exact_high_pct": 95.0,
+      "fail_pct": 5.0
+    },
+    "tried": [
+      {
+        "ia_id": "newvariorumediti11shak",
+        "stream": "newvariorumediti11shak_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti11shak_djvu.txt",
+        "exact_high_pct": 95.0,
+        "fail_pct": 5.0
+      },
+      {
+        "ia_id": "newvariorumediti12shak",
+        "stream": "newvariorumediti12shak_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti12shak_djvu.txt",
+        "exact_high_pct": 85.0,
+        "fail_pct": 5.0
+      },
+      {
+        "ia_id": "newvariorumediti02shak",
+        "stream": "newvariorumediti02shak_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti02shak_djvu.txt",
+        "exact_high_pct": 90.0,
+        "fail_pct": 5.0
+      },
+      {
+        "ia_id": "in.ernet.dli.2015.94022",
+        "stream": "2015.94022.A-Variorum-Edition-Of-Shakespearehamletvol2ed12_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.94022.A-Variorum-Edition-Of-Shakespearehamletvol2ed12_djvu.txt",
+        "exact_high_pct": 85.0,
+        "fail_pct": 5.0
+      }
+    ]
+  },
+  {
+    "play": "King Lear",
+    "best": {
+      "ia_id": "newvariorumediti05shak",
+      "stream": "newvariorumediti05shak_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti05shak_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "newvariorumediti05shak",
+        "stream": "newvariorumediti05shak_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti05shak_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      },
+      {
+        "ia_id": "kinglearthenewva0005shak",
+        "stream": "kinglearthenewva0005shak_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/kinglearthenewva0005shak_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "Othello",
+    "best": {
+      "ia_id": "newvariorumediti13shak",
+      "stream": "newvariorumediti13shak_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti13shak_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "newvariorumediti13shak",
+        "stream": "newvariorumediti13shak_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti13shak_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "The Merchant of Venice",
+    "best": {
+      "ia_id": "newvariorumediti0000unse_h5u1",
+      "stream": "newvariorumediti0000unse_h5u1_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti0000unse_h5u1_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "newvariorumediti0000unse_h5u1",
+        "stream": "newvariorumediti0000unse_h5u1_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti0000unse_h5u1_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "As You Like It",
+    "best": {
+      "ia_id": "newvariorumediti0000unse_v0h0",
+      "stream": "newvariorumediti0000unse_v0h0_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti0000unse_v0h0_djvu.txt",
+      "exact_high_pct": 95.0,
+      "fail_pct": 5.0
+    },
+    "tried": [
+      {
+        "ia_id": "newvariorumediti0000unse_v0h0",
+        "stream": "newvariorumediti0000unse_v0h0_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti0000unse_v0h0_djvu.txt",
+        "exact_high_pct": 95.0,
+        "fail_pct": 5.0
+      },
+      {
+        "ia_id": "bwb_W8-AJR-935",
+        "stream": "bwb_W8-AJR-935_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/bwb_W8-AJR-935_djvu.txt",
+        "exact_high_pct": 95.0,
+        "fail_pct": 5.0
+      },
+      {
+        "ia_id": "in.ernet.dli.2015.226430",
+        "stream": "2015.226430.A-New_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.226430.A-New_djvu.txt",
+        "exact_high_pct": 95.0,
+        "fail_pct": 5.0
+      },
+      {
+        "ia_id": "anewvariorumedi06furngoog",
+        "stream": "anewvariorumedi06furngoog_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/anewvariorumedi06furngoog_djvu.txt",
+        "exact_high_pct": 80.0,
+        "fail_pct": 5.0
+      }
+    ]
+  },
+  {
+    "play": "The Tempest",
+    "best": {
+      "ia_id": "tempestnewvarior0009unse",
+      "stream": "tempestnewvarior0009unse_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/tempestnewvarior0009unse_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "tempestnewvarior0009unse",
+        "stream": "tempestnewvarior0009unse_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/tempestnewvarior0009unse_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "A Midsummer Night's Dream",
+    "best": {
+      "ia_id": "amidsommernight01furngoog",
+      "stream": "amidsommernight01furngoog_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/amidsommernight01furngoog_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "amidsommernight01furngoog",
+        "stream": "amidsommernight01furngoog_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/amidsommernight01furngoog_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      },
+      {
+        "ia_id": "anewvariorumedi08furngoog",
+        "stream": "anewvariorumedi08furngoog_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/anewvariorumedi08furngoog_djvu.txt",
+        "exact_high_pct": 90.0,
+        "fail_pct": 0.0
+      },
+      {
+        "ia_id": "anewvariorumedi03furngoog",
+        "stream": "anewvariorumedi03furngoog_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/anewvariorumedi03furngoog_djvu.txt",
+        "exact_high_pct": 85.0,
+        "fail_pct": 0.0
+      },
+      {
+        "ia_id": "anewvariorumedi07furngoog",
+        "stream": "anewvariorumedi07furngoog_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/anewvariorumedi07furngoog_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      },
+      {
+        "ia_id": "newvariorumediti07shak",
+        "stream": "newvariorumediti07shak_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti07shak_djvu.txt",
+        "exact_high_pct": 90.0,
+        "fail_pct": 0.0
+      },
+      {
+        "ia_id": "bwb_C0-BNX-214",
+        "status": "missing",
+        "src": "https://archive.org/download/bwb_C0-BNX-214/bwb_C0-BNX-214_djvu.txt (Command '['curl', '-fsSL', '-A', 'Mozilla/5.0 (compatible; nv-ia-witness/2.0; +https://github.com/)', '--max-time', '120', '-o', '/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/bwb_C0-BNX-214_djvu.txt.part', 'https://archive.org/download/bwb_C0-BNX-214/bwb_C0-BNX-214_djvu.txt']' returned non-zero exit status 56.; HTTP Error 401: Unauthorized)"
+      }
+    ]
+  },
+  {
+    "play": "The Winter's Tale",
+    "best": {
+      "ia_id": "winterstale0007unse",
+      "stream": "winterstale0007unse_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/winterstale0007unse_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "winterstale0007unse",
+        "stream": "winterstale0007unse_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/winterstale0007unse_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "Much Ado About Nothing",
+    "best": {
+      "ia_id": "in.ernet.dli.2015.94001",
+      "stream": "2015.94001.A-New-Variorum-Edition-Of-Shakespearemuch-Adoe-About-Nothingvol12ed2_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.94001.A-New-Variorum-Edition-Of-Shakespearemuch-Adoe-About-Nothingvol12ed2_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "in.ernet.dli.2015.94001",
+        "stream": "2015.94001.A-New-Variorum-Edition-Of-Shakespearemuch-Adoe-About-Nothingvol12ed2_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.94001.A-New-Variorum-Edition-Of-Shakespearemuch-Adoe-About-Nothingvol12ed2_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "Twelfth Night",
+    "best": {
+      "ia_id": "twelfenightorwha0000hora",
+      "stream": "twelfenightorwha0000hora_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/twelfenightorwha0000hora_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "twelfenightorwha0000hora",
+        "stream": "twelfenightorwha0000hora_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/twelfenightorwha0000hora_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "Love's Labour's Lost",
+    "best": {
+      "ia_id": "in.ernet.dli.2015.94000",
+      "stream": "2015.94000.A-New-Variorum-Edition-Of-Shakespeareloues-Labours-Lostvol14_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.94000.A-New-Variorum-Edition-Of-Shakespeareloues-Labours-Lostvol14_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "in.ernet.dli.2015.94000",
+        "stream": "2015.94000.A-New-Variorum-Edition-Of-Shakespeareloues-Labours-Lostvol14_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.94000.A-New-Variorum-Edition-Of-Shakespeareloues-Labours-Lostvol14_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "Antony and Cleopatra",
+    "best": {
+      "ia_id": "newvariorumediti15shak",
+      "stream": "newvariorumediti15shak_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti15shak_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "newvariorumediti15shak",
+        "stream": "newvariorumediti15shak_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti15shak_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "Richard III",
+    "best": {
+      "ia_id": "newvariorumediti16shak",
+      "stream": "newvariorumediti16shak_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti16shak_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "newvariorumediti16shak",
+        "stream": "newvariorumediti16shak_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti16shak_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "Julius Caesar",
+    "best": {
+      "ia_id": "in.ernet.dli.2015.94007",
+      "stream": "2015.94007.A-New-Variorum-Edition-Of-Shakespearethe-Tragedie-Of-Ivlivs-Caesar_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.94007.A-New-Variorum-Edition-Of-Shakespearethe-Tragedie-Of-Ivlivs-Caesar_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "in.ernet.dli.2015.94007",
+        "stream": "2015.94007.A-New-Variorum-Edition-Of-Shakespearethe-Tragedie-Of-Ivlivs-Caesar_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.94007.A-New-Variorum-Edition-Of-Shakespearethe-Tragedie-Of-Ivlivs-Caesar_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      },
+      {
+        "ia_id": "tragedieofjulius0018hora",
+        "stream": "tragedieofjulius0018hora_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/tragedieofjulius0018hora_djvu.txt",
+        "exact_high_pct": 95.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "Cymbeline",
+    "best": {
+      "ia_id": "unset0000unse_m8h0",
+      "stream": "unset0000unse_m8h0_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/unset0000unse_m8h0_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "unset0000unse_m8h0",
+        "stream": "unset0000unse_m8h0_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/unset0000unse_m8h0_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "King John",
+    "best": {
+      "ia_id": "in.ernet.dli.2015.262202",
+      "stream": "2015.262202.A-New_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.262202.A-New_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "in.ernet.dli.2015.262202",
+        "stream": "2015.262202.A-New_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.262202.A-New_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "Coriolanus",
+    "best": {
+      "ia_id": "tragedieofcoriol0002edit",
+      "stream": "tragedieofcoriol0002edit_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/tragedieofcoriol0002edit_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "tragedieofcoriol0002edit",
+        "stream": "tragedieofcoriol0002edit_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/tragedieofcoriol0002edit_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "Henry IV, Part 1",
+    "best": {
+      "ia_id": "newvariorumediti21shak",
+      "stream": "newvariorumediti21shak_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti21shak_djvu.txt",
+      "exact_high_pct": 95.0,
+      "fail_pct": 5.0
+    },
+    "tried": [
+      {
+        "ia_id": "newvariorumediti21shak",
+        "stream": "newvariorumediti21shak_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti21shak_djvu.txt",
+        "exact_high_pct": 95.0,
+        "fail_pct": 5.0
+      }
+    ]
+  },
+  {
+    "play": "Henry IV, Part 2",
+    "best": {
+      "ia_id": "newvariorumediti23shak",
+      "stream": "newvariorumediti23shak_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti23shak_djvu.txt",
+      "exact_high_pct": 100.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "newvariorumediti23shak",
+        "stream": "newvariorumediti23shak_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti23shak_djvu.txt",
+        "exact_high_pct": 100.0,
+        "fail_pct": 0.0
+      }
+    ]
+  },
+  {
+    "play": "Troilus and Cressida",
+    "best": {
+      "ia_id": "newvariorumediti22shak",
+      "stream": "newvariorumediti22shak_djvu.txt",
+      "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti22shak_djvu.txt",
+      "exact_high_pct": 85.0,
+      "fail_pct": 0.0
+    },
+    "tried": [
+      {
+        "ia_id": "newvariorumediti0000unse",
+        "status": "missing",
+        "src": "https://archive.org/download/newvariorumediti0000unse/newvariorumediti0000unse_djvu.txt (Command '['curl', '-fsSL', '-A', 'Mozilla/5.0 (compatible; nv-ia-witness/2.0; +https://github.com/)', '--max-time', '120', '-o', '/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti0000unse_djvu.txt.part', 'https://archive.org/download/newvariorumediti0000unse/newvariorumediti0000unse_djvu.txt']' returned non-zero exit status 56.; HTTP Error 401: Unauthorized)"
+      },
+      {
+        "ia_id": "anewvariorumedi16furngoog",
+        "stream": "anewvariorumedi16furngoog_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/anewvariorumedi16furngoog_djvu.txt",
+        "exact_high_pct": 80.0,
+        "fail_pct": 0.0
+      },
+      {
+        "ia_id": "anewvariorumedi19furngoog",
+        "stream": "anewvariorumedi19furngoog_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/anewvariorumedi19furngoog_djvu.txt",
+        "exact_high_pct": 80.0,
+        "fail_pct": 0.0
+      },
+      {
+        "ia_id": "newvariorumediti22shak",
+        "stream": "newvariorumediti22shak_djvu.txt",
+        "src": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti22shak_djvu.txt",
+        "exact_high_pct": 85.0,
+        "fail_pct": 0.0
+      }
+    ]
+  }
+]

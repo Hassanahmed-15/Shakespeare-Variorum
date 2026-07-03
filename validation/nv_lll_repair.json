@@ -1,0 +1,21 @@
+{
+  "play": "Love's Labour's Lost",
+  "ia_id": "in.ernet.dli.2015.94000",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.94000.A-New-Variorum-Edition-Of-Shakespeareloues-Labours-Lostvol14_djvu.txt",
+  "before": 22,
+  "repaired": 2,
+  "after": 22,
+  "unresolved": 20,
+  "examples": [
+    {
+      "before_len": 1188,
+      "after_len": 2860,
+      "tail": "ese wordes ? \u2019 For Hunter\u2019s interpretation of this phrase, see Appendix^ John Fiorio, p. 353. \u2014 Ed.]"
+    },
+    {
+      "before_len": 70,
+      "after_len": 1098,
+      "tail": "otes in this ed. on Ader, of Ven. V, i, 196; Mid. N. D. II, i, 32 ; Twelfth Eighty I, i, 12 , \u2014 Ed.]"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "play": "Henry IV, Part 2",
+  "ia_id": "newvariorumediti23shak",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti23shak_djvu.txt",
+  "truncated_before": 73,
+  "mega_split": {},
+  "repair": {
+    "before": 73,
+    "repaired": 27,
+    "after": 47,
+    "unresolved": 47,
+    "examples": [
+      {
+        "before_len": 145,
+        "after_len": 4002,
+        "tail": "Prince is back in London [but cf. n.ii.155-6: “no word to your Master that I am yet in Towne” — Ed.]"
+      },
+      {
+        "before_len": 68,
+        "after_len": 4857,
+        "tail": "But I should not like to be called on to explain how a happened to look like so,. See p. 506. — Ed.]"
+      },
+      {
+        "before_len": 835,
+        "after_len": 2226,
+        "tail": "word. In 1. 175 the hostess undoubtedly understands him to be asking for a woman named Hiren. — Ed.]"
+      },
+      {
+        "before_len": 305,
+        "after_len": 3221,
+        "tail": "0) and, I judge, by N.E.D. (Triplicity 3). The allusion is, as usual, to Bardolph’s red face. — Ed.]"
+      },
+      {
+        "before_len": 378,
+        "after_len": 5317,
+        "tail": " perceives (11. 301-3), Falstaff insults Doll in order to divert attention from his slanders. — Ed.]"
+      },
+      {
+        "before_len": 213,
+        "after_len": 1564,
+        "tail": "thy reputation in thy tent”, glossing the word as lodge, but he favors “the case of a watch”. — Ed.]"
+      },
+      {
+        "before_len": 363,
+        "after_len": 2141,
+        "tail": "at so seven times, enclosing the last two in a paren¬ thesis, while F prints only four so' s. — Ed.]"
+      },
+      {
+        "before_len": 76,
+        "after_len": 590,
+        "tail": " land Pope, Han. et cet. (subs.). seems to make past perils equally terrible with ensuing crosses. —"
+      }
+    ]
+  },
+  "truncated_after": 47,
+  "repaired_this_phase": 27
+}

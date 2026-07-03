@@ -1,0 +1,57 @@
+{
+  "play": "Henry IV, Part 1",
+  "ia_id": "newvariorumediti21shak",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti21shak_djvu.txt",
+  "truncated_before": 58,
+  "mega_split": {},
+  "repair": {
+    "before": 58,
+    "repaired": 31,
+    "after": 27,
+    "unresolved": 27,
+    "examples": [
+      {
+        "before_len": 264,
+        "after_len": 274,
+        "tail": "y poor corpes” ( Twelfth Night, II, iv, 62); \"Again possess her corps” ( Winter’s Tale, V, i, 58). —"
+      },
+      {
+        "before_len": 55,
+        "after_len": 4058,
+        "tail": "r the further problems arising from Hotspur’s victory, the plans for a crusade are forgotten. — Ed.]"
+      },
+      {
+        "before_len": 56,
+        "after_len": 3952,
+        "tail": "r the further problems arising from Hotspur’s victory, the plans for a crusade are forgotten. — Ed.]"
+      },
+      {
+        "before_len": 224,
+        "after_len": 2592,
+        "tail": "shire and the northern counties. It is used in the same signification in Chaucer’s Plowman’s Tale. —"
+      },
+      {
+        "before_len": 313,
+        "after_len": 985,
+        "tail": "ty of those in the play, being what the grammarians call acatalectic, or having nothing redundant. —"
+      },
+      {
+        "before_len": 119,
+        "after_len": 298,
+        "tail": "l. of Sh. to Hoi., 1912, p. 18.): All these deviations from Holinshed [see Ax’s notes, supra. — Ed.]"
+      },
+      {
+        "before_len": 515,
+        "after_len": 527,
+        "tail": "haracters? [Theobald first made this suggestion in his Letter to Warburton, Jan. 13, 1729/30. — Ed.]"
+      },
+      {
+        "before_len": 665,
+        "after_len": 1852,
+        "tail": " 155. This is probably a careless error; but cf. Appendix: Characters: Falstaff. — Mor- gann. — Ed.]"
+      }
+    ]
+  },
+  "truncated_after": 27,
+  "repaired_this_phase": 31
+}

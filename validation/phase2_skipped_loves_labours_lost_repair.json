@@ -1,0 +1,43 @@
+{
+  "play": "Love's Labour's Lost",
+  "json": "Public/Data/loves_labours_lost.json",
+  "ia_id": "in.ernet.dli.2015.94000",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.94000.A-New-Variorum-Edition-Of-Shakespeareloues-Labours-Lostvol14_djvu.txt",
+  "truncated_before": 22,
+  "repair": {
+    "before": 22,
+    "repaired": 5,
+    "after": 17,
+    "unresolved": 17,
+    "examples": [
+      {
+        "before_len": 68,
+        "after_len": 812,
+        "tail": " F^F^. 44. deuf-ace'\\ QF^. deuf-afe F^F^, Duke\\ King Tbeob. + . Rowe, deuce-ace Pope. deuX’-ace Cap."
+      },
+      {
+        "before_len": 406,
+        "after_len": 1604,
+        "tail": " Schmidt also follows Delius. It is the unfortunate hyphen in the text which has proved beguiling. —"
+      },
+      {
+        "before_len": 3849,
+        "after_len": 6018,
+        "tail": "d by Sir Nathaniel, — is become one of our hackneyed quota- tions : — seme/ insannnmus omnes. — En.]"
+      },
+      {
+        "before_len": 70,
+        "after_len": 1178,
+        "tail": "otes in this ed. on Ader, of Ven. V, i, 196; Mid. N. D. II, i, 32 ; Twelfth Eighty I, i, 12 , — Ed.]"
+      },
+      {
+        "before_len": 1131,
+        "after_len": 2069,
+        "tail": "39. [Aside. Cap. Aside to Dum. Cam. Glo. 740. [Aside. Cap. Aside to Boyet. Cam. Glo. [In sens, obs.]"
+      }
+    ]
+  },
+  "repaired": 5,
+  "truncated_after": 17,
+  "wrote": true
+}

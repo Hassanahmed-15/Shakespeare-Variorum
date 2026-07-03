@@ -1,0 +1,58 @@
+{
+  "phase": 2,
+  "corpus_before": {
+    "union_truncated": 1132,
+    "total_notes": 23071,
+    "union_pct": 4.91
+  },
+  "corpus_after": {
+    "union_truncated": 955,
+    "total_notes": 23739,
+    "union_pct": 4.02
+  },
+  "net_reduction": 177,
+  "target_3pct": {
+    "achieved": false,
+    "notes_needed_for_3pct": 712,
+    "gap": 243
+  },
+  "plays": [
+    {"play": "Coriolanus", "before": 188, "after": 226, "net": -38, "witness_repairs": 186, "mega_splits": 124, "notes_added": 331},
+    {"play": "King John", "before": 138, "after": 150, "net": -12, "witness_repairs": 82, "mega_splits": 46, "notes_added": 186},
+    {"play": "Antony and Cleopatra", "before": 118, "after": 58, "net": 60, "witness_repairs": 60},
+    {"play": "Cymbeline", "before": 118, "after": 89, "net": 29, "witness_repairs": 35},
+    {"play": "Troilus and Cressida", "before": 89, "after": 89, "net": 0, "completion_repairs": 27},
+    {"play": "Julius Caesar", "before": 81, "after": 28, "net": 53, "witness_repairs": 53},
+    {"play": "Henry IV, Part 2", "before": 73, "after": 47, "net": 26, "witness_repairs": 27, "bracket_orphans": 3},
+    {"play": "Henry IV, Part 1", "before": 58, "after": 27, "net": 31, "witness_repairs": 31},
+    {"play": "The Winter's Tale", "before": 53, "after": 47, "net": 6, "witness_repairs": 74, "mega_splits": 50, "notes_added": 151},
+    {"play": "Hamlet", "before": 41, "after": 41, "net": 0, "witness_repairs": 7},
+    {"play": "The Tempest", "before": 39, "after": 29, "net": 10, "witness_repairs": 10},
+    {"play": "Richard III", "before": 38, "after": 26, "net": 12, "witness_repairs": 12},
+    {"play": "Love's Labour's Lost", "before": 22, "after": 22, "net": 0},
+    {"play": "Macbeth", "before": 21, "after": 21, "net": 0},
+    {"play": "The Merchant of Venice", "before": 19, "after": 19, "net": 0},
+    {"play": "Othello", "before": 13, "after": 13, "net": 0},
+    {"play": "Much Ado About Nothing", "before": 11, "after": 11, "net": 0},
+    {"play": "Romeo and Juliet", "before": 6, "after": 6, "net": 0},
+    {"play": "Twelfth Night", "before": 6, "after": 6, "net": 0}
+  ],
+  "new_scripts": [
+    "scripts/nv_repair.py",
+    "scripts/run_phase2_repairs.py",
+    "scripts/build_troilus_witness.py",
+    "scripts/harvest_unresolved_tails.py"
+  ],
+  "modified_scripts": [
+    "scripts/nv_hyphen_splice.py",
+    "scripts/repair_henry_iv_part2_notes.py",
+    "scripts/repair_antony_clipped_notes.py",
+    "scripts/repair_troilus_clipped_notes.py"
+  ],
+  "blockers": [
+    "Troilus SHAKSPER PDF is image-only; pypdf extracts 631 bytes — needs OCR (pdftotext unavailable)",
+    "Coriolanus/King John mega-split exposed inner truncations; net counts rose despite 186/82 witness repairs",
+    "King John still shows page-numeral tails — manual QA recommended on high-value notes",
+    "955 unresolved tails harvested to validation/unresolved_tails_phase2.json for COMPLETIONS expansion"
+  ]
+}

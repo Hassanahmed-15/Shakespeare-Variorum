@@ -1,0 +1,57 @@
+{
+  "play": "Antony and Cleopatra",
+  "ia_id": "newvariorumediti15shak",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti15shak_djvu.txt",
+  "truncated_before": 118,
+  "mega_split": {},
+  "repair": {
+    "before": 118,
+    "repaired": 60,
+    "after": 58,
+    "unresolved": 58,
+    "examples": [
+      {
+        "before_len": 200,
+        "after_len": 1444,
+        "tail": "ays.’ — [See also IV, xiv, 118, ‘My Queen and Eros Haue . . . got upon me A Noblenesse,’ etc. — Ed.]"
+      },
+      {
+        "before_len": 150,
+        "after_len": 1465,
+        "tail": "ays.’ — [See also IV, xiv, 118, ‘My Queen and Eros Haue . . . got upon me A Noblenesse,’ etc. — Ed.]"
+      },
+      {
+        "before_len": 239,
+        "after_len": 3636,
+        "tail": " thou thy fruitful tidings in mine ears,’ the succeeding scene would never have been enacted. — Ed.]"
+      },
+      {
+        "before_len": 72,
+        "after_len": 2138,
+        "tail": "Anchises. But if (fie of such a But) you be born so neare the dirt-making Cataract of Nilus,’ etc. —"
+      },
+      {
+        "before_len": 473,
+        "after_len": 2615,
+        "tail": "[What cared Shakespeare, at such a moment, for Elizabeth and all her court? He was Cleopatra. — Ed.]"
+      },
+      {
+        "before_len": 3183,
+        "after_len": 3716,
+        "tail": "ng, to see, in the awful presence of Shakespeare, wee atomies taking themselves so seriously? — Ed.]"
+      },
+      {
+        "before_len": 2892,
+        "after_len": 3005,
+        "tail": "wne. 5 2 Lepidus is high Conlord. 1 They haue made him drinke Aimes drinke. 7 6 etc. 2] 2 ser. Rowe."
+      },
+      {
+        "before_len": 1045,
+        "after_len": 3149,
+        "tail": "rchell, to ejaculate ‘ Fudge ! ’ It is quite as likely that he was thinking of Marian Hacket. — Ed.]"
+      }
+    ]
+  },
+  "truncated_after": 58,
+  "repaired_this_phase": 60
+}

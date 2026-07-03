@@ -1,0 +1,23 @@
+{
+  "play": "Twelfth Night",
+  "json": "Public/Data/twelfth_night.json",
+  "ia_id": "twelfenightorwha0000hora",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/twelfenightorwha0000hora_djvu.txt",
+  "truncated_before": 6,
+  "repair": {
+    "before": 6,
+    "repaired": 1,
+    "after": 5,
+    "unresolved": 5,
+    "examples": [
+      {
+        "before_len": 219,
+        "after_len": 864,
+        "tail": "gon] F,, be-gon F,; begone F,. begun Rowe. 426. hey ho,] with hey, ho, Ff. 428. [Exit. Rowe. thief.—"
+      }
+    ]
+  },
+  "repaired": 1,
+  "truncated_after": 5,
+  "wrote": true
+}

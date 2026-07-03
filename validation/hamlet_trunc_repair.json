@@ -1,0 +1,41 @@
+{
+  "truncated_before": 50,
+  "repaired": 6,
+  "unresolved": 44,
+  "examples": [
+    {
+      "before_len": 79,
+      "after_len": 95,
+      "tail": "Danskers] CAPELL (i, 128): Danske, for Denmark, occurs often in Albion\u2019 England act ii. sc. i.]"
+    },
+    {
+      "before_len": 808,
+      "after_len": 823,
+      "tail": " is enclitic; that is to say, it has no accent of its own, but is pronounced with the word to which it is ACT I, SC. V.]"
+    },
+    {
+      "before_len": 234,
+      "after_len": 250,
+      "tail": "onies of conjurors. SILBERSCHLAG (Morgenblatt, No. 47, 1860, p. 1113): It is highly probable the conclu-- act i, sc. v.]"
+    },
+    {
+      "before_len": 957,
+      "after_len": 964,
+      "tail": "ticular and temporary. CLARENDON: Pope was probably not aware that fragrant and piquant herbs were mixed with the salad."
+    },
+    {
+      "before_len": 157,
+      "after_len": 173,
+      "tail": "s written in the old poets Th\u2019 wert), you were, I was, &c., occur frequently in places where it is clear act iv, sc. v.]"
+    },
+    {
+      "before_len": 1440,
+      "after_len": 1951,
+      "tail": "now lost. In Fletcher's Two Noble Kinsmen* II, i, the jailer's daughter, being mad, says, ' I can sing twenty more. ...."
+    }
+  ],
+  "truncated_after": 44,
+  "play": "Hamlet",
+  "ia_id": "newvariorumediti11shak",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti11shak_djvu.txt"
+}

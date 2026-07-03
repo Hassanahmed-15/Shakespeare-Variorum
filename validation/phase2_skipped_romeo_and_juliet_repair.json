@@ -1,0 +1,38 @@
+{
+  "play": "Romeo and Juliet",
+  "json": "Public/Data/romeo_and_juliet.json",
+  "ia_id": "newvariorumediti01shak",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti01shak_djvu.txt",
+  "truncated_before": 6,
+  "repair": {
+    "before": 6,
+    "repaired": 4,
+    "after": 4,
+    "unresolved": 4,
+    "examples": [
+      {
+        "before_len": 61,
+        "after_len": 188,
+        "tail": "ct i, sc. v. Like a rich jewel in an Ethiop's ear ; Beauty too rich for use, for earth too dear ! 45"
+      },
+      {
+        "before_len": 70,
+        "after_len": 498,
+        "tail": "er. Farewell, ancient lady ; farewell, \\singing\\ ' lady, lady, lady.' [ExcHui Mercutio and Benvolio."
+      },
+      {
+        "before_len": 186,
+        "after_len": 773,
+        "tail": " Q^Q,. doe note growth'^'). Y„. do note F K, Rowe, Pope, Han. 117. /adv...lives,~\\ F , Rowe, &c. Ca-"
+      },
+      {
+        "before_len": 70,
+        "after_len": 797,
+        "tail": "n, for, lo, his house Is empty on the back of Montague, And is mis-sheathed in my daughter's bosom !"
+      }
+    ]
+  },
+  "repaired": 4,
+  "truncated_after": 4,
+  "wrote": true
+}

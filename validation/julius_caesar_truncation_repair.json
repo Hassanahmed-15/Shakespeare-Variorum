@@ -1,0 +1,18 @@
+{
+  "play": "Julius Caesar",
+  "json_file": "Public/Data/julius_caesar.json",
+  "ia_id": "in.ernet.dli.2015.94007",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.94007.A-New-Variorum-Edition-Of-Shakespearethe-Tragedie-Of-Ivlivs-Caesar_djvu.txt",
+  "backup": "Public/Data/julius_caesar.json.pre_clip_repair.backup",
+  "before": {
+    "union_truncated": 87,
+    "is_clipped": 18
+  },
+  "repaired": 6,
+  "after": {
+    "union_truncated": 81,
+    "is_clipped": 15
+  },
+  "unresolved": 81,
+  "methodology": "nv_truncation_audit union signals + IA witness (in.ernet.dli.2015.94007); strict prefix validation"
+}

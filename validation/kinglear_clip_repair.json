@@ -1,0 +1,14 @@
+{
+  "play": "King Lear",
+  "json_file": "Public/Data/kinglear_notes.json",
+  "witnesses": [
+    "newvariorumediti05shak",
+    "kinglearthenewva0005shak"
+  ],
+  "truncated_before": 0,
+  "truncated_after": 0,
+  "repaired": 0,
+  "unresolved": 0,
+  "examples": [],
+  "unresolved_refs": []
+}

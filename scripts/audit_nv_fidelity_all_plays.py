@@ -18,6 +18,7 @@ from nv_ia_witness import (  # noqa: E402
     fetch_ia_text,
     score_note_sample,
 )
+from nv_witness_map import WITNESS_BY_PLAY  # noqa: E402
 
 OUT_JSON = ROOT / "validation" / "nv_fidelity_all_plays.json"
 OUT_CSV = ROOT / "validation" / "nv_fidelity_all_plays.csv"
@@ -27,70 +28,60 @@ TIER_A_L2_MIN = 85.0
 CLIP_MAX_PCT = 4.0
 
 # 22 NV dramatic volumes (Richard II excluded — site lists as forthcoming)
-PLAYS = [
-    {"play": "Romeo and Juliet", "year": 1871, "json": "Public/Data/romeo_and_juliet.json",
-     "ia": "newvariorumediti01shak", "ia_stream": "newvariorumediti01shak_djvu.txt"},
-    {"play": "Macbeth", "year": 1873, "json": "Public/Data/macbeth_notes_cleaned_play.json",
-     "ia": "newvariorumediti10shak", "ia_stream": "newvariorumediti10shak_djvu.txt"},
-    {"play": "Hamlet", "year": 1877, "json": "Public/Data/hamlet_notes (1).json",
-     "ia": "newvariorumediti02shak", "ia_stream": "newvariorumediti02shak_djvu.txt"},
-    {"play": "King Lear", "year": 1880, "json": "Public/Data/kinglear_notes.json",
-     "ia": "kinglearthenewva0005shak", "ia_stream": "kinglearthenewva0005shak_djvu.txt"},
-    {"play": "Othello", "year": 1886, "json": "Public/Data/othello_notes_folger.json",
-     "ia": "newvariorumediti13shak", "ia_stream": "newvariorumediti13shak_djvu.txt"},
-    {"play": "The Merchant of Venice", "year": 1888, "json": "Public/Data/merchant_of_venice.json",
-     "ia": "newvariorumediti0000unse_h5u1", "ia_stream": "newvariorumediti0000unse_h5u1_djvu.txt"},
-    {"play": "As You Like It", "year": 1890, "json": "Public/Data/as_you_like_it.json",
-     "ia": "newvariorumediti05shak", "ia_stream": "newvariorumediti05shak_djvu.txt"},
-    {"play": "The Tempest", "year": 1892, "json": "Public/Data/the_tempest.json",
-     "ia": "tempestnewvarior0009unse", "ia_stream": "tempestnewvarior0009unse_djvu.txt"},
-    {"play": "A Midsummer Night's Dream", "year": 1895, "json": "Public/Data/midsummer_nights_dream.json",
-     "ia": "newvariorumediti07shak", "ia_stream": "newvariorumediti07shak_djvu.txt"},
-    {"play": "The Winter's Tale", "year": 1898, "json": "Public/Data/the_winters_tale.json",
-     "ia": "winterstale0007unse", "ia_stream": "winterstale0007unse_djvu.txt"},
-    {"play": "Much Ado About Nothing", "year": 1899, "json": "Public/Data/much_ado_about_nothing.json",
-     "ia": "in.ernet.dli.2015.94001", "ia_stream": "2015.94001.A-New-Variorum-Edition-Of-Shakespearemuch-Adoe-About-Nothingvol12ed2_djvu.txt"},
-    {"play": "Twelfth Night", "year": 1901, "json": "Public/Data/twelfth_night.json",
-     "ia": "newvariorumediti11shak", "ia_stream": "newvariorumediti11shak_djvu.txt"},
-    {"play": "Love's Labour's Lost", "year": 1904, "json": "Public/Data/loves_labours_lost.json",
-     "ia": "newvariorumediti12shak", "ia_stream": "newvariorumediti12shak_djvu.txt"},
-    {"play": "Antony and Cleopatra", "year": 1907, "json": "Public/Data/antony_and_cleopatra.json",
-     "ia": "tragedieofanthon0000hora", "ia_stream": "tragedieofanthon0000hora_djvu.txt"},
-    {"play": "Richard III", "year": 1908, "json": "Public/Data/richard_iii.json",
-     "ia": "newvariorumediti15shak", "ia_stream": "newvariorumediti15shak_djvu.txt"},
-    {"play": "Julius Caesar", "year": 1913, "json": "Public/Data/julius_caesar.json",
-     "ia": "newvariorumediti16shak", "ia_stream": "newvariorumediti16shak_djvu.txt"},
-    {"play": "Cymbeline", "year": 1913, "json": "Public/Data/cymbeline.json",
-     "ia": "unset0000unse_m8h0", "ia_stream": "unset0000unse_m8h0_djvu.txt"},
-    {"play": "King John", "year": 1919, "json": "Public/Data/king_john.json",
-     "ia": "in.ernet.dli.2015.262202", "ia_stream": "2015.262202.A-New_djvu.txt"},
-    {"play": "Coriolanus", "year": 1928, "json": "Public/Data/Coriolanus.json",
-     "ia": "tragedieofcoriol0002edit", "ia_stream": "tragedieofcoriol0002edit_djvu.txt"},
-    {"play": "Henry IV, Part 1", "year": 1936, "json": "Public/Data/henry_iv_part1.json",
-     "ia": "newvariorumediti21shak", "ia_stream": "newvariorumediti21shak_djvu.txt"},
-    {"play": "Henry IV, Part 2", "year": 1940, "json": "Public/Data/henry_iv_part2.json",
-     "ia": "newvariorumediti23shak", "ia_stream": "newvariorumediti23shak_djvu.txt"},
-    {"play": "Troilus and Cressida", "year": 1953, "json": "Public/Data/troilus_and_cressida.json",
-     "ia": "newvariorumediti22shak", "ia_stream": "newvariorumediti22shak_djvu.txt"},
+_PLAY_META = [
+    ("Romeo and Juliet", 1871, "Public/Data/romeo_and_juliet.json"),
+    ("Macbeth", 1873, "Public/Data/macbeth_notes_cleaned_play.json"),
+    ("Hamlet", 1877, "Public/Data/hamlet_notes (1).json"),
+    ("King Lear", 1880, "Public/Data/kinglear_notes.json"),
+    ("Othello", 1886, "Public/Data/othello_notes_folger.json"),
+    ("The Merchant of Venice", 1888, "Public/Data/merchant_of_venice.json"),
+    ("As You Like It", 1890, "Public/Data/as_you_like_it.json"),
+    ("The Tempest", 1892, "Public/Data/the_tempest.json"),
+    ("A Midsummer Night's Dream", 1895, "Public/Data/midsummer_nights_dream.json"),
+    ("The Winter's Tale", 1898, "Public/Data/the_winters_tale.json"),
+    ("Much Ado About Nothing", 1899, "Public/Data/much_ado_about_nothing.json"),
+    ("Twelfth Night", 1901, "Public/Data/twelfth_night.json"),
+    ("Love's Labour's Lost", 1904, "Public/Data/loves_labours_lost.json"),
+    ("Antony and Cleopatra", 1907, "Public/Data/antony_and_cleopatra.json"),
+    ("Richard III", 1908, "Public/Data/richard_iii.json"),
+    ("Julius Caesar", 1913, "Public/Data/julius_caesar.json"),
+    ("Cymbeline", 1913, "Public/Data/cymbeline.json"),
+    ("King John", 1919, "Public/Data/king_john.json"),
+    ("Coriolanus", 1928, "Public/Data/Coriolanus.json"),
+    ("Henry IV, Part 1", 1936, "Public/Data/henry_iv_part1.json"),
+    ("Henry IV, Part 2", 1940, "Public/Data/henry_iv_part2.json"),
+    ("Troilus and Cressida", 1953, "Public/Data/troilus_and_cressida.json"),
 ]
+
+PLAYS = []
+for play, year, json_path in _PLAY_META:
+    ia_id, ia_stream = WITNESS_BY_PLAY[play]
+    PLAYS.append({
+        "play": play,
+        "year": year,
+        "json": json_path,
+        "ia": ia_id,
+        "ia_stream": ia_stream,
+    })
 
 
 def is_clipped(note: str) -> bool:
     n = note.strip()
     if not n:
         return False
-    if re.search(
+    if re.search(r"-\s*$", n) and len(n) < 600:
+        return True
+    # Long scholarly notes often nest unclosed parenthetical citations; only flag short ones.
+    if n.count("(") > n.count(")") and len(n) < 500:
+        return True
+    if len(n) < 400 and re.search(
         r"\b(to|the|a|an|of|in|that|which|with|for|as|is|are|was|were|be|"
         r"have|has|had|not|but|on|at|from)\s*$",
         n,
         re.I,
     ):
         return True
-    if re.search(r"-\s*$", n):
-        return True
-    if n.count("(") > n.count(")"):
-        return True
-    if n.rstrip()[-1:] in ";:,":
+    if len(n) < 350 and n.rstrip()[-1:] in ";:,":
         return True
     return False
 
@@ -104,6 +95,14 @@ def collect_notes(data: dict) -> list[str]:
             if isinstance(obj, dict) and obj.get("notes"):
                 notes.extend(obj["notes"])
     return notes
+
+
+def is_paraphrase_style(note: str) -> bool:
+    n = note.strip()
+    if len(n) >= 300 or (" — " not in n and "—" not in n):
+        return False
+    body = n.split("]", 1)[1].strip() if "]" in n else n
+    return bool(PARAPHRASE_RE.match(body))
 
 
 def structural_metrics(notes: list[str]) -> dict:
@@ -122,10 +121,7 @@ def structural_metrics(notes: list[str]) -> dict:
         }
     lens = [len(n) for n in notes]
     synthetic = sum(1 for n in notes if SYNTHETIC_RE.match(n.strip()))
-    paraphrase = sum(
-        1 for n in notes
-        if len(n) < 300 and (" — " in n or "—" in n) and PARAPHRASE_RE.search(n)
-    )
+    paraphrase = sum(1 for n in notes if is_paraphrase_style(n))
     clipped = sum(1 for n in notes if is_clipped(n))
     long_style = sum(1 for n in notes if len(n) > 800)
     return {

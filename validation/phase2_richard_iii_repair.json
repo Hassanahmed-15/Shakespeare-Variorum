@@ -1,0 +1,57 @@
+{
+  "play": "Richard III",
+  "ia_id": "newvariorumediti16shak",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti16shak_djvu.txt",
+  "truncated_before": 38,
+  "mega_split": {},
+  "repair": {
+    "before": 38,
+    "repaired": 12,
+    "after": 26,
+    "unresolved": 26,
+    "examples": [
+      {
+        "before_len": 1746,
+        "after_len": 2660,
+        "tail": "in the authorship of this prophecy is attributed ‘to a Friar Anselm, of St. Bartholo¬ mew’s.’ — Ed.]"
+      },
+      {
+        "before_len": 69,
+        "after_len": 829,
+        "tail": "of composition of the present play and Love’s Labour’s Lost are held to be very near in time. — Ed.]"
+      },
+      {
+        "before_len": 865,
+        "after_len": 1686,
+        "tail": "of the speaker, and correspond better with the following lines, if for ‘glories’ we read troubles. —"
+      },
+      {
+        "before_len": 617,
+        "after_len": 5678,
+        "tail": "mother shall send her sonne to the house of a gentleman, clad, shod, shamefast,’ . . . p. 151.— Ed.]"
+      },
+      {
+        "before_len": 475,
+        "after_len": 1647,
+        "tail": "self. She excuses herself by saying that it was not intended to be heard, at least not by her son. —"
+      },
+      {
+        "before_len": 2435,
+        "after_len": 5802,
+        "tail": "ble to apply that para¬ phrase to the word when used by him in a wholly different connection? — Ed.]"
+      },
+      {
+        "before_len": 675,
+        "after_len": 2734,
+        "tail": "d and rood are, according to Skeat, identical and formed directly from the Anglo-Saxon rode = rod. —"
+      },
+      {
+        "before_len": 3161,
+        "after_len": 4170,
+        "tail": "rself, far more than an allusion to a case somewhat parallel with that of the Queen’s father. — Ed.]"
+      }
+    ]
+  },
+  "truncated_after": 26,
+  "repaired_this_phase": 12
+}

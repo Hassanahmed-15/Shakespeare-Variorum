@@ -1,0 +1,31 @@
+{
+  "play": "A Midsummer Night's Dream",
+  "json_file": "Public/Data/midsummer_nights_dream.json",
+  "ia_id": "amidsommernight01furngoog",
+  "ia_stream": "amidsommernight01furngoog_djvu.txt",
+  "witness": "data/ia_cache/amidsommernight01furngoog_djvu.txt",
+  "witness_note": "Canonical map pointed to anewvariorumedi07furngoog (wrong volume); used dedicated 1895 MND witness.",
+  "backup": "Public/Data/midsummer_nights_dream.json.pre_clip_repair.backup",
+  "mirror": "My Website/Public/Data/midsummer_nights_dream.json",
+  "clipped_before": 10,
+  "repaired": 10,
+  "clipped_after": 0,
+  "unresolved": 0,
+  "methods": {
+    "ia_witness": 7,
+    "duplicate_note_extraction": 1,
+    "ia_terminal_normalization": 2
+  },
+  "changed_notes": [
+    {"ref": "ACT 1 SCENE 1 / line 13 / note 0", "before_len": 2403, "after_len": 4063},
+    {"ref": "ACT 1 SCENE 1 / line 136 / note 0", "before_len": 1365, "after_len": 2527},
+    {"ref": "ACT 2 SCENE 1 / line 38 / note 0", "before_len": 1416, "after_len": 1460},
+    {"ref": "ACT 2 SCENE 2 / line 42 / note 1", "before_len": 78, "after_len": 1618},
+    {"ref": "ACT 3 SCENE 2 / line 30 / note 0", "before_len": 149, "after_len": 237},
+    {"ref": "ACT 3 SCENE 2 / line 141 / note 0", "before_len": 77, "after_len": 78},
+    {"ref": "ACT 3 SCENE 2 / line 364 / note 0", "before_len": 685, "after_len": 918},
+    {"ref": "ACT 4 SCENE 1 / line 197 / note 1", "before_len": 3538, "after_len": 6060},
+    {"ref": "ACT 5 SCENE 1 / line 50 / note 0", "before_len": 1081, "after_len": 1097},
+    {"ref": "ACT 5 SCENE 1 / line 217 / note 0", "before_len": 1712, "after_len": 2498}
+  ]
+}

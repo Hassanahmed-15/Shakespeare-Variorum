@@ -1,0 +1,83 @@
+{
+  "play": "Macbeth",
+  "ia_id": "newvariorumediti10shak",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti10shak_djvu.txt",
+  "before": 42,
+  "repaired": 11,
+  "unresolved": 26,
+  "skipped": 5,
+  "examples": [
+    {
+      "before_len": 3533,
+      "after_len": 7292,
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "tail": "der a disturbance of the elements, and this is clear enough without any change of the original text."
+    },
+    {
+      "before_len": 612,
+      "after_len": 5746,
+      "signals": [
+        "unbalanced_parens"
+      ],
+      "tail": "gain.' [The author quotes many parallel passages from Shakespeare and con- temporary authors. — Ed.]"
+    },
+    {
+      "before_len": 1288,
+      "after_len": 5559,
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "tail": "beth' s unintent. Read, 'To prick the side of my intent,' etc. — Clarendon : Macbeth says he has not"
+    },
+    {
+      "before_len": 1150,
+      "after_len": 2831,
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "tail": "as given in the Folio; and followed the emendation suggested by Capell ? See Text. Notes. — Ed. ii.]"
+    },
+    {
+      "before_len": 1309,
+      "after_len": 1889,
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "tail": "onj. (withdrawn). 151-153. are... Vpon] One line (read- ing on for upon), Pope, + , Steev. Var. '03."
+    },
+    {
+      "before_len": 4089,
+      "after_len": 4887,
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "tail": "alwayes thought\"] a way, though 1 66. to you] Om. Steev. conj. Jackson. always note Bailey (ii, 28)."
+    },
+    {
+      "before_len": 2217,
+      "after_len": 9030,
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "tail": "two ghosts ... is both fanciful and untrue to psychology. Coleman (Gentleman1 s Maga. March, 1889) :"
+    },
+    {
+      "before_len": 2513,
+      "after_len": 2157,
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "tail": "nd Mull. Theob. cbnj. Han. Coll. (MS) ii, iii, our] old Kinnear. Sing, ii, Dyce, Wh. Glo. Cam. Huds."
+    }
+  ],
+  "after": 34
+}

@@ -1,0 +1,41 @@
+{
+  "play": "Coriolanus",
+  "ia_id": "tragedieofcoriol0002edit",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/tragedieofcoriol0002edit_djvu.txt",
+  "before": 260,
+  "repaired": 34,
+  "after": 226,
+  "unresolved": 226,
+  "examples": [
+    {
+      "before_len": 1179,
+      "after_len": 1608,
+      "tail": " truly; but it proceeded from his want of taste, his want of discretion, and his want of knowledge.\u2014"
+    },
+    {
+      "before_len": 328,
+      "after_len": 514,
+      "tail": " thus\u2014 Rowe,+. with Han. Cap. you. With Sing. ii, 113. taintingly| tantingly FF. Cam.+, Neils. you.\u2014"
+    },
+    {
+      "before_len": 1388,
+      "after_len": 1996,
+      "tail": "nk, that Rolfe\u2019s explanation of the lack of consistency in the Folio does not fit the present case.\u2014"
+    },
+    {
+      "before_len": 683,
+      "after_len": 1596,
+      "tail": "d there seems no good reason for changing the note of interrogation, as Capell did, to a full stop.\u2014"
+    },
+    {
+      "before_len": 1228,
+      "after_len": 1879,
+      "tail": "erpretation that the word has direct reference to the work of embroidery that Virgilia has in hand.\u2014"
+    },
+    {
+      "before_len": 149,
+      "after_len": 138,
+      "tail": "ct, and was equally capable of forgetting its pride in answer to kindness accepted from a poor man.\u2014"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "play": "Othello",
+  "json": "Public/Data/othello_notes_folger.json",
+  "ia_id": "newvariorumediti13shak",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti13shak_djvu.txt",
+  "truncated_before": 13,
+  "repair": {
+    "before": 13,
+    "repaired": 4,
+    "after": 9,
+    "unresolved": 9,
+    "examples": [
+      {
+        "before_len": 314,
+        "after_len": 3680,
+        "tail": "copy of Fx, from which Lionel Booth reprinted, and that from which this edition is reprinted. — Ed.]"
+      },
+      {
+        "before_len": 408,
+        "after_len": 2160,
+        "tail": " of whatever touches us nearly, either in love or hate, joy or sorrow.' See //am. I, ii, 182. — Ed.]"
+      },
+      {
+        "before_len": 636,
+        "after_len": 1222,
+        "tail": "not as significant as it is now. See the openness with which, in II, i, Cassio kisses Emilia. — Ed.]"
+      },
+      {
+        "before_len": 90,
+        "after_len": 2173,
+        "tail": "cet. 279. shalbe] Note Staunton's ingenious punctuation, which is likely to give ax* editor pause. —"
+      }
+    ]
+  },
+  "repaired": 4,
+  "truncated_after": 9,
+  "wrote": true
+}

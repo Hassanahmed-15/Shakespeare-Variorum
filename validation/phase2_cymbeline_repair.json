@@ -1,0 +1,57 @@
+{
+  "play": "Cymbeline",
+  "ia_id": "unset0000unse_m8h0",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/unset0000unse_m8h0_djvu.txt",
+  "truncated_before": 118,
+  "mega_split": {},
+  "repair": {
+    "before": 118,
+    "repaired": 35,
+    "after": 89,
+    "unresolved": 89,
+    "examples": [
+      {
+        "before_len": 891,
+        "after_len": 2219,
+        "tail": "ic spelling, he would not have spelled it Cymbalin or Cimbalin, and, in one instance, Cambalin.—Ep.]"
+      },
+      {
+        "before_len": 3584,
+        "after_len": 6965,
+        "tail": "d by no human being but by the proposer himself, and prove food for mirth to every one besides.—Ep.]"
+      },
+      {
+        "before_len": 1825,
+        "after_len": 6000,
+        "tail": "fes, or merite for the guift. The other is not a thing for fale, 85 and onely the guift of the Gods."
+      },
+      {
+        "before_len": 381,
+        "after_len": 593,
+        "tail": "l not from it. Pray let vs follow ’em. Exeunt 174 Scena Sexta. Enter Queene, Ladies,and Cornelius. 2"
+      },
+      {
+        "before_len": 147,
+        "after_len": 632,
+        "tail": " Not knowiug why. a Tach. neuer faw him fad. 64, 65. One line Han. 70. none] not Han. ne’er Anon ap."
+      },
+      {
+        "before_len": 309,
+        "after_len": 2813,
+        "tail": "e from the author’s pen,’ I am afraid we should have to reject any alteration of ‘illustrious. —Ep.]"
+      },
+      {
+        "before_len": 1284,
+        "after_len": 2544,
+        "tail": "e almost touch- ing hers, to tender the kiss. Possibly it is always so represented on the stage.—Eb."
+      },
+      {
+        "before_len": 66,
+        "after_len": 477,
+        "tail": " fee your Grace. Imo. \\thanke you for your paines : But not away to morrow. Tach. OT muft Madam, 240"
+      }
+    ]
+  },
+  "truncated_after": 89,
+  "repaired_this_phase": 35
+}

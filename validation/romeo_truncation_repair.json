@@ -1,0 +1,80 @@
+{
+  "play": "Romeo and Juliet",
+  "truncated_before": 11,
+  "repaired": 3,
+  "truncated_after": 8,
+  "unresolved": 8,
+  "details": [
+    {
+      "ref": "ACT 1 SCENE 4 / line 23 / note 0",
+      "status": "repaired",
+      "before_len": 78,
+      "after_len": 203,
+      "tail": "ight bound liigli over-leap'd all bound Of hill,' &.C.\u2014 Paradise Lost, book iv, 1. iSo. [Sing. Huds."
+    },
+    {
+      "ref": "ACT 1 SCENE 5 / line 58 / note 0",
+      "status": "reject",
+      "before_len": 61,
+      "after_len": 64,
+      "still_trunc": true,
+      "tail": "It seems] Steev. Sh. has the same thought in his 27th Sonnet : 7"
+    },
+    {
+      "ref": "ACT 2 SCENE 2 / line 177 / note 0",
+      "status": "prefix_mismatch",
+      "tail": "arice. Knt. The falconer's voice was the voice which the hawk was constrained by"
+    },
+    {
+      "ref": "ACT 2 SCENE 4 / line 135 / note 0",
+      "status": "prefix_mismatch",
+      "tail": "] Johns. Mercutio having roared out So hoi the cry of the sportsACT II, sc. iv.]"
+    },
+    {
+      "ref": "ACT 3 SCENE 1 / line 176 / note 0",
+      "status": "reject",
+      "before_len": 661,
+      "after_len": 324,
+      "still_trunc": true,
+      "tail": " [ White. White. \\_'Introd.,^ p. 27]. But if the reader will compare this speech with that"
+    },
+    {
+      "ref": "ACT 3 SCENE 3 / line 130 / note 0",
+      "status": "no_match"
+    },
+    {
+      "ref": "ACT 3 SCENE 3 / line 158 / note 0",
+      "status": "no_match"
+    },
+    {
+      "ref": "ACT 4 SCENE 1 / line 101 / note 0",
+      "status": "repaired",
+      "before_len": 440,
+      "after_len": 480,
+      "tail": "lment' poured in the ears of Hamlet'' s father) ' through the natural gates and alleys of the body.'"
+    },
+    {
+      "ref": "ACT 4 SCENE 5 / line 92 / note 0",
+      "status": "repaired",
+      "before_len": 239,
+      "after_len": 1089,
+      "tail": "sis will be thrown upon this wholly indifferent circumstance, which injures the sense of the speech."
+    },
+    {
+      "ref": "ACT 5 SCENE 3 / line 206 / note 0",
+      "status": "reject",
+      "before_len": 70,
+      "after_len": 75,
+      "still_trunc": true,
+      "tail": "these two days] Clarke. The time is here made to tally with the period 25 T"
+    },
+    {
+      "ref": "ACT 5 SCENE 3 / line 345 / note 0",
+      "status": "reject",
+      "before_len": 694,
+      "after_len": 495,
+      "still_trunc": true,
+      "tail": "the memory. Coll. (ed. 2). We do not run the risk of altering the words which the poet may"
+    }
+  ]
+}

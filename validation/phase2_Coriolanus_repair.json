@@ -1,0 +1,16 @@
+{
+  "play": "Coriolanus",
+  "ia_id": "tragedieofcoriol0002edit",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/tragedieofcoriol0002edit_djvu.txt",
+  "truncated_before": 260,
+  "mega_split": {},
+  "repair": {
+    "before": 260,
+    "repaired": 0,
+    "after": 260,
+    "unresolved": 260,
+    "examples": []
+  },
+  "truncated_after": 260,
+  "repaired_this_phase": 0
+}

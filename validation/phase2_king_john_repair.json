@@ -1,0 +1,16 @@
+{
+  "play": "King John",
+  "ia_id": "in.ernet.dli.2015.262202",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.262202.A-New_djvu.txt",
+  "truncated_before": 155,
+  "mega_split": {},
+  "repair": {
+    "before": 155,
+    "repaired": 0,
+    "after": 155,
+    "unresolved": 155,
+    "examples": []
+  },
+  "truncated_after": 155,
+  "repaired_this_phase": 0
+}

@@ -1,0 +1,53 @@
+{
+  "play": "Much Ado About Nothing",
+  "json": "Public/Data/much_ado_about_nothing.json",
+  "ia_id": "in.ernet.dli.2015.94001",
+  "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/2015.94001.A-New-Variorum-Edition-Of-Shakespearemuch-Adoe-About-Nothingvol12ed2_djvu.txt",
+  "truncated_before": 11,
+  "repair": {
+    "before": 11,
+    "repaired": 7,
+    "after": 4,
+    "unresolved": 4,
+    "examples": [
+      {
+        "before_len": 4787,
+        "after_len": 5605,
+        "tail": "i, ii, thoti] ikon F^. Cam. Glo. Wh. ii. as... art] In parenthesis, Cap. II. morall] morta/l 'RovfQ."
+      },
+      {
+        "before_len": 3147,
+        "after_len": 4050,
+        "tail": "i, ii, thoti] ikon F^. Cam. Glo. Wh. ii. as... art] In parenthesis, Cap. II. morall] morta/l 'RovfQ."
+      },
+      {
+        "before_len": 474,
+        "after_len": 5673,
+        "tail": "e suggests that line 94 is ‘quoted from a .song or .some verses commonly known at that time.’ — Ed.]"
+      },
+      {
+        "before_len": 237,
+        "after_len": 906,
+        "tail": "y, and forms, as it were, a fellowship with him, then Adam at once addresses Orlando as thou. — El)."
+      },
+      {
+        "before_len": 472,
+        "after_len": 2457,
+        "tail": "s, and, handy-dandy, which is Dogberry, which is Warburton. In fairness, however, see Text. Notes. —"
+      },
+      {
+        "before_len": 994,
+        "after_len": 3269,
+        "tail": " which Claudio would write. This would involve the objectionable change of ‘.seem’ to seemed. — Ed.]"
+      },
+      {
+        "before_len": 690,
+        "after_len": 1768,
+        "tail": "ap KaKoi yvofiaiai rayaOdv ;(;epolv ’’Exovreg ovk icaac^ irptv Tig eK^aXy , — AiaSf 908, 909. — Ed.]"
+      }
+    ]
+  },
+  "repaired": 7,
+  "truncated_after": 4,
+  "wrote": true
+}
