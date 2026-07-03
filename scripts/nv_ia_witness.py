@@ -28,6 +28,11 @@ SHORT_GLOSS_RE = re.compile(
     r"^[^\]]+\]\s*(?:That is,|I\.e\.|i\.e\.|Sc\.|viz\.).{0,120}\.?\s*$",
     re.I,
 )
+CRITIC_DATE_GLOSS_RE = re.compile(
+    r"^[^\]]+\]\s*[A-Z][A-Za-z .'-]+\(\d{4}\):",
+    re.I,
+)
+MAX_LEMMA_PREFIX = 80
 
 EXACT_THRESHOLD = 0.95
 HIGH_THRESHOLD = 0.75
@@ -104,14 +109,27 @@ def is_cross_ref_note(note: str) -> bool:
     return False
 
 
+def _note_body(note: str) -> str:
+    """Text after a short leading lemma]; preserve bracketed editorial notes."""
+    note_clean = re.sub(r"\s+", " ", note.strip())
+    if note_clean.startswith("["):
+        return note_clean
+    m = re.match(r"^[^\]]+\]\s*", note_clean)
+    if m and m.end() <= MAX_LEMMA_PREFIX:
+        return note_clean[m.end():].strip()
+    return note_clean
+
+
 def is_short_gloss(note: str) -> bool:
     n = note.strip()
     if len(n) > 120:
         return False
     if SHORT_GLOSS_RE.match(n):
         return True
+    if CRITIC_DATE_GLOSS_RE.match(n):
+        return True
     if "]" in n and len(n) < 70 and not SYNTHETIC_RE.match(n):
-        body = n.split("]", 1)[1].strip()
+        body = _note_body(n)
         return len(body) < 55 and body.endswith(".")
     return False
 
@@ -122,7 +140,7 @@ def ia_match_score(ia_text: str, note: str) -> float:
         return 1.0
 
     note_clean = re.sub(r"\s+", " ", note.strip())
-    body = note_clean[note_clean.index("]") + 1 :].strip() if "]" in note_clean else note_clean
+    body = _note_body(note_clean)
     folded_ia = fold_apostrophe(ia_text)
 
     for size in (100, 80, 60, 45, 30):
@@ -135,12 +153,13 @@ def ia_match_score(ia_text: str, note: str) -> float:
         if pat.search(folded_ia):
             return 1.0
 
-    critic = re.match(r"^[A-Za-z .'-]+:\s*(.{30,120})", note_clean)
-    needle = (critic.group(1) if critic else note_clean[:80]).strip(" \"'[]")
+    critic = re.match(r"^[A-Z][A-Za-z .'-]*(?:\([^)]+\))?\s*:\s*(.{20,120})", body)
+    needle = (critic.group(1) if critic else body[:80]).strip(" \"'[]")
     if len(needle) >= 20 and fold_apostrophe(needle).lower() in folded_ia.lower():
         return 1.0
 
-    words = [w for w in re.findall(r"[A-Za-z']{4,}", fold_apostrophe(body.lower())[:140])[:14]]
+    raw_words = re.findall(r"[A-Za-z0-9']{4,}", fold_apostrophe(body.lower())[:140])[:14]
+    words = [w.strip("'\"") for w in raw_words if len(w.strip("'\"")) >= 4]
     if not words:
         return 0.0
     ia_low = folded_ia.lower()
