@@ -85,8 +85,8 @@ WITNESS_BY_PLAY: dict[str, tuple[str, str]] = {
         "unset0000unse_m8h0_djvu.txt",
     ),
     "King John": (
-        "in.ernet.dli.2015.262202",
-        "2015.262202.A-New_djvu.txt",
+        "in.ernet.dli.2015.93998",
+        "2015.93998.A-New-Variorum-Edition-Of-Shakespeare_djvu.txt",
     ),
     "Coriolanus": (
         "tragedieofcoriol0002edit",

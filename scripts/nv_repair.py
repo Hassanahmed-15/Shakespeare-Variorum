@@ -67,8 +67,91 @@ def flex_pattern(text: str, max_words: int = 14) -> re.Pattern[str] | None:
 
 Deinterleaver = Callable[[str], str]
 
+# Generic page-furniture skipper, run before any play-specific deinterleaver.
+#
+# NV apparatus pages interleave a footnote's true continuation with running
+# headers, bare page numbers, the next footnote's bracketed lemma marker, and
+# reproduced play-text/verse lines (which carry trailing line numbers). These
+# blocks are visually separated by blank lines in the OCR text. This walks
+# blank-line-delimited blocks and drops any block matching one of those
+# "page furniture" shapes, keeping the first block (already-anchored text)
+# and any block that reads as continuing scholarly prose.
+_ACT_SC_MARK = re.compile(r"\bACT\b|\bSC\.?\s*[IVXLC\d]|\bDRAMATIS\b", re.I)
+_LEMMA_MARKER = re.compile(r"^\s*\[?[o0-9]{1,4}[a-z]?\.\s*[^\]\n]{1,60}\]", re.I)
+_BRACKET_LEMMA = re.compile(r"^\s*\[[^\]\n]{1,80}\]")
+_VERSE_LINE_NUM = re.compile(r"\s\d{1,4}\s*$")
+
+
+def _looks_like_running_header(block: str) -> bool:
+    """Short page-furniture line: a running head, page number, or scene tag.
+
+    OCR renders these in wildly different forms across plays/pages (word
+    order, spacing, garbled letters), so rather than enumerate every exact
+    wording this uses shape: short, and either carries an ACT/SC/DRAMATIS
+    marker or is mostly capitalized words (title-case running heads).
+    """
+    b = block.strip()
+    if not b or len(b) > 55:
+        return False
+    if re.fullmatch(r"\d{1,4}", b):
+        return True
+    if _ACT_SC_MARK.search(b):
+        return True
+    words = re.findall(r"[A-Za-z]+", b)
+    if not words:
+        return True
+    cap_words = sum(1 for w in words if w.isupper() or w[0].isupper())
+    return cap_words / len(words) >= 0.6
+
+
+def _is_page_furniture(block: str) -> bool:
+    b = block.strip()
+    if not b:
+        return True
+    if _looks_like_running_header(b):
+        return True
+    if _BRACKET_LEMMA.match(b) and len(b) < 90:
+        return True
+    if _VERSE_LINE_NUM.search(b) and len(b) < 120 and not re.search(r"[.!?]\s*$", b):
+        return True
+    return False
+
+
+def _strip_leading_lemma(block: str) -> str:
+    """Drop a leading lemma marker (e.g. '[94. word]' or '94. word]') from a
+    block, keeping any real prose that follows it on the same block.
+
+    A short textual-variants entry (e.g. '61. intend] intended Rowe ii.') is
+    a complete apparatus item in its own right, not a lemma introducing more
+    prose -- drop the whole block in that case rather than exposing its
+    trailing fragment as if it continued the current note.
+    """
+    m = _LEMMA_MARKER.match(block)
+    if not m:
+        return block
+    rest = block[m.end() :].lstrip()
+    if len(rest) < 60:
+        return ""
+    return rest
+
+
+def skip_page_furniture(text: str) -> str:
+    blocks = re.split(r"\n\s*\n+", text)
+    out_blocks: list[str] = []
+    for blk in blocks:
+        if not blk.strip():
+            continue
+        candidate = _strip_leading_lemma(blk)
+        if _is_page_furniture(candidate):
+            continue
+        out_blocks.append(candidate)
+    if not out_blocks:
+        return text
+    return "\n\n".join(out_blocks)
+
 
 def deinterleave_default(text: str) -> str:
+    text = skip_page_furniture(text)
     text = PLAY_BLOCK_H4P2.sub(" ||| ", text)
     text = PAGE_HDR_H4P2.sub(" ||| ", text)
     parts = [p.strip() for p in text.split("|||") if p.strip()]
@@ -99,6 +182,7 @@ _COR_RESUME = re.compile(
 
 
 def deinterleave_cor(text: str) -> str:
+    text = skip_page_furniture(text)
     text = _COR_PLAY.sub(" ||| ", text)
     text = _COR_HDR.sub(" ||| ", text)
     text = _COR_SCENE.sub(" ||| ", text)
@@ -136,6 +220,7 @@ _KJ_HDR = re.compile(
 
 
 def deinterleave_kj(text: str) -> str:
+    text = skip_page_furniture(text)
     text = _KJ_HDR.sub(" ||| ", text)
     parts = [p.strip() for p in text.split("|||") if p.strip()]
     if not parts:
@@ -157,6 +242,7 @@ _ANT_LINE = re.compile(r"\n\s*\d{1,3}\.\s+[A-Za-z\u2018\u2019\"'\(\[]", re.I)
 
 
 def deinterleave_antony(text: str) -> str:
+    text = skip_page_furniture(text)
     text = _ANT_ACT.sub(" ||| ", text)
     text = _ANT_LINE.sub(lambda m: " ||| " + m.group(0).lstrip(), text)
     parts = [p.strip() for p in text.split("|||") if p.strip()]
@@ -185,6 +271,7 @@ _CYMB_RESUME = re.compile(
 
 
 def deinterleave_cymb(text: str) -> str:
+    text = skip_page_furniture(text)
     text = _CYMB_PLAY.sub(" ||| ", text)
     text = _CYMB_HDR.sub(" ||| ", text)
     text = _CYMB_SCENE.sub(" ||| ", text)
@@ -214,8 +301,156 @@ _JC_HDR = re.compile(r"(?:THE\s+TRAGED(?:IE|Y)\s+OF\s+)?(?:JULIUS\s+)?CAESAR\s+\
 
 
 def deinterleave_jc(text: str) -> str:
+    text = skip_page_furniture(text)
     text = _JC_PLAY.sub(" ||| ", text)
     text = _JC_HDR.sub(" ||| ", text)
+    parts = [p.strip() for p in text.split("|||") if p.strip()]
+    if not parts:
+        return norm_space(text)
+    out = parts[0]
+    for part in parts[1:]:
+        if len(re.findall(r"\b[A-Z][a-z]+\b", part)) > 8 and len(part) > 120:
+            m = RESUME.search(part)
+            if m:
+                out += " " + part[m.start() :]
+        else:
+            out += " " + part
+    return norm_space(out)
+
+
+# Love's Labour's Lost
+_LLL_PLAY = re.compile(r"ACT\s+[IVXLC\d]+\s*,\s*SC\.?\s*[IVXLC\d]*\.?\]?\s*", re.I)
+_LLL_HDR = re.compile(r"LOU?ES\s+LAB(?:OU|OR)U?R'?S?\s+LOST", re.I)
+_LLL_SCENE = re.compile(r"\[act\s+[IVXLC\d]+,\s*sc\.\s*[ivxlc\d]+\.", re.I)
+
+
+def deinterleave_lll(text: str) -> str:
+    text = skip_page_furniture(text)
+    text = _LLL_PLAY.sub(" ||| ", text)
+    text = _LLL_HDR.sub(" ||| ", text)
+    text = _LLL_SCENE.sub(" ||| ", text)
+    parts = [p.strip() for p in text.split("|||") if p.strip()]
+    if not parts:
+        return norm_space(text)
+    out = parts[0]
+    for part in parts[1:]:
+        if len(re.findall(r"\b[A-Z][a-z]+\b", part)) > 8 and len(part) > 120:
+            m = RESUME.search(part)
+            if m:
+                out += " " + part[m.start() :]
+        else:
+            out += " " + part
+    return norm_space(out)
+
+
+# Macbeth
+_MAC_PLAY = re.compile(
+    r"(?:THE\s+TRAGEDIE\s+OF\s+MACBETH|MACBETH)"
+    r"\s*\[?\s*act\s+[ivxlc\d]+[\s,]*sc\.?\s*[ivxlc\d]+[^\]]*\]?",
+    re.I,
+)
+_MAC_HDR = re.compile(r"(?:THE\s+TRAGEDIE\s+OF\s+)?MACBETH\s+\d{1,3}\s+", re.I)
+
+
+def deinterleave_mac(text: str) -> str:
+    text = skip_page_furniture(text)
+    text = _MAC_PLAY.sub(" ||| ", text)
+    text = _MAC_HDR.sub(" ||| ", text)
+    parts = [p.strip() for p in text.split("|||") if p.strip()]
+    if not parts:
+        return norm_space(text)
+    out = parts[0]
+    for part in parts[1:]:
+        if len(re.findall(r"\b[A-Z][a-z]+\b", part)) > 8 and len(part) > 120:
+            m = RESUME.search(part)
+            if m:
+                out += " " + part[m.start() :]
+        else:
+            out += " " + part
+    return norm_space(out)
+
+
+# The Merchant of Venice
+_MOV_PLAY = re.compile(r"\[ACT\s+[IVXLC\d]+,\s*SC\.?\s*[ivxlc\d]+\.?\]?", re.I)
+_MOV_HDR = re.compile(r"THE\s+MERCHANT\s+OF\s+VENICE\s*(?:\[ACT\s+[IVXLC\d]+,\s*SC\.?\s*[ivxlc\d]+\.?)?", re.I)
+
+
+def deinterleave_mov(text: str) -> str:
+    text = skip_page_furniture(text)
+    text = _MOV_HDR.sub(" ||| ", text)
+    text = _MOV_PLAY.sub(" ||| ", text)
+    parts = [p.strip() for p in text.split("|||") if p.strip()]
+    if not parts:
+        return norm_space(text)
+    out = parts[0]
+    for part in parts[1:]:
+        if len(re.findall(r"\b[A-Z][a-z]+\b", part)) > 8 and len(part) > 120:
+            m = RESUME.search(part)
+            if m:
+                out += " " + part[m.start() :]
+        else:
+            out += " " + part
+    return norm_space(out)
+
+
+# Othello
+_OTH_PLAY = re.compile(
+    r"THE\s+TR\s*A?\s*C?G?E?D?\s*I?E?\s+OF\s+OTHELLO\s*\[act\s+[ivxlc\d]+,\s*sc\.?\s*[ivxlc\d]+\.?\]?",
+    re.I,
+)
+_OTH_HDR = re.compile(r"THE\s+TR[A-Z]*\s+OF\s+OTHELLO\s+\[act\s+[ivxlc\d]+,?\s*sc\.?\s*[ivxlc\d]+\.?\]?", re.I)
+
+
+def deinterleave_oth(text: str) -> str:
+    text = skip_page_furniture(text)
+    text = _OTH_HDR.sub(" ||| ", text)
+    parts = [p.strip() for p in text.split("|||") if p.strip()]
+    if not parts:
+        return norm_space(text)
+    out = parts[0]
+    for part in parts[1:]:
+        if len(re.findall(r"\b[A-Z][a-z]+\b", part)) > 8 and len(part) > 120:
+            m = RESUME.search(part)
+            if m:
+                out += " " + part[m.start() :]
+        else:
+            out += " " + part
+    return norm_space(out)
+
+
+# Twelfth Night
+_TN_PLAY_BLOCK = re.compile(
+    r"\[?ACT\s+[IVXLC\d]+,?\s*\)?SC\.?\.?,?\s*[ivxlc\d]*\.?\]?",
+    re.I,
+)
+_TN_PAGE_HDR = re.compile(r"(?:\d+\s+)?TWELFE\s+NIGHT\s+\[ACT\s+", re.I)
+
+
+def deinterleave_tn(text: str) -> str:
+    text = skip_page_furniture(text)
+    text = _TN_PAGE_HDR.sub(" ||| ", text)
+    text = _TN_PLAY_BLOCK.sub(" ||| ", text)
+    parts = [p.strip() for p in text.split("|||") if p.strip()]
+    if not parts:
+        return norm_space(text)
+    out = parts[0]
+    for part in parts[1:]:
+        if len(re.findall(r"\b[A-Z][a-z]+\b", part)) > 8 and len(part) > 120:
+            m = RESUME.search(part)
+            if m:
+                out += " " + part[m.start() :]
+        else:
+            out += " " + part
+    return norm_space(out)
+
+
+# Romeo and Juliet
+_ROM_HDR = re.compile(r"ROMEO\s+AND\s+JULIET\.?\s*\[act\s+[ivxlc\d]+,\s*sc\.?\s*[ivxlc\d]+\.?\]?", re.I)
+
+
+def deinterleave_rom(text: str) -> str:
+    text = skip_page_furniture(text)
+    text = _ROM_HDR.sub(" ||| ", text)
     parts = [p.strip() for p in text.split("|||") if p.strip()]
     if not parts:
         return norm_space(text)
@@ -237,6 +472,12 @@ DEINTERLEAVERS: dict[str, Deinterleaver] = {
     "Antony and Cleopatra": deinterleave_antony,
     "Cymbeline": deinterleave_cymb,
     "Julius Caesar": deinterleave_jc,
+    "Love's Labour's Lost": deinterleave_lll,
+    "Macbeth": deinterleave_mac,
+    "The Merchant of Venice": deinterleave_mov,
+    "Othello": deinterleave_oth,
+    "Twelfth Night": deinterleave_tn,
+    "Romeo and Juliet": deinterleave_rom,
 }
 
 
@@ -402,7 +643,7 @@ def looks_contaminated(note: str, *, play: str | None = None) -> bool:
     if play == "Coriolanus":
         if _COR_SPEAKER.search(note) and len(note) < 200:
             return True
-        if re.search(r"\b(?:Cor|Men|Com|Vol)\.\s+[A-Z]", note, re.I):
+        if re.search(r"(?:^|[.!?]\s+)(?:Cor|Men|Com)\.\s+[A-Z]", note):
             return True
     return False
 

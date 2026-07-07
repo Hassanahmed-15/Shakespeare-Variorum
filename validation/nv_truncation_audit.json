@@ -16,40 +16,16 @@
       "ia_id": "newvariorumediti01shak",
       "ia_status": "ok",
       "total_notes": 720,
-      "is_clipped": 1,
-      "hard_truncation": 4,
-      "mid_sentence_cut": 1,
-      "hyphen_artifact": 1,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
       "unbalanced_parens": 0,
       "witness_prefix": 0,
-      "union_truncated": 4,
-      "union_pct": 0.56,
-      "is_clipped_pct": 0.14,
-      "examples": [
-        {
-          "ref": "ACT 1 SCENE 5 / line 58 / note 0",
-          "signals": [
-            "hard_truncation"
-          ],
-          "tail": "…v. Like a rich jewel in an Ethiop's ear ; Beauty too rich for use, for earth too dear ! 45"
-        },
-        {
-          "ref": "ACT 3 SCENE 1 / line 176 / note 0",
-          "signals": [
-            "hard_truncation",
-            "mid_sentence_cut"
-          ],
-          "tail": "…or' of Sh. WHITE. [‘Introd.,’ p. 27]. But if the reader will compare this speech with that"
-        },
-        {
-          "ref": "ACT 3 SCENE 3 / line 130 / note 0",
-          "signals": [
-            "hard_truncation",
-            "hyphen_artifact"
-          ],
-          "tail": "… note growth'^'). Y„. do note F K, Rowe, Pope, Han. 117. /adv...lives,~\\ F , Rowe, &c. Ca-"
-        }
-      ]
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
     },
     {
       "play": "Macbeth",
@@ -57,39 +33,24 @@
       "json_file": "Public/Data/macbeth_notes_cleaned_play.json",
       "ia_id": "newvariorumediti10shak",
       "ia_status": "ok",
-      "total_notes": 1253,
-      "is_clipped": 3,
-      "hard_truncation": 15,
-      "mid_sentence_cut": 11,
-      "hyphen_artifact": 1,
+      "total_notes": 1252,
+      "is_clipped": 1,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
       "unbalanced_parens": 1,
       "witness_prefix": 0,
-      "union_truncated": 16,
-      "union_pct": 1.28,
-      "is_clipped_pct": 0.24,
+      "union_truncated": 1,
+      "union_pct": 0.08,
+      "is_clipped_pct": 0.08,
       "examples": [
         {
-          "ref": "ACT 1 SCENE 1 / line 13 / note 1",
+          "ref": "ACT 1 SCENE 5 / line 21 / note 1",
           "signals": [
-            "hard_truncation",
-            "mid_sentence_cut"
+            "is_clipped",
+            "unbalanced_parens"
           ],
-          "tail": "…eene, line 289, has not there noted any such variant as 'fight.' Doubtless the long / occa"
-        },
-        {
-          "ref": "ACT 1 SCENE 2 / line 65 / note 2",
-          "signals": [
-            "hard_truncation",
-            "mid_sentence_cut"
-          ],
-          "tail": "proof] STEEVENS : That is, defended by armor of proof. [Compare First"
-        },
-        {
-          "ref": "ACT 1 SCENE 2 / line 72 / note 0",
-          "signals": [
-            "hard_truncation"
-          ],
-          "tail": "… king. So in Fairfax: Tasso, Bk. v, st. 57, Gernando is called ‘the Norway prince.’—ABBOTT"
+          "tail": "…win that which it is wrong to win (for wrongly is not [logically] an Adverb here).—Ed. ii."
         }
       ]
     },
@@ -161,16 +122,16 @@
       "json_file": "Public/Data/othello_notes_folger.json",
       "ia_id": "newvariorumediti13shak",
       "ia_status": "ok",
-      "total_notes": 921,
-      "is_clipped": 4,
-      "hard_truncation": 9,
-      "mid_sentence_cut": 4,
-      "hyphen_artifact": 2,
+      "total_notes": 918,
+      "is_clipped": 1,
+      "hard_truncation": 2,
+      "mid_sentence_cut": 1,
+      "hyphen_artifact": 0,
       "unbalanced_parens": 0,
       "witness_prefix": 0,
-      "union_truncated": 9,
-      "union_pct": 0.98,
-      "is_clipped_pct": 0.43,
+      "union_truncated": 2,
+      "union_pct": 0.22,
+      "is_clipped_pct": 0.11,
       "examples": [
         {
           "ref": "ACT 1, SCENE 1 / line 1.1.18 / note 0",
@@ -181,20 +142,12 @@
           "tail": "Bataile] Cotgrave: Bataille: f. A batell, or fight, betweene two armies;"
         },
         {
-          "ref": "ACT 1, SCENE 1 / line 1.1.44 / note 0",
-          "signals": [
-            "is_clipped",
-            "hard_truncation"
-          ],
-          "tail": "…nnot all be Matters, nor all Mafters Cannot be truely follow'd. You mail marke [310 F\\ 37,"
-        },
-        {
-          "ref": "ACT 1, SCENE 1 / line 1.1.47 / note 0",
+          "ref": "ACT 1, SCENE 3 / line 1.3.285 / note 0",
           "signals": [
             "hard_truncation",
             "mid_sentence_cut"
           ],
-          "tail": "…nks pressed down and running over for all that he has done for me, especially for hig tran"
+          "tail": "…ich is not found in the old copies, the words ‘and proper satisfaction’ are so unnaturally"
         }
       ]
     },
@@ -205,40 +158,23 @@
       "ia_id": "newvariorumediti0000unse_h5u1",
       "ia_status": "ok",
       "total_notes": 1027,
-      "is_clipped": 2,
-      "hard_truncation": 15,
-      "mid_sentence_cut": 12,
+      "is_clipped": 0,
+      "hard_truncation": 1,
+      "mid_sentence_cut": 1,
       "hyphen_artifact": 0,
       "unbalanced_parens": 0,
       "witness_prefix": 0,
-      "union_truncated": 15,
-      "union_pct": 1.46,
-      "is_clipped_pct": 0.19,
+      "union_truncated": 1,
+      "union_pct": 0.1,
+      "is_clipped_pct": 0.0,
       "examples": [
         {
-          "ref": "ACT 1 SCENE 1 / line 11 / note 0",
-          "signals": [
-            "is_clipped",
-            "hard_truncation",
-            "mid_sentence_cut"
-          ],
-          "tail": "…rd in the 16th Century as ragusyé, arguze; from the 16th to 17th Centuries, argose; in the"
-        },
-        {
-          "ref": "ACT 2 SCENE 8 / line 36 / note 1",
+          "ref": "ACT 3 SCENE 2 / line 105 / note 0",
           "signals": [
             "hard_truncation",
             "mid_sentence_cut"
           ],
-          "tail": "…cipating ALLEN’S conjecture here—viz. ‘You were best tell Antonio,’ &c. According to Allen"
-        },
-        {
-          "ref": "ACT 3 SCENE 2 / line 34 / note 0",
-          "signals": [
-            "hard_truncation",
-            "mid_sentence_cut"
-          ],
-          "tail": "…rator (see Appendix), which contained a 'Declamation' of a Jew who would for his debt haue"
+          "tail": "…he comparison, fails to make the antithesis perceptible; and I have, therefore, never perm"
         }
       ]
     },
@@ -416,23 +352,15 @@
       "ia_status": "ok",
       "total_notes": 1068,
       "is_clipped": 1,
-      "hard_truncation": 4,
-      "mid_sentence_cut": 3,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
       "hyphen_artifact": 0,
       "unbalanced_parens": 1,
       "witness_prefix": 0,
-      "union_truncated": 5,
-      "union_pct": 0.47,
+      "union_truncated": 1,
+      "union_pct": 0.09,
       "is_clipped_pct": 0.09,
       "examples": [
-        {
-          "ref": "ACT 1 SCENE 1 / line 1 / note 1",
-          "signals": [
-            "hard_truncation",
-            "mid_sentence_cut"
-          ],
-          "tail": "…but which, nevertheless, does not exceed the bounds of ordinary human life, even though it"
-        },
         {
           "ref": "ACT 1 SCENE 5 / line 44 / note 0",
           "signals": [
@@ -440,13 +368,6 @@
             "unbalanced_parens"
           ],
           "tail": "…ose a botcher held the same relation to a tailor that a cobbler holds to a shoemaker.—ED.]"
-        },
-        {
-          "ref": "ACT 2 SCENE 5 / line 47 / note 0",
-          "signals": [
-            "hard_truncation"
-          ],
-          "tail": "…ing that whosoever will hit the mark of profit must, like those that shoot in stone-bows,…"
         }
       ]
     },
@@ -457,41 +378,16 @@
       "ia_id": "in.ernet.dli.2015.94000",
       "ia_status": "ok",
       "total_notes": 1171,
-      "is_clipped": 3,
-      "hard_truncation": 17,
-      "mid_sentence_cut": 12,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
       "hyphen_artifact": 0,
-      "unbalanced_parens": 1,
+      "unbalanced_parens": 0,
       "witness_prefix": 0,
-      "union_truncated": 17,
-      "union_pct": 1.45,
-      "is_clipped_pct": 0.26,
-      "examples": [
-        {
-          "ref": "ACT 3 SCENE 1 / line 1 / note 1",
-          "signals": [
-            "hard_truncation",
-            "mid_sentence_cut"
-          ],
-          "tail": "… doubtless his own; in As You Like It Touchstone and Audrey; and in the play before us, in"
-        },
-        {
-          "ref": "ACT 3 SCENE 1 / line 165 / note 0",
-          "signals": [
-            "hard_truncation",
-            "mid_sentence_cut"
-          ],
-          "tail": "…arean quotations are of small value. It has been supposed, I presume, that ‘that face,’ by"
-        },
-        {
-          "ref": "ACT 3 SCENE 1 / line 224 / note 1",
-          "signals": [
-            "hard_truncation",
-            "mid_sentence_cut"
-          ],
-          "tail": "…hair, the bugle eyeballs and the cheek of cream—a complete picture of a brunette. Surely a"
-        }
-      ]
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
     },
     {
       "play": "Antony and Cleopatra",
@@ -629,30 +525,22 @@
       "ia_status": "ok",
       "total_notes": 1035,
       "is_clipped": 5,
-      "hard_truncation": 88,
+      "hard_truncation": 87,
       "mid_sentence_cut": 64,
-      "hyphen_artifact": 3,
+      "hyphen_artifact": 2,
       "unbalanced_parens": 3,
       "witness_prefix": 0,
-      "union_truncated": 89,
-      "union_pct": 8.6,
+      "union_truncated": 88,
+      "union_pct": 8.5,
       "is_clipped_pct": 0.48,
       "examples": [
-        {
-          "ref": "ACT 1 SCENE 1 / line 2 / note 0",
-          "signals": [
-            "hard_truncation",
-            "mid_sentence_cut"
-          ],
-          "tail": "…reader an easy passage.'—WARBURTON sneered at it, however, by saying that it 'ventured too"
-        },
         {
           "ref": "ACT 1 SCENE 1 / line 29 / note 0",
           "signals": [
             "hard_truncation",
-            "hyphen_artifact"
+            "mid_sentence_cut"
           ],
-          "tail": "… he has come short of what his real worth is; and has rather crush'd it together, than un-"
+          "tail": "…enviable sight to see a writ of extent thus drawn up, or the puzzled face of the sheriff w"
         },
         {
           "ref": "ACT 1 SCENE 1 / line 35 / note 0",
@@ -661,6 +549,13 @@
             "mid_sentence_cut"
           ],
           "tail": "…tc. “I have adopted,” says Dr Johnson, in his immortal Preface, “the Roman sentiment, that"
+        },
+        {
+          "ref": "ACT 1 SCENE 1 / line 114 / note 0",
+          "signals": [
+            "hard_truncation"
+          ],
+          "tail": "…e of the black juice of the gall of oxen two ounces,’ &c.—VAUGHAN: A ‘conceit’ it is; but,"
         }
       ]
     },
@@ -668,42 +563,41 @@
       "play": "King John",
       "year": 1919,
       "json_file": "Public/Data/king_john.json",
-      "ia_id": "in.ernet.dli.2015.262202",
+      "ia_id": "in.ernet.dli.2015.93998",
       "ia_status": "ok",
       "total_notes": 1072,
-      "is_clipped": 22,
-      "hard_truncation": 150,
-      "mid_sentence_cut": 83,
-      "hyphen_artifact": 15,
-      "unbalanced_parens": 3,
+      "is_clipped": 3,
+      "hard_truncation": 8,
+      "mid_sentence_cut": 1,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
       "witness_prefix": 0,
-      "union_truncated": 150,
-      "union_pct": 13.99,
-      "is_clipped_pct": 2.05,
+      "union_truncated": 8,
+      "union_pct": 0.75,
+      "is_clipped_pct": 0.28,
       "examples": [
         {
-          "ref": "DRAMATIS PERSONAE / line 16 / note 0",
+          "ref": "ACT 2 SCENE 1 / line 93 / note 2",
           "signals": [
-            "hard_truncation",
-            "mid_sentence_cut"
+            "is_clipped",
+            "hard_truncation"
           ],
-          "tail": "… and is-like that given by Steevens an addition by Paris to Wendover's account of the year"
+          "tail": "86. indeuor] endeavor F3F4. 87. occafion] occasion Fleay,"
         },
         {
-          "ref": "ACT 1 SCENE 1 / line 4 / note 0",
+          "ref": "ACT 2 SCENE 1 / line 93 / note 3",
           "signals": [
-            "hard_truncation",
-            "hyphen_artifact"
+            "is_clipped",
+            "hard_truncation"
           ],
-          "tail": "…ein ‘behaviour’ is used in the sense of ‘bearing of the character of another; personifica-"
+          "tail": "87. occafion] occasion Fleay,"
         },
         {
-          "ref": "ACT 1 SCENE 1 / line 12 / note 0",
+          "ref": "ACT 3 SCENE 1 / line 137 / note 1",
           "signals": [
-            "hard_truncation",
-            "mid_sentence_cut"
+            "hard_truncation"
           ],
-          "tail": "…ilip should support this claim to the English crown. England having declared for John, the"
+          "tail": "…t, when Lady Constance perceives that Austria has abandon’d her interest, she says to him:"
         }
       ]
     },
@@ -713,39 +607,40 @@
       "json_file": "Public/Data/Coriolanus.json",
       "ia_id": "tragedieofcoriol0002edit",
       "ia_status": "ok",
-      "total_notes": 1523,
-      "is_clipped": 30,
-      "hard_truncation": 223,
-      "mid_sentence_cut": 129,
-      "hyphen_artifact": 18,
-      "unbalanced_parens": 9,
-      "witness_prefix": 1,
-      "union_truncated": 226,
-      "union_pct": 14.84,
-      "is_clipped_pct": 1.97,
+      "total_notes": 1503,
+      "is_clipped": 2,
+      "hard_truncation": 3,
+      "mid_sentence_cut": 2,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 2,
+      "witness_prefix": 0,
+      "union_truncated": 5,
+      "union_pct": 0.33,
+      "is_clipped_pct": 0.13,
       "examples": [
         {
-          "ref": "ACT 1 SCENE 1 / line 15 / note 1",
+          "ref": "ACT 1 SCENE 3 / line 65 / note 1",
           "signals": [
             "hard_truncation",
             "mid_sentence_cut"
           ],
-          "tail": "…nment of this and the subsequent speeches to 2 Cit. are manifestly erroneous and should be"
+          "tail": "69. A my troth...it] Mnemonic"
         },
         {
-          "ref": "ACT 1 SCENE 1 / line 40 / note 0",
+          "ref": "ACT 2 SCENE 1 / line 104 / note 0",
           "signals": [
-            "hard_truncation"
+            "is_clipped",
+            "unbalanced_parens"
           ],
-          "tail": "…ing proud.'—ABBOTT (§ 420) gives other examples of a like transposition of the adverb. 41,"
+          "tail": "…’78, ’85. now, my as... Han. et cet. 100, 101. and...Nobler] In parentheses Johns. et seq."
         },
         {
-          "ref": "ACT 1 SCENE 1 / line 54 / note 0",
+          "ref": "ACT 2 SCENE 1 / line 104 / note 1",
           "signals": [
-            "hard_truncation",
-            "hyphen_artifact"
+            "is_clipped",
+            "unbalanced_parens"
           ],
-          "tail": "…us estimates of the character of Menenius Agrippa, see Dram. Person., s. v. ante.—Ed.] 57-"
+          "tail": "…'78, '85. now, my as... Han. et cet. 100, 101. and...Nobler] In parentheses Johns. et seq."
         }
       ]
     },
@@ -842,13 +737,13 @@
       "ia_status": "fallback:newvariorumediti22shak",
       "total_notes": 621,
       "is_clipped": 0,
-      "hard_truncation": 89,
-      "mid_sentence_cut": 75,
-      "hyphen_artifact": 8,
-      "unbalanced_parens": 2,
+      "hard_truncation": 14,
+      "mid_sentence_cut": 11,
+      "hyphen_artifact": 2,
+      "unbalanced_parens": 0,
       "witness_prefix": 0,
-      "union_truncated": 89,
-      "union_pct": 14.33,
+      "union_truncated": 14,
+      "union_pct": 2.25,
       "is_clipped_pct": 0.0,
       "examples": [
         {
@@ -860,30 +755,30 @@
           "tail": "…in many cases without the slightest variation in meaning.\"—In both cases, however, a tele-"
         },
         {
-          "ref": "ACT 1, SCENE 1 / line 53 / note 0",
-          "signals": [
-            "hard_truncation",
-            "mid_sentence_cut"
-          ],
-          "tail": "…he chirurgical knife and the like. If, for \"O that her hand\", we substitute \"her beauteous"
-        },
-        {
           "ref": "ACT 1, SCENE 1 / line 57 / note 0",
           "signals": [
             "hard_truncation",
             "hyphen_artifact"
           ],
           "tail": "…d,” &c. is evidently a lover’s burst, and the whole passage is as remote from the low jar-"
+        },
+        {
+          "ref": "ACT 1, SCENE 1 / line 117 / note 0",
+          "signals": [
+            "hard_truncation",
+            "mid_sentence_cut"
+          ],
+          "tail": "…n of Menelaus, and hence is to the glory of Paris”—A.—It is only fitting that Paris should"
         }
       ]
     }
   ],
   "totals": {
     "plays": 22,
-    "total_notes": 23739,
-    "is_clipped": 122,
-    "union_truncated": 927,
-    "is_clipped_pct": 0.51,
-    "union_pct": 3.9
+    "total_notes": 23715,
+    "is_clipped": 64,
+    "union_truncated": 427,
+    "is_clipped_pct": 0.27,
+    "union_pct": 1.8
   }
 }
