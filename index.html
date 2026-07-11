@@ -3256,6 +3256,7 @@
             <!-- Settings button hidden for public release; uncomment to re-enable for admin use -->
             <!-- <button class="nav-btn" onclick="openSettings()">Settings</button> -->
             <button class="nav-btn" onclick="openAbout()">About</button>
+            <span class="nav-text" onclick="openPlayTextsAbout()">About the Play Texts</span>
             <span class="nav-text" onclick="openAnnotationSearchAll()">Search Annotations</span>
         </div>
     </div>
@@ -4334,6 +4335,28 @@
                     <p>We welcome reports from anyone — students, scholars, enthusiasts, and casual readers alike. There is no error too small to mention and no expertise required to spot one. Please write to us describing what you found, which play and passage it concerns, and, if possible, what the correct text should be.</p>
 
                     <p>You can reach the project team at: <strong><a href="mailto:help@newvariorum.com" style="color:black;">help@newvariorum.com</a></strong>. We read every message and will acknowledge corrections as we incorporate them. If you would like attribution for a correction, please say so and we will be glad to include your name in the acknowledgments.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About the Play Texts Modal -->
+    <div id="playTextsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="play-texts-modal-title">About the Play Texts</div>
+                <button class="modal-close" onclick="closePlayTextsAbout()">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="about">
+                    <p class="about-hero-title">About the Play Texts</p>
+
+                    <p>The reading text you see on this site for most plays comes from the <a href="https://shakespeare.mit.edu/" target="_blank" rel="noopener noreferrer">MIT Complete Works of William Shakespeare</a> (<em>shakespeare.mit.edu</em>), the web&rsquo;s first edition of Shakespeare, online since 1993. Behind it stands a distinguished pedigree. The MIT text is the Moby Shakespeare, a public-domain electronic transcription made in the early 1990s, and Moby in turn derives from the Globe Edition of 1864, prepared by William George Clark and William Aldis Wright of Trinity College, Cambridge, as the one-volume distillation of their monumental Cambridge Shakespeare. For more than half a century the Globe was the standard reference text of the English-speaking world. Its act, scene, and line numbering became the common coordinate system of Shakespeare scholarship, and it was the text most familiar to the very critics whose notes fill the New Variorum. We chose it for two reasons. It is in modern spelling, and thus immediately readable. And it is, historically, the right companion to Furness, since when his contemporaries spoke of the received text, Clark and Wright&rsquo;s is usually the text they meant. For <em>Othello</em>, the reading text is instead drawn from the Folger Shakespeare Library&rsquo;s digital texts, which anchor our line-by-line alignment for that play.</p>
+
+                    <p>The New Variorum&rsquo;s own play text is a different animal, and deliberately so. Furness printed his first four volumes with the received modern text of his day. Beginning with <em>Othello</em> in 1886, he changed course. Convinced that serious students must have Shakespeare&rsquo;s own text, or the nearest possible approach to it, he began reprinting the text of the 1623 First Folio itself, and he held to that practice in the volumes that followed. As scholarship, the decision was admirable, and it is one reason the Variorum remains authoritative. As a reading experience, it is punishing. The long &#383; makes &ldquo;sure&rdquo; read as &ldquo;fure,&rdquo; u and v trade places by position, i stands in for j, and seventeenth-century spelling and punctuation govern every line. These pages are a joy for the textual scholar and a wall for nearly everyone else.</p>
+
+                    <p>That trade-off persists in scholarly editions to this day. Even the excellent born-digital New Variorum editions now being produced at Texas A&amp;M preserve the old-spelling text, because their purpose is the study of the text, not the reading of the play. This site makes the opposite choice at the surface and the same choice underneath. You read the plays in modern spelling, while the Variorum notes preserve the original spellings exactly as Furness printed them, in the lemmata and collations that quote the early texts verbatim. If you want the full old-spelling record, the original volumes are freely available at the <a href="https://archive.org/" target="_blank" rel="noopener noreferrer">Internet Archive</a> and <a href="https://www.hathitrust.org/" target="_blank" rel="noopener noreferrer">HathiTrust</a>. If you want to read Shakespeare with a century and a half of commentary at your elbow, that is what this site is for.</p>
                 </div>
             </div>
         </div>
@@ -15908,6 +15931,14 @@
             document.getElementById('howToHelpModal').style.display = 'none';
         }
 
+        function openPlayTextsAbout() {
+            document.getElementById('playTextsModal').style.display = 'block';
+        }
+
+        function closePlayTextsAbout() {
+            document.getElementById('playTextsModal').style.display = 'none';
+        }
+
         // ── Annotation Search ─────────────────────────────────────────────────
         let _annotScope = 'play';
 
@@ -16774,6 +16805,7 @@
             const aboutModal = document.getElementById('aboutModal');
             const howToUseModal = document.getElementById('howToUseModal');
             const howToHelpModal = document.getElementById('howToHelpModal');
+            const playTextsModal = document.getElementById('playTextsModal');
             const criticsModal = document.getElementById('criticsModal');
             const nvModal = document.getElementById('nvModal');
             const rightsModal = document.getElementById('rightsModal');
@@ -16808,6 +16840,9 @@
             }
             if (event.target === howToHelpModal) {
                 closeHowToHelp();
+            }
+            if (event.target === playTextsModal) {
+                closePlayTextsAbout();
             }
             if (event.target === criticsModal || event.target === hamletCriticsModal || 
                 event.target === kingLearCriticsModal || event.target === romeoJulietCriticsModal || 
@@ -18697,6 +18732,7 @@
             const aboutModal = document.getElementById('aboutModal');
             const howToUseModal = document.getElementById('howToUseModal');
             const howToHelpModal = document.getElementById('howToHelpModal');
+            const playTextsModal = document.getElementById('playTextsModal');
             const criticsModal = document.getElementById('criticsModal');
             const nvModal = document.getElementById('nvModal');
             
@@ -18736,6 +18772,12 @@
                 howToHelpModal.setAttribute('aria-labelledby', 'how-to-help-modal-title');
             }
 
+            if (playTextsModal) {
+                playTextsModal.setAttribute('role', 'dialog');
+                playTextsModal.setAttribute('aria-modal', 'true');
+                playTextsModal.setAttribute('aria-labelledby', 'play-texts-modal-title');
+            }
+
             // Settings nav switching
             document.querySelectorAll('.settings-nav .item').forEach((el, i) => {
                 el.addEventListener('click', () => {
@@ -18769,6 +18811,9 @@
                     }
                     if (howToHelpModal && howToHelpModal.style.display === 'block') {
                         closeHowToHelp();
+                    }
+                    if (playTextsModal && playTextsModal.style.display === 'block') {
+                        closePlayTextsAbout();
                     }
                     if (criticsModal && criticsModal.style.display === 'block') {
                         closeCriticsModal();
@@ -24100,6 +24145,14 @@
             document.getElementById('howToHelpModal').style.display = 'none';
         }
 
+        function openPlayTextsAbout() {
+            document.getElementById('playTextsModal').style.display = 'block';
+        }
+
+        function closePlayTextsAbout() {
+            document.getElementById('playTextsModal').style.display = 'none';
+        }
+
         function openRights() {
             document.getElementById('rightsModal').style.display = 'block';
         }
@@ -24423,6 +24476,7 @@
             const aboutModal = document.getElementById('aboutModal');
             const howToUseModal = document.getElementById('howToUseModal');
             const howToHelpModal = document.getElementById('howToHelpModal');
+            const playTextsModal = document.getElementById('playTextsModal');
             const rightsModal = document.getElementById('rightsModal');
             const criticsModal = document.getElementById('criticsModal');
             const nvModal = document.getElementById('nvModal');
@@ -24457,6 +24511,9 @@
             }
             if (event.target === howToHelpModal) {
                 closeHowToHelp();
+            }
+            if (event.target === playTextsModal) {
+                closePlayTextsAbout();
             }
             if (event.target === rightsModal) {
                 closeRights();
