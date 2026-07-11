@@ -1,0 +1,182 @@
+[
+  {
+    "play": "Romeo and Juliet",
+    "ref": "ACT 1 SCENE 1 / line 150 / note 0",
+    "full_ratio": 74.5,
+    "tail_ratio": 100.0
+  },
+  {
+    "play": "Romeo and Juliet",
+    "ref": "ACT 4 SCENE 3 / line 43 / note 0",
+    "full_ratio": 47.0,
+    "tail_ratio": 100.0
+  },
+  {
+    "play": "Macbeth",
+    "ref": "ACT 1 SCENE 4 / line 13 / note 1",
+    "full_ratio": 53.7,
+    "tail_ratio": 97.5
+  },
+  {
+    "play": "Macbeth",
+    "ref": "ACT 3 SCENE 4 / line 52 / note 0",
+    "full_ratio": 40.4,
+    "tail_ratio": 100.0
+  },
+  {
+    "play": "Hamlet",
+    "ref": "ACT 2 SCENE 1 / line 90 / note 1",
+    "full_ratio": 74.3,
+    "tail_ratio": 100.0
+  },
+  {
+    "play": "Hamlet",
+    "ref": "ACT 3 SCENE 1 / line 104 / note 0",
+    "full_ratio": 40.2,
+    "tail_ratio": 100.0
+  },
+  {
+    "play": "Hamlet",
+    "ref": "ACT 4 SCENE 4 / line 7 / note 0",
+    "full_ratio": 42.5,
+    "tail_ratio": 98.7
+  },
+  {
+    "play": "King Lear",
+    "ref": "ACT 1 SCENE 4 / line 291 / note 0",
+    "full_ratio": 66.4,
+    "tail_ratio": 100.0
+  },
+  {
+    "play": "King Lear",
+    "ref": "ACT 2 SCENE 1 / line 41 / note 0",
+    "full_ratio": 41.9,
+    "tail_ratio": 100.0
+  },
+  {
+    "play": "King Lear",
+    "ref": "ACT 5 SCENE 3 / line 46 / note 0",
+    "full_ratio": 41.1,
+    "tail_ratio": 100.0
+  },
+  {
+    "play": "Othello",
+    "ref": "ACT 2, SCENE 1 / line 2.1.14 / note 1",
+    "full_ratio": 71.5,
+    "tail_ratio": 98.8
+  },
+  {
+    "play": "Othello",
+    "ref": "ACT 2, SCENE 1 / line 2.1.71 / note 0",
+    "full_ratio": 44.3,
+    "tail_ratio": 100.0
+  },
+  {
+    "play": "Othello",
+    "ref": "ACT 5, SCENE 1 / line 5.1.43 / note 0",
+    "full_ratio": 67.7,
+    "tail_ratio": 100.0
+  },
+  {
+    "play": "The Merchant of Venice",
+    "ref": "ACT 1 SCENE 1 / line 150 / note 0",
+    "full_ratio": 62.0,
+    "tail_ratio": 100.0
+  },
+  {
+    "play": "The Merchant of Venice",
+    "ref": "ACT 2 SCENE 2 / line 70 / note 0",
+    "full_ratio": 71.7,
+    "tail_ratio": 98.8
+  },
+  {
+    "play": "The Merchant of Venice",
+    "ref": "ACT 2 SCENE 9 / line 76 / note 0",
+    "full_ratio": 41.4,
+    "tail_ratio": 97.5
+  },
+  {
+    "play": "The Merchant of Venice",
+    "ref": "ACT 3 SCENE 2 / line 18 / note 0",
+    "full_ratio": 68.2,
+    "tail_ratio": 98.7
+  },
+  {
+    "play": "The Merchant of Venice",
+    "ref": "ACT 4 SCENE 1 / line 370 / note 0",
+    "full_ratio": 57.0,
+    "tail_ratio": 93.1
+  },
+  {
+    "play": "As You Like It",
+    "ref": "ACT 2 SCENE 1 / line 8 / note 0",
+    "full_ratio": 43.3,
+    "tail_ratio": 98.8
+  },
+  {
+    "play": "As You Like It",
+    "ref": "ACT 2 SCENE 6 / line 14 / note 0",
+    "full_ratio": 69.2,
+    "tail_ratio": 97.4
+  },
+  {
+    "play": "As You Like It",
+    "ref": "ACT 3 SCENE 2 / line 363 / note 1",
+    "full_ratio": 42.5,
+    "tail_ratio": 97.5
+  },
+  {
+    "play": "As You Like It",
+    "ref": "ACT 4 SCENE 3 / line 141 / note 0",
+    "full_ratio": 44.7,
+    "tail_ratio": 98.8
+  },
+  {
+    "play": "As You Like It",
+    "ref": "ACT 4 SCENE 3 / line 74 / note 0",
+    "full_ratio": 40.8,
+    "tail_ratio": 98.7
+  },
+  {
+    "play": "As You Like It",
+    "ref": "ACT 5 SCENE 1 / line 57 / note 0",
+    "full_ratio": 72.0,
+    "tail_ratio": 94.9
+  },
+  {
+    "play": "As You Like It",
+    "ref": "ACT 5 SCENE 4 / line 156 / note 0",
+    "full_ratio": 59.4,
+    "tail_ratio": 98.4
+  },
+  {
+    "play": "The Tempest",
+    "ref": "ACT 1 SCENE 2 / line 23 / note 0",
+    "full_ratio": 63.4,
+    "tail_ratio": 98.2
+  },
+  {
+    "play": "The Tempest",
+    "ref": "ACT 4 SCENE 1 / line 102 / note 0",
+    "full_ratio": 45.1,
+    "tail_ratio": 100.0
+  },
+  {
+    "play": "A Midsummer Night's Dream",
+    "ref": "ACT 1 SCENE 1 / line 149 / note 0",
+    "full_ratio": 73.5,
+    "tail_ratio": 96.2
+  },
+  {
+    "play": "A Midsummer Night's Dream",
+    "ref": "ACT 2 SCENE 1 / line 19 / note 0",
+    "full_ratio": 44.5,
+    "tail_ratio": 100.0
+  },
+  {
+    "play": "A Midsummer Night's Dream",
+    "ref": "ACT 3 SCENE 1 / line 15 / note 2",
+    "full_ratio": 43.2,
+    "tail_ratio": 98.8
+  }
+]

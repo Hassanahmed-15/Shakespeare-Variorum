@@ -18,8 +18,8 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-LOCAL_JSON = ROOT / "Public/Data/othello_notes_folger.json"
-SITE_URL = "https://newvariorum.com/Public/Data/othello_notes_folger.json"
+LOCAL_JSON = ROOT / "Public/Data/othello_notes.json"
+SITE_URL = "https://newvariorum.com/Public/Data/othello_notes.json"
 IA_TXT_URL = "https://archive.org/stream/newvariorumediti13shak/newvariorumediti13shak_djvu.txt"
 IA_ITEM = "https://archive.org/details/newvariorumediti13shak"
 SAMPLE_SIZE = 40

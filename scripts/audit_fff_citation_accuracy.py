@@ -57,7 +57,7 @@ NV_CORPUS = [
     ("Macbeth", 1873, "macbeth_notes_cleaned_play.json", "macbeth"),
     ("Hamlet", 1877, "hamlet_notes (1).json", "hamlet"),
     ("King Lear", 1880, "kinglear_notes.json", "kinglear"),
-    ("Othello", 1886, "othello_notes_folger.json", "othello"),
+    ("Othello", 1886, "othello_notes.json", "othello"),
     ("The Merchant of Venice", 1888, "merchant_of_venice.json", "merchantofvenice"),
     ("As You Like It", 1890, "as_you_like_it.json", "asyoulikeit"),
     ("The Tempest", 1892, "the_tempest.json", "tempest"),

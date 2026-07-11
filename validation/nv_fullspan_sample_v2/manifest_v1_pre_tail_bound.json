@@ -1,0 +1,28 @@
+{
+  "date": "2026-07-08",
+  "sample_n_per_play": 14,
+  "seed": 42,
+  "method": "act-stratified random full-span witness match",
+  "full_span_threshold": 75,
+  "tail_threshold": 75,
+  "tail_len": 90,
+  "scorer_full": "rapidfuzz.fuzz.ratio on norm(note) vs norm(witness_span)",
+  "scorer_tail": "rapidfuzz.fuzz.partial_ratio on norm(last 90 chars)",
+  "corpus_summary": {
+    "plays": 22,
+    "sample_n": 308,
+    "scored_n": 278,
+    "exempt_n": 30,
+    "anchored_n": 194,
+    "unanchorable_n": 84,
+    "full_span_match_n": 103,
+    "interior_divergence_n": 85,
+    "span_mismatch_n": 6,
+    "pass_among_scored_pct": 37.1,
+    "pass_among_anchored_pct": 53.1,
+    "unanchorable_pct": 30.2,
+    "interior_among_anchored_pct": 43.8,
+    "interior_among_scored_pct": 30.6,
+    "95_ci_anchored_margin": 7.0
+  }
+}

@@ -22,7 +22,7 @@ PLAY_JSONS = [
     ("Macbeth", "Public/Data/macbeth_notes_cleaned_play.json"),
     ("Hamlet", "Public/Data/hamlet_notes (1).json"),
     ("King Lear", "Public/Data/kinglear_notes.json"),
-    ("Othello", "Public/Data/othello_notes_folger.json"),
+    ("Othello", "Public/Data/othello_notes.json"),
     ("The Merchant of Venice", "Public/Data/merchant_of_venice.json"),
     ("As You Like It", "Public/Data/as_you_like_it.json"),
     ("The Tempest", "Public/Data/the_tempest.json"),

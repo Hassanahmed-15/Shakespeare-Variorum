@@ -26,7 +26,7 @@ DEPLOYED_22 = {
     "Macbeth": "Public/Data/macbeth_correct.json",
     "Hamlet": "Public/Data/hamlet_notes (1).json",
     "King Lear": "Public/Data/kinglear_notes.json",
-    "Othello": "Public/Data/othello_notes_folger.json",
+    "Othello": "Public/Data/othello_notes.json",
     "Merchant of Venice": "Public/Data/merchant_of_venice.json",
     "As You Like It": "Public/Data/as_you_like_it.json",
     "The Tempest": "Public/Data/the_tempest.json",

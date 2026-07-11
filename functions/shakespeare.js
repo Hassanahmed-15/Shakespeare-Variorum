@@ -94,7 +94,7 @@ async function findRelevantNotes(text, scene = null, playName = 'macbeth') {
       'macbeth': 'macbeth_notes_cleaned_play.json',
       'hamlet': 'hamlet_notes (1).json',
       'romeo': 'ROMEO_notes.json',
-      'othello': 'othello_notes_folger.json',
+      'othello': 'othello_notes.json',
       'kinglear': 'kinglear_notes.json',
       'henryiv1': 'henry_iv_part1.json',
       'midsummer': 'midsummer_nights_dream.json',

@@ -1,0 +1,33 @@
+{
+  "date": "2026-07-11",
+  "method": "Case-insensitive \"johnson\" substring in each notes[] string; same hit definition as site keyword search (query token must appear in note text).",
+  "needle": "johnson",
+  "plays": 21,
+  "total_hits": 2135,
+  "per_play": {
+    "Coriolanus": 193,
+    "Hamlet": 190,
+    "Antony and Cleopatra": 174,
+    "Cymbeline": 155,
+    "King Lear": 137,
+    "Othello": 126,
+    "The Winter's Tale": 125,
+    "Henry IV Part 1": 100,
+    "Love's Labour's Lost": 99,
+    "As You Like It": 98,
+    "Macbeth": 95,
+    "Twelfth Night": 88,
+    "King John": 84,
+    "Henry IV Part 2": 83,
+    "A Midsummer Night's Dream": 68,
+    "Merchant of Venice": 64,
+    "Richard III": 60,
+    "The Tempest": 57,
+    "Much Ado About Nothing": 56,
+    "Julius Caesar": 48,
+    "Romeo and Juliet": 35
+  },
+  "excluded": [
+    "Troilus and Cressida"
+  ]
+}

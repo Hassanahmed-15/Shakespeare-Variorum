@@ -1,0 +1,16 @@
+{
+  "out": "Public/Data/othello_notes.json",
+  "summary": {
+    "textSource": "MIT Shakespeare (Moby); public domain",
+    "notesSource": "New Variorum Othello (1886); mapped from Folger-aligned JSON",
+    "alignment": "nv_notes_mapped_by_scene_text_similarity_to_mit_spine",
+    "quoteReanchored": 292,
+    "mitSpine": "Public/Data/othello.json",
+    "notesSourceFile": "Public/Data/othello_notes_folger.json",
+    "scenes": 15,
+    "notesMapped": 918,
+    "notesSourceCount": 918,
+    "reviewRows": 0
+  },
+  "review": []
+}

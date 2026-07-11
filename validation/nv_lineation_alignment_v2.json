@@ -1,0 +1,703 @@
+{
+  "summary": {
+    "method": "Simulate user click on each JSON `play` line with notes; findNotesForLine text match (matchesText); adjudicate returned notes vs IA witness (exact/high >= 0.75).",
+    "plays_audited": 21,
+    "plays_excluded": [
+      "Troilus and Cressida"
+    ],
+    "corpus_counts": {
+      "lines_with_notes": 18930,
+      "clickable_lines": 18901,
+      "retrieval_correct_key": 18870,
+      "witness_exact": 16440,
+      "e2e_pass": 18862,
+      "witness_high": 2435,
+      "witness_partial": 5,
+      "e2e_witness_partial": 5,
+      "duplicate_play_text_in_scene": 69,
+      "duplicate_play_different_notes": 69,
+      "empty_play_with_notes": 29,
+      "retrieval_wrong_key_different_notes": 31,
+      "e2e_retrieval_fail": 31,
+      "witness_fail": 3,
+      "e2e_witness_fail": 3,
+      "witness_no_notes": 18
+    },
+    "rates": {
+      "retrieval_correct_pct": 99.836,
+      "retrieval_wrong_key_different_notes_pct": 0.164,
+      "e2e_pass_pct": 99.7937,
+      "duplicate_play_different_notes_pct": 0.3651
+    }
+  },
+  "per_play": [
+    {
+      "play": "Romeo and Juliet",
+      "json": "Public/Data/romeo_and_juliet.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 665,
+        "clickable_lines": 665,
+        "retrieval_correct_key": 665,
+        "witness_exact": 571,
+        "e2e_pass": 664,
+        "witness_high": 93,
+        "witness_partial": 1,
+        "e2e_witness_partial": 1
+      },
+      "rates": {
+        "retrieval_correct_pct": 100.0,
+        "retrieval_wrong_key_different_notes_pct": 0.0,
+        "e2e_pass_pct": 99.8496,
+        "duplicate_play_different_notes_pct": 0.0
+      },
+      "examples": {}
+    },
+    {
+      "play": "Macbeth",
+      "json": "Public/Data/macbeth_notes_cleaned_play.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 1002,
+        "clickable_lines": 1002,
+        "duplicate_play_text_in_scene": 2,
+        "duplicate_play_different_notes": 2,
+        "retrieval_correct_key": 1002,
+        "witness_exact": 925,
+        "e2e_pass": 1002,
+        "witness_high": 77
+      },
+      "rates": {
+        "retrieval_correct_pct": 100.0,
+        "retrieval_wrong_key_different_notes_pct": 0.0,
+        "e2e_pass_pct": 100.0,
+        "duplicate_play_different_notes_pct": 0.1996
+      },
+      "examples": {}
+    },
+    {
+      "play": "Hamlet",
+      "json": "Public/Data/hamlet_notes (1).json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 1614,
+        "clickable_lines": 1590,
+        "duplicate_play_text_in_scene": 4,
+        "duplicate_play_different_notes": 4,
+        "empty_play_with_notes": 24,
+        "retrieval_correct_key": 1589,
+        "witness_high": 271,
+        "e2e_pass": 1589,
+        "witness_exact": 1319,
+        "retrieval_wrong_key_different_notes": 1,
+        "e2e_retrieval_fail": 1
+      },
+      "rates": {
+        "retrieval_correct_pct": 99.9371,
+        "retrieval_wrong_key_different_notes_pct": 0.0629,
+        "e2e_pass_pct": 99.9371,
+        "duplicate_play_different_notes_pct": 0.2516
+      },
+      "examples": {
+        "retrieval_wrong_key_different_notes": [
+          {
+            "scene": "ACT 4 SCENE 5",
+            "expected_line": "225",
+            "returned_line": "30",
+            "play": "OPHELIA sings",
+            "expected_note_snip": "[Sings] CHAPPELL (Popular Music of the ‘Olden Time,’ vol. i, p. 237). This fragment, sung by Ophelia, was also noted dow",
+            "returned_note_snip": "[Sings] KNIGHT : The music still sung in the character of Oph. is supposed to be the same or nearly so that was used in "
+          }
+        ]
+      }
+    },
+    {
+      "play": "King Lear",
+      "json": "Public/Data/kinglear_notes.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 1013,
+        "clickable_lines": 1013,
+        "retrieval_correct_key": 1013,
+        "witness_exact": 892,
+        "e2e_pass": 1013,
+        "witness_high": 121
+      },
+      "rates": {
+        "retrieval_correct_pct": 100.0,
+        "retrieval_wrong_key_different_notes_pct": 0.0,
+        "e2e_pass_pct": 100.0,
+        "duplicate_play_different_notes_pct": 0.0
+      },
+      "examples": {}
+    },
+    {
+      "play": "Othello",
+      "json": "Public/Data/othello_notes.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 631,
+        "clickable_lines": 631,
+        "duplicate_play_text_in_scene": 9,
+        "duplicate_play_different_notes": 9,
+        "retrieval_correct_key": 627,
+        "witness_exact": 530,
+        "e2e_pass": 625,
+        "witness_high": 98,
+        "witness_partial": 1,
+        "e2e_witness_partial": 1,
+        "witness_fail": 1,
+        "e2e_witness_fail": 1,
+        "retrieval_wrong_key_different_notes": 4,
+        "e2e_retrieval_fail": 4,
+        "witness_no_notes": 1
+      },
+      "rates": {
+        "retrieval_correct_pct": 99.3661,
+        "retrieval_wrong_key_different_notes_pct": 0.6339,
+        "e2e_pass_pct": 99.0491,
+        "duplicate_play_different_notes_pct": 1.4263
+      },
+      "examples": {
+        "retrieval_wrong_key_different_notes": [
+          {
+            "scene": "ACT 4 SCENE 1",
+            "expected_line": "29",
+            "returned_line": "4",
+            "play": "IAGO: What,",
+            "expected_note_snip": "cannot chuse] they cannot Theob. Warb. Johns, then cannot Han. straight cannot Cap.",
+            "returned_note_snip": "harme?] harme. Q1. Q1."
+          },
+          {
+            "scene": "ACT 4 SCENE 2",
+            "expected_line": "12",
+            "returned_line": "8",
+            "play": "EMILIA: Never, my lord.",
+            "expected_note_snip": "Abbott: For other instances of the insertion and omission of to before the infinitive, see Abbott, § 349.",
+            "returned_note_snip": ""
+          },
+          {
+            "scene": "ACT 5 SCENE 2",
+            "expected_line": "174",
+            "returned_line": "167",
+            "play": "EMILIA: My husband!",
+            "expected_note_snip": "Walker (Crit. ii, 203): To be pronounced as one syllable. See i, ii, 34; iii, iv, 195.",
+            "returned_note_snip": "Holland's Translation of Pliny: The Topaze or Chrysolith, hath a singular green colour by it selfe, for which it is este"
+          }
+        ]
+      }
+    },
+    {
+      "play": "The Merchant of Venice",
+      "json": "Public/Data/merchant_of_venice.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 867,
+        "clickable_lines": 867,
+        "duplicate_play_text_in_scene": 7,
+        "duplicate_play_different_notes": 7,
+        "retrieval_correct_key": 863,
+        "witness_exact": 764,
+        "e2e_pass": 863,
+        "witness_high": 100,
+        "retrieval_wrong_key_different_notes": 4,
+        "e2e_retrieval_fail": 4,
+        "witness_no_notes": 3
+      },
+      "rates": {
+        "retrieval_correct_pct": 99.5386,
+        "retrieval_wrong_key_different_notes_pct": 0.4614,
+        "e2e_pass_pct": 99.5386,
+        "duplicate_play_different_notes_pct": 0.8074
+      },
+      "examples": {
+        "retrieval_wrong_key_different_notes": [
+          {
+            "scene": "ACT 2 SCENE 2",
+            "expected_line": "60",
+            "returned_line": "49",
+            "play": "talk you of young Master Launcelot?",
+            "expected_note_snip": "talk you of young Master Launcelot?] 55. Knight: This sentence is usually put interrogatively, contrary to the punctuati",
+            "returned_note_snip": "young] CAPELL (ii, 61 a): We should observe from the Son's young's, which are emphatical, that 'Launcelot' was his fathe"
+          },
+          {
+            "scene": "ACT 2 SCENE 5",
+            "expected_line": "63",
+            "returned_line": "47",
+            "play": "[Exit]",
+            "expected_note_snip": "Oxberry’s Edition] One line, Wh. 1. Omit, Hal. Dyce, Huds. Scene VI. Cap. 3. to make a} Om. Steev. conj. et cet. a fland",
+            "returned_note_snip": ""
+          },
+          {
+            "scene": "ACT 3 SCENE 2",
+            "expected_line": "331",
+            "returned_line": "139",
+            "play": "BASSANIO: [Reads",
+            "expected_note_snip": "Eccles] 329. Portia could not possibly intend by these words ungenerously to remind Bassanio of the benefits she had con",
+            "returned_note_snip": ""
+          }
+        ]
+      }
+    },
+    {
+      "play": "As You Like It",
+      "json": "Public/Data/as_you_like_it.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 825,
+        "clickable_lines": 825,
+        "duplicate_play_text_in_scene": 5,
+        "duplicate_play_different_notes": 5,
+        "retrieval_correct_key": 825,
+        "witness_exact": 738,
+        "e2e_pass": 824,
+        "witness_high": 86,
+        "witness_partial": 1,
+        "e2e_witness_partial": 1
+      },
+      "rates": {
+        "retrieval_correct_pct": 100.0,
+        "retrieval_wrong_key_different_notes_pct": 0.0,
+        "e2e_pass_pct": 99.8788,
+        "duplicate_play_different_notes_pct": 0.6061
+      },
+      "examples": {}
+    },
+    {
+      "play": "The Tempest",
+      "json": "Public/Data/the_tempest.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 625,
+        "clickable_lines": 621,
+        "empty_play_with_notes": 4,
+        "duplicate_play_text_in_scene": 1,
+        "duplicate_play_different_notes": 1,
+        "retrieval_correct_key": 621,
+        "witness_exact": 556,
+        "e2e_pass": 621,
+        "witness_high": 65
+      },
+      "rates": {
+        "retrieval_correct_pct": 100.0,
+        "retrieval_wrong_key_different_notes_pct": 0.0,
+        "e2e_pass_pct": 100.0,
+        "duplicate_play_different_notes_pct": 0.161
+      },
+      "examples": {}
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "json": "Public/Data/midsummer_nights_dream.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 616,
+        "clickable_lines": 616,
+        "retrieval_correct_key": 616,
+        "witness_exact": 533,
+        "e2e_pass": 614,
+        "witness_high": 81,
+        "witness_partial": 2,
+        "e2e_witness_partial": 2
+      },
+      "rates": {
+        "retrieval_correct_pct": 100.0,
+        "retrieval_wrong_key_different_notes_pct": 0.0,
+        "e2e_pass_pct": 99.6753,
+        "duplicate_play_different_notes_pct": 0.0
+      },
+      "examples": {}
+    },
+    {
+      "play": "The Winter's Tale",
+      "json": "Public/Data/the_winters_tale.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 857,
+        "clickable_lines": 856,
+        "empty_play_with_notes": 1,
+        "retrieval_correct_key": 856,
+        "witness_exact": 776,
+        "e2e_pass": 856,
+        "witness_high": 80
+      },
+      "rates": {
+        "retrieval_correct_pct": 100.0,
+        "retrieval_wrong_key_different_notes_pct": 0.0,
+        "e2e_pass_pct": 100.0,
+        "duplicate_play_different_notes_pct": 0.0
+      },
+      "examples": {}
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "json": "Public/Data/much_ado_about_nothing.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 776,
+        "clickable_lines": 776,
+        "duplicate_play_text_in_scene": 3,
+        "duplicate_play_different_notes": 3,
+        "retrieval_correct_key": 775,
+        "witness_exact": 646,
+        "e2e_pass": 775,
+        "witness_high": 130,
+        "retrieval_wrong_key_different_notes": 1,
+        "e2e_retrieval_fail": 1
+      },
+      "rates": {
+        "retrieval_correct_pct": 99.8711,
+        "retrieval_wrong_key_different_notes_pct": 0.1289,
+        "e2e_pass_pct": 99.8711,
+        "duplicate_play_different_notes_pct": 0.3866
+      },
+      "examples": {
+        "retrieval_wrong_key_different_notes": [
+          {
+            "scene": "ACT 5 SCENE 3",
+            "expected_line": "25",
+            "returned_line": "22",
+            "play": "Heavily, heavily.",
+            "expected_note_snip": "Heavily, heavily] 22. Dyce (Remarks, p. 35): A speech of Hamlet, II, ii, 290, stands thus in the Folio: ‘and indeed it g",
+            "returned_note_snip": "Heauenly, heauenly] DYCE (Remarks, p. 35): A speech of Hamlet, II, ii, 290, stands thus in the Folio: ‘and indeed it goe"
+          }
+        ]
+      }
+    },
+    {
+      "play": "Twelfth Night",
+      "json": "Public/Data/twelfth_night.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 909,
+        "clickable_lines": 909,
+        "retrieval_correct_key": 909,
+        "witness_exact": 791,
+        "e2e_pass": 909,
+        "witness_high": 118
+      },
+      "rates": {
+        "retrieval_correct_pct": 100.0,
+        "retrieval_wrong_key_different_notes_pct": 0.0,
+        "e2e_pass_pct": 100.0,
+        "duplicate_play_different_notes_pct": 0.0
+      },
+      "examples": {}
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "json": "Public/Data/loves_labours_lost.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 968,
+        "clickable_lines": 968,
+        "duplicate_play_text_in_scene": 18,
+        "duplicate_play_different_notes": 18,
+        "retrieval_correct_key": 956,
+        "witness_exact": 819,
+        "e2e_pass": 956,
+        "witness_high": 141,
+        "retrieval_wrong_key_different_notes": 12,
+        "witness_no_notes": 8,
+        "e2e_retrieval_fail": 12
+      },
+      "rates": {
+        "retrieval_correct_pct": 98.7603,
+        "retrieval_wrong_key_different_notes_pct": 1.2397,
+        "e2e_pass_pct": 98.7603,
+        "duplicate_play_different_notes_pct": 1.8595
+      },
+      "examples": {
+        "retrieval_wrong_key_different_notes": [
+          {
+            "scene": "ACT 1 SCENE 1",
+            "expected_line": "267",
+            "returned_line": "126",
+            "play": "FERDINAND: [Reads",
+            "expected_note_snip": "weaker vesseel] ‘Likewise, ye husbands, dwell with them according to knowledge, giving honour unto the wife, as unto the",
+            "returned_note_snip": ""
+          },
+          {
+            "scene": "ACT 2 SCENE 1",
+            "expected_line": "120",
+            "returned_line": "119",
+            "play": "ROSALINE: Did not I dance with you in Brabant once?",
+            "expected_note_snip": "ROSALINE] ’s, is as follows: — ‘ Capell proposes to read Katharine in the place of Rosaline^ a reading which, if adopted",
+            "returned_note_snip": ""
+          },
+          {
+            "scene": "ACT 3 SCENE 1",
+            "expected_line": "52",
+            "returned_line": "2",
+            "play": "DON",
+            "expected_note_snip": "gamester] Drake (ii, 157): The pernicious habit of gaming had become almost universal in the days of Elizabeth, and if w",
+            "returned_note_snip": "don] Murray (N. E. D.): The adopted form of Spanish don, the extant representative of Latin domin-um master, lord. † b. "
+          }
+        ]
+      }
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "json": "Public/Data/antony_and_cleopatra.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 931,
+        "clickable_lines": 931,
+        "duplicate_play_text_in_scene": 1,
+        "duplicate_play_different_notes": 1,
+        "retrieval_correct_key": 931,
+        "witness_exact": 825,
+        "e2e_pass": 931,
+        "witness_high": 106
+      },
+      "rates": {
+        "retrieval_correct_pct": 100.0,
+        "retrieval_wrong_key_different_notes_pct": 0.0,
+        "e2e_pass_pct": 100.0,
+        "duplicate_play_different_notes_pct": 0.1074
+      },
+      "examples": {}
+    },
+    {
+      "play": "Richard III",
+      "json": "Public/Data/richard_iii.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 1069,
+        "clickable_lines": 1069,
+        "duplicate_play_text_in_scene": 10,
+        "duplicate_play_different_notes": 10,
+        "retrieval_correct_key": 1064,
+        "witness_exact": 949,
+        "e2e_pass": 1063,
+        "witness_high": 116,
+        "witness_fail": 1,
+        "e2e_witness_fail": 1,
+        "retrieval_wrong_key_different_notes": 5,
+        "e2e_retrieval_fail": 5,
+        "witness_no_notes": 3
+      },
+      "rates": {
+        "retrieval_correct_pct": 99.5323,
+        "retrieval_wrong_key_different_notes_pct": 0.4677,
+        "e2e_pass_pct": 99.4387,
+        "duplicate_play_different_notes_pct": 0.9355
+      },
+      "examples": {
+        "retrieval_wrong_key_different_notes": [
+          {
+            "scene": "ACT 3 SCENE 1",
+            "expected_line": "100",
+            "returned_line": "83",
+            "play": "GLOUCESTER: [Aside",
+            "expected_note_snip": "lightly] summers ...has Popei. summer ...has Pope ii, + ( — Var. ’73)- lightly] likely Qg. mostly Gould. 100. For now . ",
+            "returned_note_snip": "So wise . . . neuer liue long] Abbott (§ 133): Here ‘so’ means on condi¬ tion of my speaking the truth. Compare Rich. II"
+          },
+          {
+            "scene": "ACT 4 SCENE 2",
+            "expected_line": "101",
+            "returned_line": "31",
+            "play": "[Exit]",
+            "expected_note_snip": "I clayme the gift] MALONE: Henry Stafford, Duke of Buckingham, was lineally descended from Thomas, Duke of Gloster, ... ",
+            "returned_note_snip": "presently] For this omission of to of the infinitive, see Abbott, \\ 349. 236. presently] For examples of presently,’ mea"
+          },
+          {
+            "scene": "ACT 5 SCENE 3",
+            "expected_line": "174",
+            "returned_line": "149",
+            "play": "Let fall thy lance: despair, and die!",
+            "expected_note_snip": "Let fall thy Lance] 174. SINGER (Sh. Vind., p. 176): The interpolation of pointless [by Collier’s MS corrector] is gratu",
+            "returned_note_snip": ""
+          }
+        ]
+      }
+    },
+    {
+      "play": "Julius Caesar",
+      "json": "Public/Data/julius_caesar.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 649,
+        "clickable_lines": 649,
+        "duplicate_play_text_in_scene": 2,
+        "duplicate_play_different_notes": 2,
+        "retrieval_correct_key": 648,
+        "witness_exact": 586,
+        "e2e_pass": 648,
+        "witness_high": 62,
+        "retrieval_wrong_key_different_notes": 1,
+        "witness_no_notes": 1,
+        "e2e_retrieval_fail": 1
+      },
+      "rates": {
+        "retrieval_correct_pct": 99.8459,
+        "retrieval_wrong_key_different_notes_pct": 0.1541,
+        "e2e_pass_pct": 99.8459,
+        "duplicate_play_different_notes_pct": 0.3082
+      },
+      "examples": {
+        "retrieval_wrong_key_different_notes": [
+          {
+            "scene": "ACT 3 SCENE 2",
+            "expected_line": "108",
+            "returned_line": "101",
+            "play": "And Brutus is an honourable man.",
+            "expected_note_snip": "Honourable man] LLOYD (Crit. Essay; ap. Sing. ii, p. 513): The ambiguous tones in which Antony harps upon his considerat",
+            "returned_note_snip": ""
+          }
+        ]
+      }
+    },
+    {
+      "play": "Cymbeline",
+      "json": "Public/Data/cymbeline.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 920,
+        "clickable_lines": 920,
+        "duplicate_play_text_in_scene": 1,
+        "duplicate_play_different_notes": 1,
+        "retrieval_correct_key": 919,
+        "witness_exact": 819,
+        "e2e_pass": 919,
+        "witness_high": 100,
+        "retrieval_wrong_key_different_notes": 1,
+        "witness_no_notes": 1,
+        "e2e_retrieval_fail": 1
+      },
+      "rates": {
+        "retrieval_correct_pct": 99.8913,
+        "retrieval_wrong_key_different_notes_pct": 0.1087,
+        "e2e_pass_pct": 99.8913,
+        "duplicate_play_different_notes_pct": 0.1087
+      },
+      "examples": {
+        "retrieval_wrong_key_different_notes": [
+          {
+            "scene": "ACT 1 SCENE 1",
+            "expected_line": "231",
+            "returned_line": "82",
+            "play": "[They exit.]",
+            "expected_note_snip": "Exeunt] SHERMAN (p. 10): Evidently Shakespeare is not yet fully at work. Neither in this scene nor in the preceding does",
+            "returned_note_snip": ""
+          }
+        ]
+      }
+    },
+    {
+      "play": "King John",
+      "json": "Public/Data/king_john.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 752,
+        "clickable_lines": 752,
+        "duplicate_play_text_in_scene": 3,
+        "duplicate_play_different_notes": 3,
+        "retrieval_correct_key": 751,
+        "witness_exact": 665,
+        "e2e_pass": 750,
+        "witness_high": 86,
+        "retrieval_wrong_key_different_notes": 1,
+        "e2e_retrieval_fail": 1,
+        "witness_fail": 1,
+        "e2e_witness_fail": 1
+      },
+      "rates": {
+        "retrieval_correct_pct": 99.867,
+        "retrieval_wrong_key_different_notes_pct": 0.133,
+        "e2e_pass_pct": 99.734,
+        "duplicate_play_different_notes_pct": 0.3989
+      },
+      "examples": {
+        "retrieval_wrong_key_different_notes": [
+          {
+            "scene": "ACT 3 SCENE 1",
+            "expected_line": "137",
+            "returned_line": "135",
+            "play": "BASTARD: And hang a calf's-skin on those recreant limbs.",
+            "expected_note_snip": "And hang . . . limbs.] After this line Pope inserts the following twelve lines from the Troublesome Raigne: Aust. Me thi",
+            "returned_note_snip": "Calves skin] Sir JOHN HAWKINS: When fools were kept for diversion in great families, they were distinguished by a calf's"
+          }
+        ]
+      }
+    },
+    {
+      "play": "Coriolanus",
+      "json": "Public/Data/Coriolanus.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 969,
+        "clickable_lines": 969,
+        "duplicate_play_text_in_scene": 1,
+        "duplicate_play_different_notes": 1,
+        "retrieval_correct_key": 969,
+        "witness_exact": 903,
+        "e2e_pass": 969,
+        "witness_high": 66
+      },
+      "rates": {
+        "retrieval_correct_pct": 100.0,
+        "retrieval_wrong_key_different_notes_pct": 0.0,
+        "e2e_pass_pct": 100.0,
+        "duplicate_play_different_notes_pct": 0.1032
+      },
+      "examples": {}
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "json": "Public/Data/henry_iv_part1.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 712,
+        "clickable_lines": 712,
+        "retrieval_correct_key": 712,
+        "witness_exact": 553,
+        "e2e_pass": 712,
+        "witness_high": 159
+      },
+      "rates": {
+        "retrieval_correct_pct": 100.0,
+        "retrieval_wrong_key_different_notes_pct": 0.0,
+        "e2e_pass_pct": 100.0,
+        "duplicate_play_different_notes_pct": 0.0
+      },
+      "examples": {}
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "json": "Public/Data/henry_iv_part2.json",
+      "has_witness": true,
+      "counts": {
+        "lines_with_notes": 1560,
+        "clickable_lines": 1560,
+        "duplicate_play_text_in_scene": 2,
+        "duplicate_play_different_notes": 2,
+        "retrieval_correct_key": 1559,
+        "witness_exact": 1280,
+        "e2e_pass": 1559,
+        "witness_high": 279,
+        "retrieval_wrong_key_different_notes": 1,
+        "witness_no_notes": 1,
+        "e2e_retrieval_fail": 1
+      },
+      "rates": {
+        "retrieval_correct_pct": 99.9359,
+        "retrieval_wrong_key_different_notes_pct": 0.0641,
+        "e2e_pass_pct": 99.9359,
+        "duplicate_play_different_notes_pct": 0.1282
+      },
+      "examples": {
+        "retrieval_wrong_key_different_notes": [
+          {
+            "scene": "ACT 5, SCENE 3",
+            "expected_line": "51",
+            "returned_line": "35",
+            "play": "SILENCE sings",
+            "expected_note_snip": "bear] SCHMIDT (1874): Have patience, be indulgent.",
+            "returned_note_snip": ""
+          }
+        ]
+      }
+    }
+  ]
+}

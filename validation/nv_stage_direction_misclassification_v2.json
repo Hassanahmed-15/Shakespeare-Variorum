@@ -1,0 +1,580 @@
+{
+  "summary": {
+    "method": "Mirror isStageDirection() bracket rule; heuristic genuine-SD classifier",
+    "plays_audited": 21,
+    "plays_excluded": [
+      "Troilus and Cressida"
+    ],
+    "total_play_lines": 67502,
+    "lines_with_brackets": 2322,
+    "bracket_sd_triggers": 2139,
+    "misclassified": 52,
+    "pct_lines_with_brackets": 3.4399,
+    "pct_bracket_sd_of_play": 3.1688,
+    "pct_misclassified_of_play": 0.077,
+    "pct_misclassified_of_bracket_sd": 2.431,
+    "reason_counts": {
+      "lowercase_fragment": 35,
+      "parenthetical_dialogue": 5,
+      "dialogue_in_brackets": 2,
+      "truncated_speech": 6,
+      "merged_sd_and_dialogue": 2,
+      "apparatus_or_note_bleed": 2
+    }
+  },
+  "per_play": [
+    {
+      "play": "Romeo and Juliet",
+      "json": "Public/Data/romeo_and_juliet.json",
+      "total_play_lines": 3364,
+      "lines_with_brackets": 138,
+      "bracket_sd_triggers": 129,
+      "misclassified": 3,
+      "misclassified_examples": [
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 1 SCENE 1",
+          "line": "117",
+          "play": "[and Benvolio exit.]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 1 SCENE 2",
+          "line": "92",
+          "play": "[cup of wine. Rest you merry.    He exits.]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 2 SCENE 4",
+          "line": "149",
+          "play": "[lady.    Mercutio and Benvolio exit.]"
+        }
+      ],
+      "reason_counts": {
+        "lowercase_fragment": 3
+      }
+    },
+    {
+      "play": "Macbeth",
+      "json": "Public/Data/macbeth_notes_cleaned_play.json",
+      "total_play_lines": 2605,
+      "lines_with_brackets": 98,
+      "bracket_sd_triggers": 98,
+      "misclassified": 5,
+      "misclassified_examples": [
+        {
+          "reason": "parenthetical_dialogue",
+          "scene": "ACT 3 SCENE 1",
+          "line": "8",
+          "play": "[(As upon thee, Macbeth, their speeches shine)]"
+        },
+        {
+          "reason": "parenthetical_dialogue",
+          "scene": "ACT 3 SCENE 1",
+          "line": "26",
+          "play": "[(Which still hath been both grave and prosperous)]"
+        },
+        {
+          "reason": "parenthetical_dialogue",
+          "scene": "ACT 3 SCENE 1",
+          "line": "157",
+          "play": "[(To leave no rubs nor botches in the work)]"
+        },
+        {
+          "reason": "parenthetical_dialogue",
+          "scene": "ACT 3 SCENE 6",
+          "line": "30",
+          "play": "[(From whom this tyrant holds the due of birth)]"
+        },
+        {
+          "reason": "parenthetical_dialogue",
+          "scene": "ACT 4 SCENE 3",
+          "line": "166",
+          "play": "[(Such sanctity hath heaven given his hand)]"
+        }
+      ],
+      "reason_counts": {
+        "parenthetical_dialogue": 5
+      }
+    },
+    {
+      "play": "Hamlet",
+      "json": "Public/Data/hamlet_notes (1).json",
+      "total_play_lines": 4363,
+      "lines_with_brackets": 0,
+      "bracket_sd_triggers": 0,
+      "misclassified": 0,
+      "misclassified_examples": [],
+      "reason_counts": {}
+    },
+    {
+      "play": "King Lear",
+      "json": "Public/Data/kinglear_notes.json",
+      "total_play_lines": 3885,
+      "lines_with_brackets": 4,
+      "bracket_sd_triggers": 0,
+      "misclassified": 0,
+      "misclassified_examples": [],
+      "reason_counts": {}
+    },
+    {
+      "play": "Othello",
+      "json": "Public/Data/othello_notes.json",
+      "total_play_lines": 3457,
+      "lines_with_brackets": 45,
+      "bracket_sd_triggers": 23,
+      "misclassified": 0,
+      "misclassified_examples": [],
+      "reason_counts": {}
+    },
+    {
+      "play": "The Merchant of Venice",
+      "json": "Public/Data/merchant_of_venice.json",
+      "total_play_lines": 2687,
+      "lines_with_brackets": 118,
+      "bracket_sd_triggers": 110,
+      "misclassified": 0,
+      "misclassified_examples": [],
+      "reason_counts": {}
+    },
+    {
+      "play": "As You Like It",
+      "json": "Public/Data/as_you_like_it.json",
+      "total_play_lines": 3039,
+      "lines_with_brackets": 95,
+      "bracket_sd_triggers": 92,
+      "misclassified": 2,
+      "misclassified_examples": [
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 3 SCENE 2",
+          "line": "171",
+          "play": "[retreat, though not with bag and baggage, yet]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 4 SCENE 3",
+          "line": "90",
+          "play": "[company. Silvius exits.]"
+        }
+      ],
+      "reason_counts": {
+        "lowercase_fragment": 2
+      }
+    },
+    {
+      "play": "The Tempest",
+      "json": "Public/Data/the_tempest.json",
+      "total_play_lines": 2488,
+      "lines_with_brackets": 75,
+      "bracket_sd_triggers": 74,
+      "misclassified": 7,
+      "misclassified_examples": [
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 1 SCENE 1",
+          "line": "34",
+          "play": "[hearts!—Out of our way, I say!  He exits.]"
+        },
+        {
+          "reason": "dialogue_in_brackets",
+          "scene": "ACT 1 SCENE 2",
+          "line": "156",
+          "play": "[The gates of Milan, and i’ th’ dead of darkness]"
+        },
+        {
+          "reason": "truncated_speech",
+          "scene": "ACT 1 SCENE 2",
+          "line": "457",
+          "play": "[Aside. I must obey. His art is of such power]"
+        },
+        {
+          "reason": "truncated_speech",
+          "scene": "ACT 1 SCENE 2",
+          "line": "557",
+          "play": "[Aside. They are both in either’s powers. But this]"
+        },
+        {
+          "reason": "merged_sd_and_dialogue",
+          "scene": "ACT 3 SCENE 3",
+          "line": "80",
+          "play": "[Thunder and lightning. Enter Ariel, like a Harpy, claps his wings upon the table, and with a quaint device the banquet vanishes.] ARIEL as Harpy You are three men of sin, whom Destiny, That hath to instrument this lower world And what is in ’t, the never-surfeited sea Hath caused to belch up you, and on this island, W…"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 5 SCENE 1",
+          "line": "74",
+          "play": "[enter the circle which Prospero had made, and there]"
+        },
+        {
+          "reason": "truncated_speech",
+          "scene": "ACT 5 SCENE 1",
+          "line": "155",
+          "play": "[Aside to Sebastian and Antonio. But you, my brace]"
+        }
+      ],
+      "reason_counts": {
+        "lowercase_fragment": 2,
+        "dialogue_in_brackets": 1,
+        "truncated_speech": 3,
+        "merged_sd_and_dialogue": 1
+      }
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "json": "Public/Data/midsummer_nights_dream.json",
+      "total_play_lines": 1955,
+      "lines_with_brackets": 25,
+      "bracket_sd_triggers": 15,
+      "misclassified": 0,
+      "misclassified_examples": [],
+      "reason_counts": {}
+    },
+    {
+      "play": "The Winter's Tale",
+      "json": "Public/Data/the_winters_tale.json",
+      "total_play_lines": 3586,
+      "lines_with_brackets": 84,
+      "bracket_sd_triggers": 84,
+      "misclassified": 6,
+      "misclassified_examples": [
+        {
+          "reason": "truncated_speech",
+          "scene": "ACT 1 SCENE 2",
+          "line": "274",
+          "play": "[Aside. They’re here with me already, whisp’ring,]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 4 SCENE 4",
+          "line": "223",
+          "play": "[the door, you would never dance again after a tabor]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 4 SCENE 4",
+          "line": "258",
+          "play": "[in ’s tunes.   Servant exits.]"
+        },
+        {
+          "reason": "truncated_speech",
+          "scene": "ACT 4 SCENE 4",
+          "line": "409",
+          "play": "[Aside to Camillo. Is it not too far gone? ’Tis time to]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 4 SCENE 4",
+          "line": "996",
+          "play": "[to do us good. Shepherd and his son exit.]"
+        },
+        {
+          "reason": "merged_sd_and_dialogue",
+          "scene": "ACT 5 SCENE 2",
+          "line": "137",
+          "play": "[Enter Shepherd and Shepherd’s Son, both dressed in rich clothing.] Here come those I have done good to against my will, and already appearing in the blossoms of their fortune.]"
+        }
+      ],
+      "reason_counts": {
+        "truncated_speech": 2,
+        "lowercase_fragment": 3,
+        "merged_sd_and_dialogue": 1
+      }
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "json": "Public/Data/much_ado_about_nothing.json",
+      "total_play_lines": 2426,
+      "lines_with_brackets": 106,
+      "bracket_sd_triggers": 85,
+      "misclassified": 1,
+      "misclassified_examples": [
+        {
+          "reason": "apparatus_or_note_bleed",
+          "scene": "ACT 2 SCENE 3",
+          "line": "10",
+          "play": "[Exit] LLOYD (p. 199): The boy who was sent for a book, and does not reappear, seems to have been the means of the conspirators learning his master's whereabout, and to have been kept away by their management.]"
+        }
+      ],
+      "reason_counts": {
+        "apparatus_or_note_bleed": 1
+      }
+    },
+    {
+      "play": "Twelfth Night",
+      "json": "Public/Data/twelfth_night.json",
+      "total_play_lines": 2625,
+      "lines_with_brackets": 166,
+      "bracket_sd_triggers": 146,
+      "misclassified": 4,
+      "misclassified_examples": [
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 1 SCENE 5",
+          "line": "147",
+          "play": "[door like a sheriff's post, and be the supporter to]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 2 SCENE 3",
+          "line": "175",
+          "play": "[bed, and dream on the event. Farewell.]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 2 SCENE 5",
+          "line": "173",
+          "play": "[entertainest my love, let it appear in thy smiling;]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 3 SCENE 2",
+          "line": "45",
+          "play": "[bed of Ware in England, set 'em down: go, about it.]"
+        }
+      ],
+      "reason_counts": {
+        "lowercase_fragment": 4
+      }
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "json": "Public/Data/loves_labours_lost.json",
+      "total_play_lines": 2964,
+      "lines_with_brackets": 136,
+      "bracket_sd_triggers": 108,
+      "misclassified": 1,
+      "misclassified_examples": [
+        {
+          "reason": "apparatus_or_note_bleed",
+          "scene": "ACT 4 SCENE 3",
+          "line": "330",
+          "play": "[From women's eyes this doctrine I derive;  They are the ground, the books, the academes From whence doth spring the true Promethean fire]"
+        }
+      ],
+      "reason_counts": {
+        "apparatus_or_note_bleed": 1
+      }
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "json": "Public/Data/antony_and_cleopatra.json",
+      "total_play_lines": 3869,
+      "lines_with_brackets": 201,
+      "bracket_sd_triggers": 193,
+      "misclassified": 2,
+      "misclassified_examples": [
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 3 SCENE 10",
+          "line": "4",
+          "play": "[noise of a sea fight.]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 5 SCENE 2",
+          "line": "354",
+          "play": "[worm.    He exits.]"
+        }
+      ],
+      "reason_counts": {
+        "lowercase_fragment": 2
+      }
+    },
+    {
+      "play": "Richard III",
+      "json": "Public/Data/richard_iii.json",
+      "total_play_lines": 3911,
+      "lines_with_brackets": 230,
+      "bracket_sd_triggers": 211,
+      "misclassified": 0,
+      "misclassified_examples": [],
+      "reason_counts": {}
+    },
+    {
+      "play": "Julius Caesar",
+      "json": "Public/Data/julius_caesar.json",
+      "total_play_lines": 2748,
+      "lines_with_brackets": 162,
+      "bracket_sd_triggers": 153,
+      "misclassified": 0,
+      "misclassified_examples": [],
+      "reason_counts": {}
+    },
+    {
+      "play": "Cymbeline",
+      "json": "Public/Data/cymbeline.json",
+      "total_play_lines": 4062,
+      "lines_with_brackets": 124,
+      "bracket_sd_triggers": 120,
+      "misclassified": 4,
+      "misclassified_examples": [
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 2 SCENE 2",
+          "line": "2",
+          "play": "[bed, and a Lady.]"
+        },
+        {
+          "reason": "dialogue_in_brackets",
+          "scene": "ACT 2 SCENE 3",
+          "line": "67",
+          "play": "[The one is Caius Lucius.   Messenger exits.]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 5 SCENE 2",
+          "line": "2",
+          "play": "[door, and the Briton army at another, Leonatus Posthumus]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 5 SCENE 4",
+          "line": "222",
+          "play": "[bolts for the dead. All but the Jailer exit.]"
+        }
+      ],
+      "reason_counts": {
+        "lowercase_fragment": 3,
+        "dialogue_in_brackets": 1
+      }
+    },
+    {
+      "play": "King John",
+      "json": "Public/Data/king_john.json",
+      "total_play_lines": 2745,
+      "lines_with_brackets": 103,
+      "bracket_sd_triggers": 101,
+      "misclassified": 0,
+      "misclassified_examples": [],
+      "reason_counts": {}
+    },
+    {
+      "play": "Coriolanus",
+      "json": "Public/Data/Coriolanus.json",
+      "total_play_lines": 4110,
+      "lines_with_brackets": 159,
+      "bracket_sd_triggers": 155,
+      "misclassified": 10,
+      "misclassified_examples": [
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 1 SCENE 3",
+          "line": "64",
+          "play": "[drum than look upon his schoolmaster.]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 1 SCENE 4",
+          "line": "74",
+          "play": "[the gates, and is shut in.]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 1 SCENE 9",
+          "line": "2",
+          "play": "[door, Cominius with the Romans; at another door]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 2 SCENE 1",
+          "line": "166",
+          "play": "[trumpets!]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 2 SCENE 3",
+          "line": "96",
+          "play": "[matter.  These citizens exit.]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 4 SCENE 5",
+          "line": "3",
+          "play": "[here? I think our fellows are asleep.      He exits.]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 4 SCENE 5",
+          "line": "6",
+          "play": "[for him. Cotus!     He exits.]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 4 SCENE 5",
+          "line": "13",
+          "play": "[to the door.   He exits.]"
+        }
+      ],
+      "reason_counts": {
+        "lowercase_fragment": 10
+      }
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "json": "Public/Data/henry_iv_part1.json",
+      "total_play_lines": 3072,
+      "lines_with_brackets": 138,
+      "bracket_sd_triggers": 128,
+      "misclassified": 0,
+      "misclassified_examples": [],
+      "reason_counts": {}
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "json": "Public/Data/henry_iv_part2.json",
+      "total_play_lines": 3541,
+      "lines_with_brackets": 115,
+      "bracket_sd_triggers": 114,
+      "misclassified": 7,
+      "misclassified_examples": [
+        {
+          "reason": "truncated_speech",
+          "scene": "ACT 1, SCENE 2",
+          "line": "205",
+          "play": "[Aside. Marry, not in ashes and sackcloth, but in]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 2, SCENE 1",
+          "line": "180",
+          "play": "[and others exit.]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 2, SCENE 4",
+          "line": "373",
+          "play": "[there, Francis.     Francis exits.]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 2, SCENE 4",
+          "line": "388",
+          "play": "[night.   Prince, Peto, and Poins exit.]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 2, SCENE 4",
+          "line": "392",
+          "play": "[door? (Bardolph returns.) How now, what’s the]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 3, SCENE 2",
+          "line": "271",
+          "play": "[none of you.   Mouldy and Bullcalf exit.]"
+        },
+        {
+          "reason": "lowercase_fragment",
+          "scene": "ACT 5, SCENE 3",
+          "line": "78",
+          "play": "[there, ho. Who knocks?    Davy exits.]"
+        }
+      ],
+      "reason_counts": {
+        "truncated_speech": 1,
+        "lowercase_fragment": 6
+      }
+    }
+  ]
+}

@@ -1,0 +1,519 @@
+{
+  "excluded_plays": [
+    "Troilus and Cressida"
+  ],
+  "methodology": {
+    "is_clipped": "Existing audit heuristic (length thresholds on stop-word/hyphen/paren endings)",
+    "hard_truncation": "Missing terminal punctuation / mid-word fragment; bracket-orphans with NV closers excluded",
+    "mid_sentence_cut": "Ends with lowercase letter and no NV terminal punctuation",
+    "hyphen_artifact": "Ends with hyphen (line-break artifact)",
+    "unbalanced_parens": "More ( than ) unless note ends with NV terminal and len>=500",
+    "witness_prefix": "Note anchor found in IA witness and prose continues after note end",
+    "union_truncated": "Any of the above signals"
+  },
+  "plays": [
+    {
+      "play": "Romeo and Juliet",
+      "year": 1871,
+      "json_file": "Public/Data/romeo_and_juliet.json",
+      "ia_id": "newvariorumediti01shak",
+      "ia_status": "ok",
+      "total_notes": 720,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
+    },
+    {
+      "play": "Macbeth",
+      "year": 1873,
+      "json_file": "Public/Data/macbeth_notes_cleaned_play.json",
+      "ia_id": "newvariorumediti10shak",
+      "ia_status": "ok",
+      "total_notes": 1252,
+      "is_clipped": 1,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 1,
+      "witness_prefix": 0,
+      "union_truncated": 1,
+      "union_pct": 0.08,
+      "is_clipped_pct": 0.08,
+      "examples": [
+        {
+          "ref": "ACT 1 SCENE 5 / line 21 / note 1",
+          "signals": [
+            "is_clipped",
+            "unbalanced_parens"
+          ],
+          "tail": "…win that which it is wrong to win (for wrongly is not [logically] an Adverb here).—Ed. ii."
+        }
+      ]
+    },
+    {
+      "play": "Hamlet",
+      "year": 1877,
+      "json_file": "Public/Data/hamlet_notes (1).json",
+      "ia_id": "anewvariorumedi07furngoog",
+      "ia_status": "ok",
+      "total_notes": 1948,
+      "is_clipped": 0,
+      "hard_truncation": 13,
+      "mid_sentence_cut": 8,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 13,
+      "union_pct": 0.67,
+      "is_clipped_pct": 0.0,
+      "examples": [
+        {
+          "ref": "ACT 2 SCENE 1 / line 53 / note 0",
+          "signals": [
+            "hard_truncation"
+          ],
+          "tail": "virtue] For instances of the noun absolute (‘virtue’ has here no verb), see ABBOTT, § 417"
+        },
+        {
+          "ref": "ACT 2 SCENE 2 / line 3 / note 0",
+          "signals": [
+            "hard_truncation",
+            "mid_sentence_cut"
+          ],
+          "tail": "Rosencrantz] THORNBURY (N. & Qu. 5 Aug. 1871): A Danish nobleman"
+        },
+        {
+          "ref": "ACT 2 SCENE 2 / line 505 / note 0",
+          "signals": [
+            "hard_truncation",
+            "mid_sentence_cut"
+          ],
+          "tail": "o'er-sized] Caldecott: Covered as with glutinous matter"
+        }
+      ]
+    },
+    {
+      "play": "King Lear",
+      "year": 1880,
+      "json_file": "Public/Data/kinglear_notes.json",
+      "ia_id": "newvariorumediti05shak",
+      "ia_status": "ok",
+      "total_notes": 1163,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
+    },
+    {
+      "play": "Othello",
+      "year": 1886,
+      "json_file": "Public/Data/othello_notes.json",
+      "ia_id": "newvariorumediti13shak",
+      "ia_status": "ok",
+      "total_notes": 918,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
+    },
+    {
+      "play": "The Merchant of Venice",
+      "year": 1888,
+      "json_file": "Public/Data/merchant_of_venice.json",
+      "ia_id": "newvariorumediti0000unse_h5u1",
+      "ia_status": "ok",
+      "total_notes": 1027,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
+    },
+    {
+      "play": "As You Like It",
+      "year": 1890,
+      "json_file": "Public/Data/as_you_like_it.json",
+      "ia_id": "newvariorumediti0000unse_v0h0",
+      "ia_status": "ok",
+      "total_notes": 940,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
+    },
+    {
+      "play": "The Tempest",
+      "year": 1892,
+      "json_file": "Public/Data/the_tempest.json",
+      "ia_id": "tempestnewvarior0009unse",
+      "ia_status": "ok",
+      "total_notes": 770,
+      "is_clipped": 0,
+      "hard_truncation": 1,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 1,
+      "union_pct": 0.13,
+      "is_clipped_pct": 0.0,
+      "examples": [
+        {
+          "ref": "ACT 5 SCENE 1 / line 213 / note 1",
+          "signals": [
+            "hard_truncation"
+          ],
+          "tail": "…re Pope, St Pius the Fifth, by the stainlessness of his knightly and Christian character.†"
+        }
+      ]
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "year": 1895,
+      "json_file": "Public/Data/midsummer_nights_dream.json",
+      "ia_id": "amidsommernight01furngoog",
+      "ia_status": "ok",
+      "total_notes": 745,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
+    },
+    {
+      "play": "The Winter's Tale",
+      "year": 1898,
+      "json_file": "Public/Data/the_winters_tale.json",
+      "ia_id": "winterstale0007unse",
+      "ia_status": "ok",
+      "total_notes": 1109,
+      "is_clipped": 2,
+      "hard_truncation": 1,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 2,
+      "witness_prefix": 0,
+      "union_truncated": 3,
+      "union_pct": 0.27,
+      "is_clipped_pct": 0.18,
+      "examples": [
+        {
+          "ref": "ACT 1 SCENE 2 / line 156 / note 0",
+          "signals": [
+            "is_clipped",
+            "unbalanced_parens"
+          ],
+          "tail": "… perhaps with suffix -kin(s frequent in such trivial quasi-oaths; cf. bodykins, by’rlakin."
+        },
+        {
+          "ref": "ACT 2 SCENE 2 / line 25 / note 6",
+          "signals": [
+            "hard_truncation"
+          ],
+          "tail": "36. I am] I'm Pope-K"
+        },
+        {
+          "ref": "ACT 4 SCENE 2 / line 6 / note 2",
+          "signals": [
+            "is_clipped",
+            "unbalanced_parens"
+          ],
+          "tail": "10. or] (or Ff."
+        }
+      ]
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "year": 1899,
+      "json_file": "Public/Data/much_ado_about_nothing.json",
+      "ia_id": "in.ernet.dli.2015.94001",
+      "ia_status": "ok",
+      "total_notes": 931,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
+    },
+    {
+      "play": "Twelfth Night",
+      "year": 1901,
+      "json_file": "Public/Data/twelfth_night.json",
+      "ia_id": "twelfenightorwha0000hora",
+      "ia_status": "ok",
+      "total_notes": 1068,
+      "is_clipped": 1,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 1,
+      "witness_prefix": 0,
+      "union_truncated": 1,
+      "union_pct": 0.09,
+      "is_clipped_pct": 0.09,
+      "examples": [
+        {
+          "ref": "ACT 1 SCENE 5 / line 44 / note 0",
+          "signals": [
+            "is_clipped",
+            "unbalanced_parens"
+          ],
+          "tail": "…ose a botcher held the same relation to a tailor that a cobbler holds to a shoemaker.—ED.]"
+        }
+      ]
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "year": 1904,
+      "json_file": "Public/Data/loves_labours_lost.json",
+      "ia_id": "in.ernet.dli.2015.94000",
+      "ia_status": "ok",
+      "total_notes": 1171,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "year": 1907,
+      "json_file": "Public/Data/antony_and_cleopatra.json",
+      "ia_id": "newvariorumediti15shak",
+      "ia_status": "ok",
+      "total_notes": 1053,
+      "is_clipped": 1,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 1,
+      "witness_prefix": 0,
+      "union_truncated": 1,
+      "union_pct": 0.09,
+      "is_clipped_pct": 0.09,
+      "examples": [
+        {
+          "ref": "ACT 4 SCENE 14 / line 160 / note 0",
+          "signals": [
+            "is_clipped",
+            "unbalanced_parens"
+          ],
+          "tail": "…the final g’s of participles disregarded in a scamper to utter the line in five feet?—Ed.]"
+        }
+      ]
+    },
+    {
+      "play": "Richard III",
+      "year": 1908,
+      "json_file": "Public/Data/richard_iii.json",
+      "ia_id": "newvariorumediti16shak",
+      "ia_status": "ok",
+      "total_notes": 1226,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
+    },
+    {
+      "play": "Julius Caesar",
+      "year": 1913,
+      "json_file": "Public/Data/julius_caesar.json",
+      "ia_id": "in.ernet.dli.2015.94007",
+      "ia_status": "ok",
+      "total_notes": 723,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
+    },
+    {
+      "play": "Cymbeline",
+      "year": 1913,
+      "json_file": "Public/Data/cymbeline.json",
+      "ia_id": "unset0000unse_m8h0",
+      "ia_status": "ok",
+      "total_notes": 1035,
+      "is_clipped": 1,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 1,
+      "witness_prefix": 0,
+      "union_truncated": 1,
+      "union_pct": 0.1,
+      "is_clipped_pct": 0.1,
+      "examples": [
+        {
+          "ref": "ACT 3 SCENE 2 / line 61 / note 0",
+          "signals": [
+            "is_clipped",
+            "unbalanced_parens"
+          ],
+          "tail": "…E. D., s. v. Bate. 2 [aphetic form of Abate]: 5. To mitigate, moderate, assuage, diminish."
+        }
+      ]
+    },
+    {
+      "play": "King John",
+      "year": 1919,
+      "json_file": "Public/Data/king_john.json",
+      "ia_id": "in.ernet.dli.2015.93998",
+      "ia_status": "ok",
+      "total_notes": 1072,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
+    },
+    {
+      "play": "Coriolanus",
+      "year": 1928,
+      "json_file": "Public/Data/Coriolanus.json",
+      "ia_id": "tragedieofcoriol0002edit",
+      "ia_status": "ok",
+      "total_notes": 1503,
+      "is_clipped": 2,
+      "hard_truncation": 1,
+      "mid_sentence_cut": 1,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 2,
+      "witness_prefix": 0,
+      "union_truncated": 3,
+      "union_pct": 0.2,
+      "is_clipped_pct": 0.13,
+      "examples": [
+        {
+          "ref": "ACT 1 SCENE 3 / line 65 / note 1",
+          "signals": [
+            "hard_truncation",
+            "mid_sentence_cut"
+          ],
+          "tail": "69. A my troth...it] Mnemonic"
+        },
+        {
+          "ref": "ACT 2 SCENE 1 / line 104 / note 0",
+          "signals": [
+            "is_clipped",
+            "unbalanced_parens"
+          ],
+          "tail": "…’78, ’85. now, my as... Han. et cet. 100, 101. and...Nobler] In parentheses Johns. et seq."
+        },
+        {
+          "ref": "ACT 2 SCENE 1 / line 104 / note 1",
+          "signals": [
+            "is_clipped",
+            "unbalanced_parens"
+          ],
+          "tail": "…'78, '85. now, my as... Han. et cet. 100, 101. and...Nobler] In parentheses Johns. et seq."
+        }
+      ]
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "year": 1936,
+      "json_file": "Public/Data/henry_iv_part1.json",
+      "ia_id": "newvariorumediti21shak",
+      "ia_status": "ok",
+      "total_notes": 738,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "year": 1940,
+      "json_file": "Public/Data/henry_iv_part2.json",
+      "ia_id": "newvariorumediti23shak",
+      "ia_status": "ok",
+      "total_notes": 1982,
+      "is_clipped": 0,
+      "hard_truncation": 0,
+      "mid_sentence_cut": 0,
+      "hyphen_artifact": 0,
+      "unbalanced_parens": 0,
+      "witness_prefix": 0,
+      "union_truncated": 0,
+      "union_pct": 0.0,
+      "is_clipped_pct": 0.0,
+      "examples": []
+    }
+  ],
+  "totals": {
+    "plays": 21,
+    "total_notes": 23094,
+    "is_clipped": 8,
+    "union_truncated": 24,
+    "is_clipped_pct": 0.03,
+    "union_pct": 0.1
+  }
+}

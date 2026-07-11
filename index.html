@@ -8116,7 +8116,7 @@
             <div class="modal-body">
                 <div class="rights-content">
                     <h4>Shakespeare Texts</h4>
-                    <p>Play texts are in the public domain. Speech and stage-direction lineation shown in the reader is derived from Folger Digital Texts TEI/XML. That XML is licensed under Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). Source: Folger Shakespeare Library.</p>
+                    <p>Play texts are in the public domain. Speech and stage-direction lineation shown in the reader is derived from the MIT Shakespeare edition (Moby text), the same uniformly structured modern-spelling spine used across all twenty-one plays.</p>
                     
                     <h4>Scholarly Commentary</h4>
                     <p>Used under fair use for educational purposes. Sources include JSTOR, academic publications, and historical editions. Full citations provided with each annotation.</p>
@@ -15968,7 +15968,7 @@
             "Merry Wives of Windsor":       "Public/Data/merry_wives_of_windsor.json",
             "A Midsummer Night's Dream":    "Public/Data/midsummer_nights_dream.json",
             "Much Ado About Nothing":       "Public/Data/much_ado_about_nothing.json",
-            "Othello":                      "Public/Data/othello_notes_folger.json",
+            "Othello":                      "Public/Data/othello_notes.json",
             "Pericles":                     "Public/Data/pericles.json",
             "Richard II":                   "Public/Data/richard_ii.json",
             "Richard III":                  "Public/Data/richard_iii.json",
@@ -17432,7 +17432,7 @@
             const loadOthello = async () => {
                 try {
                     console.log('🔄 Loading Othello...');
-                    const response = await fetch('/Public/Data/othello_notes_folger.json?v=' + Date.now());
+                    const response = await fetch('/Public/Data/othello_notes.json?v=' + Date.now());
                     
                     if (response.ok) {
                         const othelloData = await response.json();
@@ -17440,7 +17440,7 @@
                         
                         plays['othello'] = {
                             name: 'Othello',
-                            originalFileName: 'othello_notes_folger.json',
+                            originalFileName: 'othello_notes.json',
                             characters: [],
                             acts: {},
                             scenes: {}
@@ -17491,8 +17491,8 @@
                                 }
                             });
                             
-                            // Hardcode missing Othello scenes
-                            const othelloMissingScenes = ['ACT 4, SCENE 3', 'ACT 5, SCENE 1', 'ACT 5, SCENE 2'];
+                            // Hardcode missing Othello scenes (legacy; MIT spine includes all scenes)
+                            const othelloMissingScenes = [];
                             othelloMissingScenes.forEach(sceneKey => {
                                 if (!plays['othello'].scenes[sceneKey]) {
                                     plays['othello'].scenes[sceneKey] = [];
@@ -18666,7 +18666,7 @@
                     'macbeth': { name: 'Macbeth', fileName: 'macbeth_notes_cleaned_play.json', loaded: false },
                     'hamlet': { name: 'Hamlet', fileName: 'hamlet_notes (1).json', loaded: false },
                     'romeo': { name: 'Romeo and Juliet', fileName: 'romeo_and_juliet.json', loaded: false },
-                    'othello': { name: 'Othello', fileName: 'othello_notes_folger.json', loaded: false },
+                    'othello': { name: 'Othello', fileName: 'othello_notes.json', loaded: false },
                     'kinglear': { name: 'King Lear', fileName: 'kinglear_notes.json', loaded: false },
                     'asyoulikeit': { name: 'As You Like It', fileName: 'as_you_like_it.json', loaded: false },
                     'coriolanus': { name: 'Coriolanus', fileName: 'Coriolanus.json', loaded: false },
@@ -19728,11 +19728,14 @@
                     if (sceneData && typeof sceneData === 'object') {
                         const sceneContent = [];
                         const rawLineKeys = Object.keys(sceneData);
-                        // Othello (Folger): preserve JSON insertion order — same as TEI spine (speech + SD interleaved).
-                        const lineKeys =
-                            playKey === 'othello'
-                                ? rawLineKeys.filter((k) => !String(k).startsWith('_'))
-                                : sortOthelloSceneLineKeys(sceneKey, rawLineKeys);
+                        const lineKeys = rawLineKeys
+                            .filter((k) => !String(k).startsWith('_'))
+                            .sort((a, b) => {
+                                const na = parseInt(a, 10);
+                                const nb = parseInt(b, 10);
+                                if (!isNaN(na) && !isNaN(nb)) return na - nb;
+                                return String(a).localeCompare(String(b));
+                            });
                         lineKeys.forEach(lineNum => {
                             if (String(lineNum).startsWith('_')) return;
                             const lineData = sceneData[lineNum];
@@ -19769,12 +19772,6 @@
                             
                             if (sceneKey === 'DRAMATIS PERSONAE' && sceneContent.length === 1 && sceneContent[0].includes('\n')) {
                                 processedContent = sceneContent[0].split('\n').map(line => line.trim()).filter(line => line.length > 0);
-                            } else if (playKey === 'othello') {
-                                // Raw Folger lines; repeated speaker tags are stripped in formatSceneContent for display
-                                processedContent = sceneContent;
-                                if (processedContent.length === 0 && Object.keys(sceneData).length > 0) {
-                                    processedContent = ['[Scene text not available - notes exist in database]'];
-                                }
                             } else {
                                 processedContent = optimizeSpeakerNames(sceneContent);
                                 if (processedContent.length === 0 && Object.keys(sceneData).length > 0) {
@@ -20235,11 +20232,7 @@
                     sceneContent = [sceneContent.toString()];
             }
 
-                // Othello (Folger): hide repeated "SPEAKER:" on continuation lines (always at render time)
                 let displayLines = sceneContent;
-                if (currentPlay === 'othello') {
-                    displayLines = collapseFolgerSpeakerPrefixes(sceneContent.slice());
-                }
             
             // Display each line exactly as it appears in the file, preserving whitespace
             // Lines use data attributes instead of inline onclick to avoid quote-escaping issues
@@ -20270,9 +20263,6 @@
                 let fallbackHtml = '';
                 if (sceneContent && sceneContent.length > 0) {
                     let fb = sceneContent;
-                    if (currentPlay === 'othello' && Array.isArray(sceneContent)) {
-                        fb = collapseFolgerSpeakerPrefixes(sceneContent.slice());
-                    }
                     fb.forEach((line, index) => {
                         if (line && line.toString().trim()) {
                             const escaped = line.toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');

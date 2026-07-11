@@ -34,7 +34,7 @@ _PLAY_META = [
     ("Macbeth", 1873, "Public/Data/macbeth_notes_cleaned_play.json"),
     ("Hamlet", 1877, "Public/Data/hamlet_notes (1).json"),
     ("King Lear", 1880, "Public/Data/kinglear_notes.json"),
-    ("Othello", 1886, "Public/Data/othello_notes_folger.json"),
+    ("Othello", 1886, "Public/Data/othello_notes.json"),
     ("The Merchant of Venice", 1888, "Public/Data/merchant_of_venice.json"),
     ("As You Like It", 1890, "Public/Data/as_you_like_it.json"),
     ("The Tempest", 1892, "Public/Data/the_tempest.json"),

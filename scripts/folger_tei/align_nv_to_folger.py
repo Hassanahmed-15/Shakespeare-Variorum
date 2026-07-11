@@ -73,7 +73,37 @@ def _ratio_score(a: str, b: str) -> float:
     ta = " ".join(sorted(a.split()))
     tb = " ".join(sorted(b.split()))
     r2 = SequenceMatcher(None, ta, tb).ratio()
-    return max(r1, r2)
+    score = max(r1, r2)
+    # Short NV fragments often live inside a merged target line (e.g. MIT/Moby spine).
+    if len(a) >= 4 and a in b:
+        score = max(score, 0.92)
+    elif len(b) >= 4 and b in a:
+        score = max(score, 0.85)
+    return score
+
+
+def _best_fol_match(
+    nv_norm: str,
+    fn: list[str],
+    search_indices: list[int],
+    *,
+    widen_to: list[int] | None = None,
+    min_wide_ratio: float = 0.28,
+) -> tuple[int, float]:
+    """Pick the best Folger/MIT unit for one NV line; many NV lines may share one target."""
+    best_j, best_r = -1, 0.0
+    for fj in search_indices:
+        r = _ratio_score(nv_norm, fn[fj])
+        if r > best_r:
+            best_r, best_j = r, fj
+    if best_r < min_wide_ratio and widen_to:
+        for fj in widen_to:
+            if fj in search_indices:
+                continue
+            r = _ratio_score(nv_norm, fn[fj])
+            if r > best_r:
+                best_r, best_j = r, fj
+    return best_j, best_r
 
 
 def _folger_units_for_legacy_scene(
@@ -130,37 +160,35 @@ def align_scene(
                 if nv_notes[ni]:
                     notes_by_anchor.setdefault(anc, []).extend(nv_notes[ni])
         elif tag == "replace":
-            # Map min(len) pairs; remainder to review
+            # Folger and MIT/Moby often disagree on line granularity inside a block.
+            # Match each NV row to its best target (many NV -> one Folger/MIT is allowed).
             nv_block = list(range(i1, i2))
             fol_block = list(range(j1, j2))
-            for idx in range(min(len(nv_block), len(fol_block))):
-                ni, fj = nv_block[idx], fol_block[idx]
-                matched_nv.add(ni)
-                if nv_notes[ni]:
-                    notes_by_anchor.setdefault(fol_anchors[fj], []).extend(nv_notes[ni])
-            for extra in nv_block[len(fol_block) :]:
-                if not nv_notes[extra]:
-                    continue
-                fnx = normalize_for_match(nv_plays[extra])
-                best_j, best_r = -1, 0.0
-                for fj in fol_block:
-                    r = _ratio_score(fnx, fn[fj])
-                    if r > best_r:
-                        best_r, best_j = r, fj
-                if best_r < 0.28:
-                    for fj in range(len(fn)):
-                        r = _ratio_score(fnx, fn[fj])
-                        if r > best_r:
-                            best_r, best_j = r, fj
-                if best_j >= 0 and best_r >= 0.22:
-                    matched_nv.add(extra)
-                    notes_by_anchor.setdefault(fol_anchors[best_j], []).extend(nv_notes[extra])
+            all_fol = list(range(len(fn)))
+            for ni in nv_block:
+                fnx = normalize_for_match(nv_plays[ni])
+                if not fnx:
+                    # Notes-only rows: keep local order inside the replace block.
+                    pos = ni - nv_block[0]
+                    best_j = fol_block[min(pos, len(fol_block) - 1)] if fol_block else -1
+                    best_r = 0.4 if best_j >= 0 else 0.0
                 else:
+                    best_j, best_r = _best_fol_match(fnx, fn, fol_block, widen_to=all_fol)
+                min_r = 0.22
+                if len(fnx) < 12 and fnx:
+                    min_r = 0.18
+                if not fnx:
+                    min_r = 0.0
+                if best_j >= 0 and best_r >= min_r:
+                    matched_nv.add(ni)
+                    if nv_notes[ni]:
+                        notes_by_anchor.setdefault(fol_anchors[best_j], []).extend(nv_notes[ni])
+                elif nv_notes[ni]:
                     review.append(
                         {
-                            "reason": "replace_block_extra_nv",
-                            "nv_key": nv_keys[extra],
-                            "notes": nv_notes[extra],
+                            "reason": "replace_block_unmatched_nv",
+                            "nv_key": nv_keys[ni],
+                            "notes": nv_notes[ni],
                             "best_ratio": round(best_r, 3),
                         }
                     )
