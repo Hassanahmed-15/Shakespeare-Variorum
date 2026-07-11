@@ -109,7 +109,7 @@ Method: `audit_nv_fullspan_sample.py`, seed **42**, **14 notes/play** (21 plays 
 
 **Conclusion:** Seed-42 draw **fully reproduces** the prior full-span sample for all non-Troilus plays. **No new Othello notes** require author adjudication for sample membership.
 
-**Othello in sample:** 14 sampled; 0 anchored; 9 unanchorable; 4 automated pass.
+**Othello in sample:** 14 sampled; 5 anchored; 9 unanchorable; 4 automated pass; 1 interior-divergence (adjudicated 2026-07-08).
 
 ---
 
