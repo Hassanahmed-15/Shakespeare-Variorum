@@ -1,0 +1,897 @@
+
+--- PAGE 1 ---
+Full Fathom Five: Transforming the New Variorum
+Shakespeare Through Computational Access
+Jack Carson
+jdcarson@mit.edu
+Abstract
+This paper introduces a digital system designed to overcome persistent challenges in accessing
+the New Variorum Shakespeare (NVS) editions. Our methodology involves comprehensive
+corpus digitization and adaptive interface design. The NVS, a repository of over a century
+of Shakespearean scholarly endeavor, has historically been challenging to utilize owing to its
+limited physical availability, antiquated textual formats, and complex citation methods. Our
+solution integrates a multi-phase optical character recognition (OCR) process with validation by
+large language models. It pairs the Variorum’s old-spelling apparatus with modernized reading
+texts, aligned to the Folger Digital Texts for one play so far, with the remaining plays using
+each edition’s own lineation. The developed platform offers line-by-line access to historical
+annotations and incorporates experimental artificial intelligence–driven analytical functions.
+These functions are grounded in public-domain reference works—C. T. Onions’s A Shakespeare
+Glossary, Alexander Schmidt’s Shakespeare-Lexicon, period dictionaries from the University of
+Toronto’s Lexicons of Early Modern English (LEME), and the 1599 Geneva Bible—and serve
+as supplementary research tools rather than foundational scholarly resources. A multi-part
+verification supports the corpus: residual truncation stands at 1.0% by human-adjudicated
+sampling, and 98.4% of note endings match independent print witnesses. A stratified full-span
+sample found no genuine interior divergence after adjudication of automated failures. This
+project advances digital humanities methodologies by illustrating that the infrastructure for
+accessing historical scholarly editions is fundamentally different from the process of creating new
+critical editions. This distinction carries substantial implications for the application, evaluation,
+and comparative analysis of computational methods against TEI-based approaches. The platform
+encompasses all twenty-one pre-1956 Variorum dramatic editions in the public domain and is
+publicly accessible at https://newvariorum.com.
+Keywords — Digital Humanities, Shakespeare Studies, Electronic Scholarly Editions, Computa-
+tional Bibliography, Optical Character Recognition, Large Language Models
+Introduction
+The Democratic Vision and Its Technical Barriers
+This paper introduces a new web platform, www.newvariorum.com, that places the historical New
+Variorum Shakespeare editions online, with line-level access to their accumulated commentary. The
+name for the most capable part of this new platform, called “Full Fathom Five,” and the title
+of the accompanying paper is derived from Ariel’s lyrical passage in Shakespeare’s The Tempest
+(1.2.396–401), which describes a father lying “full fathom five” and undergoing a “sea-change” into
+something “rich and strange.” This metaphor is fitting, as it illustrates how historical scholarship,
+1
+--- PAGE 2 ---
+often obscured by material constraints and antiquated conventions, can be transformed and made
+more accessible without sacrificing its fundamental essence.
+In 1871, Horace Howard Furness, a Philadelphia attorney possessed by an eccentric if almost
+unrivaled passion for literature, initiated what turned out to be one of the most singular endeavors in
+the history of academic research, the New Variorum Shakespeare. The term “variorum” itself finds
+its origin in the Latin phrase “editio cum notis variorum,” signifying an edition that incorporates
+the annotations of multiple editors and commentators. Furness appended “new” to his own effort
+in an attempt to differentiate his project from preceding variorum editions of Shakespeare, the
+most recent of which was the Boswell–Malone edition published in 1821. His conception was
+as groundbreaking as his ambition was unconstrained; he aimed to consolidate within a single
+publication all noteworthy commentary, glosses, interpretations, and textual variations that had
+emerged concerning Shakespeare’s works since their initial printing more than two centuries earlier.
+This undertaking transcended mere editorial work, embodying a democratic aspiration to make the
+entirety of scholarly discourse on Shakespeare, previously confined to scarce volumes in exclusive
+libraries, accessible to any earnest reader. Furness articulated this vision in the preface to the
+inaugural volume where he stated that his objective was to afford “the humblest student” the “same
+advantages as the most learned professor.”
+Furness labored indefatigably on the New Variorum for over four decades. Working from his home,
+he meticulously compiled the first volume, Romeo and Juliet , in 1871. To do so, Furness amassed
+editions and commentaries on the play dating back to Nicholas Rowe’s 1709 edition, recognized as
+the first scholarly attempt to edit Shakespeare’s plays. By the time of his death in 1912, Furness had
+personally overseen the editorial process for fifteen of Shakespeare’s plays in the variorum format,
+including all of the major tragedies. The series was, in the words of one subsequent scholar, “the
+ultimate reference edition for Shakespeare’s works, the place where a serious student may find an
+expression or at least a record of every significant critical action performed on Shakespeare’s text
+up to the edition’s cutoff date” (Turner, 1986, p. 10).
+Long before his death, Furness enlisted his son, Horace Howard Furness Jr., to continue the work.
+For his part, Furness Jr. edited four additional plays before his death in 1930. In 1933, the New
+Variorum Shakespeare became an official project of the Modern Language Association of America
+(MLA), which provided institutional infrastructure and editorial oversight through the twentieth
+century, publishing volumes including Marvin Spevack’s Antony and Cleopatra (1990) and Richard
+Knowles’s two-volume King Lear (2020).
+In 2019, the series entered a new phase when Laura Mandell negotiated with the MLA to move the
+NVS to Texas A&M University and make it freely accessible online (Mandell, 2019). That project
+produces new born-digital critical editions; its relationship to the present work is discussed under
+Related Work below.
+The language of “democratic access,” at least as Furness was to use it, is best understood as a practical
+scholarly aspiration rather than as a claim that every barrier to Shakespearean scholarship can be
+eliminated by software alone. Furness’s “humblest student” still needed literacy, scholarly curiosity,
+and access to the intellectual conventions of the archive. This platform, www.newvariorum.com,
+materially advances that aspiration by removing several of the most concrete obstacles to use—
+physical scarcity, difficult typography, and the absence of line-level digital access—and by reducing
+the opacity of the citation abbreviations through digitization-time expansion of critic surnames and
+per-play critic indexes. In doing so, it makes a historically elite reference tradition substantially
+more navigable for students, teachers, and researchers who would otherwise be unlikely to encounter
+2
+--- PAGE 3 ---
+the New Variorum at all.
+Related Work
+This project integrates three scholarly areas: the digitization of historical editions, scholarly digital
+edition theory, and the application of large language models in editorial work.
+The digital Shakespeare landscape is extensive, and this platform is meant to complement existing
+resources. The Internet Shakespeare Editions (Best, 2008) provide modern, peer-reviewed, open-
+access editions with critical apparatus. Open Source Shakespeare (n.d.) offers concordance and
+search functionalities across the canon. The New Variorum Shakespeare, now a digital-first project
+hosted by Texas A&M University’s Center of Digital Humanities Research (Mandell, 2019), produces
+new, born-digital critical editions encoded in TEI, wedding contemporary analysis to a peer-reviewed
+apparatus. As of this writing, two editions have been published— The Winter’s Tale and A
+Midsummer Night’s Dream —with further editions in production (New Variorum Shakespeare, 2022).
+That project’s digital ambitions trace back to the MLA’s own Electronic New Variorum Shakespeare
+effort associated with the Knowles King Lear (Werstine, 2008), which produced prototypes but no
+public platform before the series moved to Texas A&M. However, that project has not published
+digitized versions of the historical Furness volumes.
+The instant project differs in both stance and scope from the ongoing New Variorum work. While the
+A&M project re-edits individual plays through a slow, exacting process (with only two completed),
+this platform offers comprehensive access to twenty-one public-domain pre-1956 editions. It transmits
+these faithfully rather than re-editing them. The two projects are complementary, as, for plays
+available in both, a reader gains access to both the historical Variorum record and contemporary
+editorial work.
+The closest precedent to this project for digital access to variorum commentary is Bernice Kliman’s
+extraordinary work on Hamlet. Her online resource Enfolded Hamlet presents the play’s competing
+early texts within a single navigable apparatus (Kliman, 1996), and her website HamletWorks, which
+grew out of her coordination of the New Variorum Hamlet, assembles searchable commentary notes,
+textual notes, and digitized editions for the play (Kliman et al., n.d.; Kliman, 2006). Kliman’s
+projects demonstrated both the demand for, and the difficulty of, digital variorum access; they
+treat a single play in maximum depth. Extending this approach, the present platform provides
+line-level access across twenty-one historical editions. Building access infrastructure, rather than a
+new critical edition, is a deliberate choice of this project, one that responds to active discussions
+surrounding scholarly digital editions. Sahle (2016), for example, distinguishes the digital edition as
+a methodological paradigm, not merely text digitization; Pierazzo (2015) thoroughly explains how
+editorial models change with the medium. This project does not claim to produce new editorial
+judgment; its ambition and purported authority derive from the attempt to faithfully transmit an
+existing printed apparatus.
+Artificial intelligence is a new tool in the digital humanities, but one that has not shown unalloyed
+success. In particular, the use of large language models (LLMs), as in this project, for post-correction
+of optical character recognition (OCR) from historical texts has produced rather mixed results.
+Boros et al. (2024), evaluating fourteen models across eight historical benchmarks in text-only
+settings, found that unconstrained LLM post-correction usually degrades the input, with the worst
+failures being paraphrase and outright invention of new text; Zhang et al. (2024), by contrast,
+showed that carefully configured GPT-4-class models can meaningfully improve recognition of
+challenging period typography. The even more recent literature has complicated rather than
+3
+--- PAGE 4 ---
+settled the question. Kanerva et al. (2025) found open-weight models a promising intervention
+on English historical corpora but falling short of practical utility for Finnish texts; in the end,
+they adjudged commercial models cost-infeasible at collection scale. Greif et al. (2025) report
+that image-conditioned multimodal post-correction produces large accuracy gains on historical
+documents without fine-tuning. Bourne (2025) demonstrates substantial error reductions from
+synthetic-noise fine-tuning but at the cost of the kind of curated training infrastructure this project
+does not assume. On evaluation, Levchenko (2025) finds that post-OCR LLM correction can
+degrade strong multimodal OCR outright and that character error rates miss period-specific failures
+such as over-historicization, while Backer and Hyman (2025) argue that standard OCR metrics
+underestimate what matters for historical research. Together, these findings shaped this project’s
+approach to OCR. Correction for the www.newvariorum.com website is based on the page image
+rather than left to free-running generation; no fine-tuned correction model is assumed. The output
+is verified against independent print witnesses, with the paraphrase and invention failure modes
+that Boros et al. document serving as explicit targets of the fidelity checks reported below, which
+found no instance of either. The question this platform answers is accordingly different from the
+one the post-correction benchmarks pose, e.g., not whether an LLM improves character error rate
+on a held-out sample, but whether a staged OCR-plus-LLM ingest preserves variorum note content
+against independent print witnesses at corpus scale.
+Worryingly, a considerable body of evidence exists regarding how models tend to generate plausible
+yet fictitious citations and unsubstantiated statements. Both Walters and Wilder (2023) and Sun
+et al. (2024) have documented this problem. This project’s design architecture addresses the risk
+of the model generating fictitious citations or unsubstantiated statements through deterministic
+retrieval of verbatim historical text and server-side overwrites of generated commentary with source
+apparatus. Its contribution is a demonstration of a conservative design pattern for generative models
+whereby fidelity to sources is unyielding.
+The Scope and Challenge of the New Variorum Corpus
+The complete pre-1956 New Variorum Shakespeare comprises twenty-five editions: twenty-three play
+editions and two editions of the non-dramatic poetry. The dramatic editions contain approximately
+15,000 pages of accumulated scholarship representing over 1,000 critics, editors, and commentators
+from 1709 to 1955. This project focuses exclusively on the dramatic works, as they represent the
+core of the Variorum tradition and present the most complex challenges for line-level annotation
+alignment.
+This scholarly wealth remains largely inaccessible due to barriers embedded in the editorial tradition.
+The Variorum maintains original folio and quarto spellings that impede comprehension for modern
+readers. References frequently appear as fragments—“Cap.” for Edward Capell, “Steev.” for
+George Steevens, “Clar.” for the Clarendon edition of Clark and Wright—requiring consultation
+of bibliographic tables located dozens or hundreds of pages from the commentary itself. Many
+significant figures are also discussed in prose introductions and appendices rather than in the formal
+bibliographic apparatus, which makes computational identification especially valuable. This is not
+to forget that complete sets of the New Variorum Shakespeare are scarce, and its volumes are often
+exiled to research libraries or special collections.
+4
+--- PAGE 5 ---
+Methodology and System Development
+Corpus Acquisition
+Digital surrogates were sourced from Internet Archive and HathiTrust for the twenty-one pre-1956
+NVS dramatic editions that are in the public domain. The two remaining pre-1956 editions— Troilus
+and Cressida (1953) and Richard II (1955), both late products of the original MLA-era series before
+the project’s move to Texas A&M—remain under copyright and are excluded from the platform.
+All volumes in the corpus are in the public domain in the United States: the Furness-era volumes
+by age, and the later volumes (Hemingway 1936, Shaaber 1940) on the basis of renewal searches in
+the Stanford Copyright Renewal Database and the United States Copyright Office records, which
+found no renewal registrations; under pre-1978 United States law, publication without subsequent
+renewal places a work in the public domain. The Folger Digital Texts, used for line alignment, are
+licensed under Creative Commons Attribution-NonCommercial terms (CC BY-NC 3.0).
+The scans of the New Variorum print editions yielded page-level scans at 300–400 dots per inch
+(DPI). This is sufficient for optical character recognition. Each volume was triaged by scan quality,
+particularly character-level clarity in footnote regions, preservation of marginal line numbers, and
+the presence of bleed-through or foxing. Fuzzier volumes, notably the 1877 Hamlet and the 1907
+Antony and Cleopatra, received additional manual correction passes. In cases where both the Internet
+Archive and HathiTrust had copies of the same book, we used our discretion to select the better
+source.
+Optical Character Recognition (OCR)
+Unsurprisingly, the principal OCR challenge arises from the dense New Variorum footnotes. In these
+footnotes, abbreviated citations, small type, human marginalia, italics, and an otherwise laconic
+style create conditions substantially more difficult to scan than the main play text. The pipeline was
+therefore optimized for the cases most consequential for scholarly use such as abbreviated citation
+forms, italic lemma markers, small-type character confusions, and note boundaries. Common error
+modes in the scans included punctuation ambiguity in abbreviated citations, italic/roman distinction
+loss, and character substitutions such as “rn” for “m” in small type. These recurring patterns make
+the corpus a strong test case for a correction pipeline that combines image-grounded OCR with
+structured post-processing.
+Processing Pipeline
+There are three stages to the processing pipeline for www.newvariorum.com.
+In stage one, raw UTF-8 text is read out of each page image to allow the pipeline to maintain some
+level of spatial arrangement.
+Stage two passes each page’s OCR output to Google Gemini together with the original page image
+and volume-level bibliographic context, the model’s one-million-token context window allowing
+parallel consultation of a volume’s entire bibliography alongside the current page. The stage is
+multimodal. The model consults the scan when resolving ambiguous small-type footnotes, italic
+lemma markers, and split citation blocks. The system prompt instructed the model to correct
+character-level OCR errors, restore truncated abbreviations, re-join split citations, and preserve
+the italic/roman distinction. Correction runs once per page; corrector passes are not chained over
+corrected output, in line with the finding of Zhang et al. (2024) that iterated correction propagates
+5
+--- PAGE 6 ---
+errors. Evidence that this stage repaired rather than rewrote—that it did not paraphrase, modernize,
+or invent—rests not on prompt-level assurance but on the corpus-level fidelity verification reported
+below.
+Stage three parses the processed text into act/scene boundaries, line numbers, speaker attribution,
+stage direction, and distinct commentary entry using regular expressions created specifically to
+conform to the Variorum’s style.
+Across these stages, many critic surname abbreviations are expanded into readable forms— Johns.
+becomes JOHNSON, frequently with edition years—while collation-block abbreviations generally
+retain their print forms. Expansion occurs at digitization time, not at display time; the platform
+serves note text as stored, and per-play critic indexes supply full bibliographic identification.
+Architecture: JSON over TEI
+We examined TEI and developed a working prototype of TEI-encoded Macbeth, Act 1, before
+deciding on JSON. Three factors contributed to this decision.
+First, since the platform requires zero-dependency static hosting—that is, the application must
+run without an XML database back-end—the choice of data structure was limited by storage
+space requirements. The prototype TEI document for a well-annotated version of Macbeth was
+approximately 50 megabytes and simply could not be loaded quickly enough into the browser.
+Second, the platform requires fast O(1) lookups at the line level. For this purpose, we chose to
+represent the annotation information in a flat JSON object so that JavaScript’s native property
+access could be used.
+Third, the platform integrates an artificial intelligence system, and this system expects data
+represented as JSON. As such, we did not want to incur additional overhead associated with
+serializing and deserializing TEI documents for every API call.
+There is a standard objection to this choice. Prevailing practice in digital scholarly editing treats
+TEI as the archival format of record, with JSON or HTML generated downstream as delivery formats
+(Sahle, 2016); on that model, the platform could have maintained TEI masters and derived its JSON
+corpus from them. For a project producing a new critical edition, that hybrid architecture is clearly
+correct, as the TEI layer captures editorial decisions in an interchangeable, richly documented form.
+But www.newvariorum.com introduces no new editorial content. The scholarly record it transmits
+lives in the original page images and in the faithful transcription of Furness’s apparatus, both of
+which are preserved and published; a TEI intermediary would document no editorial judgment
+that the transcription does not already capture, while adding an encoding and maintenance layer
+with real costs and no additional scholarly yield. This is a concrete instance of the paper’s central
+distinction: infrastructure for accessing historical editions is a different undertaking from creating
+critical editions, and the two warrant different architectures.
+Editorial Alignment
+The platform uses two lineation regimes, reflecting the current state of an ongoing migration.
+The Folger Digital Texts TEI serves as the alignment spine for Othello : the alignment pipeline
+(scripts/folger tei/align nv to folger.py) is a version-controlled, deterministic computational
+task that ingests the Folger TEI source to build a linear spine of reference points—where “reference
+point” refers to both the Folger act.scene.line anchors for dialogue lines and the SD * identifiers for
+6
+--- PAGE 7 ---
+stage directions (SDs). Using Python’s SequenceMatcher with normalized text, each Variorum line
+reference is matched against that spine, with per-play rule sets handling merged-scene edge cases.
+Because the pipeline can be re-run against new or revised versions of the Folger TEI source files,
+alignment errors are corrected by regeneration rather than by hand.
+For the remaining plays, reading text and line keys derive from the New Variorum ingest pipeline
+(OCR, structured intermediate documents, JSON), using each edition’s own lineation; commentary is
+attached by scene and line number rather than by Folger anchors. The design rationale for Folger as
+the alignment target—stable act-scene-line referencing, modernized spelling, open licensing—applies
+corpus-wide, and extending the Othello -style alignment to the remaining plays is ongoing engineering
+work rather than current production behavior.
+To address the need for a uniform editorial procedure regarding stage directions, the frontend
+classifies a line as a stage direction if and only if its string representation contains an opening and
+closing square bracket. That classification affects how the line is processed downstream, determining
+both how speakers’ names are displayed across all twenty-one plays and how the line itself is rendered.
+The heuristic is deliberately simple and has known failure modes, since square brackets appear in
+the Variorum apparatus for other purposes. An audit across all twenty-one playtext volumes (67,808
+play lines) found 52 misclassified lines (0.08% of play lines; 2.31% of bracket-wrapped lines), chiefly
+dialogue or note fragments accidentally bracketed during digitization; it turns out the failure mode
+is, at least in this case, cosmetic: mis-set typography, and no note text is affected.
+In the Othello alignment specifically, the pipeline assigned stable Folger anchors to all 3,763 act- and
+scene-level line units in the spine (3,631 dialogue lines; 132 stage directions), and all 918 commentary
+notes were placed on their 676 anchored lines, with zero placement failures in the alignment review
+log. The eighteen spine entries not covered are Dramatis Personae items, which sit outside the Folger
+act-scene-line structure. The principal difficulty during development was concentrated in stage
+directions, where the task is determining whether an SD -referenced item belongs to the previous or
+subsequent line; the per-play rule sets described above resolved these cases.
+Verification of Textual Fidelity to the Printed New Variorum
+The electronic corpus of the New Variorum website was evaluated against the Furness New Variorum
+print editions to determine whether the notes presented on the site faithfully reproduce the scholarly
+apparatus of the source volumes. The assessment addressed two distinct questions. First, are the
+notes on the website complete (e.g., not truncated or missing material at their boundaries)? Second,
+does the wording of the notes on the website correspond to the printed New Variorum edition,
+allowing for the predictable noise introduced when nineteenth- and early-twentieth-century books
+are digitized.
+Bottom line. For scholarly use, the New Variorum website reproduces the printed New Variorum
+faithfully. The note text on the website is not a paraphrase, nor is the text a synthetic rewrite of
+Furness; the notes track the print tradition closely enough that a reader consulting the site alongside
+the original volumes would encounter essentially the same editorial material in the overwhelming
+majority of cases. Residual uncertainty is confined to a thin tail of edge cases—chiefly notes checked
+against comparatively noisy witness scans—not to a systematic departure from the source editions.
+Witnesses and verification design. Verification ground truth was drawn from transcriptions of
+djvu.txt files provided by the Internet Archive, made from the same Furness volumes that served
+as bibliographic sources for the edition (mapped per play in nv witness map.py). The witness layer
+7
+--- PAGE 8 ---
+is entirely separate from the ingestion pipeline that produced the website’s JSON (page images
+run through Tesseract/ABBYY and structured extraction), so convergence between the website’s
+text and the witness text cannot be due to common tools employed during ingestion. Instead, it
+indicates convergence on the printed record.
+Three complementary checks were applied, each offering increasing depth and greater assurance,
+and each employing different criteria.
+Corpus-wide tail verification. Every note in the corpus (N = 23,094 across the 21 works)
+was given a score based on identifying its last ninety characters within the corresponding witness
+(rapidfuzz.fuzz.partial ratio ≥ 75 on normalized strings). Tail verification is sensitive to
+truncation and splice errors at the ends of notes, which are exactly the errors it exists to catch,
+while remaining robust to minor variations in OCR. By this method, 98.4% of all notes passed
+(22,715/23,094; 95% Wilson interval 98.2–98.5%; Table 2). Of the works whose performance fell below
+the average, Othello (93.9%) reflects a play file that mixes Furness apparatus with Folger-derived
+gloss forms, consistent with the two-regime alignment described above.
+T runcation census.In addition, a separate union audit was conducted to identify truncated notes
+based on signature patterns indicative of truncation (terminal ellipses, abrupt termination of clauses,
+tails of dictionary entries, and related patterns). Following the repair of 838 workbook-flagged notes,
+about 3.6% of the corpus, merged via structured completion manifests, the post-repair census stood
+at 24 union flags (0.10%; Table 1), indicating that problems regarding the completeness of the notes
+published on the website are extremely rare.
+Table 1: Exhaustive truncation census after repair (21 plays, 23,094 notes). Union flags = notes matching any
+truncation signal (hard truncation, mid-sentence cut, hyphenation, unbalanced delimiters, or witness-prefix
+continuation).
+Metric V alue
+Notes audited 23,094
+Union truncation flags 24
+Flag rate 0.10%
+Plays with zero flags 13 of 21
+Repair-cohort controls. Roughly eight hundred notes had earlier been repaired by copying their
+missing endings from the witness itself, which raises an obvious worry: those endings will match
+the witness by definition. To guard against circularity—that repaired notes might pass verification
+because witness text was spliced into completions—the tail-verify pass rate was recomputed separately
+for notes never appearing in the repair workbook (n = 22,270; 98.36%), the full repair cohort (n =
+824; 98.30%), and spliced completions alone (n = 734; 98.91%). The repaired notes do not inflate
+the headline figure; if anything, spliced completions perform marginally better than untouched notes.
+In plain terms, the notes never touched by any repair passed at almost exactly the corpus-wide rate,
+so the headline figure does not depend on the repairs at all.
+Stratified full-span sample and instrument validation. The third check performs another
+form of testing, a stratified full-span sample with instrument validation. This testing lets us ask
+a question the tail testing cannot answer. Are we sure that the middle parts of each note agree
+with the original printed version of the book, and not simply the ends? The tail test verifies the
+end portion of each note, but it does not verify that the entire note agrees with the printed version.
+We therefore drew an act-stratified random sample of 14 notes per play, 294 notes in total, using
+8
+--- PAGE 9 ---
+Table 2: Full-corpus tail verification against mapped print witnesses. Method: last 90 characters of each note,
+rapidfuzz partial ratio ≥ 75 against overlapping witness chunks. Witnesses: Internet Archive DjVu text
+per play registry.
+Play Notes Pass F ail Pass %
+Romeo and Juliet 720 704 16 97.8
+Macbeth 1,252 1,223 29 97.7
+Hamlet 1,948 1,912 36 98.2
+King Lear 1,163 1,148 15 98.7
+Othello 918 862 56 93.9
+The Merchant of Venice 1,027 1,017 10 99.0
+As You Like It 940 913 27 97.1
+The Tempest 770 749 21 97.3
+A Midsummer Night’s Dream 745 724 21 97.2
+The Winter’s Tale 1,109 1,098 11 99.0
+Much Ado About Nothing 931 910 21 97.7
+Twelfth Night 1,068 1,045 23 97.9
+Love’s Labour’s Lost 1,171 1,143 28 97.6
+Antony and Cleopatra 1,053 1,044 9 99.2
+Richard III 1,226 1,222 4 99.7
+Julius Caesar 723 721 2 99.7
+Cymbeline 1,035 1,028 7 99.3
+King John 1,072 1,052 20 98.1
+Coriolanus 1,503 1,495 8 99.5
+Henry IV, Part 1 738 725 13 98.2
+Henry IV, Part 2 1,982 1,980 2 99.9
+Corpus 23,094 22,715 379 98.4
+9
+--- PAGE 10 ---
+a fixed random seed. (Of these, 32 were exempted as cross-reference pointers or glosses too short
+for meaningful comparison, leaving 262 evaluable notes.) Each sampled note’s normalized text was
+then compared to a bounded witness span anchored at the note’s opening lemma or word chain. A
+total of 179 sampled notes were localized successfully, while 83 of the 262 (approximately 31.7%)
+could not be localized with enough certainty in the witness OCR and are marked as not evaluable.
+Prior to reporting results, the measuring instrument itself needed to be corrected. The original
+full-span protocol contained an identifiable instrument artifact. End-anchor over-capture generated
+witness windows roughly twice the length of each note being evaluated, which lowered the similarity
+scores ( fuzz.ratio) and produced false classifications of interior divergence even when nearly
+perfect tail scores were achieved. The protocol was modified so that the tail-match position in the
+witness, the same localization used in the corpus tail verification, defines the right boundary of the
+span, with the start anchor defining the left. When tail localization failed, a conservative fallback
+estimated span length at ±15% of normalized note length and flagged the comparison as estimated.
+The score required to pass was held constant at 75 throughout the entire protocol, and no tuning
+toward a target pass rate was performed. Only the location of the comparison window changed
+under the corrected instrument, never the score required to pass.
+Using the corrected instrument, 68.2% of anchored notes in the sample passed automated full-span
+matching (122/179). Automated failures were not accepted at face value. All interior-divergence
+cases (n = 55) were adjudicated by the author, who examined each case side by side, the electronic
+note text against its bounded witness span, recording the play, line number, and witness identifier for
+each. Every adjudicated case was classified as the result of witness OCR degradation—primarily two-
+column apparatus interleaving in the scanned witness, long- s and ligature garble, and orthographic
+normalization—not editorial rewriting or fabrication on the site. Two additional automated span-
+mismatch cases, in which both the tail and full-span scores fell below threshold, were reviewed
+separately and determined to be extraction-boundary artifacts in the witness window, not genuine
+divergence from Furness. In every examined case the printed book agreed with the site; the failures
+belonged to the scan used for checking, not to the corpus. Following adjudication, every sampled
+note that could be tested proved faithful to print across its entire span, and no instance of genuine
+interior divergence, paraphrase, or invention was found. The adjudicated cases were independently
+reviewed by a second reader (see Acknowledgments).
+A reader-focused witness sample (1,050 notes; act-stratified, 50 per play), which exempts verifiable
+cross-references and short dictionary glosses, yielded 99.0% agreement, consistent with the corpus-
+wide tail figure (Table 3). Ten of the 1,050 sampled notes (1.0%) were truncated relative to print,
+and we take that human-adjudicated figure, rather than the census’s 0.10% flag rate, as the operative
+estimate of residual truncation.
+Table 3: Reader-focused stratified sample (50 notes × 21 plays = 1,050). A note fails only if material needed
+for the line is missing; extra appended apparatus and OCR drift do not count as failure. Approximate 95%
+Wilson interval on the reader-OK rate: about 98.1–99.4%.
+Outcome n % of sample
+Line commentary present (reader OK) 1,039 98.95
+Truncated (missing ending relative to print) 10 0.95
+Not located in witness 1 0.10
+10
+--- PAGE 11 ---
+Analysis Tier Structure
+The platform provides users with three different levels of analysis: Basic (a short definition or gloss),
+Expert (an extended essay, typically multi-paragraph), and Full Fathom Five (a variorum-style
+annotation of approximately 800 to 1,200 words). Each level is serviced by a Netlify serverless
+function routing to OpenAI’s API, although a parallel Deno Edge Function utilizes Anthropic’s
+Claude agents as both a fallback and for purposes of A/B testing.
+The platform’s AI tiers also use three public-domain works that provide lexical explanations for, and
+biblical allusions behind, obscure words or phrases. For Key Words and Glosses, the system retrieves
+entries from C. T. Onions’s A Shakespeare Glossary (1911; rev. ed. 1919). This standard lexicon,
+compiled by an Oxford English Dictionary co-editor, focuses on obsolete words, idioms, and Early
+Modern forms that may impede modern readers. Alexander Schmidt’s Shakespeare-Lexicon (3rd ed.,
+1902), a classic lexicon offering broader coverage of the dramatic vocabulary, is retrieved in parallel
+with Onions for the same passage lemmas; Onions remains the primary glossary in prompts and
+citations, while Schmidt appears when it adds coverage or a more complete entry. Retrieved glossary
+text is injected into the analysis prompt prior to the model’s invocation, ensuring that glosses are
+traceable to named sources rather than undocumented model memory. For the Sources section, the
+platform also draws, where appropriate, on the 1599 Geneva Bible, an English translation widely
+familiar to Shakespeare’s Protestant contemporaries. Geneva matches are found by deterministic
+phrase matching against the 1599 text, and the system presents them as possible parallels rather
+than confirmed allusions unless the wording is exact.
+To broaden the lexical scope beyond Shakespeare-specific reference works, we integrated materials
+from the University of Toronto’s Lexicons of Early Modern English (LEME), whose transcriptions
+are distributed publicly under a Creative Commons Attribution 4.0 license. Plain-text exports from
+LEME were indexed server-side and are deterministically queried when a user selects a passage for
+analysis. The retrieved entries are then incorporated into the model prompt and displayed in the
+interface exactly as transcribed in the server-side indices, alongside matches from Onions, Schmidt,
+and the Geneva Bible; the retrieved text is reproduced without LLM paraphrase at retrieval time,
+while the surrounding analysis prose remains model-generated and may paraphrase. The primary
+objective of this integration is not to supplant existing Shakespeare glossaries but to contextualize
+challenging or historically significant diction within the contemporary lexicographical record. This
+approach aims to illuminate what constituted a “hard word” in Shakespeare’s era, how such words
+were defined around that time, and the semantic fields a Jacobean reader might have recognized.
+The indexed English hard-word lexicons include:
+ Robert Cawdrey, A Table Alphabeticall (1604)
+ John Bullokar, An English Expositor (1616)
+ Henry Cockeram, The English Dictionarie (1623)
+We also incorporated:
+ John Florio, A Worlde of Wordes (1598)
+ Randle Cotgrave, A Dictionarie of the French and English Tongues (1611)
+These bilingual dictionaries were indexed by English gloss terms extracted from their entries,
+particularly verbal definitions of the form “to . . . ”. This methodology allows a Shakespearean
+lemma like abandon to retrieve contemporary Italian and French equivalents, even if it is not
+11
+--- PAGE 12 ---
+a headword in an English-only lexicon. When such matches occur, the interface labels them as
+“English-gloss matches” and requires citation by foreign lemma and dictionary year (e.g., under Italian
+Abbandonare in Florio (1598)), rather than treating them as direct English headword equivalences.
+Operationally, Onions, Schmidt, LEME, and the Geneva Bible are all queried in parallel for a
+selected passage (Figures 1 and 2). Onions remains the primary Shakespeare glossary, Schmidt
+adds coverage and fuller entries, and LEME provides period lexical context when a contemporary
+dictionary entry exists. In Full Fathom Five analysis, LEME is a particularly valuable resource for
+the website’s sections on Key Words and Glosses, Language and Rhetoric, and Historical Context.
+As with other lexical sources, the model does not directly query LEME. Instead, matches are
+computed on the server, and only the supplied text is quoted or paraphrased in the analysis. This
+design ensures the scholarly record remains inspectable, allowing a curious reader to compare the
+generated commentary against the exact retrieved entry.
+LEME primarily contributes lemmas attested in indexed hard-word lexicons or Florio/Cotgrave
+English glosses. As a result, Shakespeare-specific coinages, proper names, and many noun senses
+found in bilingual dictionaries may be absent. Nevertheless, LEME provides a contemporaneous
+lexical stratum that Onions and Schmidt alone cannot offer, packaged in a citable and verifiable
+form.
+On the website, lexical entries are deterministically retrieved from server-side indices and displayed
+as transcribed in those indices, not as re-keyed facsimiles of printed pages. Onions is primarily
+ingested from an Internet Archive OCR transcription, merged with the Perseus Digital Library’s
+professionally keyed text where available and more complete. Schmidt is ingested from Internet
+Archive OCR, with regex corrections for systematic errors (e.g., “Yen.” for “Ven.,” the abbreviation
+for Venus and Adonis ) and manual overrides for frequently retrieved lemmas, all applied at index-
+build time. The Geneva Bible was ingested from eBible.org’s USFM edition of the 1599 text. For
+its part, LEME materials use the project’s publicly distributed plain-text exports.
+Of course, it is entirely possible that displayed entries may still inherit OCR or parsing artifacts.
+As a prophylactic, we disclose the digital witness used, and we treat the retrieved-sources panel as
+the citable record of what the system actually retrieved rather than as a guaranteed diplomatic
+transcription of the original edition. While variorum notes remain the authoritative historical
+apparatus where available, these additional sources provide essential lexical and scriptural grounding
+that the experimental AI tiers would otherwise lack.
+Full Fathom Five Prompt Requirements
+The Full Fathom Five prompt requires ten specific sections of analysis in a particular order: Plain-
+Language Paraphrase; Language and Rhetoric; Synopsis; Key Words and Glosses; Historical Context;
+Sources; Literary Analysis; Critical Reception; Similar Phrases in Other Plays; and New Variorum
+Analysis.
+Two design decisions shaped this prompt. First, the prompt mandates inclusion of at least one critical
+perspective per century from the eighteenth through the twenty-first, including a Marxist reading and
+two to three additional interpretive traditions—New Historicism, psychoanalysis, formalism, queer
+theory, biography, post-colonial theory, and ecocriticism—each characterized without attribution
+to named critics. This is a deliberate editorial policy. While Shakespeare scholarship dominates
+large language models’ training datasets, those representations are historically skewed. By requiring
+perspectives spanning centuries, the model is pushed toward an assessment that balances historically
+12
+--- PAGE 13 ---
+Figure 1: The Shakespeare-specific glossary layer of the retrieval architecture, shown for Twelfth Night 1.4
+(“If she be so abandon’d to her sorrow / As it is spoke, she never will admit me”). The panel of retrieved
+sources displays the entries injected into the analysis prompt, as transcribed in the platform’s indices: sorrow
+from Onions’s A Shakespeare Glossary and never and admit from Schmidt’s Shakespeare-Lexicon, each under
+its full bibliographic citation. Compare Figure 2, which adds the LEME period-lexicon layer for the same
+passage.
+across the critical traditions represented in the training data rather than relying on those most
+heavily represented.
+Second, the New Variorum Analysis section of the model’s output is unconditionally overwritten
+by the backend server with verbatim historical notes retrieved from the JSON corpus, with the
+overwrite occurring after completion of the LLM call and during server-side construction of the final
+analysis object. Historical commentary is therefore always delivered verbatim from the corpus and
+never passes through the model; it is never summarized or paraphrased.
+Constraining Model Output
+Early testing with GPT-4o showed that unconstrained literary-critical generation could introduce
+unsupported critic names and dates. Reducing the temperature to 0.3 improved output stability—
+consistent with Zhang et al. (2024), who found temperature adjustment among the most effective
+levers on historical-text tasks—and that experience motivated the stronger architectural solution
+described above: prohibiting named attribution in model-generated critical sections unless the
+relevant material is supplied by a retrieval layer. As part of the deployment strategy, the platform
+dynamically assigns gpt-4o for the Full Fathom Five tier and gpt-4o-mini for all other tiers.
+Additionally, both functions enforce a ninety-second timeout and provide structured error handling,
+ensuring that slow API responses result in clean error messages rather than an indeterminate loading
+state.
+13
+--- PAGE 14 ---
+Figure 2: The same Twelfth Night passage with the LEME period-lexicon layer added. The Period Lexicons
+panel returns the lemma abandon from two of the indexed English hard-word dictionaries—Cawdrey’s A
+Table Alphabeticall (1604), glossing it “cast away, or yeelde vp, to,” and Cockeram’s The English Dictionarie
+(1623), “To forsake or cast off”—together with two bilingual matches: Italian Abbandonare and French
+Abandonner, each explicitly labeled as matched via the English gloss for “abandon” rather than as an English
+headword, and each cited by foreign lemma and dictionary. The panel header carries the LEME attribution.
+The pair of figures thus realizes the retrieval architecture described above: Onions and Schmidt supply the
+Shakespeare-specific glosses (Figure 1), while LEME adds the contemporaneous lexicographical stratum,
+showing how the word was defined for readers in Shakespeare’s own era.
+14
+--- PAGE 15 ---
+Deterministic Text Matching in the Retrieval Layer
+Unlike semantic similarity retrieval methods that produce thematically similar but textually dissimilar
+commentary, the platform employs deterministic text matching rather than vector embedding to
+determine which commentary is relevant to which piece of text. For a scholarly platform, false
+positives are far worse than false negatives. Thus, rather than receiving potentially misleading
+commentary from adjacent lines, users who select incorrect lines receive no commentary.
+Monolithic Single-File SPA Platform Design
+The platform is designed as a monolithic single-file SPA (Single Page Application) instead of a
+component-based framework. A single-file SPA has zero dependency issues resulting from deprecated
+dependencies and therefore does not introduce a maintenance burden that cannot be sustained
+for long-term preservation. Given that a monolithic HTML/CSS/JS file can be hosted statically
+anywhere indefinitely, compared to a React application that requires a build step that will fail as
+dependencies become outdated, this design choice maximizes preservation options. The single file
+comprises the application code only; play-level JSON corpora are fetched on demand when a reader
+selects a play, so the application shell remains small while the textual corpus loads incrementally.
+In addition, because everything about the application is contained within a single file, a developer
+can easily view the contents of the application’s architecture through a single “View Source.” In
+keeping with its open, inspection-oriented goals, this design decision helps preserve transparency.
+No-Cache Policy Across Three Layers
+JSON files are served with strict no-cache directives. The frontend appends cache-breaking query
+parameters to every JSON fetch, and the serverless function fetches play JSON with explicit no-cache
+directives for every invocation. Although this results in suboptimal delivery speed, this three-layer
+no-cache policy prioritizes scholarly accuracy over delivery speed. Corrections made to erroneous
+annotations should be instantly observable to subsequent users accessing content containing those
+corrections.
+Code Repository Design
+As previously stated, all code resides in a single Git repository. Upon pushing updates to Netlify’s
+main branch, Netlify triggers automatic builds for all components. Additionally, API keys are stored
+within Netlify’s environment variables system and are encrypted accordingly.
+Results and Implementation
+Corpus Coverage
+The platform covers all twenty-one public-domain pre-1956 dramatic editions, spanning 1871 to
+1940. The two remaining pre-1956 editions, Troilus and Cressida (1953) and Richard II (1955),
+remain under copyright and are excluded.
+Corpus-Wide Annotation Search
+The platform also offers a search function that reaches every annotation in the digitized corpus.
+A printed set of the Variorum represents twenty-three separate resources, so a scholar seeking
+15
+--- PAGE 16 ---
+Table 4: New Variorum Shakespeare Digital Coverage
+# Play Y ear Editor Status
+1 Romeo and Juliet 1871 H. H. Furness Complete
+2 Macbeth 1873 H. H. Furness Complete
+3 Hamlet 1877 H. H. Furness Complete
+4 King Lear 1880 H. H. Furness Complete
+5 Othello 1886 H. H. Furness Complete
+6 The Merchant of Venice 1888 H. H. Furness Complete
+7 As You Like It 1890 H. H. Furness Complete
+8 The Tempest 1892 H. H. Furness Complete
+9 A Midsummer Night’s Dream 1895 H. H. Furness Complete
+10 The Winter’s Tale 1898 H. H. Furness Complete
+11 Much Ado About Nothing 1899 H. H. Furness Complete
+12 Twelfth Night 1901 H. H. Furness Complete
+13 Love’s Labour’s Lost 1904 H. H. Furness Complete
+14 Antony and Cleopatra 1907 H. H. Furness Complete
+15 Richard III 1908 H. H. Furness Jr. Complete
+16 Julius Caesar 1913 H. H. Furness Jr. Complete
+17 Cymbeline 1913 H. H. Furness Complete
+18 King John 1919 H. H. Furness Jr. Complete
+19 Coriolanus 1928 H. H. Furness Jr. Complete
+20 Henry IV, Part 1 1936 S. B. Hemingway Complete
+21 Henry IV, Part 2 1940 M. A. Shaaber Complete
+a comprehensive view of how one critic, such as Samuel Johnson, interpreted the plays must
+work through the apparatus of volume after volume, each with its own indexing and abbreviation
+conventions. The corpus-wide search eliminates that task. Users can search all annotations in
+natural language (“What have critics said about Hamlet’s madness?”), filter by annotator to
+find notes attributed to a specific critic regardless of play—Johnson, Coleridge, Steevens, Malone,
+Theobald—or search by subject or word (“ghost,” “emendation,” “quarto”) (Figure 4). Each
+result displays the annotator’s name, the play, the line number to which the note is attached, and
+the full text of the annotation. The New Variorum apparatus thus becomes a single searchable
+database of critical tradition, and reception-history questions become practical to explore: how an
+editor’s attention was distributed across the plays, or how the vocabulary used to discuss a textual
+crux migrated across editions. Before this database existed, such inquiries were excessively time
+consuming. The search covers the entire set of annotations in the corpus; it is exhaustive with
+respect to the digitized transcription, though it cannot speak for anything in the print volumes that
+the transcription missed.
+To demonstrate the search, a full-text query was performed for “Johnson.” The search returned 2,135
+annotations spread across the twenty-one plays—98 in As You Like It alone (Figure 3). Because the
+query matches “Johnson” anywhere in an annotation, not only in notes Johnson wrote, the results
+capture both Johnson’s own commentary and the extensive debate his interpretations provoked,
+during his lifetime and long after. The first result returned is Warburton’s proposed emendation at
+As You Like It 1.1, in which, as the note records, “even Dr Johnson was overborne.” Finding that
+evidence in print would require sifting through the apparatus of twenty-one individual volumes; the
+search returns it in under a second.
+16
+--- PAGE 17 ---
+Figure 3: The corpus-wide annotation search in action, and a great example of the wry erudition of Furness.
+A full-text query for “Johnson” returns 2,135 annotations across the twenty-one plays (98 in As You Like It
+alone). Because the query matches the name anywhere in a note, the results include both Johnson’s own
+annotations and other critics’ engagements with his judgments—here, Warburton’s emendation debate at As
+You Like It 1.1. In the top hit, Furness makes a classic quip at Warburton’s expense, adapting a line from
+Juvenal’s seventh satire, “ tenet insanabile multos scribendi cacoethes ” (“many are afflicted with an incurable
+itch for writing”). Cacoethes is an unhealthy habit or craze, and insanabile means “incurable.” Eighteenth-
+and nineteenth-century scholars adapted the line to deride textual editors, and they found no readier target
+than Warburton, so notorious a conjectural emender that Thomas Edwards devoted an entire volume, The
+Canons of Criticism (1748), to ridiculing his glosses on Shakespeare. The book was popular enough to
+run through seven editions. In this footnote, Furness means that an itch for improving that was, in truth,
+incurable led Warburton to propose substituting sties. The quip succeeds because the alteration Warburton
+suggested (from staies/stays to sties, on the assumption that the surrounding passage concerns livestock,
+given the nearby reference to the “stalling of an ox”) illustrates the very type of foolhardy interference the
+Latin label describes. Even Johnson, generally skeptical of such conjectures, was overborne by the proposal
+and pronounced sties “not only better, but more likely to be Shakespeare’s word.”
+17
+--- PAGE 18 ---
+Figure 4: The corpus-wide annotation search interface. A query may be posed in natural language, filtered
+by annotator (with one-click filters for frequently sought critics such as Johnson, Coleridge, Steevens, Malone,
+and Theobald), or directed at a topic or word. Each result reports the annotator, the play and line to which
+the note is attached, and the full note text.
+Worked Example: From Line to Annotation to Analysis
+Consider Hamlet 3.1.56, “To be, or not to be, that is the question.” The platform retrieves and
+displays the Variorum annotation from Furness (1877), as shown in Figure 5.
+No model summarization or paraphrase occurs for this section. The Full Fathom Five tier then
+supplements this with generated literary analysis, presented separately from the historical apparatus
+(Figure 6). The epistemological distinction between the two outputs is enforced at both the server
+and display layers.
+From the analysis panel, two buttons extend the line further. A Media button opens a YouTube
+search for performances of the current scene, and a Research button opens a JSTOR search
+constructed from the quoted play title, act and scene identifiers (including Roman-numeral variants),
+and the selected line text. These are constructed external searches rather than curated or API-driven
+results—the platform surfaces no content itself—but they carry line-level access toward the play’s
+performance history and toward scholarship postdating the Variorum record, the latter for readers
+with library access to JSTOR.
+Validation Boundaries and Future Development
+Alignment development. Editorial differences between Variorum and Folger texts require careful line
+matching, particularly in passages dense with stage directions. As a result, Folger-spined alignment
+is currently implemented only for Othello ; the remaining plays use the New Variorum editions’ own
+lineation. The project’s next steps are to extend the Othello alignment procedure corpus-wide, but
+this is not a prerequisite for use of the website.
+Fidelity verification. The fidelity of the New Variorum website should be measured against the
+digitized print volumes, even if OCR defects set a practical ceiling on this automated agreement.
+The accuracy of the notes on the New Variorum website is demonstrated through a full-corpus
+18
+--- PAGE 19 ---
+Figure 5: The famous soliloquy of Hamlet in Act 3, Scene 1, as shown in the New Variorum Hamlet (Furness,
+1877, pp. 204–205). The left page carries the play text with the textual apparatus below, including the
+soliloquy’s opening at line 56; the right page continues the commentary, gathering Johnson, Malone, Coleridge,
+Lamb, and Caldecott on a single line of verse. Images from the Internet Archive digitization, identifier
+newvariorumediti11shak.
+19
+--- PAGE 20 ---
+Figure 6: The platform interface for Hamlet 3.1.56, with the opening lines of the soliloquy selected in the
+reading text. The right panel displays the New Variorum Annotations for the line, delivered verbatim from
+the corpus—the Furness (1877) commentary gathering Johnson and Malone, with critic surnames expanded
+during digitization (JOHNSON, MALONE). This section is constructed server-side from the JSON corpus
+and never passes through the model. The panel numbers the line by the Variorum edition’s own lineation
+(line 70), per the two-regime alignment described above; 3.1.56 is the standard modern reference.
+truncation census; a 1,050-note human-adjudicated reader sample; a 23,094-note tail verification;
+and a 294-note full-span stratified sample.
+Evaluation scope. The post-OCR correction literature, as discussed above, would reasonably expect
+a held-out character-error-rate benchmark for the Gemini correction stage, an ablation comparing
+OCR-only and OCR-plus-LLM ingest, and measured over-correction rates on clean passages (Boros
+et al., 2024; Zhang et al., 2024). We, however, do not report these experiments, as stage-level
+character metrics would measure transcript repair in isolation; they would not establish that 23,094
+commentary notes reach readers without systematic tail loss or platform-side invention, which is
+the claim the project’s verification protocol is designed to support. Following Levchenko (2025) and
+Backer and Hyman (2025), we instead treat evaluation as a layered inquiry. Character metrics are
+the right tool for comparing models, while agreement with independent print witnesses is the right
+tool for assuring the corpus that readers actually see. We report the latter across the full corpus of
+the New Variorum editions.
+AI analysis tier reliability. The lexical glosses on the website, drawing on the Onions and Schmidt
+lexica, and the plain-language summaries are the most mature components of the AI tiers. The Full
+Fathom Five analytical tier is intentionally framed as an interpretive orientation rather than as a
+replacement for scholarship. Its strongest reliability feature is architectural in that named citations
+come from grounded retrieval layers, while the model-generated critical sections are prevented from
+inventing bibliographic attributions.
+Lexical witness quality. The Onions and Schmidt indices derive from OCR transcriptions supple-
+mented by parser improvements, build-time corrections, and, for Onions, incremental integration
+with keyed Perseus text. Further expansion of keyed coverage will continue to improve the already
+useful lexical layer.
+20
+--- PAGE 21 ---
+Coverage. The two pre-1956 volumes still under copyright ( Troilus and Cressida, 1953; Richard II,
+1955) are excluded from the platform.
+Sustainability. The platform incurs API costs for each Full Fathom Five request. Per-request
+exposure is bounded by the tier structure—the smaller gpt-4o-mini serves all tiers below Full
+Fathom Five—and by the ninety-second timeout, and the generated tiers can be disabled entirely
+without affecting the verbatim historical corpus, which is served statically. The generated tiers are
+also model-agnostic. Because analysis requests route through a thin serverless layer, the underlying
+model can be exchanged—for a less expensive open-weight alternative or for a stronger frontier
+model as economics and capabilities shift—without any change to the corpus or the retrieval
+layers, a substitution the parallel Claude-based function already demonstrates in practice. Three
+structural features mitigate long-term risk. First, the monolithic architecture requires no build
+dependencies, and the static components will remain accessible even if AI API access is discontinued.
+Second, the JSON corpus is fully portable to any static host. Third, the deterministic retrieval
+of historical notes bypasses the LLM entirely for the portion of the platform with the greatest
+scholarly reliability. In addition, the experimental tiers that rely on AI are enhancements to access,
+not the scholarly foundation; the New Variorum notes remain available even if a reader forgoes the
+large-language-model tiers entirely.
+Future Directions
+The fidelity verification reported above could be strengthened by re-OCRing the hard-case witness
+(Othello ) against cleaner page scans—following the quality-triaged re-processing approach that
+Zhang et al. (2024) found most effective, in which the poorest-quality material is routed to re-
+recognition rather than to model correction—and by a full note-by-note coverage census against
+print. Integration of the Texas A&M digital editions of the two overlapping plays would create a
+complete scholarly record spanning from 1871 to the present. Evaluating the accuracy of the tier’s
+characterizations of critical traditions against published scholarship would further test the design.
+Informal feedback from three readers with English literature degrees indicated the platform’s lexical
+glosses were useful and accurate; a structured user study would allow this finding to be assessed
+more rigorously.
+Conclusion
+When Horace Howard Furness began the New Variorum Shakespeare in 1871, he sought to democra-
+tize access to centuries of accumulated scholarship. A century and a half later, complete sets of his
+editions remain scarce; the abbreviations he used to save space on the page now require specialized
+knowledge; and the scholarship he gathered is ready for a new form of access commensurate with
+its continuing value.
+The platform described here ( https://newvariorum.com ) makes twenty-one of those volumes
+findable by line number in under a second. The historical commentary is delivered verbatim from
+the corpus, never passing through the model. The AI features layered on top serve a different
+purpose: helping a non-specialist begin to interpret 150 years of compressed critical argument about
+a single line of Shakespeare. The lexical glosses, grounded in Onions’s glossary and Schmidt’s
+lexicon, are traceable to their sources by design. The Full Fathom Five analytical tier, with its
+century-spanning perspective requirement and provision for diverse critical traditions, attempts
+something more ambitious, namely a historically balanced critical orientation rather than a rehearsal
+21
+--- PAGE 22 ---
+of whatever critics happen to dominate the model’s training distribution. This is a principled design
+goal, even as we acknowledge that its characterizations of those traditions are model-generated
+summaries. Most fundamentally, we have attempted to create infrastructure that expands rather
+than replaces human engagement with literary texts. The goal is not to automate scholarship but to
+provide tools that enable more people to participate in the ongoing conversation about Shakespeare
+that Furness began over 150 years ago.
+Acknowledgments
+The author thanks Hassan Ahmed, who served as a second reader for the fidelity adjudications and
+provided advice on coding and platform structure, and a family member who read the manuscript
+with care.
+Statement on AI Use
+Large language models operate at two levels in this project, and both are disclosed. At the platform
+level, their role is described in full in the Methodology: OCR post-correction grounded in page
+images, and generated analysis tiers whose New Variorum Analysis section is overwritten server-
+side with verbatim historical text. In manuscript preparation, AI tools were used for statistical
+verification, scripting, and the creation of tables and charts, as well as for drafting and editorial
+assistance; all substantive claims, all adjudications of verification cases, and all editorial judgments
+are the author’s. The verification checks themselves are deterministic string comparisons against
+independent print witnesses; AI coding assistants were used to develop and execute the audit
+scripts, and all reported statistics derive from those scripts and the artifacts deposited in the project
+repository.
+Data and Code Availability
+The platform is publicly accessible at https://newvariorum.com. The JSON corpus, alignment
+scripts, OCR pipeline, play-by-play witness registry, and the verification and adjudication artifacts
+are available in the project’s public GitHub repository. A citable archival deposit of the JSON
+corpus and pipeline code is maintained at Zenodo (DOI: 10.5281/zenodo.21126208). The platform’s
+codebase is released under the MIT License. The JSON corpus is released under a Creative
+Commons Attribution 4.0 International License (CC BY 4.0), with one exception: the play-text
+fields of the Othello corpus file reproduce Folger Digital Texts and remain subject to the Folger
+Shakespeare Library’s Creative Commons Attribution-NonCommercial (CC BY-NC 3.0) license.
+All other play-line strings derive from New Variorum edition OCR and are in the public domain.
+Folger-derived text is served on the live platform under the Folger’s non-commercial terms.
+References
+Backer, Samuel and Hyman, Louis. (2025) ‘Bootstrapping AI: Interdisciplinary Approaches
+to Assessing OCR Quality in English-Language Historical Documents’ in Proceedings of
+the 5th International Conference on Natural Language Processing for Digital Humanities
+(NLP4DH 2025) . Albuquerque: Association for Computational Linguistics, pp. 251–256.
+doi:10.18653/v1/2025.nlp4dh-1.21.
+22
+--- PAGE 23 ---
+Best, Michael. (2008) ‘The Internet Shakespeare Editions: Scholarly Shakespeare on the Web’,
+Shakespeare, 4(3), pp. 221–233. doi:10.1080/17450910802295096.
+Boros, Emanuela, Ehrmann, Maud, Romanello, Matteo, Najem-Meyer, Sven and Kaplan, Fr´ ed´ eric.
+(2024) ‘Post-Correction of Historical Text Transcripts with Large Language Models: An
+Exploratory Study’ in Bizzoni, Y., Degaetano-Ortlieb, S., Kazantseva, A. and Szpakowicz, S.
+(eds) Proceedings of the 8th Joint SIGHUM Workshop on Computational Linguistics for Cultural
+Heritage, Social Sciences, Humanities and Literature (LaTeCH-CLfL 2024) . St. Julians, Malta:
+Association for Computational Linguistics, pp. 133–159. doi:10.18653/v1/2024.latechclfl-1.14.
+Bourne, Jonathan. (2025) ‘Scrambled Text: Fine-Tuning Language Models for OCR Error Correction
+Using Synthetic Data’, International Journal on Document Analysis and Recognition , 28,
+pp. 741–755. doi:10.1007/s10032-025-00522-0.
+Bullokar, John. (1616) An English Expositor . London: John Legatt.
+Cawdrey, Robert. (1604) A Table Alphabeticall. London: Edmund Weaver.
+Cockeram, Henry. (1623) The English Dictionarie . London: Edmund Weaver.
+Cotgrave, Randle. (1611) A Dictionarie of the French and English Tongues . London: Adam Islip.
+Florio, John. (1598) A Worlde of Wordes, or Most Copious, and Exact Dictionarie in Italian and
+English. London: Arnold Hatfield for Edward Blount.
+Folger Shakespeare Library. (2023) Folger Digital Texts. Available at: https://www.folgerdigi
+taltexts.org (Accessed: 15 March 2025).
+Furness, Horace Howard. (1871) A New Variorum Edition of Shakespeare: Romeo and Juliet .
+Philadelphia: J. B. Lippincott.
+Furness, Horace Howard. (1877) A New Variorum Edition of Shakespeare: Hamlet . 2 vols.
+Philadelphia: J. B. Lippincott.
+Furness, Horace Howard. (1886) A New Variorum Edition of Shakespeare: Othello . Philadelphia: J.
+B. Lippincott.
+Furness, Horace Howard. (1901) A New Variorum Edition of Shakespeare: Twelfe Night, or What
+You Will. Philadelphia: J. B. Lippincott.
+The Geneva Bible . (1599) London: Deputies of Christopher Barker.
+Greif, Gavin, Griesshaber, Niclas and Greif, Robin. (2025) ‘Multimodal LLMs for OCR, OCR
+Post-Correction, and Named Entity Recognition in Historical Documents’. arXiv preprint
+arXiv:2504.00414. doi:10.48550/arXiv.2504.00414.
+HathiTrust Digital Library. (n.d.) Digital Preservation and Access . Available at: https://www.ha
+thitrust.org (Accessed: 15 March 2025).
+Internet Archive. (n.d.) Digital Library of Free and Borrowable Books . Available at: https:
+//archive.org (Accessed: 15 March 2025).
+Kanerva, Jenna, Ledins, Cassandra, K¨ apyaho, Siiri and Ginter, Filip. (2025) ‘OCR Error Post-
+Correction with LLMs in Historical Documents: No Free Lunches’ in Proceedings of the Third
+Workshop on Resources and Representations for Under-Resourced Languages and Domains
+(RESOURCEFUL 2025). Tallinn: University of Tartu Library, pp. 38–47.
+Kliman, Bernice W. (ed.) (1996) The Enfolded Hamlet . The Shakespeare Newsletter, extra issue.
+Kliman, Bernice W. (2006) ‘Print and Electronic Editions Inspired by the New Variorum Hamlet
+23
+--- PAGE 24 ---
+Project’, Shakespeare Survey, 59, pp. 157–167.
+Kliman, Bernice W., Clary, Frank N., Aasand, Hardin and Rasmussen, Eric. (eds) (n.d.) Hamlet-
+Works. Available at: http://www.hamletworks.org (Accessed: 15 June 2026).
+Knowles, Richard. (ed.) (2020) A New Variorum Edition of Shakespeare: King Lear . 2 vols. New
+York: Modern Language Association.
+Lancashire, Ian. (ed.) (2026) Lexicons of Early Modern English . Toronto: University of Toronto
+Library and University of Toronto Press. Available at: https://leme.library.utoronto.ca
+(Accessed: 15 June 2026).
+Levchenko, Maria. (2025) ‘Evaluating LLMs for Historical Document OCR: A Methodological
+Framework for Digital Humanities’ in Proceedings of the First Workshop on Natural Language
+Processing and Language Models for Digital Humanities (LM4DH 2025) . Varna: INCOMA,
+pp. 75–85.
+Mandell, Laura. (2019) ‘Digital Future for the New Variorum Edition of Shakespeare’, MLA News ,
+7 November. Available at:
+https://news.mla.hcommons.org/2019/11/07/new-variorum-edition-of-shakespeare
+-going-digital-at-texas-am/ (Accessed: 15 March 2025).
+New Variorum Shakespeare (2022) Center of Digital Humanities Research, Texas A&M University.
+Available at: https://newvariorumshakespeare.org (Accessed: 15 June 2026).
+Onions, C. T. (1911) A Shakespeare Glossary. Oxford: Clarendon Press (2nd edn 1919).
+Open Source Shakespeare . (n.d.) Available at: https://www.opensourceshakespeare.org
+(Accessed: 15 June 2026).
+Pierazzo, Elena. (2015) Digital Scholarly Editing: Theories, Models and Methods . Farnham: Ashgate.
+doi:10.4324/9781315577227.
+Sahle, Patrick. (2016) ‘What Is a Scholarly Digital Edition?’ in Driscoll, M. J. and Pierazzo, E.
+(eds.) Digital Scholarly Editing: Theories and Practices . Cambridge: Open Book Publishers,
+pp. 19–40.
+Schmidt, Alexander. (1902) Shakespeare-Lexicon: A Complete Dictionary of All the English Words,
+Phrases and Constructions in the Works of the Poet . 3rd edn. Revised by Gregor Sarrazin. 2
+vols. Berlin: Georg Reimer.
+Spevack, Marvin. (ed.) (1990) A New Variorum Edition of Shakespeare: Antony and Cleopatra .
+New York: Modern Language Association.
+Sun, Yujie, Sheng, Dongfang, Zhou, Zihan and Wu, Yifei. (2024) ‘AI Hallucination: Towards
+a Comprehensive Classification of Distorted Information in Artificial Intelligence-Generated
+Content’, Humanities and Social Sciences Communications, 11, article 1278. doi:10.1057/s41599-
+024-03811-x.
+Turner, Robert K. (1986) ‘The New Variorum Shakespeare’, MLA Newsletter , Winter, p. 10.
+Walters, W. H. and Wilder, E. I. (2023) ‘Fabrication and Errors in the Bibliographic Citations
+Generated by ChatGPT’, Scientific Reports, 13, article 14045. doi:10.1038/s41598-023-41032-5.
+Werstine, Paul. (2008) ‘Past is Prologue: Electronic New Variorum Shakespeares’, Shakespeare,
+4(3), pp. 208–220.
+Zhang, James, Haverals, Wouter, Naydan, Mary and Kernighan, Brian W. (2024) ‘Post-OCR
+Correction with OpenAI’s GPT Models on Challenging English Prosody Texts’ in DocEng ’24:
+24
+--- PAGE 25 ---
+Proceedings of the 2024 ACM Symposium on Document Engineering . New York: Association
+for Computing Machinery, article 9, pp. 9:1–9:4. doi:10.1145/3685650.3685669.
+25

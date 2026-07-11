@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import statistics
@@ -230,11 +231,70 @@ def build_summary(rows: list[dict]) -> list[dict]:
     return summary
 
 
+def _out_paths(suffix: str) -> tuple[Path, Path, Path]:
+    if not suffix:
+        return OUT_JSON, OUT_CSV, OUT_SUMMARY
+    stem = suffix if suffix.startswith("_") else f"_{suffix}"
+    return (
+        OUT_JSON.with_name(f"{OUT_JSON.stem}{stem}{OUT_JSON.suffix}"),
+        OUT_CSV.with_name(f"{OUT_CSV.stem}{stem}{OUT_CSV.suffix}"),
+        OUT_SUMMARY.with_name(f"{OUT_SUMMARY.stem}{stem}{OUT_SUMMARY.suffix}"),
+    )
+
+
+def _exclude_slug(excluded: set[str]) -> str:
+    known = {
+        frozenset({"Troilus and Cressida"}): "_no_troilus",
+    }
+    key = frozenset(excluded)
+    if key in known:
+        return known[key]
+    slug = "_".join(
+        sorted(
+            p.lower().replace("'", "").replace(",", "").replace(" ", "_")[:16]
+            for p in excluded
+        )
+    )[:48]
+    return f"_no_{slug}"
+
+
 def main() -> int:
-    rows = [audit_play(spec) for spec in PLAYS]
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument(
+        "--exclude",
+        action="append",
+        default=[],
+        help="Play title(s) to omit (repeatable), e.g. 'Troilus and Cressida'",
+    )
+    ap.add_argument(
+        "--out-suffix",
+        default=None,
+        help="Output filename suffix (default: _no_<slug> when --exclude is set)",
+    )
+    args = ap.parse_args()
+    excluded = {name.strip() for name in args.exclude if name.strip()}
+    plays = [spec for spec in PLAYS if spec["play"] not in excluded]
+    if not plays:
+        print("No plays left after exclusions.", file=sys.stderr)
+        return 1
+
+    suffix = args.out_suffix
+    if suffix is None and excluded:
+        suffix = _exclude_slug(excluded)
+
+    out_json, out_csv, out_summary = _out_paths(suffix or "")
+
+    rows = [audit_play(spec) for spec in plays]
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
-    OUT_JSON.write_text(json.dumps(rows, indent=2) + "\n", encoding="utf-8")
-    OUT_SUMMARY.write_text(json.dumps(build_summary(rows), indent=2) + "\n", encoding="utf-8")
+    payload = rows
+    if excluded:
+        payload = {
+            "excluded_plays": sorted(excluded),
+            "play_count": len(plays),
+            "plays": rows,
+        }
+    out_json.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    out_summary.write_text(json.dumps(build_summary(rows), indent=2) + "\n", encoding="utf-8")
 
     headers = [
         "play", "year", "note_strings", "avg_len", "median_len", "pct_under_250",
@@ -244,11 +304,15 @@ def main() -> int:
     lines = [",".join(headers)]
     for r in rows:
         lines.append(",".join(str(r.get(h, "")) for h in headers))
-    OUT_CSV.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    out_csv.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-    print(f"Wrote {OUT_JSON}")
-    print(f"Wrote {OUT_SUMMARY}")
-    print(f"Wrote {OUT_CSV}\n")
+    print(f"Wrote {out_json}")
+    print(f"Wrote {out_summary}")
+    print(f"Wrote {out_csv}")
+    if excluded:
+        print(f"Excluded: {', '.join(sorted(excluded))} ({len(plays)} plays audited)\n")
+    else:
+        print()
     print(
         f"{'Play':<32} {'Notes':>6} {'Synth':>5} {'L2%':>6} {'Fail':>5} {'Tier':>4}"
     )

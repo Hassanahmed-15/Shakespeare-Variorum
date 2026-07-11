@@ -1,0 +1,1846 @@
+{
+  "generated_at": "2026-07-09T09:55:04.935714+00:00",
+  "seed_papers": [
+    {
+      "key": "boros_2024_latech",
+      "label": "Boros et al. 2024 LaTeCH",
+      "title": "Post-Correction of Historical Text Transcripts with Large Language Models: An Exploratory Study",
+      "doi": "10.18653/v1/2024.latechclfl-1.14",
+      "openalex_id": "W7126374621",
+      "semantic_scholar_id": "57c7d33858ee424c41130888bad0a505cd61f735",
+      "google_scholar_cites_id": "8103317005463255551"
+    },
+    {
+      "key": "zhang_2024_doceng",
+      "label": "Zhang et al. 2024 DocEng",
+      "title": "Post-OCR Correction with OpenAI's GPT Models on Challenging English Prosody Texts",
+      "doi": "10.1145/3685650.3685669",
+      "openalex_id": "W4402590041",
+      "semantic_scholar_id": "866023586936381a5a2d547cee34c3d2799a2258",
+      "google_scholar_cites_id": "18300382062689824098"
+    }
+  ],
+  "total_unique_works": 84,
+  "citing_both_seeds": 6,
+  "source_harvest": {
+    "google_scholar": {
+      "boros_2024_latech": 14,
+      "zhang_2024_doceng": 21
+    },
+    "openalex": {
+      "boros_2024_latech": 9,
+      "zhang_2024_doceng": 6
+    },
+    "semantic_scholar": {
+      "boros_2024_latech": 35,
+      "zhang_2024_doceng": 12
+    }
+  },
+  "fetch_limitations": [
+    "Google Scholar is rate-limited and returns inconsistent HTML across requests (Python requests often blocked; curl succeeded with delays).",
+    "Google Scholar 'Cited by' counts at harvest time: Boros ~15, Zhang ~18 (per Scholar UI); harvested 14 (Boros, 2 pages) and 21 raw Zhang rows across 3 pages (some overlap/variant titles before dedup).",
+    "OpenAlex reports fewer incoming citations than Semantic Scholar (Boros: 9 vs 35; Zhang: 6 vs 12) — likely indexing lag and incomplete cross-index coverage.",
+    "Semantic Scholar returned 35 + 12 citing papers (full pagination).",
+    "Final catalog is a deduplicated union across all three sources; 84 unique works total, 6 citing both seed papers.",
+    "Works only in Semantic Scholar may include references not yet indexed by Google Scholar or OpenAlex, and vice versa."
+  ],
+  "works": [
+    {
+      "title": "Utilization of optical character recognition (OCR) in a web-based internship information system for administrative efficiency and data validation",
+      "authors": [
+        "Y Yunitasari",
+        "JD Aldida…"
+      ],
+      "year": 2026,
+      "venue": "… Conference on Emerging …",
+      "link": "https://www.spiedigitallibrary.org/conference-proceedings-of-spie/14141/141410M/Utilization-of-optical-character-recognition-OCR-in-a-web-based/10.1117/12.3107794.short",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Human Resource Management is a systematic process for recruiting, developing, and collaborating with and posing roles efficiently and effectively to achieve organizational …",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Understanding Automated Text Recognition",
+      "authors": [
+        "Michael Schonhardt",
+        "Tim Geelhaar",
+        "Tobias Hodel",
+        "Jan Odstrčilík"
+      ],
+      "year": 2026,
+      "venue": "Bielefeld University Press eBooks",
+      "link": "https://doi.org/10.64136/ftqk5914",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.64136/ftqk5914",
+      "snippet": "This chapter introduces the technologies behind ATR, beginning with a conceptual overview of human reading and its digital counterpart. The historical evolution of ATR is traced from mechanical inventions to the breakthrough of deep learning, explaining how neural networks process image data to extract and recognise text. We discuss key technologies such as convolutional neural networks, recurrent neural networks, and transformers and their roles within the ATR pipeline. We also introduce fundamental concepts of machine learning – including supervised, unsupervised, and reinforcement learning – and highlight their relevance to modern ATR systems.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "openalex"
+      ],
+      "openalex_id": "https://openalex.org/W7160938014",
+      "semantic_scholar_id": null
+    },
+    {
+      "title": "TRIDIS: A Comprehensive Medieval and Early Modern Corpus for Handwritten Text Recognition and Named Entity Recognition",
+      "authors": [
+        "Sergio Torres Aguilar"
+      ],
+      "year": 2026,
+      "venue": "Research Square",
+      "link": "https://doi.org/10.21203/rs.3.rs-9284923/v1",
+      "pdf_link": "https://www.researchsquare.com/article/rs-9284923/latest.pdf",
+      "doi": "https://doi.org/10.21203/rs.3.rs-9284923/v1",
+      "snippet": null,
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "openalex"
+      ],
+      "openalex_id": "https://openalex.org/W7166560587",
+      "semantic_scholar_id": null
+    },
+    {
+      "title": "Tools",
+      "authors": [
+        "Michael Schonhardt",
+        "Tim Geelhaar",
+        "Tobias Hodel",
+        "Jan Odstrčilík"
+      ],
+      "year": 2026,
+      "venue": "Bielefeld University Press eBooks",
+      "link": "https://doi.org/10.64136/vqtt9446",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.64136/vqtt9446",
+      "snippet": "This chapter surveys the current landscape of ATR tools, from simple drag-and-drop applications to highly customisable command-line interfaces and fully integrated transcription environments (ITEs). It guides readers through the selection process based on project scope, technical expertise, collaboration needs, and infrastructure. The chapter focuses on three major ITEs – Transkribus, eScriptorium, and OCR4All – comparing their features, usability, and sustainability, and highlighting how different tools serve different scholarly needs.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "openalex"
+      ],
+      "openalex_id": "https://openalex.org/W7160929302",
+      "semantic_scholar_id": null
+    },
+    {
+      "title": "To Overfit or Not to Overfit? An Evaluation of HTR Workflow on 17th-18th Century French Corpus",
+      "authors": [
+        "M Tiger"
+      ],
+      "year": 2026,
+      "venue": "LREC",
+      "link": "https://hal.science/hal-05613941/",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "This paper presents the results of an evaluation of general Handwritten Text Recognition (HTR) models applied to 17th and 18th century corpus written in modern French and the fine …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Structure-Aware Text Recognition for Ancient Greek Critical Editions",
+      "authors": [
+        "Nicolas Angleraud",
+        "Antonia Karamolegkou",
+        "Benoît Sagot",
+        "Thibault Cl'erice"
+      ],
+      "year": 2026,
+      "venue": "arXiv.org",
+      "link": "https://www.semanticscholar.org/paper/895e302b63499d45f8f6f1c55a8dc391fa0aace4",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.48550/arXiv.2603.02803",
+      "snippet": "Recent advances in visual language models (VLMs) have transformed end-to-end document understanding. However, their ability to interpret the complex layout semantics of historical scholarly texts remains limited. This paper investigates structure-aware text recognition for Ancient Greek critical editions, which have dense reference hierarchies and extensive marginal annotations. We introduce two novel resources: (i) a large-scale synthetic corpus of 185,000 page images generated from TEI/XML sources with controlled typographic and layout variation, and (ii) a curated benchmark of real scanned editions spanning more than a century of editorial and typographic practices. Using these datasets, we evaluate three state-of-the-art VLMs under both zero-shot and fine-tuning regimes. Our experiments reveal substantial limitations in current VLM architectures when confronted with highly structured historical documents. In zero-shot settings, most models significantly underperform compared to established off-the-shelf software. Nevertheless, the Qwen3VL-8B model achieves state-of-the-art performance, reaching a median Character Error Rate of 1.0\\% on real scans. These results highlight both the current shortcomings and the future potential of VLMs for structure-aware recognition of complex scholarly documents.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "895e302b63499d45f8f6f1c55a8dc391fa0aace4"
+    },
+    {
+      "title": "Structure-aware text recognition for ancient Greek critical editions",
+      "authors": [
+        "N Angleraud",
+        "A Karamolegkou",
+        "B Sagot …"
+      ],
+      "year": 2026,
+      "venue": "arXiv preprint arXiv …",
+      "link": "https://arxiv.org/abs/2603.02803",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Recent advances in visual language models (VLMs) have transformed end-to-end document understanding. However, their ability to interpret the complex layout semantics of …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Reading the unreadable: creating a dataset of 19th century English newspapers using image-to-text language models",
+      "authors": [
+        "J Bourne"
+      ],
+      "year": 2026,
+      "venue": "Digital Scholarship in the Humanities",
+      "link": "https://academic.oup.com/dsh/article-abstract/41/1/22/8407498",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Quid est VERITAS? A Modular Framework for Archival Document Analysis",
+      "authors": [
+        "Leonardo Bassanini",
+        "Ludovico Biancardi",
+        "Alfio Ferrara",
+        "Andrea Gamberini",
+        "S. Picascia",
+        "Folco Vaglienti"
+      ],
+      "year": 2026,
+      "venue": "Proceedings of the Language Resources and Evaluation Conference",
+      "link": "https://www.semanticscholar.org/paper/e5a0d077faf679f18284faa41dfdba2603790c5a",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.48550/arXiv.2603.28108",
+      "snippet": "The digitisation of historical documents has traditionally been conceived as a process limited to character-level transcription, producing flat text that lacks the structural and semantic information necessary for substantive computational analysis. We present VERITAS (Vision-Enhanced Reading, Interpretation, and Transcription of Archival Sources), a modular, model-agnostic framework that reconceptualises digitisation as an integrated workflow encompassing transcription, layout analysis, and semantic enrichment. The pipeline is organised into four stages - Preprocessing, Extraction, Refinement, and Enrichment - and employs a schema-driven architecture that allows researchers to declaratively specify their extraction objectives. We evaluate VERITAS on the critical edition of Bernardino Corio's Storia di Milano, a Renaissance chronicle of over 1,600 pages. Results demonstrate that the pipeline achieves a 67.6% relative reduction in word error rate compared to a commercial OCR baseline, with a threefold reduction in end-to-end processing time when accounting for manual correction. We further illustrate the downstream utility of the pipeline's output by querying the transcribed corpus through a retrieval-augmented generation system, demonstrating its capacity to support historical inquiry.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "e5a0d077faf679f18284faa41dfdba2603790c5a"
+    },
+    {
+      "title": "Quid est VERITAS? A Modular Framework for Archival Document Analysis",
+      "authors": [
+        "L Bassanini",
+        "L Biancardi",
+        "A Ferrara…"
+      ],
+      "year": 2026,
+      "venue": "arXiv preprint arXiv …",
+      "link": "https://arxiv.org/abs/2603.28108",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "The digitisation of historical documents has traditionally been conceived as a process limited to character-level transcription, producing flat text that lacks the structural and …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Page-Level Shannon Entropy From Top- Logprobs Predicts OCR Quality",
+      "authors": [
+        "A Kaltchenko"
+      ],
+      "year": 2026,
+      "venue": "2026 IEEE 16th Annual Computing and …, 2026",
+      "link": "https://ieeexplore.ieee.org/abstract/document/11393782/",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Vision-language models (VLMs) such as GPT-4o can now perform end-to-end OCR directly from page images, but users still lack a simple, model-native indicator of how reliable a …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Page-Level Shannon Entropy From Top-$k$ Logprobs Predicts OCR Quality",
+      "authors": [
+        "Alexei Kaltchenko",
+        "A. Kaltchenko"
+      ],
+      "year": 2026,
+      "venue": "https://doi.org/10.1109/ccwc67433.2026.11393782",
+      "link": "https://doi.org/10.1109/ccwc67433.2026.11393782",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.1109/ccwc67433.2026.11393782",
+      "snippet": "Vision-language models (VLMs) such as GPT-4o can now perform end-to-end OCR directly from page images, but users still lack a simple, model-native indicator of how reliable a given transcript is. At the same time, these APIs expose top-k log-probabilities at every decoding step. In this work-in-progress paper we show how to turn this signal into a page-level quality indicator: we compute a top-k plus tail Shannon entropy for each token and summarise each page by its mean bits per token. We then examine how this global entropy relates to standard OCR metrics, character error rate (CER) and Levenshtein distance with respect to human ground truth, with historical newspaper pages as the primary target application. Our experimental design treats GPT-4o as a black-box VLM-based OCR engine, in line with recent analyses of GPT-4 for document understanding and historical OCR. Qualitatively, we observe a clear monotone trend: low-entropy pages tend to have low CER, while error-prone pages consistently exhibit higher entropy; a small pilot experiment is included to validate the end-to-end measurement pipeline. This suggests a simple entropy-based triage rule (accept vs. review) driven entirely by model-native bits per token. We focus on global entropy as a compact, reproducible page-level signal compatible with practical API constraints: we use only top-k logprobs from a single decoding pass and avoid any multi-sample semantic entropy estimation.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "openalex",
+        "semantic_scholar"
+      ],
+      "openalex_id": "https://openalex.org/W7131413248",
+      "semantic_scholar_id": "01a81d8cb9f90ac48631d41d3191c87a083c504e"
+    },
+    {
+      "title": "Learning What Matters for Effective Historical Manuscripts Recognition",
+      "authors": [
+        "Asma Kharrat",
+        "Fadoua Drira",
+        "Franck Lebourgeois",
+        "Bertrand Kerautret"
+      ],
+      "year": 2026,
+      "venue": "International Conference on Agents and Artificial Intelligence",
+      "link": "https://www.semanticscholar.org/paper/0c474e0e7383d4c1cb8599c23dd02e1ee82f32ca",
+      "pdf_link": "https://hal.science/hal-05584841",
+      "doi": "https://doi.org/10.5220/0014342600004052",
+      "snippet": ": Historical Handwriting Text Recognition (HHTR) has long posed significant challenges due to the high variability in writing styles, the degradation of historical documents, and the scarcity of labeled training data. While commercial systems have made notable progress in addressing some of these issues, their performance often remains limited when applied to diverse historical scripts or low-resource scenarios due to a passive randomly sampled dataset for learning. In recent years, efforts to enhance data efficiency have led to the development of smarter annotation strategies and the application of active learning techniques, enabling models to learn effectively from fewer annotated examples. At the same time, the emergence of Large Language Models (LLMs) has opened new avenues for contextual understanding and intelligent error correction support. This paper provides a comprehensive overview of the evolution of HHTR systems, with a particular focus on methods aimed at minimizing annotation effort. We examine selective annotation methodologies, explore Continual learning strategies, and analyze the growing role of LLMs in supporting transcription and recognition tasks. Finally, we highlight ongoing challenges and outline promising future directions for building intelligent, low-resource, and interactive systems for historical document analysis.",
+      "seed_papers": [
+        "boros_2024_latech",
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "0c474e0e7383d4c1cb8599c23dd02e1ee82f32ca"
+    },
+    {
+      "title": "Learning What Matters for Effective Historical Manuscripts Recognition",
+      "authors": [
+        "A Kharrat",
+        "F Drira",
+        "F Lebourgeois…"
+      ],
+      "year": 2026,
+      "venue": "… Conference on Agents …",
+      "link": "https://hal.science/hal-05584841/",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Historical Handwriting Text Recognition (HHTR) has long posed significant challenges due to the high variability in writing styles, the degradation of historical documents, and the …",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Leakage-free budget-aware routing for selective VLM correction in Chinese handwritten OCR",
+      "authors": [
+        "Binhua Zhu",
+        "Fayong Zhang",
+        "Wei Wang",
+        "Mingze Tang",
+        "Jiaxu Zhang"
+      ],
+      "year": 2026,
+      "venue": "SSRN Electronic Journal",
+      "link": "https://doi.org/10.2139/ssrn.6815774",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.2139/ssrn.6815774",
+      "snippet": null,
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "openalex"
+      ],
+      "openalex_id": "https://openalex.org/W7162069168",
+      "semantic_scholar_id": null
+    },
+    {
+      "title": "Introduction",
+      "authors": [
+        "Michael Schonhardt",
+        "Tim Geelhaar",
+        "Tobias Hodel",
+        "Jan Odstrčilík"
+      ],
+      "year": 2026,
+      "venue": "Bielefeld University Press eBooks",
+      "link": "https://doi.org/10.64136/ypmh8773",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.64136/ypmh8773",
+      "snippet": "This introductory chapter outlines the historical and scholarly significance of automated text recognition (ATR), emphasising its role in transforming analogue textual sources into machine-readable data. It explains how advances in machine learning have enabled the accurate transcription of handwritten documents and introduces key terms and definitions on which our arguments and assumptions are built.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "openalex"
+      ],
+      "openalex_id": "https://openalex.org/W7160937378",
+      "semantic_scholar_id": null
+    },
+    {
+      "title": "Integrating Digital Humanities in Teaching Research Methodologies for Postgraduate Students in Arabic and Islamic Studies",
+      "authors": [
+        "T Mohammed",
+        "MFS Raheel…",
+        "MFS Raheel …"
+      ],
+      "year": 2026,
+      "venue": "Human-AI Collaboration …",
+      "link": "https://www.igi-global.com/chapter/integrating-digital-humanities-in-teaching-research-methodologies-for-postgraduate-students-in-arabic-and-islamic-studies/405326",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Abstract The integration of Digital Humanities (DH) into postgraduate education offers transformative possibilities for advancing research methodologies in Arabic and Islamic …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Improving Access to Historical Archives with Real-time RAG-based Systems",
+      "authors": [
+        "Stergios Konstantinidis",
+        "Hayman Lotfy",
+        "Alexis Erne",
+        "Faruk Zahiragic",
+        "Min-Yen Kan",
+        "Michalis Vlachos"
+      ],
+      "year": 2026,
+      "venue": "",
+      "link": "https://www.semanticscholar.org/paper/9864aff7a876b93654ebf11ae922f6bd2fd38a46",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Digitized historical archives are large, heterogeneous cultural heritage repositories, but access methods for such archives face challenges such as noisy optical character recognition (OCR) output and rigid keyword-based retrieval, which limit retrieval quality. In this work, we present an end-to-end archival processing and retrieval framework that integrates large language models (LLMs) into the archival pipeline. Our system introduces two core components: (i) an LLM-based OCR refinement module that improves text quality, and (ii) a semantic retrieval and cross-encoder reranking pipeline supporting natural-language question answering via retrieval-augmented generation (RAG). Our evaluations are done on a historical archival dataset of 500,000 Swiss newspaper segments spanning over three centuries (1762 to 2001). Experiments are conducted across 384 natural-language test queries. Our results highlight that LLM refinements reduce OCR errors by up to 44.52% (CER) and 60.95% (WER). More importantly, this is accompanied by downstream information retrieval improvements. Compared to traditional keyword baselines, our reranking pipeline increases NDCG@10 by 31.9% (from 65.99% to 87.05%) and achieves statistically significant gains in both answer correctness and context relevance. These results demonstrate that integrating LLMs with established document processing and retrieval pipelines can elevate digital libraries from static repositories to interactive, semantically searchable archival systems.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "9864aff7a876b93654ebf11ae922f6bd2fd38a46"
+    },
+    {
+      "title": "Determining whole–part relationships when cataloging nineteenth-century monographs",
+      "authors": [
+        "LM de Campos",
+        "JM Fernández-Luna…",
+        "JM Fernández-Luna …"
+      ],
+      "year": 2026,
+      "venue": "… Scholarship in the …",
+      "link": "https://academic.oup.com/dsh/advance-article-abstract/doi/10.1093/llc/fqag055/8664525",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "This article explores the process of determining whole–part relationships in cataloging digital libraries. In contemporary library practices, accurately determining how an entity or …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Detecting Latin in historical books with Large Language Models: a multimodal benchmark",
+      "authors": [
+        "Y Wu",
+        "K Shu",
+        "J Fischer",
+        "L Pivovarova …"
+      ],
+      "year": 2026,
+      "venue": "Proceedings of the …",
+      "link": "https://aclanthology.org/2026.eacl-long.245/",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "This paper presents a novel task of extracting low-resourced and noisy Latin fragments from mixed-language historical documents with varied layouts. We benchmark and evaluate the …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "De l'Archive au Graphe de Connaissances: Post-correction OCR et Extraction d'Entités par LLMs sur les Fonds Historiques du Cnum",
+      "authors": [
+        "MA Lasheb",
+        "O Pons"
+      ],
+      "year": 2026,
+      "venue": "INFORSID",
+      "link": "https://hal.science/hal-05637435/",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "La valorisation des fonds historiques se heurte à la qualité variable de l'OCR. Cet article compare des modèles locaux et commerciaux sur trois siècles (XVIII-XX). Si Qwen2. 5-72B …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "CULTURAL-INTELLIGENT INTERFACES: AN ADAPTIVE FRAMEWORK FOR RECREATING IRANIAN HERITAGE MOTIFS AND MEANING THROUGH ARTIFICIAL …",
+      "authors": [
+        "L Abouali"
+      ],
+      "year": 2026,
+      "venue": "Scientific Culture",
+      "link": "https://openurl.ebsco.com/contentitem/gcd:191995751?sid=ebsco:plink:crawler-gcd&id=ebsco:gcd:191995751&crl=c&jrnl=24080071",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "This paper proposes an adaptive and culturally intelligent user interface framework that uses artificial intelligence (AI) to recreate and preserve Iranian heritage motifs. The aim of this …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Core Concepts",
+      "authors": [
+        "Michael Schonhardt",
+        "Tim Geelhaar",
+        "Tobias Hodel",
+        "Jan Odstrčilík"
+      ],
+      "year": 2026,
+      "venue": "Bielefeld University Press eBooks",
+      "link": "https://doi.org/10.64136/tmbx6948",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.64136/tmbx6948",
+      "snippet": "This chapter outlines eight key concepts – data, layout, transcription, training and models, evaluation, workflow, use and reuse, and ethics – that form the conceptual backbone of ATR. It explains how each concept shapes the outcome of text recognition, stressing the importance of methodological awareness, practical decision-making, and critical reflection beyond specific tools or technologies.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "openalex"
+      ],
+      "openalex_id": "https://openalex.org/W7160896228",
+      "semantic_scholar_id": null
+    },
+    {
+      "title": "Case Studies",
+      "authors": [
+        "Michael Schonhardt",
+        "Tim Geelhaar",
+        "Tobias Hodel",
+        "Jan Odstrčilík"
+      ],
+      "year": 2026,
+      "venue": "Bielefeld University Press eBooks",
+      "link": "https://doi.org/10.64136/iwvc5016",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.64136/iwvc5016",
+      "snippet": "This chapter presents four case studies that demonstrate how ATR can be adapted to the challenges of complex historical materials. Each case engages with real-world problems such as mixedlanguage manuscripts, diverse scripts, complex layouts, and varying editorial practices. Together, the studies offer practical insights into how methodological decisions – ranging from annotation strategies to model design – directly shape recognition outcomes and scholarly reuse in research practice.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "openalex"
+      ],
+      "openalex_id": "https://openalex.org/W7160951170",
+      "semantic_scholar_id": null
+    },
+    {
+      "title": "Bridging Semantic and Geographic Space: Embedding-based Toponym Resolution in Historical Guidebooks",
+      "authors": [
+        "R Meredith"
+      ],
+      "year": 2026,
+      "venue": "2026",
+      "link": "https://www.diva-portal.org/smash/record.jsf?pid=diva2:2069532",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "This thesis investigates the effectiveness of using contextual vector embeddings to disambiguate toponyms found in historical guidebooks. This is a crucial task in the study of …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Automated Text Recognition",
+      "authors": [
+        "Michael Schonhardt",
+        "T. Geelhaar",
+        "Tobias Hodel",
+        "J. Odstrčilík"
+      ],
+      "year": 2026,
+      "venue": "",
+      "link": "https://www.semanticscholar.org/paper/69d8b44201ddb3059b47c763c6921d880efe3619",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.64136/nrlj5339",
+      "snippet": "The diverse landscape of platforms and recognition systems in the field of Automated Text Recognition (ATR) offers significant opportunities for the digital analysis and exploitation of handwritten sources. At the same time, in this complex and rapidly evolving field, established concepts of text processing and analysis quickly reach their limits.\nThis book provides scholars in the humanities with guidance by presenting technologies, platforms, key concepts, and case studies. It helps readers develop algorithmic literacy, enabling them to carry out both small- and large-scale projects using current technologies, as well as to engage with future developments in the field of ATR.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "69d8b44201ddb3059b47c763c6921d880efe3619"
+    },
+    {
+      "title": "AURORA-OCR: A Neuroevolutionary Framework with LLM-Guided Correction for Robust Text Recognition Under Degraded Imaging Conditions",
+      "authors": [
+        "T. M. Rakesh",
+        "G S Girisha",
+        "M. N. Renukadevi",
+        "T. Rakesh",
+        "G. Girisha"
+      ],
+      "year": 2026,
+      "venue": "Engineering Technology & Applied Science Research",
+      "link": "https://doi.org/10.48084/etasr.18219",
+      "pdf_link": "https://etasr.com/index.php/ETASR/article/download/18219/6796",
+      "doi": "https://doi.org/10.48084/etasr.18219",
+      "snippet": "The performance of Optical Character Recognition (OCR) is significantly reduced under difficult imaging conditions, including blur, skew, background textures (interference), uneven illumination, and polarization (inverted). This study presents AURORA-OCR (Adaptive Universal Recognition and Robustness Architecture), an adaptive/self-optimizing OCR framework that implements: (i) a neuroevolutionary-based preprocessing engine, (ii) a multi-scale dual-polarity OCR fusion mechanism, and (iii) a lightweight LLM-guided text correction module using continuous local memory. An evolution search strategy dynamically determines optimal parameters for (i) gamma correction, (ii) contrast clipping, (iii) adaptive threshold sensitivity, and (iv) Front of Polarity (FOB) to maximize the OCR confidence and structural fidelity of degraded images. Final recognition occurs through a hybrid of Transformer/CRNN-inspired fusion that combines multiple OCR hypotheses produced from various spatial scales and polarities in order to achieve a stable output. An extensive evaluation was conducted on seven publicly available OCR benchmark datasets, namely ICDAR 2013, ICDAR 2015, ICDAR MLT-2019, Street View Text (SVT), IIIT5K, COCO-Text, and TextOCR-2021, along with a custom dataset of 500 real-world smartphone-captured document images, representing a broad spectrum of photometric and geometric degradation conditions, using the Precision, Recall, F1-ccore, Character Error Rate (CER), Word Error Rate (WER), semantic similarity, and semantic drift metrics, indicated that AURORA-OCR consistently outperformed previous OCR pipelines and was substantially superior for documents exhibiting low contrast, noise, and illumination distortion. AURORA-OCR achieved a reduction in CER of 23-41%, an improvement in F1-score of 19-36%, and a decrease in SD of 32%, therefore providing additional robustness to text extraction. The proposed method is lightweight, interpretable, and suitable for deployment in document digitization and embedded applications.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "openalex",
+        "semantic_scholar"
+      ],
+      "openalex_id": "https://openalex.org/W7163752813",
+      "semantic_scholar_id": "faf0526fde4f4957c9910192ac4d7055591160c9"
+    },
+    {
+      "title": "AURORA-OCR: A Neuroevolutionary Framework with LLM-Guided Correction for Robust Text Recognition Under Degraded Imaging Conditions",
+      "authors": [
+        "TM Rakesh",
+        "GS Girisha",
+        "MN Renukadevi"
+      ],
+      "year": 2026,
+      "venue": "Engineering, Technology & …",
+      "link": "https://etasr.com/index.php/ETASR/article/view/18219",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Abstract The performance of Optical Character Recognition (OCR) is significantly reduced under difficult imaging conditions, including blur, skew, background textures (interference) …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "A Clustering-Based Social Media Analysis Framework for Disaster Management: A Case Study of the 2023 Kahramanmaraş/Türkiye Earthquakes",
+      "authors": [
+        "Sema DEĞİRMEN-BEKTAŞ",
+        "Tülin İnkaya",
+        "Fatih Çavdur",
+        "Sema Değirmen-Bektaş",
+        "Tülin Inkaya",
+        "F. Çavdur"
+      ],
+      "year": 2026,
+      "venue": "Applied Sciences",
+      "link": "https://doi.org/10.3390/app16115318",
+      "pdf_link": "https://doi.org/10.3390/app16115318",
+      "doi": "https://doi.org/10.3390/app16115318",
+      "snippet": "Social media posts by individuals affected by disasters and their relatives provide a significant source of data for identifying emergencies and needs, assessing the situation, and determining affected areas. These posts often contain not only text but also text embedded within images. Therefore, focusing solely on text data may compromise the integrity of the information and lead to incomplete or limited analyses. In this study, a topic modelling-based clustering approach is proposed that accounts for the complementary nature of text and image text in social media posts, as well as the limitations of manual annotation during disasters. In this context, data pre-processing was performed on text and text extracted from images. Text extracted from images via Optical Character Recognition (OCR) was corrected using the GPT-4.0-mini model. Then, both data types were clustered separately using BERTopic with k-means, and the resulting clusters were integrated. A dictionary-based analysis was conducted to identify humanitarian relief categories and locations within the clusters. The proposed framework was applied to the social media dataset related to the Kahramanmaraş earthquakes, one of the largest disasters in recent times. The findings show that text and image text data complement each other. The resulting clusters are meaningful, with average coherence scores of 0.710 for text and 0.687 for image text. LLM-based post-OCR correction also yielded a 62.81% reduction in average character error rate and a 56.91% decrease in average word error rate compared to the normalized ground truth image text. Furthermore, the proposed approach outperformed both keyword-based filtering with k-means and BERTopic with HDBSCAN. In summary, the results demonstrate that the proposed unsupervised learning approach is effective for extracting humanitarian needs and locations from social media in disaster response.",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "openalex",
+        "semantic_scholar"
+      ],
+      "openalex_id": "https://openalex.org/W7162432553",
+      "semantic_scholar_id": "e9da46d91006f8dc267dd90577e9b9122ae188cb"
+    },
+    {
+      "title": "[HTML] [HTML] A Clustering-Based Social Media Analysis Framework for Disaster Management: A Case Study of the 2023 Kahramanmaraş/Türkiye Earthquakes",
+      "authors": [
+        "S Değirmen-Bektaş",
+        "T İnkaya",
+        "F Cavdur"
+      ],
+      "year": 2026,
+      "venue": "Applied Sciences",
+      "link": "https://www.mdpi.com/2076-3417/16/11/5318",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Вплив параметрів текстових документів на точність роботи мультимодальної моделі GPT-4 vision у завданнях розпізнавання тексту",
+      "authors": [
+        "Denys Doskach",
+        "Віктор Хавалко",
+        "Д. Я. Доскач"
+      ],
+      "year": 2025,
+      "venue": "Scientific Bulletin of UNFU",
+      "link": "https://doi.org/10.36930/40350214",
+      "pdf_link": "https://nv.nltu.edu.ua/index.php/journal/article/download/2739/2741",
+      "doi": "https://doi.org/10.36930/40350214",
+      "snippet": "Проаналізовано вплив параметрів текстових документів на ефективність мовної мультимодальної моделі GPT-4 Vision, яку активно застосовують для цифровізації документів зі складною структурою. Досліджено залежність точності роботи моделі від таких факторів, як розмір шрифту, фізичний розмір документа (кількість сторінок формату А4) та загальний обсяг тексту (кількість символів). Особливу увагу приділено проблемі генерування моделлю некоректної інформації (\"галюцинацій\"), яка залишається істотним недоліком цього підходу до цифровізації текстів. Розроблено п'ять експериментальних наборів PDF-документів із варіативними параметрами шрифту, обсягу тексту та кількості сторінок, що дало змогу оцінити вплив кожного з факторів окремо й у їхніх комбінаціях. Для кількісного оцінювання частоти появи галюцинацій застосовано метрику точності ROUGE-L. Встановлено, що частота виникнення галюцинацій значно зростає у документах, які містять понад 5000 символів тексту зі шрифтом в 14 pt або більш ніж дві сторінки формату А4. Наприклад, для чотиристорінкового документа з обсягом тексту близько 12000 символів значення метрики ROUGE-L становило 0,51, тоді як для аналогічного за обсягом тексту, компактно розташованого на одній сторінці за рахунок зменшення розміру шрифту до 6 pt, показник точності був значно вищим (ROUGE-L = 0,87). Це свідчить про значний вплив фізичних параметрів документа на точність роботи мультимодальних моделей. Розроблено практичні рекомендації щодо раціонального використання моделі GPT-4 Vision для цифровізації складних документів: мінімальний рекомендований розмір шрифту – 6 pt; максимальний обсяг тексту – до 5000 символів або не більше двох сторінок за одне оброблення; потреба мінімізації пустих ділянок шляхом видалення зайвих полів і порожніх сторінок. Отримані результати мають практичну цінність для подальшого вдосконалення алгоритмів цифровізації документів зі складною структурою та для підвищення надійності роботи мультимодальних моделей. Запропоновану методику оцінювання впливу параметрів текстових документів на точність роботи моделі GPT-4 Vision можна використати для наступного дослідження, спрямованого на зменшення частоти виникнення галюцинацій у завданнях автоматизованого розпізнавання тексту.",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "openalex",
+        "semantic_scholar"
+      ],
+      "openalex_id": "https://openalex.org/W4410507090",
+      "semantic_scholar_id": "f53010b8a22c9c674175533059aaba318cd77885"
+    },
+    {
+      "title": "WXImpactBench: A Disruptive Weather Impact Understanding Benchmark for Evaluating Large Language Models",
+      "authors": [
+        "Yongan Yu",
+        "Qingchen Hu",
+        "Xianda Du",
+        "Jiayin Wang",
+        "Fengran Mo",
+        "Renée Sieber"
+      ],
+      "year": 2025,
+      "venue": "Annual Meeting of the Association for Computational Linguistics",
+      "link": "https://www.semanticscholar.org/paper/f7aa60726a3455c2cc18602893695a769e03c34b",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.48550/arXiv.2505.20249",
+      "snippet": "Climate change adaptation requires the understanding of disruptive weather impacts on society, where large language models (LLMs) might be applicable. However, their effectiveness is under-explored due to the difficulty of high-quality corpus collection and the lack of available benchmarks. The climate-related events stored in regional newspapers record how communities adapted and recovered from disasters. However, the processing of the original corpus is non-trivial. In this study, we first develop a disruptive weather impact dataset with a four-stage well-crafted construction pipeline. Then, we propose WXImpactBench, the first benchmark for evaluating the capacity of LLMs on disruptive weather impacts. The benchmark involves two evaluation tasks, multi-label classification and ranking-based question answering. Extensive experiments on evaluating a set of LLMs provide first-hand analysis of the challenges in developing disruptive weather impact understanding and climate change adaptation systems. The constructed dataset and the code for the evaluation framework are available to help society protect against vulnerabilities from disasters.",
+      "seed_papers": [
+        "boros_2024_latech",
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "f7aa60726a3455c2cc18602893695a769e03c34b"
+    },
+    {
+      "title": "WXImpactBench: A Disruptive Weather Impact Understanding Benchmark for Evaluating Large Language Models",
+      "authors": [
+        "Y Yu",
+        "Q Hu",
+        "X Du",
+        "J Wang",
+        "F Mo …"
+      ],
+      "year": 2025,
+      "venue": "Findings of the …",
+      "link": "https://aclanthology.org/2025.findings-acl.207/",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Climate change adaptation requires the understanding of disruptive weather impacts on society, where large language models (LLMs) might be applicable. However, their …",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Unlocking the archives: Using large language models to transcribe handwritten historical documents",
+      "authors": [
+        "Mark Humphries",
+        "L. Leddy",
+        "Quinn Downton",
+        "Meredith Legace",
+        "J. McConnell",
+        "Isabella Murray",
+        "Elizabeth Spence"
+      ],
+      "year": 2025,
+      "venue": "Historical methods: A journal of quantitative and interdisciplinary history",
+      "link": "https://www.semanticscholar.org/paper/28c91f4525fa7f3c58ae1aa808fb2ba204d674a3",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.1080/01615440.2025.2500309",
+      "snippet": "Abstract This study demonstrates that Large Language Models (LLMs) can transcribe historical handwritten documents with significantly higher accuracy than specialized Handwritten Text Recognition (HTR) software, while being faster and more cost-effective. We introduce an open-source software tool called Transcription Pearl that leverages these capabilities to automatically transcribe and correct batches of handwritten documents using commercially available multimodal LLMs from OpenAI, Anthropic, and Google. In tests on a diverse corpus of 18th/19th century English language handwritten documents, LLMs achieved Character Error Rates (CER) of 5.7 to 7% and Word Error Rates (WER) of 8.9 to 15.9%, improvements of 14% and 32% respectively over specialized state-of-the-art HTR software like Transkribus. Most significantly, when LLMs were then used to correct those transcriptions as well as texts generated by conventional HTR software, they achieved near-human levels of accuracy, that is CERs as low as 1.8% and WERs of 3.5%. The LLMs also completed these tasks 50 times faster and at approximately 1/50th the cost of proprietary HTR programs. These results demonstrate that when LLMs are incorporated into software tools like Transcription Pearl, they provide an accessible, fast, and highly accurate method for mass transcription of historical handwritten documents, significantly streamlining the digitization process.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "28c91f4525fa7f3c58ae1aa808fb2ba204d674a3"
+    },
+    {
+      "title": "Towards Prompt Engineering and Large Language Models for Post-OCR correction in handwritten texts",
+      "authors": [
+        "Sávio S. Araújo",
+        "Byron L. D. Bezerra",
+        "A. F. S. Neto",
+        "Sávio Santos de Araújo",
+        "Byron Leite Dantas Bezerra",
+        "Arthur Flor de Sousa Neto"
+      ],
+      "year": 2025,
+      "venue": "Brazilian Symposium in Information and Human Language Technology",
+      "link": "https://www.semanticscholar.org/paper/d9c9db02451e061784d9290e484e8f94969b95be",
+      "pdf_link": "https://sol.sbc.org.br/index.php/stil/article/download/37859/37637",
+      "doi": "https://doi.org/10.5753/stil.2025.37859",
+      "snippet": "This work explores the use of Large Language Models (LLMs) for post-OCR spelling correction in full sentences across Portuguese, French, and English. Using outputs from a state-of-the-art recognition model on the BRESSAY, RIMES, and IAM datasets, we evaluated two different zero-shot prompts. Closed LLMs, such as Gemini and GPT series, consistently outperform open-source models in reducing Character Error Rate (CER) and Word Error Rate (WER), while also offering faster inference. Despite the good accuracy of open models, their high computational demands hinder their practical use. Code is available at https://github.com/savi8sant8s/zero-shot-spelling-corrector.",
+      "seed_papers": [
+        "boros_2024_latech",
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "semantic_scholar",
+        "openalex"
+      ],
+      "openalex_id": "https://openalex.org/W4415590676",
+      "semantic_scholar_id": "d9c9db02451e061784d9290e484e8f94969b95be"
+    },
+    {
+      "title": "Thai OCR Spelling Correction: Case Study in Thai Historical Document",
+      "authors": [
+        "Nuttakit Intchot",
+        "P. Netisopakul"
+      ],
+      "year": 2025,
+      "venue": "2025 20th International Joint Symposium on Artificial Intelligence and Natural Language Processing (iSAI-NLP)",
+      "link": "https://www.semanticscholar.org/paper/d56cf874298497193c69baf1aaa1a70375a672a7",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.1109/iSAI-NLP66160.2025.11320465",
+      "snippet": "This research focuses on correcting errors from Optical Character Recognition (OCR) reader for Thai historical documents, using the case study of the Bangkok Recorder, one of the earliest printed media in Thailand. The main problems found are the high error rate caused by the deterioration of the original documents, old Thai language spelling, and the complexity of Thai script. The research compared three approaches: (1) using large language models (LLMs) with prompt-based correction, (2) fine-tuning LLMs on OCR datasets and reference texts, and (3) generating correction rules from LLMs and applying them in practice. The experimental results indicate that fine-tuning LLMs can improve accuracy and the ability to handle old spellings and Thai numerals better than using prompts alone, while the rule-generation method helps enhance the consistency of correction in cases with repetitive error patterns. Overall, the GPT-4o model showed superior performance to LLaMA-3 Typhoon in both contextual understanding and accuracy, with the best precision, recall and F1 score of 99.16, 97.62, and 98.38 percent, respectively. This research shows promising results in using LLMs for Thai OCR spelling correction for Thai archival documents domain.",
+      "seed_papers": [
+        "boros_2024_latech",
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "d56cf874298497193c69baf1aaa1a70375a672a7"
+    },
+    {
+      "title": "Thai OCR Spelling Correction: Case Study in Thai Historical Document",
+      "authors": [
+        "N Intchot",
+        "P Netisopakul"
+      ],
+      "year": 2025,
+      "venue": "2025 20th International Joint …, 2025",
+      "link": "https://ieeexplore.ieee.org/abstract/document/11320465/",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "This research focuses on correcting errors from Optical Character Recognition (OCR) reader for Thai historical documents, using the case study of the Bangkok Recorder, one of the …",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Structured Information Extraction from Nepali Scanned Documents using Layout Transformer and LLMs",
+      "authors": [
+        "Aayush Neupane",
+        "Aayush Lamichhane",
+        "Ankit Paudel",
+        "Aman Shakya",
+        "A Neupane",
+        "A Lamichhane",
+        "A Paudel…"
+      ],
+      "year": 2025,
+      "venue": "COLING Workshops",
+      "link": "https://www.semanticscholar.org/paper/7c799e897465b87412c0883d2d6ccaa2b75a780d",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Despite growing global interest in information extraction from scanned documents, there is still a significant research gap concerning Nepali documents. This study seeks to address …",
+      "seed_papers": [
+        "zhang_2024_doceng",
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar",
+        "google_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "7c799e897465b87412c0883d2d6ccaa2b75a780d"
+    },
+    {
+      "title": "Scrambled text: fine-tuning language models for OCR error correction using synthetic data",
+      "authors": [
+        "Jonathan Bourne"
+      ],
+      "year": 2025,
+      "venue": "International Journal on Document Analysis and Recognition",
+      "link": "https://www.semanticscholar.org/paper/0f7086e045ef57598b68b4314aa3d91f09593208",
+      "pdf_link": "https://link.springer.com/content/pdf/10.1007/s10032-025-00522-0.pdf",
+      "doi": "https://doi.org/10.1007/s10032-025-00522-0",
+      "snippet": "OCR errors are common in digitised historical archives significantly affecting their usability and value. Generative Language Models (LMs) have shown potential for correcting these errors using the context provided by the corrupted text and the broader socio-cultural context, a process called Context Leveraging OCR Correction (CLOCR-C). However, getting sufficient training data for fine-tuning such models can prove challenging. This paper shows that fine-tuning a language model on synthetic data using an LM and using a character level Markov corruption process can significantly improve the ability to correct OCR errors. Models trained on synthetic data reduce the character error rate by 55% and word error rate by 32% over the base LM and outperform models trained on real data. Key findings include training on under-corrupted data is better than over-corrupted data; non-uniform character level corruption is better than uniform corruption; more tokens-per-observation outperforms more observations for a fixed token budget. The outputs for this paper are a set of 8 heuristics for training effective CLOCR-C models, a dataset of 11,000 synthetic 19th century newspaper articles and scrambledtext a python library for creating synthetic corrupted data.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "0f7086e045ef57598b68b4314aa3d91f09593208"
+    },
+    {
+      "title": "Reading the unreadable: Creating a dataset of 19th century English newspapers using image-to-text language models",
+      "authors": [
+        "Jonathan Bourne"
+      ],
+      "year": 2025,
+      "venue": "Digital Scholarship in the Humanities",
+      "link": "https://www.semanticscholar.org/paper/3632d1ae8f505b085c2f09be19fa06de49fedcff",
+      "pdf_link": "https://doi.org/10.1093/llc/fqaf151",
+      "doi": "https://doi.org/10.1093/llc/fqaf151",
+      "snippet": "Oscar Wilde said,\"The difference between literature and journalism is that journalism is unreadable, and literature is not read.\"Unfortunately, The digitally archived journalism of Oscar Wilde's 19th century often has no or poor quality Optical Character Recognition (OCR), reducing the accessibility of these archives and making them unreadable both figuratively and literally. This paper helps address the issue by performing OCR on\"The Nineteenth Century Serials Edition\"(NCSE), an 84k-page collection of 19th-century English newspapers and periodicals, using Pixtral 12B, a pre-trained image-to-text language model. The OCR capability of Pixtral was compared to 4 other OCR approaches, achieving a median character error rate of 1%, 5x lower than the next best model. The resulting NCSE v2.0 dataset features improved article identification, high-quality OCR, and text classified into four types and seventeen topics. The dataset contains 1.4 million entries, and 321 million words. Example use cases demonstrate analysis of topic similarity, readability, and event tracking. NCSE v2.0 is freely available to encourage historical and sociological research. As a result, 21st-century readers can now share Oscar Wilde's disappointment with 19th-century journalistic standards, reading the unreadable from the comfort of their own computers.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "3632d1ae8f505b085c2f09be19fa06de49fedcff"
+    },
+    {
+      "title": "Računalniška analiza slovenskih zgodovinskih časopisov (1771–1914): jezikovni, tematski in državotvorni uvidi",
+      "authors": [
+        "Ajda Pretnar Žagar"
+      ],
+      "year": 2025,
+      "venue": "Contributions to Contemporary History",
+      "link": "https://www.semanticscholar.org/paper/0db1697bbdf5a08e0b0d60af4ab6f238513e6455",
+      "pdf_link": "https://ojs.inz.si/pnz/article/download/4487/5881",
+      "doi": "https://doi.org/10.51663/pnz.65.3.02",
+      "snippet": "This paper presents a computational linguistic analysis of sPeriodika, a historical corpus of Slovenian periodicals published between 1771 and 1914. Using keyword analysis and diachronic analysis, we explore the linguistic, thematic, and historical dimensions of ten prominent newspapers in the corpus. Our findings reveal the centrality of these newspapers in shaping Slovenian nation-building during the post-1848 period, while also highlighting the diverse thematic orientations of individual periodicals, including agriculture, pedagogy, literature, and advertising. Moreover, the study examines the challenges posed by low-quality Optical Character Recognition (OCR) in historical text digitisation and its implications for linguistic and content analysis. By combining computational methods with historical inquiry, this research provides insights into the evolution of the Slovenian language, the media’s role in nation- -building, and the potential for improving OCR-based textual resources.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "0db1697bbdf5a08e0b0d60af4ab6f238513e6455"
+    },
+    {
+      "title": "Opportunities and Challenges of LLMs as Post-OCR Correctors",
+      "authors": [
+        "Radoslav Koynov",
+        "Triet Ho Anh Doan",
+        "T. Doan"
+      ],
+      "year": 2025,
+      "venue": "Annals of Computer Science and Information Systems",
+      "link": "https://doi.org/10.15439/2025f4697",
+      "pdf_link": "https://annals-csis.org/Volume_45/drp/pdf/4697.pdf",
+      "doi": "https://doi.org/10.15439/2025f4697",
+      "snippet": "Large Language Models (LLMs) have demonstrated potential as zero-shot Post-OCR correctors for historical texts.However, previous research has typically focused on a single data set and only evaluated Character Error Rate (CER) or Word Error Rate (WER).This study investigates the potential of LLMs to enhance the accuracy of Optical Character Recognition (OCR) and the limitations of the models.To this end, an evaluation of the approach is conducted for a number of German and English historical datasets, with an in-depth analysis of the model corrections and deviation from the ground truth.We demonstrate that LLMs have the capacity to enhance the quality of OCR results as zero-shot correctors in some cases, and finetuning LLMs shows promise as part of an LLM-based Post-OCR correction system, if certain risks are mitigated carefully.",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "openalex",
+        "semantic_scholar"
+      ],
+      "openalex_id": "https://openalex.org/W4415421934",
+      "semantic_scholar_id": "a3fd59d08ec712f57b64e7f726c974b63f96408c"
+    },
+    {
+      "title": "[PDF] [PDF] Opportunities and Challenges of LLMs as Post-OCR Correctors",
+      "authors": [
+        "R Koynov",
+        "THA Doan"
+      ],
+      "year": 2025,
+      "venue": "Annals of Computer Science and …",
+      "link": "https://www.researchgate.net/profile/Triet-Doan-3/publication/396768884_Opportunities_and_Challenges_of_LLMs_as_Post-OCR_Correctors/links/68f8bfd17d9a4d4e870b89eb/Opportunities-and-Challenges-of-LLMs-as-Post-OCR-Correctors.pdf",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Large Language Models (LLMs) have demonstrated potential as zero-shot Post-OCR correctors for historical texts. However, previous research has typically focused on a single …",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Ontology-Constrained OCR with Verified Abstention and Semantic Metrics",
+      "authors": [
+        "E. Ben Hmida",
+        "Sarra Abidi",
+        "L. Ben Ayed"
+      ],
+      "year": 2025,
+      "venue": "International Symposium on INnovations in Intelligent SysTems and Applications",
+      "link": "https://www.semanticscholar.org/paper/7f3bfb6f3aef8e193f25586998fde5171ac7275e",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.1109/INISTA68122.2025.11249647",
+      "snippet": "Traditional OCR systems optimize character-level accuracy but often produce semantically invalid outputs for structured documents. We propose an ontology-constrained OCR framework that integrates domain knowledge during beam search decoding while maintaining verified abstention capabilities for uncertain predictions. Our approach introduces Correct Semantic Rate (CSR) and Semantic Error Rate (SER) metrics that better reflect real-world deployment requirements than traditional character-level metrics. Experimental evaluation on financial and administrative documents demonstrates significant semantic improvements with 34% reduction in SER while maintaining comparable Character Error Rate (CER), with calibrated abstention achieving 85% coverage at 15% risk threshold.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "7f3bfb6f3aef8e193f25586998fde5171ac7275e"
+    },
+    {
+      "title": "Ontology-Constrained OCR with Verified Abstention and Semantic Metrics",
+      "authors": [
+        "EB Hmida",
+        "S Abidi",
+        "LB Ayed"
+      ],
+      "year": 2025,
+      "venue": "2025 International Conference …, 2025",
+      "link": "https://ieeexplore.ieee.org/abstract/document/11249647/",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Traditional OCR systems optimize character-level accuracy but often produce semantically invalid outputs for structured documents. We propose an ontology-constrained OCR …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "OCR Error Post-Correction with LLMs in Historical Documents: No Free Lunches",
+      "authors": [
+        "Jenna Kanerva",
+        "Cassandra Ledins",
+        "Siiri Käpyaho",
+        "Filip Ginter"
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "link": "https://www.semanticscholar.org/paper/2aafcb432ee4473396f569cddf8d250efeb2b84f",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.48550/arXiv.2502.01205",
+      "snippet": "Optical Character Recognition (OCR) systems often introduce errors when transcribing historical documents, leaving room for post-correction to improve text quality. This study evaluates the use of open-weight LLMs for OCR error correction in historical English and Finnish datasets. We explore various strategies, including parameter optimization, quantization, segment length effects, and text continuation methods. Our results demonstrate that while modern LLMs show promise in reducing character error rates (CER) in English, a practically useful performance for Finnish was not reached. Our findings highlight the potential and limitations of LLMs in scaling OCR post-correction for large historical corpora.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "2aafcb432ee4473396f569cddf8d250efeb2b84f"
+    },
+    {
+      "title": "OCR error post-correction with LLMs in historical documents: no free lunches",
+      "authors": [
+        "J Kanerva",
+        "C Ledins",
+        "S Käpyaho…"
+      ],
+      "year": 2025,
+      "venue": "Proceedings of the Third …",
+      "link": "https://aclanthology.org/2025.resourceful-1.8/",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Abstract Optical Character Recognition (OCR) systems often introduce errors when transcribing historical documents, leaving room for post-correction to improve text quality …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Multimodal LLMs for OCR, OCR Post-Correction, and Named Entity Recognition in Historical Documents",
+      "authors": [
+        "Gavin Greif",
+        "Niclas Griesshaber",
+        "Robin Greif"
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "link": "https://www.semanticscholar.org/paper/92f67092f29582178f2fd4428364a9846d59d8ce",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.48550/arXiv.2504.00414",
+      "snippet": "We explore how multimodal Large Language Models (mLLMs) can help researchers transcribe historical documents, extract relevant historical information, and construct datasets from historical sources. Specifically, we investigate the capabilities of mLLMs in performing (1) Optical Character Recognition (OCR), (2) OCR Post-Correction, and (3) Named Entity Recognition (NER) tasks on a set of city directories published in German between 1754 and 1870. First, we benchmark the off-the-shelf transcription accuracy of both mLLMs and conventional OCR models. We find that the best-performing mLLM model significantly outperforms conventional state-of-the-art OCR models and other frontier mLLMs. Second, we are the first to introduce multimodal post-correction of OCR output using mLLMs. We find that this novel approach leads to a drastic improvement in transcription accuracy and consistently produces highly accurate transcriptions (<1% CER), without any image pre-processing or model fine-tuning. Third, we demonstrate that mLLMs can efficiently recognize entities in transcriptions of historical documents and parse them into structured dataset formats. Our findings provide early evidence for the long-term potential of mLLMs to introduce a paradigm shift in the approaches to historical data collection and document transcription.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "92f67092f29582178f2fd4428364a9846d59d8ce"
+    },
+    {
+      "title": "Frances++: LLM-Based Semantic Enrichment and Spatial Graphs for Digitized Historical Collections",
+      "authors": [
+        "Lilin Yu",
+        "Rosa Filgueira"
+      ],
+      "year": 2025,
+      "venue": "https://doi.org/10.1109/escience65000.2025.00039",
+      "link": "https://doi.org/10.1109/escience65000.2025.00039",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.1109/escience65000.2025.00039",
+      "snippet": "This paper presents major enhancements to frances, a platform for exploring digitized historical collections using LLM-based semantic and spatial enrichments. We focus on three corpora from the National Library of Scotland (NLS): the Gazetteers of Scotland, the Broadsides, and the Encyclopaedia Britannica. Using a flexible, prompt-based LLM pipeline, we extract over 50,000 structured articles from the Gazetteers, adapting to diverse typographic layouts. For Broadsides, we align OCR-derived text (extracted using defoe) with manually corrected transcriptions published by NLS, linking both sources for improved access and reuse. Historical text is further improved using a fine-tuned Llama2 model selected after evaluating several LLMs for post-OCR correction. To enrich geographic information, we combine Stanza NER, in-text coordinate parsing, and the Edinburgh Geoparser, enabling both modern georesolution and preservation of historical geography. We extend the Heritage Textual Ontology (HTO) to support article-level records, spatiotemporal entities, and in-text annotations via CRMgeo and Web Annotation standards. Resulting RDF knowledge graphs are deployed on a GeoSPARQL-enabled Fuseki server and indexed in Elasticsearch to support full-text, semantic, and spatial search. The upgraded frances interface offers entity highlighting, historical maps, and provenance tracking, demonstrating a scalable pipeline for structured, enriched access to OCRed heritage texts.",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "openalex",
+        "semantic_scholar"
+      ],
+      "openalex_id": "https://openalex.org/W4414898665",
+      "semantic_scholar_id": "fc19cf5707e0bfadc8e0c169e92b87221445e713"
+    },
+    {
+      "title": "Frances++: LLM-Based Semantic Enrichment and Spatial Graphs for Digitized Historical Collections",
+      "authors": [
+        "L Yu",
+        "R Filgueira"
+      ],
+      "year": 2025,
+      "venue": "2025 IEEE International Conference on …, 2025",
+      "link": "https://ieeexplore.ieee.org/abstract/document/11181535/",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "This paper presents major enhancements to frances, a platform for exploring digitized historical collections using LLM-based semantic and spatial enrichments. We focus on three …",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Explorables: Evaluating a Concept for Remixable Interactive Learning Resources.",
+      "authors": [
+        "F Salmen",
+        "R Röpke",
+        "U Schroeder"
+      ],
+      "year": 2025,
+      "venue": "… for Development of the Information Society",
+      "link": "https://eric.ed.gov/?id=ED677861",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "There is a divide in educational technology: On one side is the rich world of interactive learning resources produced by companies and researchers, including simulations, games …",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Evaluating Transformers for OCR Post-Correction in Early Modern Dutch Theatre",
+      "authors": [
+        "Florian Debaene",
+        "Aaron Maladry",
+        "Els Lefever",
+        "Veronique Hoste"
+      ],
+      "year": 2025,
+      "venue": "International Conference on Computational Linguistics",
+      "link": "https://www.semanticscholar.org/paper/4c7f797fab6136a719e0902b4567b9f67cd22080",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": null,
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "4c7f797fab6136a719e0902b4567b9f67cd22080"
+    },
+    {
+      "title": "Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities",
+      "authors": [
+        "Maria Levchenko"
+      ],
+      "year": 2025,
+      "venue": "Proceedings of The FirstWorkshop on Natural Language Processing and Language Models for Digital Humanities",
+      "link": "https://www.semanticscholar.org/paper/88fd53316c0e1fff5a7f838b9a704e3f783d820d",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.48550/arXiv.2510.06743",
+      "snippet": "Digital humanities scholars increasingly use Large Language Models for historical document digitization, yet lack appropriate evaluation frameworks for LLM-based OCR. Traditional metrics fail to capture temporal biases and period-specific errors crucial for historical corpus creation. We present an evaluation methodology for LLM-based historical OCR, addressing contamination risks and systematic biases in diplomatic transcription. Using 18th-century Russian Civil font texts, we introduce novel metrics including Historical Character Preservation Rate (HCPR) and Archaic Insertion Rate (AIR), alongside protocols for contamination control and stability testing. We evaluate 12 multimodal LLMs, finding that Gemini and Qwen models outperform traditional OCR while exhibiting over-historicization: inserting archaic characters from incorrect historical periods. Post-OCR correction degrades rather than improves performance. Our methodology provides digital humanities practitioners with guidelines for model selection and quality assessment in historical corpus digitization.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "88fd53316c0e1fff5a7f838b9a704e3f783d820d"
+    },
+    {
+      "title": "Entropy Heat-Mapping: Localizing GPT-Based OCR Errors with Sliding-Window Shannon Analysis",
+      "authors": [
+        "A. Kaltchenko"
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "link": "https://www.semanticscholar.org/paper/accfb2bdb53f533acb86bfd12623c69dc1b57848",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.48550/arXiv.2505.00746",
+      "snippet": "Vision-language models such as OpenAI GPT-4o can transcribe mathematical documents directly from images, yet their token-level confidence signals are seldom used to pinpoint local recognition mistakes. We present an entropy-heat-mapping proof-of-concept that turns per-token Shannon entropy into a visual ''uncertainty landscape''. By scanning the entropy sequence with a fixed-length sliding window, we obtain hotspots that are likely to contain OCR errors such as missing symbols, mismatched braces, or garbled prose. Using a small, curated set of scanned research pages rendered at several resolutions, we compare the highlighted hotspots with the actual transcription errors produced by GPT-4o. Our analysis shows that the vast majority of true errors are indeed concentrated inside the high-entropy regions. This study demonstrates--in a minimally engineered setting--that sliding-window entropy can serve as a practical, lightweight aid for post-editing GPT-based OCR. All code and annotation guidelines are released to encourage replication and further research.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "accfb2bdb53f533acb86bfd12623c69dc1b57848"
+    },
+    {
+      "title": "Docsum: domain-adaptive pre-training for document abstractive summarization",
+      "authors": [
+        "PPM Chau",
+        "S Bakkali",
+        "A Doucet"
+      ],
+      "year": 2025,
+      "venue": "Proceedings of the Winter …",
+      "link": "https://openaccess.thecvf.com/content/WACV2025W/VISIONDOCS/html/Chau_DocSum_Domain-Adaptive_Pre-training_for_Document_Abstractive_Summarization_WACVW_2025_paper.html",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Abstractive summarization has made significant strides in condensing and rephrasing large volumes of text into coherent summaries. However summarizing administrative documents …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "[PDF] [PDF] Discovering Felix",
+      "authors": [
+        "T Langer"
+      ],
+      "year": 2025,
+      "venue": "2025",
+      "link": "https://zeevox.net/felixplore.pdf",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Felix, Imperial's newspaper, has over 35,000 pages in its archive spanning 75 years. For decades institutions around the world have been digitising such archives. But despite …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Detecting Latin in Historical Books with Large Language Models: A Multimodal Benchmark",
+      "authors": [
+        "Yu Wu",
+        "Ke Shu",
+        "Jonas Fischer",
+        "L. Pivovarova",
+        "David Rosson",
+        "Eetu Mäkelä",
+        "Mikko Tolonen"
+      ],
+      "year": 2025,
+      "venue": "Conference of the European Chapter of the Association for Computational Linguistics",
+      "link": "https://www.semanticscholar.org/paper/9acac56358b02a815b1d2f6ef75add5814d9b426",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.48550/arXiv.2510.19585",
+      "snippet": "This paper presents a novel task of extracting low-resourced and noisy Latin fragments from mixed-language historical documents with varied layouts. We benchmark and evaluate the performance of large foundation models against a multimodal dataset of 724 annotated pages. The results demonstrate that reliable Latin detection with contemporary zero-shot models is achievable, yet these models lack a functional comprehension of Latin. This study establishes a comprehensive baseline for processing Latin within mixed-language corpora, supporting quantitative analysis in intellectual history and historical linguistics. Both the dataset and code are available at https://github.com/COMHIS/EACL26-detect-latin.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "9acac56358b02a815b1d2f6ef75add5814d9b426"
+    },
+    {
+      "title": "Comparing OCR Pipelines for Folkloristic Text Digitization",
+      "authors": [
+        "O. Machidon",
+        "Alina L. Machidon"
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "link": "https://www.semanticscholar.org/paper/020389c8736259843239412483f0345e2968fed9",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.48550/arXiv.2507.19092",
+      "snippet": "The digitization of historical folkloristic materials presents unique challenges due to diverse text layouts, varying print and handwriting styles, and linguistic variations. This study explores different optical character recognition (OCR) approaches for Slovene folkloristic and historical text digitization, integrating both traditional methods and large language models (LLMs) to improve text transcription accuracy while maintaining linguistic and structural integrity. We compare single-stage OCR techniques with multi-stage pipelines that incorporate machine learning-driven post-processing for text normalization and layout reconstruction. While LLM-enhanced methods show promise in refining recognition outputs and improving readability, they also introduce challenges related to unintended modifications, particularly in the preservation of dialectal expressions and historical structures. Our findings provide insights into selecting optimal digitization strategies for large-scale folklore archives and outline recommendations for developing robust OCR pipelines that balance automation with the need for textual authenticity in digital humanities research.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "020389c8736259843239412483f0345e2968fed9"
+    },
+    {
+      "title": "Bootstrapping AI: Interdisciplinary Approaches to Assessing OCR Quality in English-Language Historical Documents",
+      "authors": [
+        "S. Backer",
+        "Louis Hyman"
+      ],
+      "year": 2025,
+      "venue": "Proceedings of the 5th International Conference on Natural Language Processing for Digital Humanities",
+      "link": "https://www.semanticscholar.org/paper/08eecec415221acff9163287a154a58a7d526a77",
+      "pdf_link": "https://aclanthology.org/2025.nlp4dh-1.21.pdf",
+      "doi": "https://doi.org/10.18653/v1/2025.nlp4dh-1.21",
+      "snippet": "New LLM-based OCR and post-OCR correction methods promise to transform computational historical research, yet their efficacy remains contested. We compare multiple correction approaches, including methods for \"boot-strapping\" fine-tuning with LLM-generated data, and measure their effect on downstream tasks. Our results suggest that standard OCR metrics often underestimate performance gains for historical research, underscoring the need for discipline-driven evaluations that can better reflect the needs of computational humanists",
+      "seed_papers": [
+        "boros_2024_latech",
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "08eecec415221acff9163287a154a58a7d526a77"
+    },
+    {
+      "title": "Bootstrapping ai: Interdisciplinary approaches to assessing ocr quality in english-language historical documents",
+      "authors": [
+        "S Backer",
+        "L Hyman"
+      ],
+      "year": 2025,
+      "venue": "… Of The 5th International Conference On …",
+      "link": "https://aclanthology.org/2025.nlp4dh-1.21/",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "New LLM-based OCR and post-OCR correction methods promise to transform computational historical research, yet their efficacy remains contested. We compare multiple …",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Beyond Traditional OCR: Exploring the Efficiency of LLMs in Document Processing",
+      "authors": [
+        "Antonio Narbona",
+        "Salvador Ros"
+      ],
+      "year": 2025,
+      "venue": "IberLEF@SEPLN",
+      "link": "https://www.semanticscholar.org/paper/bab73eab36ad0eeea961562c91ef56a32e563e62",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": null,
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "bab73eab36ad0eeea961562c91ef56a32e563e62"
+    },
+    {
+      "title": "Automatic normalization of noisy technical reports with an LLM: What effects on a downstream task?",
+      "authors": [
+        "Mariame Maarouf",
+        "L. Tanguy"
+      ],
+      "year": 2025,
+      "venue": "Proceedings of the Tenth Workshop on Noisy and User-generated Text",
+      "link": "https://www.semanticscholar.org/paper/5721521f662d2e6aff312475f65d6d7dd24f3928",
+      "pdf_link": "https://aclanthology.org/2025.wnut-1.5.pdf",
+      "doi": "https://doi.org/10.18653/v1/2025.wnut-1.5",
+      "snippet": "This study explores the automatic normalization of noisy and highly technical anomaly reports by an LLM. Different prompts are tested to instruct the LLM to clean the text without changing the structure, vocabulary or specialized lexicon. The evaluation of this task is made in two steps. First, the Character Error Rate (CER) is calculated to assess the changes made compared to a gold standard on a small sample. Second, an automatic sequence labeling task is performed on the original and on the corrected datasets with a transformer-based classifier. If some configurations of LLM and prompts can reach satisfying CER scores, the sequence labeling task shows that the normalization has a small negative impact on performance.",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "5721521f662d2e6aff312475f65d6d7dd24f3928"
+    },
+    {
+      "title": "Automatic normalization of noisy technical reports with an LLM: What effects on a downstream task?",
+      "authors": [
+        "M Maarouf",
+        "L Tanguy"
+      ],
+      "year": 2025,
+      "venue": "Proceedings of the Tenth Workshop on …",
+      "link": "https://aclanthology.org/2025.wnut-1.5/",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "This study explores the automatic normalization of noisy and highly technical anomaly reports by an LLM. Different prompts are tested to instruct the LLM to clean the text without …",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Approches du dysfonctionnement technique dans les REX d'Ariane 5: de l'analyse linguistique outillée de son expression vers la modélisation TRIZ du problème",
+      "authors": [
+        "M Maarouf"
+      ],
+      "year": 2025,
+      "venue": "2025",
+      "link": "https://theses.hal.science/tel-05560039/",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Les REX (Retours d'EXpérience) sont des documents textuels dont la visée est de rapporter un problème, ou un dysfonctionnement, et qui jouent un rôle important dans la maîtrise des …",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "A Proposal of Post-OCR Spelling Correction Using Monolingual Byte-level Language Models",
+      "authors": [
+        "Sávio Santos de Araújo",
+        "B. L. Bezerra",
+        "Arthur Flor de Sousa Neto"
+      ],
+      "year": 2025,
+      "venue": "ACM Symposium on Document Engineering",
+      "link": "https://www.semanticscholar.org/paper/fda33b3e694bc545d259ce92b33e326fd0ca0259",
+      "pdf_link": "https://dl.acm.org/doi/pdf/10.1145/3704268.3748673",
+      "doi": "https://doi.org/10.1145/3704268.3748673",
+      "snippet": "This work presents a proposal for a spelling corrector using monolingual byte-level language models (Monobyte) for the post-OCR task in texts produced by Handwritten Text Recognition (HTR) systems. We evaluate three Monobyte models, based on Google's ByT5, trained separately on English, French, and Brazilian Portuguese. The experiments evaluated three datasets with 21st century manuscripts: IAM, RIMES, and BRESSAY. In the IAM, Monobyte achieves reductions of 2.24% in character error rate (CER) and 26.37% in word error rate (WER). In RIMES, reductions are 13.48% (CER) and 33.34% (WER), while in BRESSAY, Monobyte improves CER by 12.78% and WER by 40.62%. The BRESSAY results surpass results reported in previous works using a multilingual ByT5 model. Our findings demonstrate the effectiveness of byte-level tokenization in noisy text and underscore the potential of computationally efficient, monolingual models. Code is availabled at https://github.com/savi8sant8s/monobyte-spelling-corrector.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "fda33b3e694bc545d259ce92b33e326fd0ca0259"
+    },
+    {
+      "title": "Studying word meaning evolution through incremental semantic shift detection",
+      "authors": [
+        "Francesco Periti",
+        "S. Picascia",
+        "S. Montanelli",
+        "A. Ferrara",
+        "Nina Tahmasebi"
+      ],
+      "year": 2024,
+      "venue": "Language Resources and Evaluation",
+      "link": "https://www.semanticscholar.org/paper/674e6bd91af20d518845b9d40b9c55c3500821ca",
+      "pdf_link": "https://doi.org/10.1007/s10579-024-09769-1",
+      "doi": "https://doi.org/10.1007/s10579-024-09769-1",
+      "snippet": "The study of semantic shift, that is, of how words change meaning as a consequence of social practices, events and political circumstances, is relevant in Natural Language Processing, Linguistics, and Social Sciences. The increasing availability of large diachronic corpora and advance in computational semantics have accelerated the development of computational approaches to detecting such shift. In this paper, we introduce a novel approach to tracing the evolution of word meaning over time. Our analysis focuses on gradual changes in word semantics and relies on an incremental approach to semantic shift detection (SSD) called What is Done is Done (WiDiD). WiDiD leverages scalable and evolutionary clustering of contextualised word embeddings to detect semantic shift and capture temporal transactions in word meanings. Existing approaches to SSD: (a) significantly simplify the semantic shift problem to cover change between two (or a few) time points, and (b) consider the existing corpora as static. We instead treat SSD as an organic process in which word meanings evolve across tens or even hundreds of time periods as the corpus is progressively made available. This results in an extremely demanding task that entails a multitude of intricate decisions. We demonstrate the applicability of this incremental approach on a diachronic corpus of Italian parliamentary speeches spanning eighteen distinct time periods. We also evaluate its performance on seven popular labelled benchmarks for SSD across multiple languages. Empirical results show that our results are comparable to state-of-the-art approaches, while outperforming the state-of-the-art for certain languages.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "674e6bd91af20d518845b9d40b9c55c3500821ca"
+    },
+    {
+      "title": "Studying word meaning evolution through incremental semantic shift detection",
+      "authors": [
+        "F Periti",
+        "S Picascia",
+        "S Montanelli",
+        "A Ferrara …"
+      ],
+      "year": 2024,
+      "venue": "Language Resources …",
+      "link": "https://air.unimi.it/handle/2434/1054970",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "The study of semantic shift, that is, of how words change meaning as a consequence of social practices, events and political circumstances, is relevant in Natural Language …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "[PDF] [PDF] Source criticism, bias, and representativeness in the digital age: A case study of digitized newspaper archives",
+      "authors": [
+        "J Burchardt"
+      ],
+      "year": 2024,
+      "venue": "Digital Humanities in the Nordic and Baltic Countries …",
+      "link": "https://www.researchgate.net/profile/Jorgen-Burchardt/publication/384111616_Source_criticism_bias_and_representativeness_in_the_digital_age_A_case_study_of_digitized_newspaper_archives/links/679e41218311ce680c49a0d1/Source-criticism-bias-and-representativeness-in-the-digital-age-A-case-study-of-digitized-newspaper-archives.pdf",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Historians must critically scrutinize their sources, a task further complicated in the digital age by the need to evaluate the technical infrastructure of digital archives. This article critically …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Scrambled text: training Language Models to correct OCR errors using synthetic data",
+      "authors": [
+        "Jonathan Bourne"
+      ],
+      "year": 2024,
+      "venue": "arXiv.org",
+      "link": "https://www.semanticscholar.org/paper/0264943fcef05d4cf705d0b5e8e1ec2c92791904",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.48550/arXiv.2409.19735",
+      "snippet": "OCR errors are common in digitised historical archives significantly affecting their usability and value. Generative Language Models (LMs) have shown potential for correcting these errors using the context provided by the corrupted text and the broader socio-cultural context, a process called Context Leveraging OCR Correction (CLOCR-C). However, getting sufficient training data for fine-tuning such models can prove challenging. This paper shows that fine-tuning a language model on synthetic data using an LM and using a character level Markov corruption process can significantly improve the ability to correct OCR errors. Models trained on synthetic data reduce the character error rate by 55% and word error rate by 32% over the base LM and outperform models trained on real data. Key findings include; training on under-corrupted data is better than over-corrupted data; non-uniform character level corruption is better than uniform corruption; More tokens-per-observation outperforms more observations for a fixed token budget. The outputs for this paper are a set of 8 heuristics for training effective CLOCR-C models, a dataset of 11,000 synthetic 19th century newspaper articles and scrambledtext a python library for creating synthetic corrupted data.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "0264943fcef05d4cf705d0b5e8e1ec2c92791904"
+    },
+    {
+      "title": "Post-OCR Correction with OpenAI's GPT Models on Challenging English Prosody Texts",
+      "authors": [
+        "James Zhang",
+        "Wouter Haverals",
+        "Mary Naydan",
+        "B. Kernighan"
+      ],
+      "year": 2024,
+      "venue": "ACM Symposium on Document Engineering",
+      "link": "https://www.semanticscholar.org/paper/866023586936381a5a2d547cee34c3d2799a2258",
+      "pdf_link": "https://doi.org/10.1145/3685650.3685669",
+      "doi": "https://doi.org/10.1145/3685650.3685669",
+      "snippet": "The digitization of historical documents faces challenges with the accuracy of Optical Character Recognition (OCR). Noting the success of large language models (LLMs) on many text-based tasks, this paper explores the potential of OpenAI's GPT models (3.5-turbo, 4, 4-turbo) on the post-OCR correction task using works from the Princeton Prosody Archive (PPA), a full-text searchable database containing English texts published between 1559 and 1928 on versification and pronunciation. We conduct a comparative analysis across different model configurations and prompt strategies. Our results indicate that tailoring prompts with work metadata is less effective than anticipated, though adjusting the temperature parameter can be beneficial. The models tend to overcorrect works with already good OCR quality but perform well overall, with the best model setup improving the Character Error Rate (CER) by a mean of 18.92%. Additionally, after introducing a preliminary quality estimation step to process texts differently based on their original OCR quality, the best mean improvement increases to 38.83%.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "866023586936381a5a2d547cee34c3d2799a2258"
+    },
+    {
+      "title": "Post-correction of handwriting recognition using large language models",
+      "authors": [
+        "JPP Principe",
+        "A Fischer",
+        "A Scius-Bertrand"
+      ],
+      "year": 2024,
+      "venue": "International Symposium on …",
+      "link": "https://link.springer.com/chapter/10.1007/978-981-96-4285-4_9",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Handwriting recognition enables the automatic transcription of large volumes of digitized collections, providing access to the content. However, regardless of the system used, some …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Investigating OCR-Sensitive Neurons to Improve Entity Recognition in Historical Documents",
+      "authors": [
+        "E. Boros",
+        "Maud Ehrmann"
+      ],
+      "year": 2024,
+      "venue": "International Conference on Asian Digital Libraries",
+      "link": "https://www.semanticscholar.org/paper/63499f2143fcf8001284d3917d8a76cfc859fe00",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.48550/arXiv.2409.16934",
+      "snippet": "This paper investigates the presence of OCR-sensitive neurons within the Transformer architecture and their influence on named entity recognition (NER) performance on historical documents. By analysing neuron activation patterns in response to clean and noisy text inputs, we identify and then neutralise OCR-sensitive neurons to improve model performance. Based on two open access large language models (Llama2 and Mistral), experiments demonstrate the existence of OCR-sensitive regions and show improvements in NER performance on historical newspapers and classical commentaries, highlighting the potential of targeted neuron modulation to improve models' performance on noisy text.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "63499f2143fcf8001284d3917d8a76cfc859fe00"
+    },
+    {
+      "title": "Investigating OCR-Sensitive Neurons to Improve Entity Recognition in Historical Documents",
+      "authors": [
+        "E Boros",
+        "M Ehrmann"
+      ],
+      "year": 2024,
+      "venue": "International Conference on Asian Digital Libraries",
+      "link": "https://link.springer.com/chapter/10.1007/978-981-96-0865-2_5",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "This paper investigates the presence of OCR-sensitive neurons within the Transformer architecture and their influence on named entity recognition (NER) performance on historical …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Evaluating chatbot assistance in historical document analysis",
+      "authors": [
+        "D Hazemali",
+        "J Osojnik",
+        "T Onič",
+        "T Todorović …"
+      ],
+      "year": 2024,
+      "venue": "… : časopis arhivske teorije …",
+      "link": "https://elibrary.ru/item.asp?id=79925241",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "The article explores the potential of PDFGear Copilot, a chatbot-based PDF editing tool, in assisting with the analysis of historical documents. We evaluated the chatbot's performance …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Effective Synthetic Data and Test-Time Adaptation for OCR Correction",
+      "authors": [
+        "Shuhao Guan",
+        "Cheng Xu",
+        "Moule Lin",
+        "Derek Greene"
+      ],
+      "year": 2024,
+      "venue": "Conference on Empirical Methods in Natural Language Processing",
+      "link": "https://www.semanticscholar.org/paper/e3c93f621d615ed19b27d640f37309eb82a91f4d",
+      "pdf_link": "https://aclanthology.org/2024.emnlp-main.862.pdf",
+      "doi": "https://doi.org/10.18653/v1/2024.emnlp-main.862",
+      "snippet": "Post-OCR technology is used to correct errors in the text produced by OCR systems. This study introduces a method for constructing post-OCR synthetic data with different noise levels using weak supervision. We define Character Error Rate (CER) thresholds for “effective” and “ineffective” synthetic data, allowing us to create more useful multi-noise level synthetic datasets. Furthermore, we propose Self-Correct-Noise Test-Time Adaptation (SCN-TTA), which combines self-correction and noise generation mechanisms. SCN-TTA allows a model to dynamically adjust to test data without relying on labels, effectively handling proper nouns in long texts and further reducing CER. In our experiments we evaluate a range of models, including multiple PLMs and LLMs. Results indicate that our method yields models that are effective across diverse text types. Notably, the ByT5 model achieves a CER reduction of 68.67% without relying on manually annotated data",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "e3c93f621d615ed19b27d640f37309eb82a91f4d"
+    },
+    {
+      "title": "DocSum: Domain-Adaptive Pre-training for Document Abstractive Summarization",
+      "authors": [
+        "Phan Phuong Mai Chau",
+        "Souhail Bakkali",
+        "Antoine Doucet"
+      ],
+      "year": 2024,
+      "venue": "2025 IEEE/CVF Winter Conference on Applications of Computer Vision Workshops (WACVW)",
+      "link": "https://www.semanticscholar.org/paper/f9b478c1c7efa8b7299dcb7af4c652a99ba3f009",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.1109/WACVW65960.2025.00144",
+      "snippet": "Abstractive summarization has made significant strides in condensing and rephrasing large volumes of text into coherent summaries. However, summarizing administrative documents presents unique challenges due to domain-specific terminology, OCR-generated errors, and the scarcity of annotated datasets for model fine-tuning. Existing models often struggle to adapt to the intricate structure and specialized content of such documents. To address these limitations, we introduce DocSum, a domain-adaptive abstractive summarization framework tailored for administrative documents. Leveraging pre-training on OCR-transcribed text and fine-tuning with an innovative integration of question-answer pairs, DocSum enhances summary accuracy and relevance. This approach tackles the complexities inherent in administrative content, ensuring outputs that align with real-world business needs. To evaluate its capabilities, we define a novel downstream task setting-Document Abstractive Summarization-which reflects the practical requirements of business and organizational settings. Comprehensive experiments demonstrate DocSum's effectiveness in producing high-quality summaries, showcasing its potential to improve decision-making and operational workflows across the public and private sectors.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "f9b478c1c7efa8b7299dcb7af4c652a99ba3f009"
+    },
+    {
+      "title": "CLOCR-C: Context Leveraging OCR Correction with Pre-trained Language Models",
+      "authors": [
+        "Jonathan Bourne"
+      ],
+      "year": 2024,
+      "venue": "arXiv.org",
+      "link": "https://www.semanticscholar.org/paper/1cf93d90301d02ac5e9e2c4b5e5547b4dbf2bc01",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.48550/arXiv.2408.17428",
+      "snippet": "The digitisation of historical print media archives is crucial for increasing accessibility to contemporary records. However, the process of Optical Character Recognition (OCR) used to convert physical records to digital text is prone to errors, particularly in the case of newspapers and periodicals due to their complex layouts. This paper introduces Context Leveraging OCR Correction (CLOCR-C), which utilises the infilling and context-adaptive abilities of transformer-based language models (LMs) to improve OCR quality. The study aims to determine if LMs can perform post-OCR correction, improve downstream NLP tasks, and the value of providing the socio-cultural context as part of the correction process. Experiments were conducted using seven LMs on three datasets: the 19th Century Serials Edition (NCSE) and two datasets from the Overproof collection. The results demonstrate that some LMs can significantly reduce error rates, with the top-performing model achieving over a 60\\% reduction in character error rate on the NCSE dataset. The OCR improvements extend to downstream tasks, such as Named Entity Recognition, with increased Cosine Named Entity Similarity. Furthermore, the study shows that providing socio-cultural context in the prompts improves performance, while misleading prompts lower performance. In addition to the findings, this study releases a dataset of 91 transcribed articles from the NCSE, containing a total of 40 thousand words, to support further research in this area. The findings suggest that CLOCR-C is a promising approach for enhancing the quality of existing digital archives by leveraging the socio-cultural information embedded in the LMs and the text requiring correction.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "1cf93d90301d02ac5e9e2c4b5e5547b4dbf2bc01"
+    },
+    {
+      "title": "Arabic Text Enhancement with GPT for Digital Libraries",
+      "authors": [
+        "Luca Sala",
+        "Giovanni Sullutrone",
+        "Sonia Bergamaschi",
+        "R. Vigliermo"
+      ],
+      "year": 2024,
+      "venue": "ACM/IEEE Joint Conference on Digital Libraries",
+      "link": "https://www.semanticscholar.org/paper/d5bd69c120e9337a7224c19c86f5a28e1948be33",
+      "pdf_link": "https://doi.org/10.1145/3677389.3702509",
+      "doi": "https://doi.org/10.1145/3677389.3702509",
+      "snippet": "In the cultural heritage and digital humanities fields, digitization of Arabic script documents presents unique challenges due to the cursive nature and homographic characteristics of the script. This study evaluates the efficacy of Optical Character Recognition (OCR) post-processing with Large Language Models, specifically GPT-4 and GPT-4 Turbo. The proposed experiments, though in a preliminary form, span various configurations, including different model temperatures and approaches from zero-shot to few-shot learning. Results indicate that despite the high expectations of AI capabilities, the post-processing performance of GPT-4 models remains sub-optimal for Arabic scripts. This paper discusses potential reasons for these limitations and suggests directions for future research, emphasizing the need for models trained to deal with the complexities of Arabic orthography and semantics.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "d5bd69c120e9337a7224c19c86f5a28e1948be33"
+    },
+    {
+      "title": "Application of Large Language Models for Digital Libraries",
+      "authors": [
+        "Xiaotong Hu"
+      ],
+      "year": 2024,
+      "venue": "https://doi.org/10.1145/3677389.3702617",
+      "link": "https://doi.org/10.1145/3677389.3702617",
+      "pdf_link": null,
+      "doi": "https://doi.org/10.1145/3677389.3702617",
+      "snippet": "Digital library collections are valuable documents, which contain vast amounts of knowledge. The rise of artificial intelligence (AI) technologies, especially Large Language Models (LLM), has made an impact on various domains, and may also shift the focus of digital library services from storing and preserving information to utilizing and extracting knowledge from that information. We expect to add value created by LLMs to existing digital library methods so that users can better leverage the information stored in digital library collections. This research aims to improve access to digital library collections by providing users with classification labels and summaries to help easily find their works of interest leveraging large language models. Two expected major benefits are: (1) Enhancing metadata in the form of classification labels, which will help users discover and use digital library collections more easily. (2) Providing summaries of works stored in the digital library to aid researchers in finding works of interest without having to read the entire content, which will help remediate the information overload problem.",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "openalex",
+        "semantic_scholar"
+      ],
+      "openalex_id": "https://openalex.org/W4408403302",
+      "semantic_scholar_id": "a30d209bdbcc94cb5d997a6b549fefa403a20aa0"
+    },
+    {
+      "title": "Application of large language models for digital libraries",
+      "authors": [
+        "X Hu"
+      ],
+      "year": 2024,
+      "venue": "Proceedings of the 24th ACM/IEEE Joint Conference …",
+      "link": "https://dl.acm.org/doi/abs/10.1145/3677389.3702617",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "Digital library collections are valuable documents, which contain vast amounts of knowledge. The rise of artificial intelligence (AI) technologies, especially Large Language …",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "A proposal for post-OCR spelling correction using Language Models",
+      "authors": [
+        "SS de Araújo",
+        "BLD Bezerra …"
+      ],
+      "year": 2024,
+      "venue": "Latinx in AI …",
+      "link": "https://openreview.net/forum?noteId=p5P9R9AKr5",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "This work explores the use of Language Models (LMs) to correct residual errors in texts extracted by OCR and HTR (Handwritten Text Recognition) systems. We propose a general …",
+      "seed_papers": [
+        "zhang_2024_doceng"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    },
+    {
+      "title": "Machine-assisted quantitizing designs: augmenting humanities and social sciences with artificial intelligence",
+      "authors": [
+        "Andres Karjus"
+      ],
+      "year": 2023,
+      "venue": "Humanities and Social Sciences Communications",
+      "link": "https://www.semanticscholar.org/paper/913e30f88858ecfa0564371ebcfcee914cd36edd",
+      "pdf_link": "https://doi.org/10.1057/s41599-025-04503-w",
+      "doi": "https://doi.org/10.1057/s41599-025-04503-w",
+      "snippet": "The increasing capacities of large language models (LLMs) have been shown to present an unprecedented opportunity to scale up data analytics in the humanities and social sciences, by automating complex qualitative tasks otherwise typically carried out by human researchers. While numerous benchmarking studies have assessed the analytic prowess of LLMs, there is less focus on operationalizing this capacity for inference and hypothesis testing. Addressing this challenge, a systematic framework is argued for here, building on mixed methods quantitizing and converting design principles, and feature analysis from linguistics, to transparently integrate human expertise and machine scalability. Replicability and statistical robustness are discussed, including how to incorporate machine annotator error rates in subsequent inference. The approach is discussed and demonstrated in over a dozen LLM-assisted case studies, covering nine diverse languages, multiple disciplines and tasks, including analysis of themes, stances, ideas, and genre compositions; linguistic and semantic annotation, interviews, text mining and event cause inference in noisy historical data, literary social network construction, metadata imputation, and multimodal visual cultural analytics. Using hypothesis-driven topic classification instead of “distant reading” is discussed. The replications among the experiments also illustrate how tasks previously requiring protracted team effort or complex computational pipelines can now be accomplished by an LLM-assisted scholar in a fraction of the time. Importantly, the approach is not intended to replace, but to augment and scale researcher expertise and analytic practices. With these opportunities in sight, qualitative skills and the ability to pose insightful questions have arguably never been more critical.",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "913e30f88858ecfa0564371ebcfcee914cd36edd"
+    },
+    {
+      "title": "PENERAPAN OPTICAL CHARACTER RECOGNITION TESSERACT DAN GEMINI PADA SISTEM BUKU TAMU DIGITAL BERBASIS WEB",
+      "authors": [
+        "Alfa Riegel",
+        "Imanuel Ponggohong",
+        "Gladly Caren",
+        "Rorimpandey",
+        "Vandi Vanda Maswonggo"
+      ],
+      "year": null,
+      "venue": "",
+      "link": "https://www.semanticscholar.org/paper/9454967abf385cd35980534239977b7035975429",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": null,
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "semantic_scholar"
+      ],
+      "openalex_id": null,
+      "semantic_scholar_id": "9454967abf385cd35980534239977b7035975429"
+    },
+    {
+      "title": "Leakage-free budget-aware routing for selective VLM correction in Chinese handwritten OCR",
+      "authors": [
+        "B Zhu",
+        "F Zhang",
+        "W Wang",
+        "M Tang",
+        "J Zhang"
+      ],
+      "year": null,
+      "venue": "Available at SSRN 6815774",
+      "link": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6815774",
+      "pdf_link": null,
+      "doi": null,
+      "snippet": "While multimodal model-driven post-OCR correction can improve handwritten text recognition, per-line vision-language model invocation incurs high computational cost and …",
+      "seed_papers": [
+        "boros_2024_latech"
+      ],
+      "sources": [
+        "google_scholar"
+      ]
+    }
+  ],
+  "scholar_reported_counts": {
+    "boros_2024_latech": "~15",
+    "zhang_2024_doceng": "~18"
+  }
+}

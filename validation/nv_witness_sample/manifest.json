@@ -1,0 +1,336 @@
+{
+  "date": "2026-07-08",
+  "sample_n_per_play": 50,
+  "method": "act-stratified witness span match",
+  "corpus_summary": {
+    "plays": 22,
+    "sample_n": 1100,
+    "scored_n": 983,
+    "exempt_n": 117,
+    "verifiable_n": 391,
+    "unverifiable_n": 592,
+    "faithful_n": 303,
+    "ocr_ok_n": 22,
+    "defective_n": 66,
+    "uncertain_n": 592,
+    "strict_accuracy_pct": 30.8,
+    "lenient_accuracy_pct": 33.1,
+    "defective_pct": 6.7,
+    "uncertain_pct": 60.2,
+    "unverifiable_pct": 60.2,
+    "strict_among_verifiable_pct": 77.5,
+    "lenient_among_verifiable_pct": 83.1,
+    "defective_among_verifiable_pct": 16.9,
+    "95_ci_verifiable_margin": 4.1
+  },
+  "plays": [
+    {
+      "play": "Romeo and Juliet",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 0.0,
+      "lenient_accuracy_pct": 0.0,
+      "defective_pct": 0.0
+    },
+    {
+      "play": "Macbeth",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 12.8,
+      "lenient_accuracy_pct": 14.9,
+      "defective_pct": 0.0
+    },
+    {
+      "play": "Hamlet",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 30.2,
+      "lenient_accuracy_pct": 30.2,
+      "defective_pct": 11.6
+    },
+    {
+      "play": "King Lear",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 52.4,
+      "lenient_accuracy_pct": 57.1,
+      "defective_pct": 9.5
+    },
+    {
+      "play": "Othello",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 17.0,
+      "lenient_accuracy_pct": 19.1,
+      "defective_pct": 0.0
+    },
+    {
+      "play": "The Merchant of Venice",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 41.9,
+      "lenient_accuracy_pct": 44.2,
+      "defective_pct": 9.3
+    },
+    {
+      "play": "As You Like It",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 84.8,
+      "lenient_accuracy_pct": 87.0,
+      "defective_pct": 0.0
+    },
+    {
+      "play": "The Tempest",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 17.8,
+      "lenient_accuracy_pct": 24.4,
+      "defective_pct": 2.2
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 44.4,
+      "lenient_accuracy_pct": 44.4,
+      "defective_pct": 6.7
+    },
+    {
+      "play": "The Winter's Tale",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 17.1,
+      "lenient_accuracy_pct": 17.1,
+      "defective_pct": 2.4
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 40.5,
+      "lenient_accuracy_pct": 45.2,
+      "defective_pct": 7.1
+    },
+    {
+      "play": "Twelfth Night",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 68.2,
+      "lenient_accuracy_pct": 79.5,
+      "defective_pct": 2.3
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 40.0,
+      "lenient_accuracy_pct": 42.5,
+      "defective_pct": 12.5
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 11.1,
+      "lenient_accuracy_pct": 11.1,
+      "defective_pct": 0.0
+    },
+    {
+      "play": "Richard III",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 2.1,
+      "lenient_accuracy_pct": 2.1,
+      "defective_pct": 8.5
+    },
+    {
+      "play": "Julius Caesar",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 42.9,
+      "lenient_accuracy_pct": 46.9,
+      "defective_pct": 2.0
+    },
+    {
+      "play": "Cymbeline",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 45.7,
+      "lenient_accuracy_pct": 45.7,
+      "defective_pct": 8.7
+    },
+    {
+      "play": "King John",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 34.0,
+      "lenient_accuracy_pct": 34.0,
+      "defective_pct": 4.3
+    },
+    {
+      "play": "Coriolanus",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 40.8,
+      "lenient_accuracy_pct": 40.8,
+      "defective_pct": 6.1
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 10.0,
+      "lenient_accuracy_pct": 12.5,
+      "defective_pct": 5.0
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 15.8,
+      "lenient_accuracy_pct": 15.8,
+      "defective_pct": 2.6
+    },
+    {
+      "play": "Troilus and Cressida",
+      "sample_n": 50,
+      "acts_represented": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "strict_accuracy_pct": 10.4,
+      "lenient_accuracy_pct": 14.6,
+      "defective_pct": 45.8
+    }
+  ]
+}

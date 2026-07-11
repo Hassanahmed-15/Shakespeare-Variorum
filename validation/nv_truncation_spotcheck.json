@@ -1,0 +1,2514 @@
+{
+  "summary": {
+    "total": 194,
+    "by_play": {
+      "Romeo and Juliet": 3,
+      "Macbeth": 1,
+      "Hamlet": 16,
+      "Othello": 5,
+      "The Merchant of Venice": 1,
+      "The Tempest": 7,
+      "The Winter's Tale": 4,
+      "Twelfth Night": 1,
+      "Love's Labour's Lost": 1,
+      "Antony and Cleopatra": 3,
+      "Richard III": 1,
+      "Julius Caesar": 1,
+      "Cymbeline": 3,
+      "King John": 88,
+      "Coriolanus": 51,
+      "Troilus and Cressida": 8
+    },
+    "by_bucket": {
+      "likely_genuine": 186,
+      "uncertain": 8
+    },
+    "by_signal_combo": {
+      "['hard_truncation', 'mid_sentence_cut']": 78,
+      "['hard_truncation']": 69,
+      "['is_clipped', 'hard_truncation']": 12,
+      "['is_clipped', 'hard_truncation', 'hyphen_artifact']": 11,
+      "['is_clipped', 'unbalanced_parens']": 8,
+      "['hard_truncation', 'hyphen_artifact']": 7,
+      "['is_clipped', 'hard_truncation', 'mid_sentence_cut']": 6,
+      "['hard_truncation', 'unbalanced_parens']": 1,
+      "['is_clipped', 'hard_truncation', 'mid_sentence_cut', 'unbalanced_parens']": 1,
+      "['hard_truncation', 'mid_sentence_cut', 'unbalanced_parens']": 1
+    }
+  },
+  "rows": [
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 1 SCENE 5 / line 58 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 188,
+      "ends_nv_terminal": false,
+      "tail": "iop's ear ; Beauty too rich for use, for earth too dear ! 45",
+      "start": "It seems] Steev. Sh. has the same thought in his 27th Sonnet : 7 74 ROMEO AND JULIET. [act",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 3 SCENE 1 / line 176 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 661,
+      "ends_nv_terminal": false,
+      "tail": "p. 27]. But if the reader will compare this speech with that",
+      "start": "Tybalt here slain, &c.] Bos. In this speech of Benvolio’s, as given in (Q1), the reader wi",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 3 SCENE 3 / line 130 / note 0",
+      "signals": [
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 773,
+      "ends_nv_terminal": false,
+      "tail": "F K, Rowe, Pope, Han. 117. /adv...lives,~\\ F , Rowe, &c. Ca-",
+      "start": "Art thou a man? &c.] Mal. Sh. has here closely followed Romeus and Juliet : 'Art thou, quo",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 1 SCENE 5 / line 21 / note 1",
+      "signals": [
+        "is_clipped",
+        "unbalanced_parens"
+      ],
+      "len": 337,
+      "ends_nv_terminal": true,
+      "tail": "win (for wrongly is not [logically] an Adverb here).—Ed. ii.",
+      "start": "What thou . . . winne] Allen (MS): ‘Highly’ is an adverb substituted for an adjective (Wha",
+      "bucket": "uncertain"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 2 SCENE 1 / line 53 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 89,
+      "ends_nv_terminal": false,
+      "tail": "noun absolute (‘virtue’ has here no verb), see ABBOTT, § 417",
+      "start": "virtue] For instances of the noun absolute (‘virtue’ has here no verb), see ABBOTT, § 417",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 2 SCENE 2 / line 3 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 64,
+      "ends_nv_terminal": false,
+      "tail": "ncrantz] THORNBURY (N. & Qu. 5 Aug. 1871): A Danish nobleman",
+      "start": "Rosencrantz] THORNBURY (N. & Qu. 5 Aug. 1871): A Danish nobleman",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 2 SCENE 2 / line 505 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 55,
+      "ends_nv_terminal": false,
+      "tail": "o'er-sized] Caldecott: Covered as with glutinous matter",
+      "start": "o'er-sized] Caldecott: Covered as with glutinous matter",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 3 SCENE 2 / line 60 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 127,
+      "ends_nv_terminal": false,
+      "tail": "e of 'you are right,' or 'yes, and,' the 'yes' being implied",
+      "start": "And] ABBOTT, § 97: 'And' is frequently found in answers in the sense of 'you are right,' o",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 3 SCENE 2 / line 108 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 146,
+      "ends_nv_terminal": false,
+      "tail": "scussion of the popular belief that this animal feeds on air",
+      "start": "chameleon's] CLARENDON: See Sir Thomas Browne’s Vulgar Errors, iii, 21, for a grave discus",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 3 SCENE 2 / line 336 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 32,
+      "ends_nv_terminal": false,
+      "tail": "recorders] See notes on line 329",
+      "start": "recorders] See notes on line 329",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 3 SCENE 4 / line 188 / note 1",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 64,
+      "ends_nv_terminal": false,
+      "tail": "] STRATMANN : Lzive, of the Qq, seems to be the true reading",
+      "start": "live] STRATMANN : Lzive, of the Qq, seems to be the true reading",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 4 SCENE 3 / line 27 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 67,
+      "ends_nv_terminal": false,
+      "tail": "or this colloquial use, see I, v, 167; and 'me,' II, ii, 414",
+      "start": "your] For this colloquial use, see I, v, 167; and 'me,' II, ii, 414",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 4 SCENE 4 / line 56 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 23,
+      "ends_nv_terminal": false,
+      "tail": "mouths] See II, ii, 347",
+      "start": "mouths] See II, ii, 347",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 4 SCENE 5 / line 68 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 769,
+      "ends_nv_terminal": false,
+      "tail": "is, even by those who understood them as a Greek contraction",
+      "start": "Gis] JOHNSON: Rather, ‘By Cis,’ i. e. By St Cecily. RIDLEY: There is not the least mention",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 4 SCENE 7 / line 2 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 143,
+      "ends_nv_terminal": false,
+      "tail": "logy in reference to seals, see RUSHTON, Sh. a Lawyer, p. 29",
+      "start": "acquittance seal] For other similar instances of Shakespeare’s use of legal phraseology in",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 4 SCENE 7 / line 7 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 107,
+      "ends_nv_terminal": false,
+      "tail": "in giving this rarer word, which is not used elsewhere by Sh",
+      "start": "crimeful] CLARENDON: The Ff are probably right in giving this rarer word, which is not use",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 4 SCENE 7 / line 102 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 86,
+      "ends_nv_terminal": false,
+      "tail": "not contrive so many proofs of dexterity as he would perform",
+      "start": "forgery] Johnson: I could not contrive so many proofs of dexterity as he would perform",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 5 SCENE 1 / line 308 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 9844,
+      "ends_nv_terminal": false,
+      "tail": "owed it. He might have cited from Hamlet, I, iv, 10: 'drains",
+      "start": "eisel] With the exception of 'the dram of eale,' no word or phrase in this tragedy has occ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 5 SCENE 1 / line 308 / note 1",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 6638,
+      "ends_nv_terminal": false,
+      "tail": "t Editor believes Esill and Esile to be misprints for Eysell",
+      "start": "'drink up eisel.'] on Jonson’s Every Man in his Humour, IV, v (Works, p. 122, ed. 1816, ci",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 5 SCENE 1 / line 308 / note 2",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 6633,
+      "ends_nv_terminal": false,
+      "tail": "t Editor believes Esill and Esile to be misprints for Eysell",
+      "start": "‘drink up eisel.’] on Jonson’s Every Man in his Humour, IV, v (Works, p. 122, ed. 1816, ci",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 1, SCENE 1 / line 1.1.44 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation"
+      ],
+      "len": 244,
+      "ends_nv_terminal": false,
+      "tail": "afters Cannot be truely follow'd. You mail marke [310 F\\ 37,",
+      "start": "any iuft terme am Affin'd To loue the Moored Rod. I would not follow him then. Iago. O Sir",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 1, SCENE 1 / line 1.1.47 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 5075,
+      "ends_nv_terminal": false,
+      "tail": "ver for all that he has done for me, especially for hig tran",
+      "start": "will be * our own.' Impressed with this belief, I have in this volume abandoned the plan, ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 1, SCENE 1 / line 1.1.53 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 462,
+      "ends_nv_terminal": false,
+      "tail": "e, And fuch a one do I profeffe my felfe. For (Sir) 50 55 60",
+      "start": "ares out his time, much like his Matters Affe, For naught but Prouender, & when he's old C",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 3, SCENE 1 / line 3.1.21 / note 2",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 430,
+      "ends_nv_terminal": false,
+      "tail": " even in any one of my own countrymen than in this man.' ---",
+      "start": "Malone: In consequence of this line, a doubt has been entertained concerning the country o",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 3, SCENE 2 / line 3.2.4 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 55,
+      "ends_nv_terminal": false,
+      "tail": "Well: We Qq, Jen. Coll. Wh. i. We'll FfG F4 et cet. ---",
+      "start": "Well: We Qq, Jen. Coll. Wh. i. We'll FfG F4 et cet. ---",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 4 SCENE 1 / line 246 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1119,
+      "ends_nv_terminal": false,
+      "tail": " It is fo: Are there ballance heere to weigh the flefh ? 269",
+      "start": "Dunlap's Life of Cooke] 249. (i, 122): The audience were surprised and delighted by the ab",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 1 SCENE 1 / line 5 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 685,
+      "ends_nv_terminal": false,
+      "tail": "o terms in the phrase ‘ yare and ready ’ seem equivalent. 12",
+      "start": "yarely] Steevens : That is, readily, nimbly. Our author is frequent in his use of this wor",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 2 SCENE 2 / line 190 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 7532,
+      "ends_nv_terminal": false,
+      "tail": " term, and the smaller ones, eaten without being opened, are",
+      "start": "Scamels] THEOBALD: Shakespeare must certainly either have wrote Shamois, i. e. young kids;",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 3 SCENE 1 / line 17 / note 9",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 3554,
+      "ends_nv_terminal": false,
+      "tail": "ll) But these sweet thoughts do me refresh (me) [my] labours",
+      "start": "Most busie lest]—HERR (Scattered Notes, &c. 1879, p. 88): Read, ‘—refresh my labour, Most ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 4 SCENE 1 / line 79 / note 3",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 3580,
+      "ends_nv_terminal": false,
+      "tail": "owns.”’ With regard to the other word, as in the First Folio",
+      "start": "pioned, and twilled brims] GRANT WHITE: In the text of the Folio ‘pioned’ may mean dug, an",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 4 SCENE 1 / line 194 / note 2",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 3885,
+      "ends_nv_terminal": false,
+      "tail": "Few Notes, &c. He begins (p. 13) with the emphatic assertion",
+      "start": "Leaue not a racke behinde] and on the two sides eight ladies, attired richly and alike in ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 4 SCENE 1 / line 194 / note 3",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 3645,
+      "ends_nv_terminal": false,
+      "tail": "thened my belief that it is wrong. A portion of his pleading",
+      "start": "Leaue not a racke behinde] ‘rack’ is a misspelling for wrack, i. e. wreck, Dyce concludes:",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 5 SCENE 1 / line 213 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 3409,
+      "ends_nv_terminal": false,
+      "tail": " the stainlessness of his knightly and Christian character.†",
+      "start": "Ferdinand and Miranda, at Chess] of Chessmen to Charlemagne, and when a son of William the",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 1 SCENE 2 / line 156 / note 0",
+      "signals": [
+        "is_clipped",
+        "unbalanced_parens"
+      ],
+      "len": 230,
+      "ends_nv_terminal": true,
+      "tail": "equent in such trivial quasi-oaths; cf. bodykins, by’rlakin.",
+      "start": "['fecks] BRADLEY (N. E. D. s. v. Fegs, where many forms, such as feckins, fackins, fac, fa",
+      "bucket": "uncertain"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 2 SCENE 2 / line 25 / note 6",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 20,
+      "ends_nv_terminal": false,
+      "tail": "36. I am] I'm Pope-K",
+      "start": "36. I am] I'm Pope-K",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 4 SCENE 2 / line 6 / note 2",
+      "signals": [
+        "is_clipped",
+        "unbalanced_parens"
+      ],
+      "len": 15,
+      "ends_nv_terminal": true,
+      "tail": "10. or] (or Ff.",
+      "start": "10. or] (or Ff.",
+      "bucket": "uncertain"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 4 SCENE 2 / line 6 / note 4",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 34,
+      "ends_nv_terminal": false,
+      "tail": "15. want thee,] want thee, or want",
+      "start": "15. want thee,] want thee, or want",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 1 SCENE 5 / line 44 / note 0",
+      "signals": [
+        "is_clipped",
+        "unbalanced_parens"
+      ],
+      "len": 300,
+      "ends_nv_terminal": true,
+      "tail": "lation to a tailor that a cobbler holds to a shoemaker.—ED.]",
+      "start": "Botcher] ‘BOTCHARE of olde thinges. Resartor.’—Prompt. Parv. (where, in a foot-note, WAY q",
+      "bucket": "uncertain"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 5 SCENE 1 / line 32 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 71,
+      "ends_nv_terminal": false,
+      "tail": "s venit] 33. BAYNES (p. 181): These scraps of Latin dialogue",
+      "start": "Videsne quis venit] 33. BAYNES (p. 181): These scraps of Latin dialogue",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 3 SCENE 6 / line 19 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation"
+      ],
+      "len": 155,
+      "ends_nv_terminal": false,
+      "tail": " especially in those of warlike munitions and accoutrements,",
+      "start": "In th’ habiliments] MURRAY (N. E. D.): Obsolete form of Habiliment, used in all the senses",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 4 SCENE 14 / line 160 / note 0",
+      "signals": [
+        "is_clipped",
+        "unbalanced_parens"
+      ],
+      "len": 408,
+      "ends_nv_terminal": true,
+      "tail": "isregarded in a scamper to utter the line in five feet?—Ed.]",
+      "start": "Lockt . . . (feare] ABBOTT (§§ 505, 470): It is difficult to scan this line without making",
+      "bucket": "uncertain"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 5 SCENE 2 / line 72 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 542,
+      "ends_nv_terminal": false,
+      "tail": " nak’d her bosome, show’d her breasts,’ etc.—Ibid. xxii, 69,",
+      "start": "starke-mak’d] WALKER (Vers. 192) has gathered many examples from the old poets where naked",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 3 SCENE 2 / line 130 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 308,
+      "ends_nv_terminal": false,
+      "tail": "ot found in Act 2 Scene 4, Act 3 Scene 1, or Act 3 Scene 2.=",
+      "start": "and when I met] 130. Abbott quotes (§ 98) the present line as an example of 'and' used for",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "DRAMATIS PERSONAE / line 5 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1197,
+      "ends_nv_terminal": false,
+      "tail": "hich Brutus and Portia take leave of each other at Elea. 510",
+      "start": "Portia] Mrs JAMESON (p. 330): Portia, as Shakespeare has truly felt and represented the ch",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 2 SCENE 5 / line 3 / note 1",
+      "signals": [
+        "hard_truncation",
+        "unbalanced_parens"
+      ],
+      "len": 867,
+      "ends_nv_terminal": false,
+      "tail": "men on, Cry’de oh, and mounted ; found no oppofition 214 200",
+      "start": "Bastards] MURRAY (N. E. D.): BAST, subs2, adopted from old French bast, packsaddle (used a",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 3 SCENE 2 / line 61 / note 0",
+      "signals": [
+        "is_clipped",
+        "unbalanced_parens"
+      ],
+      "len": 114,
+      "ends_nv_terminal": true,
+      "tail": "form of Abate]: 5. To mitigate, moderate, assuage, diminish.",
+      "start": "let me bate] MURRAY (N. E. D., s. v. Bate. 2 [aphetic form of Abate]: 5. To mitigate, mode",
+      "bucket": "uncertain"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 5 SCENE 3 / line 74 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 842,
+      "ends_nv_terminal": false,
+      "tail": "ill finde him : For being now a Fauourer to the Britaine, 82",
+      "start": "Still going] WALKER (Crit., iii, 327): That is, you run away from me as you did from the e",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 1 SCENE 1 / line 273 / note 7",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 19,
+      "ends_nv_terminal": false,
+      "tail": "4. 286. thee] the F",
+      "start": "4. 286. thee] the F",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 2 SCENE 1 / line 93 / note 3",
+      "signals": [
+        "is_clipped",
+        "hard_truncation"
+      ],
+      "len": 32,
+      "ends_nv_terminal": false,
+      "tail": "4. 87. occafion] occasion Fleay,",
+      "start": "4. 87. occafion] occasion Fleay,",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 2 SCENE 1 / line 205 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 18,
+      "ends_nv_terminal": false,
+      "tail": "to cry ayme] Om. F",
+      "start": "to cry ayme] Om. F",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 2 SCENE 1 / line 273 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 689,
+      "ends_nv_terminal": false,
+      "tail": "ues the King To him will we proue loyall, till that time 287",
+      "start": "rude circumference] Collier (ed. ii.): A correspondent (Mr W.W. Williams of Tiverton) sugg",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 2 SCENE 1 / line 300 / note 5",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 35,
+      "ends_nv_terminal": false,
+      "tail": "4. e’er Rowe et seq. fiCs] fits F3F",
+      "start": "4. e’er Rowe et seq. fiCs] fits F3F",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 2 SCENE 1 / line 443 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 23,
+      "ends_nv_terminal": false,
+      "tail": "neere to England] Tie F",
+      "start": "neere to England] Tie F",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 3 SCENE 4 / line 48 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 17,
+      "ends_nv_terminal": false,
+      "tail": "I am not mad] F2F",
+      "start": "I am not mad] F2F",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 3 SCENE 4 / line 80 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 68,
+      "ends_nv_terminal": false,
+      "tail": ". heard you say] F. GENTLEMAN (ap. BELL): Though Constance’s",
+      "start": "And . . . heard you say] F. GENTLEMAN (ap. BELL): Though Constance’s",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 3 SCENE 4 / line 97 / note 0",
+      "signals": [
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 2325,
+      "ends_nv_terminal": false,
+      "tail": "do not, accordingly, find much of it in Shakespeare, in pro-",
+      "start": "Greefe fils the roome] Mrs Griffith compares for this thought: ‘Mon deuil me plait, et doi",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 3 SCENE 4 / line 105 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 542,
+      "ends_nv_terminal": false,
+      "tail": "ion of Constance’s agony of grief and incipient frenzy, when",
+      "start": "I will not keepe this forme] COLLIER: Constance perhaps wore no headdress but her hair, as",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 3 SCENE 4 / line 110 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 476,
+      "ends_nv_terminal": false,
+      "tail": ", when the poison has done its work upon the guilty king, we",
+      "start": "Exit] Knight (Studies, p. 204): Are we to believe that Shakespeare intended that our heart",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 3 SCENE 4 / line 116 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 312,
+      "ends_nv_terminal": false,
+      "tail": "ified by the passage in Hamlet: ‘How weary, stale, flat, and",
+      "start": "sweet words taste] Malone: The ‘sweet word’ is life; which, says the speaker, is no longer",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 3 SCENE 4 / line 148 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 469,
+      "ends_nv_terminal": false,
+      "tail": "bed relations between John and his English barons on account",
+      "start": "in the right of Lady Blanch] WARNER (p. 39): [In this scene] the historical facts are tang",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 3 SCENE 4 / line 160 / note 0",
+      "signals": [
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 3386,
+      "ends_nv_terminal": false,
+      "tail": "xcellent reasons given by the Cambridge Edd. for their reje-",
+      "start": "scope of Nature] WARBURTON, with the certainty that Pope’s reading is the true one, remark",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 1 / line 2 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 714,
+      "ends_nv_terminal": false,
+      "tail": "ll these dogged spies with false reports?’ Hubert afterwards",
+      "start": "Heate me these Irons] MOBERLY: The notion of disabling for the Crown by inflicting blindne",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 1 / line 21 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 222,
+      "ends_nv_terminal": false,
+      "tail": "ndom' as here meaning christening or baptism, of which sense",
+      "start": "by my Christendome] MURRAY (N. E. D., s. v. Christendom, n. b.): Equivalent to As I am a C",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 1 / line 42 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 66,
+      "ends_nv_terminal": false,
+      "tail": "g . . . out of doore] MOBERLY: That tears should ‘drive away",
+      "start": "Turning . . . out of doore] MOBERLY: That tears should ‘drive away",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 1 / line 72 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 233,
+      "ends_nv_terminal": false,
+      "tail": "i, 19. [WALKER (Crit., ii, pp. 324-343) gives numerous other",
+      "start": "heate red hot] For this form of the participle Malone compares, 'He commanded that they sh",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 1 / line 81 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1188,
+      "ends_nv_terminal": false,
+      "tail": "—Steevens: Shakespeare probably meant this line to be broken",
+      "start": "I would not . . . but Hubert] Warburton: Shakespeare, I am persuaded, wrote: ‘I would not ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 1 / line 99 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 635,
+      "ends_nv_terminal": false,
+      "tail": "nt scene the other Executioner is doubtless intended to be a",
+      "start": "I am best pleas'd, etc.] HALLIWELL: This line is no doubt spoken aside, for it would hardl",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 1 / line 108 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation"
+      ],
+      "len": 83,
+      "ends_nv_terminal": false,
+      "tail": "252): Undoubtedly the true reading is, a mote, Matthew, vii,",
+      "start": "a moth] Upton (ed. ii, 252): Undoubtedly the true reading is, a mote, Matthew, vii,",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 1 / line 126 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 479,
+      "ends_nv_terminal": false,
+      "tail": "et in defence of Dr Grey’s remark it may be said that Arthur",
+      "start": "malice in this burning cole] GREY (i, 293): This line, I think, should be read thus: ‘Ther",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 1 / line 137 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 67,
+      "ends_nv_terminal": false,
+      "tail": "] That is, uses, shows. Compare: ‘To buy his favour I extend",
+      "start": "extends] That is, uses, shows. Compare: ‘To buy his favour I extend",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 1 / line 139 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 2570,
+      "ends_nv_terminal": false,
+      "tail": "the masterly scene between John and Hubert is the following:",
+      "start": "see to live] RODERICK (ap. EDWARDS, p. 254): Read, 'See, and live.' For though there is no",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 43 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 2248,
+      "ends_nv_terminal": false,
+      "tail": "ANON. (Blackwood’s Maga., Sept., 1853, p. 305): ‘When lesser",
+      "start": "more strong, then lesser is my feare] JOHNSON, without reference to the original text, ‘at",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 43 / note 1",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 3679,
+      "ends_nv_terminal": false,
+      "tail": "en exceed the measure of his relief. Tyrwhitt's when is very",
+      "start": "And more, more strong, then lesser is my fear] is my fear' is the common reading; but why ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 80 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation"
+      ],
+      "len": 147,
+      "ends_nv_terminal": false,
+      "tail": "is design to conceal it by fair professions.—MALONE: Rather,",
+      "start": "Betweene ... conscience] JOHNSON: That is, between his consciousness of his guilt and his ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 92 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 515,
+      "ends_nv_terminal": false,
+      "tail": "mother and the widow of Edward upbraid him with his murders:",
+      "start": "This must be answer’d] Knight (Studies, p. 205): This is as knell in John’s ears. Througho",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 98 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 74,
+      "ends_nv_terminal": false,
+      "tail": "n your game] Capell (I, pt ii; p. 133): Salisbury’s wish, or",
+      "start": "So thriue it in your game] Capell (I, pt ii; p. 133): Salisbury’s wish, or",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 107 / note 0",
+      "signals": [
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 789,
+      "ends_nv_terminal": false,
+      "tail": "the very principle which he fought to establish. The psycho-",
+      "start": "I repent] Snider (ii, 309): A great change is now to be observed in the King. He becomes s",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 115 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1737,
+      "ends_nv_terminal": false,
+      "tail": "to the ensuing assertion, in a persuasion that what he meant",
+      "start": "From France to England... a powre] RODERICK (ap. EDWARDS, p. 254): The meaning is, that ‘T",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 128 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 68,
+      "ends_nv_terminal": false,
+      "tail": "e in a frenzie di[ed] BUCKNILL (Mad Folk, etc., p. 284): The",
+      "start": "Constance in a frenzie di[ed] BUCKNILL (Mad Folk, etc., p. 284): The",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 226 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 3204,
+      "ends_nv_terminal": false,
+      "tail": " the only passage which leads me to believe that Shakespeare",
+      "start": "It is the curse of Kings, etc.] WARBURTON: This plainly hints at Davison’s case in the aff",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 234 / note 1",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "mid_sentence_cut",
+        "unbalanced_parens"
+      ],
+      "len": 65,
+      "ends_nv_terminal": false,
+      "tail": "ast accompt twixt heaven & earth] WORDSWORTH (Sh’s Knowledge",
+      "start": "the last accompt twixt heaven & earth] WORDSWORTH (Sh’s Knowledge",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 238 / note 1",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1840,
+      "ends_nv_terminal": false,
+      "tail": " ‘a deed,’ as he quotes it.—Ed.]—VAUGHAN (i, 69): The phrase",
+      "start": "deeds ill done] KNIGHT: We have ventured upon a transposition [see Text. Notes]. The origi",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 252 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1256,
+      "ends_nv_terminal": false,
+      "tail": "alone, and or, proposed by Pope, both imply the necessity of",
+      "start": "As bid me tell] M. MASON: That is, such an eye of doubt as bid me tell my tale, etc. [Both",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 256 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1986,
+      "ends_nv_terminal": false,
+      "tail": "plains it, and the other translates it, as if the conjecture",
+      "start": "signe . . . with sinne] Collier (ed. ii.): There can be no reasonable doubt that signe was",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 287 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation"
+      ],
+      "len": 159,
+      "ends_nv_terminal": false,
+      "tail": " Macbeth, ‘I conjure you, by that which you profess.’—IV, i,",
+      "start": "I conjure thee] WRIGHT: That is, I solemnly adjure thee. The accent is on the first syllab",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 3 / line 20 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut",
+        "unbalanced_parens"
+      ],
+      "len": 2225,
+      "ends_nv_terminal": false,
+      "tail": "y’ than that of the Corrector for interference.—ANON. (Black",
+      "start": "Whose private with me] POPE: That is, whose private account of the Dauphin’s affection to ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 3 / line 29 / note 1",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 156,
+      "ends_nv_terminal": false,
+      "tail": "f that the MS. Corrector’s reading, ‘sin-bestained,’ is ‘the",
+      "start": "thin-bestained cloke] COLLIER (Notes, etc., p. 208) considers the hyphen here as conclusiv",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 3 / line 31 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1342,
+      "ends_nv_terminal": false,
+      "tail": "90–93.—Ed.]—OECHELHAUSER (Einführungen, i, 29): This leap of",
+      "start": "Enter Arthur, on the walls] MALONE: Our Author has here followed the old play. In what man",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 3 / line 60 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 703,
+      "ends_nv_terminal": false,
+      "tail": " excuse all other crimes to be committed. ‘Sin,’ it is true,",
+      "start": "sinne of times] MALONE: That is, of all future times. So in Henry V: ‘By custom and the or",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 3 / line 115 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 153,
+      "ends_nv_terminal": false,
+      "tail": "direction: ‘Hubert sees the body of Arthur now for the first",
+      "start": "Who kill’d this Prince] OECHELHAUSER (Bühne-bearbeitungen, p. 110) gives the following sta",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 3 / line 170 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 468,
+      "ends_nv_terminal": false,
+      "tail": "now held by him through superior strength. King John has al-",
+      "start": "wrested pomp] Johnson: That is, greatness obtained by violence.—Malone: Rather, greatness ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 1 / line 2 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1279,
+      "ends_nv_terminal": false,
+      "tail": "he Charter, but the surrender of the English crown, when the",
+      "start": "Thus have I yielded] BOAS (Sh. & his Predecessors, p. 243): It has attracted universal not",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 1 / line 11 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 559,
+      "ends_nv_terminal": false,
+      "tail": "ence affected the whole people.’—IVOR JOHN: I think the fact",
+      "start": "Counties] STEEVENS: Perhaps ‘counties’ in the present instance do not mean the divisions o",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 1 / line 19 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 241,
+      "ends_nv_terminal": false,
+      "tail": " purely medical expression, signifying a glust of morbid and",
+      "start": "overthrow] Vaughan (i, 78) asserts that ‘overthrow’ in this line has been probably interpr",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 1 / line 76 / note 2",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 156,
+      "ends_nv_terminal": false,
+      "tail": "meaning of the adjective ‘brave,’ showy, splendid; as if ‘to",
+      "start": "brave] Wright: ‘Brave’ is here used in the ordinary sense of defy, with a side reference t",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 2 / line 28 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1101,
+      "ends_nv_terminal": false,
+      "tail": "ppropriate image. Nor do I recall any passage in Shakespeare",
+      "start": "a stranger march] THEOBALD: All the printed copies have mistakenly pointed this passage; b",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 2 / line 36 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 66,
+      "ends_nv_terminal": false,
+      "tail": "he knowledge of thyself] VAUGHAN (i, 83): This does not mean",
+      "start": "from the knowledge of thyself] VAUGHAN (i, 83): This does not mean",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 2 / line 40 / note 1",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1114,
+      "ends_nv_terminal": false,
+      "tail": "twood & Wright: Bibleword Book, s. v. All-to). The line from",
+      "start": "And not to spend] STEEVENS: Shakespeare employs, in the present instance, a phraseology wh",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 2 / line 65 / note 0",
+      "signals": [
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 2866,
+      "ends_nv_terminal": false,
+      "tail": "nded a play on the words ‘noble’ and ‘angel’; saying in con-",
+      "start": "an Angel spake] JOHNSON thinks Hanmer's reading, speeds, unnecessary since: ‘The Dauphin d",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 2 / line 65 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1851,
+      "ends_nv_terminal": false,
+      "tail": "re it shaped Unto my end in stealing them.’—Cymbeline, V, v,",
+      "start": "And even there, methinks an Angell spake] conclusion: ‘It must be remembered that an angel",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 2 / line 65 / note 2",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1855,
+      "ends_nv_terminal": false,
+      "tail": "rse of rich prosperity;”—Marshall construes still another ex",
+      "start": "346. It seems hardly necessary to remark that ‘shaped’ here means to be suited, to square,",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 2 / line 81 / note 1",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 386,
+      "ends_nv_terminal": false,
+      "tail": "as no conscience; the Church is employed by him simply as an",
+      "start": "I will not backe] SNIDER (ii, 314): The Dauphin from the obedient son of the Church become",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 2 / line 92 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 960,
+      "ends_nv_terminal": false,
+      "tail": "he is truly said to have an interest in them.’—On Littleton,",
+      "start": "interest to this Land] MALONE: This was the phraseology of Shakespeare’s time. So in 2 Hen",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 2 / line 138 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 231,
+      "ends_nv_terminal": false,
+      "tail": "asion as an unadvised enterprise, savouring of youth and in-",
+      "start": "vn-heard] THEOBALD: 'Unheard' is an epithet of very little force or meaning here; besides,",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 2 / line 149 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1840,
+      "ends_nv_terminal": false,
+      "tail": "the MS. Corrector’s suggestion, but, following Douce’s lead,",
+      "start": "the crying of your Nations crow] MALONE justly reprehends the change of ‘your’ to our (whi",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 2 / line 164 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1093,
+      "ends_nv_terminal": false,
+      "tail": "es. Hotspur’s uncontrollable ardour is snubbed sarcastically",
+      "start": "There end thy brave!] MINTO (p. 283): Mere warlike enthusiasm, the thirst for fighting and",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 2 / line 173 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 3437,
+      "ends_nv_terminal": false,
+      "tail": "ere,” and read: “as I have warned their towns.”—Wright is in",
+      "start": "] We still say to coast and to flank; and to ‘bank’ has no less of propriety, though it is",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 2 / line 186 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation"
+      ],
+      "len": 148,
+      "ends_nv_terminal": false,
+      "tail": "IV, iii, 142. Compare Richard III: ‘Strike up the drum,’ IV,",
+      "start": "Strike vp our drummes] WRIGHT: ‘Up’ is here used emphatically, as in ‘stifle . . . up,’ IV",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 3 / line 10 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 516,
+      "ends_nv_terminal": false,
+      "tail": "an Abbey founded for the Cistercians by Robert de Greslie in",
+      "start": "Swinstead] Reed (Var. ’03): That is, Swineshead, as I am informed by the present Vicar of ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 3 / line 14 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 392,
+      "ends_nv_terminal": false,
+      "tail": " the Christian name given in knighthood to Sir Richard Plan-",
+      "start": "Richard] Steevens: That is, Sir Richard Faulconbridge [Qu. Plantaganet?]; and yet the King",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 4 / line 14 / note 1",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1757,
+      "ends_nv_terminal": false,
+      "tail": "ork.—MASON (Comments on Sh., p. 161): The word 'eye' induces",
+      "start": "10. And in Venus & Adonis: 'She treads the path that she untreads again,' l. 908.—CAPELL (",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 4 / line 14 / note 4",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 720,
+      "ends_nv_terminal": false,
+      "tail": "t This churlish knot of all-abhorréd war?'—1 Henry IV: V, i,",
+      "start": "Vnthred the rude eye of Rebellion] A. Schmidt (Jahrbuch, iii, p. 357) is not satisfied wit",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 4 / line 14 / note 5",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 2949,
+      "ends_nv_terminal": false,
+      "tail": " eye of rebellion's maze.' Then it is perfect and clear. 17,",
+      "start": "16. 'Unknit' here corresponds exactly to 'unthread' in King John, 'churlish' to 'rude,' an",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 4 / line 19 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 231,
+      "ends_nv_terminal": false,
+      "tail": "n which Lewis, after confirming by oath the solemn agreement",
+      "start": "By cutting off your heads] BELDEN (Tudor Sh.): This treachery of Lewis comes as something ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 4 / line 41 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 157,
+      "ends_nv_terminal": false,
+      "tail": "as been strangely misplaced to follow l. 50. A vagary of the",
+      "start": "Euen . . . your liues] In R. G. WHITE’S ed. ii. this line should be at the top of the page",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 4 / line 63 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1055,
+      "ends_nv_terminal": false,
+      "tail": "e eyes of many persons just before death. Editors guessed at",
+      "start": "Right in thine eye] STEEVENS: ‘Right’ signifies immediate. It is now obsolete.—HEATH (p. 1",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 4 / line 64 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 227,
+      "ends_nv_terminal": false,
+      "tail": "ernment’? Does the good old constitutionalist [Johnson] sup-",
+      "start": "happie newesæe] JOHNSON: That is, happy innovation, that purposed the restoration of the a",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 5 / line 14 / note 1",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1757,
+      "ends_nv_terminal": false,
+      "tail": "ork.—MASON (Comments on Sh., p. 161): The word 'eye' induces",
+      "start": "10. And in Venus & Adonis: 'She treads the path that she untreads again,' l. 908.—CAPELL (",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 5 / line 14 / note 4",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 720,
+      "ends_nv_terminal": false,
+      "tail": "t This churlish knot of all-abhorréd war?'—1 Henry IV: V, i,",
+      "start": "Vnthred the rude eye of Rebellion] A. Schmidt (Jahrbuch, iii, p. 357) is not satisfied wit",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 5 / line 14 / note 5",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 2949,
+      "ends_nv_terminal": false,
+      "tail": " eye of rebellion's maze.' Then it is perfect and clear. 17,",
+      "start": "16. 'Unknit' here corresponds exactly to 'unthread' in King John, 'churlish' to 'rude,' an",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 5 / line 19 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 231,
+      "ends_nv_terminal": false,
+      "tail": "n which Lewis, after confirming by oath the solemn agreement",
+      "start": "By cutting off your heads] BELDEN (Tudor Sh.): This treachery of Lewis comes as something ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 6 / line 18 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 852,
+      "ends_nv_terminal": false,
+      "tail": "ads ‘loste his lyht.’—COLLIER, in his edition of Edward III,",
+      "start": "endless] THEOBALD: Why ‘endless night’? Hubert means no more than that the dulness of his ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 6 / line 18 / note 2",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 851,
+      "ends_nv_terminal": false,
+      "tail": "ads ‘loste his lyht.’—COLLIER, in his edition of Edward III,",
+      "start": "endles] THEOBALD: Why ‘endless night’? Hubert means no more than that the dulness of his r",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 6 / line 18 / note 3",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 3653,
+      "ends_nv_terminal": false,
+      "tail": "ten ‘candleless night.’—Daniel (p. 47) has made the same con",
+      "start": "Hub. Vakinde remembrance: thou, & endless night] included in his Shakespeare, ed. iii, com",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 6 / line 30 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 543,
+      "ends_nv_terminal": false,
+      "tail": "uring, are mentioned by Grafton only: 'And in the same selfe",
+      "start": "poyson’d by a Monke] MALONE: Not one of the historians who wrote within sixty years after ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 6 / line 37 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 320,
+      "ends_nv_terminal": false,
+      "tail": "wever, as accurate as it is fearful; the only point of error",
+      "start": "Whose Bowels sodainly burst out] BUCKNILL (Med. Knowledge of Sh., p. 137): The ideas which",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 6 / line 45 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 387,
+      "ends_nv_terminal": false,
+      "tail": ", but quote it as in the Authorised Version. ‘Tempt’ in both",
+      "start": "tempt vs . . . our power] Carter (p. 216) compares: ‘God is faithful which wil not suffer ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 7 / line 3 / note 2",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1423,
+      "ends_nv_terminal": false,
+      "tail": "mind, That from it all consideration slips.’—Timon, IV, iii,",
+      "start": "706. Deloney’s Strange Histories were first published in 1607; it is therefore probable th",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 7 / line 4 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 4425,
+      "ends_nv_terminal": false,
+      "tail": "ect his own opinions; nor indeed even are these lines merely",
+      "start": "the soules fraile dwelling house] The actual seat or dwelling place of the soul in man was",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 7 / line 20 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 2063,
+      "ends_nv_terminal": false,
+      "tail": "So in All’s Well: ‘Is it not meant damnable in us.’—IV, iii,",
+      "start": "Leaue them insensible] CAPELL (I, pt ii, p. 139): Nor is this amendment [insensible, see T",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 7 / line 20 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 5262,
+      "ends_nv_terminal": false,
+      "tail": "quest of our sovereign.’ Tamburlaine, pt ii, V, iii, Quarto,",
+      "start": "31. Again in 1 Henry IV.: ‘ten times more dishonourable ragged than an old faced ancient.’",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 7 / line 22 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 549,
+      "ends_nv_terminal": false,
+      "tail": "e does not rage as he has done before, but expresses himself",
+      "start": "many legions of strange fantasies] Bucknill (Medical Knowledge, etc., p. 138): The superve",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 7 / line 34 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 643,
+      "ends_nv_terminal": false,
+      "tail": ".’—F. GENTLEMAN (Dram. Censor, ii, 166): We have now brought",
+      "start": "Iohn. I marrie, now, etc.] DAVIES (Dramatic Miscell., i, p. 113), in speaking of Garrick’s",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 7 / line 42 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 386,
+      "ends_nv_terminal": false,
+      "tail": "t be added the fact that he had been sick before, as will be",
+      "start": "Poyson’d] Chesney (p. 158): The case of King John bears a much closer analogy to a case wh",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 7 / line 42 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1677,
+      "ends_nv_terminal": false,
+      "tail": "ssyllable may be necessary for the finger-counting metrists,",
+      "start": "Poison'd, ill fare] THEOBALD, rejecting quite properly Pope's needless change (see Text. N",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 15 / note 1",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 486,
+      "ends_nv_terminal": false,
+      "tail": "nt speeches to 2 Cit. are manifestly erroneous and should be",
+      "start": "2 Cit.] CAPELL (vol. I, pt i, p. 81): A very little reflexion upon the preceding speeches ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 40 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1807,
+      "ends_nv_terminal": false,
+      "tail": "es other examples of a like transposition of the adverb. 41,",
+      "start": "to be partly proud] CAPELL (I, pt i, p. 80) maintains that the reading of F1 and of Hanmer",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 54 / note 0",
+      "signals": [
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 1716,
+      "ends_nv_terminal": false,
+      "tail": "of Menenius Agrippa, see Dram. Person., s. v. ante.—Ed.] 57-",
+      "start": "Menenius Agrippa] S. LEE (Caxton Sh. Introd., p. xxxii.): Shakespeare follows Plutarch in ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 97 / note 2",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 896,
+      "ends_nv_terminal": false,
+      "tail": "scal’d pottle of wine’ in Dekker’s comedy, The Honest Whore,",
+      "start": "To scale't] —Ed.]—JOHNSON: Neither of Dr Warburton’s examples afford a sense congruous to ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 97 / note 3",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 2696,
+      "ends_nv_terminal": false,
+      "tail": "but Theobald’s emendation is so slight, and affords so clear",
+      "start": "1635. So in The Hystorie of Clyomon, a play published in 1599: ‘[Ah sirrah, now] the hugy ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 97 / note 4",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 2588,
+      "ends_nv_terminal": false,
+      "tail": "E, who is not always a very trustworthy authority on matters",
+      "start": "78. Steevens gives three other examples of ‘scale’ used in the sense to disperse from Holi",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 97 / note 5",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1179,
+      "ends_nv_terminal": false,
+      "tail": "e correct [corrupt] deputy scaled.’—Meas. for Meas., III, i,",
+      "start": "To scale:] latter reason only is entitled to a hearing; after giving a list of the various",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 97 / note 6",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 2550,
+      "ends_nv_terminal": false,
+      "tail": "le it. . . . Horne Tooke’s explanation of all these passages",
+      "start": "266. [Here follows the present line.] In the following passage it is manifest: ‘Scaling hi",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 97 / note 8",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 3607,
+      "ends_nv_terminal": false,
+      "tail": "does not merely do this nor intend to do it. What he intends",
+      "start": "To scale’t] LEO (Coriolanus, ed., p. 119): To use the word [scale] here in the sense of to",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 120 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1428,
+      "ends_nv_terminal": false,
+      "tail": " of the rebellious members. If it be taken from the Citizen,",
+      "start": "2. Cit. Your, etc.] VERITY (Student’s Sh.): Note how the interruptions vivify the story. T",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 146 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 871,
+      "ends_nv_terminal": false,
+      "tail": "distaff-women manage rusty bills Against thy seat,’ III, ii,",
+      "start": "the seat of the brain.] ‘To the seat of the brain, i. e. to the understanding. So in Danie",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 182 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1372,
+      "ends_nv_terminal": false,
+      "tail": "grees with, as making them either proud or cowardly. By this",
+      "start": "to thee] Dyce: The Folio has ‘to thee’—the transcriber or compositor, it would seem, havin",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 239 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 680,
+      "ends_nv_terminal": false,
+      "tail": "not live Out of the teeth of emulation,’ Jul. Cæs., II, iii,",
+      "start": "shouting their emulation.] MALONE interprets these words in accordance with the paraphrase",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 241 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 379,
+      "ends_nv_terminal": false,
+      "tail": "WALKER (Crit., iii, 207): Perhaps we should write and point:",
+      "start": "Five Tribunes] For an account of the establishment of the office of Tribuni Plebis, and th",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 302 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 707,
+      "ends_nv_terminal": false,
+      "tail": "you now. Luc. I thank thee for that gird, good Tranio.’ 288,",
+      "start": "gird the Gods] W. A. WRIGHT: That is, to taunt them, use sarcasm against them. Falstaff (2",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 2 / line 11 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 19,
+      "ends_nv_terminal": false,
+      "tail": "12. Dearth] Death F",
+      "start": "12. Dearth] Death F",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 3 / line 65 / note 1",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 29,
+      "ends_nv_terminal": false,
+      "tail": "69. A my troth...it] Mnemonic",
+      "start": "69. A my troth...it] Mnemonic",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 6 / line 107 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 2443,
+      "ends_nv_terminal": false,
+      "tail": "tation there is no need of any change of the text.—Ed.] 106,",
+      "start": "obey’d.] ‘Please you,’ &c., is addressed solely to Cominius, who, as general, best knew wh",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 8 / line 20 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 2929,
+      "ends_nv_terminal": false,
+      "tail": "re recognised Hector as one of the Trojan warriors.—Ed.] 18,",
+      "start": "whip'd your ancestors.] Has he confused Hector and Achilles?—KINNEAR (p. 306) reads hope i",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 24 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation"
+      ],
+      "len": 226,
+      "ends_nv_terminal": false,
+      "tail": "And Jul. Cas., III, ii, 16, ‘Censure me in your wisdom.’ 25,",
+      "start": "censured] W. A. Wright: That is, what opinion is formed of you, how you are estimated. See",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 24 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 876,
+      "ends_nv_terminal": false,
+      "tail": "Fortescue quotes this present line in illustration.—Ed.] 31,",
+      "start": "26. right hand File] Schmidt (Coriolanus): That is, men of rank who are the right hand of ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 53 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation"
+      ],
+      "len": 268,
+      "ends_nv_terminal": false,
+      "tail": "used by Shakespeare in its more restricted modern sense. 53,",
+      "start": "courses more] W. A. WRIGHT: That is, associates more, is more conversant with. Compare As ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 66 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation"
+      ],
+      "len": 36,
+      "ends_nv_terminal": false,
+      "tail": "Microcosme] F., Ktly. beefom F;. 65,",
+      "start": "Microcosme] F., Ktly. beefom F;. 65,",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 73 / note 2",
+      "signals": [
+        "is_clipped",
+        "hard_truncation"
+      ],
+      "len": 22,
+      "ends_nv_terminal": false,
+      "tail": "73. the] a Pope,+. 72,",
+      "start": "73. the] a Pope,+. 72,",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 93 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 171,
+      "ends_nv_terminal": false,
+      "tail": "fencing. Also fig. Obs. rare. [The present line quoted.] 20–",
+      "start": "potche] MURRAY (N. E. D., s. v. Poach, v². Forms: poche, potch, poach, 3b.): To make a sta",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 93 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 542,
+      "ends_nv_terminal": false,
+      "tail": "ng a comma after that word and also after ‘him,’ l. 21.] 20,",
+      "start": "22. my valors . . . of it self] BEECHING (Henry Irving Sh.): My valour, poisoned simply by",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 104 / note 0",
+      "signals": [
+        "is_clipped",
+        "unbalanced_parens"
+      ],
+      "len": 196,
+      "ends_nv_terminal": true,
+      "tail": "t cet. 100, 101. and...Nobler] In parentheses Johns. et seq.",
+      "start": "now (my as...] Ff, Rowe, Pope. now my (as... Theob. Warb. now my as Johns. Var. ’73: now, ",
+      "bucket": "uncertain"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 104 / note 1",
+      "signals": [
+        "is_clipped",
+        "unbalanced_parens"
+      ],
+      "len": 196,
+      "ends_nv_terminal": true,
+      "tail": "t cet. 100, 101. and...Nobler] In parentheses Johns. et seq.",
+      "start": "now (my as...] Ff, Rowe, Pope. now my (as... Theob. Warb. now my as Johns. Var. '73. now, ",
+      "bucket": "uncertain"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 226 / note 0",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 419,
+      "ends_nv_terminal": false,
+      "tail": "ares ‘All the building in my fancy,’ Lear, IV, ii, 85.] 219-",
+      "start": "inherited] W. A. WRIGHT: That is, literally, possessed; and hence realised, enjoyed. Compa",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 226 / note 1",
+      "signals": [
+        "is_clipped",
+        "hard_truncation"
+      ],
+      "len": 257,
+      "ends_nv_terminal": false,
+      "tail": ", but Our Rome will cast upon thee.’ [See Text. Notes.] 224,",
+      "start": "222. And the . . . vpon thee] ABBOTT (§ 499), under the heading Apparent Alexandrines, rea",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 251 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 364,
+      "ends_nv_terminal": false,
+      "tail": "nt action that Brutus here says no more than the truth. 250,",
+      "start": "224. 247-249. On the suddaine . . . sleepe] VERITY (Student’s Sh.): A significant indicati",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 2 / line 125 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 488,
+      "ends_nv_terminal": false,
+      "tail": "ing at the punies they have lurched,’ [ed. McKerrow, p. 150,",
+      "start": "The lurch . . . the Garland] STEEVENS: Ben Jonson has the same expression in The Silent Wo",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 2 / line 135 / note 2",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1582,
+      "ends_nv_terminal": false,
+      "tail": "I, i, 170, ‘Writing destruction on the enemies castle.’ 125,",
+      "start": "painted’st upon] SCHMIDT (Coriolanus): ‘Which’ is here commonly related to gate, but perha",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 3 / line 2 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1757,
+      "ends_nv_terminal": false,
+      "tail": "dix: Shakespeare and the Masses, R. W. CHAMBERS, p. 712.] 5,",
+      "start": "Once] WARBURTON: ‘Once’ here means the same as when we say once for all.—FARMER: This use ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 3 / line 16 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1304,
+      "ends_nv_terminal": false,
+      "tail": "ibution of corn precede his going up for the consulship. 16,",
+      "start": "for once] MALONE: That is, as soon as ever we stood up. This word is still used in nearly ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 3 / line 260 / note 1",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 299,
+      "ends_nv_terminal": false,
+      "tail": " syllables as in [the first foot of this present line]. 244-",
+      "start": "Which . . . fashion] Abbott (§ 456): Almost any syllables, however lengthy in pronunciatio",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 3 / line 260 / note 2",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 386,
+      "ends_nv_terminal": false,
+      "tail": "tives, but there is nothing to show it to be paramount. 245,",
+      "start": "246. Lay a fault . . . on him] Beeching (Falcon Sh.): Here the Tribunes break with truth; ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 3 SCENE 1 / line 192 / note 1",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 317,
+      "ends_nv_terminal": false,
+      "tail": "s, which had been before expressed more at large in ll. 173-",
+      "start": "178. Purpose . . . to purpose] Warburton: This is so like Polonius’s eloquence, and so muc",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 3 SCENE 1 / line 227 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 373,
+      "ends_nv_terminal": false,
+      "tail": " to the wagging of the beards of the two Tribunes.—Ed.] 211,",
+      "start": "old Goat] Case (Arden Sh.): Coriolanus, resenting the touch of Sicinius, probably means to",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 3 SCENE 2 / line 153 / note 1",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 28,
+      "ends_nv_terminal": false,
+      "tail": "145. Who] Which Pope,+. 142-",
+      "start": "145. Who] Which Pope,+. 142-",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 3 SCENE 3 / line 1 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 2754,
+      "ends_nv_terminal": false,
+      "tail": "forward this question of the spoils of the Antiates.—Ed.] 2,",
+      "start": "6. In this point . . . ne’re distributed] MACCALLUM (p. 511): The accusations brought agai",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 3 SCENE 3 / line 39 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 379,
+      "ends_nv_terminal": false,
+      "tail": "lpture the bit is the established symbol of this virtue. 37,",
+      "start": "Be rein’d . . . to Temperance] Tollet: Our poet seems to have taken several of his images ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 3 SCENE 3 / line 39 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1581,
+      "ends_nv_terminal": false,
+      "tail": "djutors, but merely coincide in expectation or tendency. 43,",
+      "start": "38. which lookes . . . his necke] Johnson: To ‘look’ is to wait or expect. The sense I bel",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 3 SCENE 3 / line 125 / note 1",
+      "signals": [
+        "is_clipped",
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 38,
+      "ends_nv_terminal": false,
+      "tail": "11. You?] You? out on you! Words. 107-",
+      "start": "11. You?] You? out on you! Words. 107-",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 4 SCENE 5 / line 61 / note 0",
+      "signals": [
+        "hard_truncation",
+        "hyphen_artifact"
+      ],
+      "len": 1005,
+      "ends_nv_terminal": false,
+      "tail": "’s version rather than by that in North’s Plutarch.—ED.] 56-",
+      "start": "Beats him away] FRANÇOIS-VICTOR HUGO (Introd., p. 30, foot-note): Shakespeare here departs",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 4 SCENE 5 / line 79 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 778,
+      "ends_nv_terminal": false,
+      "tail": " it more closely with apparent than appear, till c1686.] 66,",
+      "start": "apparance] W. A. Wright: Thus spelt also in Henry V. (Folio): V, ii, 76: ‘Why, what reade ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 4 SCENE 5 / line 98 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 426,
+      "ends_nv_terminal": false,
+      "tail": " find in Palsgrave (1530), ‘I whoope, I call. Je huppe.’ 86,",
+      "start": "Hoop’d] W. A. Wright: See As You Like It, III, ii, 203, ‘And yet again wonderful, and afte",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 4 SCENE 7 / line 13 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 687,
+      "ends_nv_terminal": false,
+      "tail": "t, iii, 16), ‘For indeed I saw you to be no changeling.’ 17,",
+      "start": "Changeling!] CASE (Arden Sh.): Here, in sense, shifter, inconstant, turn-coat, as in 1 Hen",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 5 SCENE 3 / line 206 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 574,
+      "ends_nv_terminal": false,
+      "tail": "one soul over another that is to move Coriolanus.’—ED.] 191,",
+      "start": "Doe’s reason our Petition] JOHNSON: That is, does argue for us and our petition. [Thus, al",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 5 SCENE 6 / line 131 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1371,
+      "ends_nv_terminal": false,
+      "tail": "ation is accepted by the majority of commentators.—Ed.] 125,",
+      "start": "Aufid. No more] Tyrwhitt: This should rather be given to the first Lord. It was not the bu",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 5 SCENE 6 / line 176 / note 1",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 698,
+      "ends_nv_terminal": false,
+      "tail": "l owe another.’ [Deighton is unquestionably right.—Ed.] 176,",
+      "start": "did owe you] VERITY (Student’s Sh.): Literally ‘possessed for you,’ hence ‘made you liable",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 1, SCENE 1 / line 117 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 911,
+      "ends_nv_terminal": false,
+      "tail": " the glory of Paris”—A.—It is only fitting that Paris should",
+      "start": "[scar to scorne] HUDSON (ed. 1881, reading “scorse”): The use of “scorse” in the sense of ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 1, SCENE 2 / line 20 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 532,
+      "ends_nv_terminal": false,
+      "tail": "... the first, chief, most excellent, most distinguished, or",
+      "start": "per se] N.E.D.: By or in himself; intrinsically, essentially; without reference to anyone ",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 1, SCENE 3 / line 17 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 368,
+      "ends_nv_terminal": false,
+      "tail": "ion.” ROLFE (ed. 1884) takes them, correctly, to be adverbs,",
+      "start": "Bias and thwart] HUDSON (ed. 1881) takes both words to be nouns, explaining “bias” (litera",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 1, SCENE 3 / line 69 / note 0",
+      "signals": [
+        "hard_truncation"
+      ],
+      "len": 1697,
+      "ends_nv_terminal": false,
+      "tail": " 1790) calls attention to the portrait of Nestor in Lucrece,",
+      "start": "hand] JOHNSON (ed. 1765): I once read for \"hand,\" the \"band\" of Greece, but I think the te",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 1, SCENE 3 / line 358 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1929,
+      "ends_nv_terminal": false,
+      "tail": "inity of things to come, and of things to come at large. You",
+      "start": "Indexes ... pricked] “Pricks” are small points or dots. WHITE (ed. 1883) suggests that Sh.",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 2, SCENE 3 / line 246 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 70,
+      "ends_nv_terminal": false,
+      "tail": "variant form of \"farce,\" to stuff, to fill full of something",
+      "start": "Force]: A variant form of \"farce,\" to stuff, to fill full of something",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 4, SCENE 1 / line 76 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 1514,
+      "ends_nv_terminal": false,
+      "tail": " of F1. Since there was only one whore, it was a question of",
+      "start": "But ... whore] JOHNSON (ed. 1765): I read, “But he as he, each heavier for a whore.” “Heav",
+      "bucket": "likely_genuine"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 4, SCENE 4 / line 5 / note 0",
+      "signals": [
+        "hard_truncation",
+        "mid_sentence_cut"
+      ],
+      "len": 386,
+      "ends_nv_terminal": false,
+      "tail": " Is an Ass, 1616 [III.vi.59], “Nor nature violenceth in both",
+      "start": "violenceth (Q)] According to N.E.D. the verb “to violent,” or “to violence,” was common in",
+      "bucket": "likely_genuine"
+    }
+  ]
+}

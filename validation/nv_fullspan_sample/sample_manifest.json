@@ -1,0 +1,1239 @@
+{
+  "seed": 42,
+  "sample_n_per_play": 14,
+  "play_seed_fn": "PYTHONHASHSEED=0 + hash(play) \u2014 frozen v1-comparable draw",
+  "notes": [
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 1 SCENE 2 / line 77 / note 0"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 1 SCENE 5 / line 36 / note 0"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 1 SCENE 5 / line 92 / note 0"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 2 SCENE 1 / line 12 / note 1"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 2 SCENE 2 / line 28 / note 0"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 2 SCENE 3 / line 78 / note 0"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 3 SCENE 1 / line 223 / note 0"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 3 SCENE 3 / line 85 / note 0"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 3 SCENE 5 / line 92 / note 1"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 4 SCENE 1 / line 128 / note 0"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 4 SCENE 3 / line 35 / note 0"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 4 SCENE 5 / line 91 / note 0"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 5 SCENE 3 / line 313 / note 0"
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 5 SCENE 3 / line 345 / note 0"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 1 SCENE 1 / line 13 / note 0"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 1 SCENE 2 / line 72 / note 0"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 1 SCENE 5 / line 21 / note 1"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 2 SCENE 2 / line 6 / note 0"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 2 SCENE 3 / line 149 / note 1"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 2 SCENE 4 / line 4 / note 0"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 3 SCENE 1 / line 139 / note 0"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 3 SCENE 4 / line 29 / note 0"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 3 SCENE 4 / line 45 / note 0"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 4 SCENE 3 / line 145 / note 0"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 4 SCENE 3 / line 241 / note 0"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 4 SCENE 3 / line 82 / note 0"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 5 SCENE 1 / line 1 / note 0"
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 5 SCENE 3 / line 11 / note 0"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 1 SCENE 2 / line 137 / note 0"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 1 SCENE 2 / line 154 / note 0"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 1 SCENE 5 / line 83 / note 0"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 2 SCENE 1 / line 39 / note 1"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 2 SCENE 2 / line 19 / note 0"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 2 SCENE 2 / line 613 / note 0"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 3 SCENE 1 / line 37 / note 0"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 3 SCENE 1 / line 38 / note 0"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 3 SCENE 4 / line 167 / note 0"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 4 SCENE 5 / line 33 / note 0"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 4 SCENE 5 / line 64 / note 0"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 4 SCENE 7 / line 34 / note 0"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 5 SCENE 1 / line 146 / note 0"
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 5 SCENE 2 / line 327 / note 0"
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 1 SCENE 1 / line 281 / note 0"
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 1 SCENE 1 / line 70 / note 0"
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 1 SCENE 4 / line 243 / note 0"
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 2 SCENE 2 / line 151 / note 0"
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 2 SCENE 2 / line 51 / note 0"
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 2 SCENE 2 / line 69 / note 0"
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 3 SCENE 6 / line 103 / note 0"
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 3 SCENE 6 / line 37 / note 0"
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 3 SCENE 7 / line 83 / note 0"
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 4 SCENE 2 / line 17 / note 0"
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 4 SCENE 2 / line 49 / note 0"
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 4 SCENE 4 / line 11 / note 0"
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 5 SCENE 1 / line 85 / note 0"
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 5 SCENE 3 / line 386 / note 0"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 1, SCENE 1 / line 1.1.114 / note 0"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 1, SCENE 1 / line 1.1.29 / note 0"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 1, SCENE 3 / line 1.3.291 / note 5"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 2, SCENE 1 / line 2.1.230 / note 3"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 2, SCENE 1 / line 2.1.235 / note 0"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 2, SCENE 1 / line 2.1.256 / note 0"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 3, SCENE 3 / line 3.3.17 / note 0"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 3, SCENE 3 / line 3.3.57 / note 0"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 3, SCENE 4 / line 3.4.183 / note 0"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 4, SCENE 1 / line 4.1.119 / note 0"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 4, SCENE 2 / line 4.2.72 / note 0"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 4, SCENE 3 / line 4.3.26 / note 0"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 5, SCENE 2 / line 5.2.6 / note 0"
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 5, SCENE 2 / line 5.2.7 / note 0"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 1 SCENE 2 / line 70 / note 1"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 1 SCENE 3 / line 106 / note 2"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 1 SCENE 3 / line 23 / note 0"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 2 SCENE 3 / line 22 / note 0"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 2 SCENE 5 / line 26 / note 0"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 2 SCENE 9 / line 64 / note 0"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 3 SCENE 2 / line 207 / note 0"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 3 SCENE 2 / line 302 / note 0"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 3 SCENE 2 / line 82 / note 0"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 4 SCENE 1 / line 224 / note 0"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 4 SCENE 1 / line 312 / note 0"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 4 SCENE 1 / line 425 / note 0"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 5 SCENE 1 / line 120 / note 0"
+    },
+    {
+      "play": "The Merchant of Venice",
+      "ref": "ACT 5 SCENE 1 / line 69 / note 0"
+    },
+    {
+      "play": "As You Like It",
+      "ref": "ACT 1 SCENE 1 / line 171 / note 1"
+    },
+    {
+      "play": "As You Like It",
+      "ref": "ACT 1 SCENE 2 / line 251 / note 0"
+    },
+    {
+      "play": "As You Like It",
+      "ref": "ACT 1 SCENE 2 / line 70 / note 0"
+    },
+    {
+      "play": "As You Like It",
+      "ref": "ACT 2 SCENE 1 / line 34 / note 1"
+    },
+    {
+      "play": "As You Like It",
+      "ref": "ACT 2 SCENE 3 / line 9 / note 0"
+    },
+    {
+      "play": "As You Like It",
+      "ref": "ACT 2 SCENE 7 / line 60 / note 2"
+    },
+    {
+      "play": "As You Like It",
+      "ref": "ACT 3 SCENE 1 / line 4 / note 0"
+    },
+    {
+      "play": "As You Like It",
+      "ref": "ACT 3 SCENE 2 / line 233 / note 0"
+    },
+    {
+      "play": "As You Like It",
+      "ref": "ACT 3 SCENE 2 / line 364 / note 0"
+    },
+    {
+      "play": "As You Like It",
+      "ref": "ACT 4 SCENE 3 / line 126 / note 0"
+    },
+    {
+      "play": "As You Like It",
+      "ref": "ACT 4 SCENE 3 / line 172 / note 0"
+    },
+    {
+      "play": "As You Like It",
+      "ref": "ACT 4 SCENE 3 / line 200 / note 0"
+    },
+    {
+      "play": "As You Like It",
+      "ref": "ACT 5 SCENE 2 / line 121 / note 0"
+    },
+    {
+      "play": "As You Like It",
+      "ref": "ACT 5 SCENE 2 / line 23 / note 0"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 1 SCENE 2 / line 172 / note 1"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 1 SCENE 2 / line 358 / note 0"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 1 SCENE 2 / line 432 / note 0"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 2 SCENE 2 / line 134 / note 0"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 2 SCENE 2 / line 67 / note 0"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 2 SCENE 2 / line 93 / note 0"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 3 SCENE 1 / line 2 / note 3"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 3 SCENE 2 / line 167 / note 0"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 3 SCENE 2 / line 41 / note 0"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 4 SCENE 1 / line 142 / note 0"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 4 SCENE 1 / line 149 / note 0"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 4 SCENE 1 / line 231 / note 0"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 5 SCENE 1 / line 219 / note 1"
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 5 SCENE 1 / line 289 / note 1"
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 1 SCENE 1 / line 132 / note 0"
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 1 SCENE 1 / line 189 / note 0"
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 1 SCENE 1 / line 194 / note 1"
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 2 SCENE 1 / line 17 / note 0"
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 2 SCENE 2 / line 104 / note 1"
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 2 SCENE 2 / line 2 / note 0"
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 3 SCENE 1 / line 163 / note 0"
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 3 SCENE 2 / line 295 / note 1"
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 3 SCENE 2 / line 374 / note 0"
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 4 SCENE 1 / line 225 / note 0"
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 4 SCENE 1 / line 5 / note 1"
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 4 SCENE 1 / line 63 / note 0"
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 5 SCENE 1 / line 130 / note 11"
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 5 SCENE 1 / line 60 / note 0"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 1 SCENE 2 / line 205 / note 0"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 1 SCENE 2 / line 218 / note 0"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 1 SCENE 2 / line 264 / note 0"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 2 SCENE 1 / line 180 / note 1"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 2 SCENE 1 / line 240 / note 0"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 2 SCENE 3 / line 249 / note 0"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 3 SCENE 1 / line 17 / note 0"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 3 SCENE 3 / line 113 / note 0"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 3 SCENE 3 / line 126 / note 0"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 4 SCENE 4 / line 245 / note 3"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 4 SCENE 4 / line 253 / note 0"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 4 SCENE 4 / line 480 / note 0"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 5 SCENE 3 / line 193 / note 2"
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 5 SCENE 3 / line 59 / note 0"
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 1 SCENE 1 / line 105 / note 0"
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 1 SCENE 3 / line 13 / note 0"
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 1 SCENE 3 / line 13 / note 1"
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 2 SCENE 1 / line 106 / note 0"
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 2 SCENE 1 / line 118 / note 0"
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 2 SCENE 1 / line 284 / note 0"
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 3 SCENE 3 / line 67 / note 0"
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 3 SCENE 4 / line 45 / note 0"
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 3 SCENE 4 / line 49 / note 0"
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 4 SCENE 1 / line 145 / note 0"
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 4 SCENE 1 / line 222 / note 0"
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 4 SCENE 1 / line 56 / note 1"
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 5 SCENE 1 / line 305 / note 0"
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 5 SCENE 2 / line 77 / note 0"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 1 SCENE 1 / line 30 / note 0"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 1 SCENE 2 / line 36 / note 0"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 1 SCENE 5 / line 129 / note 0"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 2 SCENE 2 / line 19 / note 0"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 2 SCENE 3 / line 157 / note 0"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 2 SCENE 3 / line 64 / note 0"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 3 SCENE 1 / line 20 / note 0"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 3 SCENE 2 / line 57 / note 0"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 3 SCENE 3 / line 43 / note 0"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 4 SCENE 2 / line 103 / note 0"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 4 SCENE 2 / line 106 / note 0"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 4 SCENE 2 / line 49 / note 0"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 5 SCENE 1 / line 268 / note 1"
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 5 SCENE 1 / line 54 / note 0"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 1 SCENE 1 / line 151 / note 0"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 1 SCENE 2 / line 127 / note 0"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 1 SCENE 2 / line 172 / note 0"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 2 SCENE 1 / line 46 / note 0"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 2 SCENE 1 / line 54 / note 0"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 2 SCENE 1 / line 7 / note 0"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 3 SCENE 1 / line 208 / note 1"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 3 SCENE 1 / line 27 / note 0"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 3 SCENE 1 / line 84 / note 1"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 4 SCENE 2 / line 87 / note 0"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 4 SCENE 3 / line 180 / note 0"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 4 SCENE 3 / line 92 / note 0"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 5 SCENE 1 / line 17 / note 0"
+    },
+    {
+      "play": "Love's Labour's Lost",
+      "ref": "ACT 5 SCENE 2 / line 155 / note 0"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 1 SCENE 1 / line 20 / note 0"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 1 SCENE 1 / line 54 / note 0"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 1 SCENE 2 / line 38 / note 1"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 2 SCENE 2 / line 158 / note 0"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 2 SCENE 2 / line 50 / note 0"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 2 SCENE 2 / line 64 / note 0"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 3 SCENE 13 / line 41 / note 0"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 3 SCENE 13 / line 53 / note 0"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 3 SCENE 6 / line 61 / note 0"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 4 SCENE 13 / line 4 / note 0"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 4 SCENE 4 / line 38 / note 0"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 4 SCENE 7 / line 8 / note 0"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 5 SCENE 2 / line 207 / note 1"
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 5 SCENE 2 / line 403 / note 1"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 1 SCENE 1 / line 1 / note 3"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 1 SCENE 4 / line 231 / note 0"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 1 SCENE 4 / line 46 / note 0"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 2 SCENE 1 / line 2 / note 1"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 2 SCENE 1 / line 58 / note 0"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 2 SCENE 2 / line 62 / note 0"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 3 SCENE 3 / line 12 / note 0"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 3 SCENE 5 / line 19 / note 0"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 3 SCENE 7 / line 260 / note 0"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 4 SCENE 1 / line 3 / note 1"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 4 SCENE 3 / line 40 / note 0"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 4 SCENE 4 / line 487 / note 0"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 5 SCENE 3 / line 88 / note 0"
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 5 SCENE 5 / line 10 / note 0"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 1 SCENE 1 / line 1 / note 1"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 1 SCENE 2 / line 120 / note 0"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 1 SCENE 2 / line 225 / note 0"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 2 SCENE 1 / line 130 / note 0"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 2 SCENE 1 / line 333 / note 0"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 2 SCENE 2 / line 134 / note 0"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 3 SCENE 1 / line 1 / note 0"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 3 SCENE 1 / line 168 / note 0"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 3 SCENE 1 / line 173 / note 0"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 4 SCENE 3 / line 325 / note 0"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 4 SCENE 3 / line 36 / note 0"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 4 SCENE 3 / line 95 / note 0"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 5 SCENE 3 / line 86 / note 0"
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 5 SCENE 5 / line 91 / note 0"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 1 SCENE 3 / line 37 / note 0"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 1 SCENE 4 / line 62 / note 0"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 1 SCENE 5 / line 22 / note 0"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 2 SCENE 3 / line 86 / note 1"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 2 SCENE 4 / line 92 / note 0"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 2 SCENE 4 / line 92 / note 1"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 3 SCENE 1 / line 36 / note 0"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 3 SCENE 4 / line 109 / note 1"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 3 SCENE 4 / line 164 / note 0"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 4 SCENE 2 / line 437 / note 0"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 4 SCENE 2 / line 92 / note 1"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 4 SCENE 3 / line 35 / note 0"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 5 SCENE 4 / line 171 / note 0"
+    },
+    {
+      "play": "Cymbeline",
+      "ref": "ACT 5 SCENE 4 / line 172 / note 0"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 1 SCENE 1 / line 149 / note 0"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 1 SCENE 1 / line 191 / note 0"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 1 SCENE 1 / line 272 / note 0"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 2 SCENE 1 / line 244 / note 0"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 2 SCENE 1 / line 611 / note 0"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 2 SCENE 1 / line 93 / note 3"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 3 SCENE 1 / line 110 / note 1"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 3 SCENE 1 / line 179 / note 0"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 3 SCENE 1 / line 268 / note 0"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 1 / line 117 / note 0"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 115 / note 0"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 4 SCENE 2 / line 231 / note 0"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 6 / line 18 / note 2"
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 5 SCENE 7 / line 106 / note 0"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 121 / note 0"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 1 / line 37 / note 3"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 1 SCENE 9 / line 63 / note 0"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 191 / note 0"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 52 / note 0"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 2 / line 119 / note 0"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 3 SCENE 1 / line 106 / note 0"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 3 SCENE 1 / line 284 / note 9"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 3 SCENE 3 / line 91 / note 0"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 4 SCENE 4 / line 26 / note 0"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 4 SCENE 5 / line 19 / note 0"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 4 SCENE 7 / line 37 / note 1"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 5 SCENE 3 / line 183 / note 0"
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 5 SCENE 3 / line 189 / note 1"
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 1 SCENE 2 / line 34 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 1, SCENE 3 / line 101 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 1, SCENE 3 / line 209 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 2 ,SCENE 1 / line 24 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 2 ,SCENE 4 / line 436 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 2 SCENE 2 / line 91 / note 1"
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 3 ,SCENE 1 / line 124 / note 3"
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 3 ,SCENE 1 / line 213 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 3 ,SCENE 1 / line 219 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 4 ,SCENE 1 / line 35 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 4 ,SCENE 1 / line 74 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 4 ,SCENE 2 / line 19 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 5 SCENE 4 / line 160 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 5 SCENE 4 / line 7 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 1, SCENE 1 / line 29 / note 1"
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 1, SCENE 1 / line 57 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 1, SCENE 3 / line 87 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 2, SCENE 3 / line 27 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 2, SCENE 4 / line 177 / note 2"
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 2, SCENE 4 / line 27 / note 1"
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 3, SCENE 1 / line 3 / note 1"
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 3, SCENE 2 / line 325 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 3, SCENE 2 / line 334 / note 1"
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 4, SCENE 3 / line 268 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 4, SCENE 3 / line 270 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 4, SCENE 3 / line 47 / note 0"
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 5, SCENE 3 / line 18 / note 1"
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 5, SCENE 5 / line 139 / note 0"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 1, SCENE 1 / line 57 / note 0"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 1, SCENE 3 / line 242 / note 0"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 1, SCENE 3 / line 44 / note 0"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 2, SCENE 2 / line 214 / note 1"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 2, SCENE 2 / line 64 / note 0"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 2, SCENE 3 / line 90 / note 0"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 3, SCENE 1 / line 93 / note 0"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 3, SCENE 2 / line 173 / note 0"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 3, SCENE 2 / line 30 / note 0"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 4, SCENE 1 / line 41 / note 0"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 4, SCENE 4 / line 122 / note 0"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 4, SCENE 5 / line 199 / note 0"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 5, SCENE 1 / line 15 / note 0"
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 5, SCENE 2 / line 176 / note 0"
+    }
+  ]
+}

@@ -1,4 +1,7 @@
 {
+  "excluded_plays": [
+    "Troilus and Cressida"
+  ],
   "methodology": {
     "is_clipped": "Existing audit heuristic (length thresholds on stop-word/hyphen/paren endings)",
     "hard_truncation": "Missing terminal punctuation / mid-word fragment; bracket-orphans with NV closers excluded",
@@ -58,7 +61,7 @@
       "play": "Hamlet",
       "year": 1877,
       "json_file": "Public/Data/hamlet_notes (1).json",
-      "ia_id": "newvariorumediti11shak",
+      "ia_id": "anewvariorumedi07furngoog",
       "ia_status": "ok",
       "total_notes": 1948,
       "is_clipped": 0,
@@ -503,29 +506,11 @@
       "union_pct": 0.0,
       "is_clipped_pct": 0.0,
       "examples": []
-    },
-    {
-      "play": "Troilus and Cressida",
-      "year": 1953,
-      "json_file": "Public/Data/troilus_and_cressida.json",
-      "ia_id": "newvariorumediti22shak",
-      "ia_status": "fallback:newvariorumediti22shak",
-      "total_notes": 621,
-      "is_clipped": 0,
-      "hard_truncation": 0,
-      "mid_sentence_cut": 0,
-      "hyphen_artifact": 0,
-      "unbalanced_parens": 0,
-      "witness_prefix": 0,
-      "union_truncated": 0,
-      "union_pct": 0.0,
-      "is_clipped_pct": 0.0,
-      "examples": []
     }
   ],
   "totals": {
-    "plays": 22,
-    "total_notes": 23715,
+    "plays": 21,
+    "total_notes": 23094,
     "is_clipped": 8,
     "union_truncated": 24,
     "is_clipped_pct": 0.03,

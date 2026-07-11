@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "profile": "full",
+    "n_plays": 22,
+    "passages_per_play": null,
+    "total_passages_target": 50,
+    "total_passages": 50,
+    "nv_plays": 22,
+    "nv_injected_plays": 16,
+    "contrast_plays": 0,
+    "model": "gpt-4o",
+    "audit_layer": "onions",
+    "layer_description": "Onions parenthetical citations in Language and Rhetoric and Key Words & Glosses only. Checked against retrieved Onions glossary entries supplied in the prompt."
+  },
+  "overall": {
+    "n": 79,
+    "counts": {
+      "verifiable_correct": 79,
+      "real_source_wrong_details": 0,
+      "fabricated": 0,
+      "unverifiable_needs_human_review": 0
+    },
+    "rates_pct": {
+      "verifiable_correct": 100.0,
+      "real_source_wrong_details": 0.0,
+      "fabricated": 0.0,
+      "unverifiable_needs_human_review": 0.0
+    }
+  },
+  "model_generated_sections": {
+    "n": 79,
+    "counts": {
+      "verifiable_correct": 79,
+      "real_source_wrong_details": 0,
+      "fabricated": 0,
+      "unverifiable_needs_human_review": 0
+    },
+    "rates_pct": {
+      "verifiable_correct": 100.0,
+      "real_source_wrong_details": 0.0,
+      "fabricated": 0.0,
+      "unverifiable_needs_human_review": 0.0
+    }
+  },
+  "new_variorum_analysis_section": {
+    "n": 0,
+    "counts": {
+      "verifiable_correct": 0,
+      "real_source_wrong_details": 0,
+      "fabricated": 0,
+      "unverifiable_needs_human_review": 0
+    },
+    "rates_pct": {
+      "verifiable_correct": 0.0,
+      "real_source_wrong_details": 0.0,
+      "fabricated": 0.0,
+      "unverifiable_needs_human_review": 0.0
+    }
+  },
+  "generated_at": "2026-07-04T23:39:13.454377+00:00"
+}

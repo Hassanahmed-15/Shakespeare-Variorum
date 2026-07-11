@@ -1,0 +1,53 @@
+{
+  "date": "2026-07-08",
+  "sample_n_per_play": 14,
+  "seed": 42,
+  "play_seed_fn": "zlib.crc32(play) % 10000 + seed",
+  "sample_manifest": "/Users/work/Projects/Shakespeare-Variorum/validation/nv_fullspan_sample/sample_manifest.json",
+  "span_method": "tail_bounded_v2",
+  "full_span_threshold": 75,
+  "tail_threshold": 75,
+  "corpus_summary": {
+    "plays": 22,
+    "sample_n": 308,
+    "scored_n": 276,
+    "exempt_n": 32,
+    "anchored_n": 192,
+    "unanchorable_n": 84,
+    "full_span_match_n": 129,
+    "interior_divergence_n": 60,
+    "span_mismatch_n": 3,
+    "span_estimated_n": 62,
+    "pass_among_scored_pct": 46.7,
+    "pass_among_anchored_pct": 67.2,
+    "unanchorable_pct": 30.4,
+    "interior_among_anchored_pct": 31.2,
+    "interior_among_scored_pct": 21.7,
+    "score_histogram_anchored": {
+      "95-100": 112,
+      "0-49": 45,
+      "50-64": 11,
+      "85-94": 12,
+      "65-74": 6,
+      "75-84": 6
+    },
+    "95_ci_anchored_margin": 6.6
+  },
+  "prior_v1_summary": {
+    "plays": 22,
+    "sample_n": 308,
+    "scored_n": 278,
+    "exempt_n": 30,
+    "anchored_n": 194,
+    "unanchorable_n": 84,
+    "full_span_match_n": 103,
+    "interior_divergence_n": 85,
+    "span_mismatch_n": 6,
+    "pass_among_scored_pct": 37.1,
+    "pass_among_anchored_pct": 53.1,
+    "unanchorable_pct": 30.2,
+    "interior_among_anchored_pct": 43.8,
+    "interior_among_scored_pct": 30.6,
+    "95_ci_anchored_margin": 7.0
+  }
+}

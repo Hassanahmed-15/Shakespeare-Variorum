@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import sys
@@ -267,7 +268,7 @@ def audit_play(spec: dict) -> dict:
     }
 
 
-def print_table(rows: list[dict]) -> None:
+def print_table(rows: list[dict], play_count: int) -> None:
     hdr = (
         f"{'Play':<32} {'Notes':>6} {'Old':>6} {'Hard':>6} {'Mid':>6} "
         f"{'Hyphen':>6} {'Paren':>6} {'IApfx':>6} {'UNION':>6} {'Union%':>7}"
@@ -293,7 +294,7 @@ def print_table(rows: list[dict]) -> None:
     t = totals["total_notes"] or 1
     print("-" * len(hdr))
     print(
-        f"{'TOTAL (22 plays)':<32} {totals['total_notes']:>6} {totals['is_clipped']:>6} "
+        f"{f'TOTAL ({play_count} plays)':<32} {totals['total_notes']:>6} {totals['is_clipped']:>6} "
         f"{totals['hard_truncation']:>6} {totals['mid_sentence_cut']:>6} "
         f"{totals['hyphen_artifact']:>6} {totals['unbalanced_parens']:>6} "
         f"{totals['witness_prefix']:>6} {totals['union_truncated']:>6} "
@@ -301,12 +302,58 @@ def print_table(rows: list[dict]) -> None:
     )
 
 
+def _exclude_slug(excluded: set[str]) -> str:
+    known = {
+        frozenset({"Troilus and Cressida"}): "_no_troilus",
+    }
+    key = frozenset(excluded)
+    if key in known:
+        return known[key]
+    slug = "_".join(
+        sorted(
+            p.lower().replace("'", "").replace(",", "").replace(" ", "_")[:16]
+            for p in excluded
+        )
+    )[:48]
+    return f"_no_{slug}"
+
+
 def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument(
+        "--exclude",
+        action="append",
+        default=[],
+        help="Play title(s) to omit (repeatable), e.g. 'Troilus and Cressida'",
+    )
+    ap.add_argument(
+        "--out-suffix",
+        default=None,
+        help="Output filename suffix (default: _no_<slug> when --exclude is set)",
+    )
+    args = ap.parse_args()
+    excluded = {name.strip() for name in args.exclude if name.strip()}
+    plays = [spec for spec in PLAYS if spec["play"] not in excluded]
+    if not plays:
+        print("No plays left after exclusions.", file=sys.stderr)
+        return 1
+
+    suffix = args.out_suffix
+    if suffix is None and excluded:
+        suffix = _exclude_slug(excluded)
+
+    out_path = OUT
+    if suffix:
+        stem = suffix if suffix.startswith("_") else f"_{suffix}"
+        out_path = OUT.with_name(f"{OUT.stem}{stem}{OUT.suffix}")
+
     rows = []
-    for i, spec in enumerate(PLAYS, 1):
-        print(f"[{i}/22] {spec['play']}...", flush=True)
+    n = len(plays)
+    for i, spec in enumerate(plays, 1):
+        print(f"[{i}/{n}] {spec['play']}...", flush=True)
         rows.append(audit_play(spec))
     payload = {
+        "excluded_plays": sorted(excluded) if excluded else [],
         "methodology": {
             "is_clipped": "Existing audit heuristic (length thresholds on stop-word/hyphen/paren endings)",
             "hard_truncation": "Missing terminal punctuation / mid-word fragment; bracket-orphans with NV closers excluded",
@@ -333,9 +380,13 @@ def main() -> int:
     }
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"Wrote {OUT}\n")
-    print_table(ok_rows)
+    out_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"Wrote {out_path}")
+    if excluded:
+        print(f"Excluded: {', '.join(sorted(excluded))} ({n} plays audited)\n")
+    else:
+        print()
+    print_table(ok_rows, n)
     return 0
 
 

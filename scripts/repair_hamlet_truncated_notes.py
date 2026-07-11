@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Repair truncated Hamlet NV notes via IA witness (editi11)."""
+"""Repair truncated Hamlet NV notes via IA witness (Furness apparatus OCR)."""
 
 from __future__ import annotations
 

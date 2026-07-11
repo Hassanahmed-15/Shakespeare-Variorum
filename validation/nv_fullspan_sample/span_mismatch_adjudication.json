@@ -1,0 +1,41 @@
+[
+  {
+    "play": "Othello",
+    "ref": "ACT 2, SCENE 1 / line 2.1.256 / note 0",
+    "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/newvariorumediti13shak_djvu.txt",
+    "anchor_method": "lemma_bracket",
+    "full_ratio": 52.1,
+    "tail_ratio": 57.5,
+    "span_method": "span_estimated:note_len_323_436_tail_tail_below_threshold",
+    "span_estimated": true,
+    "span_len_ratio": 1.09,
+    "note_text": "seate] COLERIDGE (Notes, &c., 255): This thought, originally by Iago\u2019s own invention applied to Othello, is here tortuously, but exquisitely and appropriately, reverted to Iago, who is constantly placing himself by imaginative power, as it were, in the position of those with whom he is dealing, and who finally is himself caught as in a springe by the re-action of his own guilt-guided machinations.",
+    "witness_span_text": "seate]  Coleridge  [Notes,  &c,  255) :  This  thought,  originally  by  Iago's  own \n\n\nact  ii,  sc.  i.]  THE  MOORE   OF   VENICE  12 1 \n\nDoth  (like  a  poyfonous  Minerall)  gnaw  my  Inwardes  :  330 \n\nAnd  nothing  can,  or  (hall  content  my  Soule \n\nTill  I  am  eeuen'd  with  him,  wife,  for  wift. \n\nOr  fayling  fo,  yet  that  I  put  the  Moore, \n\nAt  leaft  into  a  Ielouzie  fo  ftrong \n\nThat  iudgement  cannot  cur"
+  },
+  {
+    "play": "The Tempest",
+    "ref": "ACT 2 SCENE 2 / line 67 / note 0",
+    "witness": "/Users/work/Projects/Shakespeare-Variorum/data/ia_cache/tempestnewvarior0009unse_djvu.txt",
+    "anchor_method": "lemma_bracket",
+    "full_ratio": 69.9,
+    "tail_ratio": 54.5,
+    "span_method": "span_estimated:note_len_1003_1357_tail_tail_below_threshold",
+    "span_estimated": true,
+    "span_len_ratio": 1.04,
+    "note_text": "Saluages] REED: The Folio reads \u2018saluages,\u2019 and rightly. It was the spelling and pronunciation of the time.\u2014DYCE: So says worthy Isaac Reed,\u2014who ought to have known that the Folio, like other books of that date, is quite inconsistent in its spelling, e. g. [I, ii, 417, ante] it has \u2018sauage\u2019; in Love's Lab. L. IV, iii, it has \u2018a rude and sauage man of Inde\u2019; and again in the same play, V, ii: \u2018That we (like sauages) may worship it.\u2019 In Shelton's Don Quixote, Part Sec. p. 261, ed. 1620, we find, \u2018foure Sauages entred the garden,\u2019 &c., and six lines after, \u2018the Saluage replied,\u2019 &c . Not much stress, therefore, can be laid on the fact of \u2018savages\u2019 being used in both instances, and the phrase in The Tempest is more probably due to the then current stories of American travellers. Compare the following, quoted by Malone (Var. 1821): \u2018Les sauvages de la Nouvelle France sont de grandes tailles, bien combines, forts & robustes, & tous vont nuds, sans se servir d\u2019autre chose pour tout habillement d\u2019vn cuir mal prepare, &c.,\u2019 &c. (Lescarbot, Histoire de la Nouvelle France, Paris, 1612, p. 775); and De Laudonni\u00e8re, L\u2019histoire notable de la Floride, &c., p. 10, &c., ed. 1586. See also Gorges\u2019s Description of New England, 1627, p. 10: \u2018The Saluages are generally tall of stature, strong limbed ...\u2019",
+    "witness_span_text": "Saluages]  Reed  :  The  Folio  reads  '  salvages,'  and  rightly.  It  was  the  spell\u00ac \ning  and  pronunciation  of  the  time. \u2014 Dyce  :  So  says  worthy  Isaac  Reed, \u2014 who  ought \nto  have  known  that  the  Folio,  like  other  books  of  that  date,  is  quite  inconsistent  in  its \nspelling,  e.  g.  [I,  ii,  417,  ante ]  it  has  '  sauage  ' ;  in  Love's  Lab.  L.  IV,  iii,  it  has  'a \nrude  and  sauage  man  of  Inde  ' ;  and  again  in  the  same  play,  V,  ii :  '  That  we  (like \nsauages)  may  worship  it.'  In  Shelton's  Don  Quixote,  Part  Sec.  p.  261,  ed.  1620,  we \nfind,  '  foure  Sauages  entred  the  garden,'  &c.,  and  six  lines  after,  '  the  Saluage  replied,' \n&c \n\n\nACT  II,  sc.  ii.] \n\n\nTHE  TEMPEST \n\n\n13* \n\nInde ?  ha?  I  haue  not  fcap'd  drowning,  to  be  afeard \nnow  of  your  foure  legges :  for  it  hath  bin  faid ;  as  pro-  65 \nper  a  man  as  euer  went  on  foure  legs,  cannot  make  him \ngiue  ground:  and  it  fhall  be  faid  fo  againe,  while  Ste- \nphano  breathes  at'  noftrils. \n\nCal.  The  Spirit  torments  me:  oh. \n\nSte.  This  is  fome  Monfter  of  the  Ifle,  with  foure  legs  ;  70 \n\nwho  hath  got  (as  I  take  it)  an  Ague :  where  the  diuell \nfhould  he  leame  our  language  ?  I  will  giue  him  fome  re- \nliefe  if  it  be  but  for  that :  "
+  },
+  {
+    "play": "Troilus and Cressida",
+    "ref": "ACT 4, SCENE 4 / line 122 / note 0",
+    "witness": "/Users/work/Projects/Shakespeare-Variorum/data/troilus_nv_witness.txt",
+    "anchor_method": "lemma_bracket",
+    "full_ratio": 41.2,
+    "tail_ratio": 57.6,
+    "span_method": "span_estimated:note_len_225_304_tail_tail_below_threshold",
+    "span_estimated": true,
+    "span_len_ratio": 1.0,
+    "note_text": "morall] JOHNSON (ed. 1765): That is, the \u201cgoverning principle of my understanding,\u201d but I rather think we should read ... \u201cmotto.\u201d\u2014[\u201cMoral\u201d here may mean \u201ca doctrine, a maxim\u201d (SCHMIDT, 1875), or \u201cmeaning, signification.\u201d In the latter sense, \u201cthe moral of my wit\u201d would mean \u201cthe gist of my analysis.\u201d]",
+    "witness_span_text": "morall] motto Johns. conj.\nseq.\nI14. plaine and true}As quotation,\n123. Faire] Om. Pope-Warb.\nJohns., Var.'73,Cam.,Ktly.,Dyce\n126. Pleades] Plead Han.\nii-ii, Coll. ii, Huds. ii, Wh. ii, Ard.,\n[26. your] you Warb.\nKit.\n126. visage] F:. vsage Q. usage Fs\nAfter II4.l Scene VII. Pope,\net seq.\nunderstanding,"
+  }
+]

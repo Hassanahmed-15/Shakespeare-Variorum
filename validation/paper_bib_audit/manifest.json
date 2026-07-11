@@ -1,0 +1,290 @@
+{
+  "entries": [
+    {
+      "id": 1,
+      "text": "Backer, Samuel and Hyman, Louis. (2025) \u2018Bootstrapping AI: Interdisciplinary Approaches to Assessing OCR Quality in English-Language Historical Documents\u2019 in Proceedings of the 5th International Conference on Natural Language Processing for Digital Humanities (NLP4DH 2025) . Albuquerque: Association for Computational Linguistics, pp. 251\u2013256. doi:10.18653/v1/2025.nlp4dh-1.21. 22"
+    },
+    {
+      "id": 2,
+      "text": "Best, Michael. (2008) \u2018The Internet Shakespeare Editions: Scholarly Shakespeare on the Web\u2019, Shakespeare, 4(3), pp. 221\u2013233. doi:10.1080/17450910802295096. Boros, Emanuela, Ehrmann, Maud, Romanello, Matteo, Najem-Meyer, Sven and Kaplan, Fr\u00b4 ed\u00b4 eric. (2024) \u2018Post-Correction of Historical Text Transcripts with Large Language Models: An Exploratory Study\u2019 in Bizzoni, Y., Degaetano-Ortlieb, S., Kazantseva, A. and Szpakowicz, S. (eds) Proceedings of the 8th Joint SIGHUM Workshop on Computational Linguistics for Cultural Heritage, Social Sciences, Humanities and Literature (LaTeCH-CLfL 2024) . St. Julians, Malta: Association for Computational Linguistics, pp. 133\u2013159. doi:10.18653/v1/2024.latechclfl-1.14."
+    },
+    {
+      "id": 3,
+      "text": "Bourne, Jonathan. (2025) \u2018Scrambled Text: Fine-Tuning Language Models for OCR Error Correction Using Synthetic Data\u2019, International Journal on Document Analysis and Recognition , 28, pp. 741\u2013755. doi:10.1007/s10032-025-00522-0."
+    },
+    {
+      "id": 4,
+      "text": "Bullokar, John. (1616) An English Expositor . London: John Legatt."
+    },
+    {
+      "id": 5,
+      "text": "Cawdrey, Robert. (1604) A Table Alphabeticall. London: Edmund Weaver."
+    },
+    {
+      "id": 6,
+      "text": "Cockeram, Henry. (1623) The English Dictionarie . London: Edmund Weaver."
+    },
+    {
+      "id": 7,
+      "text": "Cotgrave, Randle. (1611) A Dictionarie of the French and English Tongues . London: Adam Islip."
+    },
+    {
+      "id": 8,
+      "text": "Florio, John. (1598) A Worlde of Wordes, or Most Copious, and Exact Dictionarie in Italian and English. London: Arnold Hatfield for Edward Blount."
+    },
+    {
+      "id": 9,
+      "text": "Folger Shakespeare Library. (2023) Folger Digital Texts. Available at: https://www.folgerdigi taltexts.org (Accessed: 15 March 2025)."
+    },
+    {
+      "id": 10,
+      "text": "Furness, Horace Howard. (1871) A New Variorum Edition of Shakespeare: Romeo and Juliet . Philadelphia: J. B. Lippincott."
+    },
+    {
+      "id": 11,
+      "text": "Furness, Horace Howard. (1877) A New Variorum Edition of Shakespeare: Hamlet . 2 vols. Philadelphia: J. B. Lippincott."
+    },
+    {
+      "id": 12,
+      "text": "Furness, Horace Howard. (1886) A New Variorum Edition of Shakespeare: Othello . Philadelphia: J. B. Lippincott."
+    },
+    {
+      "id": 13,
+      "text": "Furness, Horace Howard. (1901) A New Variorum Edition of Shakespeare: Twelfe Night, or What You Will. Philadelphia: J. B. Lippincott."
+    },
+    {
+      "id": 14,
+      "text": "The Geneva Bible . (1599) London: Deputies of Christopher Barker."
+    },
+    {
+      "id": 15,
+      "text": "Greif, Gavin, Griesshaber, Niclas and Greif, Robin. (2025) \u2018Multimodal LLMs for OCR, OCR Post-Correction, and Named Entity Recognition in Historical Documents\u2019. arXiv preprint arXiv:2504.00414. doi:10.48550/arXiv.2504.00414."
+    },
+    {
+      "id": 16,
+      "text": "HathiTrust Digital Library. (n.d.) Digital Preservation and Access . Available at: https://www.ha thitrust.org (Accessed: 15 March 2025)."
+    },
+    {
+      "id": 17,
+      "text": "Internet Archive. (n.d.) Digital Library of Free and Borrowable Books . Available at: https: //archive.org (Accessed: 15 March 2025)."
+    },
+    {
+      "id": 18,
+      "text": "Kanerva, Jenna, Ledins, Cassandra, K\u00a8 apyaho, Siiri and Ginter, Filip. (2025) \u2018OCR Error Post- Correction with LLMs in Historical Documents: No Free Lunches\u2019 in Proceedings of the Third Workshop on Resources and Representations for Under-Resourced Languages and Domains (RESOURCEFUL 2025). Tallinn: University of Tartu Library, pp. 38\u201347."
+    },
+    {
+      "id": 19,
+      "text": "Kliman, Bernice W. (ed.) (1996) The Enfolded Hamlet . The Shakespeare Newsletter, extra issue."
+    },
+    {
+      "id": 20,
+      "text": "Kliman, Bernice W. (2006) \u2018Print and Electronic Editions Inspired by the New Variorum Hamlet 23"
+    },
+    {
+      "id": 21,
+      "text": "Project\u2019, Shakespeare Survey, 59, pp. 157\u2013167. Kliman, Bernice W., Clary, Frank N., Aasand, Hardin and Rasmussen, Eric. (eds) (n.d.) Hamlet- Works. Available at: http://www.hamletworks.org (Accessed: 15 June 2026)."
+    },
+    {
+      "id": 22,
+      "text": "Knowles, Richard. (ed.) (2020) A New Variorum Edition of Shakespeare: King Lear . 2 vols. New York: Modern Language Association."
+    },
+    {
+      "id": 23,
+      "text": "Lancashire, Ian. (ed.) (2026) Lexicons of Early Modern English . Toronto: University of Toronto Library and University of Toronto Press. Available at: https://leme.library.utoronto.ca (Accessed: 15 June 2026)."
+    },
+    {
+      "id": 24,
+      "text": "Levchenko, Maria. (2025) \u2018Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities\u2019 in Proceedings of the First Workshop on Natural Language Processing and Language Models for Digital Humanities (LM4DH 2025) . Varna: INCOMA, pp. 75\u201385."
+    },
+    {
+      "id": 25,
+      "text": "Mandell, Laura. (2019) \u2018Digital Future for the New Variorum Edition of Shakespeare\u2019, MLA News , 7 November. Available at: https://news.mla.hcommons.org/2019/11/07/new-variorum-edition-of-shakespeare -going-digital-at-texas-am/ (Accessed: 15 March 2025)."
+    },
+    {
+      "id": 26,
+      "text": "New Variorum Shakespeare (2022) Center of Digital Humanities Research, Texas A&M University. Available at: https://newvariorumshakespeare.org (Accessed: 15 June 2026)."
+    },
+    {
+      "id": 27,
+      "text": "Onions, C. T. (1911) A Shakespeare Glossary. Oxford: Clarendon Press (2nd edn 1919)."
+    },
+    {
+      "id": 28,
+      "text": "Open Source Shakespeare . (n.d.) Available at: https://www.opensourceshakespeare.org (Accessed: 15 June 2026)."
+    },
+    {
+      "id": 29,
+      "text": "Pierazzo, Elena. (2015) Digital Scholarly Editing: Theories, Models and Methods . Farnham: Ashgate. doi:10.4324/9781315577227."
+    },
+    {
+      "id": 30,
+      "text": "Sahle, Patrick. (2016) \u2018What Is a Scholarly Digital Edition?\u2019 in Driscoll, M. J. and Pierazzo, E. (eds.) Digital Scholarly Editing: Theories and Practices . Cambridge: Open Book Publishers, pp. 19\u201340."
+    },
+    {
+      "id": 31,
+      "text": "Schmidt, Alexander. (1902) Shakespeare-Lexicon: A Complete Dictionary of All the English Words, Phrases and Constructions in the Works of the Poet . 3rd edn. Revised by Gregor Sarrazin. 2 vols. Berlin: Georg Reimer."
+    },
+    {
+      "id": 32,
+      "text": "Spevack, Marvin. (ed.) (1990) A New Variorum Edition of Shakespeare: Antony and Cleopatra . New York: Modern Language Association."
+    },
+    {
+      "id": 33,
+      "text": "Sun, Yujie, Sheng, Dongfang, Zhou, Zihan and Wu, Yifei. (2024) \u2018AI Hallucination: Towards a Comprehensive Classification of Distorted Information in Artificial Intelligence-Generated Content\u2019, Humanities and Social Sciences Communications, 11, article 1278. doi:10.1057/s41599- 024-03811-x."
+    },
+    {
+      "id": 34,
+      "text": "Turner, Robert K. (1986) \u2018The New Variorum Shakespeare\u2019, MLA Newsletter , Winter, p. 10."
+    },
+    {
+      "id": 35,
+      "text": "Walters, W. H. and Wilder, E. I. (2023) \u2018Fabrication and Errors in the Bibliographic Citations Generated by ChatGPT\u2019, Scientific Reports, 13, article 14045. doi:10.1038/s41598-023-41032-5."
+    },
+    {
+      "id": 36,
+      "text": "Werstine, Paul. (2008) \u2018Past is Prologue: Electronic New Variorum Shakespeares\u2019, Shakespeare, 4(3), pp. 208\u2013220."
+    },
+    {
+      "id": 37,
+      "text": "Zhang, James, Haverals, Wouter, Naydan, Mary and Kernighan, Brian W. (2024) \u2018Post-OCR Correction with OpenAI\u2019s GPT Models on Challenging English Prosody Texts\u2019 in DocEng \u201924: 24"
+    },
+    {
+      "id": 38,
+      "text": "Proceedings of the 2024 ACM Symposium on Document Engineering . New York: Association for Computing Machinery, article 9, pp. 9:1\u20139:4. doi:10.1145/3685650.3685669. 25"
+    }
+  ],
+  "in_text": [
+    {
+      "author": "A\nTable Alphabeticall",
+      "year": "1604"
+    },
+    {
+      "author": "A Dictionarie of the French and English Tongues",
+      "year": "1611"
+    },
+    {
+      "author": "A Table Alphabeticall",
+      "year": "1604"
+    },
+    {
+      "author": "A Worlde of Wordes",
+      "year": "1598"
+    },
+    {
+      "author": "An English Expositor",
+      "year": "1616"
+    },
+    {
+      "author": "Antony and Cleopatra",
+      "year": "1990"
+    },
+    {
+      "author": "Backer and Hyman",
+      "year": "2025"
+    },
+    {
+      "author": "Best",
+      "year": "2008"
+    },
+    {
+      "author": "Boros et al.",
+      "year": "2024"
+    },
+    {
+      "author": "Both Walters and Wilder",
+      "year": "2023"
+    },
+    {
+      "author": "Bourne",
+      "year": "2025"
+    },
+    {
+      "author": "Following Levchenko",
+      "year": "2025"
+    },
+    {
+      "author": "Furness",
+      "year": "1877"
+    },
+    {
+      "author": "Greif et al.",
+      "year": "2025"
+    },
+    {
+      "author": "Italian\nAbbandonare in Florio",
+      "year": "1598"
+    },
+    {
+      "author": "Kanerva et al.",
+      "year": "2025"
+    },
+    {
+      "author": "King Lear",
+      "year": "2020"
+    },
+    {
+      "author": "Kliman",
+      "year": "1996"
+    },
+    {
+      "author": "Levchenko",
+      "year": "2025"
+    },
+    {
+      "author": "Mandell",
+      "year": "2019"
+    },
+    {
+      "author": "New Variorum Shakespeare",
+      "year": "2022"
+    },
+    {
+      "author": "Open Source Shakespeare",
+      "year": "n.d."
+    },
+    {
+      "author": "Pierazzo",
+      "year": "2015"
+    },
+    {
+      "author": "Richard II",
+      "year": "1955"
+    },
+    {
+      "author": "Sahle",
+      "year": "2016"
+    },
+    {
+      "author": "Sun\net al.",
+      "year": "2024"
+    },
+    {
+      "author": "The\nCanons of Criticism",
+      "year": "1748"
+    },
+    {
+      "author": "The English Dictionarie",
+      "year": "1623"
+    },
+    {
+      "author": "The platform retrieves and\ndisplays the Variorum annotation from Furness",
+      "year": "1877"
+    },
+    {
+      "author": "Troilus\nand Cressida",
+      "year": "1953"
+    },
+    {
+      "author": "Troilus and Cressida",
+      "year": "1953"
+    },
+    {
+      "author": "Werstine",
+      "year": "2008"
+    },
+    {
+      "author": "Zhang et al.",
+      "year": "2024"
+    }
+  ]
+}

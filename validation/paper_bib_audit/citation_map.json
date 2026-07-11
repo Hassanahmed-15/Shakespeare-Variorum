@@ -1,0 +1,375 @@
+[
+  {
+    "key": "Backer and Hyman (2025)",
+    "marker": "Backer, Samuel and Hyman, Louis. (2025)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "Backer and Hyman (2025)",
+        "context": "uation, Levchenko (2025) finds that post-OCR LLM correction can degrade strong multimodal OCR outright and that character error rates miss period-specific failures such as over-historicization, while Backer and Hyman (2025) argue that standard OCR metrics underestimate what matters for historical research. Together, these findings shaped this project\u2019s approach to OCR. Correction for the www.newvariorum.com website is b"
+      }
+    ]
+  },
+  {
+    "key": "Best (2008)",
+    "marker": "Best, Michael. (2008)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "(Best, 2008)",
+        "context": "application of large language models in editorial work. The digital Shakespeare landscape is extensive, and this platform is meant to complement existing resources. The Internet Shakespeare Editions (Best, 2008) provide modern, peer-reviewed, open- access editions with critical apparatus. Open Source Shakespeare (n.d.) offers concordance and search functionalities across the canon. The New Variorum Shakespea"
+      }
+    ]
+  },
+  {
+    "key": "Boros et al. (2024)",
+    "marker": "Boros, Emanuela",
+    "count": 1,
+    "citations": [
+      {
+        "match": "Boros et al. (2024)",
+        "context": "uccess. In particular, the use of large language models (LLMs), as in this project, for post-correction of optical character recognition (OCR) from historical texts has produced rather mixed results. Boros et al. (2024), evaluating fourteen models across eight historical benchmarks in text-only settings, found that unconstrained LLM post-correction usually degrades the input, with the worst failures being paraphrase"
+      }
+    ]
+  },
+  {
+    "key": "Bourne (2025)",
+    "marker": "Bourne, Jonathan. (2025)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "Bourne (2025)",
+        "context": "ial models cost-infeasible at collection scale. Greif et al. (2025) report that image-conditioned multimodal post-correction produces large accuracy gains on historical documents without fine-tuning. Bourne (2025) demonstrates substantial error reductions from synthetic-noise fine-tuning but at the cost of the kind of curated training infrastructure this project does not assume. On evaluation, Levchenko (2025)"
+      }
+    ]
+  },
+  {
+    "key": "Bullokar (1616)",
+    "marker": "Bullokar, John. (1616)",
+    "count": 0,
+    "citations": []
+  },
+  {
+    "key": "Cawdrey (1604)",
+    "marker": "Cawdrey, Robert. (1604)",
+    "count": 0,
+    "citations": []
+  },
+  {
+    "key": "Cockeram (1623)",
+    "marker": "Cockeram, Henry. (1623)",
+    "count": 0,
+    "citations": []
+  },
+  {
+    "key": "Cotgrave (1611)",
+    "marker": "Cotgrave, Randle. (1611)",
+    "count": 0,
+    "citations": []
+  },
+  {
+    "key": "Florio (1598)",
+    "marker": "Florio, John. (1598)",
+    "count": 0,
+    "citations": []
+  },
+  {
+    "key": "Folger Shakespeare Library (2023)",
+    "marker": "Folger Shakespeare Library. (2023)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "Folger Digital Texts",
+        "context": "grates a multi-phase optical character recognition (OCR) process with validation by large language models. It pairs the Variorum\u2019s old-spelling apparatus with modernized reading texts, aligned to the Folger Digital Texts for one play so far, with the remaining plays using each edition\u2019s own lineation. The developed platform offers line-by-line access to historical annotations and incorporates experimental artificial"
+      }
+    ]
+  },
+  {
+    "key": "Furness (1871)",
+    "marker": "Furness, Horace Howard. (1871)",
+    "count": 0,
+    "citations": []
+  },
+  {
+    "key": "Furness (1877)",
+    "marker": "Furness, Horace Howard. (1877)",
+    "count": 0,
+    "citations": []
+  },
+  {
+    "key": "Furness (1886)",
+    "marker": "Furness, Horace Howard. (1886)",
+    "count": 0,
+    "citations": []
+  },
+  {
+    "key": "Furness (1901)",
+    "marker": "Furness, Horace Howard. (1901)",
+    "count": 0,
+    "citations": []
+  },
+  {
+    "key": "Geneva Bible (1599)",
+    "marker": "The Geneva Bible",
+    "count": 2,
+    "citations": [
+      {
+        "match": "1599 Geneva Bible",
+        "context": "n reference works\u2014C. T. Onions\u2019s A Shakespeare Glossary, Alexander Schmidt\u2019s Shakespeare-Lexicon, period dictionaries from the University of Toronto\u2019s Lexicons of Early Modern English (LEME), and the 1599 Geneva Bible\u2014and serve as supplementary research tools rather than foundational scholarly resources. A multi-part verification supports the corpus: residual truncation stands at 1.0% by human-adjudicated sampling"
+      },
+      {
+        "match": "Geneva Bible",
+        "context": "erence works\u2014C. T. Onions\u2019s A Shakespeare Glossary, Alexander Schmidt\u2019s Shakespeare-Lexicon, period dictionaries from the University of Toronto\u2019s Lexicons of Early Modern English (LEME), and the 1599 Geneva Bible\u2014and serve as supplementary research tools rather than foundational scholarly resources. A multi-part verification supports the corpus: residual truncation stands at 1.0% by human-adjudicated sampling"
+      }
+    ]
+  },
+  {
+    "key": "Greif et al. (2025)",
+    "marker": "Greif, Gavin",
+    "count": 1,
+    "citations": [
+      {
+        "match": "Greif et al. (2025)",
+        "context": "odels a promising intervention on English historical corpora but falling short of practical utility for Finnish texts; in the end, they adjudged commercial models cost-infeasible at collection scale. Greif et al. (2025) report that image-conditioned multimodal post-correction produces large accuracy gains on historical documents without fine-tuning. Bourne (2025) demonstrates substantial error reductions from synthe"
+      }
+    ]
+  },
+  {
+    "key": "HathiTrust Digital Library (n.d.)",
+    "marker": "HathiTrust Digital Library",
+    "count": 0,
+    "citations": []
+  },
+  {
+    "key": "Internet Archive (n.d.)",
+    "marker": "Internet Archive",
+    "count": 0,
+    "citations": []
+  },
+  {
+    "key": "Kanerva et al. (2025)",
+    "marker": "Kanerva, Jenna",
+    "count": 1,
+    "citations": [
+      {
+        "match": "Kanerva et al. (2025)",
+        "context": "hat carefully configured GPT-4-class models can meaningfully improve recognition of challenging period typography. The even more recent literature has complicated rather than 3 settled the question. Kanerva et al. (2025) found open-weight models a promising intervention on English historical corpora but falling short of practical utility for Finnish texts; in the end, they adjudged commercial models cost-infeasible a"
+      }
+    ]
+  },
+  {
+    "key": "Kliman (1996)",
+    "marker": "Kliman, Bernice W. (ed.) (1996)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "(Kliman, 1996)",
+        "context": "gital access to variorum commentary is Bernice Kliman\u2019s extraordinary work on Hamlet. Her online resource Enfolded Hamlet presents the play\u2019s competing early texts within a single navigable apparatus (Kliman, 1996), and her website HamletWorks, which grew out of her coordination of the New Variorum Hamlet, assembles searchable commentary notes, textual notes, and digitized editions for the play (Kliman et al.,"
+      }
+    ]
+  },
+  {
+    "key": "Kliman (2006)",
+    "marker": "Kliman, Bernice W. (2006)",
+    "count": 0,
+    "citations": []
+  },
+  {
+    "key": "Kliman et al. (n.d.)",
+    "marker": "Hamlet-Works",
+    "count": 2,
+    "citations": [
+      {
+        "match": "HamletWorks",
+        "context": "ary is Bernice Kliman\u2019s extraordinary work on Hamlet. Her online resource Enfolded Hamlet presents the play\u2019s competing early texts within a single navigable apparatus (Kliman, 1996), and her website HamletWorks, which grew out of her coordination of the New Variorum Hamlet, assembles searchable commentary notes, textual notes, and digitized editions for the play (Kliman et al., n.d.; Kliman, 2006). Kliman\u2019s"
+      },
+      {
+        "match": "Kliman et al.",
+        "context": "(Kliman, 1996), and her website HamletWorks, which grew out of her coordination of the New Variorum Hamlet, assembles searchable commentary notes, textual notes, and digitized editions for the play (Kliman et al., n.d.; Kliman, 2006). Kliman\u2019s projects demonstrated both the demand for, and the difficulty of, digital variorum access; they treat a single play in maximum depth. Extending this approach, the prese"
+      }
+    ]
+  },
+  {
+    "key": "Knowles (2020)",
+    "marker": "Knowles, Richard. (ed.) (2020)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "King Lear (2020)",
+        "context": "provided institutional infrastructure and editorial oversight through the twentieth century, publishing volumes including Marvin Spevack\u2019s Antony and Cleopatra (1990) and Richard Knowles\u2019s two-volume King Lear (2020). In 2019, the series entered a new phase when Laura Mandell negotiated with the MLA to move the NVS to Texas A&M University and make it freely accessible online (Mandell, 2019). That project produces"
+      }
+    ]
+  },
+  {
+    "key": "Lancashire (2026)",
+    "marker": "Lancashire, Ian. (ed.) (2026)",
+    "count": 5,
+    "citations": [
+      {
+        "match": "LEME",
+        "context": "in public-domain reference works\u2014C. T. Onions\u2019s A Shakespeare Glossary, Alexander Schmidt\u2019s Shakespeare-Lexicon, period dictionaries from the University of Toronto\u2019s Lexicons of Early Modern English (LEME), and the 1599 Geneva Bible\u2014and serve as supplementary research tools rather than foundational scholarly resources. A multi-part verification supports the corpus: residual truncation stands at 1.0% b"
+      },
+      {
+        "match": "leme",
+        "context": "Shakespeare Glossary, Alexander Schmidt\u2019s Shakespeare-Lexicon, period dictionaries from the University of Toronto\u2019s Lexicons of Early Modern English (LEME), and the 1599 Geneva Bible\u2014and serve as supplementary research tools rather than foundational scholarly resources. A multi-part verification supports the corpus: residual truncation stands at 1.0% by human-adjudicated sampling, and 98.4% of note en"
+      },
+      {
+        "match": "leme",
+        "context": "istorical editions, scholarly digital edition theory, and the application of large language models in editorial work. The digital Shakespeare landscape is extensive, and this platform is meant to complement existing resources. The Internet Shakespeare Editions (Best, 2008) provide modern, peer-reviewed, open- access editions with critical apparatus. Open Source Shakespeare (n.d.) offers concordance an"
+      }
+    ]
+  },
+  {
+    "key": "Levchenko (2025)",
+    "marker": "Levchenko, Maria. (2025)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "Levchenko (2025)",
+        "context": "g. Bourne (2025) demonstrates substantial error reductions from synthetic-noise fine-tuning but at the cost of the kind of curated training infrastructure this project does not assume. On evaluation, Levchenko (2025) finds that post-OCR LLM correction can degrade strong multimodal OCR outright and that character error rates miss period-specific failures such as over-historicization, while Backer and Hyman (2025)"
+      }
+    ]
+  },
+  {
+    "key": "Mandell (2019)",
+    "marker": "Mandell, Laura. (2019)",
+    "count": 2,
+    "citations": [
+      {
+        "match": "(Mandell, 2019)",
+        "context": "Knowles\u2019s two-volume King Lear (2020). In 2019, the series entered a new phase when Laura Mandell negotiated with the MLA to move the NVS to Texas A&M University and make it freely accessible online (Mandell, 2019). That project produces new born-digital critical editions; its relationship to the present work is discussed under Related Work below. The language of \u201cdemocratic access,\u201d at least as Furness was to"
+      },
+      {
+        "match": "(Mandell, 2019)",
+        "context": "(n.d.) offers concordance and search functionalities across the canon. The New Variorum Shakespeare, now a digital-first project hosted by Texas A&M University\u2019s Center of Digital Humanities Research (Mandell, 2019), produces new, born-digital critical editions encoded in TEI, wedding contemporary analysis to a peer-reviewed apparatus. As of this writing, two editions have been published\u2014 The Winter\u2019s Tale and A"
+      }
+    ]
+  },
+  {
+    "key": "New Variorum Shakespeare (2022)",
+    "marker": "New Variorum Shakespeare (2022)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "(New Variorum Shakespeare, 2022)",
+        "context": "wedding contemporary analysis to a peer-reviewed apparatus. As of this writing, two editions have been published\u2014 The Winter\u2019s Tale and A Midsummer Night\u2019s Dream \u2014with further editions in production (New Variorum Shakespeare, 2022). That project\u2019s digital ambitions trace back to the MLA\u2019s own Electronic New Variorum Shakespeare effort associated with the Knowles King Lear (Werstine, 2008), which produced prototypes but no publi"
+      }
+    ]
+  },
+  {
+    "key": "Onions (1911)",
+    "marker": "Onions, C. T. (1911)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "C. T. Onions",
+        "context": "m offers line-by-line access to historical annotations and incorporates experimental artificial intelligence\u2013driven analytical functions. These functions are grounded in public-domain reference works\u2014C. T. Onions\u2019s A Shakespeare Glossary, Alexander Schmidt\u2019s Shakespeare-Lexicon, period dictionaries from the University of Toronto\u2019s Lexicons of Early Modern English (LEME), and the 1599 Geneva Bible\u2014and serve as"
+      }
+    ]
+  },
+  {
+    "key": "Open Source Shakespeare (n.d.)",
+    "marker": "Open Source Shakespeare",
+    "count": 1,
+    "citations": [
+      {
+        "match": "Open Source Shakespeare (n.d.)",
+        "context": "is extensive, and this platform is meant to complement existing resources. The Internet Shakespeare Editions (Best, 2008) provide modern, peer-reviewed, open- access editions with critical apparatus. Open Source Shakespeare (n.d.) offers concordance and search functionalities across the canon. The New Variorum Shakespeare, now a digital-first project hosted by Texas A&M University\u2019s Center of Digital Humanities Research (Mande"
+      }
+    ]
+  },
+  {
+    "key": "Pierazzo (2015)",
+    "marker": "Pierazzo, Elena. (2015)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "Pierazzo (2015)",
+        "context": "ne that responds to active discussions surrounding scholarly digital editions. Sahle (2016), for example, distinguishes the digital edition as a methodological paradigm, not merely text digitization; Pierazzo (2015) thoroughly explains how editorial models change with the medium. This project does not claim to produce new editorial judgment; its ambition and purported authority derive from the attempt to faithfu"
+      }
+    ]
+  },
+  {
+    "key": "Sahle (2016)",
+    "marker": "Sahle, Patrick. (2016)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "Sahle (2016)",
+        "context": "l editions. Building access infrastructure, rather than a new critical edition, is a deliberate choice of this project, one that responds to active discussions surrounding scholarly digital editions. Sahle (2016), for example, distinguishes the digital edition as a methodological paradigm, not merely text digitization; Pierazzo (2015) thoroughly explains how editorial models change with the medium. This proje"
+      }
+    ]
+  },
+  {
+    "key": "Schmidt (1902)",
+    "marker": "Schmidt, Alexander. (1902)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "Alexander Schmidt",
+        "context": "cal annotations and incorporates experimental artificial intelligence\u2013driven analytical functions. These functions are grounded in public-domain reference works\u2014C. T. Onions\u2019s A Shakespeare Glossary, Alexander Schmidt\u2019s Shakespeare-Lexicon, period dictionaries from the University of Toronto\u2019s Lexicons of Early Modern English (LEME), and the 1599 Geneva Bible\u2014and serve as supplementary research tools rather than fo"
+      }
+    ]
+  },
+  {
+    "key": "Spevack (1990)",
+    "marker": "Spevack, Marvin. (ed.) (1990)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "Antony and Cleopatra (1990)",
+        "context": "t of the Modern Language Association of America (MLA), which provided institutional infrastructure and editorial oversight through the twentieth century, publishing volumes including Marvin Spevack\u2019s Antony and Cleopatra (1990) and Richard Knowles\u2019s two-volume King Lear (2020). In 2019, the series entered a new phase when Laura Mandell negotiated with the MLA to move the NVS to Texas A&M University and make it freely access"
+      }
+    ]
+  },
+  {
+    "key": "Sun et al. (2024)",
+    "marker": "Sun, Yujie",
+    "count": 0,
+    "citations": []
+  },
+  {
+    "key": "Turner (1986)",
+    "marker": "Turner, Robert K. (1986)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "(Turner, 1986,",
+        "context": "hakespeare\u2019s works, the place where a serious student may find an expression or at least a record of every significant critical action performed on Shakespeare\u2019s text up to the edition\u2019s cutoff date\u201d (Turner, 1986, p. 10). Long before his death, Furness enlisted his son, Horace Howard Furness Jr., to continue the work. For his part, Furness Jr. edited four additional plays before his death in 1930. In 1933, the"
+      }
+    ]
+  },
+  {
+    "key": "Walters and Wilder (2023)",
+    "marker": "Walters, W. H. and Wilder",
+    "count": 1,
+    "citations": [
+      {
+        "match": "Walters and Wilder (2023)",
+        "context": "ndent print witnesses at corpus scale. Worryingly, a considerable body of evidence exists regarding how models tend to generate plausible yet fictitious citations and unsubstantiated statements. Both Walters and Wilder (2023) and Sun et al. (2024) have documented this problem. This project\u2019s design architecture addresses the risk of the model generating fictitious citations or unsubstantiated statements through determinis"
+      }
+    ]
+  },
+  {
+    "key": "Werstine (2008)",
+    "marker": "Werstine, Paul. (2008)",
+    "count": 1,
+    "citations": [
+      {
+        "match": "(Werstine, 2008)",
+        "context": "editions in production (New Variorum Shakespeare, 2022). That project\u2019s digital ambitions trace back to the MLA\u2019s own Electronic New Variorum Shakespeare effort associated with the Knowles King Lear (Werstine, 2008), which produced prototypes but no public platform before the series moved to Texas A&M. However, that project has not published digitized versions of the historical Furness volumes. The instant proje"
+      }
+    ]
+  },
+  {
+    "key": "Zhang et al. (2024)",
+    "marker": "Zhang, James",
+    "count": 1,
+    "citations": [
+      {
+        "match": "Zhang et al. (2024)",
+        "context": "ight historical benchmarks in text-only settings, found that unconstrained LLM post-correction usually degrades the input, with the worst failures being paraphrase and outright invention of new text; Zhang et al. (2024), by contrast, showed that carefully configured GPT-4-class models can meaningfully improve recognition of challenging period typography. The even more recent literature has complicated rather than 3"
+      }
+    ]
+  }
+]

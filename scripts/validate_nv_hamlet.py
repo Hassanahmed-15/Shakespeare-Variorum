@@ -20,8 +20,9 @@ from nv_ia_witness import classify_match, fetch_ia_text, ia_match_score  # noqa:
 
 CANONICAL = ROOT / "Public/Data/hamlet_notes (1).json"
 SITE_JSON = ROOT / "Public/Data/hamlet.json"
-IA_ID = "newvariorumediti11shak"
-IA_STREAM = "newvariorumediti11shak_djvu.txt"
+from nv_witness_map import WITNESS_BY_PLAY  # noqa: E402
+
+IA_ID, IA_STREAM = WITNESS_BY_PLAY["Hamlet"]
 IA_ITEM = f"https://archive.org/details/{IA_ID}"
 SAMPLE_SIZE = 40
 

@@ -1,0 +1,703 @@
+{
+  "total_unanchorable": 84,
+  "by_play": {
+    "Romeo and Juliet": 10,
+    "Othello": 9,
+    "Richard III": 9,
+    "Henry IV, Part 1": 9,
+    "Macbeth": 7,
+    "Antony and Cleopatra": 7,
+    "Henry IV, Part 2": 6,
+    "The Winter's Tale": 5,
+    "Much Ado About Nothing": 5,
+    "King Lear": 4,
+    "The Tempest": 4,
+    "A Midsummer Night's Dream": 2,
+    "Coriolanus": 2,
+    "Hamlet": 1,
+    "Twelfth Night": 1,
+    "Julius Caesar": 1,
+    "King John": 1,
+    "Troilus and Cressida": 1
+  },
+  "in_noisy_witness_plays": 29,
+  "in_workbook_repair_cohort": 8,
+  "opens_name_colon": 8,
+  "opens_lemma_bracket": 69,
+  "neither_opening_pattern": 7,
+  "rows": [
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 1 SCENE 5 / line 92 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 2 SCENE 1 / line 12 / note 1",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 2 SCENE 3 / line 78 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 3 SCENE 1 / line 223 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 3 SCENE 3 / line 85 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 3 SCENE 5 / line 92 / note 1",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 4 SCENE 1 / line 128 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 4 SCENE 3 / line 35 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 5 SCENE 3 / line 313 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Romeo and Juliet",
+      "ref": "ACT 5 SCENE 3 / line 345 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 1 SCENE 2 / line 72 / note 0",
+      "in_workbook": true,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 1 SCENE 5 / line 21 / note 1",
+      "in_workbook": true,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 3 SCENE 1 / line 139 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 3 SCENE 4 / line 45 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 4 SCENE 3 / line 241 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 4 SCENE 3 / line 82 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Macbeth",
+      "ref": "ACT 5 SCENE 1 / line 1 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Hamlet",
+      "ref": "ACT 5 SCENE 1 / line 146 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": true
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 1 SCENE 1 / line 70 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 1 SCENE 4 / line 243 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 2 SCENE 2 / line 151 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": true
+    },
+    {
+      "play": "King Lear",
+      "ref": "ACT 3 SCENE 6 / line 37 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 1, SCENE 1 / line 1.1.29 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 1, SCENE 3 / line 1.3.291 / note 5",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 3, SCENE 3 / line 3.3.17 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": true
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 3, SCENE 3 / line 3.3.57 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": true
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 3, SCENE 4 / line 3.4.183 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": true
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 4, SCENE 2 / line 4.2.72 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": true
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 4, SCENE 3 / line 4.3.26 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": true
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 5, SCENE 2 / line 5.2.6 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Othello",
+      "ref": "ACT 5, SCENE 2 / line 5.2.7 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": true
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 3 SCENE 1 / line 2 / note 3",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 3 SCENE 2 / line 167 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 4 SCENE 1 / line 142 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "The Tempest",
+      "ref": "ACT 4 SCENE 1 / line 149 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 1 SCENE 1 / line 189 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "A Midsummer Night's Dream",
+      "ref": "ACT 2 SCENE 2 / line 104 / note 1",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 1 SCENE 2 / line 205 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 1 SCENE 2 / line 264 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 4 SCENE 4 / line 245 / note 3",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 5 SCENE 3 / line 193 / note 2",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "The Winter's Tale",
+      "ref": "ACT 5 SCENE 3 / line 59 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 1 SCENE 3 / line 13 / note 1",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 2 SCENE 1 / line 284 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 3 SCENE 3 / line 67 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 4 SCENE 1 / line 56 / note 1",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Much Ado About Nothing",
+      "ref": "ACT 5 SCENE 2 / line 77 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Twelfth Night",
+      "ref": "ACT 3 SCENE 1 / line 20 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 1 SCENE 1 / line 20 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 2 SCENE 2 / line 64 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 3 SCENE 13 / line 41 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 3 SCENE 6 / line 61 / note 0",
+      "in_workbook": true,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 4 SCENE 13 / line 4 / note 0",
+      "in_workbook": true,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 4 SCENE 4 / line 38 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Antony and Cleopatra",
+      "ref": "ACT 5 SCENE 2 / line 403 / note 1",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 1 SCENE 1 / line 1 / note 3",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 1 SCENE 4 / line 46 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 2 SCENE 2 / line 62 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 3 SCENE 3 / line 12 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 3 SCENE 5 / line 19 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 4 SCENE 1 / line 3 / note 1",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 4 SCENE 4 / line 487 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 5 SCENE 3 / line 88 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Richard III",
+      "ref": "ACT 5 SCENE 5 / line 10 / note 0",
+      "in_workbook": true,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Julius Caesar",
+      "ref": "ACT 2 SCENE 1 / line 130 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "King John",
+      "ref": "ACT 2 SCENE 1 / line 611 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 2 SCENE 1 / line 191 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Coriolanus",
+      "ref": "ACT 3 SCENE 1 / line 284 / note 9",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 1 SCENE 2 / line 34 / note 0",
+      "in_workbook": true,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 1, SCENE 3 / line 209 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 2 ,SCENE 4 / line 436 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 2 SCENE 2 / line 91 / note 1",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 3 ,SCENE 1 / line 124 / note 3",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": false,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 3 ,SCENE 1 / line 213 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 3 ,SCENE 1 / line 219 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 4 ,SCENE 2 / line 19 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 1",
+      "ref": "ACT 5 SCENE 4 / line 160 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 1, SCENE 1 / line 57 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 2, SCENE 4 / line 177 / note 2",
+      "in_workbook": true,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 3, SCENE 1 / line 3 / note 1",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 3, SCENE 2 / line 325 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 4, SCENE 3 / line 268 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Henry IV, Part 2",
+      "ref": "ACT 4, SCENE 3 / line 47 / note 0",
+      "in_workbook": false,
+      "noisy_witness_play": false,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    },
+    {
+      "play": "Troilus and Cressida",
+      "ref": "ACT 1, SCENE 3 / line 44 / note 0",
+      "in_workbook": true,
+      "noisy_witness_play": true,
+      "opens_with_lemma_bracket": true,
+      "opens_with_name_colon": false
+    }
+  ],
+  "interpretation": "Unanchorable notes cluster in plays with noisy witnesses (29/84 in Troilus/Othello/Romeo/Richard III). Workbook repair cohort: 8/84 \u2014 repairs splice at note ends, so truncation repair is an unlikely cause of start-anchor failure. Lemma-bracket openings: 69; name-colon openings: 8."
+}

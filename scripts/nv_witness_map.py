@@ -24,9 +24,11 @@ WITNESS_BY_PLAY: dict[str, tuple[str, str]] = {
         "newvariorumediti10shak",
         "newvariorumediti10shak_djvu.txt",
     ),
+    # Furness Hamlet apparatus (line-by-line commentary, Acts I–V). Do not use
+    # newvariorumediti11shak — that IA item is introductory/critical essays, not the play text.
     "Hamlet": (
-        "newvariorumediti11shak",
-        "newvariorumediti11shak_djvu.txt",
+        "anewvariorumedi07furngoog",
+        "anewvariorumedi07furngoog_djvu.txt",
     ),
     "King Lear": (
         "newvariorumediti05shak",
@@ -121,10 +123,12 @@ WITNESS_AUDIT_FALLBACK: dict[str, tuple[str, str]] = {
 # Extra candidates tested by resolve_nv_witnesses.py when verifying a play.
 WITNESS_CANDIDATES: dict[str, list[tuple[str, str]]] = {
     "Hamlet": [
-        ("newvariorumediti11shak", "newvariorumediti11shak_djvu.txt"),
+        ("anewvariorumedi07furngoog", "anewvariorumedi07furngoog_djvu.txt"),
+        ("in.ernet.dli.2015.94022", "2015.94022.A-Variorum-Edition-Of-Shakespearehamletvol2ed12_djvu.txt"),
         ("newvariorumediti12shak", "newvariorumediti12shak_djvu.txt"),
         ("newvariorumediti02shak", "newvariorumediti02shak_djvu.txt"),
-        ("in.ernet.dli.2015.94022", "2015.94022.A-Variorum-Edition-Of-Shakespearehamletvol2ed12_djvu.txt"),
+        # Legacy mis-map: critical essays about Hamlet, not line apparatus.
+        ("newvariorumediti11shak", "newvariorumediti11shak_djvu.txt"),
     ],
     "King Lear": [
         ("newvariorumediti05shak", "newvariorumediti05shak_djvu.txt"),

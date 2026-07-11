@@ -1,0 +1,562 @@
+[
+  {
+    "sample_id": "romeo_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "sary, 1911/1919). The word \"down\" implies a forceful action to subdue or defeat (Schmidt, Shakespeare-Lexicon, 1902). The rhetoric is characterized by asyndeton, the omission of conjunctions, whic",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "romeo_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "nions, A Shakespeare Glossary, 1911/1919). - \"Down\" means [to subdue or defeat] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "macbeth_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "ee,\" which is an old form of \"you,\" indicating direct address to another person (Schmidt, Shakespeare-Lexicon, 1902). The word \"too\" functions as an additive, meaning \"and also\" or \"in addition\" (",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "macbeth_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "r indignation] (Onions, A Shakespeare Glossary, 1911/1919). - \"Thee\" see [Thou] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "othello_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " here refers to public tranquility and order, contrasting with the chaos of war (Schmidt, Shakespeare-Lexicon, 1902). The line employs antithesis, juxtaposing \"peace\" with \"war\" to highlight the s",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "othello_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "are Glossary, 1911/1919). - \"peace\" means [public tranquility, quiet and order] (Schmidt, Shakespeare-Lexicon, 1902). - \"war\" means [a contest between two powers carried on by force of arms] (Schm",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "antony_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "pe reality or induce sleep, as \"drink\" can imply consuming a potion or beverage (Schmidt, Shakespeare-Lexicon, 1902). The verb \"give\" here is used in the sense of providing or offering something t",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "antony_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "espeare Glossary, 1911/1919). - \"drink\" means [to consume a beverage or potion] (Schmidt, Shakespeare-Lexicon, 1902). - \"give\" means [to provide or offer] (Onions, A Shakespeare Glossary, 1911/191",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "troilus_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " - \"Ulysses\" refers to [a character from classical mythology, known for wisdom] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "romeo_stage_direction_3",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "e verb \"enter\" used in its ordinary physical sense, meaning to go in or come in (Schmidt, Shakespeare-Lexicon, 1902). The word \"house\" refers to the family or lineage of Capulet, rather than a phy",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "romeo_stage_direction_3",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "Onions, A Shakespeare Glossary, 1911/1919). - \"enter\" means [to go in, come in] (Schmidt, Shakespeare-Lexicon, 1902). - \"Capulet\" means [name in Rom. I, 1, 81 etc. etc. the — s, 111, 1, 2. 38] (Sc",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "macbeth_stage_direction_3",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "aic usage, means to go in or come in, as seen in various Shakespearean contexts (Schmidt, Shakespeare-Lexicon, 1902). The term \"three\" is often used symbolically in literature, representing comple",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "macbeth_stage_direction_3",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "- \"enter\" means [to go in, come in] (Schmidt, Shakespeare-Lexicon, 1902). - \"three\" means [two and one; often symbolic of completeness or magic] (Schmid",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "hamlet_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "l halt and a demand for attention, emphasizing the seriousness of the situation (Schmidt, Shakespeare-Lexicon, 1902). The dialogue employs the rhetorical device of stichomythia, a rapid exchange o",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "hamlet_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "place where one stands, mostly for the purpose of waiting or watching; station] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "hamlet_stage_direction_3",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " its most straightforward sense, meaning to come onto the stage or into a scene (Schmidt, Shakespeare-Lexicon, 1902). This usage is common in stage directions and serves to introduce characters ph",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "hamlet_stage_direction_3",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "- \"Enter\" means [to go in, come in] (Schmidt, Shakespeare-Lexicon, 1902). - \"Francisco\" is a name, possibly indicating a Frenchman or of French origin (",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "kinglear_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "ions, A Shakespeare Glossary, 1911/1919). - \"lord\" means [master, ruler, owner] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "kinglear_stage_direction_3",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "is used here in its most straightforward sense, meaning \"to go in\" or \"come in\" (Schmidt, Shakespeare-Lexicon, 1902). It is a stage direction indicating the physical movement of characters onto th",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "kinglear_stage_direction_3",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "- \"enter\" means [to go in, come in] (Schmidt, Shakespeare-Lexicon, 1902). - \"Kent\" refers to [an English county] (Schmidt, Shakespeare-Lexicon, 1902). -",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "othello_stage_direction_3",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "- \"enter\" means [to go in, come in] (Schmidt, Shakespeare-Lexicon, 1902). - \"enter\" means [to bind oneself by a bond, to engage in] (Onions, A Shakespea",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "merchantofvenice_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " in Shakespeare's works to denote a strong emotional attachment, often romantic (Schmidt, Shakespeare-Lexicon, 1902). ANTONIO's response, \"Fie, fie!\" is an exclamation of contempt or dislike, a co",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "merchantofvenice_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " [strong liking, tender attachment, particularly the passion between the sexes] (Schmidt, Shakespeare-Lexicon, 1902). - \"Fie\" means [an exclamation of contempt or dislike] (Onions, A Shakespeare G",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "merchantofvenice_stage_direction_3",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "e onto the stage or into a scene, as seen in numerous other Shakespearean plays (Schmidt, Shakespeare-Lexicon, 1902). This usage aligns with the theatrical convention of announcing characters' arr",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "merchantofvenice_stage_direction_3",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "- \"enter\" means [to go in, come in] (Schmidt, Shakespeare-Lexicon, 1902). - \"enter\" also implies [to engage in or bind oneself by a bond] (Onions, A Sha",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "asyoulikeit_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "e word was used to describe someone given to sudden changes in mood or behavior (Schmidt, Shakespeare-Lexicon, 1902). The rhetorical device of synecdoche might be at play here, as \"prizer\" could r",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "asyoulikeit_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "tle of some sovereign princes; in England one of the highest order of nobility] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "asyoulikeit_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " physical and metaphorical separation, indicating a need for privacy or secrecy (Schmidt, Shakespeare-Lexicon, 1902). The use of \"hear\" implies not just listening but also understanding or being i",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "asyoulikeit_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "\" means [separately, by one's self; at or to a distance from the other company] (Schmidt, Shakespeare-Lexicon, 1902). - \"hear\" means [to listen to, pay attention to; be informed of] (Onions, A Sha",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "tempest_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "he captain or a senior officer on the ship, reflecting a hierarchical structure (Schmidt, Shakespeare-Lexicon, 1902). The word \"boatswain\" refers to a specific officer responsible for the ship's e",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "tempest_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "- \"Master\" means [the person in charge or commanding] (Schmidt, Shakespeare-Lexicon, 1902). - \"Boatswain\" means [an officer on board a ship responsible for the equipment ",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "midsummer_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "peare Glossary, 1911/1919). - \"pity\" means [to feel sympathy, to compassionate] (Schmidt, Shakespeare-Lexicon, 1902). - \"man\" means [a human being] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "midsummer_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "tle of some sovereign princes; in England one of the highest order of nobility] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "muchado_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " sense, indicating strong liking or tender attachment, not necessarily romantic (Schmidt, Shakespeare-Lexicon, 1902). The phrase employs a rhetorical device of synecdoche, where \"prince and Claudi",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "muchado_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "sary, 1911/1919). - \"Claudio\" refers to a character name used in multiple plays (Schmidt, Shakespeare-Lexicon, 1902). - \"love\" means [strong liking, tender attachment] (Schmidt, Shakespeare-Lexico",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "twelfthnight_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "ere, as Sir Toby himself is not acting with the decorum expected of a gentleman (Schmidt, Shakespeare-Lexicon, 1902). The phrase \"passy measures panyn\" is an example of Shakespeare's use of nonsen",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "twelfthnight_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " A Shakespeare Glossary, 1911/1919). - \"sir\" means [used ironically; gentleman] (Schmidt, Shakespeare-Lexicon, 1902). - \"panyn\" means [an unintelligible word, possibly a corruption or invention] (",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "twelfthnight_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "rries connotations of pursuit or chase, which can be interpreted metaphorically (Schmidt, Shakespeare-Lexicon, 1902). The rhetorical device of ellipsis is present in Duke Orsino's response, \"What,",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "twelfthnight_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "nions, A Shakespeare Glossary, 1911/1919). - \"Curio\" is a name used in the play (Schmidt, Shakespeare-Lexicon, 1902). - \"hunt\" as a noun means [chase] and as a verb means [to chase] (Schmidt, Shak",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "loveslabourslost_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " as a generic name, similar to \"Jack,\" to refer to an everyman or common fellow (Schmidt, Shakespeare-Lexicon, 1902). The rhetoric employed in this line includes a tricolon, a series of three para",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "loveslabourslost_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "ons, A Shakespeare Glossary, 1911/1919). - \"Dick\" means [diminutive of Richard] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "loveslabourslost_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "vereign lord to whom allegiance is owed, indicating a hierarchical relationship (Schmidt, Shakespeare-Lexicon, 1902). The verb \"pass\" in \"pass'd\" suggests a completed action, possibly with the con",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "loveslabourslost_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "s, A Shakespeare Glossary, 1911/1919). - \"away\" means [from a place, to depart] (Schmidt, Shakespeare-Lexicon, 1902). - \"oath\" means [a solemn promise or vow] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "antony_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "eare's works to denote strong affection or passion, particularly between lovers (Schmidt, Shakespeare-Lexicon, 1902). Antony's response utilizes the word \"beggary,\" which in this context implies a",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "antony_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " [strong liking, tender attachment, particularly the passion between the sexes] (Schmidt, Shakespeare-Lexicon, 1902). - \"tell\" means [to count, reckon the number of] (Onions, A Shakespeare Glossar",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "richardiii_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "ctive, indicating the primary or initial position of the murderer in a sequence (Schmidt, Shakespeare-Lexicon, 1902). \"Over\" functions as an adverb, suggesting movement from one side to the other,",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "richardiii_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": ", 1911/1919). - \"First\" means [that which is in time or order before any other] (Schmidt, Shakespeare-Lexicon, 1902). - \"Over\" means [from one side to the other] (Schmidt, Shakespeare-Lexicon, 190",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "richardiii_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " \"Name\" here refers to an individual appellation, emphasizing personal identity (Schmidt, Shakespeare-Lexicon, 1902). The rhetorical device of ellipsis is present, as the brevity of Clarence's res",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "richardiii_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "ions, A Shakespeare Glossary, 1911/1919). - \"Name\" means individual appellation (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "juliuscaesar_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "'s time, derived from the medieval belief in bodily humors affecting one's mood (Schmidt, Shakespeare-Lexicon, 1902). The verb \"know\" here implies gaining understanding or awareness, suggesting a ",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "juliuscaesar_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "time\" means [the general idea of successive existence; the measure of duration] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "juliuscaesar_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " of public tranquility or order, urging those present to be quiet and attentive (Schmidt, Shakespeare-Lexicon, 1902). The interjection \"ho\" serves as a call for attention, a rhetorical device used",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "juliuscaesar_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "are Glossary, 1911/1919). - \"Peace\" means [public tranquility, quiet and order] (Schmidt, Shakespeare-Lexicon, 1902). - \"Casca\" is a name used in this context (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "cymbeline_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": ", 1911/1919). \"Painting\" refers to cosmetics, implying superficiality or deceit (Schmidt, Shakespeare-Lexicon, 1902). The verb \"betrayed\" means to deceive or mislead, highlighting the treacherous ",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "cymbeline_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "hakespeare Glossary, 1911/1919). - \"painting\" means [cosmetics, superficiality] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "cymbeline_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " the kingdom, a term applied equally to males and females in Shakespeare's time (Schmidt, Shakespeare-Lexicon, 1902). The dialogue is structured in a question-and-answer format, a common rhetorica",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "cymbeline_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " (Onions, A Shakespeare Glossary, 1911/1919). - \"daughter\" means [female child] (Schmidt, Shakespeare-Lexicon, 1902). - \"kingdom\" means [a country subject to a king] (Schmidt, Shakespeare-Lexicon,",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "kingjohn_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "ntry\" in \"Our country manners\" refers to the customs of their region or society (Schmidt, Shakespeare-Lexicon, 1902). The term \"bastard,\" while often used to denote someone born out of wedlock, he",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "kingjohn_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "- \"country\" means [a tract of land, a region or the rural parts of a territory] (Schmidt, Shakespeare-Lexicon, 1902). - \"bastard\" means [a person born out of wedlock] (Schmidt, Shakespeare-Lexicon",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "coriolanus_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": " could mean pleasing to any sense, often used to convey affection or admiration (Schmidt, Shakespeare-Lexicon, 1902). The term \"lady\" is used to denote a woman of rank or distinction, often a term",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "coriolanus_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "ns, A Shakespeare Glossary, 1911/1919). - \"sweet\" means [pleasing to any sense] (Schmidt, Shakespeare-Lexicon, 1902). - \"lady\" means [a woman of rank or distinction] (Onions, A Shakespeare Glossar",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "coriolanus_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": ", 1911/1919). - \"First\" means [that which is in time or order before any other] (Schmidt, Shakespeare-Lexicon, 1902). - \"Die\" means [to lose life, to expire] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "henryiv1_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "lossary, 1911/1919). The word \"well\" indicates proficiency or skill in speaking (Schmidt, Shakespeare-Lexicon, 1902). The term \"lord\" is a vocative, directly addressing the person of higher status",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "henryiv1_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "ns, A Shakespeare Glossary, 1911/1919). - \"well\" means [in a proficient manner] (Schmidt, Shakespeare-Lexicon, 1902). - \"lord\" means [a person of high rank or authority] (Schmidt, Shakespeare-Lexi",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "henryiv1_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "ould mean cousin or grandson, but here it likely refers to the son of a sibling (Schmidt, Shakespeare-Lexicon, 1902). The word \"after\" is used in its common sense of \"following\" or \"subsequent to\"",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "henryiv1_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "espeare Glossary, 1911/1919). - \"nephew\" means [the son of a brother or sister] (Schmidt, Shakespeare-Lexicon, 1902). - \"after\" means [following, subsequent to] (Schmidt, Shakespeare-Lexicon, 1902",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "henryiv2_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "is used here as a command for silence or calm, akin to saying \"quiet\" or \"hush\" (Schmidt, Shakespeare-Lexicon, 1902). The repetition of \"Mouldy\" serves as a rhetorical device known as epizeuxis, w",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "henryiv2_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "- \"peace\" means [freedom from war or public tranquillity, quiet and order] (Schmidt, Shakespeare-Lexicon, 1902). - \"Mouldy\" means [musty, fusty; used as a term of reproach or humor] (Schmidt,",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "troilus_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "uses the word \"strength\" to denote both physical power and strategic capability (Schmidt, Shakespeare-Lexicon, 1902). The repetition of \"strong\" and \"strength\" emphasizes the Greeks' formidable na",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  },
+  {
+    "sample_id": "troilus_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Schmidt, Shakespeare-Lexicon, 1902",
+    "context_snippet": "are Glossary, 1911/1919). - \"strength\" means [power of the body, vigour, force] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "schmidt_retrieved"
+  }
+]

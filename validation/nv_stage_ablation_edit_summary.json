@@ -1,0 +1,18 @@
+{
+  "total_n": 300,
+  "changed_n": 19,
+  "unchanged_n": 281,
+  "changed_pct": 6.33,
+  "by_category": {
+    "other": 16,
+    "character_repair": 2,
+    "spelling_normalization": 1
+  },
+  "other_truncation_completion_n": 15,
+  "changed_tail_stage1_pass_pct": 94.74,
+  "changed_tail_stage2_pass_pct": 94.74,
+  "changed_tail_lift_pp": 0.0,
+  "changed_full_stage1_pass_anchored_pct": 85.71,
+  "changed_full_stage2_pass_anchored_pct": 64.29,
+  "changed_full_lift_pp": -21.43
+}

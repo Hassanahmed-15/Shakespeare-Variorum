@@ -1,0 +1,83 @@
+{
+  "generated_at": "2026-07-11T03:14:57.120651+00:00",
+  "sample_n": 300,
+  "n_plays": 22,
+  "seed": 42,
+  "stage1_definition": "Earliest *.pre_*_repair.backup per deployed JSON (ingest OCR layer on disk)",
+  "stage2_definition": "Deployed Public/Data JSON (current corrected corpus)",
+  "stage1_backup_kinds": {
+    "pre_clip_repair": 42,
+    "pre_phase2_repair": 107,
+    "pre_trunc_repair": 55,
+    "pre_repair": 13,
+    "pre_phase2_skipped_repair": 70,
+    "pre_troilus_repair": 13
+  },
+  "stage1": {
+    "n": 300,
+    "tail_pass_n": 289,
+    "tail_pass_pct": 96.33,
+    "full_verdict_counts": {
+      "full_span_match": 154,
+      "interior_divergence": 41,
+      "span_mismatch": 5,
+      "unanchorable": 70,
+      "exempt": 30
+    },
+    "scored_n": 270,
+    "anchored_n": 200,
+    "full_span_pass_n": 154,
+    "full_span_pass_scored_pct": 57.04,
+    "full_span_pass_anchored_pct": 77.0,
+    "interior_divergence_n": 41,
+    "span_mismatch_n": 5,
+    "unanchorable_n": 70,
+    "exempt_n": 30
+  },
+  "stage2": {
+    "n": 300,
+    "tail_pass_n": 289,
+    "tail_pass_pct": 96.33,
+    "full_verdict_counts": {
+      "full_span_match": 151,
+      "interior_divergence": 43,
+      "span_mismatch": 6,
+      "unanchorable": 70,
+      "exempt": 30
+    },
+    "scored_n": 270,
+    "anchored_n": 200,
+    "full_span_pass_n": 151,
+    "full_span_pass_scored_pct": 55.93,
+    "full_span_pass_anchored_pct": 75.5,
+    "interior_divergence_n": 43,
+    "span_mismatch_n": 6,
+    "unanchorable_n": 70,
+    "exempt_n": 30
+  },
+  "delta_stage2_minus_stage1": {
+    "tail_pass_n": 0,
+    "tail_pass_pct": 0.0,
+    "full_span_pass_n": -3,
+    "full_span_pass_scored_pct": -1.11,
+    "full_span_pass_anchored_pct": -1.5
+  },
+  "edit_summary": {
+    "total_n": 300,
+    "changed_n": 19,
+    "unchanged_n": 281,
+    "changed_pct": 6.33,
+    "by_category": {
+      "other": 16,
+      "character_repair": 2,
+      "spelling_normalization": 1
+    },
+    "other_truncation_completion_n": 15,
+    "changed_tail_stage1_pass_pct": 94.74,
+    "changed_tail_stage2_pass_pct": 94.74,
+    "changed_tail_lift_pp": 0.0,
+    "changed_full_stage1_pass_anchored_pct": 85.71,
+    "changed_full_stage2_pass_anchored_pct": 64.29,
+    "changed_full_lift_pp": -21.43
+  }
+}

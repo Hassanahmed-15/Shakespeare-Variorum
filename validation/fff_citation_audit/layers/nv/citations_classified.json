@@ -1,0 +1,106 @@
+[
+  {
+    "sample_id": "hamlet_soliloquy_1",
+    "section": "New Variorum Analysis",
+    "citation_text": "Mason",
+    "context_snippet": " all.' [In the Var. 1785, S[tephen] W[eston] proposes the same emendation. Ed.] Mason (1785): I offer as an amendment (which is at least as near the old text as any yet pro",
+    "classification": "verifiable_correct",
+    "verification_basis": "variorum_injected_note"
+  },
+  {
+    "sample_id": "hamlet_soliloquy_1",
+    "section": "New Variorum Analysis",
+    "citation_text": "Malone",
+    "context_snippet": "d which is supported by line 35), 'Doth all the noble substance of 't corrupt.' Malone (1790): 'The dram of base Doth all the noble substance of worth dout, To,' &c. To dout",
+    "classification": "verifiable_correct",
+    "verification_basis": "variorum_injected_note"
+  },
+  {
+    "sample_id": "hamlet_soliloquy_1",
+    "section": "New Variorum Analysis",
+    "citation_text": "BOSWELL",
+    "context_snippet": "hat perfect confidence which he does in reference to ‘most of my restorations.’ BOSWELL (1821): A clear meaning is afforded by Holt’s emendation, if we take ‘substance’ as a ",
+    "classification": "verifiable_correct",
+    "verification_basis": "variorum_injected_note"
+  },
+  {
+    "sample_id": "hamlet_soliloquy_1",
+    "section": "New Variorum Analysis",
+    "citation_text": "HUDSON",
+    "context_snippet": "han writers. Sh. uses it twice elsewhere, in Cym. IV, ii, 27; Cor. III, i, 322. HUDSON (1870): ‘The dram of vile Doth all the noble substance oft abate To,’ &c. I prefer vil",
+    "classification": "verifiable_correct",
+    "verification_basis": "variorum_injected_note"
+  },
+  {
+    "sample_id": "tempest_soliloquy_1",
+    "section": "New Variorum Analysis",
+    "citation_text": "Theobald's busy-less in his first edition",
+    "context_snippet": "'I forget By these sweet thoughts that even refresh my labours.'—SINGER adopted Theobald's busy-less in his first edition (1826), and sneered at it in his second (1856), wherein he adopted Holt's busiest, wit",
+    "classification": "verifiable_correct",
+    "verification_basis": "variorum_injected_note"
+  },
+  {
+    "sample_id": "tempest_soliloquy_1",
+    "section": "New Variorum Analysis",
+    "citation_text": "HALLIWELL",
+    "context_snippet": " “labours,” keeps the comma in its place, and provides an antecedent for “it.”’—HALLIWELL (1853) follows Theobald, and of Holt’s emendation says that it ‘seems to imply a sense",
+    "classification": "verifiable_correct",
+    "verification_basis": "variorum_injected_note"
+  },
+  {
+    "sample_id": "tempest_soliloquy_1",
+    "section": "New Variorum Analysis",
+    "citation_text": "In the First Cambridge Edition",
+    "context_snippet": "abour when I most busily do it,\" or, in other words, \"when I work the hardest.\"—In the First Cambridge Edition (1863) the editors CLARK and GLOVER record in the Textual Notes a conjecture, by SPEDD",
+    "classification": "verifiable_correct",
+    "verification_basis": "variorum_injected_note"
+  },
+  {
+    "sample_id": "tempest_soliloquy_1",
+    "section": "New Variorum Analysis",
+    "citation_text": "ROLFE",
+    "context_snippet": "ast’; the inversion, ‘least when I do it,’ being quite in Shakespeare’s manner.—ROLFE (1871) follows Heath, and adopts the paraphrase given by Fish of The Phila. Sh. Soc.—W",
+    "classification": "verifiable_correct",
+    "verification_basis": "variorum_injected_note"
+  },
+  {
+    "sample_id": "tempest_soliloquy_1",
+    "section": "New Variorum Analysis",
+    "citation_text": "W. A. WRIGHT",
+    "context_snippet": "ess’ of his previous comment: ‘some kinds of baseness are nobly undergone,’ &c.—W. A. WRIGHT (1874): Holt’s conjecture [most busiest] has been carried a step further by Mr Speddin",
+    "classification": "verifiable_correct",
+    "verification_basis": "variorum_injected_note"
+  },
+  {
+    "sample_id": "tempest_soliloquy_1",
+    "section": "New Variorum Analysis",
+    "citation_text": "HUDSON",
+    "context_snippet": "abour for ‘labours’ is required in any case to give a direct reference to ‘it.’—HUDSON (1879) reads in his text ‘—do even refresh my labour; Most busy when I do it least,' a",
+    "classification": "verifiable_correct",
+    "verification_basis": "variorum_injected_note"
+  },
+  {
+    "sample_id": "tempest_soliloquy_1",
+    "section": "New Variorum Analysis",
+    "citation_text": "DEIGHTON",
+    "context_snippet": "m superlatively busy, are least laborious, when I am actually engaged in them.’—DEIGHTON (1889) adopts Theobald’s busyless, for the reasons given by Walker and Dyce.—J. M. D. ",
+    "classification": "verifiable_correct",
+    "verification_basis": "variorum_injected_note"
+  },
+  {
+    "sample_id": "tempest_soliloquy_1",
+    "section": "New Variorum Analysis",
+    "citation_text": "J. M. D. MEIKLEJOHN",
+    "context_snippet": "ON (1889) adopts Theobald’s busyless, for the reasons given by Walker and Dyce.—J. M. D. MEIKLEJOHN (1889): I am most busy, when I am least occupied with my labour, because then my thoug",
+    "classification": "verifiable_correct",
+    "verification_basis": "variorum_injected_note"
+  },
+  {
+    "sample_id": "cymbeline_soliloquy_1",
+    "section": "New Variorum Analysis",
+    "citation_text": "HUDSON",
+    "context_snippet": " Of the seeming bloom on the vice-paled cheek, the paint-pot was the “mother.”’—HUDSON (1881): That is, who was born of her paint-box; who had no beauty, no attraction, no w",
+    "classification": "verifiable_correct",
+    "verification_basis": "variorum_injected_note"
+  }
+]

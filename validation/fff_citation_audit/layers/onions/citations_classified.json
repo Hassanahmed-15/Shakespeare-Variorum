@@ -1,0 +1,634 @@
+[
+  {
+    "sample_id": "romeo_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "hit or to attack, and its usage here emphasizes the physicality of the conflict (Onions, A Shakespeare Glossary, 1911/1919). The word \"down\" implies a forceful action to subdue or defeat (Schmidt, Shakes",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "romeo_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "ades] (not in retrieved Onions or Schmidt). - \"Strike\" means [to hit or attack] (Onions, A Shakespeare Glossary, 1911/1919). - \"Beat\" means [to hit repeatedly] (Onions, A Shakespeare Glossary, 1911/1919)",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "macbeth_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "). The word \"too\" functions as an additive, meaning \"and also\" or \"in addition\" (Onions, A Shakespeare Glossary, 1911/1919). The use of the imperative \"Take\" suggests an action that is either a command o",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "macbeth_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"too\" means [and too, and at the same time] (Onions, A Shakespeare Glossary, 1911/1919). - \"out\" means [expressing abhorrence, reproach, or indignation] (Onions, A Sha",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "hamlet_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"particular\" means [detail] (Onions, A Shakespeare Glossary, 1911/1919). - \"fault\" means [defect, imperfection] (Onions, A Shakespeare Glossary, 1911/1",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "kinglear_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "sed in a derogatory or playful manner to denote someone as contemptible or vile (Onions, A Shakespeare Glossary, 1911/1919). \"Glass-gazing\" implies vanity or narcissism, as it conjures the image of someo",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "kinglear_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"whoreson\" means [used in coarse playfulness = fellow, dog] (Onions, A Shakespeare Glossary, 1911/1919).",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "othello_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "is used figuratively to imply a parasite or something small and inconsequential (Onions, A Shakespeare Glossary, 1911/1919). The word \"peace\" here refers to public tranquility and order, contrasting with",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "othello_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"moth\" means [figuratively, a parasite] (Onions, A Shakespeare Glossary, 1911/1919). - \"peace\" means [public tranquility, quiet and order] (Schmidt, Shakespeare-Le",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "antony_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "gora\" refers to the mandrake plant, known for its narcotic and sedative effects (Onions, A Shakespeare Glossary, 1911/1919). Cleopatra's request to \"drink\" this substance suggests a desire to escape real",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "antony_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"mandragora\" means [mandrake] (Onions, A Shakespeare Glossary, 1911/1919). - \"drink\" means [to consume a beverage or potion] (Schmidt, Shakespeare-Lexico",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "troilus_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"opinion\" means [public opinion or reputation] (Onions, A Shakespeare Glossary, 1911/1919). - \"Ulysses\" refers to [a character from classical mythology, known for wisdom]",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "romeo_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "e is archaic, as \"carry\" here implies bearing something burdensome or demeaning (Onions, A Shakespeare Glossary, 1911/1919). The word \"colliers\" refers to coal workers, a profession often associated with",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "romeo_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"carry\" means [to bear or endure something burdensome] (Onions, A Shakespeare Glossary, 1911/1919). - \"word\" means [a promise or assurance] (Onions, A Shakespeare Glossary, 1911/",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "romeo_stage_direction_3",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "se\" refers to the family or lineage of Capulet, rather than a physical dwelling (Onions, A Shakespeare Glossary, 1911/1919). The phrase \"with swords and bucklers\" indicates readiness for conflict, as \"bu",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "romeo_stage_direction_3",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"house\" means [family or lineage] (Onions, A Shakespeare Glossary, 1911/1919). - \"enter\" means [to go in, come in] (Schmidt, Shakespeare-Lexicon, 1902). - \"C",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "hamlet_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": " demand or challenge, a somewhat technical usage that implies a formal response (Onions, A Shakespeare Glossary, 1911/1919). \"Unfold\" is employed metaphorically to mean reveal or disclose one's identity ",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "hamlet_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"answer\" means [reply made to a charge, defence, account] (Onions, A Shakespeare Glossary, 1911/1919). - \"unfold\" means [display, disclose, reveal, bring a thing to light] (Onions, ",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "kinglear_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "word \"sir\" is used as a polite form of address, indicating respect towards Kent (Onions, A Shakespeare Glossary, 1911/1919). The rhetorical device of synecdoche is present, as \"breeding\" represents the e",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "kinglear_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"breeding\" means [upbringing, education] (Onions, A Shakespeare Glossary, 1911/1919). - \"sir\" means [gentleman, polite form of address] (Onions, A Shakespeare Gloss",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "othello_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "ce. The word \"know\" in this context means to ascertain or be aware of something (Onions, A Shakespeare Glossary, 1911/1919). The use of \"’Sblood,\" a contraction of \"God's blood,\" is an oath reflecting Ia",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "othello_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "] (not in retrieved Onions or Schmidt). - \"know\" means [ascertain, be aware of] (Onions, A Shakespeare Glossary, 1911/1919). - \"’Sblood\" means [God's blood, an oath] (not in retrieved Onions or Schmidt).",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "othello_stage_direction_3",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "peare-Lexicon, 1902). - \"enter\" means [to bind oneself by a bond, to engage in] (Onions, A Shakespeare Glossary, 1911/1919).",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "merchantofvenice_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "ntempt or dislike, a common Elizabethan expression to dismiss or reject an idea (Onions, A Shakespeare Glossary, 1911/1919). The repetition of \"fie\" emphasizes his strong aversion or denial. The dialogue",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "merchantofvenice_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "akespeare-Lexicon, 1902). - \"Fie\" means [an exclamation of contempt or dislike] (Onions, A Shakespeare Glossary, 1911/1919).",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "merchantofvenice_stage_direction_3",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "tuation, as seen in other plays where characters \"enter\" into bonds or quarrels (Onions, A Shakespeare Glossary, 1911/1919). The entrance of characters is a crucial moment in Elizabethan drama, often mar",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "merchantofvenice_stage_direction_3",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "Lexicon, 1902). - \"enter\" also implies [to engage in or bind oneself by a bond] (Onions, A Shakespeare Glossary, 1911/1919).",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "asyoulikeit_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "hich in Shakespeare's time could mean pleasant to look upon, stout, or cheerful (Onions, A Shakespeare Glossary, 1911/1919). The word \"prizer\" refers to a contestant or champion in a competition, particu",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "asyoulikeit_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"bonny\" means [pleasant to look upon, comely] (Onions, A Shakespeare Glossary, 1911/1919). - \"prizer\" means [a contestant or champion in a competition] (not in retrieved",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "asyoulikeit_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "vient position to Orlando's brother, indicating a hierarchical social structure (Onions, A Shakespeare Glossary, 1911/1919). The term \"brother\" is employed in its literal sense, though Shakespeare often ",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "asyoulikeit_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"master\" means [to rule as a master, be the master of] (Onions, A Shakespeare Glossary, 1911/1919). - \"brother\" means [often used for 'brother-in-law' or 'half-brother'] (Onions,",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "tempest_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "of affairs or mood, akin to asking \"How are things?\" or \"What's the situation?\" (Onions, A Shakespeare Glossary, 1911/1919). The exchange is concise, reflecting the urgency and efficiency required in mar",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "tempest_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "espeare-Lexicon, 1902). - \"Cheer\" means [state of affairs, mood, or provisions] (Onions, A Shakespeare Glossary, 1911/1919).",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "midsummer_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"heart\" means [feeling, compassion] (Onions, A Shakespeare Glossary, 1911/1919). - \"pity\" means [to feel sympathy, to compassionate] (Schmidt, Shakespeare-Lexi",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "midsummer_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "ppy\" in this context implies a wish for favorable circumstances or good fortune (Onions, A Shakespeare Glossary, 1911/1919). \"Renowned\" is used to convey Theseus's widespread reputation and honor, aligni",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "midsummer_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"happy\" means [propitious, favorable] (Onions, A Shakespeare Glossary, 1911/1919). - \"renowned\" means [report, rumor] (Onions, A Shakespeare Glossary, 1911/1919)",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "winterstale_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "Should rift to hear me\" employs the verb \"rift,\" meaning to split or burst open (Onions, A Shakespeare Glossary, 1911/1919). This word choice suggests a dramatic and violent action, emphasizing the inten",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "winterstale_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"rift\" means [to split; intr.] (Onions, A Shakespeare Glossary, 1911/1919). - \"hear\" means [to listen to, pay attention to] (Onions, A Shakespeare Glossar",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "winterstale_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "s an entreaty or earnest request, often used when one is seeking favor or mercy (Onions, A Shakespeare Glossary, 1911/1919). In this context, Camillo's use of \"beseech\" suggests a tone of urgency or desp",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "winterstale_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"beseech\" means [entreaty] (Onions, A Shakespeare Glossary, 1911/1919). - \"freedom\" means [at liberty, freely] (Onions, A Shakespeare Glossary, 1911/1",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "muchado_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "as per Onions, which can imply both a sovereign ruler and a royal family member (Onions, A Shakespeare Glossary, 1911/1919). The word \"brother\" in Shakespearean usage often extends beyond biological sibl",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "muchado_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"prince\" means [sovereign ruler or male member of a royal family] (Onions, A Shakespeare Glossary, 1911/1919). - \"Claudio\" refers to a character name used in multiple plays (Schmidt, Shakes",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "muchado_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": " is an archaic form of \"sir\" or \"gentleman,\" indicating Benedick's noble status (Onions, A Shakespeare Glossary, 1911/1919). The word \"cousin\" in Shakespeare's time could refer to various relatives beyon",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "muchado_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"Signior\" means [gentleman, nobleman] (Onions, A Shakespeare Glossary, 1911/1919). - \"Cousin\" means [collateral relative more distant than brother or sister, for",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "twelfthnight_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": " the time of Shakespeare, it had become a common term for a rascal or scoundrel (Onions, A Shakespeare Glossary, 1911/1919). The word \"sir\" is used ironically here, as Sir Toby himself is not acting with",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "twelfthnight_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"rogue\" means [one of a class of idle vagrants or vagabonds; rascal] (Onions, A Shakespeare Glossary, 1911/1919). - \"sir\" means [used ironically; gentleman] (Schmidt, Shakespeare-Lexicon, 1902",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "twelfthnight_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "\" is used here in its rare sense as a noun referring to the act of hunting game (Onions, A Shakespeare Glossary, 1911/1919). The word \"hunt\" also carries connotations of pursuit or chase, which can be in",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "twelfthnight_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"hunt\" means [game, quarry] (Onions, A Shakespeare Glossary, 1911/1919). - \"Curio\" is a name used in the play (Schmidt, Shakespeare-Lexicon, 1902). - \"",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "loveslabourslost_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "s\" is an archaic term for a \"tale-bearer,\" someone who spreads gossip or rumors (Onions, A Shakespeare Glossary, 1911/1919). The term \"trencher-knight\" is a pejorative expression for someone who is more ",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "loveslabourslost_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"mumble-news\" means [tale-bearer] (Onions, A Shakespeare Glossary, 1911/1919). - \"Dick\" means [used like 'Jack' - fellow, lad] (Onions, A Shakespeare Glossar",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "loveslabourslost_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "aic sense, where \"an if you please\" means \"if it pleases you\" or \"if you allow\" (Onions, A Shakespeare Glossary, 1911/1919). The term \"liege\" refers to a sovereign lord to whom allegiance is owed, indica",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "loveslabourslost_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"please\" means [if it pleases you] (Onions, A Shakespeare Glossary, 1911/1919). - \"liege\" means [sovereign lord, superior to whom allegiance is due] (Onions, ",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "antony_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": " \"beggary,\" which in this context implies a contemptible meanness or inadequacy (Onions, A Shakespeare Glossary, 1911/1919). The term \"reckoned\" means to count or estimate, suggesting that love should tr",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "antony_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"beggary\" means [contemptible meanness] (Onions, A Shakespeare Glossary, 1911/1919). - \"reckon\" means [to count among the number of] (Onions, A Shakespeare Glossar",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "richardiii_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "lied to the head, illustrating Shakespeare's penchant for metaphorical language (Onions, A Shakespeare Glossary, 1911/1919). The word \"first\" serves as an ordinal adjective, indicating the primary or ini",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "richardiii_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "stard\" means [originally a large kind of apple, humorously applied to the head] (Onions, A Shakespeare Glossary, 1911/1919). - \"First\" means [that which is in time or order before any other] (Schmidt, Sh",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "richardiii_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "archaic sense, referring to a matter in dispute or an affair needing resolution (Onions, A Shakespeare Glossary, 1911/1919). The preposition \"upon\" suggests alignment or association with a particular sid",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "richardiii_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "a figure of St. George, forming part of the insignia of the order of the garter (Onions, A Shakespeare Glossary, 1911/1919). - \"Cause\" means matter in dispute, affair to be decided (Onions, A Shakespeare",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "juliuscaesar_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "ning understanding or awareness, suggesting a mutual recognition or realization (Onions, A Shakespeare Glossary, 1911/1919). \"Time\" signifies the appropriate moment or occasion, a concept often explored ",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "juliuscaesar_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "ndulge; also, to influence (a person) by observing his humours or inclinations] (Onions, A Shakespeare Glossary, 1911/1919). - \"know\" means [to be aware of, ascertain from] (Onions, A Shakespeare Glossar",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "juliuscaesar_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": " but also as a title connoting absolute power and authority, akin to an emperor (Onions, A Shakespeare Glossary, 1911/1919). The command \"Peace, ho!\" employs the word \"peace\" in the sense of public tranq",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "juliuscaesar_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"Caesar\" means [absolute ruler, emperor] (Onions, A Shakespeare Glossary, 1911/1919). - \"Peace\" means [public tranquility, quiet and order] (Schmidt, Shakespeare-Le",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "cymbeline_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "ion. The term \"mother\" here is used figuratively to denote the source or origin (Onions, A Shakespeare Glossary, 1911/1919). \"Painting\" refers to cosmetics, implying superficiality or deceit (Schmidt, Sh",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "cymbeline_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"betrayed\" means [to deceive or mislead] (Onions, A Shakespeare Glossary, 1911/1919). - \"mother\" means [source, cause] (Onions, A Shakespeare Glossary, 1911/1919). ",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "cymbeline_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "n\" refers to a man of gentle birth or a soldier with a slightly elevated status (Onions, A Shakespeare Glossary, 1911/1919). The word \"matter\" signifies something of importance or substance, as opposed t",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "cymbeline_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "leman\" means [a man of gentle birth or a soldier with slightly elevated status] (Onions, A Shakespeare Glossary, 1911/1919). - \"daughter\" means [female child] (Schmidt, Shakespeare-Lexicon, 1902). - \"kin",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "kingjohn_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "con, 1902). The word \"before\" is used in the sense of precedence or going ahead (Onions, A Shakespeare Glossary, 1911/1919). The rhetorical device of antimetabole is present in the exchange, as the Basta",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "kingjohn_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "hmidt, Shakespeare-Lexicon, 1902). - \"before\" means [precedence or going ahead] (Onions, A Shakespeare Glossary, 1911/1919). - \"thither\" means [to that place] (Schmidt, Shakespeare-Lexicon, 1902).",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "coriolanus_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": " word \"live\" here is used in its primary sense, meaning to be alive or not dead (Onions, A Shakespeare Glossary, 1911/1919). The address \"O, my sweet lady\" uses the adjective \"sweet,\" which in Shakespear",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "coriolanus_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"live\" means [to be alive, not to be dead] (Onions, A Shakespeare Glossary, 1911/1919). - \"sweet\" means [pleasing to any sense] (Schmidt, Shakespeare-Lexicon, 1902). ",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "coriolanus_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"Citizen\" means [city-bred] (Onions, A Shakespeare Glossary, 1911/1919). - \"Rather\" means [the more readily (for some reason)] (Onions, A Shakespeare G",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "henryiv1_soliloquy_1",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "e of \"speak\" here is in its most literal sense, meaning to communicate verbally (Onions, A Shakespeare Glossary, 1911/1919). The word \"well\" indicates proficiency or skill in speaking (Schmidt, Shakespea",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "henryiv1_soliloquy_1",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"speak\" means [to communicate verbally] (Onions, A Shakespeare Glossary, 1911/1919). - \"well\" means [in a proficient manner] (Schmidt, Shakespeare-Lexicon, 1902). ",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "henryiv1_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": " extends beyond biological siblings to include brothers-in-law or half-brothers (Onions, A Shakespeare Glossary, 1911/1919). Here, it signifies a close familial or political bond. \"Nephew\" in the 17th ce",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "henryiv1_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"brother\" means [often used for 'brother-in-law' or 'half-brother'] (Onions, A Shakespeare Glossary, 1911/1919). - \"nephew\" means [the son of a brother or sister] (Schmidt, Shakespeare-Lexico",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "henryiv2_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "eaning. The word \"tell\" in this context means to convey or announce information (Onions, A Shakespeare Glossary, 1911/1919). The use of \"thou\" by Lord Bardolph is significant; it denotes a familiar or au",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "henryiv2_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "- \"tell\" means [to convey or announce information] (Onions, A Shakespeare Glossary, 1911/1919). - \"earl\" means [order of nobility next below a marquis and next above a viscou",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "troilus_dialogue_2",
+    "section": "Language and Rhetoric",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": "air or dysfunction. The verb \"mend\" here means \"to make better\" or \"to improve\" (Onions, A Shakespeare Glossary, 1911/1919). The rhetorical device of a rhetorical question is employed, suggesting a sense",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  },
+  {
+    "sample_id": "troilus_dialogue_2",
+    "section": "Key Words & Glosses",
+    "citation_text": "Onions, A Shakespeare Glossary, 1911/1919",
+    "context_snippet": " (not in retrieved Onions or Schmidt). - \"mend\" means [to make better, improve] (Onions, A Shakespeare Glossary, 1911/1919). - \"strong\" means [resolute, determined] (Onions, A Shakespeare Glossary, 1911/",
+    "classification": "verifiable_correct",
+    "verification_basis": "onions_retrieved"
+  }
+]

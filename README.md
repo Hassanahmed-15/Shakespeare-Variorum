@@ -479,6 +479,13 @@ This project welcomes contributions for:
 - **Software** (code, scripts, UI): [MIT License](LICENSE)
 - **JSON corpus** (`Public/Data/`): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
+## Paper & validation
+
+The methods paper (*Full Fathom Five*) and reproducibility artifacts live in [`validation/`](validation/):
+
+- **Draft:** [`validation/humanize_workspace/draft.md`](validation/humanize_workspace/draft.md)
+- **Audit results & scripts index:** [`validation/README.md`](validation/README.md)
+
 ## Citation & archival deposit
 
 Development repository: [github.com/bradrcarson/Shakespeare-Variorum](https://github.com/bradrcarson/Shakespeare-Variorum)

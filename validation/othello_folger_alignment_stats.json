@@ -1,0 +1,48 @@
+{
+  "date": "2026-07-10",
+  "play": "Othello",
+  "method": "Deployed merged JSON vs Folger TEI (Oth.xml): each line with non-empty 'play' compared by normalized fuzzy ratio; exact = ratio >= 0.99. Note-mapping review from align_nv_to_folger --review JSON when present.",
+  "sources": {
+    "deployed_json": "Public/Data/othello_notes_folger.json",
+    "folger_tei": "Public/Data/folger_tei/Oth.xml",
+    "alignment_review": "Public/Data/othello_folger_alignment_review.json"
+  },
+  "line_references_all_spine_units_with_play_text": {
+    "matched_exact": 3763,
+    "total": 3781,
+    "pct": 99.52,
+    "dramatis_rows_excluded_from_denominator_below": 18
+  },
+  "line_references_act_scene_only": {
+    "matched_exact": 3763,
+    "total": 3763,
+    "pct": 100.0
+  },
+  "by_kind_act_scene_only": {
+    "dialogue_speech": {
+      "matched_exact": 3631,
+      "total": 3631,
+      "pct": 100.0
+    },
+    "stage_direction": {
+      "matched_exact": 132,
+      "total": 132,
+      "pct": 100.0
+    }
+  },
+  "note_bearing_lines": {
+    "with_folger_anchor": 676,
+    "total": 676,
+    "pct": 100.0,
+    "note_strings_total": 918
+  },
+  "alignment_review_failures": {
+    "rows": 0,
+    "note_strings_unplaced": 0
+  },
+  "paper_recommendation": {
+    "replace_over_95_with": "99.52%",
+    "act_scene_only": "100.0%",
+    "scope": "Othello only; Folger TEI alignment is not run on other plays."
+  }
+}
